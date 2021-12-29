@@ -39,6 +39,7 @@ class TestVideoAction extends XotBasePanelAction {
 
         $view = ThemeService::getView();
 
+
         $view_params = [
             'view' => $view,
             'mp4_src' => '/videos/test.mp4',  //public_html/videos/
