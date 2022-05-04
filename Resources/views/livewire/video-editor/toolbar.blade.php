@@ -92,6 +92,7 @@
                 @foreach($customers as $v)
                     {{ $v->name }}
                 @endforeach
+                merge ? <input type="checkbox" wire:model="form_data.clip_merge.{{ $clip->id }}"  class="form-checkbox" />
             </x-slot>
         </x-card>
     @endforeach

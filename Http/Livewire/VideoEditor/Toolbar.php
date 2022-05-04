@@ -22,6 +22,9 @@ use Modules\Mediamonitor\Services\MediaService;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\MediaLibrary\HasMedia;
 
+/**
+ * Undocumented class
+ */
 class Toolbar extends Component {
     // public Model $model;
     // public HasMedia $model;
@@ -32,6 +35,8 @@ class Toolbar extends Component {
     public float $currentTime = 0;
     public float $rangeFrom = 0;
     public float $rangeTo = 0;
+
+    public array $form_data = [];
 
     protected $listeners = [
         'setVideoCurrentTime' => 'setCurrentTime',
