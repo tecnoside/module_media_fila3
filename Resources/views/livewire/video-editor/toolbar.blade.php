@@ -96,6 +96,7 @@
             </x-slot>
         </x-card>
     @endforeach
+         <button class="btn btn-primary" wire:click="clickMerge()">Clip Merge !</button>
     </div>
     </div>
 

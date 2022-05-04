@@ -201,4 +201,13 @@ class Toolbar extends Component {
         })->pluck('label')->all();
         $clip->syncTagsWithType($tags, $tag_type);
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function clickMerge(){
+        dddx($this->form_data);
+    }
 }
