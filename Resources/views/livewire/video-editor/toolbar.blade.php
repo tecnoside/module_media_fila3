@@ -1,6 +1,7 @@
 <div >
     @push('modals')
         <livewire:theme::modal.body-view id="chooseClipTag"  title="scegli tag" subtitle="" bodyView="media::modal.add_customer" />
+        <livewire:theme::modal.body-view.sort id="mergeClips"  title="unisci clips" subtitle="" bodyView="media::modal.merge_clips" />
     @endpush
     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <button class="btn btn-primary play-full" data-toggle="tooltip" title="play">

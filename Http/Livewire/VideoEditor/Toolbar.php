@@ -208,6 +208,10 @@ class Toolbar extends Component {
      * @return void
      */
     public function clickMerge(){
-        dddx($this->form_data);
+        //dddx($this->form_data);
+        $data=[];
+        $data['model_class']=SpatieImage::class;
+        $data['ids']=[1,2,3];
+        $this->emit('showModal', 'mergeClips', $data);
     }
 }
