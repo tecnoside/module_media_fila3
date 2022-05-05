@@ -56,6 +56,9 @@ class CreateSpatieImagesTable extends XotBaseMigration {
                 if(!$this->hasColumn('user_id')){
                     $table->integer('user_id');
                 }
+                if(!$this->hasColumn('order_column')){
+                    $table->unsignedInteger('order_column')->nullable()->index();
+                }
                 /*
                 if(!$this->hasColumn('time_from')){
                     $table->decimal('time_from',10,3);

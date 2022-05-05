@@ -9,18 +9,19 @@ namespace Modules\Media\Http\Livewire\VideoEditor;
 
 header('Accept-Ranges: bytes');
 
-use Illuminate\Contracts\Support\Renderable;
+use Livewire\Component;
 // use FFMpeg\Coordinate\Dimension;
 // use FFMpeg\Format\Video\X264;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
-use Modules\Media\Jobs\ExportClipJob;
-use Modules\Media\Jobs\ExportFrameJob;
-use Modules\Mediamonitor\Services\MediaService;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Support\Facades\Auth;
+use Modules\Media\Jobs\ExportClipJob;
+use Modules\Media\Models\SpatieImage;
+use Modules\Media\Jobs\ExportFrameJob;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Support\Renderable;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Modules\Mediamonitor\Services\MediaService;
 
 /**
  * Undocumented class
@@ -76,6 +77,12 @@ class Toolbar extends Component {
         return view()->make($view, $view_params);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
     public function setPoster(int $id) {
         $snaps = $this->model->getMedia('snaps', ['isPoster' => true]);
         foreach ($snaps as $snap) {
@@ -196,9 +203,12 @@ class Toolbar extends Component {
         $clip_id = $data['clip_id'];
         $tags = $data['tags'];
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
-        $tags = collect($tags)->filter(function ($item) {
-            return $item['active'];
-        })->pluck('label')->all();
+        $tags = collect($tags)->filter(
+            function ($item) {
+                return $item['active'];
+            }
+        )->pluck('label')
+        ->all();
         $clip->syncTagsWithType($tags, $tag_type);
     }
 
@@ -207,11 +217,14 @@ class Toolbar extends Component {
      *
      * @return void
      */
-    public function clickMerge(){
-        //dddx($this->form_data);
+    public function clickMerge():void {
+        
+        $ids=$this->form_data['clip_merge'] ?? [];
+        $ids=array_keys($ids);
+        //dddx([$ids,$this->form_data]);
         $data=[];
         $data['model_class']=SpatieImage::class;
-        $data['ids']=[1,2,3];
+        $data['ids']=$ids;
         $this->emit('showModal', 'mergeClips', $data);
     }
 }
