@@ -63,11 +63,17 @@ class Clip extends Component {
         if($id!=='editClip'){
             return ;
         }
-        
+        if($data['id']!=$this->model->id){
+            return ;
+        }
+        //dddx(['data'=>$data,'model'=>$this->model]);
+
         $up=collect($data)
             ->only(['title','subtitle'])
             ->all();
+        //dddx($up);
         $this->model->update($up);
+        $this->model->refresh();
     }
 
 }
