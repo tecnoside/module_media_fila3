@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 use Spatie\Tags\HasTags; // spatie tags
+use Spatie\ModelStatus\HasStatuses;
 
 /**
  * Undocumented class.
@@ -19,6 +20,7 @@ class SpatieImage extends BaseMedia {
     // use Cachable;
     use HasFactory;
     use HasTags; // spatie tags
+    use HasStatuses;
 
     protected $fillable = [
         'id', 'model_type', 'model_id', 'uuid', 'collection_name', 'name',
