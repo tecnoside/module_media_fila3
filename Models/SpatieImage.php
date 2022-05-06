@@ -6,6 +6,7 @@ namespace Modules\Media\Models;
 
 // use Spatie\MediaLibrary\Models\Media as BaseMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Lang\Models\Traits\LinkedTrait;
 use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 use Spatie\Tags\HasTags; // spatie tags
@@ -20,15 +21,23 @@ class SpatieImage extends BaseMedia {
     // use Cachable;
     use HasFactory;
     use HasTags; // spatie tags
-    use HasStatuses;
+    use HasStatuses; //spatie status
+    use LinkedTrait;
 
     protected $fillable = [
         'id', 'model_type', 'model_id', 'uuid', 'collection_name', 'name',
-        'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 'manipulations',
+        'file_name', 'mime_type', 'disk', 'conversions_disk', 'size', 
+        'manipulations',
         'custom_properties', 'generated_conversions', 'responsive_images',
         'order_column', 'user_id',
         'time_from', 'time_to',
         'created_at', 'updated_at', 'created_by', 'updated_by',
+        'title','subtitle','guid',
+    ];
+
+    protected $appends = [
+        'original_url', 'preview_url',
+        'title','subtitle',
     ];
 
     protected $table = 'spatie_images';

@@ -16,6 +16,10 @@ class Clip extends Component {
     public string $type='edit';
     public  Model $model;
 
+    protected $listeners=[
+        'updateDataFromModal' => 'updateDataFromModal',
+    ];
+
     /**
      * Undocumented function
      *
@@ -38,8 +42,32 @@ class Clip extends Component {
         return view()->make($view, $view_params);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function editClip():void {
-        dddx('a');
+        $data=$this->model->toArray();
+        $this->emit('showModal', 'editClip', $data);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param string $id
+     * @param array $data
+     * @return void
+     */
+    public function updateDataFromModal(string $id, array $data) {
+        if($id!=='editClip'){
+            return ;
+        }
+        
+        $up=collect($data)
+            ->only(['title','subtitle'])
+            ->all();
+        $this->model->update($up);
     }
 
 }

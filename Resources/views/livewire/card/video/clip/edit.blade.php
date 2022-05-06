@@ -6,8 +6,10 @@
                 range: {{ gmdate('H:i:s', $model->getCustomProperty('time_from', null)) }} -
                 {{ gmdate('H:i:s', $model->getCustomProperty('time_to', null)) }}
             @endif
-            status : {{ $model->status }}
-            <button class="btn btn-primary" wire:click="editClip()">edit</button>
+            <br/> id: {{ $model->id }}
+            <br/> status : {{ $model->status }}
+            <br/> title ? {{ $model->title }}
+            <br/> <button class="btn btn-primary" wire:click="editClip()">edit</button>
         </x-slot>
     </x-card>
 </div>
