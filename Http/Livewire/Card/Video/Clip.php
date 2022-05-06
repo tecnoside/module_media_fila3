@@ -38,4 +38,8 @@ class Clip extends Component {
         return view()->make($view, $view_params);
     }
 
+    public function editClip():void {
+        dddx('a');
+    }
+
 }

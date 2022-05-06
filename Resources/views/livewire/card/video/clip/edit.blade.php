@@ -7,6 +7,7 @@
                 {{ gmdate('H:i:s', $model->getCustomProperty('time_to', null)) }}
             @endif
             status : {{ $model->status }}
+            <button class="btn btn-primary" wire:click="editClip()">edit</button>
         </x-slot>
     </x-card>
 </div>
