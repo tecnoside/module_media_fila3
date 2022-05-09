@@ -1,0 +1,1 @@
+@foreach ($subs as $sk => $sub)<span data-start="{{ $sub->start }}" data-end="{{ $sub->end }}">{{ $sub['text'] }}</span> @endforeach
