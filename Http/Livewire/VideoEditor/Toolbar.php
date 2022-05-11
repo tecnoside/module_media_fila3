@@ -29,6 +29,7 @@ use Spatie\MediaLibrary\HasMedia;
 class Toolbar extends Component {
     // public Model $model;
     // public HasMedia $model;
+    public string $type='bar1';
     public string $model_class;
     public int $model_id;
 
@@ -67,8 +68,13 @@ class Toolbar extends Component {
         return app($this->model_class)->find($this->model_id);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return Renderable
+     */
     public function render(): Renderable {
-        $view = 'media::livewire.video-editor.toolbar';
+        $view = 'media::livewire.video-editor.toolbar.'.$this->type;
         $view_params = [
             'view' => $view,
             'snaps' => $this->model->getMedia('snaps'),
