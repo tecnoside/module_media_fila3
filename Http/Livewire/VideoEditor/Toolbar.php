@@ -9,22 +9,22 @@ namespace Modules\Media\Http\Livewire\VideoEditor;
 
 header('Accept-Ranges: bytes');
 
-use Livewire\Component;
+use Illuminate\Contracts\Support\Renderable;
 // use FFMpeg\Coordinate\Dimension;
 // use FFMpeg\Format\Video\X264;
 
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Support\Facades\Auth;
-use Modules\Media\Jobs\ExportClipJob;
-use Modules\Media\Models\SpatieImage;
-use Modules\Media\Jobs\ExportFrameJob;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Support\Renderable;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Media\Jobs\ExportClipJob;
+use Modules\Media\Jobs\ExportFrameJob;
+use Modules\Media\Models\SpatieImage;
 use Modules\Mediamonitor\Services\MediaService;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Spatie\MediaLibrary\HasMedia;
 
 /**
- * Undocumented class
+ * Undocumented class.
  */
 class Toolbar extends Component {
     // public Model $model;
@@ -42,6 +42,7 @@ class Toolbar extends Component {
     protected $listeners = [
         'setVideoCurrentTime' => 'setCurrentTime',
         'updateSliderValues' => 'updateSliderValues',
+        'setSliderValues' => 'setSliderValues',
         'refreshComponent' => '$refresh', // https://benborgers.com/posts/livewire-refresh-other-component
         'updateDataFromModal' => 'updateDataFromModal',
     ];
@@ -78,9 +79,8 @@ class Toolbar extends Component {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param integer $id
      * @return void
      */
     public function setPoster(int $id) {
@@ -132,6 +132,11 @@ class Toolbar extends Component {
     public function updateSliderValues(array $values) {
         $this->rangeFrom = min($values) * 1.0;
         $this->rangeTo = max($values) * 1.0;
+    }
+
+    public function setSliderValues(float $from, float $to) {
+        $this->rangeFrom = $from;
+        $this->rangeTo = $to;
     }
 
     /**
@@ -213,18 +218,15 @@ class Toolbar extends Component {
     }
 
     /**
-     * Undocumented function
-     *
-     * @return void
+     * Undocumented function.
      */
-    public function clickMerge():void {
-        
-        $ids=$this->form_data['clip_merge'] ?? [];
-        $ids=array_keys($ids);
-        //dddx([$ids,$this->form_data]);
-        $data=[];
-        $data['model_class']=SpatieImage::class;
-        $data['ids']=$ids;
+    public function clickMerge(): void {
+        $ids = $this->form_data['clip_merge'] ?? [];
+        $ids = array_keys($ids);
+        // dddx([$ids,$this->form_data]);
+        $data = [];
+        $data['model_class'] = SpatieImage::class;
+        $data['ids'] = $ids;
         $this->emit('showModal', 'mergeClips', $data);
     }
 }
