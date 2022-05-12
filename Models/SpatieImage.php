@@ -40,6 +40,9 @@ class SpatieImage extends BaseMedia {
         'title','subtitle',
     ];
 
+    //protected $with = ['tags:id,name'];
+    protected $with = ['tags'];
+
     protected $table = 'spatie_images';
 
     /**
