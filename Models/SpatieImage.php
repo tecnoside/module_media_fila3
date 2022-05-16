@@ -24,7 +24,7 @@ class SpatieImage extends BaseMedia {
     use HasFactory;
     use HasTags; // spatie tags
     use HasStatuses; //spatie status
-    use HasDomains;
+    //use HasDomains;
     use LinkedTrait;
     /**
      * Indicates whether attributes are snake cased on arrays.
