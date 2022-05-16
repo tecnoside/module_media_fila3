@@ -17,6 +17,17 @@ use Spatie\ModelStatus\HasStatuses;
  */
 class SpatieImage extends BaseMedia {
     use Updater;
+/**
+ * Indicates whether attributes are snake cased on arrays.
+ *
+ * @see  https://laravel-news.com/6-eloquent-secrets
+* 
+ * @var bool
+ */
+// public static $snakeAttributes = true;
+
+protected $perPage = 30;
+
     // use Searchable;
     // use Cachable;
     use HasFactory;
