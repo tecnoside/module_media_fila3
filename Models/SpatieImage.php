@@ -7,10 +7,11 @@ namespace Modules\Media\Models;
 // use Spatie\MediaLibrary\Models\Media as BaseMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Lang\Models\Traits\LinkedTrait;
+use Modules\Mediamonitor\Models\Traits\HasDomains;
 use Modules\Xot\Traits\Updater;
-use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia; // spatie tags
+use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 use Spatie\ModelStatus\HasStatuses;
-use Spatie\Tags\HasTags;
+use Spatie\Tags\HasTags; // spatie tags
 
 /**
  * Undocumented class.
