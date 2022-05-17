@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Models\Panels;
 
 use Illuminate\Http\Request;
-//--- Services --
+// --- Services --
 
 use Modules\Media\Services\ThemoviedbService;
 use Modules\Xot\Models\Panels\XotBasePanel;
@@ -74,7 +74,7 @@ class VideoPanel extends XotBasePanel {
      * @return RowsContract
      */
     public static function indexQuery(array $data, $query) {
-        //return $query->where('user_id', $request->user()->id);
+        // return $query->where('user_id', $request->user()->id);
         return $query;
     }
 
@@ -160,12 +160,12 @@ class VideoPanel extends XotBasePanel {
         ];
     }
 
-    //forse meglio un mutator?
+    // forse meglio un mutator?
     public function txt(): ?string {
         return optional($this->row)->overview;
     }
 
-    //forse meglio un mutator?
+    // forse meglio un mutator?
     public function voteAverage(): float {
         return (optional($this->row)->vote_average * 5) / 10;
     }
@@ -174,7 +174,7 @@ class VideoPanel extends XotBasePanel {
      * @return array
      */
     public function optionsSelect() {
-        //dddx(xotModel('tag')::all()->isEmpty());
+        // dddx(xotModel('tag')::all()->isEmpty());
 
         return ThemoviedbService::getGenresMovie();
     }

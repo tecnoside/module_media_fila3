@@ -378,7 +378,7 @@ class AuthControllerClass extends BaseControllerClass {
         $client->setRedirectUri(self::getReturnUrl().'&type=google');
 
         $client->setScopes(['email', 'profile', 'https://www.googleapis.com/auth/youtube']);
-        //$client->addScope('https://www.googleapis.com/auth/youtube');
+        // $client->addScope('https://www.googleapis.com/auth/youtube');
         $client->setAccessType('offline');
 
         return $client;
@@ -393,7 +393,7 @@ class AuthControllerClass extends BaseControllerClass {
         $_SESSION['state'] = '';
 
         if (isset($_SESSION[$tokenSessionKey])) {
-            //$client->setAccessToken($_SESSION[$tokenSessionKey]);
+            // $client->setAccessToken($_SESSION[$tokenSessionKey]);
         }
 
         $isUserAuthorized = $client->getAccessToken();

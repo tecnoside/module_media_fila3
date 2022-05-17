@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-////use Laravel\Scout\Searchable;
+// //use Laravel\Scout\Searchable;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Lang\Models\Traits\LinkedTrait;
@@ -16,20 +16,20 @@ use Modules\Xot\Traits\Updater;
  */
 abstract class BaseModelLang extends Model {
     use Updater;
-/**
- * Indicates whether attributes are snake cased on arrays.
- *
- * @see  https://laravel-news.com/6-eloquent-secrets
-* 
- * @var bool
- */
-// public static $snakeAttributes = true;
 
-protected $perPage = 30;
-
-    //use Searchable;
+    // use Searchable;
     use LinkedTrait;
     use HasFactory;
+    /**
+     * Indicates whether attributes are snake cased on arrays.
+     *
+     * @see  https://laravel-news.com/6-eloquent-secrets
+     *
+     * @var bool
+     */
+    // public static $snakeAttributes = true;
+
+    protected $perPage = 30;
 
     protected $connection = 'media';
 
@@ -42,7 +42,7 @@ protected $perPage = 30;
      * @var array
      */
     protected $casts = [
-        //'published_at' => 'datetime:Y-m-d', // da verificare
+        // 'published_at' => 'datetime:Y-m-d', // da verificare
     ];
 
     /**
@@ -64,7 +64,7 @@ protected $perPage = 30;
      * @var array
      */
     protected $hidden = [
-        //'password'
+        // 'password'
     ];
 
     /**
@@ -72,7 +72,7 @@ protected $perPage = 30;
      */
     public $timestamps = true;
 
-    //-----------
+    // -----------
     /*
     protected $id;
     protected $post;

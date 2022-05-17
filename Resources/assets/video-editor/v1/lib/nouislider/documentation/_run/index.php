@@ -23,7 +23,7 @@
 
 <body class="language-javascript">
 
-<?php if ($page == 'index'): ?>
+<?php if ('index' == $page) { ?>
 
     <div class="index-demo">
 
@@ -54,7 +54,7 @@
         </div>
     </div>
 
-<?php endif; ?>
+<?php } ?>
 
 <?php include $file_menu; ?>
 

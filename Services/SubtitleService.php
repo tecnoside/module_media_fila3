@@ -15,8 +15,8 @@ use Illuminate\Support\Str;
 class SubtitleService {
     private static ?self $instance = null;
 
-    public string $disk = 'media'; //nome che usa storage
-    public string $file_path; //siamo in subtitle, percio' il file e' dei subtitle
+    public string $disk = 'media'; // nome che usa storage
+    public string $file_path; // siamo in subtitle, percio' il file e' dei subtitle
 
     public string $field_name = 'txt';
 
@@ -111,12 +111,12 @@ class SubtitleService {
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             $item_i = 0;
             foreach ($sentence->item as $item) {
-                //00:06:35,360
+                // 00:06:35,360
                 $start = intval($item->attributes()->start->__toString()) / 1000;
                 $end = intval($item->attributes()->end->__toString()) / 1000;
-                //dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
+                // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
                 $tmp = [
-                    //'id' => $i++,
+                    // 'id' => $i++,
                     'sentence_i' => $sentence_i,
                     'item_i' => $item_i,
                     'start' => $start,

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /** @var array $lang */
 
@@ -18,20 +18,22 @@ $errors = AuthController::getFlash('errors');
 
 <h1><?php echo $lang_arr['sign_up']; ?></h1>
 
-<?php if( !empty( $errors ) && is_array( $errors ) ): ?>
+<?php if (! empty($errors) && is_array($errors)) { ?>
     <div class="alert alert-danger">
-        <?php echo implode( '<br>', $errors ); ?>
+        <?php echo implode('<br>', $errors); ?>
     </div>
-<?php endif; ?>
+<?php } ?>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
 
-            <form action="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=signup" method="post">
+            <form action="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=signup" method="post">
                 <div class="form-group">
                     <label for="registerFormEmail"><?php echo $lang_arr['email_address']; ?>:</label>
-                    <input type="email" name="email" class="form-control" id="registerFormEmail" value="<?php if (!empty($_POST['email'])) { echo $_POST['email']; } ?>" required>
+                    <input type="email" name="email" class="form-control" id="registerFormEmail" value="<?php if (! empty($_POST['email'])) {
+    echo $_POST['email'];
+} ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="registerFormPassword"><?php echo $lang_arr['password']; ?>:</label>
@@ -48,7 +50,7 @@ $errors = AuthController::getFlash('errors');
 
             <hr>
             <div class="my-3">
-                <a href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>">
+                <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>">
                     <?php echo $lang_arr['login']; ?>
                 </a>
             </div>

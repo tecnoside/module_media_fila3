@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models\Panels\Actions;
 
-//-------- services --------
+// -------- services --------
 
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Coordinate\TimeCode;
@@ -14,7 +14,7 @@ use Modules\Theme\Services\ThemeService;
 use Modules\Xot\Models\Panels\Actions\XotBasePanelAction;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
-//-------- bases -----------
+// -------- bases -----------
 
 /**
  * Class TestAction.
@@ -39,7 +39,7 @@ class TestVideoEditorAction extends XotBasePanelAction {
 
         $view_params = [
             'view' => $view,
-            'mp4_src' => '/videos/test.mp4',  //public_html/videos/
+            'mp4_src' => '/videos/test.mp4',  // public_html/videos/
             'drivers' => $drivers,
             'driver' => $drivers[$i],
         ];
@@ -57,9 +57,9 @@ class TestVideoEditorAction extends XotBasePanelAction {
         ->open('videos/test.mp4')
 
     // add the 'resize' filter...
-        //->addFilter(function ($filters) {
+        // ->addFilter(function ($filters) {
         //    $filters->resize(new Dimension(60, 40));
-        //})
+        // })
         ->addFilter('-ss', TimeCode::fromSeconds($start))
         ->addFilter('-to', TimeCode::fromSeconds($to))
 
@@ -67,7 +67,7 @@ class TestVideoEditorAction extends XotBasePanelAction {
         ->export()
 
     // tell the MediaExporter to which disk and in which format we want to export...
-        //->toDisk('downloadable_videos')
+        // ->toDisk('downloadable_videos')
         ->save('videos/zibibbo.mp4');
     }
 }

@@ -6,12 +6,12 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models\Panels\Actions;
 
-//-------- services --------
+// -------- services --------
 
 use Modules\Theme\Services\ThemeService;
 use Modules\Xot\Models\Panels\Actions\XotBasePanelAction;
 
-//-------- bases -----------
+// -------- bases -----------
 
 /**
  * Class TryVideoEditorSubAction.
@@ -24,13 +24,12 @@ class TryVideoEditorSubAction extends XotBasePanelAction {
      * @return mixed
      */
     public function handle() {
-
         $view = ThemeService::getView();
 
         $view_params = [
             'view' => $view,
             'mp4_src' => '/videos/test.mp4',
-            'srt_src' =>  '/videos/test.xml',
+            'srt_src' => '/videos/test.xml',
         ];
 
         return view()->make($view, $view_params);

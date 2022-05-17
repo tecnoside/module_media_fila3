@@ -4,17 +4,17 @@
  * https://mayahi.net/laravel/queues-in-laravel-building-a-video-downloader-website/.
  */
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 namespace Modules\Media\Jobs;
 
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 use Modules\Mediamonitor\Services\MediaService;
 
 /**
@@ -26,7 +26,7 @@ class ExportClipJob implements ShouldQueue {
     use Queueable;
     use SerializesModels;
 
-    //public Model $model;
+    // public Model $model;
     public string $model_class;
     public int $model_id;
     public float $rangeFrom;
@@ -38,7 +38,7 @@ class ExportClipJob implements ShouldQueue {
      *
      * @var int
      */
-    public $timeout = 3600; 
+    public $timeout = 3600;
     /**
      * The number of times the job may be attempted.
      *
@@ -56,9 +56,9 @@ class ExportClipJob implements ShouldQueue {
      * Create a new job instance.
      */
     public function __construct(string $model_class, int $model_id, float $rangeFrom, float $rangeTo) {
-        //\Symfony\Component\Process\Process::setTimeout(null);
+        // \Symfony\Component\Process\Process::setTimeout(null);
 
-        //$this->model = $model;
+        // $this->model = $model;
         $this->model_class = $model_class;
         $this->model_id = $model_id;
         $this->rangeFrom = $rangeFrom;

@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-//dddx($lang_arr);
+// dddx($lang_arr);
 /*sostituiti $config con $config_component
 
 spostato tutto l'header nel generatore del componente.
@@ -8,9 +8,9 @@ spostato tutto l'header nel generatore del componente.
 nella view non ci deve essere la logica.
 
 /** @var array $config */
-/*require_once dirname(__DIR__) . '/config/config.php';*/
+/* require_once dirname(__DIR__) . '/config/config.php'; */
 
-/** @var array $lang */
+/* @var array $lang */
 /* le traduzioni in laravel sono in altre parti */
 /*if (file_exists($config_component['root_path'] . "language/{$config_component['lang']}.php")) {
     require_once $config_component['root_path'] . "language/{$config_component['lang']}.php";
@@ -23,12 +23,12 @@ nella view non ci deve essere la logica.
 }*/
 
 /* la sessione viene gestita col session manager in laravel */
-/*session_start();*/
+/* session_start(); */
 
-/*require_once $config_component['root_path'] . 'vendor/autoload.php';*/
+/* require_once $config_component['root_path'] . 'vendor/autoload.php'; */
 
 /* i controller non vanno qua */
-/*use \App\Controller\BaseControllerClass as BaseController;*/
+/* use \App\Controller\BaseControllerClass as BaseController; */
 
 /*$controller = new BaseController($config, $lang);
 $page_content = $controller->handleRequest();
@@ -114,7 +114,7 @@ echo '</pre>';*/
 @endif
 
 <?php
-/*sostituito tutto con include sopra */
+/* sostituito tutto con include sopra */
 /*if( file_exists( $config_component['root_path'] . "templates/{$action}_templates.html.php" ) ) {
                     include $config_component['root_path'] . "templates/{$action}_templates.html.php";
                 }*/

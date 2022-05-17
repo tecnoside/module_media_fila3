@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-//----- models -----
+// ----- models -----
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
@@ -14,12 +14,12 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
  */
 class CreateVideosTable extends XotBaseMigration {
     /**
-     * i don't write table name, it take from Model, model is singular of this class wit
+     * i don't write table name, it take from Model, model is singular of this class wit.
      *
      * @return void
      */
     public function up() {
-        //-- CREATE --
+        // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
                 $table->increments('id');
@@ -29,7 +29,7 @@ class CreateVideosTable extends XotBaseMigration {
                 $table->string('path');
                 $table->datetime('converted_for_downloading_at')->nullable();
                 $table->datetime('converted_for_streaming_at')->nullable();
-                //----------------------------------------------------------
+                // ----------------------------------------------------------
                 $table->boolean('adult')->nullable();
                 $table->string('backdrop_path')->nullable();
                 $table->string('original_language', 3)->nullable();
@@ -38,18 +38,18 @@ class CreateVideosTable extends XotBaseMigration {
                 $table->decimal('popularity', 10, 3)->nullable();
                 $table->string('poster_path')->nullable();
                 $table->dateTime('release_date')->nullable();
-                //$table->string('title')->nullable();
+                // $table->string('title')->nullable();
                 $table->boolean('video')->nullable();
                 $table->decimal('vote_average', 10, 3)->nullable();
                 $table->integer('vote_count')->nullable();
-                //----------------------------------------------------------
+                // ----------------------------------------------------------
                 $table->string('created_by')->nullable();
                 $table->string('updated_by')->nullable();
                 $table->timestamps();
             }
         );
 
-        //-- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table) {
                 if (! $this->hasColumn('url')) {

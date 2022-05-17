@@ -71,7 +71,7 @@ class TestStreamingAction extends XotBasePanelAction {
             echo $exception->getMessage().PHP_EOL;
         });
 
-        //$loop->run(); //va in loop e non esce piu'
+        // $loop->run(); //va in loop e non esce piu'
     }
 
     public function test03() {

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-//---- models ---
+// ---- models ---
 
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
@@ -17,7 +17,7 @@ class CreateSubtitlesTable extends XotBaseMigration {
      * @return void
      */
     public function up() {
-        //-- CREATE --
+        // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
                 $table->bigIncrements('id');
@@ -34,12 +34,12 @@ class CreateSubtitlesTable extends XotBaseMigration {
                 $table->string('updated_by')->nullable();
             }
         );
-        //-- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table) {
-                //if (! $this->hasColumn('channel_id')) { //+"source": "Internazionali" +"channel": "BBCnews"
+                // if (! $this->hasColumn('channel_id')) { //+"source": "Internazionali" +"channel": "BBCnews"
                 //    $table->integer('channel_id')->nullable();
-                //}
+                // }
             }
         );
     }

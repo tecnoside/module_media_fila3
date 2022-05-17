@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Exception;
 use Modules\Media\Services\VideoStream;
 
 /**

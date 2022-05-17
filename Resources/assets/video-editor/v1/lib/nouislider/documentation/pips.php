@@ -1,7 +1,7 @@
-<?php
-	$title = "noUiSlider - Handles and Slider Values";
-	$description = "";
-    $canonical = "nouislider/pips/"
+<?php declare(strict_types=1);
+$title = 'noUiSlider - Handles and Slider Values';
+    $description = '';
+    $canonical = 'nouislider/pips/';
 ?>
 
 <h1>Adding a scale/pips to a slider</h1>

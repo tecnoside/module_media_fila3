@@ -27,7 +27,7 @@
 </head>
 
 <body class="language-javascript">
-    <?php if ($page == 'index'): ?>
+    <?php if ('index' == $page) { ?>
 
     <div class="index-demo">
 
@@ -57,7 +57,7 @@
                 frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
         </div>
     </div>
-    <?php endif; ?><?php<?php include $file_menu; ?>
+    <?php } ?><?php<?php include $file_menu; ?>
 
     <div class="content">
         <?php echo $content; ?>

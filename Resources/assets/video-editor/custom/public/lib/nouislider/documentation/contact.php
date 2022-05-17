@@ -1,7 +1,7 @@
-<?php
-	$title = "noUiSlider - Help and Contact";
-	$description = "";
-	$canonical = "nouislider/contact/"
+<?php declare(strict_types=1);
+$title = 'noUiSlider - Help and Contact';
+    $description = '';
+    $canonical = 'nouislider/contact/';
 ?>
 
 <h1>Contact</h1>

@@ -5,32 +5,32 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
-//---------- traits
-use Illuminate\Database\Eloquent\Model;
-////use Laravel\Scout\Searchable;
-use Modules\Xot\Traits\Updater;
+// ---------- traits
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+// //use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Services\FactoryService;
+use Modules\Xot\Traits\Updater;
 
 /**
  * Class BaseModel.
  */
 abstract class BaseModel extends Model {
     use Updater;
-/**
- * Indicates whether attributes are snake cased on arrays.
- *
- * @see  https://laravel-news.com/6-eloquent-secrets
-* 
- * @var bool
- */
-// public static $snakeAttributes = true;
 
-protected $perPage = 30;
-
-    //use Searchable;
-    //use Cachable;
+    // use Searchable;
+    // use Cachable;
     use HasFactory;
+    /**
+     * Indicates whether attributes are snake cased on arrays.
+     *
+     * @see  https://laravel-news.com/6-eloquent-secrets
+     *
+     * @var bool
+     */
+    // public static $snakeAttributes = true;
+
+    protected $perPage = 30;
 
     protected $connection = 'media';
 
@@ -42,7 +42,7 @@ protected $perPage = 30;
      * @var array
      */
     protected $casts = [
-        //'published_at' => 'datetime:Y-m-d', // da verificare
+        // 'published_at' => 'datetime:Y-m-d', // da verificare
     ];
 
     /**
@@ -61,7 +61,7 @@ protected $perPage = 30;
      * @var array
      */
     protected $hidden = [
-        //'password'
+        // 'password'
     ];
     /**
      * @var bool

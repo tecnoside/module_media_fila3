@@ -1,4 +1,5 @@
-<?php sect('toggle'); ?>
+<?php declare(strict_types=1);
+sect('toggle'); ?>
 <h1>Creating a toggle</h1>
 
 <section>

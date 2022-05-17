@@ -29,7 +29,7 @@ use Spatie\MediaLibrary\HasMedia;
 class Toolbar extends Component {
     // public Model $model;
     // public HasMedia $model;
-    public string $type='bar1';
+    public string $type = 'bar1';
     public string $model_class;
     public int $model_id;
 
@@ -69,9 +69,7 @@ class Toolbar extends Component {
     }
 
     /**
-     * Undocumented function
-     *
-     * @return Renderable
+     * Undocumented function.
      */
     public function render(): Renderable {
         $view = 'media::livewire.video-editor.toolbar.'.$this->type;
@@ -209,7 +207,11 @@ class Toolbar extends Component {
      *
      * @return void
      */
-    public function updateDataFromModal(array $data) {
+    public function updateDataFromModal(string $id, array $data) {
+        // dddx($id);//chooseClipTag
+        // if($id!=='chooseClipTag'){
+        //    return ;
+        // }
         $tag_type = 'customers';
         $clip_id = $data['clip_id'];
         $tags = $data['tags'];

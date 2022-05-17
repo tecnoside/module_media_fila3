@@ -55,7 +55,6 @@ class DownloadVideo implements ShouldQueue {
             $output = json_decode($process->getOutput(), true);
 
             if (JSON_ERROR_NONE !== json_last_error()) {
-                
                     /*
                     switch (json_last_error()) {
                         case JSON_ERROR_NONE:

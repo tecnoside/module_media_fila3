@@ -1,4 +1,5 @@
-<?php sect('click-pips'); ?>
+<?php declare(strict_types=1);
+sect('click-pips'); ?>
 <h1>Moving the slider by clicking pips</h1>
 
 <section>

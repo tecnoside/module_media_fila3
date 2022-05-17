@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /** @var array $lang */
 
@@ -21,7 +21,7 @@ $messages = AuthController::getFlash('messages');
     <?php echo $config_component['app_description']; ?>
 </p>
 
-<?php if(!empty($config_component['facebook_app_id']) || !empty($config_component['google_client_id'])): ?>
+<?php if (! empty($config_component['facebook_app_id']) || ! empty($config_component['google_client_id'])) { ?>
     <hr>
     <div>
         <a class="btn btn-primary my-2" href="<?php echo AuthController::getGoogleAuthUrl(); ?>">
@@ -35,19 +35,19 @@ $messages = AuthController::getFlash('messages');
             <?php echo $lang_arr['signup_with_facebook']; ?>
         </a>
     </div>
-<?php endif; ?>
+<?php } ?>
 
-<?php if( !empty( $errors ) && is_array( $errors ) ): ?>
+<?php if (! empty($errors) && is_array($errors)) { ?>
     <div class="alert alert-danger my-2">
-        <?php echo implode( '<br>', $errors ); ?>
+        <?php echo implode('<br>', $errors); ?>
     </div>
-<?php endif; ?>
+<?php } ?>
 
-<?php if( !empty( $messages ) && is_array( $messages ) ): ?>
+<?php if (! empty($messages) && is_array($messages)) { ?>
     <div class="alert alert-info my-2">
-        <?php echo implode( '<br>', $messages ); ?>
+        <?php echo implode('<br>', $messages); ?>
     </div>
-<?php endif; ?>
+<?php } ?>
 
 <hr>
 
@@ -55,10 +55,12 @@ $messages = AuthController::getFlash('messages');
     <div class="row justify-content-center">
         <div class="col-12 col-md-6">
 
-            <form action="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=auth" method="post">
+            <form action="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=auth" method="post">
                 <div class="form-group">
                     <label for="loginFormEmail"><?php echo $lang_arr['email_address']; ?>:</label>
-                    <input type="email" name="email" class="form-control" id="loginFormEmail" value="<?php if(!empty($_POST['email'])){ echo $_POST['email']; } ?>" required>
+                    <input type="email" name="email" class="form-control" id="loginFormEmail" value="<?php if (! empty($_POST['email'])) {
+    echo $_POST['email'];
+} ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="loginFormPassword"><?php echo $lang_arr['password']; ?>:</label>
@@ -68,7 +70,7 @@ $messages = AuthController::getFlash('messages');
                     <?php echo $lang_arr['login']; ?>
                 </button>
                 &nbsp;
-                <a href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=password_reset">
+                <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=password_reset">
                     <?php echo $lang_arr['forgot_your_password']; ?>
                 </a>
             </form>
@@ -76,7 +78,7 @@ $messages = AuthController::getFlash('messages');
             <hr>
             <div class="my-3">
                 <?php echo $lang_arr['need_an_account']; ?>
-                <a href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=signup">
+                <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=signup">
                     <?php echo $lang_arr['sign_up']; ?>
                 </a>
             </div>

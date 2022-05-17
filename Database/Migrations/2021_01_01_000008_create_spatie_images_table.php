@@ -6,7 +6,7 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-//----- models -----
+// ----- models -----
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
@@ -19,10 +19,10 @@ class CreateSpatieImagesTable extends XotBaseMigration {
      * @return void
      */
     public function up() {
-        //-- CREATE --
+        // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
-               $table->bigIncrements('id');
+                $table->bigIncrements('id');
 
                 $table->morphs('model');
                 $table->uuid('uuid')->nullable()->unique();
@@ -40,23 +40,22 @@ class CreateSpatieImagesTable extends XotBaseMigration {
                 $table->unsignedInteger('order_column')->nullable()->index();
 
                 $table->nullableTimestamps();
-                //----------------------------------------------------------
+                // ----------------------------------------------------------
                 $table->string('created_by')->nullable();
                 $table->string('updated_by')->nullable();
-                
             }
         );
 
-        //-- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table) {
-                //if (! $this->hasColumn('url')) {
+                // if (! $this->hasColumn('url')) {
                 //    $table->string('url')->nullable();
-                //}
-                if(!$this->hasColumn('user_id')){
+                // }
+                if (! $this->hasColumn('user_id')) {
                     $table->integer('user_id');
                 }
-                if(!$this->hasColumn('order_column')){
+                if (! $this->hasColumn('order_column')) {
                     $table->unsignedInteger('order_column')->nullable()->index();
                 }
                 /*

@@ -1,4 +1,5 @@
-<?php sect('huge-numbers'); ?>
+<?php declare(strict_types=1);
+sect('huge-numbers'); ?>
 <h1>Using the slider with huge numbers</h1>
 
 <section>

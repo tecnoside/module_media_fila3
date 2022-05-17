@@ -1,25 +1,21 @@
-<?php
+<?php declare(strict_types=1);
 
-
-
-/*use App\Controller\BaseControllerClass as BaseController;*/
+/* use App\Controller\BaseControllerClass as BaseController; */
 
 use Modules\Theme\Http\Controllers\VideoEditor\BaseControllerClass as BaseController;
-
 
 /** @var array $config */
 /** @var array $user */
 /** @var array $lang */
-
-$userOptions = array(
-    'files_size_total' => BaseController::sizeFormat( $user['files_size_total'] ),
-    'files_size_max' => BaseController::sizeFormat( $user['files_size_max'] ),
-    'files_size_percent' => floor( $user['files_size_total'] / $user['files_size_max'] * 100 ),
-    'show_log' => !empty( $config_component['users_restrictions'][ $user['role'] ] )
-        && isset( $config_component['users_restrictions'][ $user['role'] ]['show_log'] )
-            ? $config_component['users_restrictions'][ $user['role'] ]['show_log']
-            : true
-);
+$userOptions = [
+    'files_size_total' => BaseController::sizeFormat($user['files_size_total']),
+    'files_size_max' => BaseController::sizeFormat($user['files_size_max']),
+    'files_size_percent' => floor($user['files_size_total'] / $user['files_size_max'] * 100),
+    'show_log' => ! empty($config_component['users_restrictions'][$user['role']])
+        && isset($config_component['users_restrictions'][$user['role']]['show_log'])
+            ? $config_component['users_restrictions'][$user['role']]['show_log']
+            : true,
+];
 
 ?>
 <div class="row">
@@ -34,27 +30,27 @@ $userOptions = array(
                     <span class="icon-user-tie"></span>
                     <?php echo $lang_arr['profile']; ?>
                 </a>
-                <?php if( $user['role'] == 'admin' ): ?>
+                <?php if ('admin' == $user['role']) { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=users">
+                    <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
                         <span class="icon-users"></span>
                         <?php echo $lang_arr['users']; ?>
                     </a>
-                <?php endif; ?>
-                <?php if( $userOptions['show_log'] ): ?>
+                <?php } ?>
+                <?php if ($userOptions['show_log']) { ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
                         <span class="icon-file-text"></span>
                         <?php echo $lang_arr['log']; ?>
                     </a>
-                <?php endif; ?>
-                <?php if( $config_component['authentication'] ): ?>
+                <?php } ?>
+                <?php if ($config_component['authentication']) { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>index.php?action=logout">
+                    <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>index.php?action=logout">
                         <span class="icon-exit"></span>
                         <?php echo $lang_arr['log_out']; ?>
                     </a>
-                <?php endif; ?>
+                <?php } ?>
             </div>
         </div>
 
@@ -68,7 +64,7 @@ $userOptions = array(
     <div class="col-md-4 order-md-2">
         <div id="wve-user-stat">
             <div class="progress mt-3">
-                <div class="progress-bar <?php if($userOptions['files_size_percent'] >= 85): ?>bg-danger<?php else: ?>bg-success<?php endif; ?>" role="progressbar" style="width: <?php echo $userOptions['files_size_percent']; ?>%" aria-valuenow="<?php echo $userOptions['files_size_percent']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar <?php if ($userOptions['files_size_percent'] >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>" role="progressbar" style="width: <?php echo $userOptions['files_size_percent']; ?>%" aria-valuenow="<?php echo $userOptions['files_size_percent']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="text-center small mb-3">
                 <?php echo $lang_arr['used']; ?>:

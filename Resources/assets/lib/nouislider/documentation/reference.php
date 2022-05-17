@@ -1,7 +1,7 @@
-<?php
-$title = "noUiSlider - Option Reference";
-$description = "Full reference of all options, methods, properties and events in noUiSlider.";
-$canonical = "nouislider/reference/"
+<?php declare(strict_types=1);
+$title = 'noUiSlider - Option Reference';
+$description = 'Full reference of all options, methods, properties and events in noUiSlider.';
+$canonical = 'nouislider/reference/';
 ?>
 
 <section>

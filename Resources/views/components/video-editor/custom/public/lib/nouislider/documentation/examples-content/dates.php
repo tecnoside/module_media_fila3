@@ -1,4 +1,5 @@
-<?php sect('dates'); ?>
+<?php declare(strict_types=1);
+sect('dates'); ?>
 <h1>Working with dates</h1>
 
 <section>

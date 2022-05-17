@@ -23,8 +23,8 @@ class SpatieImage extends BaseMedia {
     // use Cachable;
     use HasFactory;
     use HasTags; // spatie tags
-    use HasStatuses; //spatie status
-    //use HasDomains;
+    use HasStatuses; // spatie status
+    // use HasDomains;
     use LinkedTrait;
     /**
      * Indicates whether attributes are snake cased on arrays.
@@ -53,7 +53,7 @@ class SpatieImage extends BaseMedia {
         'title', 'subtitle',
     ];
 
-    //protected $with = ['tags:id,name'];
+    // protected $with = ['tags:id,name'];
     protected $with = ['tags'];
 
     protected $table = 'spatie_images';

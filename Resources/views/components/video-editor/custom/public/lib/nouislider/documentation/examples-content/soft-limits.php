@@ -1,4 +1,5 @@
-<?php sect('soft-limits'); ?>
+<?php declare(strict_types=1);
+sect('soft-limits'); ?>
 <h1>Soft limits</h1>
 
 <section>

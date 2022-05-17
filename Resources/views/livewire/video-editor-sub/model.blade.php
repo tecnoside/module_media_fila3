@@ -1,4 +1,5 @@
-<?php header('Accept-Ranges: bytes'); ?>
+<?php declare(strict_types=1);
+header('Accept-Ranges: bytes'); ?>
 <div>
     <div class="loading-wrapper hide">
         <img src="{{ Theme::asset('media::lib/video-editor-sub/spinner.gif') }}" class="loading-image">

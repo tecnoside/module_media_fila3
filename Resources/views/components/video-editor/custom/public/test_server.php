@@ -1,36 +1,32 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
- * Test script for FFmpeg
+ * Test script for FFmpeg.
  *
  * @author Andycoder <http://wdevblog.net.ru/>
  */
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$is_windows = strpos(php_uname(), "Windows") !== false;
-$ffmpeg_path = !empty($_POST['ffmpeg_path']) && strpos($_POST['ffmpeg_path'], 'ffmpeg') !== false
+$is_windows = false !== strpos(php_uname(), 'Windows');
+$ffmpeg_path = ! empty($_POST['ffmpeg_path']) && false !== strpos($_POST['ffmpeg_path'], 'ffmpeg')
     ? trim($_POST['ffmpeg_path'])
     : '';
-if (!$ffmpeg_path && !$is_windows) {
+if (! $ffmpeg_path && ! $is_windows) {
     $ffmpeg_path = trim(shell_exec('which ffmpeg'));
 }
 
-function getCodecs($ffmpeg_path = '')
-{
-
-    $lines = array();
-    $encoders = array();
+function getCodecs($ffmpeg_path = '') {
+    $lines = [];
+    $encoders = [];
     exec("{$ffmpeg_path} -codecs", $lines);
 
     foreach ($lines as $line) {
-
         if (preg_match('/^\s+([A-Z .]+)\s+(\w{2,})\s+(.*)$/', $line, $m)) {
             $type = trim($m[1]);
-            if (strpos($type, 'E') !== false) {
+            if (false !== strpos($type, 'E')) {
                 $encoder = trim($m[2]);
-                if (strpos($encoder, ',') !== false) {
+                if (false !== strpos($encoder, ',')) {
                     foreach (split(',', $encoder) as $e) {
                         $encoders[] = $e;
                     }
@@ -45,42 +41,40 @@ function getCodecs($ffmpeg_path = '')
     return $encoders;
 }
 
-function getPHPPath()
-{
-
-    $is_windows = strpos(strtolower(php_uname()), 'windows') !== false;
+function getPHPPath() {
+    $is_windows = false !== strpos(strtolower(php_uname()), 'windows');
 
     if ($is_windows) {
-        $output = dirname(ini_get('extension_dir')) . "/php.exe";
+        $output = dirname(ini_get('extension_dir')).'/php.exe';
     } else {
-        $output = trim(shell_exec("which php"));
+        $output = trim(shell_exec('which php'));
     }
 
     return $output;
 }
 
-$info = array();
+$info = [];
 
-$info['php_version'] = array('name' => 'PHP version', 'value' => phpversion());
-$info['php_path'] = array('name' => 'PHP path', 'value' => getPHPPath());
-$info['web_server'] = array('name' => 'Web server', 'value' => $_SERVER['SERVER_SOFTWARE']);
-$info['ffmpeg_path'] = array('name' => 'FFMPEG path', 'value' => $ffmpeg_path);
-$info['ffprobe_path'] = array('name' => 'FFPROBE path', 'value' => dirname($ffmpeg_path) . DIRECTORY_SEPARATOR . 'ffprobe');
+$info['php_version'] = ['name' => 'PHP version', 'value' => phpversion()];
+$info['php_path'] = ['name' => 'PHP path', 'value' => getPHPPath()];
+$info['web_server'] = ['name' => 'Web server', 'value' => $_SERVER['SERVER_SOFTWARE']];
+$info['ffmpeg_path'] = ['name' => 'FFMPEG path', 'value' => $ffmpeg_path];
+$info['ffprobe_path'] = ['name' => 'FFPROBE path', 'value' => dirname($ffmpeg_path).DIRECTORY_SEPARATOR.'ffprobe'];
 
-$info['ffmpeg_version'] = array('name' => 'FFMPEG version', 'value' => '');
+$info['ffmpeg_version'] = ['name' => 'FFMPEG version', 'value' => ''];
 if ($ffmpeg_path) {
     $ffmpeg_ver = shell_exec("{$ffmpeg_path} -version");
     preg_match('/.+version.+/', $ffmpeg_ver, $matches);
-    if (!empty($matches)) {
+    if (! empty($matches)) {
         $info['ffmpeg_version']['value'] = $matches[0];
     }
     $ffprobe_chk = shell_exec("{$info['ffprobe_path']['value']} -version");
-    if(!$ffprobe_chk || strpos($ffprobe_chk, 'ffprobe') === false){
+    if (! $ffprobe_chk || false === strpos($ffprobe_chk, 'ffprobe')) {
         $info['ffprobe_path']['value'] = '';
     }
 }
 
-$info['ffmpeg_codecs'] = array('name' => 'FFMPEG codecs', 'value' => array());
+$info['ffmpeg_codecs'] = ['name' => 'FFMPEG codecs', 'value' => []];
 if ($ffmpeg_path) {
     $info['ffmpeg_codecs']['value'] = getCodecs($ffmpeg_path);
 }
@@ -133,41 +127,41 @@ ksort($info);
     </thead>
     <tbody>
 
-    <?php foreach ($info as $key => $opt): ?>
+    <?php foreach ($info as $key => $opt) { ?>
 
         <tr>
             <td><?php echo $opt['name']; ?>:</td>
             <td>
 
-                <?php if (!empty($opt['value'])): ?>
+                <?php if (! empty($opt['value'])) { ?>
 
                     <?php
-                    if (!is_array($opt['value'])):
+                    if (! is_array($opt['value'])) {
                         echo $opt['value'];
-                    else: ?>
+                    } else { ?>
 
                         <a href="#" style="display: inline-block; margin: 5px 0;"
                            onclick="expandCollapse('<?php echo $key; ?>');return false;">[Expand/Collapse]</a>
                         <div id="<?php echo $key; ?>" style="display: none;">
 
-                            <?php foreach ($opt['value'] as $val): ?>
+                            <?php foreach ($opt['value'] as $val) { ?>
 
                                 <div><?php echo $val; ?></div>
 
-                            <?php endforeach; ?>
+                            <?php } ?>
 
                         </div>
 
-                    <?php endif; ?>
+                    <?php } ?>
 
-                <?php else: ?>
+                <?php } else { ?>
                     <span style="color:red;">[Not found]</span>
-                <?php endif; ?>
+                <?php } ?>
 
             </td>
         </tr>
 
-    <?php endforeach; ?>
+    <?php } ?>
 
     </tbody>
 </table>

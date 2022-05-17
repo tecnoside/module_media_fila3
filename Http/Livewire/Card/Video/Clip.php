@@ -4,30 +4,30 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Card\Video;
 
-use Livewire\Component;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Model;
+use Livewire\Component;
 
 /**
  * Class Clip.
  */
 class Clip extends Component {
+    public string $type = 'edit';
+    public Model $model;
 
-    public string $type='edit';
-    public  Model $model;
-
-    protected $listeners=[
+    protected $listeners = [
         'updateDataFromModal' => 'updateDataFromModal',
     ];
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @param Model $clip
+     *
      * @return void
      */
     public function mount(Model $model) {
-        $this->model=$model;
+        $this->model = $model;
     }
 
     /**
@@ -43,37 +43,32 @@ class Clip extends Component {
     }
 
     /**
-     * Undocumented function
-     *
-     * @return void
+     * Undocumented function.
      */
-    public function editClip():void {
-        $data=$this->model->toArray();
+    public function editClip(): void {
+        $data = $this->model->toArray();
         $this->emit('showModal', 'editClip', $data);
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param string $id
-     * @param array $data
      * @return void
      */
     public function updateDataFromModal(string $id, array $data) {
-        if($id!=='editClip'){
-            return ;
+        if ('editClip' !== $id) {
+            return;
         }
-        if($data['id']!=$this->model->id){
-            return ;
+        if ($data['id'] != $this->model->id) {
+            return;
         }
-        //dddx(['data'=>$data,'model'=>$this->model]);
+        // dddx(['data'=>$data,'model'=>$this->model]);
 
-        $up=collect($data)
-            ->only(['title','subtitle'])
+        $up = collect($data)
+            ->only(['title', 'subtitle'])
             ->all();
-        //dddx($up);
+        // dddx($up);
         $this->model->update($up);
         $this->model->refresh();
     }
-
 }

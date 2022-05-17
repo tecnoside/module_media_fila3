@@ -1,4 +1,5 @@
-<?php sect('html5'); ?>
+<?php declare(strict_types=1);
+sect('html5'); ?>
 <h1>Using HTML5 input elements</h1>
 
 <section>

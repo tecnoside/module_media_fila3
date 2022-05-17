@@ -21,7 +21,7 @@ class StreamController extends Controller {
             throw new Exception('add media class to config morph_map');
         }
         $media = $media_class::find($media_id);
-        //dddx($media->video_path);
+        // dddx($media->video_path);
         $stream = new VideoStream($media->video_path);
         $stream->start();
     }

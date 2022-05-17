@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="language-javascript"><?php if ($page == 'index'): ?>
+<body class="language-javascript"><?php if ('index' == $page) { ?>
 
     <div class="index-demo">
 
@@ -50,7 +50,7 @@
                     src="https://ghbtns.com/github-btn.html?user=leongersen&repo=noUiSlider&type=star&count=true&size=large"
                     frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
         </div>
-    </div><?php endif; ?><?php<?php include $file_menu; ?>
+    </div><?php } ?><?php<?php include $file_menu; ?>
 
 <div class="content">
     <?php echo $content; ?>

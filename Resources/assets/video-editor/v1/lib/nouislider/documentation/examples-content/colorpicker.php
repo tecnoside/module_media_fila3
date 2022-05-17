@@ -1,4 +1,5 @@
-<?php sect('colorpicker'); ?>
+<?php declare(strict_types=1);
+sect('colorpicker'); ?>
 <h1>Colorpicker</h1>
 
 <section>

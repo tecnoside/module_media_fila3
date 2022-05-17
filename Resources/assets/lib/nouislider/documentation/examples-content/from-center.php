@@ -1,4 +1,5 @@
-<?php sect('from-center'); ?>
+<?php declare(strict_types=1);
+sect('from-center'); ?>
 <h1>Slider with connect from the center</h1>
 
 <section>

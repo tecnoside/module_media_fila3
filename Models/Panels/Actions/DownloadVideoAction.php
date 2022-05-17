@@ -6,12 +6,12 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models\Panels\Actions;
 
-//-------- services --------
+// -------- services --------
 
 use Modules\Media\Jobs\DownloadVideo;
 use Modules\Xot\Models\Panels\Actions\XotBasePanelAction;
 
-//-------- bases -----------
+// -------- bases -----------
 
 /**
  * Class PopulateVideoAction.

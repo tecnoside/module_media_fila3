@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 /** @var array $lang */
-
 ?>
 <p>
     <?php echo $lang['your_new_password']; ?>:

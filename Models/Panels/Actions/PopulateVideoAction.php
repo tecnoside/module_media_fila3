@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models\Panels\Actions;
 
-//-------- services --------
+// -------- services --------
 
 use Illuminate\Support\Facades\Http;
 use Modules\Media\Jobs\DownloadVideo;
@@ -14,21 +14,19 @@ use Modules\Media\Models\Video;
 use Modules\Theme\Services\ThemeService;
 use Modules\Xot\Models\Panels\Actions\XotBasePanelAction;
 
-//-------- bases -----------
+// -------- bases -----------
 
 /**
  * Class PopulateVideoAction.
  */
-class PopulateVideoAction extends XotBasePanelAction
-{
+class PopulateVideoAction extends XotBasePanelAction {
     public bool $onItem = true;
     public string $icon = '<i class="fas fa-file-import"></i>';
 
     /**
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
         $drivers = [
             'tmdb',
         ];
@@ -50,29 +48,28 @@ class PopulateVideoAction extends XotBasePanelAction
         return view()->make($view, $view_params);
     }
 
-    public function tmdb()
-    {
+    public function tmdb() {
         $token = config('services.tmdb.token');
-        //$url = 'https://api.themoviedb.org/3/discover/movie?api_key=MY_API_KEY&with_genres=53';
+        // $url = 'https://api.themoviedb.org/3/discover/movie?api_key=MY_API_KEY&with_genres=53';
         $url = 'https://api.themoviedb.org/3/movie/popular';
 
-        //https://image.tmdb.org/t/p/w500' . $movie['poster_path']
+        // https://image.tmdb.org/t/p/w500' . $movie['poster_path']
 
         $popular = Http::withToken($token)
             ->get($url)
             ->json();
 
-        if (!isset($popular['results'])) {
+        if (! isset($popular['results'])) {
             dddx($popular);
         }
 
         foreach ($popular['results'] as $row) {
             $url = 'http://api.themoviedb.org/3/movie/'.$row['id'].'/videos';
-            //$url = 'http://api.themoviedb.org/3/movie/157336?append_to_response=videos';
+            // $url = 'http://api.themoviedb.org/3/movie/157336?append_to_response=videos';
             $video = Http::withToken($token)
             ->get($url)
             ->json();
-            //dddx($video['results'][0]);
+            // dddx($video['results'][0]);
             $first_video = $video['results'][0];
             $row = collect($row)
                 ->except(['id', 'genre_ids'])
@@ -89,7 +86,7 @@ class PopulateVideoAction extends XotBasePanelAction
 
             $video = Video::create($row);
 
-            //DownloadVideo::dispatch($video);
+            // DownloadVideo::dispatch($video);
         }
 
         return '<h3>+Done</h3>';

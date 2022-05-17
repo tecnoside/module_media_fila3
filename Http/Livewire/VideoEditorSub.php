@@ -202,34 +202,34 @@ class VideoEditorSub extends Component {
         $this->subtitles = [];
         $content = file_get_contents(public_path($file));
         $xmlObject = simplexml_load_string($content);
-        //$xmlObject1 = new SimpleXMLElement($content);
-        //$xml = XmlParser::load(public_path($file));
+        // $xmlObject1 = new SimpleXMLElement($content);
+        // $xml = XmlParser::load(public_path($file));
 
-        //$json = json_encode($xmlObject);
-        //$phpArray = json_decode($json, true);
+        // $json = json_encode($xmlObject);
+        // $phpArray = json_decode($json, true);
 
-        //dddx(
+        // dddx(
         //    [
-        //'xml_original' => $xml->getOriginalContent()->annotation->type->sentence->item[1],
-        //'xml' => $xml->getContent()->annotation->type->sentence,
-        //'xmlObject'=>$xmlObject,
+        // 'xml_original' => $xml->getOriginalContent()->annotation->type->sentence->item[1],
+        // 'xml' => $xml->getContent()->annotation->type->sentence,
+        // 'xmlObject'=>$xmlObject,
         //        'test1'=>$xmlObject->annotation->type->sentence->item[1]->attributes()->end->__toString(),
         //        'test2'=>$xmlObject->annotation->type->sentence->count(),
         //        'test3'=>count($xmlObject->annotation->type->sentence),
-        //'xmlObject1'=>$xmlObject1->annotation->type->sentence,
-        //'phpArray'=>$phpArray,
-        //'test'=>$phpArray['annotation']['type']['sentence'],
+        // 'xmlObject1'=>$xmlObject1->annotation->type->sentence,
+        // 'phpArray'=>$phpArray,
+        // 'test'=>$phpArray['annotation']['type']['sentence'],
         //    ]
-        //);
+        // );
         $data = [];
         $i = 0;
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
-                //00:06:35,360
+                // 00:06:35,360
                 $start = intval($item->attributes()->start->__toString()) / 1000;
                 $end = intval($item->attributes()->end->__toString()) / 1000;
 
-                //dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
+                // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
 
                 $tmp = [
                     'id' => $i++,
@@ -242,7 +242,7 @@ class VideoEditorSub extends Component {
         $this->subtitles = $data;
     }
 
-    //children ,attributes
+    // children ,attributes
 
     /**
      *  +"@attributes": array:3 [▼
@@ -333,7 +333,7 @@ class VideoEditorSub extends Component {
     public function downloadEpisode($ek) {
         $episode = $this->episodes[$ek];
 
-        //episode download
+        // episode download
         $ffmpeg = FFMpeg::create(['ffmpeg.binaries' => config('video.ffmpeg_binaries'), 'ffprobe.binaries' => config('video.ffprobe_binaries')]);
         $video = $ffmpeg->open(public_path($this->src));
         $path_parts = pathinfo(basename($this->src));
@@ -345,7 +345,7 @@ class VideoEditorSub extends Component {
         $filepath = '/videos/'.$path_parts['filename'].'/'.$path_parts['filename'].'-'.time().'.'.$path_parts['extension'];
         $clip->save(new \FFMpeg\Format\Video\X264(), public_path($filepath));
 
-        //srt for episode
+        // srt for episode
         $selectedSub = [];
         $sp1 = $this->hmsToSeconds($episode['time'][0]);
         $ep1 = $this->hmsToSeconds($episode['time'][1]);
@@ -476,9 +476,9 @@ class VideoEditorSub extends Component {
         array_unshift($this->subtitles, $subtitle);
 //        $this->subtitles[]=$subtitle;
 //        foreach ($this->subtitles as $sk=> $subtitle){
-        ////            if($subtitle['id']==$this->selectedSubtitle){
+        // //            if($subtitle['id']==$this->selectedSubtitle){
 //                $this->subtitles[$sk]['time']=$data;
-        ////            }
+        // //            }
 //        }
 
         $this->saveSubtitleFile();

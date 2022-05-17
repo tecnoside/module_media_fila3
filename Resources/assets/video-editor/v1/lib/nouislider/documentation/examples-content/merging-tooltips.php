@@ -1,4 +1,5 @@
-<?php sect('merging-tooltips'); ?>
+<?php declare(strict_types=1);
+sect('merging-tooltips'); ?>
 <h1>Merging overlapping tooltips</h1>
 
 <section>

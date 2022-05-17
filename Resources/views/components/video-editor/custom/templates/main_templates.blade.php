@@ -393,7 +393,7 @@
                 <button type="button" class="btn btn-sm btn-icon btn-outline-primary toggle-tooltip" data-toggle="action" data-action="play_output" data-id="<%- id %>" title="<?php echo $lang_arr['play']; ?>">
                     <span class="icon-play3"></span>
                 </button>
-                <a class="btn btn-sm btn-icon btn-outline-primary toggle-tooltip" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>index.php?action=download&itemId=<%- id %>&type=output" target="_blank" title="<?php echo $lang_arr['download']; ?>"<% if(typeof allowed === 'undefined' || !allowed){ %> disabled="disabled"<% } %>>
+                <a class="btn btn-sm btn-icon btn-outline-primary toggle-tooltip" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>index.php?action=download&itemId=<%- id %>&type=output" target="_blank" title="<?php echo $lang_arr['download']; ?>"<% if(typeof allowed === 'undefined' || !allowed){ %> disabled="disabled"<% } %>>
                     <span class="icon-download2"></span>
                 </a>
                 <button type="button" class="btn btn-sm btn-icon btn-outline-primary toggle-tooltip" data-toggle="action" data-id="<%- id %>" data-action="rename_output" title="<?php echo $lang_arr['rename']; ?>">

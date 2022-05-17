@@ -11,27 +11,27 @@
                     <span class="icon-user-tie"></span>
                     <?php echo 'lingua profile'; ?>
                 </a>
-                <?php if( 'utente role' == 'admin' ): ?>
+                <?php if ('utente role' == 'admin') { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo 'config base_url' . 'config home_url'; ?>?action=users">
+                    <a class="dropdown-item" href="<?php echo 'config base_url'.'config home_url'; ?>?action=users">
                         <span class="icon-users"></span>
                         <?php echo 'lingua users'; ?>
                     </a>
-                <?php endif; ?>
-                <?php if( 'opzioni utente show_log' ): ?>
+                <?php } ?>
+                <?php if ('opzioni utente show_log') { ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
                         <span class="icon-file-text"></span>
                         <?php echo 'lingua log'; ?>
                     </a>
-                <?php endif; ?>
-                <?php if( 'config authentication' ): ?>
+                <?php } ?>
+                <?php if ('config authentication') { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo 'config base_url' . 'config home_url'; ?>index.php?action=logout">
+                    <a class="dropdown-item" href="<?php echo 'config base_url'.'config home_url'; ?>index.php?action=logout">
                         <span class="icon-exit"></span>
                         <?php echo 'lingua log_out'; ?>
                     </a>
-                <?php endif; ?>
+                <?php } ?>
             </div>
         </div>
 
@@ -45,7 +45,7 @@
     <div class="col-md-4 order-md-2">
         <div id="wve-user-stat">
             <div class="progress mt-3">
-                <div class="progress-bar <?php if('opzioni utente files_size_percent' >= 85): ?>bg-danger<?php else: ?>bg-success<?php endif; ?>" role="progressbar" style="width: <?php echo 'opzioni utente files_size_percent'; ?>%" aria-valuenow="<?php echo 'opzioni utente files_size_percent'; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar <?php if ('opzioni utente files_size_percent' >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>" role="progressbar" style="width: <?php echo 'opzioni utente files_size_percent'; ?>%" aria-valuenow="<?php echo 'opzioni utente files_size_percent'; ?>" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="text-center small mb-3">
                 <?php echo 'lingua used'; ?>:

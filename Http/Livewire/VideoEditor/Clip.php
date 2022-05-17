@@ -11,8 +11,7 @@ use Livewire\Component;
  * Class Clip.
  */
 class Clip extends Component {
-
-    public string $type='edit';
+    public string $type = 'edit';
 
     /**
      * Undocumented function.
@@ -25,5 +24,4 @@ class Clip extends Component {
 
         return view()->make($view, $view_params);
     }
-
 }

@@ -1,4 +1,5 @@
-<?php sect('steps-api'); ?>
+<?php declare(strict_types=1);
+sect('steps-api'); ?>
 <h1>Using the steps API</h1>
 
 <section>

@@ -76,6 +76,7 @@ class _ModulePanelPolicy extends XotBasePanelPolicy {
     public function fillVideoFromDirectory(UserContract $user, PanelContract $panel): bool {
         return true;
     }
+
     public function tryVideoEditorSub(UserContract $user, PanelContract $panel): bool {
         return true;
     }
@@ -83,6 +84,4 @@ class _ModulePanelPolicy extends XotBasePanelPolicy {
     public function tryStream(UserContract $user, PanelContract $panel): bool {
         return true;
     }
-
-
 }

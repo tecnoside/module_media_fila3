@@ -1,7 +1,7 @@
-<?php
-$title = "noUiSlider - Download noUiSlider for free!";
-$description = "Download the latest version of noUiSlider safely from gitHub. For free!";
-$canonical = "nouislider/download/"
+<?php declare(strict_types=1);
+$title = 'noUiSlider - Download noUiSlider for free!';
+$description = 'Download the latest version of noUiSlider safely from gitHub. For free!';
+$canonical = 'nouislider/download/';
 ?>
 
 <h1>Download noUiSlider</h1>

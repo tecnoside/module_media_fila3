@@ -1,4 +1,5 @@
-<?php sect('lock'); ?>
+<?php declare(strict_types=1);
+sect('lock'); ?>
 <h1>Locking sliders together</h1>
 
 <section>

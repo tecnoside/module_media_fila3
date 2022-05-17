@@ -1,4 +1,5 @@
-<?php sect('colored-connect'); ?>
+<?php declare(strict_types=1);
+sect('colored-connect'); ?>
 <h1>Colored Connect Elements</h1>
 
 <section>

@@ -21,7 +21,7 @@ class ThemoviedbService {
      * @return array
      */
     public static function getGenresMovie() {
-        //https://developers.themoviedb.org/3/genres/get-movie-list
+        // https://developers.themoviedb.org/3/genres/get-movie-list
 
         $url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='.self::getToken().'&language=en-US';
 
