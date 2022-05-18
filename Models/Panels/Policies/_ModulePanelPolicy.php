@@ -45,13 +45,10 @@ class _ModulePanelPolicy extends XotBasePanelPolicy {
         return true;
     }
 
-<<<<<<< HEAD
     public function testVideoPlayer(UserContract $user, PanelContract $panel): bool {
         return true;
     }
 
-=======
->>>>>>> 4757f34 (.)
     public function testVideoEditor(UserContract $user, PanelContract $panel): bool {
         return true;
     }
@@ -67,7 +64,6 @@ class _ModulePanelPolicy extends XotBasePanelPolicy {
     public function testSlider(UserContract $user, PanelContract $panel): bool {
         return true;
     }
-<<<<<<< HEAD
 
     public function populateVideo(UserContract $user, PanelContract $panel): bool {
         return true;
@@ -88,6 +84,4 @@ class _ModulePanelPolicy extends XotBasePanelPolicy {
     public function tryStream(UserContract $user, PanelContract $panel): bool {
         return true;
     }
-=======
->>>>>>> 4757f34 (.)
 }

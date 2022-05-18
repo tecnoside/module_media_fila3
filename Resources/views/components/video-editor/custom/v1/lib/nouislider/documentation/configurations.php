@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 <?php declare(strict_types=1);
 $title = 'noUiSlider - Configurations';
 $description = '';
-=======
-<?php
-$title = "noUiSlider - Configurations";
-$description = "";
->>>>>>> 4757f34 (.)
 $direction = ($_GET['dir'] ?? null) === 'rtl' ? 'dir="rtl"' : 'ltr';
 ?>
 <html <?php echo $direction; ?>></html>
@@ -50,14 +44,5 @@ $direction = ($_GET['dir'] ?? null) === 'rtl' ? 'dir="rtl"' : 'ltr';
 <div class="configuration vertical">
     <h2>Vertical - RTL</h2>
     <div id="vertical-rtl"></div>
-<<<<<<< HEAD
 </div><?php run('horizontal-ltr'); ?><?php run('horizontal-rtl'); ?><?php run('vertical-ltr'); ?><?php run('vertical-rtl'); ?>
-=======
-</div>
-
-<?php run('horizontal-ltr'); ?>
-<?php run('horizontal-rtl'); ?>
-<?php run('vertical-ltr'); ?>
-<?php run('vertical-rtl'); ?>
->>>>>>> 4757f34 (.)
 

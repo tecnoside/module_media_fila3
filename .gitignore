@@ -21,13 +21,8 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
-<<<<<<< HEAD
-
-
-
 .idea
 .php_cs.cache
-.phpunit.result.cache
 *.lock
 coverage
 testbench.yaml
@@ -37,5 +32,3 @@ node_modules
 *.stackdump
 *.cache
 .git-rewrite
-=======
->>>>>>> 1be6b67 (Initial commit)
