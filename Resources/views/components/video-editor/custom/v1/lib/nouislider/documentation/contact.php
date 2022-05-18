@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <?php declare(strict_types=1);
 $title = 'noUiSlider - Help and Contact';
     $description = '';
     $canonical = 'nouislider/contact/';
+=======
+<?php
+	$title = "noUiSlider - Help and Contact";
+	$description = "";
+	$canonical = "nouislider/contact/"
+>>>>>>> 4757f34 (.)
 ?>
 
 <h1>Contact</h1>

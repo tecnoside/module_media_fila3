@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <?php declare(strict_types=1);
 sect('steps-api'); ?>
+=======
+<?php sect('steps-api'); ?>
+>>>>>>> 4757f34 (.)
 <h1>Using the steps API</h1>
 
 <section>

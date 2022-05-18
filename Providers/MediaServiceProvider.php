@@ -1,6 +1,7 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace Modules\Media\Providers;
@@ -57,66 +58,23 @@ class MediaServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
     }
+=======
+declare(strict_types=1);
+>>>>>>> 4757f34 (.)
 
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->publishes([
-            module_path($this->moduleName, 'Config/config.php') => config_path($this->moduleNameLower . '.php'),
-        ], 'config');
-        $this->mergeConfigFrom(
-            module_path($this->moduleName, 'Config/config.php'), $this->moduleNameLower
-        );
-    }
+namespace Modules\Media\Providers;
 
-    /**
-     * Register views.
-     *
-     * @return void
-     */
-    public function registerViews()
-    {
-        $viewPath = resource_path('views/modules/' . $this->moduleNameLower);
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Xot\Services\BladeService;
 
-        $sourcePath = module_path($this->moduleName, 'Resources/views');
+class MediaServiceProvider extends XotBaseServiceProvider {
+    protected string $module_dir = __DIR__;
 
-        $this->publishes([
-            $sourcePath => $viewPath
-        ], ['views', $this->moduleNameLower . '-module-views']);
+    protected string $module_ns = __NAMESPACE__;
 
-        $this->loadViewsFrom(array_merge($this->getPublishableViewPaths(), [$sourcePath]), $this->moduleNameLower);
-    }
+    public string $module_name = 'media';
 
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = resource_path('lang/modules/' . $this->moduleNameLower);
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
-        } else {
-            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
-        }
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
-
+<<<<<<< HEAD
     private function getPublishableViewPaths(): array
     {
         $paths = [];
@@ -127,5 +85,9 @@ class MediaServiceProvider extends ServiceProvider
         }
         return $paths;
 >>>>>>> c8055c5 (first commit)
+=======
+    public function bootCallback(): void {
+        BladeService::registerComponents($this->module_dir.'/../View/Components', 'Modules\\Media');
+>>>>>>> 4757f34 (.)
     }
 }

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 [{"class_name":"Dashboard\\Item","comp_name":"dashboard.item","comp_ns":"Modules\\Media\\View\\Components\\Dashboard\\Item"},{"class_name":"VideoEditor","comp_name":"video-editor","comp_ns":"Modules\\Media\\View\\Components\\VideoEditor"},{"class_name":"VideoPlayer","comp_name":"video-player","comp_ns":"Modules\\Media\\View\\Components\\VideoPlayer"}]
+=======
+[{"class_name":"VideoPlayer","comp_name":"video-player","comp_ns":"Modules\\Media\\View\\Components\\VideoPlayer"}]
+>>>>>>> 4757f34 (.)

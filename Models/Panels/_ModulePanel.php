@@ -12,6 +12,7 @@ use Modules\Xot\Models\Panels\XotBasePanel;
 class _ModulePanel extends XotBasePanel {
     public function actions(): array {
         return [
+<<<<<<< HEAD
             new Actions\TestVideoPlayerAction(),
             new Actions\TestVideoEditorAction(),
             new Actions\PopulateVideoAction(),
@@ -19,6 +20,10 @@ class _ModulePanel extends XotBasePanel {
             new Actions\FillVideoFromDirectory(),
             new Actions\TryVideoEditorSubAction(),
             new Actions\TryStreamAction(),
+=======
+            new Actions\TestVideoAction(),
+            new Actions\TestVideoEditorAction(),
+>>>>>>> 4757f34 (.)
         ];
     }
 }
