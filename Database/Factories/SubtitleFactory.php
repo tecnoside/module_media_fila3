@@ -15,7 +15,7 @@ class SubtitleFactory extends Factory {
      *
      * @var class-string<\Illuminate\Database\Eloquent\Model>
      */
-    protected $model = Modules\Media\Models\Subtitle::class;
+    protected $model = \Modules\Media\Models\Subtitle::class;
 
     /**
      * Define the model's default state.
@@ -26,10 +26,10 @@ class SubtitleFactory extends Factory {
        
 
         return [
-            'id' => $this->faker->randomNumber,
-            'media_id' => $this->faker->integer,
-            'sentence_i' => $this->faker->randomNumber,
-            'item_i' => $this->faker->randomNumber,
+            'id' => $this->faker->randomNumber(5, false),
+            'media_id' => $this->faker->randomNumber(5, false),
+            'sentence_i' => $this->faker->randomNumber(5, false),
+            'item_i' => $this->faker->randomNumber(5, false),
             'start' => $this->faker->randomFloat,
             'end' => $this->faker->randomFloat,
             'time' => $this->faker->time,
