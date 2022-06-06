@@ -46,7 +46,7 @@ class SpatieImagePanel extends XotBasePanel {
      * quando aggiungi un campo select, è il numero della chiave
      * che viene messo come valore su value="id"
      *
-     * @param Modules\Media\Models\SpatieImage $row
+     * @param \Modules\Media\Models\SpatieImage $row
      *
      * @return int|string|null
      */
