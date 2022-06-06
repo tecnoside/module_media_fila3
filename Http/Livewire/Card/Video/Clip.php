@@ -34,6 +34,9 @@ class Clip extends Component {
      * Undocumented function.
      */
     public function render(): Renderable {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'media::livewire.card.video.clip.'.$this->type;
         $view_params = [
             'view' => $view,

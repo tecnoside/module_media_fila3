@@ -200,6 +200,9 @@ class VideoEditor extends Component {
         /* } */
         /* } */
 
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'media::components.video-editor.'.$this->driver;
 
         $included_view = 'media::components.video-editor.custom.templates.'.$action;
