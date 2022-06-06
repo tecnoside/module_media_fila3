@@ -39,6 +39,9 @@ class Slider extends Component {
      * Undocumented function.
      */
     public function render(): Renderable {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'media::livewire.video-editor.slider.'.$this->driver;
         $view_params = [
             'view' => $view,

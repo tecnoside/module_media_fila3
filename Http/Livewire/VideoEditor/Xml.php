@@ -33,6 +33,9 @@ class Xml extends Component {
     }
 
     public function render(): Renderable {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'media::livewire.video-editor.xml';
         $view_params = [
             'view' => $view,

@@ -72,6 +72,9 @@ class Toolbar extends Component {
      * Undocumented function.
      */
     public function render(): Renderable {
+        /** 
+        * @phpstan-var view-string
+        */
         $view = 'media::livewire.video-editor.toolbar.'.$this->type;
         $view_params = [
             'view' => $view,
