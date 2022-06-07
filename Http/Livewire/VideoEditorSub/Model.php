@@ -519,8 +519,9 @@ class Model extends Component {
 
     public function srtToVtt($srtFile, $webVttFile) {
         $fileHandle = fopen(public_path($srtFile), 'r');
+        $lines = [];
         if ($fileHandle) {
-            $lines = [];
+            // $lines = [];
             while (false !== ($line = fgets($fileHandle, 8192))) {
                 $lines[] = $line;
             }
