@@ -22,6 +22,8 @@ class SubtitleService {
 
     public Model $model;
 
+    public array $subtitles;
+
     /**
      * ---.
      */
@@ -135,8 +137,9 @@ class SubtitleService {
 
     public function srtToVtt($srtFile, $webVttFile) {
         $fileHandle = fopen(public_path($srtFile), 'r');
+        $lines = [];
         if ($fileHandle) {
-            $lines = [];
+            // $lines = [];
             while (false !== ($line = fgets($fileHandle, 8192))) {
                 $lines[] = $line;
             }
