@@ -14,55 +14,53 @@ use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags; // spatie tags
 
 /**
- * Modules\Media\Models\SpatieImage
+ * Modules\Media\Models\SpatieImage.
  *
- * @property int $id
- * @property string $model_type
- * @property int $model_id
- * @property string|null $uuid
- * @property string $collection_name
- * @property string $name
- * @property string $file_name
- * @property string|null $mime_type
- * @property string $disk
- * @property string|null $conversions_disk
- * @property int $size
- * @property array $manipulations
- * @property array $custom_properties
- * @property array $generated_conversions
- * @property array $responsive_images
- * @property int|null $order_column
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property int $user_id
-<<<<<<< Updated upstream
- * @property string $time_from
- * @property string $time_to
-=======
->>>>>>> Stashed changes
- * @property string|null $guid
- * @property string|null $image_src
- * @property-read string|null $lang
- * @property-read string|null $post_type
- * @property-read string $status
- * @property string|null $subtitle
- * @property string|null $title
- * @property string|null $txt
- * @property-read string|null $user_handle
- * @property-read string|null $video_url
- * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Xot\Models\Image[] $images
- * @property-read int|null $images_count
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $model
- * @property-read \Modules\Lang\Models\Post|null $post
- * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Lang\Models\Post[] $posts
- * @property-read int|null $posts_count
- * @property \Illuminate\Database\Eloquent\Collection|\Modules\Tag\Models\Tag[] $tags
- * @property-write mixed $url
- * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
- * @property-read int|null $statuses_count
- * @property-read int|null $tags_count
+ * @property int                                                                   $id
+ * @property string                                                                $model_type
+ * @property int                                                                   $model_id
+ * @property string|null                                                           $uuid
+ * @property string                                                                $collection_name
+ * @property string                                                                $name
+ * @property string                                                                $file_name
+ * @property string|null                                                           $mime_type
+ * @property string                                                                $disk
+ * @property string|null                                                           $conversions_disk
+ * @property int                                                                   $size
+ * @property array                                                                 $manipulations
+ * @property array                                                                 $custom_properties
+ * @property array                                                                 $generated_conversions
+ * @property array                                                                 $responsive_images
+ * @property int|null                                                              $order_column
+ * @property \Illuminate\Support\Carbon|null                                       $created_at
+ * @property \Illuminate\Support\Carbon|null                                       $updated_at
+ * @property string|null                                                           $created_by
+ * @property string|null                                                           $updated_by
+ * @property int                                                                   $user_id
+ * @property string                                                                $time_from
+ * @property string                                                                $time_to
+ * @property string|null                                                           $guid
+ * @property string|null                                                           $image_src
+ * @property string|null                                                           $lang
+ * @property string|null                                                           $post_type
+ * @property string                                                                $status
+ * @property string|null                                                           $subtitle
+ * @property string|null                                                           $title
+ * @property string|null                                                           $txt
+ * @property string|null                                                           $user_handle
+ * @property string|null                                                           $video_url
+ * @property \Illuminate\Database\Eloquent\Collection|\Modules\Xot\Models\Image[]  $images
+ * @property int|null                                                              $images_count
+ * @property \Illuminate\Database\Eloquent\Model|\Eloquent                         $model
+ * @property \Modules\Lang\Models\Post|null                                        $post
+ * @property \Illuminate\Database\Eloquent\Collection|\Modules\Lang\Models\Post[]  $posts
+ * @property int|null                                                              $posts_count
+ * @property \Illuminate\Database\Eloquent\Collection|\Modules\Tag\Models\Tag[]    $tags
+ * @property mixed                                                                 $url
+ * @property \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
+ * @property int|null                                                              $statuses_count
+ * @property int|null                                                              $tags_count
+ *
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|static[] all($columns = ['*'])
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage currentStatus(...$names)
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|static[] get($columns = ['*'])
@@ -89,11 +87,8 @@ use Spatie\Tags\HasTags; // spatie tags
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereResponsiveImages($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereSize($value)
-<<<<<<< Updated upstream
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereTimeFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereTimeTo($value)
-=======
->>>>>>> Stashed changes
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereUserId($value)
