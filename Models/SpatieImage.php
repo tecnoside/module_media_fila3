@@ -37,8 +37,11 @@ use Spatie\Tags\HasTags; // spatie tags
  * @property string|null $created_by
  * @property string|null $updated_by
  * @property int $user_id
+<<<<<<< Updated upstream
  * @property string $time_from
  * @property string $time_to
+=======
+>>>>>>> Stashed changes
  * @property string|null $guid
  * @property string|null $image_src
  * @property-read string|null $lang
@@ -86,8 +89,11 @@ use Spatie\Tags\HasTags; // spatie tags
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereResponsiveImages($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereSize($value)
+<<<<<<< Updated upstream
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereTimeFrom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereTimeTo($value)
+=======
+>>>>>>> Stashed changes
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage whereUserId($value)
