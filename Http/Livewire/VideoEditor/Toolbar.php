@@ -9,20 +9,22 @@ namespace Modules\Media\Http\Livewire\VideoEditor;
 
 header('Accept-Ranges: bytes');
 
-use Illuminate\Contracts\Support\Renderable;
+use Exception;
 // use FFMpeg\Coordinate\Dimension;
 // use FFMpeg\Format\Video\X264;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Modules\Media\Jobs\ExportClipJob;
-use Modules\Media\Jobs\ExportFrameJob;
-use Modules\Media\Models\SpatieImage;
-use Modules\Mediamonitor\Models\Media;
-use Modules\Mediamonitor\Services\MediaService;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Modules\Tag\Models\Tag;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Support\Facades\Auth;
+use Modules\Media\Jobs\ExportClipJob;
+use Modules\Media\Models\SpatieImage;
+use Modules\Media\Jobs\ExportFrameJob;
+use Modules\Mediamonitor\Models\Media;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Support\Renderable;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Modules\Mediamonitor\Services\MediaService;
 
 /**
  * Undocumented class.
@@ -193,23 +195,37 @@ class Toolbar extends Component {
      * @return void
      */
     public function chooseClipTag(int $clip_id) {
+        /**
+         * @var SpatieImage
+         */
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
         $data = [];
         $user = Auth::user();
+        $profile=$user->profile;
         // --------------------- FARE CON PROFILE
         $tag_type = 'customers';
 
-        $user->attachTags(['tag 1', 'tag 2', 'tag 3', 'tag 4', 'tag 5'], $tag_type);
-        $user_tags = $user->tagsWithType($tag_type);
+        $profile->attachTags(['tag 1', 'tag 2', 'tag 3', 'tag 4', 'tag 5'], $tag_type);
+        /**
+         * Collection<Tag>
+         */
+        $user_tags = $profile->tagsWithType($tag_type);
         $clip_tags = $clip->tagsWithType($tag_type)->keyBy('id');
         $data = [];
         $data['clip_id'] = $clip_id;
-        $data['tags'] = $user_tags->map(function ($item) use ($clip_tags) {
-            return [
-                'id' => $item->id,
-                'label' => $item->name,
-                'active' => is_object($clip_tags->get($item->id)),
-            ];
+        $data['tags'] = $user_tags->map(
+            /**
+             * @param Tag $item
+             */
+            function ($item) use ($clip_tags) {
+                if(! $item instanceof Tag){
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                }
+                return [
+                    'id' => $item->id,
+                    'label' => $item->name,
+                    'active' => is_object($clip_tags->get($item->id)),
+                ];
         });
         // dddx([$user_tags, $clip_tags, $data]);
 
@@ -230,6 +246,9 @@ class Toolbar extends Component {
         $tag_type = 'customers';
         $clip_id = $data['clip_id'];
         $tags = $data['tags'];
+        /**
+         * @var SpatieImage
+         */
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
         $tags = collect($tags)->filter(
             function ($item) {

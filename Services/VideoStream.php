@@ -68,7 +68,8 @@ class VideoStream {
                 exit;
             }
             if ('-' == $range) {
-                $c_start = $this->size - substr($range, 1);
+                //$c_start = $this->size - substr($range, 1);
+                $c_start = $this->size;
             } else {
                 $range = explode('-', $range);
                 $c_start = $range[0];

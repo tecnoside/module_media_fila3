@@ -79,7 +79,7 @@ class VideoFactory extends Factory {
             'poster_path' => '',
             'release_date' => $faker->dateTime(),
             'vote_average' => $faker->randomFloat(3, 0, 5),
-            'vote_count' => $faker->randomDigit,
+            'vote_count' => $faker->randomDigit(),
         ];
     }
 }
