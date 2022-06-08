@@ -22,8 +22,6 @@ class Clip extends Component {
     /**
      * Undocumented function.
      *
-     * @param Model $clip
-     *
      * @return void
      */
     public function mount(Model $model) {
@@ -34,9 +32,9 @@ class Clip extends Component {
      * Undocumented function.
      */
     public function render(): Renderable {
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'media::livewire.card.video.clip.'.$this->type;
         $view_params = [
             'view' => $view,
@@ -62,7 +60,7 @@ class Clip extends Component {
         if ('editClip' !== $id) {
             return;
         }
-        if ($data['id'] != $this->model->id) {
+        if ($data['id'] != $this->model->getKey()) {
             return;
         }
         // dddx(['data'=>$data,'model'=>$this->model]);

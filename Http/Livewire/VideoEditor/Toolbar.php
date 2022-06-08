@@ -19,6 +19,7 @@ use Livewire\Component;
 use Modules\Media\Jobs\ExportClipJob;
 use Modules\Media\Jobs\ExportFrameJob;
 use Modules\Media\Models\SpatieImage;
+use Modules\Mediamonitor\Models\Media;
 use Modules\Mediamonitor\Services\MediaService;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\MediaLibrary\HasMedia;
@@ -27,7 +28,7 @@ use Spatie\MediaLibrary\HasMedia;
  * Undocumented class.
  */
 class Toolbar extends Component {
-    // public Model $model;
+    public Media $model;
     // public HasMedia $model;
     public string $type = 'bar1';
     public string $model_class;
@@ -61,8 +62,6 @@ class Toolbar extends Component {
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
     public function getModelProperty(): HasMedia {
         return app($this->model_class)->find($this->model_id);
@@ -72,9 +71,9 @@ class Toolbar extends Component {
      * Undocumented function.
      */
     public function render(): Renderable {
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'media::livewire.video-editor.toolbar.'.$this->type;
         $view_params = [
             'view' => $view,
@@ -91,6 +90,9 @@ class Toolbar extends Component {
      * @return void
      */
     public function setPoster(int $id) {
+        /**
+         * @var SpatieImage[]
+         */
         $snaps = $this->model->getMedia('snaps', ['isPoster' => true]);
         foreach ($snaps as $snap) {
             $snap->setCustomProperty('isPoster', false);
@@ -98,6 +100,9 @@ class Toolbar extends Component {
         }
 
         $snaps = $this->model->getMedia('snaps');
+        /**
+         * @var SpatieImage
+         */
         $snap = $snaps->firstWhere('id', $id);
         $snap->setCustomProperty('isPoster', true);
         $snap->save();
@@ -107,6 +112,9 @@ class Toolbar extends Component {
     }
 
     public function deleteSnap(int $id) {
+        /**
+         * @var SpatieImage
+         */
         $snap = $this->model->getMedia('snaps')->firstWhere('id', $id);
         $snap->delete();
         $this->model->refresh();
@@ -115,6 +123,9 @@ class Toolbar extends Component {
     }
 
     public function deleteClip(int $id) {
+        /**
+         * @var SpatieImage
+         */
         $media = $this->model->getMedia('clips')->firstWhere('id', $id);
         $media->delete();
         $this->model->refresh();
@@ -185,6 +196,7 @@ class Toolbar extends Component {
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
         $data = [];
         $user = Auth::user();
+        // --------------------- FARE CON PROFILE
         $tag_type = 'customers';
 
         $user->attachTags(['tag 1', 'tag 2', 'tag 3', 'tag 4', 'tag 5'], $tag_type);

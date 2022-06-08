@@ -8,12 +8,12 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Livewire\VideoEditor;
 
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Livewire\Component;
+use Modules\Mediamonitor\Contracts\MediaContract;
 
 class Xml extends Component {
-    public Model $model;
+    public MediaContract $model;
     // public Collection $subtitles;
     // public string $subtitles_html;
     public ?float $sub_start = null;
@@ -26,16 +26,16 @@ class Xml extends Component {
     /**
      * @return void
      */
-    public function mount(Model $model) {
+    public function mount(MediaContract $model) {
         $this->model = $model;
         // $this->subtitles_html=$model->getSubtitlesHtml();
         // $this->subtitles = $model->subtitles;
     }
 
     public function render(): Renderable {
-        /** 
-        * @phpstan-var view-string
-        */
+        /**
+         * @phpstan-var view-string
+         */
         $view = 'media::livewire.video-editor.xml';
         $view_params = [
             'view' => $view,
