@@ -68,7 +68,7 @@ class TryStreamAction extends XotBasePanelAction {
         $stream = new VideoStream($this->video_path);
         $stream->start();
     }
-
+    /*
     public function stream1() {
         $stream = $filesystem->readStream($location);
         $headers = [
@@ -81,6 +81,7 @@ class TryStreamAction extends XotBasePanelAction {
             fpassthru($stream);
         }, 200, $headers);
     }
+    */
 
     public function stream2() { // download not stream
         $headers = [

@@ -15,7 +15,7 @@ class _ModulePanel extends XotBasePanel {
             new Actions\TestVideoPlayerAction(),
             new Actions\TestVideoEditorAction(),
             new Actions\PopulateVideoAction(),
-            new Actions\TestStreamingAction(),
+            // new Actions\TestStreamingAction(),
             new Actions\FillVideoFromDirectory(),
             new Actions\TryVideoEditorSubAction(),
             new Actions\TryStreamAction(),

@@ -10,7 +10,6 @@ namespace Modules\Media\Http\Livewire\VideoEditorSub;
 header('Accept-Ranges: bytes');
 
 use Exception;
-use Illuminate\Database\Eloquent\Model as Eloquent;
 // use FFMpeg\Coordinate\Dimension;
 // use FFMpeg\Format\Video\X264;
 
@@ -19,23 +18,26 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Modules\Media\Models\Video;
 use Modules\Media\Models\VideoTag;
+use Modules\Mediamonitor\Contracts\MediaContract;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
+// use Pbmedia\LaravelFFMpeg\FFMpegFacade as FFMpeg;
+
 class Model extends Component {
-    public Eloquent $model;
+    public MediaContract $model;
 
     public string $src = '';
-    public $key = '';
-    public $srt = '';
-    public $vtt = '';
-    public $primary_image = '';
-    public $subtitles = [];
-    public $episodes = [];
-    public $snaps = [];
-    public $categories = [];
-    public $tags = [];
+    public string $key = '';
+    public string $srt = '';
+    public string $vtt = '';
+    public string $primary_image = '';
+    public array $subtitles = [];
+    public array $episodes = [];
+    public array $snaps = [];
+    public array $categories = [];
+    public array $tags = [];
     public $selectedSubtitle = null;
-    public $selectedSubtitles = [];
+    public array $selectedSubtitles = [];
     public $editSubtitle = null;
     public $editSubtitleText = null;
 
@@ -55,7 +57,7 @@ class Model extends Component {
         parent::__construct($id);
     }
 
-    public function mount(Eloquent $model) {
+    public function mount(MediaContract $model) {
         $this->model = $model;
         $this->src = $model->video_url;
         $this->subtitles = $model->subtitles;
@@ -143,7 +145,7 @@ class Model extends Component {
         $video->srt_url = $newsrtpath;
 
         $video->save();
-
+        /* --------- da mettere spatie tags !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
         if (isset($result['tags']) && ! empty($result['tags'])) {
             foreach ($result['tags'] as $tk => $tag) {
                 VideoTag::insert([
@@ -153,6 +155,7 @@ class Model extends Component {
                 ]);
             }
         }
+        */
         $this->dispatchBrowserEvent('done', '');
     }
 

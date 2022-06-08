@@ -50,38 +50,6 @@ use Modules\Tag\Models\Traits\HasTagTrait;
  * @property \Illuminate\Database\Eloquent\Collection|\Modules\Tag\Models\Tag[] $tags
  * @property int|null                                                           $tags_count
  *
-<<<<<<< Updated upstream
-=======
- * @property int $id
- * @property string $title
- * @property string $original_name
- * @property string $disk
- * @property string $path
- * @property \Illuminate\Support\Carbon|null $converted_for_downloading_at
- * @property \Illuminate\Support\Carbon|null $converted_for_streaming_at
- * @property int|null $adult
- * @property string|null $backdrop_path
- * @property string|null $original_language
- * @property string|null $original_title
- * @property string|null $overview
- * @property string|null $popularity
- * @property string|null $poster_path
- * @property string|null $release_date
- * @property string|null $vote_average
- * @property int|null $vote_count
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $url
- * @property string|null $guid
- * @property string|null $status
- * @property mixed|null $info
- * @property int|null $video
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $linkable
- * @property-read \Illuminate\Database\Eloquent\Collection|\Modules\Tag\Models\Tag[] $tags
- * @property-read int|null $tags_count
->>>>>>> Stashed changes
  * @method static \Modules\Media\Database\Factories\VideoFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Video newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Video newQuery()
