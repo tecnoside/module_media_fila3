@@ -23,15 +23,15 @@ class SubtitleFactory extends Factory {
      * @return array
      */
     public function definition() {
-       
+
 
         return [
             'id' => $this->faker->randomNumber(5, false),
             'media_id' => $this->faker->randomNumber(5, false),
             'sentence_i' => $this->faker->randomNumber(5, false),
             'item_i' => $this->faker->randomNumber(5, false),
-            'start' => $this->faker->randomFloat,
-            'end' => $this->faker->randomFloat,
+            'start' => $this->faker->randomFloat(),
+            'end' => $this->faker->randomFloat(),
             'time' => $this->faker->time,
             'text' => $this->faker->text
         ];
