@@ -145,7 +145,9 @@ class SubtitleService {
             }
             if (! feof($fileHandle)) {
                 exit("Error: unexpected fgets() fail\n");
-            } else ($fileHandle);
+            } else {
+                //($fileHandle);
+            }
         }
 
         $length = count($lines);
