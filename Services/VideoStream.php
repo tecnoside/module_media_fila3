@@ -27,7 +27,12 @@ public function streamVideo() {
  */
 class VideoStream {
     private string $path = '';
-    private resource $stream = '';
+    /**
+     * Undocumented variable
+     *
+     * @var string
+     */
+    private $stream ;
     private int $buffer = 102400;
     private int $start = -1;
     private int $end = -1;
