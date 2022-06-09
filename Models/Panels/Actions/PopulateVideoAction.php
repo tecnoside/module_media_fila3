@@ -48,7 +48,7 @@ class PopulateVideoAction extends XotBasePanelAction {
         return view()->make($view, $view_params);
     }
 
-    public function tmdb() {
+    public function tmdb():string {
         $token = config('services.tmdb.token');
         // $url = 'https://api.themoviedb.org/3/discover/movie?api_key=MY_API_KEY&with_genres=53';
         $url = 'https://api.themoviedb.org/3/movie/popular';
@@ -62,8 +62,11 @@ class PopulateVideoAction extends XotBasePanelAction {
         if (! isset($popular['results'])) {
             dddx($popular);
         }
-
-        foreach ($popular['results'] as $row) {
+        /**
+         * @var array
+         */
+        $rows=$popular['results'];
+        foreach ($rows as $row) {
             $url = 'http://api.themoviedb.org/3/movie/'.$row['id'].'/videos';
             // $url = 'http://api.themoviedb.org/3/movie/157336?append_to_response=videos';
             $video = Http::withToken($token)

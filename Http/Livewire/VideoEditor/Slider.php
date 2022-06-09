@@ -17,6 +17,11 @@ class Slider extends Component {
     public float $max = 100;
     public array $values = [0, 100];
 
+    /**
+     * Undocumented variable
+     *
+     * @var array
+     */
     protected $listeners = [
         'setSliderMinMax' => 'setMinMax',
         'setSliderValues' => 'setValues',

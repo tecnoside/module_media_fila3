@@ -15,6 +15,11 @@ class Clip extends Component {
     public string $type = 'edit';
     public Model $model;
 
+    /**
+     * Undocumented variable
+     *
+     * @var array
+     */
     protected $listeners = [
         'updateDataFromModal' => 'updateDataFromModal',
     ];

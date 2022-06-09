@@ -27,7 +27,7 @@ public function streamVideo() {
  */
 class VideoStream {
     private string $path = '';
-    private string $stream = '';
+    private resource $stream = '';
     private int $buffer = 102400;
     private int $start = -1;
     private int $end = -1;
@@ -44,8 +44,9 @@ class VideoStream {
     }
 
     /**
-     *      * Open stream.
-     *           */
+     *  Open stream.
+     *  @return void
+     */
     private function open() {
         if (! ($this->stream = fopen($this->path, 'rb'))) {
             exit('Could not open stream for reading');
@@ -53,8 +54,9 @@ class VideoStream {
     }
 
     /**
-     *      * Set proper header to serve the video content.
-     *           */
+     *  Set proper header to serve the video content.
+     *  @return void         
+     */
     private function setHeader() {
         ob_get_clean();
         header('Content-Type: video/mp4');

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Media\Services;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+use Exception;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * SubtitleService.
@@ -72,9 +73,17 @@ class SubtitleService {
         return $this;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
     public function getPlain(): string {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
+        if($xmlObject==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
         $txt = '';
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {

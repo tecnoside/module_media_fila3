@@ -14,6 +14,7 @@ use Modules\Media\Services\VideoStream;
 class StreamController extends Controller {
     /**
      * ---.
+     * @return void
      */
     public function __invoke($media_id) {
         $media_class = config('morph_map.media');
