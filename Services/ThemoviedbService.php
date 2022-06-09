@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Services;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class ThemoviedbService {
@@ -11,7 +12,11 @@ class ThemoviedbService {
 
     public static function getToken(): string {
         if ('' === self::$token) {
-            self::$token = config('services.tmdb.token');
+            $token=config('services.tmdb.token');
+            if(!is_string($token)){
+                throw new Exception('['.__LINE__.']['.__FILE__.']');
+            }
+            self::$token = $token;
         }
 
         return self::$token;
@@ -25,9 +30,14 @@ class ThemoviedbService {
 
         $url = 'https://api.themoviedb.org/3/genre/movie/list?api_key='.self::getToken().'&language=en-US';
 
-        $genres = Http::withToken(self::getToken())
+        /**
+         * @var array
+         */
+        $res = Http::withToken(self::getToken())
         ->get($url)
-        ->json()['genres'];
+        ->json();
+        
+        $genres=$res['genres'];
 
         $opts = [];
 

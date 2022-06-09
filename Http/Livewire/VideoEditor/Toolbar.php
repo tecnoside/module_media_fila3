@@ -275,6 +275,9 @@ class Toolbar extends Component {
         // }
         $tag_type = 'customers';
         $clip_id = $data['clip_id'];
+        /**
+         * @var array<array>
+         */
         $tags = $data['tags'];
         /**
          * @var SpatieImage
