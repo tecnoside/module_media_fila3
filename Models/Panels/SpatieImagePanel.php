@@ -59,6 +59,7 @@ class SpatieImagePanel extends XotBasePanel {
 
     /**
      * on select the option label.
+     * @param SpatieImage $row
      */
     public function optionLabel($row): string {
         return (string) $row->title;

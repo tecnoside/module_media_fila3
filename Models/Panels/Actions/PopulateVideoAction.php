@@ -78,7 +78,6 @@ class PopulateVideoAction extends XotBasePanelAction {
             /**
              * @var array 
              */
-            
             $row = collect($row)
                 ->except(['id', 'genre_ids'])
                 ->all();
