@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Services;
 
+use Exception;
+
 /**
  * Description of VideoStream.
  *
@@ -27,16 +29,19 @@ public function streamVideo() {
  */
 class VideoStream {
     private string $path = '';
-    /**
+    /*
      * Undocumented variable
      *
      * @var string
-     */
+     
     private $stream ;
+    */
     private int $buffer = 102400;
     private int $start = -1;
     private int $end = -1;
     private int $size = 0;
+
+    private array $vars=[];
 
     /**
      * Undocumented function
@@ -53,7 +58,7 @@ class VideoStream {
      *  @return void
      */
     private function open() {
-        if (! ($this->stream = fopen($this->path, 'rb'))) {
+        if (! ($this->vars['stream'] = fopen($this->path, 'rb'))) {
             exit('Could not open stream for reading');
         }
     }
@@ -67,9 +72,17 @@ class VideoStream {
         header('Content-Type: video/mp4');
         header('Cache-Control: max-age=2592000, public');
         header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2592000).' GMT');
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', @filemtime($this->path)).' GMT');
+        $time=@filemtime($this->path);
+        if($time==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $time).' GMT');
         $this->start = 0;
-        $this->size = filesize($this->path);
+        $size=filesize($this->path);
+        if($size==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        $this->size = $size;
         $this->end = $this->size - 1;
         header('Accept-Ranges: 0-'.$this->end);
 
@@ -98,10 +111,10 @@ class VideoStream {
                 header("Content-Range: bytes $this->start-$this->end/$this->size");
                 exit;
             }
-            $this->start = $c_start;
-            $this->end = $c_end;
+            $this->start = intval($c_start);
+            $this->end = intval($c_end);
             $length = $this->end - $this->start + 1;
-            fseek($this->stream, $this->start);
+            fseek($this->vars['stream'], $this->start);
             header('HTTP/1.1 206 Partial Content');
             header('Content-Length: '.$length);
             header("Content-Range: bytes $this->start-$this->end/".$this->size);
@@ -111,25 +124,31 @@ class VideoStream {
     }
 
     /**
-     *      * close curretly opened stream.
-     *           */
+     *       close curretly opened stream.
+     *       @return void
+     */
     private function end() {
-        fclose($this->stream);
+        fclose($this->vars['stream']);
         exit;
     }
 
     /**
-     *      * perform the streaming of calculated range.
-     *           */
+     *  perform the streaming of calculated range.
+     *  Method Modules\Media\Services\VideoStream::stream() is unused.
+     *  @return void
+     */
     private function stream() {
         $i = $this->start;
         set_time_limit(0);
-        while (! feof($this->stream) && $i <= $this->end) {
+        while (! feof($this->vars['stream']) && $i <= $this->end) {
             $bytesToRead = $this->buffer;
             if (($i + $bytesToRead) > $this->end) {
                 $bytesToRead = $this->end - $i + 1;
             }
-            $data = fread($this->stream, $bytesToRead);
+            if($bytesToRead<0){
+                throw new Exception('['.__LINE__.']['.__FILE__.']');
+            }
+            $data = fread($this->vars['stream'], $bytesToRead);
             echo $data;
             flush();
             $i += $bytesToRead;
@@ -138,11 +157,12 @@ class VideoStream {
 
     /**
      *  Start streaming video content.
+     * @return void
      */
     public function start() {
         $this->open();
         $this->setHeader();
-        $this->stream();
+        $this->vars['stream']();
         $this->end();
     }
 }

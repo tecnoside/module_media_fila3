@@ -64,7 +64,11 @@ class VideoFactory extends Factory {
         }
         copy($video_link, $temp_image);
 
-        Storage::disk('videos')->put($file_name, file_get_contents($temp_image));
+        $content=file_get_contents($temp_image);
+        if($content==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        Storage::disk('videos')->put($file_name, $content);
 
         return [
             'title' => $faker->name,
