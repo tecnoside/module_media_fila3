@@ -229,6 +229,9 @@ class Toolbar extends Component {
             return ;
         }
         $profile=$user->profile;
+        if($profile==null){
+            return ;
+        }
         // --------------------- FARE CON PROFILE
         $tag_type = 'customers';
 

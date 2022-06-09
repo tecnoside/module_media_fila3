@@ -122,15 +122,22 @@ class SubtitleService {
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
+        if($xmlObject==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
         $data = [];
         $i = 0;
         $sentence_i = 0;
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             $item_i = 0;
             foreach ($sentence->item as $item) {
+                $attributes=$item->attributes();
+                if($attributes==null){
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                }
                 // 00:06:35,360
-                $start = intval($item->attributes()->start->__toString()) / 1000;
-                $end = intval($item->attributes()->end->__toString()) / 1000;
+                $start = intval($attributes->start->__toString()) / 1000;
+                $end = intval($attributes->end->__toString()) / 1000;
                 // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
                 $tmp = [
                     // 'id' => $i++,
