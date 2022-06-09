@@ -16,7 +16,7 @@ class StreamController extends Controller {
      * ---.
      * @return void
      */
-    public function __invoke($media_id) {
+    public function __invoke(int $media_id) {
         $media_class = config('morph_map.media');
         if (null == $media_class) {
             throw new Exception('add media class to config morph_map');

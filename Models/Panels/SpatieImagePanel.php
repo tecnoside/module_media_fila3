@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace Modules\Media\Models\Panels;
 
 use Illuminate\Http\Request;
-use Modules\Xot\Contracts\RowsContract;
+use Modules\Media\Models\SpatieImage;
 // --- Services --
 
+use Modules\Xot\Contracts\RowsContract;
 use Modules\Xot\Models\Panels\XotBasePanel;
 
 class SpatieImagePanel extends XotBasePanel {
     /**
      * The model the resource corresponds to.
      */
-    public static string $model = 'Modules\Media\Models\SpatieImage';
+    public static string $model = SpatieImage::class;
+
+    public SpatieImage $row;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
