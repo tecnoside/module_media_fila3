@@ -43,6 +43,11 @@ class Toolbar extends Component {
 
     public array $form_data = [];
 
+    /**
+     * Undocumented variable
+     *
+     * @var array
+     */
     protected $listeners = [
         'setVideoCurrentTime' => 'setCurrentTime',
         'updateSliderValues' => 'updateSliderValues',

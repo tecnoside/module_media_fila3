@@ -25,7 +25,7 @@ class ConvertVideoForStreaming implements ShouldQueue {
     use Queueable;
     use SerializesModels;
 
-    public $video;
+    public Video $video;
 
     public function __construct(Video $video) {
         $this->video = $video;

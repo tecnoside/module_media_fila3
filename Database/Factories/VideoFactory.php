@@ -58,8 +58,9 @@ class VideoFactory extends Factory {
         $file_name = date('Ymdhis').'.mp4';
 
         $temp_image = tempnam(sys_get_temp_dir(), $file_name);
-
-        copy($video_link, $temp_image);
+        if($temp_image!=null){
+            copy($video_link, $temp_image);
+        }
 
         Storage::disk('videos')->put($file_name, file_get_contents($temp_image));
 

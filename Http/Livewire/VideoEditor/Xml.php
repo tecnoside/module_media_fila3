@@ -19,6 +19,11 @@ class Xml extends Component {
     public ?float $sub_start = null;
     public ?float $sub_end = null;
 
+    /**
+     * Undocumented variable
+     *
+     * @var array
+     */
     protected $listeners = [
         'setSubRange' => 'setSubRange',
     ];
@@ -50,6 +55,13 @@ class Xml extends Component {
         $this->emit('setSliderValues', [$this->sub_start,  $this->sub_end]);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param float|null $start
+     * @param float|null $end
+     * @return void
+     */
     public function setSubRange(?float $start, ?float $end) {
         // dddx(['start'=>$start,'end'=>$end]);
         if (null !== $start) {
