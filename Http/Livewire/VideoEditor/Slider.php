@@ -58,7 +58,7 @@ class Slider extends Component {
     /**
      * Set min - max of slider.
      */
-    public function setMinMax(float $min, float $max) {
+    public function setMinMax(float $min, float $max):void {
         $this->min = $min;
         $this->max = $max;
         $this->dispatchBrowserEvent('setSliderMinMax', ['min' => $min, 'max' => $max]);
@@ -67,19 +67,19 @@ class Slider extends Component {
     /**
      * set values of range.
      */
-    public function setValues(array $values) {
+    public function setValues(array $values):void {
         $this->values = $values;
         $this->dispatchBrowserEvent('setSliderValues', ['values' => $values]);
     }
 
-    public function updateValues(array $values) {
+    public function updateValues(array $values):void {
         $this->values = $values;
         $this->emit('updateSliderValues', $values);
         $this->emit('updateSliderValues', $values);
     }
 
     // * 4 debug
-    public function test() {
+    public function test():void {
         dddx($this->values);
     }
 

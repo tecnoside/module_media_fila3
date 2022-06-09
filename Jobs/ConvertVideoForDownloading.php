@@ -32,6 +32,11 @@ class ConvertVideoForDownloading implements ShouldQueue {
         $this->video = $video;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return mixed
+     */
     public function handle() {
         // create a video format...
         $lowBitrateFormat = (new X264())->setKiloBitrate(500);

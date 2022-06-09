@@ -118,7 +118,13 @@ class Toolbar extends Component {
         $this->model->save();
     }
 
-    public function deleteSnap(int $id) {
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function deleteSnap(int $id):void {
         /**
          * @var SpatieImage
          */
@@ -129,7 +135,13 @@ class Toolbar extends Component {
         // session()->flash('success', 'Staff Deleted Successfully 😃!');
     }
 
-    public function deleteClip(int $id) {
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function deleteClip(int $id):void {
         /**
          * @var SpatieImage
          */
@@ -159,6 +171,13 @@ class Toolbar extends Component {
         $this->rangeTo = max($values) * 1.0;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param float $from
+     * @param float $to
+     * @return void
+     */
     public function setSliderValues(float $from, float $to) {
         $this->rangeFrom = $from;
         $this->rangeTo = $to;
@@ -206,6 +225,9 @@ class Toolbar extends Component {
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
         $data = [];
         $user = Auth::user();
+        if($user==null){
+            return ;
+        }
         $profile=$user->profile;
         // --------------------- FARE CON PROFILE
         $tag_type = 'customers';

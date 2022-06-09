@@ -110,6 +110,9 @@ class SubtitleService {
     public function getContent(): string {
         $path = Storage::disk($this->disk)->path('videos/'.$this->file_path);
         $path = realpath($path);
+        if($path==false){
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+        }
         $content = File::get($path);
 
         return $content;
