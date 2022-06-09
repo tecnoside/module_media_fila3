@@ -64,6 +64,11 @@ class TryStreamAction extends XotBasePanelAction {
         return $this->{$driver}();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function stream() {
         $stream = new VideoStream($this->video_path);
         $stream->start();
@@ -83,6 +88,11 @@ class TryStreamAction extends XotBasePanelAction {
     }
     */
 
+    /**
+     * Undocumented function
+     *
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     */
     public function stream2() { // download not stream
         $headers = [
             'Content-Type' => 'video/mp2t',
@@ -93,6 +103,9 @@ class TryStreamAction extends XotBasePanelAction {
         return Response::stream(function () {
             try {
                 $stream = fopen($this->video_path, 'r');
+                if($stream==false){
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                }
                 fpassthru($stream);
             } catch (Exception $e) {
                 //    Log::error($e);
@@ -101,6 +114,11 @@ class TryStreamAction extends XotBasePanelAction {
         }, 200, $headers);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function stream3() { // download not stream
         $response = new BinaryFileResponse($this->video_path, 200, [
             'Content-Type' => 'video/mp4',
