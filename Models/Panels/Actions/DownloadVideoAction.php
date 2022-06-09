@@ -24,6 +24,9 @@ class DownloadVideoAction extends XotBasePanelAction {
      * @return mixed
      */
     public function handle() {
+        /**
+         * @var \Modules\Media\Models\Video
+         */
         $video = $this->row;
         DownloadVideo::dispatch($video);
     }

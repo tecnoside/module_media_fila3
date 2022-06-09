@@ -22,15 +22,24 @@ public function streamVideo() {
 }
 */
 
+/**
+ * Undocumented class
+ */
 class VideoStream {
-    private $path = '';
-    private $stream = '';
-    private $buffer = 102400;
-    private $start = -1;
-    private $end = -1;
-    private $size = 0;
+    private string $path = '';
+    private string $stream = '';
+    private int $buffer = 102400;
+    private int $start = -1;
+    private int $end = -1;
+    private int $size = 0;
 
-    public function __construct($filePath) {
+    /**
+     * Undocumented function
+     *
+     * @param string $filePath
+     * @return void
+     */
+    public function __construct(string $filePath) {
         $this->path = $filePath;
     }
 

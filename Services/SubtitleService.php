@@ -135,6 +135,13 @@ class SubtitleService {
         return $data;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $srtFile
+     * @param string $webVttFile
+     * @return void
+     */
     public function srtToVtt($srtFile, $webVttFile) {
         $fileHandle = fopen(public_path($srtFile), 'r');
         $lines = [];
