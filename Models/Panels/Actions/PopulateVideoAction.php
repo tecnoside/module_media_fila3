@@ -74,6 +74,10 @@ class PopulateVideoAction extends XotBasePanelAction {
             ->json();
             // dddx($video['results'][0]);
             $first_video = $video['results'][0];
+
+            /**
+             * @param array $row
+             */
             $row = collect($row)
                 ->except(['id', 'genre_ids'])
                 ->all();

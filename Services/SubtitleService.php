@@ -99,6 +99,9 @@ class SubtitleService {
      */
     public function get(): array {
         $info = pathinfo($this->file_path);
+        if(!isset($info['extension'])){
+            return [];;
+        }
         $func = 'getFrom'.Str::studly($info['extension']);
 
         return $this->{$func}();
