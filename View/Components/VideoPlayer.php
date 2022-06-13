@@ -21,6 +21,9 @@ class VideoPlayer extends Component {
      */
     public function __construct(string $mp4Src, int $currentTime, ?string $driver = null) {
         if (null == $driver) {
+            /**
+             * @var string
+             */
             $driver = config('xra.video.player');
         }
         $this->driver = $driver;
@@ -34,7 +37,7 @@ class VideoPlayer extends Component {
      * @return \Illuminate\Contracts\View\View|string
      */
     public function render() {
-        /** 
+        /**
         * @phpstan-var view-string
         */
         $view = 'media::components.video-player.'.$this->driver;
