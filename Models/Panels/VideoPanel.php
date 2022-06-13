@@ -7,14 +7,16 @@ namespace Modules\Media\Models\Panels;
 use Illuminate\Http\Request;
 // --- Services --
 
-use Modules\Media\Services\ThemoviedbService;
+use Modules\Media\Models\Video;
 use Modules\Xot\Models\Panels\XotBasePanel;
+use Modules\Media\Services\ThemoviedbService;
 
 class VideoPanel extends XotBasePanel {
     /**
      * The model the resource corresponds to.
      */
-    public static string $model = 'Modules\Media\Models\Panels\VideoPanel';
+    public static string $model = Video::class;
+    public Video $row;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -106,12 +108,12 @@ class VideoPanel extends XotBasePanel {
 
     // forse meglio un mutator?
     public function txt(): ?string {
-        return optional($this->row)->overview;
+        return $this->row->overview;
     }
 
     // forse meglio un mutator?
     public function voteAverage(): float {
-        return (optional($this->row)->vote_average * 5) / 10;
+        return ($this->row->vote_average * 5) / 10;
     }
 
     /**

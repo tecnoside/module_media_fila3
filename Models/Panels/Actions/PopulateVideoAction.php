@@ -49,6 +49,9 @@ class PopulateVideoAction extends XotBasePanelAction {
     }
 
     public function tmdb():string {
+        /**
+         * @var string
+         */
         $token = config('services.tmdb.token');
         // $url = 'https://api.themoviedb.org/3/discover/movie?api_key=MY_API_KEY&with_genres=53';
         $url = 'https://api.themoviedb.org/3/movie/popular';
@@ -76,7 +79,7 @@ class PopulateVideoAction extends XotBasePanelAction {
             $first_video = $video['results'][0];
 
             /**
-             * @var array 
+             * @var array
              */
             $row = collect($row)
                 ->except(['id', 'genre_ids'])
