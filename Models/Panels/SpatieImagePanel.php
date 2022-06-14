@@ -24,9 +24,9 @@ class SpatieImagePanel extends XotBasePanel {
      */
     public static string $title = 'title';
 
-
     /**
      * on select the option label.
+     *
      * @param SpatieImage $row
      */
     public function optionLabel($row): string {
@@ -58,117 +58,125 @@ class SpatieImagePanel extends XotBasePanel {
      */
     public function fields(): array {
         return [
-            0 => (object) [
+            (object) [
                 'type' => 'Id',
                 'name' => 'id',
                 'comment' => null,
             ],
-            1 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'model_type',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            2 => (object) [
+            (object) [
                 'type' => 'Bigint',
                 'name' => 'model_id',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            3 => (object) [
-                'type' => 'String',
-                'name' => 'uuid',
-                'comment' => null,
-            ],
-            4 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'collection_name',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            5 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'name',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            6 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'file_name',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            7 => (object) [
+            (object) [
+                'type' => 'Tags',
+                'name' => 'tags',
+                'col_size' => 12,
+                'options' => ['domains'],
+            ],
+            /*
+            (object) [
+                'type' => 'String',
+                'name' => 'uuid',
+                'comment' => null,
+            ],
+            (object) [
                 'type' => 'String',
                 'name' => 'mime_type',
                 'comment' => null,
             ],
-            8 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'disk',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            9 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'conversions_disk',
                 'comment' => null,
             ],
-            10 => (object) [
+            (object) [
                 'type' => 'Bigint',
                 'name' => 'size',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            11 => (object) [
+            (object) [
                 'type' => 'Json',
                 'name' => 'manipulations',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            12 => (object) [
+            (object) [
                 'type' => 'Json',
                 'name' => 'custom_properties',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            13 => (object) [
+            (object) [
                 'type' => 'Json',
                 'name' => 'generated_conversions',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            14 => (object) [
+            (object) [
                 'type' => 'Json',
                 'name' => 'responsive_images',
                 'rules' => 'required',
                 'comment' => null,
             ],
-            15 => (object) [
+            (object) [
                 'type' => 'Integer',
                 'name' => 'order_column',
                 'comment' => null,
             ],
-            16 => (object) [
+            (object) [
                 'type' => 'Datetime',
                 'name' => 'created_at',
                 'comment' => null,
             ],
-            17 => (object) [
+            (object) [
                 'type' => 'Datetime',
                 'name' => 'updated_at',
                 'comment' => null,
             ],
-            18 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'created_by',
                 'comment' => null,
             ],
-            19 => (object) [
+            (object) [
                 'type' => 'String',
                 'name' => 'updated_by',
                 'comment' => null,
             ],
+            */
         ];
     }
 
