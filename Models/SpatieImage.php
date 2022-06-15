@@ -146,7 +146,6 @@ class SpatieImage extends BaseMedia {
      * Undocumented function.
      */
     public function getVideoUrlAttribute(?string $value): ?string {
-        // return url('/streamsnip/'.$this->id);
-        return url('/media/'.$this->disk.'/'.$this->id.'/'.$this->file_name);
+        return url('/streamsnip/'.$this->id);
     }
 }
