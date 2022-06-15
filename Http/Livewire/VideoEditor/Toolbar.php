@@ -13,18 +13,18 @@ use Exception;
 // use FFMpeg\Coordinate\Dimension;
 // use FFMpeg\Format\Video\X264;
 
-use Livewire\Component;
-use Modules\Tag\Models\Tag;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Support\Facades\Auth;
-use Modules\Media\Jobs\ExportClipJob;
-use Modules\Media\Models\SpatieImage;
-use Modules\Media\Jobs\ExportFrameJob;
-use Modules\Mediamonitor\Models\Media;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Support\Renderable;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Media\Jobs\ExportClipJob;
+use Modules\Media\Jobs\ExportFrameJob;
+use Modules\Media\Models\SpatieImage;
+use Modules\Mediamonitor\Models\Media;
 use Modules\Mediamonitor\Services\MediaService;
+use Modules\Tag\Models\Tag;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+use Spatie\MediaLibrary\HasMedia;
 
 /**
  * Undocumented class.
@@ -44,7 +44,7 @@ class Toolbar extends Component {
     public array $form_data = [];
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var array
      */
@@ -65,6 +65,7 @@ class Toolbar extends Component {
         $this->attrs['id'] = $id;
         $this->model_class = $model_class;
         $this->model_id = $model_id;
+        $this->model = $this->getModelProperty();
     }
 
     /**
@@ -78,6 +79,7 @@ class Toolbar extends Component {
      * Undocumented function.
      */
     public function render(): Renderable {
+        // dddx($this);
         /**
          * @phpstan-var view-string
          */
@@ -119,12 +121,9 @@ class Toolbar extends Component {
     }
 
     /**
-     * Undocumented function
-     *
-     * @param integer $id
-     * @return void
+     * Undocumented function.
      */
-    public function deleteSnap(int $id):void {
+    public function deleteSnap(int $id): void {
         /**
          * @var SpatieImage
          */
@@ -136,12 +135,9 @@ class Toolbar extends Component {
     }
 
     /**
-     * Undocumented function
-     *
-     * @param integer $id
-     * @return void
+     * Undocumented function.
      */
-    public function deleteClip(int $id):void {
+    public function deleteClip(int $id): void {
         /**
          * @var SpatieImage
          */
@@ -172,10 +168,8 @@ class Toolbar extends Component {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param float $from
-     * @param float $to
      * @return void
      */
     public function setSliderValues(float $from, float $to) {
@@ -225,19 +219,19 @@ class Toolbar extends Component {
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
         $data = [];
         $user = Auth::user();
-        if($user==null){
-            return ;
+        if (null == $user) {
+            return;
         }
-        $profile=$user->profile;
-        if($profile==null){
-            return ;
+        $profile = $user->profile;
+        if (null == $profile) {
+            return;
         }
         // --------------------- FARE CON PROFILE
         $tag_type = 'customers';
 
         $profile->attachTags(['tag 1', 'tag 2', 'tag 3', 'tag 4', 'tag 5'], $tag_type);
         /**
-         * Collection<Tag>
+         * Collection<Tag>.
          */
         $user_tags = $profile->tagsWithType($tag_type);
         $clip_tags = $clip->tagsWithType($tag_type)->keyBy('id');
@@ -248,15 +242,16 @@ class Toolbar extends Component {
              * @param Tag $item
              */
             function ($item) use ($clip_tags) {
-                if(! $item instanceof Tag){
+                if (! $item instanceof Tag) {
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
+
                 return [
                     'id' => $item->id,
                     'label' => $item->name,
                     'active' => is_object($clip_tags->get($item->id)),
                 ];
-        });
+            });
         // dddx([$user_tags, $clip_tags, $data]);
 
         // $data = [];
