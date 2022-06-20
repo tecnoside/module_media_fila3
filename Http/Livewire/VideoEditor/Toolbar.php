@@ -20,7 +20,7 @@ use Livewire\Component;
 use Modules\Media\Jobs\ExportClipJob;
 use Modules\Media\Jobs\ExportFrameJob;
 use Modules\Media\Models\SpatieImage;
-use Modules\Mediamonitor\Models\Media;
+use Modules\Mediamonitor\Models\Press;
 use Modules\Mediamonitor\Services\MediaService;
 use Modules\Tag\Models\Tag;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -30,7 +30,7 @@ use Spatie\MediaLibrary\HasMedia;
  * Undocumented class.
  */
 class Toolbar extends Component {
-    public Media $model;
+    public Press $model;
     // public HasMedia $model;
     public string $type = 'bar1';
     public string $model_class;

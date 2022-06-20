@@ -21,7 +21,7 @@ class CreateSubtitlesTable extends XotBaseMigration {
         $this->tableCreate(
             function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->integer('media_id')->nullable();
+                $table->integer('press_id')->nullable();
                 $table->integer('sentence_i')->nullable();
                 $table->integer('item_i')->nullable();
                 $table->decimal('start', 10, 3)->nullable();
