@@ -1,4 +1,7 @@
 <?php
+/**
+ * @link https://code-pocket.info/20200624304/
+ */
 
 declare(strict_types=1);
 
