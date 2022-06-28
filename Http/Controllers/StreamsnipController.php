@@ -1,4 +1,7 @@
 <?php
+/**
+ * @link https://code-pocket.info/20200624304/
+ */
 
 declare(strict_types=1);
 
@@ -22,6 +25,9 @@ class StreamsnipController extends Controller {
             $media = $media_class::find($media_id);
             $stream = new VideoStream($media->getPath());
             $stream->start();
+            //return response()->stream(function () use ($stream) {
+            //$stream->start();
+            //});
         }
 
         // catch exception
