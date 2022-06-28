@@ -51,7 +51,6 @@ class SubtitleService {
 
     public function setFilePath(string $file_path): self {
         $this->file_path = $file_path;
-
         return $this;
     }
 
@@ -82,6 +81,7 @@ class SubtitleService {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
         if($xmlObject==false){
+            return '';
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $txt = '';
@@ -103,18 +103,28 @@ class SubtitleService {
             return [];;
         }
         $func = 'getFrom'.Str::studly($info['extension']);
-
+        
         return $this->{$func}();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
     public function getContent(): string {
-        $path = Storage::disk($this->disk)->path('videos/'.$this->file_path);
-        $path = realpath($path);
+        
+        //$path = Storage::disk($this->disk)->path('videos/'.$this->file_path);
+        //$path = Storage::path($this->file_path);
+        //$path = realpath($path);
+        $path = realpath($this->file_path);
         if($path==false){
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            
+            throw new Exception('path:['.$path.']'.PHP_EOL.'
+                file_path:['.$this->file_path.']'.PHP_EOL.'
+                ['.__LINE__.']['.__FILE__.']'.PHP_EOL);
         }
         $content = File::get($path);
-
         return $content;
     }
 
@@ -123,8 +133,9 @@ class SubtitleService {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
         if($xmlObject==false){
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
+       
         $data = [];
         $i = 0;
         $sentence_i = 0;
@@ -153,7 +164,7 @@ class SubtitleService {
             }
             ++$sentence_i;
         }
-
+        
         return $data;
     }
 
