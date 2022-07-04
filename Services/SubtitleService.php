@@ -119,7 +119,7 @@ class SubtitleService {
         //$path = realpath($path);
         $path = realpath($this->file_path);
         if($path==false){
-            
+            return '';
             throw new Exception('path:['.$path.']'.PHP_EOL.'
                 file_path:['.$this->file_path.']'.PHP_EOL.'
                 ['.__LINE__.']['.__FILE__.']'.PHP_EOL);

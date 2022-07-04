@@ -8,7 +8,7 @@ namespace Modules\Media\Models;
  * Modules\Media\Models\Subtitle
  *
  * @property int $id
- * @property int|null $media_id
+ * @property int|null $press_id
  * @property int|null $sentence_i
  * @property int|null $item_i
  * @property string|null $start
@@ -28,7 +28,7 @@ namespace Modules\Media\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereEnd($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereItemI($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereMediaId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtitle wherePressId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereSentenceI($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereStart($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereText($value)
