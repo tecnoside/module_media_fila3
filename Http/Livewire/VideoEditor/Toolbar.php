@@ -21,7 +21,7 @@ use Modules\Media\Jobs\ExportClipJob;
 use Modules\Media\Jobs\ExportFrameJob;
 use Modules\Media\Models\SpatieImage;
 use Modules\Mediamonitor\Models\Press;
-use Modules\Mediamonitor\Services\MediaService;
+use Modules\Mediamonitor\Services\PressService;
 use Modules\Tag\Models\Tag;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\MediaLibrary\HasMedia;
@@ -184,7 +184,7 @@ class Toolbar extends Component {
      */
     public function exportFrame() {
         /*
-        MediaService::make()
+        PressService::make()
             ->setModel($this->model)
             ->setCurrentTime($this->currentTime)
             ->exportFrame();
@@ -199,7 +199,7 @@ class Toolbar extends Component {
      */
     public function exportClip() {
         /*
-        MediaService::make()
+        PressService::make()
             ->setModel($this->model)
             ->setRange($this->rangeFrom,$this->rangeTo)
             ->exportClip();
