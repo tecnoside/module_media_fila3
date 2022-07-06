@@ -14,7 +14,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Modules\Mediamonitor\Services\MediaService;
+use Modules\Mediamonitor\Services\PressService;
 
 /**
  * Undocumented class.
@@ -48,7 +48,7 @@ class ExportFrameJob implements ShouldQueue {
      */
     public function handle() {
         $model = app($this->model_class)->find($this->model_id);
-        MediaService::make()
+        PressService::make()
             ->setModel($model)
             ->setCurrentTime($this->currentTime)
             ->exportFrame();

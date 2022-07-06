@@ -15,7 +15,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
-use Modules\Mediamonitor\Services\MediaService;
+use Modules\Mediamonitor\Services\PressService;
 
 /**
  * Undocumented class.
@@ -63,7 +63,7 @@ class ExportClipJob implements ShouldQueue {
         $this->model_id = $model_id;
         $this->rangeFrom = $rangeFrom;
         $this->rangeTo = $rangeTo;
-        $this->user_id = intval(Auth::id()); //int|string|null
+        $this->user_id = intval(Auth::id()); // int|string|null
     }
 
     /**
@@ -75,7 +75,7 @@ class ExportClipJob implements ShouldQueue {
      */
     public function handle() {
         $model = app($this->model_class)->find($this->model_id);
-        MediaService::make()
+        PressService::make()
             ->setModel($model)
             ->setRange($this->rangeFrom, $this->rangeTo)
             ->setUserId($this->user_id)
