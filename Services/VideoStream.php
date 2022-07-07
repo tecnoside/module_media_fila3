@@ -13,6 +13,7 @@
 namespace Modules\Media\Services;
 
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Undocumented class
@@ -20,7 +21,7 @@ use Exception;
 class VideoStream {
     //private $stream = "";
 
-    private string $path = "";
+    //private string $path = "";
     private int $buffer = 102400;
     private int $start  = -1;
     private int $end    = -1;
@@ -34,8 +35,13 @@ class VideoStream {
      * @param string $filePath
      * @return void
      */
-    function __construct(string $filePath) {
-        $this->path = $filePath;
+    function __construct(string $disk,string $path) {
+        //$this->path = $path;
+        $storage=Storage::disk($disk);
+        $this->vars['stream'] = $storage->readStream($path);
+        $this->mime = $storage->mimeType($path);
+        $this->filemtime = $storage->lastModified($path);
+        $this->size = $storage->size($path);
     }
      
     /**
@@ -43,9 +49,11 @@ class VideoStream {
      * @return void
      */
     private function open() {
+        /*
         if (!($this->vars['stream'] = fopen($this->path, 'rb'))) {
             die('Could not open stream for reading');
         }
+        */
          
     }
      
@@ -55,20 +63,27 @@ class VideoStream {
      */
     private function setHeader() {
         ob_get_clean();
-        header("Content-Type: video/mp4");
+        //header("Content-Type: video/mp4");
+        header("Content-Type: ".$this->mime);
+
         header("Cache-Control: max-age=2592000, public");
         header("Expires: ".gmdate('D, d M Y H:i:s', time()+2592000) . ' GMT');
+        /*
         $time=@filemtime($this->path);
         if($time==false){
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', $time).' GMT');
+        */
+        header("Last-Modified: ".gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
         $this->start = 0;
+        /*
         $size=filesize($this->path);
         if($size==false){
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->size = $size;
+        */
         $this->end   = $this->size - 1;
         header("Accept-Ranges: 0-".$this->end);
          
@@ -143,7 +158,7 @@ class VideoStream {
      * @return void
      */
     function start() {
-        $this->open();
+        //$this->open();
         $this->setHeader();
         $this->stream();
         $this->end();
