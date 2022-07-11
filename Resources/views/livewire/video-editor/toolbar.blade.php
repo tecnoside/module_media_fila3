@@ -33,8 +33,10 @@
         <input type="text" wire:model="rangeFrom" class="form-control" />
         <input type="text" wire:model="rangeTo" class="form-control" />
     </div>
-    <div {{-- wire:poll.2750ms --}}>
+    <div>
+        {{--
         Current time: {{ now() }} <br />
+        --}}
         <h3 wire:click="$refresh">{{ $snaps->count() }} Snaps</h3>
         <div class="row">
             {{--  --}}
