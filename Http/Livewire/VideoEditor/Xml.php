@@ -33,7 +33,6 @@ class Xml extends Component {
      */
     public function mount(MediaContract $model) {
         $this->model = $model;
-        // $this->subtitles_html=$model->getSubtitlesHtml();
         // $this->subtitles = $model->subtitles;
     }
 
@@ -44,7 +43,7 @@ class Xml extends Component {
         $view = 'media::livewire.video-editor.xml';
         $view_params = [
             'view' => $view,
-            'subtitles_html' => $this->model->getSubtitlesHtml(),
+            'subtitles_html' => $this->model->html,
         ];
 
         return view()->make($view, $view_params);
