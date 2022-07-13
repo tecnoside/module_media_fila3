@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use Modules\Mediamonitor\Models\Press;
 use Illuminate\Support\Facades\Storage;
 use Modules\Media\Services\VideoStream;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * ---.
@@ -20,9 +21,9 @@ use Modules\Media\Services\VideoStream;
 class StreamController extends Controller {
     /**
      * ---.
-     * @return void
+     * @return StreamedResponse
      */
-    public function __invoke(int $press_id) {
+    public function __invoke(int $press_id):StreamedResponse {
         /**
          * @var class-string
          */
@@ -44,6 +45,10 @@ class StreamController extends Controller {
         }
         
         $stream = new VideoStream($press->disk,$press->file_mp4);
-        $stream->start();
+        
+        return response()->stream(function () use ($stream) {
+            $stream->start();
+        });
+        
     }
 }
