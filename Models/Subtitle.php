@@ -19,6 +19,7 @@ namespace Modules\Media\Models;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
+ * @property string|null $guid
  * @method static \Modules\Media\Database\Factories\SubtitleFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle newQuery()
@@ -26,6 +27,7 @@ namespace Modules\Media\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereEnd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereGuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle whereItemI($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle wherePressId($value)
