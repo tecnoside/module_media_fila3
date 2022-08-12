@@ -28,6 +28,9 @@ class VideoStream {
     private int $size   = 0;
 
     private array $vars=[];
+
+    private ?string $mime = null;
+    private ?string $filemtime = null
  
     /**
      * Undocumented function
