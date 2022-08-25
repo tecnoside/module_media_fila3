@@ -30,7 +30,7 @@ class VideoStream {
     private array $vars=[];
 
     private ?string $mime = null;
-    private ?string $filemtime = null
+    private ?string $filemtime = null;
  
     /**
      * Undocumented function
@@ -41,6 +41,13 @@ class VideoStream {
     function __construct(string $disk,string $path) {
         //$this->path = $path;
         $storage=Storage::disk($disk);
+        if(!$storage->exists($path)){
+            dddx([
+                'message'=>'file not exists',
+                'disk'=>$disk,
+                'path'=>$path,
+            ]);
+        }
         $this->vars['stream'] = $storage->readStream($path);
         $this->mime = $storage->mimeType($path);
         $this->filemtime = $storage->lastModified($path);
