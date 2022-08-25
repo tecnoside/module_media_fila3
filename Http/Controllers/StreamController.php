@@ -32,17 +32,20 @@ class StreamController extends Controller {
             throw new Exception('add media class to config morph_map');
         }
         $press = $press_class::find($press_id);
-        $video_path=Storage::disk($press->disk)
-            ->path($press->file_mp4);
+        //$video_path=Storage::disk($press->disk)
+        //    ->path($press->file_mp4);
         
-        if(!File::exists($video_path)){
+        //if(!File::exists($video_path)){
+            /*
             if(Storage::disk('media')->exists($press->file_mp4)){
                 $press->disk='media';
                 $press->save();
                 $video_path=Storage::disk('media')
                     ->path($press->file_mp4);
             }
-        }
+            */
+            //$press->delete();
+        //}
         
         $stream = new VideoStream($press->disk,$press->file_mp4);
         
