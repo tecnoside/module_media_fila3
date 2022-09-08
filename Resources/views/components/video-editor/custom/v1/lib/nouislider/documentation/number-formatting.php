@@ -1,7 +1,7 @@
-<?php
-$title = "noUiSlider - Number formatting";
-$description = "Number formatting in slider options, tooltips, ranges and pips.";
-$canonical = "nouislider/number-formatting/"
+<?php declare(strict_types=1);
+$title = 'noUiSlider - Number formatting';
+$description = 'Number formatting in slider options, tooltips, ranges and pips.';
+$canonical = 'nouislider/number-formatting/';
 ?>
 
 <h1>Number formatting</h1>

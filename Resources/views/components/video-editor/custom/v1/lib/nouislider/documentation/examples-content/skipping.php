@@ -1,4 +1,5 @@
-<?php sect('skipping'); ?>
+<?php declare(strict_types=1);
+sect('skipping'); ?>
 <h1>Skipping steps</h1>
 
 <section>

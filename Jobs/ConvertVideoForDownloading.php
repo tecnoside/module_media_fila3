@@ -33,7 +33,7 @@ class ConvertVideoForDownloading implements ShouldQueue {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return mixed
      */

@@ -4,67 +4,69 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-//use Modules\Tag\Models\Traits\HasTagTrait; //usiamo spatie tags
+// use Modules\Tag\Models\Traits\HasTagTrait; //usiamo spatie tags
 
 /**
- * Modules\Media\Models\Video
+ * Modules\Media\Models\Video.
  *
- * @property int $id
- * @property string $title
- * @property string $original_name
- * @property string $disk
- * @property string $path
+ * @property int                             $id
+ * @property string                          $title
+ * @property string                          $original_name
+ * @property string                          $disk
+ * @property string                          $path
  * @property \Illuminate\Support\Carbon|null $converted_for_downloading_at
  * @property \Illuminate\Support\Carbon|null $converted_for_streaming_at
- * @property int|null $adult
- * @property string|null $backdrop_path
- * @property string|null $original_language
- * @property string|null $original_title
- * @property string|null $overview
- * @property string|null $popularity
- * @property string|null $poster_path
- * @property string|null $release_date
- * @property int|null $video
- * @property string|null $vote_average
- * @property int|null $vote_count
- * @property string|null $created_by
- * @property string|null $updated_by
+ * @property int|null                        $adult
+ * @property string|null                     $backdrop_path
+ * @property string|null                     $original_language
+ * @property string|null                     $original_title
+ * @property string|null                     $overview
+ * @property string|null                     $popularity
+ * @property string|null                     $poster_path
+ * @property string|null                     $release_date
+ * @property int|null                        $video
+ * @property string|null                     $vote_average
+ * @property int|null                        $vote_count
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $url
- * @property string|null $guid
- * @property string|null $status
- * @property mixed|null $info
+ * @property string|null                     $url
+ * @property string|null                     $guid
+ * @property string|null                     $status
+ * @property mixed|null                      $info
+ *
  * @method static \Modules\Media\Database\Factories\VideoFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Video newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Video newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Video query()
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereAdult($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereBackdropPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereConvertedForDownloadingAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereConvertedForStreamingAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereDisk($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereGuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereInfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereOriginalLanguage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereOriginalName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereOriginalTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereOverview($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video wherePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video wherePopularity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video wherePosterPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereReleaseDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereVideo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereVoteAverage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Video whereVoteCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereAdult($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereBackdropPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereConvertedForDownloadingAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereConvertedForStreamingAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereDisk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereGuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereOriginalLanguage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereOriginalName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereOriginalTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereOverview($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    wherePopularity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    wherePosterPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereReleaseDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereVideo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereVoteAverage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Video    whereVoteCount($value)
+ *
  * @mixin \Eloquent
  */
 class Video extends BaseModel {

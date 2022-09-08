@@ -32,8 +32,8 @@ $errors = AuthController::getFlash('errors');
                 <div class="form-group">
                     <label for="loginFormEmail"><?php echo $lang_arr['email_address']; ?>:</label>
                     <input type="email" name="email" class="form-control" id="loginFormEmail" value="<?php if (! empty($_POST['email'])) {
-    echo $_POST['email'];
-} ?>" required>
+                        echo $_POST['email'];
+                    } ?>" required>
                 </div>
                 <button type="submit" class="btn btn-primary">
                     <?php echo $lang_arr['submit']; ?>

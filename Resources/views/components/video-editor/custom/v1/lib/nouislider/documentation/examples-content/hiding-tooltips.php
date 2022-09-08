@@ -1,4 +1,5 @@
-<?php sect('hiding-tooltips'); ?>
+<?php declare(strict_types=1);
+sect('hiding-tooltips'); ?>
 <h1>Only showing tooltips when sliding handles</h1>
 
 <section>

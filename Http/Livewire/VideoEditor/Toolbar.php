@@ -251,7 +251,8 @@ class Toolbar extends Component {
                     'label' => $item->name,
                     'active' => is_object($clip_tags->get($item->id)),
                 ];
-            });
+            }
+        );
         // dddx([$user_tags, $clip_tags, $data]);
 
         // $data = [];

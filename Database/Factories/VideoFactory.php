@@ -6,11 +6,11 @@ namespace Modules\Media\Database\Factories;
 
 use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-// ---- models ----
-use Modules\Media\Models\Video as Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Http\UploadedFile;
+// ---- models ----
+use Illuminate\Support\Facades\Storage;
+use Modules\Media\Models\Video as Model;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,13 +59,13 @@ class VideoFactory extends Factory {
         $file_name = date('Ymdhis').'.mp4';
 
         $temp_image = tempnam(sys_get_temp_dir(), $file_name);
-        if(!is_string($temp_image)){
+        if (! is_string($temp_image)) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         copy($video_link, $temp_image);
 
-        $content=file_get_contents($temp_image);
-        if($content==false){
+        $content = file_get_contents($temp_image);
+        if (false == $content) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         Storage::disk('videos')->put($file_name, $content);

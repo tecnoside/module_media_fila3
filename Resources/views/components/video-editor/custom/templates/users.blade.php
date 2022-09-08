@@ -85,7 +85,7 @@ if (empty($user) || 'admin' != $user['role']) {
                             && ! empty($user['type'])) {
                             echo ucfirst($user['type']);
                         }
-                    ?>
+                ?>
                 </td>
                 <td class="text-center">
                     <?php if (! empty($user['confirmed'])) { ?>
