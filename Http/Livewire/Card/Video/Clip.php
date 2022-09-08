@@ -16,7 +16,7 @@ class Clip extends Component {
     public Model $model;
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var array
      */

@@ -12,8 +12,8 @@ class ThemoviedbService {
 
     public static function getToken(): string {
         if ('' === self::$token) {
-            $token=config('services.tmdb.token');
-            if(!is_string($token)){
+            $token = config('services.tmdb.token');
+            if (! is_string($token)) {
                 throw new Exception('['.__LINE__.']['.__FILE__.']');
             }
             self::$token = $token;
@@ -36,8 +36,8 @@ class ThemoviedbService {
         $res = Http::withToken(self::getToken())
         ->get($url)
         ->json();
-        
-        $genres=$res['genres'];
+
+        $genres = $res['genres'];
 
         $opts = [];
 

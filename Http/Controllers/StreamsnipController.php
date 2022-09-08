@@ -1,18 +1,18 @@
 <?php
 /**
- * @link https://code-pocket.info/20200624304/
+ * @see https://code-pocket.info/20200624304/
  */
 
 declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
-use Exception;
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-use Modules\Xot\Services\ArrayService;
+use Exception;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Modules\Media\Services\VideoStream;
+use Modules\Xot\Services\ArrayService;
 
 /**
  * ---.
@@ -27,7 +27,7 @@ class StreamsnipController extends Controller {
         try {
             $media_class = \Modules\Media\Models\SpatieImage::class;
             $media = $media_class::find($media_id);
-            //dddx($media->toArray());
+            // dddx($media->toArray());
             /*
             $methods=collect(get_class_methods($media))
                 ->filter(function($item){
@@ -57,7 +57,7 @@ class StreamsnipController extends Controller {
                         'getTxtAttribute',
 
                         'getSrcset',
-                        
+
                     ];
                     return (Str::startsWith($item,'get') && !in_array($item,$exclude));
                 })->map(function($item) use($media){
@@ -73,9 +73,9 @@ class StreamsnipController extends Controller {
                         'value'=>$value,
                     ];
                 })->all();
-            
+
             echo ArrayService::make()->setArray($methods)->toHtml();
-            
+
             dddx([
                 'media'=>$media,
                 //'getUrlGenerator'=>$media->getUrlGenerator(),
@@ -83,13 +83,13 @@ class StreamsnipController extends Controller {
                 'methods'=>$methods,
             ]);
             */
-            //dddx([$media->disk,$media->original_url,Storage::disk($media->disk)->exists($media->original_url)]);
+            // dddx([$media->disk,$media->original_url,Storage::disk($media->disk)->exists($media->original_url)]);
 
-            $stream = new VideoStream($media->disk,$media->original_url);
+            $stream = new VideoStream($media->disk, $media->original_url);
             $stream->start();
-            //return response()->stream(function () use ($stream) {
-            //$stream->start();
-            //});
+            // return response()->stream(function () use ($stream) {
+            // $stream->start();
+            // });
         }
 
         // catch exception

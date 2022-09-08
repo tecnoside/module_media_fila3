@@ -6,12 +6,12 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models\Panels\Actions;
 
-//-------- services --------
+// -------- services --------
 
 use Modules\Theme\Services\ThemeService;
 use Modules\Xot\Models\Panels\Actions\XotBasePanelAction;
 
-//-------- bases -----------
+// -------- bases -----------
 
 /**
  * Class TestAction.
@@ -26,23 +26,22 @@ class TestVideoAction extends XotBasePanelAction {
     public function handle() {
         $video_players = [
             'plyr_io',
-            //'plyr_io.viola',
+            // 'plyr_io.viola',
             'videojs',
             'videojs.v1',
             'videojs.vue',
             'jplayer',
-            'mediaelement', //https://github.com/mediaelement/mediaelement
-            'cloudinary_video_player', //https://github.com/cloudinary/cloudinary-video-player
-            //'afterglowplayer', //afterglowplayer.com Time to say goodbye.
+            'mediaelement', // https://github.com/mediaelement/mediaelement
+            'cloudinary_video_player', // https://github.com/cloudinary/cloudinary-video-player
+            // 'afterglowplayer', //afterglowplayer.com Time to say goodbye.
         ];
         $i = request('i', 0);
 
         $view = ThemeService::getView();
 
-
         $view_params = [
             'view' => $view,
-            'mp4_src' => '/videos/test.mp4',  //public_html/videos/
+            'mp4_src' => '/videos/test.mp4',  // public_html/videos/
             'players' => $video_players,
             'player' => $video_players[$i],
         ];

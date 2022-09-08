@@ -1,4 +1,5 @@
-<?php sect('non-linear'); ?>
+<?php declare(strict_types=1);
+sect('non-linear'); ?>
 <h1>Non linear slider</h1>
 
 <section>

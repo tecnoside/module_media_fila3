@@ -65,7 +65,7 @@ class TryStreamAction extends XotBasePanelAction {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return void
      */
@@ -89,7 +89,7 @@ class TryStreamAction extends XotBasePanelAction {
     */
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return \Symfony\Component\HttpFoundation\StreamedResponse
      */
@@ -103,7 +103,7 @@ class TryStreamAction extends XotBasePanelAction {
         return Response::stream(function () {
             try {
                 $stream = fopen($this->video_path, 'r');
-                if($stream==false){
+                if (false == $stream) {
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 fpassthru($stream);
@@ -115,7 +115,7 @@ class TryStreamAction extends XotBasePanelAction {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */

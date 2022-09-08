@@ -32,7 +32,7 @@ class ConvertVideoForStreaming implements ShouldQueue {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @return mixed
      */

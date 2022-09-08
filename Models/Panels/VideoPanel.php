@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 // --- Services --
 
 use Modules\Media\Models\Video;
-use Modules\Xot\Models\Panels\XotBasePanel;
 use Modules\Media\Services\ThemoviedbService;
+use Modules\Xot\Models\Panels\XotBasePanel;
 
 class VideoPanel extends XotBasePanel {
     /**
@@ -22,7 +22,6 @@ class VideoPanel extends XotBasePanel {
      * The single value that should be used to represent the resource when being displayed.
      */
     public static string $title = 'title';
-
 
     /**
      * Get the fields displayed by the resource.

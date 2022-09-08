@@ -1,8 +1,8 @@
-<?php
-	$title = "noUiSlider - JavaScript Range Slider";
-	$description = "noUiSlider is a free and lightweight JavaScript range slider with multi-touch support (iOS, Android, Windows). Great for responsive designs, and no dependencies!";
-    $canonical = "nouislider/"
-?>
+<?php declare(strict_types=1);
+$title = 'noUiSlider - JavaScript Range Slider';
+    $description = 'noUiSlider is a free and lightweight JavaScript range slider with multi-touch support (iOS, Android, Windows). Great for responsive designs, and no dependencies!';
+    $canonical = 'nouislider/';
+    ?>
 
 <section>
 

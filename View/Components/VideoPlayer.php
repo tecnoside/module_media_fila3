@@ -38,8 +38,8 @@ class VideoPlayer extends Component {
      */
     public function render() {
         /**
-        * @phpstan-var view-string
-        */
+         * @phpstan-var view-string
+         */
         $view = 'media::components.video-player.'.$this->driver;
         $view_params = [
             'view' => $view,

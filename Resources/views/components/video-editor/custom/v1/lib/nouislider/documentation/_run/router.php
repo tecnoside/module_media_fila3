@@ -1,9 +1,11 @@
 <?php
 
-chdir(__DIR__ . '/..');
+declare(strict_types=1);
+
+chdir(__DIR__.'/..');
 
 $is_server = isset($_SERVER['REQUEST_URI']);
-$request_url = $is_server ? $_SERVER['REQUEST_URI'] : ('/nouislider/' . $argv[1]);
+$request_url = $is_server ? $_SERVER['REQUEST_URI'] : ('/nouislider/'.$argv[1]);
 
 $url = strtolower($request_url);
 
@@ -14,24 +16,24 @@ if (strpos($url, '.js') || strpos($url, '.css') || strpos($url, '.html')) {
 $request = parse_url($url);
 $page = rtrim(substr($request['path'], strlen('/nouislider/')), '/');
 
-if (!$page) {
+if (! $page) {
     $page = 'index';
 }
 
-$file = $page . '.php';
+$file = $page.'.php';
 $file_menu = '_run/menu.php';
 
 require '_run/helpers.php';
 
-if (!file_exists($file)) {
+if (! file_exists($file)) {
     header('HTTP/1.0 404 Not Found');
     $file = '_run/404.php';
 }
 
 // Defaults
-$title = "";
-$description = "";
-$canonical = "";
+$title = '';
+$description = '';
+$canonical = '';
 
 $package = json_decode(file_get_contents('./../package.json'));
 $version = $package->version;
@@ -47,14 +49,14 @@ ob_end_clean();
 
 $distribute = '/nouislider/distribute';
 
-if (!$is_server) {
+if (! $is_server) {
     echo "---\n";
-    echo "permalink: " . $canonical . "\n";
+    echo 'permalink: '.$canonical."\n";
     echo "---\n";
 }
 
 if ($canonical) {
-    $canonical = 'https://refreshless.com/' . $canonical;
+    $canonical = 'https://refreshless.com/'.$canonical;
 }
 
 include '_run/index.php';

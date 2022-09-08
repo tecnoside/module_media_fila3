@@ -20,7 +20,7 @@ class Xml extends Component {
     public ?float $sub_end = null;
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var array
      */
@@ -55,10 +55,8 @@ class Xml extends Component {
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param float|null $start
-     * @param float|null $end
      * @return void
      */
     public function setSubRange(?float $start, ?float $end) {

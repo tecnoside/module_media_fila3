@@ -48,7 +48,7 @@ class PopulateVideoAction extends XotBasePanelAction {
         return view()->make($view, $view_params);
     }
 
-    public function tmdb():string {
+    public function tmdb(): string {
         /**
          * @var string
          */
@@ -68,7 +68,7 @@ class PopulateVideoAction extends XotBasePanelAction {
         /**
          * @var array
          */
-        $rows=$popular['results'];
+        $rows = $popular['results'];
         foreach ($rows as $row) {
             $url = 'http://api.themoviedb.org/3/movie/'.$row['id'].'/videos';
             // $url = 'http://api.themoviedb.org/3/movie/157336?append_to_response=videos';
@@ -88,10 +88,10 @@ class PopulateVideoAction extends XotBasePanelAction {
             switch ($first_video['site']) {
                 case 'YouTube':
                     $row['url'] = 'https://www.youtube.com/watch?v='.$first_video['key'];
-                break;
+                    break;
                 default:
                     dddx($first_video);
-                break;
+                    break;
             }
 
             $video = Video::create($row);
