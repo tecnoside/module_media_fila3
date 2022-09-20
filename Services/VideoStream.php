@@ -32,7 +32,7 @@ class VideoStream {
     private array $vars = [];
 
     private ?string $mime = null;
-    private ?string $filemtime = null;
+    private ?int $filemtime = null;
 
     /**
      * Undocumented function.
@@ -53,6 +53,9 @@ class VideoStream {
         }
         $this->vars['stream'] = $storage->readStream($path);
         $this->mime = $storage->mimeType($path);
+
+        // dddx([$path, $storage->lastModified($path)]);
+
         $this->filemtime = $storage->lastModified($path);
         $this->size = $storage->size($path);
     }
