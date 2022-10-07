@@ -10,6 +10,7 @@
     <a href="{{ $this->panel->url('index') }}" class="btn btn-info">&laquo; Back</a>
     --}}
     <ul wire:sortable="updateTaskOrder">
+        
         @foreach($this->clips as $clip)
             <li wire:sortable.item="{{ $clip->id }}" wire:key="task-{{ $clip->id }}">
                 <div wire:sortable.handle>
