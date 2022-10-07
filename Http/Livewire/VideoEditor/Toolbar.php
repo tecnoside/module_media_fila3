@@ -20,6 +20,8 @@ use Livewire\Component;
 use Modules\Media\Jobs\ExportClipJob;
 use Modules\Media\Jobs\ExportFrameJob;
 use Modules\Media\Models\SpatieImage;
+use Modules\Mediamonitor\Actions\ExportPressClipAction;
+use Modules\Mediamonitor\Actions\ExportPressFrameAction;
 use Modules\Mediamonitor\Models\Press;
 use Modules\Mediamonitor\Services\PressService;
 use Modules\Tag\Models\Tag;
@@ -189,7 +191,10 @@ class Toolbar extends Component {
             ->setCurrentTime($this->currentTime)
             ->exportFrame();
         //*/
-        ExportFrameJob::dispatch($this->model_class, $this->model_id, $this->currentTime);
+        // ExportFrameJob::dispatch($this->model_class, $this->model_id, $this->currentTime);
+
+        $res = app(ExportPressFrameAction::class)
+            ->execute($this->model_id, $this->currentTime);
     }
 
     /**
@@ -198,13 +203,17 @@ class Toolbar extends Component {
      * @return void
      */
     public function exportClip() {
+        // dddx('qui');
         /*
         PressService::make()
             ->setModel($this->model)
             ->setRange($this->rangeFrom,$this->rangeTo)
             ->exportClip();
         //*/
-        ExportClipJob::dispatch($this->model_class, $this->model_id, $this->rangeFrom, $this->rangeTo);
+        // ExportClipJob::dispatch($this->model_class, $this->model_id, $this->rangeFrom, $this->rangeTo);
+
+        $res = app(ExportPressClipAction::class)
+            ->execute($this->model_id, $this->rangeFrom, $this->rangeTo);
     }
 
     /**

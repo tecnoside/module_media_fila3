@@ -10,16 +10,16 @@ namespace Modules\Media\Http\Livewire\VideoEditorSub;
 header('Accept-Ranges: bytes');
 
 use Exception;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-//use FFMpeg\Coordinate\Dimension;
-//use FFMpeg\Format\Video\X264;
+use Illuminate\Database\Eloquent\Model as Eloquent;
+// use FFMpeg\Coordinate\Dimension;
+// use FFMpeg\Format\Video\X264;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Modules\Media\Models\Video;
-use Illuminate\Support\Facades\DB;
 use Modules\Media\Models\VideoTag;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Model as Eloquent;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class Model extends Component {
     public Eloquent $model;
@@ -178,18 +178,17 @@ class Model extends Component {
         $this->snaps[] = $filename;
     }
 
-    public function exportFrame(){
-        //dddx($this->currentTime);
-        $filename='FrameAtsec.png';
+    public function exportFrame() {
+        // dddx($this->currentTime);
+        $filename = 'FrameAtsec.png';
         FFMpeg::fromDisk('media')
             ->open('videos/'.$this->model->file_mp4)
             ->getFrameFromSeconds($this->currentTime)
             ->export()
             ->toDisk('photos')
             ->save($filename);
-        $url=Storage::disk('photos')->url($filename);
+        $url = Storage::disk('photos')->url($filename);
         $this->snaps[] = $url;
-        
     }
 
     public function deleteEpisode($key) {
@@ -245,11 +244,11 @@ class Model extends Component {
         $i = 0;
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
-                //00:06:35,360
+                // 00:06:35,360
                 $start = intval($item->attributes()->start->__toString()) / 1000;
                 $end = intval($item->attributes()->end->__toString()) / 1000;
 
-                //dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
+                // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
 
                 $tmp = [
                     'id' => $i++,
@@ -262,7 +261,7 @@ class Model extends Component {
         $this->subtitles = $data;
     }
 
-    //children ,attributes
+    // children ,attributes
 
     /**
      *  +"@attributes": array:3 [▼
@@ -353,7 +352,7 @@ class Model extends Component {
     public function downloadEpisode($ek) {
         $episode = $this->episodes[$ek];
 
-        //episode download
+        // episode download
         $ffmpeg = FFMpeg::create(['ffmpeg.binaries' => config('video.ffmpeg_binaries'), 'ffprobe.binaries' => config('video.ffprobe_binaries')]);
         $video = $ffmpeg->open(public_path($this->src));
         $path_parts = pathinfo(basename($this->src));
@@ -365,7 +364,7 @@ class Model extends Component {
         $filepath = '/videos/'.$path_parts['filename'].'/'.$path_parts['filename'].'-'.time().'.'.$path_parts['extension'];
         $clip->save(new \FFMpeg\Format\Video\X264(), public_path($filepath));
 
-        //srt for episode
+        // srt for episode
         $selectedSub = [];
         $sp1 = $this->hmsToSeconds($episode['time'][0]);
         $ep1 = $this->hmsToSeconds($episode['time'][1]);
@@ -456,7 +455,7 @@ class Model extends Component {
     public function secondsToHms($seconds) {
         $hours = floor($seconds / 3600);
         $seconds -= $hours * 3600;
-        $minutes = floor(($seconds / 60));
+        $minutes = floor($seconds / 60);
         $seconds -= $minutes * 60;
         $str = '';
         if ($hours > 0) {
@@ -496,9 +495,9 @@ class Model extends Component {
         array_unshift($this->subtitles, $subtitle);
 //        $this->subtitles[]=$subtitle;
 //        foreach ($this->subtitles as $sk=> $subtitle){
-        ////            if($subtitle['id']==$this->selectedSubtitle){
+        // //            if($subtitle['id']==$this->selectedSubtitle){
 //                $this->subtitles[$sk]['time']=$data;
-        ////            }
+        // //            }
 //        }
 
         $this->saveSubtitleFile();
