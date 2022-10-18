@@ -14,7 +14,7 @@
         <x-video-player :player="$player" :mp4Src="$mp4_src" currentTime="0"></x-video-player>
         --}}
         {{  $mp4_src }}
-        <video-player :mp4Src="$mp4_src" currentTime="0"></video-player>
+        <v-videoplayer src="{{ $mp4_src }}" currentTime="0" id="videoplayer1"></v-videoplayer>
     </x-col>
     @endif
 @endsection
