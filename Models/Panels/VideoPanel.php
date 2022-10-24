@@ -35,7 +35,7 @@ class VideoPanel extends XotBasePanel {
                 'comment' => null,
             ],
             (object) [
-                'type' => 'Image',
+                'type' => 'UploadImage',
                 'name' => 'poster_path',
                 'comment' => null,
             ],
