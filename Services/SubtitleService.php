@@ -79,7 +79,7 @@ class SubtitleService {
     public function getPlain(): string {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if (false == $xmlObject) {
+        if (false === $xmlObject) {
             return '';
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
@@ -114,7 +114,7 @@ class SubtitleService {
         // $path = Storage::path($this->file_path);
         // $path = realpath($path);
         $path = realpath($this->file_path);
-        if (false == $path) {
+        if (false === $path) {
             return '';
             throw new Exception('path:['.$path.']'.PHP_EOL.'
                 file_path:['.$this->file_path.']'.PHP_EOL.'
@@ -129,7 +129,7 @@ class SubtitleService {
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if (false == $xmlObject) {
+        if (false === $xmlObject) {
             throw new Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
 
@@ -140,12 +140,12 @@ class SubtitleService {
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
-                if (null == $attributes) {
+                if (null === $attributes) {
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
-                $start = intval($attributes->start->__toString()) / 1000;
-                $end = intval($attributes->end->__toString()) / 1000;
+                $start = (int) ($attributes->start->__toString()) / 1000;
+                $end = (int) ($attributes->end->__toString()) / 1000;
                 // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
                 $tmp = [
                     // 'id' => $i++,
@@ -188,7 +188,7 @@ class SubtitleService {
             }
         }
 
-        $length = count($lines);
+        $length = \count($lines);
         for ($index = 1; $index < $length; ++$index) {
             if (1 === $index || '' === trim($lines[$index - 2])) {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);

@@ -54,7 +54,6 @@ class AuthControllerClass extends BaseControllerClass {
     /**
      * Create user.
      *
-     * @param $data
      * @param string $prefix
      *
      * @return array|bool
@@ -64,7 +63,7 @@ class AuthControllerClass extends BaseControllerClass {
             return false;
         }
         if (! isset($data['id'])) {
-            if ('gl' == $prefix && isset($data['sub'])) {
+            if ('gl' === $prefix && isset($data['sub'])) {
                 $data['id'] = $data['sub'];
             } else {
                 $data['id'] = time().'_'.uniqid();
@@ -74,19 +73,19 @@ class AuthControllerClass extends BaseControllerClass {
 
         $user = $this->dbGetBy('users', 'email', $data['email'], true);
 
-        if ('fb' == $prefix) {
+        if ('fb' === $prefix) {
             if (! empty($user) && $user['facebook_id'] !== $data['id']) {
                 return false;
             }
-        } elseif ('gl' == $prefix) {
+        } elseif ('gl' === $prefix) {
             if (! empty($user) && $user['google_id'] !== $data['id']) {
                 return false;
             }
         }
         if (empty($user)) {
             $user = [
-                'facebook_id' => 'fb' == $prefix ? $data['id'] : '',
-                'google_id' => 'gl' == $prefix ? $data['id'] : '',
+                'facebook_id' => 'fb' === $prefix ? $data['id'] : '',
+                'google_id' => 'gl' === $prefix ? $data['id'] : '',
                 'name' => isset($data['name']) ? $data['name'] : 'Anonymous'.time(),
                 'email' => $data['email'],
                 'blocked' => $this->config['user_blocked_default'],
@@ -94,7 +93,7 @@ class AuthControllerClass extends BaseControllerClass {
                 'password' => isset($data['password']) ? $data['password'] : '',
                 'type' => 'basic',
                 'role' => ! empty($this->config['admin_auth_email'])
-                && $this->config['admin_auth_email'] == $data['email']
+                && $this->config['admin_auth_email'] === $data['email']
                     ? 'admin'
                     : 'user',
             ];
@@ -205,10 +204,10 @@ class AuthControllerClass extends BaseControllerClass {
         if (! empty($_POST['email'])
             && ! empty($_POST['password'])
             && ! empty($_POST['password_confirm'])) {
-            if (trim($_POST['password']) != trim($_POST['password_confirm'])) {
+            if (trim($_POST['password']) !== trim($_POST['password_confirm'])) {
                 self::setFlash('errors', $this->lang['passwords_do_not_match']);
             } else {
-                if (strlen(trim($_POST['password'])) < 6) {
+                if (\strlen(trim($_POST['password'])) < 6) {
                     self::setFlash('errors', $this->lang['password_must_contain_more_than_characters']);
                 } else {
                     $userEmail = trim($_POST['email']);
@@ -250,7 +249,7 @@ class AuthControllerClass extends BaseControllerClass {
      */
     public function authAction($email, $password) {
         $user = $this->dbGetBy('users', 'email', $email, true);
-        if (empty($user) || empty($user['password']) || $user['password'] != $password) {
+        if (empty($user) || empty($user['password']) || $user['password'] !== $password) {
             self::setFlash('errors', $this->lang['user_not_found']);
 
             return false;
@@ -340,18 +339,16 @@ class AuthControllerClass extends BaseControllerClass {
     public static function randomPassword($length = 8) {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = [];
-        $alphaLength = strlen($alphabet) - 1;
+        $alphaLength = \strlen($alphabet) - 1;
         for ($i = 0; $i < $length; ++$i) {
             $n = rand(0, $alphaLength);
             $pass[] = $alphabet[$n];
         }
 
-        return implode($pass);
+        return implode('', $pass);
     }
 
     /**
-     * @param $facebookAppId
-     *
      * @return string
      */
     public static function getFacebookAuthUrl($facebookAppId = '') {
@@ -370,7 +367,7 @@ class AuthControllerClass extends BaseControllerClass {
      */
     public static function getGoogleClient() {
         $client = new \Google_Client();
-        require dirname(dirname(__DIR__)).'/config/config.php';
+        require \dirname(__DIR__, 2).'/config/config.php';
         /* @var array $config */
 
         $client->setClientId($config['google_client_id']);
@@ -378,7 +375,7 @@ class AuthControllerClass extends BaseControllerClass {
         $client->setRedirectUri(self::getReturnUrl().'&type=google');
 
         $client->setScopes(['email', 'profile', 'https://www.googleapis.com/auth/youtube']);
-        //$client->addScope('https://www.googleapis.com/auth/youtube');
+        // $client->addScope('https://www.googleapis.com/auth/youtube');
         $client->setAccessType('offline');
 
         return $client;
@@ -393,7 +390,7 @@ class AuthControllerClass extends BaseControllerClass {
         $_SESSION['state'] = '';
 
         if (isset($_SESSION[$tokenSessionKey])) {
-            //$client->setAccessToken($_SESSION[$tokenSessionKey]);
+            // $client->setAccessToken($_SESSION[$tokenSessionKey]);
         }
 
         $isUserAuthorized = $client->getAccessToken();

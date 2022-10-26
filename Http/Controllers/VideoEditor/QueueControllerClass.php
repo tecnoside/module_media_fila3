@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Http\Controllers\VideoEditor;
 
 /**
@@ -7,29 +9,25 @@ namespace Modules\Media\Http\Controllers\VideoEditor;
  *
  * @author Andchir <andycoderw@gmail.com>
  */
-class QueueControllerClass extends BaseControllerClass
-{
-
+class QueueControllerClass extends BaseControllerClass {
     /**
      * QueueControllerClass constructor.
+     *
      * @param array $config
      * @param array $lang
      */
-    public function __construct($config = array(), $lang = array())
-    {
-
+    public function __construct($config = [], $lang = []) {
         parent::__construct($config, $lang);
-
     }
 
     /**
      * Run processing new task
+     *
      * @return bool|array
      */
-    public function process()
-    {
+    public function process() {
         $task = $this->getNextTask();
-        if ($task === false) {
+        if (false === $task) {
             return false;
         }
 
@@ -38,16 +36,17 @@ class QueueControllerClass extends BaseControllerClass
         $task['status'] = 'processing';
 
         $tmpDirPath = $this->getPublicPath('tmp_dir', $task['user_id']);
-        $cmdFilePath = $tmpDirPath . DIRECTORY_SEPARATOR . $task['id'] . '.txt';
-        if (!file_exists($cmdFilePath)) {
+        $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'.txt';
+        if (! file_exists($cmdFilePath)) {
             $queueStore->delete($task['id']);
+
             return false;
         }
 
-        $progressLogPath = $tmpDirPath . DIRECTORY_SEPARATOR . $task['id'] . '_progress_.txt';
+        $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
 
         $cmd = file_get_contents($cmdFilePath);
-        $cmd .= ' \\' . PHP_EOL . ' -stats 2>> "' . $progressLogPath . '"';
+        $cmd .= ' \\'.PHP_EOL.' -stats 2>> "'.$progressLogPath.'"';
 
         $pid = $this->execInBackground($cmd);
 
@@ -59,18 +58,19 @@ class QueueControllerClass extends BaseControllerClass
 
     /**
      * Get next task
+     *
      * @param int $userId
+     *
      * @return bool|array
      */
-    public function getNextTask($userId = 0)
-    {
+    public function getNextTask($userId = 0) {
         $queueStore = $this->dbGetStore('queue');
         $keys = $queueStore->getKeys();
         $output = false;
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-            if ($item['status'] == 'pending' && (!$userId || $userId == $item['user_id'])) {
+            if ('pending' === $item['status'] && (! $userId || $userId === $item['user_id'])) {
                 $output = $item;
                 $output['id'] = $taskId;
                 break;
@@ -82,18 +82,19 @@ class QueueControllerClass extends BaseControllerClass
 
     /**
      * Get current task
+     *
      * @param int $userId
+     *
      * @return bool|mixed
      */
-    public function getCurrentTask($userId = 0)
-    {
+    public function getCurrentTask($userId = 0) {
         $queueStore = $this->dbGetStore('queue');
         $keys = $queueStore->getKeys();
         $output = false;
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-            if ($item['status'] == 'processing' && (!$userId || $userId == $item['user_id'])) {
+            if ('processing' === $item['status'] && (! $userId || $userId === $item['user_id'])) {
                 $output = $item;
                 $output['id'] = $taskId;
                 break;
@@ -105,11 +106,10 @@ class QueueControllerClass extends BaseControllerClass
 
     /**
      * Close queue task
-     * @param $taskId
+     *
      * @return bool
      */
-    public function closeTask($taskId)
-    {
+    public function closeTask($taskId) {
         $queueStore = $this->dbGetStore('queue');
         $task = $queueStore->get($taskId);
         if (empty($task)) {
@@ -117,14 +117,14 @@ class QueueControllerClass extends BaseControllerClass
         }
 
         $tmpDirPath = $this->getPublicPath('tmp_dir', $task['user_id']);
-        $cmdFilePath = $tmpDirPath . DIRECTORY_SEPARATOR . $task['id'] . '.txt';
-        $progressLogPath = $tmpDirPath . DIRECTORY_SEPARATOR . $task['id'] . '_progress_.txt';
-        $outputFormat = !empty($task['options']) && !empty($task['options']['format'])
+        $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'.txt';
+        $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
+        $outputFormat = ! empty($task['options']) && ! empty($task['options']['format'])
             ? $task['options']['format']
             : 'mp4';
         $outputPath = $task['output_path'];
 
-        //Add to log
+        // Add to log
         if (file_exists($progressLogPath)) {
             $logContent = file_get_contents($progressLogPath);
             $this->logging($logContent, $task['user_id']);
@@ -132,23 +132,24 @@ class QueueControllerClass extends BaseControllerClass
 
         if (file_exists($outputPath)) {
             $user = $this->getUser(true, $task['user_id']);
-            if ($user === false) {
+            if (false === $user) {
                 return false;
             }
             $freeSpace = $user['files_size_max'] - $user['files_size_total'];
 
-            //Check file size
+            // Check file size
             $fileSize = filesize($outputPath);
             if ($fileSize > $freeSpace) {
                 @unlink($outputPath);
                 $this->logging('ERROR. The file size exceeds the allowed limit.', $task['user_id']);
+
                 return false;
             }
 
-            $outputType = !empty($task['type']) ? $task['type'] : 'output';
+            $outputType = ! empty($task['type']) ? $task['type'] : 'output';
 
             $videoProperties = $this->getVideoProperties($outputPath);
-            $data = array(
+            $data = [
                 'id' => $task['output_id'],
                 'title' => $task['title'],
                 'ext' => $outputFormat,
@@ -157,15 +158,15 @@ class QueueControllerClass extends BaseControllerClass
                 'allowed' => true,
                 'width' => 0,
                 'height' => 0,
-                'duration_ms' => 0
-            );
+                'duration_ms' => 0,
+            ];
             $data = array_merge($data, $videoProperties);
 
-            $mediaOutputStore = $this->dbGetStore('video_' . $outputType, $task['user_id']);
+            $mediaOutputStore = $this->dbGetStore('video_'.$outputType, $task['user_id']);
             $mediaOutputStore->set($task['output_id'], $data);
         }
 
-        //Delete log files
+        // Delete log files
         if (file_exists($cmdFilePath)) {
             @unlink($cmdFilePath);
         }
@@ -180,15 +181,16 @@ class QueueControllerClass extends BaseControllerClass
 
     /**
      * Get queue status
+     *
      * @param int $userId
+     *
      * @return array
      */
-    public function getUserQueueStatus($userId = 0)
-    {
+    public function getUserQueueStatus($userId = 0) {
         if (empty($userId)) {
             $user = $this->getUser();
-            if (!$user || empty($user['id'])) {
-                return array(0, 0, 0, 'not_logged_in');
+            if (! $user || empty($user['id'])) {
+                return [0, 0, 0, 'not_logged_in'];
             }
             $userId = $user['id'];
         }
@@ -204,63 +206,62 @@ class QueueControllerClass extends BaseControllerClass
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-            if ($item['user_id'] == $userId && !$currentTaskStatus) {
+            if ($item['user_id'] === $userId && ! $currentTaskStatus) {
                 $currentTaskId = $taskId;
                 $currentTaskStatus = $item['status'];
             }
-            if ($item['status'] == 'pending') {
-                $pendingCount++;
+            if ('pending' === $item['status']) {
+                ++$pendingCount;
             }
-            if ($item['status'] == 'processing') {
-                $processingCount++;
+            if ('processing' === $item['status']) {
+                ++$processingCount;
             }
         }
 
-        if ($pendingCount > 0 && (!$this->config['queue_size'] || $processingCount < $this->config['queue_size'])) {
+        if ($pendingCount > 0 && (! $this->config['queue_size'] || $processingCount < $this->config['queue_size'])) {
             $newTask = $this->process();
-            if ($newTask !== false && !$currentTaskId && $newTask['user_id'] == $userId) {
+            if (false !== $newTask && ! $currentTaskId && $newTask['user_id'] === $userId) {
                 $currentTaskId = $newTask['id'];
                 $currentTaskStatus = 'processing';
             }
         }
 
-        if ($currentTaskId && $currentTaskStatus == 'processing') {
-
+        if ($currentTaskId && 'processing' === $currentTaskStatus) {
             $percent = $this->getPercent($currentTaskId);
-
         }
 
-        return array($pendingCount, $processingCount, $percent, $currentTaskStatus);
+        return [$pendingCount, $processingCount, $percent, $currentTaskStatus];
     }
 
     /**
      * Stop user`s process
+     *
      * @param int $userId
+     *
      * @return array
      */
-    public function stopUserProcess($userId = 0)
-    {
+    public function stopUserProcess($userId = 0) {
         if (empty($userId)) {
             $user = $this->getUser();
-            if (!$user || empty($user['id'])) {
-                return array(
+            if (! $user || empty($user['id'])) {
+                return [
                     'success' => false,
-                    'msg' => 'Forbidden.'
-                );
+                    'msg' => 'Forbidden.',
+                ];
             }
             $userId = $user['id'];
         }
 
-        $output = array(
-            'success' => false
-        );
+        $output = [
+            'success' => false,
+        ];
 
         $task = $this->getCurrentTask($userId);
-        if ($task === false) {
+        if (false === $task) {
             $task = $this->getNextTask($userId);
         }
 
-        if ($task !== false && !empty($task['pid'])) {
+        if (false !== $task && ! empty($task['pid'])) {
             if ($this->is_running($task['pid'])) {
                 if ($this->kill($task['pid'])) {
                     sleep(2);
@@ -276,11 +277,9 @@ class QueueControllerClass extends BaseControllerClass
     }
 
     /**
-     * @param $taskId
      * @return int
      */
-    public function getPercent($taskId)
-    {
+    public function getPercent($taskId) {
         $queueStore = $this->dbGetStore('queue');
         $task = $queueStore->get($taskId);
         if (empty($task)) {
@@ -288,13 +287,13 @@ class QueueControllerClass extends BaseControllerClass
         }
 
         $tmpDirPath = $this->getPublicPath('tmp_dir', $task['user_id']);
-        $progressLogPath = $tmpDirPath . DIRECTORY_SEPARATOR . $task['id'] . '_progress_.txt';
+        $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
 
-        if (!file_exists($progressLogPath)) {
+        if (! file_exists($progressLogPath)) {
             return 0;
         }
 
-        if ($task['pid'] && !$this->is_running($task['pid'])) {
+        if ($task['pid'] && ! $this->is_running($task['pid'])) {
             $percent = 100;
         } else {
             $percent = $this->getFfmpegPercent($progressLogPath, $task['duration']);
@@ -312,8 +311,7 @@ class QueueControllerClass extends BaseControllerClass
     /**
      * Queue processing
      */
-    public function queueProcessing()
-    {
+    public function queueProcessing() {
         $queueStore = $this->dbGetStore('queue');
 
         $keys = $queueStore->getKeys();
@@ -322,67 +320,67 @@ class QueueControllerClass extends BaseControllerClass
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-            if ($item['status'] == 'pending') {
-                $pendingCount++;
+            if ('pending' === $item['status']) {
+                ++$pendingCount;
             }
-            if ($item['status'] == 'processing') {
-                if (!$this->is_running($item['pid'])) {
+            if ('processing' === $item['status']) {
+                if (! $this->is_running($item['pid'])) {
                     sleep(2);
                     $this->closeTask($item['id']);
                 } else {
-                    $processingCount++;
+                    ++$processingCount;
                 }
             }
         }
 
-        if ($pendingCount > 0 && (!$this->config['queue_size'] || $processingCount < $this->config['queue_size'])) {
+        if ($pendingCount > 0 && (! $this->config['queue_size'] || $processingCount < $this->config['queue_size'])) {
             $this->process();
         }
 
-        return array($pendingCount, $processingCount);
+        return [$pendingCount, $processingCount];
     }
 
     /**
      * Get FFMpeg duration
+     *
      * @param string $content
+     *
      * @return array|int|mixed
      */
-    public function getFfmpegDuration($content = '')
-    {
+    public function getFfmpegDuration($content = '') {
         $duration = 0;
         $output = 0;
 
         if ($content) {
-
             preg_match('/DURATION TOTAL: (.*)/', $content, $matches);
-            if(!empty($matches) && !empty($matches[1])){
+            if (! empty($matches) && ! empty($matches[1])) {
                 return self::timeToSeconds($matches[1]);
             }
 
             preg_match_all("/Input #([^\,]), .* '(.+)'/", $content, $matches);
-            $inputs = array();
+            $inputs = [];
             $isAudioExists = false;
-            if (!empty($matches) && !empty($matches[2])) {
+            if (! empty($matches) && ! empty($matches[2])) {
                 foreach ($matches[2] as $inp) {
                     $ext = $this->getExtension($inp);
-                    if (in_array($ext, array('mp3', 'wav'))) {
+                    if (\in_array($ext, ['mp3', 'wav'], true)) {
                         $isAudioExists = true;
                     }
-                    array_push($inputs, $inp);
+                    $inputs[] = $inp;
                 }
             }
 
-            preg_match_all("/Duration: (.*?), start:/", $content, $matches);
+            preg_match_all('/Duration: (.*?), start:/', $content, $matches);
             $rawDuration = $matches[1];
 
-            if (is_array($rawDuration) && count($rawDuration) > 1) {
+            if (\is_array($rawDuration) && \count($rawDuration) > 1) {
                 foreach ($rawDuration as $index => $dur) {
                     $ext = $this->getExtension($inputs[$index]);
-                    if (!$ext) {
+                    if (! $ext) {
                         continue;
                     }
                     if ($isAudioExists) {
-                        if (in_array($ext, array('mp3', 'wav'))) {
+                        if (\in_array($ext, ['mp3', 'wav'], true)) {
                             $duration += self::timeToSeconds($dur);
                         }
                     } else {
@@ -400,33 +398,30 @@ class QueueControllerClass extends BaseControllerClass
 
     /**
      * Get Ffmpeg percent
-     * @param $logPath
-     * @param $totalDuration
+     *
      * @return float|int
      */
-    public function getFfmpegPercent($logPath, $totalDuration = 0)
-    {
-
+    public function getFfmpegPercent($logPath, $totalDuration = 0) {
         $output = 0;
         $content = file_exists($logPath)
             ? file_get_contents($logPath)
             : '';
 
-        if (!$totalDuration) {
+        if (! $totalDuration) {
             $totalDuration = $this->getFfmpegDuration($content);
         }
-        if (!$totalDuration) {
+        if (! $totalDuration) {
             return $output;
         }
 
-        //current time
-        preg_match_all("/time=(.*?) bitrate/", $content, $matches);
+        // current time
+        preg_match_all('/time=(.*?) bitrate/', $content, $matches);
 
         $rawTime = array_pop($matches);
-        if (is_array($rawTime)) {
+        if (\is_array($rawTime)) {
             $rawTime = array_pop($rawTime);
         }
-        if (!empty($rawTime)) {
+        if (! empty($rawTime)) {
             $time = self::timeToSeconds($rawTime);
         } else {
             $time = $totalDuration;
@@ -439,5 +434,4 @@ class QueueControllerClass extends BaseControllerClass
 
         return $output;
     }
-
 }

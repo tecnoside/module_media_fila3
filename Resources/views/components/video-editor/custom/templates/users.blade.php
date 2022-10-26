@@ -8,7 +8,7 @@ use \App\Controller\UsersControllerClass as UsersController;*/
 /* @var array $page_content */
 /* @var array $lang */
 
-if (empty($user) || 'admin' != $user['role']) {
+if (empty($user) || 'admin' !== $user['role']) {
     UsersController::redirectTo($config_component['base_url'].$config_component['home_url']);
 }
 
@@ -69,7 +69,7 @@ if (empty($user) || 'admin' != $user['role']) {
                 <td>
                     <?php if (! empty($user['blocked'])) { ?>
                         <div class="badge badge-default big">Blocked</div>
-                    <?php } elseif ('admin' == $user['role']) { ?>
+                    <?php } elseif ('admin' === $user['role']) { ?>
                         <div class="badge badge-warning badge-pill">
                             <?php echo $lang_arr['admin']; ?>
                         </div>

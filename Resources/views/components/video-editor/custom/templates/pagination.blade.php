@@ -1,7 +1,7 @@
 <nav aria-label="pagination">
     <?php if (! empty($page_content['pages']) && $page_content['pages']['total'] > 1) { ?>
     <ul class="pagination">
-        <?php if (1 == $page_content['pages']['current']) { ?>
+        <?php if (1 === $page_content['pages']['current']) { ?>
             <li class="page-item disabled">
                 <a class="page-link" href="#">&laquo;</a>
             </li>
@@ -28,7 +28,7 @@
                 </li>
             <?php
             } ?>
-            <li class="page-item<?php if ($page_content['pages']['current'] == $i + 1) { ?> active<?php } ?>">
+            <li class="page-item<?php if ($page_content['pages']['current'] === $i + 1) { ?> active<?php } ?>">
                 <a class="page-link" href="<?php echo $config_component['base_url'].$config_component['home_url'].'?action=users&page='.($i + 1); ?>">
                     <?php echo $i + 1; ?>
                 </a>
@@ -36,7 +36,7 @@
         <?php
         } ?>
 
-        <?php if ($page_content['pages']['current'] == $page_content['pages']['total']) { ?>
+        <?php if ($page_content['pages']['current'] === $page_content['pages']['total']) { ?>
             <li class="page-item disabled">
                 <a class="page-link" href="#">&raquo;</a>
             </li>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Http\Controllers\VideoEditor;
 
 /**
@@ -7,45 +9,40 @@ namespace Modules\Media\Http\Controllers\VideoEditor;
  *
  * @author Andchir <andycoderw@gmail.com>
  */
-class UsersControllerClass extends BaseControllerClass
-{
-
+class UsersControllerClass extends BaseControllerClass {
     /**
      * UsersControllerClass constructor.
+     *
      * @param array $config
      * @param array $lang
      */
-    public function __construct($config = array(), $lang = array())
-    {
-
+    public function __construct($config = [], $lang = []) {
         parent::__construct($config, $lang);
-
     }
 
     /**
      * @return array
      */
-    public function getUsers()
-    {
-        $output = array(
+    public function getUsers() {
+        $output = [
             'success' => false,
-            'data' => array()
-        );
+            'data' => [],
+        ];
         $currentUser = $this->getUser(true);
-        if ($currentUser === false || $currentUser['role'] != 'admin') {
+        if (false === $currentUser || 'admin' !== $currentUser['role']) {
             return $output;
         }
 
         $userStore = $this->dbGetStore('users');
         $keys = $userStore->getKeys();
 
-        $total = count($keys);
+        $total = \count($keys);
         $pages = $this->getPagesData($total);
 
         $index = 0;
         foreach ($keys as $userId) {
             if ($index < $pages['offset']) {
-                $index++;
+                ++$index;
                 continue;
             }
             if ($index + 1 > $pages['offset'] + $pages['perPage']) {
@@ -54,16 +51,15 @@ class UsersControllerClass extends BaseControllerClass
 
             $user = $userStore->get($userId);
             $user['id'] = $userId;
-            if (!isset($user['confirmed'])) {
+            if (! isset($user['confirmed'])) {
                 $user['confirmed'] = true;
             }
-            if (!isset($user['type'])) {
+            if (! isset($user['type'])) {
                 $user['type'] = 'basic';
             }
             $output['data'][] = $user;
-            $index++;
+            ++$index;
         }
-
 
         $output['pages'] = $pages;
 
@@ -72,18 +68,17 @@ class UsersControllerClass extends BaseControllerClass
 
     /**
      * Get pages data
-     * @param $totalItems
+     *
      * @return array
      */
-    public function getPagesData($totalItems)
-    {
-        $pages = array(
+    public function getPagesData($totalItems) {
+        $pages = [
             'current' => 1,
             'total' => 0,
             'perPage' => 12,
-            'offset' => 0
-        );
-        $pages['current'] = !empty($_GET['page']) && is_numeric($_GET['page'])
+            'offset' => 0,
+        ];
+        $pages['current'] = ! empty($_GET['page']) && is_numeric($_GET['page'])
             ? $_GET['page']
             : 1;
         $pages['total'] = ceil($totalItems / $pages['perPage']);
@@ -94,45 +89,44 @@ class UsersControllerClass extends BaseControllerClass
 
     /**
      * Edit user page
+     *
      * @return array
      */
-    public function editUserPage()
-    {
-        $output = array();
+    public function editUserPage() {
+        $output = [];
 
-        $userId = !empty($_GET['user_id']) && !is_array($_GET['user_id'])
+        $userId = ! empty($_GET['user_id']) && ! \is_array($_GET['user_id'])
             ? trim(urldecode($_GET['user_id']))
             : 0;
 
         $currentUser = $this->getUser();
-        if ($currentUser === false || $currentUser['role'] != 'admin') {
+        if (false === $currentUser || 'admin' !== $currentUser['role']) {
             return $output;
         }
 
         $user = $this->getUser(false, $userId, false);
-        if ($user === false) {
+        if (false === $user) {
             return $output;
         }
 
-        if (!empty($_POST['name'])) {
+        if (! empty($_POST['name'])) {
+            $currentConfirmed = ! empty($user['confirmed']);
 
-            $currentConfirmed = !empty($user['confirmed']);
-
-            $data = array();
-            if (!empty($_POST['name'])) {
+            $data = [];
+            if (! empty($_POST['name'])) {
                 $data['name'] = trim($_POST['name']);
             }
-            if (!empty($_POST['email'])) {
+            if (! empty($_POST['email'])) {
                 $data['email'] = trim($_POST['email']);
             }
-            if (!empty($_POST['role'])) {
+            if (! empty($_POST['role'])) {
                 $data['role'] = trim($_POST['role']);
             }
-            if ($currentUser['id'] != $user['id']) {
-                $data['blocked'] = !empty($_POST['blocked']);
-                $data['confirmed'] = !empty($_POST['confirmed']);
+            if ($currentUser['id'] !== $user['id']) {
+                $data['blocked'] = ! empty($_POST['blocked']);
+                $data['confirmed'] = ! empty($_POST['confirmed']);
             }
-            if (!empty($_POST['type'])) {
+            if (! empty($_POST['type'])) {
                 $data['type'] = trim($_POST['type']);
             }
             self::setFlash('messages', $this->lang['data_successfully_saved']);
@@ -140,7 +134,7 @@ class UsersControllerClass extends BaseControllerClass
             $this->updateUser($user['id'], $data);
             $user = $this->getUser(false, $userId, false);
 
-            if (!$currentConfirmed && $user['confirmed'] && !$user['blocked']) {
+            if (! $currentConfirmed && $user['confirmed'] && ! $user['blocked']) {
                 $emailBody = $this->getTemplate('email_confirm');
                 $this->sendEmail($user['email'], $this->lang['your_account_activated'], $emailBody);
             }
@@ -159,56 +153,56 @@ class UsersControllerClass extends BaseControllerClass
 
     /**
      * Delete user page
+     *
      * @param int $userId
+     *
      * @return array
      */
-    public function deleteUserPage($userId = 0)
-    {
-        $output = array();
-        if (!$userId) {
-            $userId = !empty($_GET['user_id']) && !is_array($_GET['user_id'])
+    public function deleteUserPage($userId = 0) {
+        $output = [];
+        if (! $userId) {
+            $userId = ! empty($_GET['user_id']) && ! \is_array($_GET['user_id'])
                 ? trim(urldecode($_GET['user_id']))
                 : 0;
         }
         $currentUser = $this->getUser();
-        if ($currentUser === false
-            || ($currentUser['role'] != 'admin' && $currentUser['id'] != $userId)
+        if (false === $currentUser
+            || ('admin' !== $currentUser['role'] && $currentUser['id'] !== $userId)
         ) {
             return $output;
         }
 
         $submited = false;
-        if (!empty($_POST['accept'])) {
+        if (! empty($_POST['accept'])) {
             $submited = true;
 
-            if ($currentUser['role'] == 'admin') {
+            if ('admin' === $currentUser['role']) {
                 $this->deleteUser($userId);
             } else {
-                $this->updateUser($userId, array('blocked' => true));
+                $this->updateUser($userId, ['blocked' => true]);
             }
-
         }
-        if (!empty($_POST['cancel'])) {
+        if (! empty($_POST['cancel'])) {
             $submited = true;
         }
         if ($submited) {
-            $redirectUrl = $currentUser['role'] == 'admin'
-                ? $this->config['base_url'] . $this->config['home_url'] . '?action=users'
-                : $this->config['base_url'] . $this->config['home_url'];
+            $redirectUrl = 'admin' === $currentUser['role']
+                ? $this->config['base_url'].$this->config['home_url'].'?action=users'
+                : $this->config['base_url'].$this->config['home_url'];
             self::redirectTo($redirectUrl);
         }
 
-        $output['content'] = '<form action="' . $this->config['base_url'] . $this->config['home_url'] . '?action=delete_user&user_id=' . $userId . '" method="post">';
+        $output['content'] = '<form action="'.$this->config['base_url'].$this->config['home_url'].'?action=delete_user&user_id='.$userId.'" method="post">';
 
-        if ($currentUser['id'] == $userId) {
-            $output['content'] .= '<p>' . $this->lang['you_sure_you_want_delete_your_account'] . '</p>';
+        if ($currentUser['id'] === $userId) {
+            $output['content'] .= '<p>'.$this->lang['you_sure_you_want_delete_your_account'].'</p>';
         } else {
-            $output['content'] .= '<p>' . $this->lang['you_sure_you_want_remove_user'] . '</p>';
+            $output['content'] .= '<p>'.$this->lang['you_sure_you_want_remove_user'].'</p>';
         }
 
         $output['content'] .= '<div>';
-        $output['content'] .= ' <button type="submit" class="btn btn-primary" name="accept" value="1">' . $this->lang['yes'] . '</button>';
-        $output['content'] .= ' <button type="submit" class="btn btn-secondary" name="cancel" value="1">' . $this->lang['cancel'] . '</button>';
+        $output['content'] .= ' <button type="submit" class="btn btn-primary" name="accept" value="1">'.$this->lang['yes'].'</button>';
+        $output['content'] .= ' <button type="submit" class="btn btn-secondary" name="cancel" value="1">'.$this->lang['cancel'].'</button>';
         $output['content'] .= '</div>';
         $output['content'] .= '</form>';
 
@@ -216,12 +210,9 @@ class UsersControllerClass extends BaseControllerClass
     }
 
     /**
-     * @param $userId
-     * @param $data
      * @return bool
      */
-    public function updateUser($userId, $data)
-    {
+    public function updateUser($userId, $data) {
         $userStore = $this->dbGetStore('users');
         $user = $userStore->get($userId);
         if (empty($user)) {
@@ -235,23 +226,21 @@ class UsersControllerClass extends BaseControllerClass
     }
 
     /**
-     * @param $userId
      * @return bool
      */
-    public function deleteUser($userId)
-    {
+    public function deleteUser($userId) {
         $userStore = $this->dbGetStore('users');
         $user = $userStore->get($userId);
         if (empty($user)) {
             return false;
         }
 
-        $storeDirPath = $this->config['root_path'] . $this->config['database_dir'];
+        $storeDirPath = $this->config['root_path'].$this->config['database_dir'];
         $tmpDirPath = $this->getPublicPath('tmp_dir', $userId);
         $inputDirPath = $this->getPublicPath('input_dir', $userId);
         $outputDirPath = $this->getPublicPath('output_dir', $userId);
 
-        $filesStoreDirPath = $storeDirPath . $userId;
+        $filesStoreDirPath = $storeDirPath.$userId;
 
         if (is_dir($filesStoreDirPath)) {
             self::deleteDir($filesStoreDirPath);
@@ -270,5 +259,4 @@ class UsersControllerClass extends BaseControllerClass
 
         return true;
     }
-
 }

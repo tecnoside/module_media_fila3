@@ -114,7 +114,7 @@ class VideoStream {
                 header("Content-Range: bytes $this->start-$this->end/$this->size");
                 exit;
             }
-            if ('-' == $range) {
+            if ('-' === $range) {
                 $c_start = $this->size - substr($range, 1);
             } else {
                 $range = explode('-', $range);
@@ -128,8 +128,8 @@ class VideoStream {
                 header("Content-Range: bytes $this->start-$this->end/$this->size");
                 exit;
             }
-            $this->start = intval($c_start);
-            $this->end = intval($c_end);
+            $this->start = (int) $c_start;
+            $this->end = (int) $c_end;
             $length = $this->end - $this->start + 1;
             fseek($this->vars['stream'], $this->start);
             header('HTTP/1.1 206 Partial Content');

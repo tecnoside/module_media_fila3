@@ -9,7 +9,7 @@
 </div>
 @push('scripts')
 <script>
-    
+
     //document.querySelector('.subtitle-text').onpointerup = ()=>{
     $('.subtitle-text').on('mouseup',function(){
         var supportPageOffset = window.pageXOffset !== undefined;
@@ -28,7 +28,7 @@
             //window.livewire.emit('setSubRange',start,end);
             @this.setSubRange(start,end);
         }
-        
+
         if (text !== "") {
             var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
             var top = window.event.clientY + y;

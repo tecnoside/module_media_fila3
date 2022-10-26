@@ -11,9 +11,9 @@
                     <span class="icon-user-tie"></span>
                     <?php echo 'lingua profile'; ?>
                 </a>
-                <?php if ('utente role' == 'admin') { ?>
+                <?php if ('utente role' === 'admin') { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo 'config base_url'.'config home_url'; ?>?action=users">
+                    <a class="dropdown-item" href="<?php echo 'config base_urlconfig home_url'; ?>?action=users">
                         <span class="icon-users"></span>
                         <?php echo 'lingua users'; ?>
                     </a>
@@ -27,7 +27,7 @@
                 <?php } ?>
                 <?php if ('config authentication') { ?>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo 'config base_url'.'config home_url'; ?>index.php?action=logout">
+                    <a class="dropdown-item" href="<?php echo 'config base_urlconfig home_url'; ?>index.php?action=logout">
                         <span class="icon-exit"></span>
                         <?php echo 'lingua log_out'; ?>
                     </a>
@@ -223,7 +223,7 @@
 @push('scripts')
     <script>
         let webVideoEditor = new WebVideoEditor({
-           
+
         });
     </script>
 @endpush

@@ -63,7 +63,7 @@ class ExportClipJob implements ShouldQueue {
         $this->model_id = $model_id;
         $this->rangeFrom = $rangeFrom;
         $this->rangeTo = $rangeTo;
-        $this->user_id = intval(Auth::id()); // int|string|null
+        $this->user_id = (int) (Auth::id()); // int|string|null
     }
 
     /**

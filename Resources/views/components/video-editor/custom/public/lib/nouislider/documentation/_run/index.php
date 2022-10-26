@@ -23,7 +23,7 @@
 
 <body class="language-javascript">
 
-<?php if ('index' == $page) { ?>
+<?php if ('index' === $page) { ?>
 
     <div class="index-demo">
 

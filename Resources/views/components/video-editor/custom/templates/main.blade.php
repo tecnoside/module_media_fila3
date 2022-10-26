@@ -30,7 +30,7 @@ $userOptions = [
                     <span class="icon-user-tie"></span>
                     <?php echo $lang_arr['profile']; ?>
                 </a>
-                <?php if ('admin' == $user['role']) { ?>
+                <?php if ('admin' === $user['role']) { ?>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
                         <span class="icon-users"></span>

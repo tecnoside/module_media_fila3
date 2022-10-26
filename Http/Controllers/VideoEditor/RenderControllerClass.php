@@ -1,59 +1,56 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Http\Controllers\VideoEditor;
 
-use Intervention\Image\ImageManager as ImageManager;
-use Intervention\Image\Image as Image;
+use Intervention\Image\Image;
+use Intervention\Image\ImageManager;
 
 /**
  * RenderControllerClas
  *
  * @author Andchir <andycoderw@gmail.com>
  */
-class RenderControllerClass extends BaseControllerClass
-{
-
+class RenderControllerClass extends BaseControllerClass {
     /**
      * RenderControllerClass constructor.
+     *
      * @param array $config
      * @param array $lang
      */
-    public function __construct($config = array(), $lang = array())
-    {
-
+    public function __construct($config = [], $lang = []) {
         parent::__construct($config, $lang);
-
     }
 
     /**
      * Get render options
-     * @param $opts
+     *
      * @return array
      */
-    public function getRenderOptions($opts)
-    {
-        $output = array();
-        $sizes = array(
-            '4:3' => array(
+    public function getRenderOptions($opts) {
+        $output = [];
+        $sizes = [
+            '4:3' => [
                 '360p' => '480x360',
                 '480p' => '640x480',
                 '540p' => '720x540',
                 '720p' => '960x720',
-                '1080p' => '1440x1080'
-            ),
-            '16:9' => array(
+                '1080p' => '1440x1080',
+            ],
+            '16:9' => [
                 '360p' => '640x360',
                 '480p' => '768x432',
                 '540p' => '1024x576',
                 '720p' => '1280x720',
-                '1080p' => '1920x1080'
-            )
-        );
-        $quality_arr = array(
+                '1080p' => '1920x1080',
+            ],
+        ];
+        $quality_arr = [
             'low' => '600k',
             'medium' => '2000k',
-            'high' => '5000k'
-        );
+            'high' => '5000k',
+        ];
 
         $output['aspect'] = isset($sizes[$opts['aspect']])
             ? $opts['aspect']
@@ -68,47 +65,46 @@ class RenderControllerClass extends BaseControllerClass
             ? $quality_arr[$opts['quality']]
             : $quality_arr['medium'];
 
-        $output['format'] = in_array($opts['format'], $this->config['upload_allowed'])
+        $output['format'] = \in_array($opts['format'], $this->config['upload_allowed'], true)
             ? $opts['format']
             : 'mp4';
 
-        $output['text'] = !empty($opts['text'])
+        $output['text'] = ! empty($opts['text'])
             ? trim($opts['text'])
             : '';
 
-        $output['longtext'] = !empty($opts['longtext'])
+        $output['longtext'] = ! empty($opts['longtext'])
             ? trim($opts['longtext'])
             : '';
 
-        $output['text_action'] = !empty($opts['text_action'])
+        $output['text_action'] = ! empty($opts['text_action'])
             ? $opts['text_action']
             : 'static_top';
 
-        $output['text_color'] = !empty($opts['text_color'])
+        $output['text_color'] = ! empty($opts['text_color'])
             ? $opts['text_color']
             : 'white';
 
-        $output['text_background_color'] = !empty($opts['text_background_color'])
+        $output['text_background_color'] = ! empty($opts['text_background_color'])
             ? $opts['text_background_color']
             : 'black';
 
         $output['fps'] = '25';
 
         $output['audio'] = '';
-        if (!empty($opts['audio'])) {
+        if (! empty($opts['audio'])) {
             $user = $this->getUser(true);
             $fileStore = $this->dbGetStore('video_input', $user['id']);
             $item = $fileStore->get($opts['audio']);
             if ($item) {
                 $uploadPath = $this->getPublicPath('input_dir', $user['id']);
-                $itemPath = $uploadPath . DIRECTORY_SEPARATOR . $item['id'] . '.' . $item['ext'];
+                $itemPath = $uploadPath.\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
                 $output['audio'] = $itemPath;
             }
-        }
-        else if (!empty($opts['audio_library'])) {
-            $categoryName = !empty($opts['audio_category']) ? urldecode($opts['audio_category']) : '';
-            $audioLibraryDirPath = $this->config['public_path'] . 'userfiles/audio_library/' . $categoryName;
-            $itemPath = $audioLibraryDirPath . '/' . urldecode($opts['audio_library']);
+        } elseif (! empty($opts['audio_library'])) {
+            $categoryName = ! empty($opts['audio_category']) ? urldecode($opts['audio_category']) : '';
+            $audioLibraryDirPath = $this->config['public_path'].'userfiles/audio_library/'.$categoryName;
+            $itemPath = $audioLibraryDirPath.'/'.urldecode($opts['audio_library']);
             if (file_exists($itemPath)) {
                 $output['audio'] = $itemPath;
             }
@@ -119,113 +115,109 @@ class RenderControllerClass extends BaseControllerClass
 
     /**
      * Get codec string
-     * @param $options
+     *
      * @return mixed
      */
-    public function getCodecString($options)
-    {
+    public function getCodecString($options) {
         $codecString = isset($this->config['ffmpeg_string_arr'][$options['format']])
             ? $this->config['ffmpeg_string_arr'][$options['format']]
             : '';
 
-        return str_replace(array(
+        return str_replace([
             '{quality}',
             '{format}',
             '{size}',
-            '{aspect}'
-        ), array(
+            '{aspect}',
+        ], [
             $options['quality'],
             $options['format'],
             $options['size'],
-            $options['aspect']
-        ), $codecString);
+            $options['aspect'],
+        ], $codecString);
     }
 
     /**
      * Convert video
-     * @param $itemId
-     * @param $type
-     * @param $opts
+     *
      * @return array
      */
-    public function convert($itemId, $type, $opts)
-    {
+    public function convert($itemId, $type, $opts) {
         $user = $this->getUser();
-        if (!$user || empty($user['id'])) {
-            return array(
+        if (! $user || empty($user['id'])) {
+            return [
                 'success' => false,
-                'msg' => 'Forbidden.'
-            );
+                'msg' => 'Forbidden.',
+            ];
         }
 
-        $output = array();
-        $fileStore = $this->dbGetStore('video_' . $type, $user['id']);
+        $output = [];
+        $fileStore = $this->dbGetStore('video_'.$type, $user['id']);
 
         $inputMedia = $fileStore->get($itemId);
-        if ($inputMedia === false) {
-            return array(
+        if (false === $inputMedia) {
+            return [
                 'success' => false,
-                'msg' => 'File not found.'
-            );
+                'msg' => 'File not found.',
+            ];
         }
 
-        $outputFileName = time() . '_' . uniqid();
+        $outputFileName = time().'_'.uniqid();
         $tmpDirPath = $this->getPublicPath('tmp_dir', $user['id']);
-        $outputDirPath = $this->getPublicPath($type . '_dir', $user['id']);
+        $outputDirPath = $this->getPublicPath($type.'_dir', $user['id']);
 
-        if (!is_dir($tmpDirPath)) {
+        if (! is_dir($tmpDirPath)) {
             mkdir($tmpDirPath);
         }
-        if (!is_dir($outputDirPath)) {
+        if (! is_dir($outputDirPath)) {
             mkdir($outputDirPath);
         }
 
         $options = $this->getRenderOptions($opts);
         $filePath = $this->getMediaFilePath('input', $user['id'], $inputMedia);
-        if (!file_exists($filePath)) {
-            return array(
+        if (! file_exists($filePath)) {
+            return [
                 'success' => false,
-                'msg' => 'File not found.'
-            );
+                'msg' => 'File not found.',
+            ];
         }
 
         $cmdFilters = '';
         $videoOutName = '';
-        $outputPath = $outputDirPath . DIRECTORY_SEPARATOR . $outputFileName . '.' . $options['format'];
+        $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
 
         $cmd = $this->config['ffmpeg_path'];
-        $cmd .= ' \\' . PHP_EOL . '-i "' . $filePath . '"';
+        $cmd .= ' \\'.PHP_EOL.'-i "'.$filePath.'"';
         $cmd .= ' -pix_fmt yuv420p';
 
         $tmp = $this->getFilterScale('0:v', $options['size_arr'][0], $options['size_arr'][1],
-            array($inputMedia['width'], $inputMedia['height']), 'v_scaled');
+            [$inputMedia['width'], $inputMedia['height']], 'v_scaled');
         if ($tmp) {
-            $cmdFilters .= $tmp . ';';
+            $cmdFilters .= $tmp.';';
             $videoOutName = 'v_scaled';
         }
 
         if ($cmdFilters) {
             $cmd .= $this->addFiltersCommand($cmdFilters);
-            $cmd .= ' \\' . PHP_EOL . '-map "[' . $videoOutName . ']"';
+            $cmd .= ' \\'.PHP_EOL.'-map "['.$videoOutName.']"';
             if (isset($inputMedia['streams']) && $inputMedia['streams'] > 1) {
                 $cmd .= ' -map "0:a"';
             }
         }
 
-        $cmd .= ' \\' . PHP_EOL . '-s ' . $options['size'];
-        $cmd .= ' \\' . PHP_EOL . '-aspect ' . number_format($options['size_arr'][0] / $options['size_arr'][1], 6, '.',
-                '');
-        $cmd .= ' \\' . PHP_EOL . '-r ' . $options['fps'];
+        $cmd .= ' \\'.PHP_EOL.'-s '.$options['size'];
+        $cmd .= ' \\'.PHP_EOL.'-aspect '.number_format($options['size_arr'][0] / $options['size_arr'][1], 6, '.',
+            '');
+        $cmd .= ' \\'.PHP_EOL.'-r '.$options['fps'];
 
         $codecString = $this->getCodecString($options);
-        $cmd .= ' \\' . PHP_EOL . $codecString;
-        $cmd .= ' \\' . PHP_EOL . '-y "' . $outputPath . '"';
+        $cmd .= ' \\'.PHP_EOL.$codecString;
+        $cmd .= ' \\'.PHP_EOL.'-y "'.$outputPath.'"';
 
         $this->logging($cmd);
 
-        //Add to queue
+        // Add to queue
         $queueStore = $this->dbGetStore('queue');
-        $queue = array(
+        $queue = [
             'user_id' => $user['id'],
             'output_id' => $outputFileName,
             'output_path' => $outputPath,
@@ -234,22 +226,22 @@ class RenderControllerClass extends BaseControllerClass
             'type' => $type,
             'options' => $options,
             'status' => 'pending',
-            'time_stump' => time()
-        );
+            'time_stump' => time(),
+        ];
         $queueStore->set($outputFileName, $queue);
 
-        $cmdFilePath = $tmpDirPath . DIRECTORY_SEPARATOR . $outputFileName . '.txt';
+        $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.txt';
         file_put_contents($cmdFilePath, $cmd);
 
         $queueController = new QueueControllerClass($this->config);
         list($pendingCount, $processingCount, $percent, $userStatus) = $queueController->getUserQueueStatus();
-        $output['data'] = array(
+        $output['data'] = [
             'success' => true,
             'status' => $userStatus,
             'pendingCount' => $pendingCount,
             'processingCount' => $processingCount,
-            'percent' => $percent
-        );
+            'percent' => $percent,
+        ];
         $output['success'] = true;
 
         return $output;
@@ -257,69 +249,68 @@ class RenderControllerClass extends BaseControllerClass
 
     /**
      * Cut fast video
-     * @param $itemId
+     *
      * @param int $timeFrom
      * @param int $timeTo
+     *
      * @return array
      */
-    public function cutFast($itemId, $timeFrom, $timeTo)
-    {
+    public function cutFast($itemId, $timeFrom, $timeTo) {
         $user = $this->getUser();
-        if (!$user || empty($user['id'])) {
-            return array(
+        if (! $user || empty($user['id'])) {
+            return [
                 'success' => false,
-                'msg' => 'Forbidden.'
-            );
+                'msg' => 'Forbidden.',
+            ];
         }
 
-        $output = array();
+        $output = [];
         $fileStore = $this->dbGetStore('video_input', $user['id']);
 
         $inputMedia = $fileStore->get($itemId);
-        if ($inputMedia === false) {
-            return array(
+        if (false === $inputMedia) {
+            return [
                 'success' => false,
-                'msg' => 'File not found.'
-            );
+                'msg' => 'File not found.',
+            ];
         }
 
-        $outputFileName = time() . '_' . uniqid();
+        $outputFileName = time().'_'.uniqid();
         $outputDirPath = $this->getPublicPath('output_dir', $user['id']);
 
-        if (!is_dir($outputDirPath)) {
+        if (! is_dir($outputDirPath)) {
             mkdir($outputDirPath);
         }
 
         $filePath = $this->getMediaFilePath('input', $user['id'], $inputMedia);
-        if (!file_exists($filePath)) {
-            return array(
+        if (! file_exists($filePath)) {
+            return [
                 'success' => false,
-                'msg' => 'File not found.'
-            );
+                'msg' => 'File not found.',
+            ];
         }
 
         $ext = self::getExtension($filePath);
-        $outputPath = $outputDirPath . DIRECTORY_SEPARATOR . $outputFileName . '.' . $ext;
+        $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
 
         $cmd = $this->config['ffmpeg_path'];
-        $cmd .= ' \\' . PHP_EOL . '-i "' . $filePath . '"';
-        $cmd .= ' \\' . PHP_EOL . '-c:v copy';
+        $cmd .= ' \\'.PHP_EOL.'-i "'.$filePath.'"';
+        $cmd .= ' \\'.PHP_EOL.'-c:v copy';
         if ($this->audioStreamExists($filePath)) {
             $cmd .= ' -c:a copy';
         }
         if ($timeFrom > 0) {
-            $cmd .= ' \\' . PHP_EOL . '-ss ' . number_format($timeFrom / 1000, 2, '.', '');
+            $cmd .= ' \\'.PHP_EOL.'-ss '.number_format($timeFrom / 1000, 2, '.', '');
         }
-        $cmd .= ' \\' . PHP_EOL . ' -t ' . number_format(($timeTo - $timeFrom) / 1000, 2, '.', '');
-        $cmd .= ' \\' . PHP_EOL . '-y "' . $outputPath . '"';
+        $cmd .= ' \\'.PHP_EOL.' -t '.number_format(($timeTo - $timeFrom) / 1000, 2, '.', '');
+        $cmd .= ' \\'.PHP_EOL.'-y "'.$outputPath.'"';
 
         $this->logging($cmd);
         exec($cmd);
 
         if (file_exists($outputPath)) {
-
             $videoProperties = $this->getVideoProperties($outputPath);
-            $data = array(
+            $data = [
                 'id' => $outputFileName,
                 'title' => $inputMedia['title'],
                 'ext' => $ext,
@@ -328,8 +319,8 @@ class RenderControllerClass extends BaseControllerClass
                 'width' => 0,
                 'height' => 0,
                 'duration_ms' => 0,
-                'allowed' => true
-            );
+                'allowed' => true,
+            ];
             $data = array_merge($data, $videoProperties);
 
             $mediaOutputStore = $this->dbGetStore('video_output', $user['id']);
@@ -345,38 +336,35 @@ class RenderControllerClass extends BaseControllerClass
 
     /**
      * Render movie
-     * @param $title
-     * @param $opts
-     * @param $data
+     *
      * @return array
      */
-    public function render($title, $opts, $data)
-    {
-        if (!is_array($data)) {
+    public function render($title, $opts, $data) {
+        if (! \is_array($data)) {
             $data = json_decode($data, true);
         }
         if (empty($title)) {
-            return array(
+            return [
                 'success' => false,
-                'msg' => 'The title of the movie is empty.'
-            );
+                'msg' => 'The title of the movie is empty.',
+            ];
         }
         if (empty($data)) {
-            return array(
+            return [
                 'success' => false,
-                'msg' => 'Data are not available.'
-            );
+                'msg' => 'Data are not available.',
+            ];
         }
 
         $user = $this->getUser();
-        if ($user === false) {
-            return array(
+        if (false === $user) {
+            return [
                 'success' => false,
-                'msg' => 'Forbidden.'
-            );
+                'msg' => 'Forbidden.',
+            ];
         }
 
-        $output = array();
+        $output = [];
 
         $options = $this->getRenderOptions($opts);
         $fileStore = $this->dbGetStore('video_input', $user['id']);
@@ -385,21 +373,21 @@ class RenderControllerClass extends BaseControllerClass
         $inputDirPath = $this->getPublicPath('input_dir', $user['id']);
         $outputDirPath = $this->getPublicPath('output_dir', $user['id']);
 
-        if (!is_dir(dirname($tmpDirPath))) {
-            mkdir(dirname($tmpDirPath));
+        if (! is_dir(\dirname($tmpDirPath))) {
+            mkdir(\dirname($tmpDirPath));
         }
-        if (!is_dir($tmpDirPath)) {
+        if (! is_dir($tmpDirPath)) {
             mkdir($tmpDirPath);
         }
-        if (!is_dir(dirname($outputDirPath))) {
-            mkdir(dirname($outputDirPath));
+        if (! is_dir(\dirname($outputDirPath))) {
+            mkdir(\dirname($outputDirPath));
         }
-        if (!is_dir($outputDirPath)) {
+        if (! is_dir($outputDirPath)) {
             mkdir($outputDirPath);
         }
 
-        //Input data
-        $inputData = array();
+        // Input data
+        $inputData = [];
         $videoInputLength = 0;
         $imagesCount = 0;
         foreach ($data as $index => $input) {
@@ -409,29 +397,29 @@ class RenderControllerClass extends BaseControllerClass
             }
             $filePath = $this->getMediaFilePath('input', $user['id'], $media);
             if (file_exists($filePath)) {
-                $type = !empty($input['type']) ? $input['type'] : 'video';
+                $type = ! empty($input['type']) ? $input['type'] : 'video';
                 $media['type'] = $type;
                 $media['time'] = isset($input['time']) ? $input['time'] : null;
                 $media['duration'] = 0;
-                if ($type === 'image') {
-                    $imagesCount++;
+                if ('image' === $type) {
+                    ++$imagesCount;
                     $media['file_path'] = $this->processImage($filePath, $index + 1, $options);
                 } else {
                     $media['file_path'] = $filePath;
                     $videoInputLength += $media['time'][1] - $media['time'][0];
                 }
-                if (!empty($input['duration'])) {
+                if (! empty($input['duration'])) {
                     $media['duration'] = $input['duration'];
                 }
-                if (!empty($input['text'])) {
+                if (! empty($input['text'])) {
                     $media['text'] = $input['text'];
                 }
-                if (!empty($input['audio'])) {
+                if (! empty($input['audio'])) {
                     $media['audio_path'] = '';
                     $fileStore = $this->dbGetStore('video_input', $user['id']);
                     $item = $fileStore->get($input['audio']);
                     if ($input) {
-                        $filePath = $inputDirPath . DIRECTORY_SEPARATOR . $item['id'] . '.' . $item['ext'];
+                        $filePath = $inputDirPath.\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
                         if (file_exists($filePath)) {
                             $media['audio_path'] = $filePath;
                         }
@@ -441,28 +429,28 @@ class RenderControllerClass extends BaseControllerClass
             }
         }
 
-        $outputFileName = time() . '_' . uniqid();
-        if (!is_dir($outputDirPath)) {
+        $outputFileName = time().'_'.uniqid();
+        if (! is_dir($outputDirPath)) {
             mkdir($outputDirPath);
         }
-        $outputPath = $outputDirPath . DIRECTORY_SEPARATOR . $outputFileName . '.' . $options['format'];
+        $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
 
         $inputIndex = 0;
         $cmdFilters = '';
         $cmdInput = '';
-        $inputs = array();
-        $inputTypes = array();
-        $inputsAudio = array();
+        $inputs = [];
+        $inputTypes = [];
+        $inputsAudio = [];
         $videoOutName = '';
         $audioOutName = '';
         $totalDuration = 0;
         $audioBackgroundIndex = -1;
 
-        $cmd = $this->config['ffmpeg_path'] . '{{input}}{{output}}';
+        $cmd = $this->config['ffmpeg_path'].'{{input}}{{output}}';
 
-        //Black input
-        $cmdInput .= ' \\' . PHP_EOL . '-f lavfi -i color=c=black';
-        $inputIndex++;
+        // Black input
+        $cmdInput .= ' \\'.PHP_EOL.'-f lavfi -i color=c=black';
+        ++$inputIndex;
 
         // Intro & outro
         $needIntroOutro = false;
@@ -477,10 +465,10 @@ class RenderControllerClass extends BaseControllerClass
             $inputIndex += 2;
         }*/
 
-        if (!empty($options['audio'])) {
-            $cmdInput .= ' \\' . PHP_EOL . "-i \"{$options['audio']}\"";
+        if (! empty($options['audio'])) {
+            $cmdInput .= ' \\'.PHP_EOL."-i \"{$options['audio']}\"";
             $audioBackgroundIndex = $inputIndex;
-            $inputIndex++;
+            ++$inputIndex;
         }
 
         // Calculate images duration
@@ -492,123 +480,120 @@ class RenderControllerClass extends BaseControllerClass
             $imageDuration = max(3000, $imageDuration);
         }*/
 
-        //Video input
+        // Video input
         foreach ($inputData as $index => $input) {
             $ind = $inputIndex;
-            $videoOutName = $ind . ':v';
+            $videoOutName = $ind.':v';
 
             $dur = 0;
-            if ($input['type'] == 'image') {
-                $cmdInput .= ' \\' . PHP_EOL . '-loop 1 -r ' . $options['fps'];
+            if ('image' === $input['type']) {
+                $cmdInput .= ' \\'.PHP_EOL.'-loop 1 -r '.$options['fps'];
                 $dur = $imageDuration ? $imageDuration / 1000 : $input['duration'];
-                $cmdInput .= ' -t ' . number_format($dur, 3, '.', '');
+                $cmdInput .= ' -t '.number_format($dur, 3, '.', '');
             }
 
-            if (!empty($input['time']) && is_array($input['time'])) {
-                $cmdInput .= $this->getFilterTrim($videoOutName, $input['time'], 'input_trim', $ind . '_trimmed');
+            if (! empty($input['time']) && \is_array($input['time'])) {
+                $cmdInput .= $this->getFilterTrim($videoOutName, $input['time'], 'input_trim', $ind.'_trimmed');
                 $dur = ($input['time'][1] - $input['time'][0]) / 1000;
             }
 
             $totalDuration += $dur;
 
-            $cmdInput .= ' \\' . PHP_EOL . "-i \"{$input['file_path']}\"";
+            $cmdInput .= ' \\'.PHP_EOL."-i \"{$input['file_path']}\"";
 
-            $cmdFilters .= $this->getFilterFps($videoOutName, $ind . '_fps') . ';';
-            $videoOutName = $ind . '_fps';
+            $cmdFilters .= $this->getFilterFps($videoOutName, $ind.'_fps').';';
+            $videoOutName = $ind.'_fps';
 
-            if ($input['type'] !== 'image') {
+            if ('image' !== $input['type']) {
                 $tmp = $this->getFilterScale($videoOutName, $options['size_arr'][0], $options['size_arr'][1],
-                    array($input['width'], $input['height']), $ind . '_scaled');
+                    [$input['width'], $input['height']], $ind.'_scaled');
                 if ($tmp) {
-                    $cmdFilters .= $tmp . ';';
-                    $videoOutName = $ind . '_scaled';
+                    $cmdFilters .= $tmp.';';
+                    $videoOutName = $ind.'_scaled';
                 }
             }
 
-            if (!empty($input['text'])) {
-                $cmdFilters .= $this->getFilterLongText($videoOutName, $input['text'], $ind . '_txt', array_merge($options, ['text_action' => 'static_bottom'])) . ';';
-                $videoOutName = $ind . '_txt';
+            if (! empty($input['text'])) {
+                $cmdFilters .= $this->getFilterLongText($videoOutName, $input['text'], $ind.'_txt', array_merge($options, ['text_action' => 'static_bottom'])).';';
+                $videoOutName = $ind.'_txt';
             }
 
-            array_push($inputs, $videoOutName);
-            array_push($inputTypes, $input['type']);
-            $inputIndex++;
+            $inputs[] = $videoOutName;
+            $inputTypes[] = $input['type'];
+            ++$inputIndex;
         }
 
-        //Concat video
-        if (count($inputs) > 1) {
+        // Concat video
+        if (\count($inputs) > 1) {
             $videoOutName = 'video_out';
-            $cmdFilters .= $this->getFilterConcat($inputs, $videoOutName, 'video', $inputTypes, $options['aspect']) . ';';
+            $cmdFilters .= $this->getFilterConcat($inputs, $videoOutName, 'video', $inputTypes, $options['aspect']).';';
         }
 
-        if (!empty($this->config['watermark_text'])) {
-            $cmdFilters .= $this->getFilterText($videoOutName, $this->config['watermark_text'], 'video_out_watermarked') . ';';
+        if (! empty($this->config['watermark_text'])) {
+            $cmdFilters .= $this->getFilterText($videoOutName, $this->config['watermark_text'], 'video_out_watermarked').';';
             $videoOutName = 'video_out_watermarked';
         }
 
         // Add sliding text on whole video
-        if (!empty($options['longtext'])) {
-            $cmdFilters .= $this->getFilterLongText($videoOutName, $options['longtext'], 'video_longtext', $options) . ';';
+        if (! empty($options['longtext'])) {
+            $cmdFilters .= $this->getFilterLongText($videoOutName, $options['longtext'], 'video_longtext', $options).';';
             $videoOutName = 'video_longtext';
         }
 
-        //Audio input
+        // Audio input
         foreach ($inputData as $index => $input) {
             $ind = $index + 1;
             if ($audioBackgroundIndex > -1) {
-                $ind++;
+                ++$ind;
             }
-            $audioOutName = $ind . ':a';
+            $audioOutName = $ind.':a';
             $time = 0;
-            if (!empty($input['time'])) {
-                $time = array(0, ($input['time'][1] - $input['time'][0]));
-            } else if (!empty($input['duration'])) {
-                $dur = $input['type'] == 'image' && $imageDuration ? $imageDuration : intval($input['duration']);
-                $time = array(0, $dur * 1000);
+            if (! empty($input['time'])) {
+                $time = [0, $input['time'][1] - $input['time'][0]];
+            } elseif (! empty($input['duration'])) {
+                $dur = 'image' === $input['type'] && $imageDuration ? $imageDuration : (int) ($input['duration']);
+                $time = [0, $dur * 1000];
             }
 
-            if (!empty($input['audio_path'])) {
+            if (! empty($input['audio_path'])) {
+                $cmdInput .= ' \\'.PHP_EOL."-i \"{$input['audio_path']}\"";
+                ++$inputIndex;
+                $audioOutName = ($inputIndex - 1).':a';
 
-                $cmdInput .= ' \\' . PHP_EOL . "-i \"{$input['audio_path']}\"";
-                $inputIndex++;
-                $audioOutName = ($inputIndex - 1) . ':a';
+                $cmdFilters .= $this->getFilterTrim($audioOutName, $time, 'atrim', $ind.'_trimmed').';';
+                $audioOutName = $ind.'_trimmed';
+            } elseif (! $this->audioStreamExists($input['file_path'])) {
+                $cmdInput .= ' \\'.PHP_EOL.'-f lavfi -i anullsrc=r=44100';
+                ++$inputIndex;
+                $audioOutName = ($inputIndex - 1).':a';
 
-                $cmdFilters .= $this->getFilterTrim($audioOutName, $time, 'atrim', $ind . '_trimmed') . ';';
-                $audioOutName = $ind . '_trimmed';
-
-            } else if (!$this->audioStreamExists($input['file_path'])) {
-
-                $cmdInput .= ' \\' . PHP_EOL . '-f lavfi -i anullsrc=r=44100';
-                $inputIndex++;
-                $audioOutName = ($inputIndex - 1) . ':a';
-
-                $cmdFilters .= $this->getFilterTrim($audioOutName, $time, 'atrim', $ind . '_trimmed') . ';';
-                $audioOutName = $ind . '_trimmed';
+                $cmdFilters .= $this->getFilterTrim($audioOutName, $time, 'atrim', $ind.'_trimmed').';';
+                $audioOutName = $ind.'_trimmed';
             }
 
-            array_push($inputsAudio, $audioOutName);
+            $inputsAudio[] = $audioOutName;
         }
 
         // Intro & outro video
         if ($needIntroOutro) {
             $inputs = ['1:v', $videoOutName, '2:v'];
             $videoOutName = 'video_out_with_ad';
-            $cmdFilters .= $this->getFilterConcat($inputs, $videoOutName, 'video') . ';';
+            $cmdFilters .= $this->getFilterConcat($inputs, $videoOutName, 'video').';';
         }
 
         // Concat audio
-        if (count($inputsAudio) > 1) {
+        if (\count($inputsAudio) > 1) {
             $audioOutName = 'audio_out';
-            $cmdFilters .= $this->getFilterConcat($inputsAudio, $audioOutName, 'audio') . ';';
+            $cmdFilters .= $this->getFilterConcat($inputsAudio, $audioOutName, 'audio').';';
         }
 
         // Audio music background
         if ($audioBackgroundIndex > -1) {
-            $cmdFilters .= ' \\' . PHP_EOL . "[{$audioOutName}][{$audioBackgroundIndex}:a]amix=inputs=2:duration=first:dropout_transition=3[audio_with_music];";
+            $cmdFilters .= ' \\'.PHP_EOL."[{$audioOutName}][{$audioBackgroundIndex}:a]amix=inputs=2:duration=first:dropout_transition=3[audio_with_music];";
             $audioOutName = 'audio_with_music';
 
-            //Fade audio
-            $cmdFilters .= ' \\' . PHP_EOL . "[{$audioOutName}]" . 'afade=t=out:st=' . max(0,  $totalDuration - 6) . ':d=6[audio_with_fade];';
+            // Fade audio
+            $cmdFilters .= ' \\'.PHP_EOL."[{$audioOutName}]".'afade=t=out:st='.max(0, $totalDuration - 6).':d=6[audio_with_fade];';
             $audioOutName = 'audio_with_fade';
         }
 
@@ -616,7 +601,7 @@ class RenderControllerClass extends BaseControllerClass
         if ($needIntroOutro) {
             $inputsAudio = ['1:a', $audioOutName, '2:a'];
             $audioOutName = 'audio_with_ad';
-            $cmdFilters .= $this->getFilterConcat($inputsAudio, $audioOutName, 'audio') . ';';
+            $cmdFilters .= $this->getFilterConcat($inputsAudio, $audioOutName, 'audio').';';
             $totalDuration += $this->config['video_clips']['duration'][0];
             $totalDuration += $this->config['video_clips']['duration'][1];
         }
@@ -625,39 +610,39 @@ class RenderControllerClass extends BaseControllerClass
             $cmdFilters = $this->addFiltersCommand($cmdFilters);
         }
 
-        if (strpos($videoOutName, ':') === false) {
+        if (false === strpos($videoOutName, ':')) {
             $videoOutName = "[{$videoOutName}]";
         }
-        $cmd .= ' \\' . PHP_EOL . '-map "' . $videoOutName . '"';
+        $cmd .= ' \\'.PHP_EOL.'-map "'.$videoOutName.'"';
         if ($audioOutName) {
-            if (strpos($audioOutName, ':') === false) {
+            if (false === strpos($audioOutName, ':')) {
                 $audioOutName = "[{$audioOutName}]";
             }
-            $cmd .= ' -map "' . $audioOutName . '"';
+            $cmd .= ' -map "'.$audioOutName.'"';
         }
 
         $cmd = str_replace(['{{input}}', '{{output}}'], [$cmdInput, $cmdFilters], $cmd);
 
-        $cmd .= ' \\' . PHP_EOL . '-s ' . $options['size'];
-        $cmd .= ' \\' . PHP_EOL . '-aspect ' . number_format(
+        $cmd .= ' \\'.PHP_EOL.'-s '.$options['size'];
+        $cmd .= ' \\'.PHP_EOL.'-aspect '.number_format(
             $options['size_arr'][0] / $options['size_arr'][1],
             6,
             '.',
             ''
-            );
-        $cmd .= ' \\' . PHP_EOL . '-r ' . $options['fps'] . ' -force_key_frames "expr:gte(t,n_forced*2)"';
+        );
+        $cmd .= ' \\'.PHP_EOL.'-r '.$options['fps'].' -force_key_frames "expr:gte(t,n_forced*2)"';
 
         $codecString = $this->getCodecString($options);
-        $cmd .= ' \\' . PHP_EOL . $codecString;
+        $cmd .= ' \\'.PHP_EOL.$codecString;
 
-        $cmd .= ' \\' . PHP_EOL . '-t ' . number_format($totalDuration, 3, '.', '') . ' -async 1';
-        $cmd .= ' \\' . PHP_EOL . '-y "' . $outputPath . '"';
+        $cmd .= ' \\'.PHP_EOL.'-t '.number_format($totalDuration, 3, '.', '').' -async 1';
+        $cmd .= ' \\'.PHP_EOL.'-y "'.$outputPath.'"';
 
         $this->logging($cmd, $user['id']);
 
-        //Add to queue
+        // Add to queue
         $queueStore = $this->dbGetStore('queue');
-        $queue = array(
+        $queue = [
             'user_id' => $user['id'],
             'output_id' => $outputFileName,
             'output_path' => $outputPath,
@@ -666,128 +651,119 @@ class RenderControllerClass extends BaseControllerClass
             'options' => $options,
             'status' => 'pending',
             'duration' => $totalDuration,
-            'time_stump' => time()
-        );
+            'time_stump' => time(),
+        ];
         $queueStore->set($outputFileName, $queue);
 
-        $cmdFilePath = $tmpDirPath . DIRECTORY_SEPARATOR . $outputFileName . '.txt';
+        $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.txt';
         file_put_contents($cmdFilePath, $cmd);
 
-        $progressLogPath = $tmpDirPath . DIRECTORY_SEPARATOR . $outputFileName . '_progress_.txt';
+        $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'_progress_.txt';
         if (file_exists($progressLogPath)) {
             @unlink($progressLogPath);
         }
-        file_put_contents($progressLogPath, 'DURATION TOTAL: ' . $this->secondsToTime($totalDuration) . PHP_EOL);
+        file_put_contents($progressLogPath, 'DURATION TOTAL: '.$this->secondsToTime($totalDuration).PHP_EOL);
 
         $queueController = new QueueControllerClass($this->config);
         list($pendingCount, $processingCount, $percent, $userStatus) = $queueController->getUserQueueStatus();
-        $output['data'] = array(
+        $output['data'] = [
             'success' => true,
             'status' => $userStatus,
             'pendingCount' => $pendingCount,
             'processingCount' => $processingCount,
-            'percent' => $percent
-        );
+            'percent' => $percent,
+        ];
         $output['success'] = true;
 
         return $output;
     }
 
     /**
-     * @param $cmdFilters
      * @return string
      */
-    public function addFiltersCommand($cmdFilters)
-    {
+    public function addFiltersCommand($cmdFilters) {
         $output = '';
         if ($cmdFilters) {
-            if (substr($cmdFilters, -1) == ';') {
+            if (';' === substr($cmdFilters, -1)) {
                 $cmdFilters = substr($cmdFilters, 0, -1);
             }
-            $output = ' \\' . PHP_EOL . '-filter_complex "' . $cmdFilters . ' \\' . PHP_EOL . '"';
+            $output = ' \\'.PHP_EOL.'-filter_complex "'.$cmdFilters.' \\'.PHP_EOL.'"';
         }
+
         return $output;
     }
 
     /**
-     * @param array $inputs
+     * @param array  $inputs
      * @param string $outputName
      * @param string $type
-     * @param array $inputTypes
+     * @param array  $inputTypes
      * @param string $aspectRatio
+     *
      * @return string
      */
-    public function getFilterConcat($inputs, $outputName, $type = 'video', $inputTypes = array(), $aspectRatio = '16:9')
-    {
+    public function getFilterConcat($inputs, $outputName, $type = 'video', $inputTypes = [], $aspectRatio = '16:9') {
         $cmd = '';
-        if ($type == 'video') {
+        if ('video' === $type) {
             if (empty($inputTypes)) {
-                $inputTypes = array('video');
+                $inputTypes = ['video'];
             }
             $aspectRatio = str_replace(':', '/', $aspectRatio);
-            $videoIndex = array_search('video', $inputTypes);
+            $videoIndex = array_search('video', $inputTypes, true);
             if ($videoIndex > -1) {
                 $tmp = $inputs;
-                $inputs = array();
+                $inputs = [];
                 foreach ($tmp as $i => $input) {
-                    $cmd .= " \\\n" . "[{$input}]setdar={$aspectRatio}[aspect_{$input}];";
-                    $inputs[] = 'aspect_' . $input;
+                    $cmd .= " \\\n[{$input}]setdar={$aspectRatio}[aspect_{$input}];";
+                    $inputs[] = 'aspect_'.$input;
                 }
             }
         }
 
-        $tmp = '[' . implode('][', $inputs) . ']';
-        $cmd .= ' \\' . PHP_EOL . $tmp . 'concat=n=' . count($inputs);
-        $cmd .= $type == 'video' ? ':v=1:a=0' : ':v=0:a=1';
+        $tmp = '['.implode('][', $inputs).']';
+        $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.\count($inputs);
+        $cmd .= 'video' === $type ? ':v=1:a=0' : ':v=0:a=1';
         $cmd .= "[{$outputName}]";
 
         return $cmd;
     }
 
     /**
-     * @param $inputName
      * @param string $outputName
-     * @param int $fps
+     * @param int    $fps
+     *
      * @return string
      */
-    public function getFilterFps($inputName, $outputName, $fps = 25)
-    {
-        return ' \\' . PHP_EOL . "[{$inputName}]fps=fps={$fps}[{$outputName}]";
+    public function getFilterFps($inputName, $outputName, $fps = 25) {
+        return ' \\'.PHP_EOL."[{$inputName}]fps=fps={$fps}[{$outputName}]";
     }
 
     /**
      * Get filter input
-     * @param $inputName
-     * @param $time
-     * @param $type
-     * @param $outputName
+     *
      * @return string
      */
-    public function getFilterTrim($inputName, $time, $type = 'trim', $outputName)
-    {
+    public function getFilterTrim($inputName, $time, $type, $outputName) {
         $timeStart = number_format($time[0] / 1000, 3, '.', '');
         $timeEnd = number_format($time[1] / 1000, 3, '.', '');
         $timeDur = number_format(($time[1] - $time[0]) / 1000, 3, '.', '');
-        if ($type == 'input_trim') {
-            return ' \\' . PHP_EOL . "-ss {$timeStart } -t {$timeDur}";
+        if ('input_trim' === $type) {
+            return ' \\'.PHP_EOL."-ss {$timeStart } -t {$timeDur}";
         } else {
-            return ' \\' . PHP_EOL . "[{$inputName}]{$type}={$timeStart}:{$timeEnd}[{$outputName}]";
+            return ' \\'.PHP_EOL."[{$inputName}]{$type}={$timeStart}:{$timeEnd}[{$outputName}]";
         }
     }
 
     /**
      * Scale filter
-     * @param $inputName
-     * @param $width
-     * @param $height
+     *
      * @param array $inputSizeArr
-     * @param $outputName
-     * @param bool $forceAspect
+     * @param bool  $forceAspect
+     *
      * @return string
      */
-    public function getFilterScale($inputName, $width, $height, $inputSizeArr = array(), $outputName, $forceAspect = true)
-    {
-        if ($inputSizeArr[0] == $width && $inputSizeArr[1] == $height) {
+    public function getFilterScale($inputName, $width, $height, $inputSizeArr, $outputName, $forceAspect = true) {
+        if ($inputSizeArr[0] === $width && $inputSizeArr[1] === $height) {
             return '';
         }
 
@@ -804,62 +780,59 @@ class RenderControllerClass extends BaseControllerClass
             $tmpWidth = $outAspect > $inpAspect ? floor($height * $inpAspect) : $width;
         }
 
-        $cmd .= ' \\' . PHP_EOL . "[{$inputName}]scale={$tmpWidth}:{$tmpHeight}";
+        $cmd .= ' \\'.PHP_EOL."[{$inputName}]scale={$tmpWidth}:{$tmpHeight}";
         if ($forceAspect) {
-            $cmd .= ":force_original_aspect_ratio=increase";
+            $cmd .= ':force_original_aspect_ratio=increase';
         }
         $cmd .= "[{$uniqid}_tmpsize];";
 
         $xoffset = $tmpWidth < $width ? ($width - $tmpWidth) / 2 : 0;
         $yoffset = $tmpHeight < $height ? ($height - $tmpHeight) / 2 : 0;
-        $cmd .= ' \\' . PHP_EOL . "[{$uniqid}_tmpsize]pad={$width}:{$height}:x={$xoffset}:y={$yoffset}:color=black[{$outputName}]";
+        $cmd .= ' \\'.PHP_EOL."[{$uniqid}_tmpsize]pad={$width}:{$height}:x={$xoffset}:y={$yoffset}:color=black[{$outputName}]";
 
         return $cmd;
     }
 
     /**
-     * @param $text
      * @param int $baseTextLength
+     *
      * @return bool
      */
-    public function getIsNeedTextAutoSplit($text, $baseTextLength = 50)
-    {
-        return mb_strlen($text) > $baseTextLength && substr_count($text, PHP_EOL) === 0;
+    public function getIsNeedTextAutoSplit($text, $baseTextLength = 50) {
+        return mb_strlen($text) > $baseTextLength && 0 === substr_count($text, PHP_EOL);
     }
 
     /**
      * Sliding text filter
-     * @param $inputName
-     * @param $text
-     * @param $outputName
-     * @param array $renderOptions
+     *
+     * @param array     $renderOptions
      * @param bool|null $autoSplit
+     *
      * @return string
      */
-    public function getFilterLongText($inputName, $text, $outputName, $renderOptions = array(), $autoSplit = null)
-    {
-        $fontPath = $this->config['public_path'] . 'assets/fonts/' . $this->config['watermark_text_font_name'];
+    public function getFilterLongText($inputName, $text, $outputName, $renderOptions = [], $autoSplit = null) {
+        $fontPath = $this->config['public_path'].'assets/fonts/'.$this->config['watermark_text_font_name'];
         $baseTextLength = 50;
-        $baseFontSize = array(40, 480);
+        $baseFontSize = [40, 480];
         $sizeOffsetY = 1;
         $sizeOffsetX = 1;
-        if ($autoSplit === null) {
+        if (null === $autoSplit) {
             $autoSplit = $this->getIsNeedTextAutoSplit($text, $baseTextLength);
         }
-        $textAction = !empty($renderOptions['text_action'])
+        $textAction = ! empty($renderOptions['text_action'])
             ? $renderOptions['text_action']
             : 'move_from_bottom';
-        $textColor = !empty($renderOptions['text_color'])
+        $textColor = ! empty($renderOptions['text_color'])
             ? $renderOptions['text_color']
             : 'white';
-        $textBackgroundColor = !empty($renderOptions['text_background_color'])
+        $textBackgroundColor = ! empty($renderOptions['text_background_color'])
             ? $renderOptions['text_background_color']
             : 'black';
 
         $cmd = '';
         $uniqid = str_replace(':', '', $inputName);
 
-        $text = str_replace(array("'", ':'), array('', '\\:'), $text);
+        $text = str_replace(["'", ':'], ['', '\\:'], $text);
         $text = $this->beautifyQuotes($text);
         $text = trim($text);
 
@@ -874,7 +847,7 @@ class RenderControllerClass extends BaseControllerClass
             $textLines = array_merge($textLines);
         }
 
-        if (!empty($renderOptions['size_arr'])) {
+        if (! empty($renderOptions['size_arr'])) {
             $sizeOffsetY = $renderOptions['size_arr'][1] / $baseFontSize[1];
             $sizeOffsetX = $renderOptions['size_arr'][0] / $baseFontSize[1];
         }
@@ -882,9 +855,9 @@ class RenderControllerClass extends BaseControllerClass
 
         $offset = 0;
         foreach ($textLines as $i => $textLine) {
-            switch($textAction) {
+            switch ($textAction) {
                 case 'static_bottom':
-                    $posY = 'h-' . round($sizeOffsetY + ($fontSize * 1.5) * count($textLines)) . "+{$offset}";
+                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * \count($textLines))."+{$offset}";
                     $posX = '25';
                     break;
                 case 'move_from_bottom':
@@ -892,23 +865,23 @@ class RenderControllerClass extends BaseControllerClass
                     $posX = '(w-text_w)/2';
                     break;
                 case 'move_from_left':
-                    $posY = 'h-' . round($sizeOffsetY + ($fontSize * 1.5) * count($textLines)) . "+{$offset}";
+                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * \count($textLines))."+{$offset}";
                     $posX = "(0-text_w)+(t*70*{$sizeOffsetX})";
                     break;
                 default:
                     $posY = "25+{$offset}";
                     $posX = '25';
             }
-            if ($i === 0) {
-                $cmd .= ' \\' . PHP_EOL . "[{$uniqid}]";
+            if (0 === $i) {
+                $cmd .= ' \\'.PHP_EOL."[{$uniqid}]";
             } else {
-                $cmd .= ' \\' . PHP_EOL . "[{$outputName}" . ($i - 1) . "]";
+                $cmd .= ' \\'.PHP_EOL."[{$outputName}".($i - 1).']';
             }
             $cmd .= "drawtext=fontfile='{$fontPath}':fontsize={$fontSize}:fontcolor={$textColor}";
             $cmd .= ":x={$posX}:y={$posY}:text='{$textLine}'";
-            //$cmd .= ":shadowcolor=black:shadowx=2:shadowy=2";
+            // $cmd .= ":shadowcolor=black:shadowx=2:shadowy=2";
             $cmd .= ":box=1:boxcolor={$textBackgroundColor}@0.6:boxborderw=6";
-            if ($i === count($textLines) -1 ) {
+            if ($i === \count($textLines) - 1) {
                 $cmd .= "[{$outputName}];";
             } else {
                 $cmd .= "[{$outputName}{$i}];";
@@ -920,53 +893,49 @@ class RenderControllerClass extends BaseControllerClass
     }
 
     /**
-     * @param $inputName
-     * @param $text
-     * @param $outputName
      * @param string $position
      * @param string $color
+     *
      * @return string
      */
-    public function getFilterText($inputName, $text, $outputName, $position = 'bottom', $color = 'white')
-    {
-        $fontPath = $this->config['public_path'] . 'assets/fonts/' . $this->config['watermark_text_font_name'];
+    public function getFilterText($inputName, $text, $outputName, $position = 'bottom', $color = 'white') {
+        $fontPath = $this->config['public_path'].'assets/fonts/'.$this->config['watermark_text_font_name'];
         $pos = 'x=25:y=25';
-        if ($position === 'bottom') {
+        if ('bottom' === $position) {
             $pos = 'x=25:y=h-50';
         }
-        $text = str_replace(array("'", ':'), array('', '\\:'), $text);
+        $text = str_replace(["'", ':'], ['', '\\:'], $text);
         $text = $this->beautifyQuotes($text);
         $text = trim($text);
 
-        $cmd = ' \\' . PHP_EOL . "[{$inputName}]drawtext=fontfile='{$fontPath}'";
-        $cmd .= ' \\' . PHP_EOL . ":{$pos}:fontsize=32:text='{$text}':fontcolor={$color}[{$outputName}]";
+        $cmd = ' \\'.PHP_EOL."[{$inputName}]drawtext=fontfile='{$fontPath}'";
+        $cmd .= ' \\'.PHP_EOL.":{$pos}:fontsize=32:text='{$text}':fontcolor={$color}[{$outputName}]";
+
         return $cmd;
     }
 
     /**
      * Processing image
-     * @param $inputPath
-     * @param $index
-     * @param $renderOptions
+     *
      * @param bool $trim
+     *
      * @return string
      */
-    public function processImage($inputPath, $index, $renderOptions, $trim = true)
-    {
+    public function processImage($inputPath, $index, $renderOptions, $trim = true) {
         $user = $this->getUser();
         $tmpDirPath = $this->getPublicPath('tmp_dir', $user['id']);
-        $filePath = $tmpDirPath . '/img_' . $index . '.jpg';
+        $filePath = $tmpDirPath.'/img_'.$index.'.jpg';
         if (file_exists($filePath)) {
             unlink($filePath);
         }
-        $options = array(
-            'width' => intval($renderOptions['size_arr'][0]),
-            'height' => intval($renderOptions['size_arr'][1])
-        );
+        $options = [
+            'width' => (int) ($renderOptions['size_arr'][0]),
+            'height' => (int) ($renderOptions['size_arr'][1]),
+        ];
         $outputRatio = $options['width'] / $options['height'];
         $size = getimagesize($inputPath);
 
-        $imageManager = new ImageManager(array('driver' => 'gd'));
+        $imageManager = new ImageManager(['driver' => 'gd']);
         $img = $imageManager->make($inputPath);
 
         if ($trim) {
@@ -990,42 +959,41 @@ class RenderControllerClass extends BaseControllerClass
 
     /**
      * Check audio stream exists
-     * @param $videoFilePath
+     *
      * @return bool
      */
-    public function audioStreamExists($videoFilePath)
-    {
+    public function audioStreamExists($videoFilePath) {
         $ext = self::getExtension($videoFilePath);
-        if (in_array($ext, array($this->config['upload_images']))) {
+        if (\in_array($ext, [$this->config['upload_images']], true)) {
             return false;
         }
         $cmd = $this->config['ffprobe_path'];
-        $cmd .= ' \\' . PHP_EOL . "-i \"{$videoFilePath}\" 2>&1";
+        $cmd .= ' \\'.PHP_EOL."-i \"{$videoFilePath}\" 2>&1";
         $content = shell_exec($cmd);
-        if (!preg_match('/Audio:/', $content)) {
+        if (! preg_match('/Audio:/', $content)) {
             return false;
         }
+
         return true;
     }
 
     /**
      * @param string $inputText
-     * @param int $maxLength
+     * @param int    $maxLength
+     *
      * @return array
      */
-    public static function splitText($inputText, $maxLength = 50)
-    {
-        if(mb_strlen($inputText) <= $maxLength) {
-            return array($inputText);
+    public static function splitText($inputText, $maxLength = 50) {
+        if (mb_strlen($inputText) <= $maxLength) {
+            return [$inputText];
         }
-        $outputArr = array();
+        $outputArr = [];
         $iteration = 0;
         $maxIteration = 99;
         while (mb_strlen($inputText) > $maxLength) {
-
             $tmpPart = mb_substr($inputText, 0, $maxLength);
             $pos = mb_strrpos($tmpPart, ' ');
-            if ($pos === false) {
+            if (false === $pos) {
                 $pos = $maxLength;
             }
             $outputArr[] = trim(mb_substr($tmpPart, 0, $pos));
@@ -1034,7 +1002,7 @@ class RenderControllerClass extends BaseControllerClass
             if (mb_strlen($inputText) <= $maxLength) {
                 $outputArr[] = $inputText;
             }
-            $iteration++;
+            ++$iteration;
             if ($iteration > $maxIteration) {
                 break;
             }
@@ -1042,5 +1010,4 @@ class RenderControllerClass extends BaseControllerClass
 
         return $outputArr;
     }
-
 }

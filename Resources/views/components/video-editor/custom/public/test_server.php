@@ -27,7 +27,7 @@ function getCodecs($ffmpeg_path = '') {
             if (false !== strpos($type, 'E')) {
                 $encoder = trim($m[2]);
                 if (false !== strpos($encoder, ',')) {
-                    foreach (split(',', $encoder) as $e) {
+                    foreach (preg_split('/,/D', $encoder) as $e) {
                         $encoders[] = $e;
                     }
                 } else {
@@ -55,7 +55,7 @@ function getPHPPath() {
 
 $info = [];
 
-$info['php_version'] = ['name' => 'PHP version', 'value' => phpversion()];
+$info['php_version'] = ['name' => 'PHP version', 'value' => PHP_VERSION];
 $info['php_path'] = ['name' => 'PHP path', 'value' => getPHPPath()];
 $info['web_server'] = ['name' => 'Web server', 'value' => $_SERVER['SERVER_SOFTWARE']];
 $info['ffmpeg_path'] = ['name' => 'FFMPEG path', 'value' => $ffmpeg_path];
