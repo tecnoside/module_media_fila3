@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Controllers\VideoEditor;
 
 /**
- * ContentControllerClass
+ * ContentControllerClass.
  *
  * @author Andchir <andycoderw@gmail.com>
  */
@@ -21,7 +21,11 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
      * Import media
+=======
+     * Import media.
+>>>>>>> 51fcb2a (up)
      *
      * @return array
      */
@@ -44,8 +48,13 @@ class ContentControllerClass extends BaseControllerClass {
         $userDirPath = $this->getPublicPath('input_dir', $user['id']);
         $freeSpace = $user['files_size_max'] - $user['files_size_total'];
 
+<<<<<<< HEAD
         if (! is_dir(\dirname($userDirPath))) {
             mkdir(\dirname($userDirPath));
+=======
+        if (! is_dir(dirname($userDirPath))) {
+            mkdir(dirname($userDirPath));
+>>>>>>> 51fcb2a (up)
         }
         if (! is_dir($userDirPath)) {
             mkdir($userDirPath);
@@ -54,8 +63,13 @@ class ContentControllerClass extends BaseControllerClass {
         // Upload file
         if (! empty($inputFile)) {
             $error = '';
+<<<<<<< HEAD
             for ($i = 0; $i < \count($inputFile['name']); ++$i) {
                 if (UPLOAD_ERR_OK !== $inputFile['error'][$i]) {
+=======
+            for ($i = 0; $i < count($inputFile['name']); ++$i) {
+                if (UPLOAD_ERR_OK != $inputFile['error'][$i]) {
+>>>>>>> 51fcb2a (up)
                     continue;
                 }
                 $fileName = time().'_'.uniqid();
@@ -69,7 +83,11 @@ class ContentControllerClass extends BaseControllerClass {
                     $this->config['upload_audio']
                 );
 
+<<<<<<< HEAD
                 if (! \in_array($ext, $allowed_all, true)) {
+=======
+                if (! in_array($ext, $allowed_all)) {
+>>>>>>> 51fcb2a (up)
                     $error = $this->lang['file_type_is_not_allowed'];
                     continue;
                 }
@@ -80,7 +98,11 @@ class ContentControllerClass extends BaseControllerClass {
                 }
 
                 $fileNameFull = $fileName.'.'.$ext;
+<<<<<<< HEAD
                 $uploadPath = $userDirPath.\DIRECTORY_SEPARATOR.$fileNameFull;
+=======
+                $uploadPath = $userDirPath.DIRECTORY_SEPARATOR.$fileNameFull;
+>>>>>>> 51fcb2a (up)
 
                 move_uploaded_file($tmp_name, $uploadPath);
 
@@ -129,7 +151,11 @@ class ContentControllerClass extends BaseControllerClass {
                         'msg' => $this->lang['file_type_is_not_allowed'],
                     ];
                 } else {
+<<<<<<< HEAD
                     if (\is_array($result) && ! $result['success']) {
+=======
+                    if (is_array($result) && ! $result['success']) {
+>>>>>>> 51fcb2a (up)
                         return $result;
                     }
                 }
@@ -138,7 +164,11 @@ class ContentControllerClass extends BaseControllerClass {
                 $ext = self::getExtension($videoFileUrl);
             }
 
+<<<<<<< HEAD
             if (! \in_array($ext, $allowed_all, true)) {
+=======
+            if (! in_array($ext, $allowed_all)) {
+>>>>>>> 51fcb2a (up)
                 return [
                     'success' => false,
                     'msg' => $this->lang['file_type_is_not_allowed'],
@@ -146,7 +176,11 @@ class ContentControllerClass extends BaseControllerClass {
             }
 
             $fileNameFull = $fileName.'.'.$ext;
+<<<<<<< HEAD
             $uploadPath = $userDirPath.\DIRECTORY_SEPARATOR.$fileNameFull;
+=======
+            $uploadPath = $userDirPath.DIRECTORY_SEPARATOR.$fileNameFull;
+>>>>>>> 51fcb2a (up)
 
             $uploaded = file_put_contents($uploadPath, file_get_contents($videoFileUrl));
 
@@ -215,7 +249,11 @@ class ContentControllerClass extends BaseControllerClass {
                 ? self::secondsToTime($item['duration_ms'] / 1000)
                 : 0;
             $item['url'] = $this->config['base_url'].$this->config[$type.'_dir'];
+<<<<<<< HEAD
             $item['url'] .= $user['id'].\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+=======
+            $item['url'] .= $user['id'].DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+>>>>>>> 51fcb2a (up)
             if (empty($item['width'])) {
                 $item['width'] = 0;
             }
@@ -258,7 +296,11 @@ class ContentControllerClass extends BaseControllerClass {
             ? self::secondsToTime($item['duration_ms'] / 1000)
             : 0;
         $item['url'] = $this->config['base_url'].$this->config[$type.'_dir'];
+<<<<<<< HEAD
         $item['url'] .= $user['id'].\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+=======
+        $item['url'] .= $user['id'].DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+>>>>>>> 51fcb2a (up)
 
         return [
             'success' => true,
@@ -267,7 +309,11 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
      * Update item data
+=======
+     * Update item data.
+>>>>>>> 51fcb2a (up)
      *
      * @return array
      */
@@ -300,7 +346,11 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
      * Delete item
+=======
+     * Delete item.
+>>>>>>> 51fcb2a (up)
      *
      * @return array
      */
@@ -318,7 +368,11 @@ class ContentControllerClass extends BaseControllerClass {
 
         if ($item = $fileStore->get($itemId)) {
             $filePath = $this->getPublicPath($type.'_dir', $user['id']);
+<<<<<<< HEAD
             $filePath .= \DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+=======
+            $filePath .= DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+>>>>>>> 51fcb2a (up)
 
             if (file_exists($filePath)) {
                 unlink($filePath);
@@ -358,7 +412,11 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
      * Download media
+=======
+     * Download media.
+>>>>>>> 51fcb2a (up)
      *
      * @return array|bool
      */
@@ -371,7 +429,11 @@ class ContentControllerClass extends BaseControllerClass {
 
         $fileStore = $this->dbGetStore('video_'.$type, $user['id']);
         if ($item = $fileStore->get($itemId)) {
+<<<<<<< HEAD
             if ('user' === $user['role'] && empty($item['allowed'])) {
+=======
+            if ('user' == $user['role'] && empty($item['allowed'])) {
+>>>>>>> 51fcb2a (up)
                 $template = $this->getTemplate('download_forbidden');
 
                 return [
@@ -391,7 +453,11 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
      * Print video frame
+=======
+     * Print video frame.
+>>>>>>> 51fcb2a (up)
      *
      * @param int $time
      */
@@ -420,7 +486,11 @@ class ContentControllerClass extends BaseControllerClass {
 
         $time = $time ? $time / 1000 : 0;
         $time = number_format($time, 2, '.', '');
+<<<<<<< HEAD
         $frameImagePath = $tmpPath.\DIRECTORY_SEPARATOR.'frame_'.$item['id'];
+=======
+        $frameImagePath = $tmpPath.DIRECTORY_SEPARATOR.'frame_'.$item['id'];
+>>>>>>> 51fcb2a (up)
         $frameImagePath .= '_'.str_replace('.', '-', $time).'.jpg';
 
         if (! file_exists($frameImagePath)) {
@@ -459,7 +529,11 @@ class ContentControllerClass extends BaseControllerClass {
         ];
         $numberPerPage = 10;
 
+<<<<<<< HEAD
         if (! \in_array($input, ['audio_library'], true)) {
+=======
+        if (! in_array($input, ['audio_library'])) {
+>>>>>>> 51fcb2a (up)
             return $output;
         }
         $libraryDir = 'userfiles/'.$input;
@@ -468,7 +542,11 @@ class ContentControllerClass extends BaseControllerClass {
 
         if ($getCategories || ! $options['category']) {
             foreach ($files as $file) {
+<<<<<<< HEAD
                 if (\in_array($file, ['.', '..'], true) || ! is_dir($path.\DIRECTORY_SEPARATOR.$file)) {
+=======
+                if (in_array($file, ['.', '..']) || ! is_dir($path.DIRECTORY_SEPARATOR.$file)) {
+>>>>>>> 51fcb2a (up)
                     continue;
                 }
                 $output['categories'][] = $file;
@@ -484,20 +562,33 @@ class ContentControllerClass extends BaseControllerClass {
             return $output;
         }
 
+<<<<<<< HEAD
         $categoryDir = $libraryDir.\DIRECTORY_SEPARATOR.$options['category'];
         $categoryDirPath = $this->config['public_path'].\DIRECTORY_SEPARATOR.$categoryDir;
+=======
+        $categoryDir = $libraryDir.DIRECTORY_SEPARATOR.$options['category'];
+        $categoryDirPath = $this->config['public_path'].DIRECTORY_SEPARATOR.$categoryDir;
+>>>>>>> 51fcb2a (up)
         $files = scandir($categoryDirPath);
 
         foreach ($files as $file) {
             if (\in_array($file, ['.', '..'], true)) {
                 continue;
             }
+<<<<<<< HEAD
             $filePath = $categoryDirPath.\DIRECTORY_SEPARATOR.$file;
+=======
+            $filePath = $categoryDirPath.DIRECTORY_SEPARATOR.$file;
+>>>>>>> 51fcb2a (up)
             $fileInfo = pathinfo($filePath);
             $output['items'][] = [
                 'category' => $options['category'],
                 'fileName' => $file,
+<<<<<<< HEAD
                 'url' => $this->config['base_url'].$categoryDir.\DIRECTORY_SEPARATOR.$file,
+=======
+                'url' => $this->config['base_url'].$categoryDir.DIRECTORY_SEPARATOR.$file,
+>>>>>>> 51fcb2a (up)
                 'title' => $fileInfo['filename'],
                 'ext' => $fileInfo['extension'],
                 'file_size' => self::sizeFormat(filesize($filePath)),
@@ -521,7 +612,7 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
-     * Print blank image
+     * Print blank image.
      */
     public function printBlankImage() {
         $im = imagecreatetruecolor(300, 250);
@@ -534,13 +625,21 @@ class ContentControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
      * Get video file path
+=======
+     * Get video file path.
+>>>>>>> 51fcb2a (up)
      *
      * @return string
      */
     public function getVideoPath($userId, $type, $itemData) {
         $filePath = $this->getPublicPath($type.'_dir', $userId);
+<<<<<<< HEAD
         $filePath .= \DIRECTORY_SEPARATOR.$itemData['id'].'.'.$itemData['ext'];
+=======
+        $filePath .= DIRECTORY_SEPARATOR.$itemData['id'].'.'.$itemData['ext'];
+>>>>>>> 51fcb2a (up)
 
         return $filePath;
     }
