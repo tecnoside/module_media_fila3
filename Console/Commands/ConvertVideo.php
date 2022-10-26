@@ -102,11 +102,11 @@ class ConvertVideo extends Command {
         // Get Path of video
         $get_path_date = date_format(new DateTime($model->created_at), 'Y-m-d');
 
-        $videoInput = base_path().DIRECTORY_SEPARATOR.'videos'.DIRECTORY_SEPARATOR.$model->string_Id.'.'.$model->extension;
-        $videoOutput = base_path().DIRECTORY_SEPARATOR.'videos'.DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'.mp4';
-        $videoSD = base_path().DIRECTORY_SEPARATOR.'videos'.DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4';
-        $thumbnailPath = base_path().DIRECTORY_SEPARATOR.'videos'.DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'.jpg';
-        $previewPath = base_path().DIRECTORY_SEPARATOR.'videos'.DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'-preview.jpg';
+        $videoInput = base_path().\DIRECTORY_SEPARATOR.'videos'.\DIRECTORY_SEPARATOR.$model->string_Id.'.'.$model->extension;
+        $videoOutput = base_path().\DIRECTORY_SEPARATOR.'videos'.\DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'.mp4';
+        $videoSD = base_path().\DIRECTORY_SEPARATOR.'videos'.\DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4';
+        $thumbnailPath = base_path().\DIRECTORY_SEPARATOR.'videos'.\DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'.jpg';
+        $previewPath = base_path().\DIRECTORY_SEPARATOR.'videos'.\DIRECTORY_SEPARATOR.'_'.$get_path_date.'-'.$model->string_Id.'-preview.jpg';
 
         try {
             // Check extension
@@ -154,7 +154,7 @@ class ConvertVideo extends Command {
 
                 if ($processFrame->isSuccessful()) {
                     $frame = $processFrame->getOutput() / 100;
-                    $imagePreview = $ffmpegPath.' -y -i '.$videoInput.' -frames 1 -q:v 1 -vf "select=not(mod(n\,'.intval($frame).')),scale=-1:145,tile=12x1" '.$previewPath;
+                    $imagePreview = $ffmpegPath.' -y -i '.$videoInput.' -frames 1 -q:v 1 -vf "select=not(mod(n\,'.(int) $frame.')),scale=-1:145,tile=12x1" '.$previewPath;
                     $processPreview = new Process($imagePreview);
                     $processPreview->setTimeout(7200);
                     $processPreview->run();
@@ -165,11 +165,11 @@ class ConvertVideo extends Command {
 
                 if ($process->isSuccessful()) {
                     // change status and path if video convert successful.
-                    $model->video_src = asset('videos'.'/'.$model->string_Id.'.mp4');
-                    $model->video_sd = asset('videos'.'/_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4');
-                    $model->poster = asset('videos'.'/_'.$get_path_date.'-'.$model->string_Id.'.jpg');
+                    $model->video_src = asset('videos/'.$model->string_Id.'.mp4');
+                    $model->video_sd = asset('videos/_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4');
+                    $model->poster = asset('videos/_'.$get_path_date.'-'.$model->string_Id.'.jpg');
                     $model->uploadName = json_encode(['SD' => '_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4', 'HD' => $model->string_Id.'.mp4']);
-                    if ('upload' == $model->website && ! is_null($model->user_id)) {
+                    if ('upload' === $model->website && null !== $model->user_id) {
                         $model->status = Video::BLOCKED;
                     } else {
                         $model->status = Video::STATUS_COMPLETED;
@@ -235,7 +235,7 @@ class ConvertVideo extends Command {
 
                 if ($processFrame->isSuccessful()) {
                     $frame = $processFrame->getOutput() / 100;
-                    $imagePreview = $ffmpegPath.' -y -i '.$videoInput.' -frames 1 -q:v 1 -vf "select=not(mod(n\,'.intval($frame).')),scale=-1:145,tile=12x1" '.$previewPath;
+                    $imagePreview = $ffmpegPath.' -y -i '.$videoInput.' -frames 1 -q:v 1 -vf "select=not(mod(n\,'.(int) $frame.')),scale=-1:145,tile=12x1" '.$previewPath;
                     $processPreview = new Process($imagePreview);
                     $processPreview->setTimeout(7200);
                     $processPreview->run();
@@ -246,11 +246,11 @@ class ConvertVideo extends Command {
 
                 if ($process->isSuccessful()) {
                     // change status and path if video convert successful.
-                    $model->video_src = asset('videos'.'/_'.$get_path_date.'-'.$model->string_Id.'.mp4');
-                    $model->video_sd = asset('videos'.'/_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4');
-                    $model->poster = asset('videos'.'/_'.$get_path_date.'-'.$model->string_Id.'.jpg');
+                    $model->video_src = asset('videos/_'.$get_path_date.'-'.$model->string_Id.'.mp4');
+                    $model->video_sd = asset('videos/_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4');
+                    $model->poster = asset('videos/_'.$get_path_date.'-'.$model->string_Id.'.jpg');
                     $model->uploadName = json_encode(['SD' => '_'.$get_path_date.'-'.$model->string_Id.'-SD.mp4', 'HD' => '_'.$get_path_date.'-'.$model->string_Id.'.mp4']);
-                    if ('upload' == $model->website && ! is_null($model->user_id)) {
+                    if ('upload' === $model->website && null !== $model->user_id) {
                         $model->status = Video::BLOCKED;
                     } else {
                         $model->status = Video::STATUS_COMPLETED;

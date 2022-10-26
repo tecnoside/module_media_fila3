@@ -82,6 +82,6 @@ final class VideoStreaming {
             return null;
         }
 
-        return __DIR__.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.basename($file);
+        return __DIR__.\DIRECTORY_SEPARATOR.'media'.\DIRECTORY_SEPARATOR.basename($file);
     }
 }

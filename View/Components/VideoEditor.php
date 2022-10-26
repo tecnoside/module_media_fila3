@@ -32,7 +32,7 @@ class VideoEditor extends Component {
      */
     public function __construct(string $driver, string $mp4Src) {
         $this->driver = $driver;
-        //$this->config = is_array($config) ? $config : [];
+        // $this->config = is_array($config) ? $config : [];
         $this->config = [];
         $this->mp4Src = $mp4Src;
     }
@@ -189,16 +189,16 @@ class VideoEditor extends Component {
         $action = BaseController::getRequestAction('main');
 
         /* non serve fare l'autenticazione per vedere un  video player in un componente */
-        /*if ($config_component['authentication']) {*/
+        /* if ($config_component['authentication']) { */
 
         /*if (empty($user['id']) && ! in_array($action, ['auth', 'signup', 'password_reset'])) {
             $action = 'auth';
         }*/
         /* togliamo tanto è vuoto l'if quindi non serve a un cazzo */
-        /*if ('auth' == $action && empty($user)) {*/
+        /* if ('auth' == $action && empty($user)) { */
         // BaseController::redirectTo($config_component['base_url']);
-        /*}*/
-        /*}*/
+        /* } */
+        /* } */
 
         $view = 'media::components.video-editor.'.$this->driver;
 

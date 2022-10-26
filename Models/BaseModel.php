@@ -16,11 +16,11 @@ use Modules\Xot\Traits\Updater;
  * Class BaseModel.
  */
 abstract class BaseModel extends Model {
-    use Updater;
-
     // use Searchable;
     // use Cachable;
     use HasFactory;
+
+    use Updater;
     /**
      * Indicates whether attributes are snake cased on arrays.
      *
@@ -74,6 +74,6 @@ abstract class BaseModel extends Model {
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
     protected static function newFactory() {
-        return FactoryService::newFactory(get_called_class());
+        return FactoryService::newFactory(static::class);
     }
 }

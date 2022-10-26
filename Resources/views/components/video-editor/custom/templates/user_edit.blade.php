@@ -62,8 +62,8 @@ $messages = BaseControllerClass::getFlash('messages');
                 </div>
                 <div class="col-md-7">
                     <select class="form-control" name="type" id="formFieldType">
-                        <option value="basic"<?php if (isset($input['type']) && 'basic' == $input['type']) { ?> selected="selected"<?php } ?>>Basic</option>
-                        <option value="advanced"<?php if (isset($input['type']) && 'advanced' == $input['type']) { ?> selected="selected"<?php } ?>>Advanced</option>
+                        <option value="basic"<?php if (isset($input['type']) && 'basic' === $input['type']) { ?> selected="selected"<?php } ?>>Basic</option>
+                        <option value="advanced"<?php if (isset($input['type']) && 'advanced' === $input['type']) { ?> selected="selected"<?php } ?>>Advanced</option>
                     </select>
                 </div>
             </div>

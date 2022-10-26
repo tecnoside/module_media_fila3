@@ -228,11 +228,11 @@ class Toolbar extends Component {
         $clip = $this->model->getMedia('clips')->firstWhere('id', $clip_id);
         $data = [];
         $user = Auth::user();
-        if (null == $user) {
+        if (null === $user) {
             return;
         }
         $profile = $user->profile;
-        if (null == $profile) {
+        if (null === $profile) {
             return;
         }
         // --------------------- FARE CON PROFILE
@@ -258,7 +258,7 @@ class Toolbar extends Component {
                 return [
                     'id' => $item->id,
                     'label' => $item->name,
-                    'active' => is_object($clip_tags->get($item->id)),
+                    'active' => \is_object($clip_tags->get($item->id)),
                 ];
             }
         );

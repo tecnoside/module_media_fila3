@@ -65,7 +65,7 @@ class Clip extends Component {
         if ('editClip' !== $id) {
             return;
         }
-        if ($data['id'] != $this->model->getKey()) {
+        if ($data['id'] !== $this->model->getKey()) {
             return;
         }
         // dddx(['data'=>$data,'model'=>$this->model]);

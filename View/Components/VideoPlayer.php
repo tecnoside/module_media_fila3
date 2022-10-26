@@ -20,7 +20,7 @@ class VideoPlayer extends Component {
      * @return void
      */
     public function __construct(string $mp4Src, int $currentTime, ?string $driver = null) {
-        if (null == $driver) {
+        if (null === $driver) {
             /**
              * @var string
              */

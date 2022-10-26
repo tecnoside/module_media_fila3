@@ -10,7 +10,7 @@
 
     @if($player!=null)
     <x-col size="3">
-        {{--  
+        {{--
         <x-video-player :player="$player" :mp4Src="$mp4_src" currentTime="0"></x-video-player>
         --}}
         {{  $mp4_src }}

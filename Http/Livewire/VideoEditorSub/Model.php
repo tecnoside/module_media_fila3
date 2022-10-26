@@ -60,7 +60,7 @@ class Model extends Component {
         $this->src = $model->video_url;
         $this->subtitles = $model->subtitles;
 
-        if (null == $this->subtitles) {
+        if (null === $this->subtitles) {
             $model->getSubtitlesXml();
             throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
         }
@@ -169,7 +169,7 @@ class Model extends Component {
     public function setSnap($data) {
         list($type, $data) = explode(';', $data);
         list(, $data) = explode(',', $data);
-        $data = base64_decode($data);
+        $data = base64_decode($data, true);
         $path_parts = pathinfo(basename($this->src));
         @mkdir(public_path('/snaps/'), 0777);
         @mkdir(public_path('/snaps/'.$path_parts['filename']), 0777);
@@ -199,7 +199,7 @@ class Model extends Component {
     public function array_chunk_by(array $array, callable $callback, bool $preserve_keys = false): array {
         $reducer = function (array $carry, $key) use ($array, $callback, $preserve_keys) {
             $current = $array[$key];
-            $length = count($carry);
+            $length = \count($carry);
 
             if ($length > 0) {
                 $chunk = &$carry[$length - 1];
@@ -245,8 +245,8 @@ class Model extends Component {
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
                 // 00:06:35,360
-                $start = intval($item->attributes()->start->__toString()) / 1000;
-                $end = intval($item->attributes()->end->__toString()) / 1000;
+                $start = (int) ($item->attributes()->start->__toString()) / 1000;
+                $end = (int) ($item->attributes()->end->__toString()) / 1000;
 
                 // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
 
@@ -266,6 +266,7 @@ class Model extends Component {
     /**
      *  +"@attributes": array:3 [▼
       +"0": "this"
+     * @param mixed $file
      */
     public function getSubtitles($file) {
         $this->subtitles = [];
@@ -278,7 +279,7 @@ class Model extends Component {
 
         $content = array_values(array_diff($content, ['WEBVTT']));
         $content = $this->array_chunk_by($content, function ($prev, $curr) {
-            return '' == $curr;
+            return '' === $curr;
         });
         foreach ($content as $con) {
             $subtitle = [];
@@ -334,7 +335,7 @@ class Model extends Component {
         array_splice($lines, 0, 0, '');
         array_splice($lines, 0, 0, 'WEBVTT');
         try {
-            if ('' == $filepath) {
+            if ('' === $filepath) {
                 file_put_contents(public_path(str_replace('.srt', '.vtt', $this->srt)), implode(PHP_EOL, array_values($lines)));
                 unset($lines[0], $lines[1]);
 
@@ -423,7 +424,7 @@ class Model extends Component {
             $files[$fk] = public_path('/videos/'.$path_parts['filename'].'/'.$file);
         }
 
-        if (count($files) > 1) {
+        if (\count($files) > 1) {
             $video = $ffmpeg->open($files[0]);
             unset($files[0]);
             $file_name = $path_parts['filename'].'/'.time().'.mp4';
@@ -444,7 +445,7 @@ class Model extends Component {
         $p = explode(':', $data);
         $s = 0;
         $m = 1;
-        while (count($p) > 0) {
+        while (\count($p) > 0) {
             $s += $m * array_pop($p);
             $m *= 60;
         }
@@ -475,7 +476,7 @@ class Model extends Component {
 //        dd($data);
         foreach ($this->subtitles as $sk => $subtitle) {
             foreach ($data['subtitles'] as $dk => $dvalue) {
-                if ($sk == $dk) {
+                if ($sk === $dk) {
                     $this->subtitles[$sk]['text'] = explode('\r\n', $dvalue);
                 }
             }
@@ -486,7 +487,7 @@ class Model extends Component {
 
     public function saveSubtitleRange($data) {
         dd($data);
-        $lastSubtitle = $this->subtitles[count($this->subtitles) - 1];
+        $lastSubtitle = $this->subtitles[\count($this->subtitles) - 1];
 
         $subtitle = [];
         $subtitle['id'] = $lastSubtitle['id'] + 1;
@@ -529,7 +530,7 @@ class Model extends Component {
             } else ($fileHandle);
         }
 
-        $length = count($lines);
+        $length = \count($lines);
         for ($index = 1; $index < $length; ++$index) {
             if (1 === $index || '' === trim($lines[$index - 2])) {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);

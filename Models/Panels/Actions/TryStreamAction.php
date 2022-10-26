@@ -57,7 +57,7 @@ class TryStreamAction extends XotBasePanelAction {
             'drivers' => $drivers,
             'driver' => $driver,
         ];
-        if (null == $driver) {
+        if (null === $driver) {
             return view()->make($view, $view_params);
         }
 
@@ -103,7 +103,7 @@ class TryStreamAction extends XotBasePanelAction {
         return Response::stream(function () {
             try {
                 $stream = fopen($this->video_path, 'r');
-                if (false == $stream) {
+                if (false === $stream) {
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 fpassthru($stream);

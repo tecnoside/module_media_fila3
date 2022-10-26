@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 if (! function_exists('str_starts_with')) {
     function str_starts_with($str, $start) {
-        return 0 == @substr_compare($str, $start, 0, strlen($start));
+        return 0 === @substr_compare($str, $start, 0, strlen($start));
     }
 }
 

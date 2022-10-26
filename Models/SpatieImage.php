@@ -98,15 +98,15 @@ use Spatie\Tags\HasTags; // spatie tags
  * @mixin \Eloquent
  */
 class SpatieImage extends BaseMedia {
-    use Updater;
-
     // use Searchable;
     // use Cachable;
     use HasFactory;
-    use HasTags; // spatie tags
-    use HasStatuses; // spatie status
+
+    // spatie tags
+    use HasStatuses;
+    use HasTags; // spatie status
     // use HasDomains; //vecchio, non si usa più
-    use LinkedTrait;
+    use LinkedTrait; use Updater;
     /**
      * Indicates whether attributes are snake cased on arrays.
      *

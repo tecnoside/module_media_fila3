@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 $title = 'noUiSlider - Disabling, Updating and Styling';
-    $description = 'In-dept details on disabling slider handles, updating options and styling noUiSlider.';
-    $canonical = 'nouislider/more/';
-    ?>
+$description = 'In-dept details on disabling slider handles, updating options and styling noUiSlider.';
+$canonical = 'nouislider/more/';
+?>
 
 <section>
 	<ul>

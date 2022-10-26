@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="language-javascript"><?php if ('index' == $page) { ?>
+<body class="language-javascript"><?php if ('index' === $page) { ?>
 
     <div class="index-demo">
 

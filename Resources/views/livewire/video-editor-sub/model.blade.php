@@ -10,7 +10,7 @@ header('Accept-Ranges: bytes'); ?>
             <div class="row m-3">
 
                 <div class="col-lg-6 col-sm-12">
-                   
+
                     <div wire:ignore>
                         <video id="video-editor-player" track="{{ $vtt }}" class="video-js" controls
                             preload="auto" data-setup="{}">
@@ -108,7 +108,7 @@ header('Accept-Ranges: bytes'); ?>
                 </div>
 
                 <div class="col-lg-6 col-sm-12">
-                    
+
                     <div class="hadow-lg p-3 mb-5 bg-body rounded subtitle-text">
                         @foreach ($subtitles as $sk => $subtitle)
                             <span id="subtitle-{{ $sk }}" data-start="{{ $subtitle->start }}" data-end="{{ $subtitle->end }}"
@@ -119,7 +119,7 @@ header('Accept-Ranges: bytes'); ?>
                         @endforeach
                     </div>
                 </div>
-               
+
                 <template>
                     <span id="subtitle-control">
                         <b id="set-slider1">set slider from sub</b>
@@ -127,7 +127,7 @@ header('Accept-Ranges: bytes'); ?>
                         <b id="edit-subtitle1">Edit</b>
                     </span>
                 </template>
-                
+
                 <span id="test" class="subtitle-control">
                     <button onclick="setSlider()" class="btn btn-primary">set slider</button>
                     <button onclick="editSubtitle()" class="btn btn-primary">Edit</button>
@@ -260,6 +260,6 @@ header('Accept-Ranges: bytes'); ?>
             //window.livewire.emit('updateCurrentTime',this.currentTime());
         });
 
-        
+
     </script>
 @endpush
