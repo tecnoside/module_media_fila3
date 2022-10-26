@@ -92,10 +92,14 @@ class BaseControllerClass {
                 continue;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (! empty($data[$key]) && $data[$key] === $value) {
 =======
             if (! empty($data[$key]) && $data[$key] == $value) {
 >>>>>>> 51fcb2a (up)
+=======
+            if (! empty($data[$key]) && $data[$key] == $value) {
+>>>>>>> 3b1a9f8 (up)
                 $data['id'] = $k;
                 if ($onlyOne) {
                     $output = $data;
@@ -116,10 +120,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get request action name
 =======
      * Get request action name.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get request action name.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param string $default
      *
@@ -133,10 +141,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Handle request
 =======
      * Handle request.
 >>>>>>> 51fcb2a (up)
+=======
+     * Handle request.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -207,10 +219,14 @@ class BaseControllerClass {
                 $itemId = ! empty($_GET['itemId']) ? trim($_GET['itemId']) : 0;
                 $type = ! empty($_GET['type']) ? trim($_GET['type']) : 'input';
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $time = ! empty($_GET['time']) ? (int) ($_GET['time']) : 0;
 =======
                 $time = ! empty($_GET['time']) ? intval($_GET['time']) : 0;
 >>>>>>> 51fcb2a (up)
+=======
+                $time = ! empty($_GET['time']) ? intval($_GET['time']) : 0;
+>>>>>>> 3b1a9f8 (up)
 
                 $controller = new ContentControllerClass($this->config, $this->lang);
                 $controller->printFrame($itemId, $type, $time);
@@ -219,10 +235,14 @@ class BaseControllerClass {
             case 'render':
                 $outputTitle = ! empty($_POST['title']) ? trim($_POST['title']) : '';
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $options = ! empty($_POST['options']) && \is_array($_POST['options']) ? $_POST['options'] : [];
 =======
                 $options = ! empty($_POST['options']) && is_array($_POST['options']) ? $_POST['options'] : [];
 >>>>>>> 51fcb2a (up)
+=======
+                $options = ! empty($_POST['options']) && is_array($_POST['options']) ? $_POST['options'] : [];
+>>>>>>> 3b1a9f8 (up)
                 $data = ! empty($_POST['data']) ? $_POST['data'] : [];
 
                 $controller = new RenderControllerClass($this->config, $this->lang);
@@ -233,10 +253,14 @@ class BaseControllerClass {
                 $itemId = ! empty($_POST['itemId']) ? trim($_POST['itemId']) : 0;
                 $type = ! empty($_POST['type']) ? trim($_POST['type']) : 'input';
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $options = ! empty($_POST['options']) && \is_array($_POST['options']) ? $_POST['options'] : [];
 =======
                 $options = ! empty($_POST['options']) && is_array($_POST['options']) ? $_POST['options'] : [];
 >>>>>>> 51fcb2a (up)
+=======
+                $options = ! empty($_POST['options']) && is_array($_POST['options']) ? $_POST['options'] : [];
+>>>>>>> 3b1a9f8 (up)
 
                 $controller = new RenderControllerClass($this->config, $this->lang);
                 $output = $controller->convert($itemId, $type, $options);
@@ -252,12 +276,17 @@ class BaseControllerClass {
                 } else {
                     $itemId = ! empty($_POST['itemId']) ? trim($_POST['itemId']) : 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $timeFrom = ! empty($_POST['from']) ? (int) ($_POST['from']) : 0;
                     $timeTo = ! empty($_POST['to']) ? (int) ($_POST['to']) : 0;
 =======
                     $timeFrom = ! empty($_POST['from']) ? intval($_POST['from']) : 0;
                     $timeTo = ! empty($_POST['to']) ? intval($_POST['to']) : 0;
 >>>>>>> 51fcb2a (up)
+=======
+                    $timeFrom = ! empty($_POST['from']) ? intval($_POST['from']) : 0;
+                    $timeTo = ! empty($_POST['to']) ? intval($_POST['to']) : 0;
+>>>>>>> 3b1a9f8 (up)
                     $controller = new RenderControllerClass($this->config, $this->lang);
                     $output = $controller->cutFast($itemId, $timeFrom, $timeTo);
                 }
@@ -377,8 +406,11 @@ class BaseControllerClass {
                 break;
             case 'audio_library':
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $requestData = isset($_GET['query']) && \is_array($_GET['query']) ? $_GET['query'] : [];
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
                 $requestData = isset($_GET['query']) && is_array($_GET['query']) ? $_GET['query'] : [];
 >>>>>>> 51fcb2a (up)
                 $controller = new ContentControllerClass($this->config, $this->lang);
@@ -397,10 +429,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get user
 =======
      * Get user.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get user.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param bool $detailed
      * @param int  $userId
@@ -414,10 +450,14 @@ class BaseControllerClass {
             $checkBlocking = empty($userId) && $filter_blocked;
             if (! $userId) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $userSession = self::sessionGet('user');
 =======
                 $userSession = BaseControllerClass::sessionGet('user');
 >>>>>>> 51fcb2a (up)
+=======
+                $userSession = BaseControllerClass::sessionGet('user');
+>>>>>>> 3b1a9f8 (up)
                 if (false === $userSession || empty($userSession['id'])) {
                     return false;
                 }
@@ -427,8 +467,11 @@ class BaseControllerClass {
             $user = $userStore->get($userId);
             if ($checkBlocking && ! empty($user['blocked'])) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 self::sessionDelete('user');
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
                 BaseControllerClass::sessionDelete('user');
 >>>>>>> 51fcb2a (up)
             }
@@ -472,10 +515,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get user log content
 =======
      * Get user log content.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get user log content.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -499,10 +546,14 @@ class BaseControllerClass {
         }
         $tmpPath = $this->getPublicPath('tmp_dir', $user['id']);
 <<<<<<< HEAD
+<<<<<<< HEAD
         $logPath = $tmpPath.\DIRECTORY_SEPARATOR.'log.txt';
 =======
         $logPath = $tmpPath.DIRECTORY_SEPARATOR.'log.txt';
 >>>>>>> 51fcb2a (up)
+=======
+        $logPath = $tmpPath.DIRECTORY_SEPARATOR.'log.txt';
+>>>>>>> 3b1a9f8 (up)
         $content = '';
         if (file_exists($logPath)) {
             $content = trim(file_get_contents($logPath));
@@ -524,18 +575,24 @@ class BaseControllerClass {
 
         $output = [];
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (\in_array($ext, $this->config['upload_images'], true)) {
             $output['type'] = 'image';
             $imageSize = getimagesize($filePath);
             $output['width'] = (int) ($imageSize[0]);
             $output['height'] = (int) ($imageSize[1]);
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (in_array($ext, $this->config['upload_images'])) {
             $output['type'] = 'image';
             $imageSize = getimagesize($filePath);
             $output['width'] = intval($imageSize[0]);
             $output['height'] = intval($imageSize[1]);
+<<<<<<< HEAD
 >>>>>>> 51fcb2a (up)
+=======
+>>>>>>> 3b1a9f8 (up)
         } else {
             $output['type'] = 'video';
             if (\in_array($ext, $this->config['upload_audio'], true)) {
@@ -574,33 +631,46 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get media file path
 =======
      * Get media file path.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get media file path.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return string
      */
     public function getMediaFilePath($type, $userId, $mediaData) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $inputDirPath = $this->getPublicPath($type.'_dir', $userId).\DIRECTORY_SEPARATOR;
 =======
         $inputDirPath = $this->getPublicPath($type.'_dir', $userId).DIRECTORY_SEPARATOR;
 >>>>>>> 51fcb2a (up)
+=======
+        $inputDirPath = $this->getPublicPath($type.'_dir', $userId).DIRECTORY_SEPARATOR;
+>>>>>>> 3b1a9f8 (up)
 
         return $inputDirPath.$mediaData['id'].'.'.$mediaData['ext'];
     }
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get file extension
 =======
      * Get file extension.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get file extension.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return string
      */
     public static function getExtension($filePath) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         $temp_arr1 = $filePath ? explode(\DIRECTORY_SEPARATOR, $filePath) : [];
         $temp_arr = \count($temp_arr1) ? explode('.', end($temp_arr1)) : [];
@@ -610,6 +680,11 @@ class BaseControllerClass {
         $temp_arr = count($temp_arr1) ? explode('.', end($temp_arr1)) : [];
         $ext = count($temp_arr) > 1 ? end($temp_arr) : '';
 >>>>>>> 51fcb2a (up)
+=======
+        $temp_arr1 = $filePath ? explode(DIRECTORY_SEPARATOR, $filePath) : [];
+        $temp_arr = count($temp_arr1) ? explode('.', end($temp_arr1)) : [];
+        $ext = count($temp_arr) > 1 ? end($temp_arr) : '';
+>>>>>>> 3b1a9f8 (up)
         if (false !== strpos($ext, '?')) {
             $ext = substr($ext, 0, strpos($ext, '?'));
         }
@@ -638,10 +713,14 @@ class BaseControllerClass {
         $value = 0;
         if ($bytes > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (! \array_key_exists($unit, $units)) {
 =======
             if (! array_key_exists($unit, $units)) {
 >>>>>>> 51fcb2a (up)
+=======
+            if (! array_key_exists($unit, $units)) {
+>>>>>>> 3b1a9f8 (up)
                 $pow = floor(log($bytes) / log(1024));
                 $unit = array_search($pow, $units, true);
             }
@@ -656,10 +735,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * getYoutubeId
 =======
      * getYoutubeId.
 >>>>>>> 51fcb2a (up)
+=======
+     * getYoutubeId.
+>>>>>>> 3b1a9f8 (up)
      *
      * @par string $video_url
      *
@@ -675,10 +758,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get Vimeo video ID
 =======
      * Get Vimeo video ID.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get Vimeo video ID.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return string
      */
@@ -694,8 +781,11 @@ class BaseControllerClass {
      */
     public function getUrlFromYouTube($videoUrl) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (\strlen($videoUrl) > 11) {
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (strlen($videoUrl) > 11) {
 >>>>>>> 51fcb2a (up)
             $videoId = $this->getYoutubeId($videoUrl);
@@ -789,10 +879,14 @@ class BaseControllerClass {
     public static function setFlash($key, $value) {
         $current = self::sessionGet($key);
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! \is_array($current)) {
 =======
         if (! is_array($current)) {
 >>>>>>> 51fcb2a (up)
+=======
+        if (! is_array($current)) {
+>>>>>>> 3b1a9f8 (up)
             $current = [];
         }
         $current[] = $value;
@@ -828,10 +922,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Download file
 =======
      * Download file.
 >>>>>>> 51fcb2a (up)
+=======
+     * Download file.
+>>>>>>> 3b1a9f8 (up)
      */
     public function downloadFile($filePath, $fileName = '') {
         $pathInfo = pathinfo($filePath);
@@ -884,10 +982,14 @@ class BaseControllerClass {
         $baseUrl = ! empty($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '';
         $serverPort = $_SERVER['SERVER_PORT'];
 <<<<<<< HEAD
+<<<<<<< HEAD
         $isSecureRequest = '443' === $serverPort;
 =======
         $isSecureRequest = '443' == $serverPort;
 >>>>>>> 51fcb2a (up)
+=======
+        $isSecureRequest = '443' == $serverPort;
+>>>>>>> 3b1a9f8 (up)
         preg_match_all('/([^\/]+\/)/', $baseUrl, $matches);
         $output = $requestScheme.'://'.$domainName.'/';
         if (! empty($matches)) {
@@ -905,10 +1007,14 @@ class BaseControllerClass {
             '#(([\"]{2,})|(?![^\W])(\"))|([^\s][\"]+(?![\w]))#u',
             function ($matches) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (3 === \count($matches)) {
 =======
                 if (3 === count($matches)) {
 >>>>>>> 51fcb2a (up)
+=======
+                if (3 === count($matches)) {
+>>>>>>> 3b1a9f8 (up)
                     return '«»';
                 } else {
                     if ($matches[1]) {
@@ -927,16 +1033,21 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Log data ti file
 =======
      * Log data ti file.
 >>>>>>> 51fcb2a (up)
+=======
+     * Log data ti file.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return bool
      */
     public function logging($str, $userId = 0) {
         if ($userId) {
             $logFilePath = $this->getPublicPath('tmp_dir',
+<<<<<<< HEAD
 <<<<<<< HEAD
                 $userId).\DIRECTORY_SEPARATOR.$this->config['log_filename'];
         } else {
@@ -946,15 +1057,23 @@ class BaseControllerClass {
         } else {
             $logFilePath = $this->getPublicPath('tmp_dir').DIRECTORY_SEPARATOR.$this->config['log_filename'];
 >>>>>>> 51fcb2a (up)
+=======
+                $userId).DIRECTORY_SEPARATOR.$this->config['log_filename'];
+        } else {
+            $logFilePath = $this->getPublicPath('tmp_dir').DIRECTORY_SEPARATOR.$this->config['log_filename'];
+>>>>>>> 3b1a9f8 (up)
         }
         if (\is_array($str)) {
             $str = print_r($str, true);
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! is_dir(\dirname($logFilePath))) {
             mkdir(\dirname($logFilePath));
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (! is_dir(dirname($logFilePath))) {
             mkdir(dirname($logFilePath));
 >>>>>>> 51fcb2a (up)
@@ -981,10 +1100,14 @@ class BaseControllerClass {
         exec("ps $pid", $ProcessState);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         return \count($ProcessState) >= 2;
 =======
         return count($ProcessState) >= 2;
 >>>>>>> 51fcb2a (up)
+=======
+        return count($ProcessState) >= 2;
+>>>>>>> 3b1a9f8 (up)
     }
 
     /**
@@ -1002,20 +1125,28 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Execute cmd in the background
 =======
      * Execute cmd in the background.
 >>>>>>> 51fcb2a (up)
+=======
+     * Execute cmd in the background.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return string
      */
     public function execInBackground($cmd) {
         $pid = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ('Windows' === substr(php_uname(), 0, 7)) {
 =======
         if ('Windows' == substr(php_uname(), 0, 7)) {
 >>>>>>> 51fcb2a (up)
+=======
+        if ('Windows' == substr(php_uname(), 0, 7)) {
+>>>>>>> 3b1a9f8 (up)
             pclose(popen('start /B '.$cmd, 'r'));
         } else {
             $pid = shell_exec("nohup $cmd > /dev/null & echo $!");
@@ -1026,10 +1157,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Time to seconds
 =======
      * Time to seconds.
 >>>>>>> 51fcb2a (up)
+=======
+     * Time to seconds.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return float|int
      */
@@ -1046,18 +1181,25 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Seconds to time
 =======
      * Seconds to time.
 >>>>>>> 51fcb2a (up)
+=======
+     * Seconds to time.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return string
      */
     public static function secondsToTime($sec) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! \is_float($sec)) {
             $sec = (float) $sec;
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (! is_float($sec)) {
             $sec = floatval($sec);
 >>>>>>> 51fcb2a (up)
@@ -1084,10 +1226,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get user files size total
 =======
      * Get user files size total.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get user files size total.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param int $userId
      *
@@ -1147,10 +1293,14 @@ class BaseControllerClass {
         foreach (new \DirectoryIterator($dirPath) as $fileInfo) {
             if (! $fileInfo->isDot() && ! $fileInfo->isDir()
 <<<<<<< HEAD
+<<<<<<< HEAD
                 && ! \in_array($fileInfo->getFilename(), $filenameWhitelist, true)
 =======
                 && ! in_array($fileInfo->getFilename(), $filenameWhitelist)
 >>>>>>> 51fcb2a (up)
+=======
+                && ! in_array($fileInfo->getFilename(), $filenameWhitelist)
+>>>>>>> 3b1a9f8 (up)
             ) {
                 unlink($fileInfo->getPathname());
             }
@@ -1183,10 +1333,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get template string
 =======
      * Get template string.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get template string.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param array $input
      *
@@ -1212,10 +1366,14 @@ class BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Send email
 =======
      * Send email.
 >>>>>>> 51fcb2a (up)
+=======
+     * Send email.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return bool
      */

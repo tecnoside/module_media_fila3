@@ -25,10 +25,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get render options
 =======
      * Get render options.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get render options.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -103,10 +107,14 @@ class RenderControllerClass extends BaseControllerClass {
             if ($item) {
                 $uploadPath = $this->getPublicPath('input_dir', $user['id']);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $itemPath = $uploadPath.\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
 =======
                 $itemPath = $uploadPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
 >>>>>>> 51fcb2a (up)
+=======
+                $itemPath = $uploadPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+>>>>>>> 3b1a9f8 (up)
                 $output['audio'] = $itemPath;
             }
         } elseif (! empty($opts['audio_library'])) {
@@ -123,10 +131,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get codec string
 =======
      * Get codec string.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get codec string.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return mixed
      */
@@ -150,10 +162,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Convert video
 =======
      * Convert video.
 >>>>>>> 51fcb2a (up)
+=======
+     * Convert video.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -200,10 +216,14 @@ class RenderControllerClass extends BaseControllerClass {
         $cmdFilters = '';
         $videoOutName = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
         $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
 =======
         $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
 >>>>>>> 51fcb2a (up)
+=======
+        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
+>>>>>>> 3b1a9f8 (up)
 
         $cmd = $this->config['ffmpeg_path'];
         $cmd .= ' \\'.PHP_EOL.'-i "'.$filePath.'"';
@@ -251,10 +271,14 @@ class RenderControllerClass extends BaseControllerClass {
         $queueStore->set($outputFileName, $queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.txt';
 =======
         $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
 >>>>>>> 51fcb2a (up)
+=======
+        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
+>>>>>>> 3b1a9f8 (up)
         file_put_contents($cmdFilePath, $cmd);
 
         $queueController = new QueueControllerClass($this->config);
@@ -273,10 +297,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Cut fast video
 =======
      * Cut fast video.
 >>>>>>> 51fcb2a (up)
+=======
+     * Cut fast video.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param int $timeFrom
      * @param int $timeTo
@@ -320,10 +348,14 @@ class RenderControllerClass extends BaseControllerClass {
 
         $ext = self::getExtension($filePath);
 <<<<<<< HEAD
+<<<<<<< HEAD
         $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
 =======
         $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
 >>>>>>> 51fcb2a (up)
+=======
+        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
+>>>>>>> 3b1a9f8 (up)
 
         $cmd = $this->config['ffmpeg_path'];
         $cmd .= ' \\'.PHP_EOL.'-i "'.$filePath.'"';
@@ -368,19 +400,27 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Render movie
 =======
      * Render movie.
 >>>>>>> 51fcb2a (up)
+=======
+     * Render movie.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
     public function render($title, $opts, $data) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! \is_array($data)) {
 =======
         if (! is_array($data)) {
 >>>>>>> 51fcb2a (up)
+=======
+        if (! is_array($data)) {
+>>>>>>> 3b1a9f8 (up)
             $data = json_decode($data, true);
         }
         if (empty($title)) {
@@ -414,9 +454,12 @@ class RenderControllerClass extends BaseControllerClass {
         $outputDirPath = $this->getPublicPath('output_dir', $user['id']);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! is_dir(\dirname($tmpDirPath))) {
             mkdir(\dirname($tmpDirPath));
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (! is_dir(dirname($tmpDirPath))) {
             mkdir(dirname($tmpDirPath));
 >>>>>>> 51fcb2a (up)
@@ -425,9 +468,12 @@ class RenderControllerClass extends BaseControllerClass {
             mkdir($tmpDirPath);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! is_dir(\dirname($outputDirPath))) {
             mkdir(\dirname($outputDirPath));
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (! is_dir(dirname($outputDirPath))) {
             mkdir(dirname($outputDirPath));
 >>>>>>> 51fcb2a (up)
@@ -470,10 +516,14 @@ class RenderControllerClass extends BaseControllerClass {
                     $item = $fileStore->get($input['audio']);
                     if ($input) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         $filePath = $inputDirPath.\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
 =======
                         $filePath = $inputDirPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
 >>>>>>> 51fcb2a (up)
+=======
+                        $filePath = $inputDirPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
+>>>>>>> 3b1a9f8 (up)
                         if (file_exists($filePath)) {
                             $media['audio_path'] = $filePath;
                         }
@@ -488,10 +538,14 @@ class RenderControllerClass extends BaseControllerClass {
             mkdir($outputDirPath);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
 =======
         $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
 >>>>>>> 51fcb2a (up)
+=======
+        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
+>>>>>>> 3b1a9f8 (up)
 
         $inputIndex = 0;
         $cmdFilters = '';
@@ -545,20 +599,28 @@ class RenderControllerClass extends BaseControllerClass {
 
             $dur = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
             if ('image' === $input['type']) {
 =======
             if ('image' == $input['type']) {
 >>>>>>> 51fcb2a (up)
+=======
+            if ('image' == $input['type']) {
+>>>>>>> 3b1a9f8 (up)
                 $cmdInput .= ' \\'.PHP_EOL.'-loop 1 -r '.$options['fps'];
                 $dur = $imageDuration ? $imageDuration / 1000 : $input['duration'];
                 $cmdInput .= ' -t '.number_format($dur, 3, '.', '');
             }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (! empty($input['time']) && \is_array($input['time'])) {
 =======
             if (! empty($input['time']) && is_array($input['time'])) {
 >>>>>>> 51fcb2a (up)
+=======
+            if (! empty($input['time']) && is_array($input['time'])) {
+>>>>>>> 3b1a9f8 (up)
                 $cmdInput .= $this->getFilterTrim($videoOutName, $input['time'], 'input_trim', $ind.'_trimmed');
                 $dur = ($input['time'][1] - $input['time'][0]) / 1000;
             }
@@ -590,14 +652,20 @@ class RenderControllerClass extends BaseControllerClass {
 =======
             array_push($inputs, $videoOutName);
             array_push($inputTypes, $input['type']);
+<<<<<<< HEAD
 >>>>>>> 51fcb2a (up)
+=======
+>>>>>>> 3b1a9f8 (up)
             ++$inputIndex;
         }
 
         // Concat video
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (\count($inputs) > 1) {
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
         if (count($inputs) > 1) {
 >>>>>>> 51fcb2a (up)
             $videoOutName = 'video_out';
@@ -627,10 +695,14 @@ class RenderControllerClass extends BaseControllerClass {
                 $time = [0, $input['time'][1] - $input['time'][0]];
             } elseif (! empty($input['duration'])) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $dur = 'image' === $input['type'] && $imageDuration ? $imageDuration : (int) ($input['duration']);
 =======
                 $dur = 'image' == $input['type'] && $imageDuration ? $imageDuration : intval($input['duration']);
 >>>>>>> 51fcb2a (up)
+=======
+                $dur = 'image' == $input['type'] && $imageDuration ? $imageDuration : intval($input['duration']);
+>>>>>>> 3b1a9f8 (up)
                 $time = [0, $dur * 1000];
             }
 
@@ -735,6 +807,7 @@ class RenderControllerClass extends BaseControllerClass {
         $queueStore->set($outputFileName, $queue);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.txt';
         file_put_contents($cmdFilePath, $cmd);
 
@@ -745,6 +818,12 @@ class RenderControllerClass extends BaseControllerClass {
 
         $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'_progress_.txt';
 >>>>>>> 51fcb2a (up)
+=======
+        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
+        file_put_contents($cmdFilePath, $cmd);
+
+        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'_progress_.txt';
+>>>>>>> 3b1a9f8 (up)
         if (file_exists($progressLogPath)) {
             @unlink($progressLogPath);
         }
@@ -771,10 +850,14 @@ class RenderControllerClass extends BaseControllerClass {
         $output = '';
         if ($cmdFilters) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (';' === substr($cmdFilters, -1)) {
 =======
             if (';' == substr($cmdFilters, -1)) {
 >>>>>>> 51fcb2a (up)
+=======
+            if (';' == substr($cmdFilters, -1)) {
+>>>>>>> 3b1a9f8 (up)
                 $cmdFilters = substr($cmdFilters, 0, -1);
             }
             $output = ' \\'.PHP_EOL.'-filter_complex "'.$cmdFilters.' \\'.PHP_EOL.'"';
@@ -795,10 +878,14 @@ class RenderControllerClass extends BaseControllerClass {
     public function getFilterConcat($inputs, $outputName, $type = 'video', $inputTypes = [], $aspectRatio = '16:9') {
         $cmd = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ('video' === $type) {
 =======
         if ('video' == $type) {
 >>>>>>> 51fcb2a (up)
+=======
+        if ('video' == $type) {
+>>>>>>> 3b1a9f8 (up)
             if (empty($inputTypes)) {
                 $inputTypes = ['video'];
             }
@@ -816,12 +903,17 @@ class RenderControllerClass extends BaseControllerClass {
 
         $tmp = '['.implode('][', $inputs).']';
 <<<<<<< HEAD
+<<<<<<< HEAD
         $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.\count($inputs);
         $cmd .= 'video' === $type ? ':v=1:a=0' : ':v=0:a=1';
 =======
         $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.count($inputs);
         $cmd .= 'video' == $type ? ':v=1:a=0' : ':v=0:a=1';
 >>>>>>> 51fcb2a (up)
+=======
+        $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.count($inputs);
+        $cmd .= 'video' == $type ? ':v=1:a=0' : ':v=0:a=1';
+>>>>>>> 3b1a9f8 (up)
         $cmd .= "[{$outputName}]";
 
         return $cmd;
@@ -838,6 +930,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
      * Get filter input
      *
@@ -859,6 +952,17 @@ class RenderControllerClass extends BaseControllerClass {
         $timeDur = number_format(($time[1] - $time[0]) / 1000, 3, '.', '');
         if ('input_trim' == $type) {
 >>>>>>> 51fcb2a (up)
+=======
+     * Get filter input.
+     *
+     * @return string
+     */
+    public function getFilterTrim($inputName, $time, $type = 'trim', $outputName) {
+        $timeStart = number_format($time[0] / 1000, 3, '.', '');
+        $timeEnd = number_format($time[1] / 1000, 3, '.', '');
+        $timeDur = number_format(($time[1] - $time[0]) / 1000, 3, '.', '');
+        if ('input_trim' == $type) {
+>>>>>>> 3b1a9f8 (up)
             return ' \\'.PHP_EOL."-ss {$timeStart } -t {$timeDur}";
         } else {
             return ' \\'.PHP_EOL."[{$inputName}]{$type}={$timeStart}:{$timeEnd}[{$outputName}]";
@@ -867,10 +971,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Scale filter
 =======
      * Scale filter.
 >>>>>>> 51fcb2a (up)
+=======
+     * Scale filter.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param array $inputSizeArr
      * @param bool  $forceAspect
@@ -878,9 +986,12 @@ class RenderControllerClass extends BaseControllerClass {
      * @return string
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function getFilterScale($inputName, $width, $height, $inputSizeArr, $outputName, $forceAspect = true) {
         if ($inputSizeArr[0] === $width && $inputSizeArr[1] === $height) {
 =======
+=======
+>>>>>>> 3b1a9f8 (up)
     public function getFilterScale($inputName, $width, $height, $inputSizeArr = [], $outputName, $forceAspect = true) {
         if ($inputSizeArr[0] == $width && $inputSizeArr[1] == $height) {
 >>>>>>> 51fcb2a (up)
@@ -924,10 +1035,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Sliding text filter
 =======
      * Sliding text filter.
 >>>>>>> 51fcb2a (up)
+=======
+     * Sliding text filter.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param array     $renderOptions
      * @param bool|null $autoSplit
@@ -982,10 +1097,14 @@ class RenderControllerClass extends BaseControllerClass {
             switch ($textAction) {
                 case 'static_bottom':
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * \count($textLines))."+{$offset}";
 =======
                     $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
 >>>>>>> 51fcb2a (up)
+=======
+                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
+>>>>>>> 3b1a9f8 (up)
                     $posX = '25';
                     break;
                 case 'move_from_bottom':
@@ -994,10 +1113,14 @@ class RenderControllerClass extends BaseControllerClass {
                     break;
                 case 'move_from_left':
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * \count($textLines))."+{$offset}";
 =======
                     $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
 >>>>>>> 51fcb2a (up)
+=======
+                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
+>>>>>>> 3b1a9f8 (up)
                     $posX = "(0-text_w)+(t*70*{$sizeOffsetX})";
                     break;
                 default:
@@ -1014,10 +1137,14 @@ class RenderControllerClass extends BaseControllerClass {
             // $cmd .= ":shadowcolor=black:shadowx=2:shadowy=2";
             $cmd .= ":box=1:boxcolor={$textBackgroundColor}@0.6:boxborderw=6";
 <<<<<<< HEAD
+<<<<<<< HEAD
             if ($i === \count($textLines) - 1) {
 =======
             if ($i === count($textLines) - 1) {
 >>>>>>> 51fcb2a (up)
+=======
+            if ($i === count($textLines) - 1) {
+>>>>>>> 3b1a9f8 (up)
                 $cmd .= "[{$outputName}];";
             } else {
                 $cmd .= "[{$outputName}{$i}];";
@@ -1052,10 +1179,14 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Processing image
 =======
      * Processing image.
 >>>>>>> 51fcb2a (up)
+=======
+     * Processing image.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param bool $trim
      *
@@ -1070,12 +1201,17 @@ class RenderControllerClass extends BaseControllerClass {
         }
         $options = [
 <<<<<<< HEAD
+<<<<<<< HEAD
             'width' => (int) ($renderOptions['size_arr'][0]),
             'height' => (int) ($renderOptions['size_arr'][1]),
 =======
             'width' => intval($renderOptions['size_arr'][0]),
             'height' => intval($renderOptions['size_arr'][1]),
 >>>>>>> 51fcb2a (up)
+=======
+            'width' => intval($renderOptions['size_arr'][0]),
+            'height' => intval($renderOptions['size_arr'][1]),
+>>>>>>> 3b1a9f8 (up)
         ];
         $outputRatio = $options['width'] / $options['height'];
         $size = getimagesize($inputPath);
@@ -1104,20 +1240,28 @@ class RenderControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Check audio stream exists
 =======
      * Check audio stream exists.
 >>>>>>> 51fcb2a (up)
+=======
+     * Check audio stream exists.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return bool
      */
     public function audioStreamExists($videoFilePath) {
         $ext = self::getExtension($videoFilePath);
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (\in_array($ext, [$this->config['upload_images']], true)) {
 =======
         if (in_array($ext, [$this->config['upload_images']])) {
 >>>>>>> 51fcb2a (up)
+=======
+        if (in_array($ext, [$this->config['upload_images']])) {
+>>>>>>> 3b1a9f8 (up)
             return false;
         }
         $cmd = $this->config['ffprobe_path'];
