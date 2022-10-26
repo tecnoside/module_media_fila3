@@ -30,10 +30,14 @@ class UsersControllerClass extends BaseControllerClass {
         ];
         $currentUser = $this->getUser(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (false === $currentUser || 'admin' !== $currentUser['role']) {
 =======
         if (false === $currentUser || 'admin' != $currentUser['role']) {
 >>>>>>> 51fcb2a (up)
+=======
+        if (false === $currentUser || 'admin' != $currentUser['role']) {
+>>>>>>> 3b1a9f8 (up)
             return $output;
         }
 
@@ -72,10 +76,14 @@ class UsersControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Get pages data
 =======
      * Get pages data.
 >>>>>>> 51fcb2a (up)
+=======
+     * Get pages data.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -97,10 +105,14 @@ class UsersControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Edit user page
 =======
      * Edit user page.
 >>>>>>> 51fcb2a (up)
+=======
+     * Edit user page.
+>>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -108,19 +120,27 @@ class UsersControllerClass extends BaseControllerClass {
         $output = [];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $userId = ! empty($_GET['user_id']) && ! \is_array($_GET['user_id'])
 =======
         $userId = ! empty($_GET['user_id']) && ! is_array($_GET['user_id'])
 >>>>>>> 51fcb2a (up)
+=======
+        $userId = ! empty($_GET['user_id']) && ! is_array($_GET['user_id'])
+>>>>>>> 3b1a9f8 (up)
             ? trim(urldecode($_GET['user_id']))
             : 0;
 
         $currentUser = $this->getUser();
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (false === $currentUser || 'admin' !== $currentUser['role']) {
 =======
         if (false === $currentUser || 'admin' != $currentUser['role']) {
 >>>>>>> 51fcb2a (up)
+=======
+        if (false === $currentUser || 'admin' != $currentUser['role']) {
+>>>>>>> 3b1a9f8 (up)
             return $output;
         }
 
@@ -146,7 +166,10 @@ class UsersControllerClass extends BaseControllerClass {
             if ($currentUser['id'] !== $user['id']) {
 =======
             if ($currentUser['id'] != $user['id']) {
+<<<<<<< HEAD
 >>>>>>> 51fcb2a (up)
+=======
+>>>>>>> 3b1a9f8 (up)
                 $data['blocked'] = ! empty($_POST['blocked']);
                 $data['confirmed'] = ! empty($_POST['confirmed']);
             }
@@ -177,10 +200,14 @@ class UsersControllerClass extends BaseControllerClass {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Delete user page
 =======
      * Delete user page.
 >>>>>>> 51fcb2a (up)
+=======
+     * Delete user page.
+>>>>>>> 3b1a9f8 (up)
      *
      * @param int $userId
      *
@@ -190,20 +217,28 @@ class UsersControllerClass extends BaseControllerClass {
         $output = [];
         if (! $userId) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             $userId = ! empty($_GET['user_id']) && ! \is_array($_GET['user_id'])
 =======
             $userId = ! empty($_GET['user_id']) && ! is_array($_GET['user_id'])
 >>>>>>> 51fcb2a (up)
+=======
+            $userId = ! empty($_GET['user_id']) && ! is_array($_GET['user_id'])
+>>>>>>> 3b1a9f8 (up)
                 ? trim(urldecode($_GET['user_id']))
                 : 0;
         }
         $currentUser = $this->getUser();
         if (false === $currentUser
 <<<<<<< HEAD
+<<<<<<< HEAD
             || ('admin' !== $currentUser['role'] && $currentUser['id'] !== $userId)
 =======
             || ('admin' != $currentUser['role'] && $currentUser['id'] != $userId)
 >>>>>>> 51fcb2a (up)
+=======
+            || ('admin' != $currentUser['role'] && $currentUser['id'] != $userId)
+>>>>>>> 3b1a9f8 (up)
         ) {
             return $output;
         }
@@ -213,10 +248,14 @@ class UsersControllerClass extends BaseControllerClass {
             $submited = true;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             if ('admin' === $currentUser['role']) {
 =======
             if ('admin' == $currentUser['role']) {
 >>>>>>> 51fcb2a (up)
+=======
+            if ('admin' == $currentUser['role']) {
+>>>>>>> 3b1a9f8 (up)
                 $this->deleteUser($userId);
             } else {
                 $this->updateUser($userId, ['blocked' => true]);
@@ -227,10 +266,14 @@ class UsersControllerClass extends BaseControllerClass {
         }
         if ($submited) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             $redirectUrl = 'admin' === $currentUser['role']
 =======
             $redirectUrl = 'admin' == $currentUser['role']
 >>>>>>> 51fcb2a (up)
+=======
+            $redirectUrl = 'admin' == $currentUser['role']
+>>>>>>> 3b1a9f8 (up)
                 ? $this->config['base_url'].$this->config['home_url'].'?action=users'
                 : $this->config['base_url'].$this->config['home_url'];
             self::redirectTo($redirectUrl);
@@ -242,7 +285,10 @@ class UsersControllerClass extends BaseControllerClass {
         if ($currentUser['id'] === $userId) {
 =======
         if ($currentUser['id'] == $userId) {
+<<<<<<< HEAD
 >>>>>>> 51fcb2a (up)
+=======
+>>>>>>> 3b1a9f8 (up)
             $output['content'] .= '<p>'.$this->lang['you_sure_you_want_delete_your_account'].'</p>';
         } else {
             $output['content'] .= '<p>'.$this->lang['you_sure_you_want_remove_user'].'</p>';
