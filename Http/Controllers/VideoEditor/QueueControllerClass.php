@@ -21,15 +21,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Run processing new task
-=======
      * Run processing new task.
->>>>>>> 51fcb2a (up)
-=======
-     * Run processing new task.
->>>>>>> 3b1a9f8 (up)
      *
      * @return bool|array
      */
@@ -44,30 +36,14 @@ class QueueControllerClass extends BaseControllerClass {
         $task['status'] = 'processing';
 
         $tmpDirPath = $this->getPublicPath('tmp_dir', $task['user_id']);
-<<<<<<< HEAD
-<<<<<<< HEAD
         $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'.txt';
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'.txt';
->>>>>>> 51fcb2a (up)
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'.txt';
->>>>>>> 3b1a9f8 (up)
         if (! file_exists($cmdFilePath)) {
             $queueStore->delete($task['id']);
 
             return false;
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
-=======
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
->>>>>>> 51fcb2a (up)
-=======
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
->>>>>>> 3b1a9f8 (up)
 
         $cmd = file_get_contents($cmdFilePath);
         $cmd .= ' \\'.PHP_EOL.' -stats 2>> "'.$progressLogPath.'"';
@@ -81,15 +57,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Get next task
-=======
      * Get next task.
->>>>>>> 51fcb2a (up)
-=======
-     * Get next task.
->>>>>>> 3b1a9f8 (up)
      *
      * @param int $userId
      *
@@ -102,15 +70,7 @@ class QueueControllerClass extends BaseControllerClass {
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-<<<<<<< HEAD
-<<<<<<< HEAD
             if ('pending' === $item['status'] && (! $userId || $userId === $item['user_id'])) {
-=======
-            if ('pending' == $item['status'] && (! $userId || $userId == $item['user_id'])) {
->>>>>>> 51fcb2a (up)
-=======
-            if ('pending' == $item['status'] && (! $userId || $userId == $item['user_id'])) {
->>>>>>> 3b1a9f8 (up)
                 $output = $item;
                 $output['id'] = $taskId;
                 break;
@@ -121,15 +81,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Get current task
-=======
      * Get current task.
->>>>>>> 51fcb2a (up)
-=======
-     * Get current task.
->>>>>>> 3b1a9f8 (up)
      *
      * @param int $userId
      *
@@ -142,15 +94,7 @@ class QueueControllerClass extends BaseControllerClass {
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-<<<<<<< HEAD
-<<<<<<< HEAD
             if ('processing' === $item['status'] && (! $userId || $userId === $item['user_id'])) {
-=======
-            if ('processing' == $item['status'] && (! $userId || $userId == $item['user_id'])) {
->>>>>>> 51fcb2a (up)
-=======
-            if ('processing' == $item['status'] && (! $userId || $userId == $item['user_id'])) {
->>>>>>> 3b1a9f8 (up)
                 $output = $item;
                 $output['id'] = $taskId;
                 break;
@@ -161,15 +105,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Close queue task
-=======
      * Close queue task.
->>>>>>> 51fcb2a (up)
-=======
-     * Close queue task.
->>>>>>> 3b1a9f8 (up)
      *
      * @return bool
      */
@@ -181,18 +117,8 @@ class QueueControllerClass extends BaseControllerClass {
         }
 
         $tmpDirPath = $this->getPublicPath('tmp_dir', $task['user_id']);
-<<<<<<< HEAD
-<<<<<<< HEAD
         $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'.txt';
         $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'.txt';
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
->>>>>>> 51fcb2a (up)
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'.txt';
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
->>>>>>> 3b1a9f8 (up)
         $outputFormat = ! empty($task['options']) && ! empty($task['options']['format'])
             ? $task['options']['format']
             : 'mp4';
@@ -254,15 +180,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Get queue status
-=======
      * Get queue status.
->>>>>>> 51fcb2a (up)
-=======
-     * Get queue status.
->>>>>>> 3b1a9f8 (up)
      *
      * @param int $userId
      *
@@ -288,8 +206,6 @@ class QueueControllerClass extends BaseControllerClass {
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-<<<<<<< HEAD
-<<<<<<< HEAD
             if ($item['user_id'] === $userId && ! $currentTaskStatus) {
                 $currentTaskId = $taskId;
                 $currentTaskStatus = $item['status'];
@@ -298,55 +214,19 @@ class QueueControllerClass extends BaseControllerClass {
                 ++$pendingCount;
             }
             if ('processing' === $item['status']) {
-=======
-            if ($item['user_id'] == $userId && ! $currentTaskStatus) {
-                $currentTaskId = $taskId;
-                $currentTaskStatus = $item['status'];
-            }
-            if ('pending' == $item['status']) {
-                ++$pendingCount;
-            }
-            if ('processing' == $item['status']) {
->>>>>>> 51fcb2a (up)
-=======
-            if ($item['user_id'] == $userId && ! $currentTaskStatus) {
-                $currentTaskId = $taskId;
-                $currentTaskStatus = $item['status'];
-            }
-            if ('pending' == $item['status']) {
-                ++$pendingCount;
-            }
-            if ('processing' == $item['status']) {
->>>>>>> 3b1a9f8 (up)
                 ++$processingCount;
             }
         }
 
         if ($pendingCount > 0 && (! $this->config['queue_size'] || $processingCount < $this->config['queue_size'])) {
             $newTask = $this->process();
-<<<<<<< HEAD
-<<<<<<< HEAD
             if (false !== $newTask && ! $currentTaskId && $newTask['user_id'] === $userId) {
-=======
-            if (false !== $newTask && ! $currentTaskId && $newTask['user_id'] == $userId) {
->>>>>>> 51fcb2a (up)
-=======
-            if (false !== $newTask && ! $currentTaskId && $newTask['user_id'] == $userId) {
->>>>>>> 3b1a9f8 (up)
                 $currentTaskId = $newTask['id'];
                 $currentTaskStatus = 'processing';
             }
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         if ($currentTaskId && 'processing' === $currentTaskStatus) {
-=======
-        if ($currentTaskId && 'processing' == $currentTaskStatus) {
->>>>>>> 51fcb2a (up)
-=======
-        if ($currentTaskId && 'processing' == $currentTaskStatus) {
->>>>>>> 3b1a9f8 (up)
             $percent = $this->getPercent($currentTaskId);
         }
 
@@ -354,15 +234,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Stop user`s process
-=======
      * Stop user`s process.
->>>>>>> 51fcb2a (up)
-=======
-     * Stop user`s process.
->>>>>>> 3b1a9f8 (up)
      *
      * @param int $userId
      *
@@ -415,15 +287,7 @@ class QueueControllerClass extends BaseControllerClass {
         }
 
         $tmpDirPath = $this->getPublicPath('tmp_dir', $task['user_id']);
-<<<<<<< HEAD
-<<<<<<< HEAD
         $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
-=======
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
->>>>>>> 51fcb2a (up)
-=======
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$task['id'].'_progress_.txt';
->>>>>>> 3b1a9f8 (up)
 
         if (! file_exists($progressLogPath)) {
             return 0;
@@ -456,24 +320,10 @@ class QueueControllerClass extends BaseControllerClass {
 
         foreach ($keys as $taskId) {
             $item = $queueStore->get($taskId);
-<<<<<<< HEAD
-<<<<<<< HEAD
             if ('pending' === $item['status']) {
                 ++$pendingCount;
             }
             if ('processing' === $item['status']) {
-=======
-            if ('pending' == $item['status']) {
-                ++$pendingCount;
-            }
-            if ('processing' == $item['status']) {
->>>>>>> 51fcb2a (up)
-=======
-            if ('pending' == $item['status']) {
-                ++$pendingCount;
-            }
-            if ('processing' == $item['status']) {
->>>>>>> 3b1a9f8 (up)
                 if (! $this->is_running($item['pid'])) {
                     sleep(2);
                     $this->closeTask($item['id']);
@@ -491,15 +341,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Get FFMpeg duration
-=======
      * Get FFMpeg duration.
->>>>>>> 51fcb2a (up)
-=======
-     * Get FFMpeg duration.
->>>>>>> 3b1a9f8 (up)
      *
      * @param string $content
      *
@@ -521,15 +363,7 @@ class QueueControllerClass extends BaseControllerClass {
             if (! empty($matches) && ! empty($matches[2])) {
                 foreach ($matches[2] as $inp) {
                     $ext = $this->getExtension($inp);
-<<<<<<< HEAD
-<<<<<<< HEAD
                     if (\in_array($ext, ['mp3', 'wav'], true)) {
-=======
-                    if (in_array($ext, ['mp3', 'wav'])) {
->>>>>>> 51fcb2a (up)
-=======
-                    if (in_array($ext, ['mp3', 'wav'])) {
->>>>>>> 3b1a9f8 (up)
                         $isAudioExists = true;
                     }
                     $inputs[] = $inp;
@@ -546,15 +380,7 @@ class QueueControllerClass extends BaseControllerClass {
                         continue;
                     }
                     if ($isAudioExists) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                         if (\in_array($ext, ['mp3', 'wav'], true)) {
-=======
-                        if (in_array($ext, ['mp3', 'wav'])) {
->>>>>>> 51fcb2a (up)
-=======
-                        if (in_array($ext, ['mp3', 'wav'])) {
->>>>>>> 3b1a9f8 (up)
                             $duration += self::timeToSeconds($dur);
                         }
                     } else {
@@ -571,15 +397,7 @@ class QueueControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Get Ffmpeg percent
-=======
      * Get Ffmpeg percent.
->>>>>>> 51fcb2a (up)
-=======
-     * Get Ffmpeg percent.
->>>>>>> 3b1a9f8 (up)
      *
      * @return float|int
      */
