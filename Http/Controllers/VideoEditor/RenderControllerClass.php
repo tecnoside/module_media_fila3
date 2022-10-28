@@ -24,15 +24,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * Get render options
-=======
-     * Get render options.
->>>>>>> 51fcb2a (up)
-=======
-     * Get render options.
->>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -106,15 +98,7 @@ class RenderControllerClass extends BaseControllerClass {
             $item = $fileStore->get($opts['audio']);
             if ($item) {
                 $uploadPath = $this->getPublicPath('input_dir', $user['id']);
-<<<<<<< HEAD
-<<<<<<< HEAD
                 $itemPath = $uploadPath.\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
-=======
-                $itemPath = $uploadPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
->>>>>>> 51fcb2a (up)
-=======
-                $itemPath = $uploadPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
->>>>>>> 3b1a9f8 (up)
                 $output['audio'] = $itemPath;
             }
         } elseif (! empty($opts['audio_library'])) {
@@ -130,15 +114,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * Get codec string
-=======
-     * Get codec string.
->>>>>>> 51fcb2a (up)
-=======
-     * Get codec string.
->>>>>>> 3b1a9f8 (up)
      *
      * @return mixed
      */
@@ -161,15 +137,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * Convert video
-=======
-     * Convert video.
->>>>>>> 51fcb2a (up)
-=======
-     * Convert video.
->>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
@@ -215,15 +183,7 @@ class RenderControllerClass extends BaseControllerClass {
 
         $cmdFilters = '';
         $videoOutName = '';
-<<<<<<< HEAD
-<<<<<<< HEAD
         $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
-=======
-        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
->>>>>>> 51fcb2a (up)
-=======
-        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
->>>>>>> 3b1a9f8 (up)
 
         $cmd = $this->config['ffmpeg_path'];
         $cmd .= ' \\'.PHP_EOL.'-i "'.$filePath.'"';
@@ -270,15 +230,7 @@ class RenderControllerClass extends BaseControllerClass {
         ];
         $queueStore->set($outputFileName, $queue);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.txt';
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
->>>>>>> 51fcb2a (up)
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
->>>>>>> 3b1a9f8 (up)
         file_put_contents($cmdFilePath, $cmd);
 
         $queueController = new QueueControllerClass($this->config);
@@ -296,15 +248,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * Cut fast video
-=======
-     * Cut fast video.
->>>>>>> 51fcb2a (up)
-=======
-     * Cut fast video.
->>>>>>> 3b1a9f8 (up)
      *
      * @param int $timeFrom
      * @param int $timeTo
@@ -347,15 +291,7 @@ class RenderControllerClass extends BaseControllerClass {
         }
 
         $ext = self::getExtension($filePath);
-<<<<<<< HEAD
-<<<<<<< HEAD
         $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
-=======
-        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
->>>>>>> 51fcb2a (up)
-=======
-        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$ext;
->>>>>>> 3b1a9f8 (up)
 
         $cmd = $this->config['ffmpeg_path'];
         $cmd .= ' \\'.PHP_EOL.'-i "'.$filePath.'"';
@@ -399,28 +335,12 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * Render movie
-=======
-     * Render movie.
->>>>>>> 51fcb2a (up)
-=======
-     * Render movie.
->>>>>>> 3b1a9f8 (up)
      *
      * @return array
      */
     public function render($title, $opts, $data) {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (! \is_array($data)) {
-=======
-        if (! is_array($data)) {
->>>>>>> 51fcb2a (up)
-=======
-        if (! is_array($data)) {
->>>>>>> 3b1a9f8 (up)
             $data = json_decode($data, true);
         }
         if (empty($title)) {
@@ -453,31 +373,15 @@ class RenderControllerClass extends BaseControllerClass {
         $inputDirPath = $this->getPublicPath('input_dir', $user['id']);
         $outputDirPath = $this->getPublicPath('output_dir', $user['id']);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (! is_dir(\dirname($tmpDirPath))) {
-            mkdir(\dirname($tmpDirPath));
-=======
-=======
->>>>>>> 3b1a9f8 (up)
-        if (! is_dir(dirname($tmpDirPath))) {
-            mkdir(dirname($tmpDirPath));
->>>>>>> 51fcb2a (up)
-        }
-        if (! is_dir($tmpDirPath)) {
-            mkdir($tmpDirPath);
-        }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+if (! is_dir(\dirname($tmpDirPath))) {
+    mkdir(\dirname($tmpDirPath));
+}
+
         if (! is_dir(\dirname($outputDirPath))) {
             mkdir(\dirname($outputDirPath));
-=======
-=======
->>>>>>> 3b1a9f8 (up)
-        if (! is_dir(dirname($outputDirPath))) {
-            mkdir(dirname($outputDirPath));
->>>>>>> 51fcb2a (up)
         }
+
         if (! is_dir($outputDirPath)) {
             mkdir($outputDirPath);
         }
@@ -515,15 +419,7 @@ class RenderControllerClass extends BaseControllerClass {
                     $fileStore = $this->dbGetStore('video_input', $user['id']);
                     $item = $fileStore->get($input['audio']);
                     if ($input) {
-<<<<<<< HEAD
-<<<<<<< HEAD
                         $filePath = $inputDirPath.\DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
-=======
-                        $filePath = $inputDirPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
->>>>>>> 51fcb2a (up)
-=======
-                        $filePath = $inputDirPath.DIRECTORY_SEPARATOR.$item['id'].'.'.$item['ext'];
->>>>>>> 3b1a9f8 (up)
                         if (file_exists($filePath)) {
                             $media['audio_path'] = $filePath;
                         }
@@ -537,15 +433,7 @@ class RenderControllerClass extends BaseControllerClass {
         if (! is_dir($outputDirPath)) {
             mkdir($outputDirPath);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         $outputPath = $outputDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
-=======
-        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
->>>>>>> 51fcb2a (up)
-=======
-        $outputPath = $outputDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.'.$options['format'];
->>>>>>> 3b1a9f8 (up)
 
         $inputIndex = 0;
         $cmdFilters = '';
