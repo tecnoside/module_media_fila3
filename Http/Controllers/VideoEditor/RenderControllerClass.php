@@ -24,7 +24,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-     * Get render options
+     * Get render options.
      *
      * @return array
      */
@@ -114,7 +114,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-     * Get codec string
+     * Get codec string.
      *
      * @return mixed
      */
@@ -137,7 +137,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-     * Convert video
+     * Convert video.
      *
      * @return array
      */
@@ -248,7 +248,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-     * Cut fast video
+     * Cut fast video.
      *
      * @param int $timeFrom
      * @param int $timeTo
@@ -335,7 +335,7 @@ class RenderControllerClass extends BaseControllerClass {
     }
 
     /**
-     * Render movie
+     * Render movie.
      *
      * @return array
      */
@@ -373,10 +373,9 @@ class RenderControllerClass extends BaseControllerClass {
         $inputDirPath = $this->getPublicPath('input_dir', $user['id']);
         $outputDirPath = $this->getPublicPath('output_dir', $user['id']);
 
-
-if (! is_dir(\dirname($tmpDirPath))) {
-    mkdir(\dirname($tmpDirPath));
-}
+        if (! is_dir(\dirname($tmpDirPath))) {
+            mkdir(\dirname($tmpDirPath));
+        }
 
         if (! is_dir(\dirname($outputDirPath))) {
             mkdir(\dirname($outputDirPath));
@@ -721,18 +720,8 @@ if (! is_dir(\dirname($tmpDirPath))) {
         }
 
         $tmp = '['.implode('][', $inputs).']';
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.\count($inputs);
-        $cmd .= 'video' === $type ? ':v=1:a=0' : ':v=0:a=1';
-=======
         $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.count($inputs);
         $cmd .= 'video' == $type ? ':v=1:a=0' : ':v=0:a=1';
->>>>>>> 51fcb2a (up)
-=======
-        $cmd .= ' \\'.PHP_EOL.$tmp.'concat=n='.count($inputs);
-        $cmd .= 'video' == $type ? ':v=1:a=0' : ':v=0:a=1';
->>>>>>> 3b1a9f8 (up)
         $cmd .= "[{$outputName}]";
 
         return $cmd;
@@ -749,9 +738,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Get filter input
+     * Get filter input.
      *
      * @return string
      */
@@ -760,28 +747,6 @@ if (! is_dir(\dirname($tmpDirPath))) {
         $timeEnd = number_format($time[1] / 1000, 3, '.', '');
         $timeDur = number_format(($time[1] - $time[0]) / 1000, 3, '.', '');
         if ('input_trim' === $type) {
-=======
-     * Get filter input.
-     *
-     * @return string
-     */
-    public function getFilterTrim($inputName, $time, $type = 'trim', $outputName) {
-        $timeStart = number_format($time[0] / 1000, 3, '.', '');
-        $timeEnd = number_format($time[1] / 1000, 3, '.', '');
-        $timeDur = number_format(($time[1] - $time[0]) / 1000, 3, '.', '');
-        if ('input_trim' == $type) {
->>>>>>> 51fcb2a (up)
-=======
-     * Get filter input.
-     *
-     * @return string
-     */
-    public function getFilterTrim($inputName, $time, $type = 'trim', $outputName) {
-        $timeStart = number_format($time[0] / 1000, 3, '.', '');
-        $timeEnd = number_format($time[1] / 1000, 3, '.', '');
-        $timeDur = number_format(($time[1] - $time[0]) / 1000, 3, '.', '');
-        if ('input_trim' == $type) {
->>>>>>> 3b1a9f8 (up)
             return ' \\'.PHP_EOL."-ss {$timeStart } -t {$timeDur}";
         } else {
             return ' \\'.PHP_EOL."[{$inputName}]{$type}={$timeStart}:{$timeEnd}[{$outputName}]";
@@ -789,31 +754,15 @@ if (! is_dir(\dirname($tmpDirPath))) {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Scale filter
-=======
      * Scale filter.
->>>>>>> 51fcb2a (up)
-=======
-     * Scale filter.
->>>>>>> 3b1a9f8 (up)
      *
      * @param array $inputSizeArr
      * @param bool  $forceAspect
      *
      * @return string
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function getFilterScale($inputName, $width, $height, $inputSizeArr, $outputName, $forceAspect = true) {
         if ($inputSizeArr[0] === $width && $inputSizeArr[1] === $height) {
-=======
-=======
->>>>>>> 3b1a9f8 (up)
-    public function getFilterScale($inputName, $width, $height, $inputSizeArr = [], $outputName, $forceAspect = true) {
-        if ($inputSizeArr[0] == $width && $inputSizeArr[1] == $height) {
->>>>>>> 51fcb2a (up)
             return '';
         }
 
@@ -853,15 +802,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Sliding text filter
-=======
      * Sliding text filter.
->>>>>>> 51fcb2a (up)
-=======
-     * Sliding text filter.
->>>>>>> 3b1a9f8 (up)
      *
      * @param array     $renderOptions
      * @param bool|null $autoSplit
@@ -915,15 +856,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
         foreach ($textLines as $i => $textLine) {
             switch ($textAction) {
                 case 'static_bottom':
-<<<<<<< HEAD
-<<<<<<< HEAD
                     $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * \count($textLines))."+{$offset}";
-=======
-                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
->>>>>>> 51fcb2a (up)
-=======
-                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
->>>>>>> 3b1a9f8 (up)
                     $posX = '25';
                     break;
                 case 'move_from_bottom':
@@ -931,15 +864,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
                     $posX = '(w-text_w)/2';
                     break;
                 case 'move_from_left':
-<<<<<<< HEAD
-<<<<<<< HEAD
                     $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * \count($textLines))."+{$offset}";
-=======
-                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
->>>>>>> 51fcb2a (up)
-=======
-                    $posY = 'h-'.round($sizeOffsetY + ($fontSize * 1.5) * count($textLines))."+{$offset}";
->>>>>>> 3b1a9f8 (up)
                     $posX = "(0-text_w)+(t*70*{$sizeOffsetX})";
                     break;
                 default:
@@ -955,15 +880,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
             $cmd .= ":x={$posX}:y={$posY}:text='{$textLine}'";
             // $cmd .= ":shadowcolor=black:shadowx=2:shadowy=2";
             $cmd .= ":box=1:boxcolor={$textBackgroundColor}@0.6:boxborderw=6";
-<<<<<<< HEAD
-<<<<<<< HEAD
             if ($i === \count($textLines) - 1) {
-=======
-            if ($i === count($textLines) - 1) {
->>>>>>> 51fcb2a (up)
-=======
-            if ($i === count($textLines) - 1) {
->>>>>>> 3b1a9f8 (up)
                 $cmd .= "[{$outputName}];";
             } else {
                 $cmd .= "[{$outputName}{$i}];";
@@ -997,15 +914,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Processing image
-=======
      * Processing image.
->>>>>>> 51fcb2a (up)
-=======
-     * Processing image.
->>>>>>> 3b1a9f8 (up)
      *
      * @param bool $trim
      *
@@ -1019,18 +928,8 @@ if (! is_dir(\dirname($tmpDirPath))) {
             unlink($filePath);
         }
         $options = [
-<<<<<<< HEAD
-<<<<<<< HEAD
-            'width' => (int) ($renderOptions['size_arr'][0]),
-            'height' => (int) ($renderOptions['size_arr'][1]),
-=======
-            'width' => intval($renderOptions['size_arr'][0]),
-            'height' => intval($renderOptions['size_arr'][1]),
->>>>>>> 51fcb2a (up)
-=======
-            'width' => intval($renderOptions['size_arr'][0]),
-            'height' => intval($renderOptions['size_arr'][1]),
->>>>>>> 3b1a9f8 (up)
+            'width' => (int) $renderOptions['size_arr'][0],
+            'height' => (int) $renderOptions['size_arr'][1],
         ];
         $outputRatio = $options['width'] / $options['height'];
         $size = getimagesize($inputPath);
@@ -1058,29 +957,13 @@ if (! is_dir(\dirname($tmpDirPath))) {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * Check audio stream exists
-=======
      * Check audio stream exists.
->>>>>>> 51fcb2a (up)
-=======
-     * Check audio stream exists.
->>>>>>> 3b1a9f8 (up)
      *
      * @return bool
      */
     public function audioStreamExists($videoFilePath) {
         $ext = self::getExtension($videoFilePath);
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (\in_array($ext, [$this->config['upload_images']], true)) {
-=======
-        if (in_array($ext, [$this->config['upload_images']])) {
->>>>>>> 51fcb2a (up)
-=======
-        if (in_array($ext, [$this->config['upload_images']])) {
->>>>>>> 3b1a9f8 (up)
             return false;
         }
         $cmd = $this->config['ffprobe_path'];
