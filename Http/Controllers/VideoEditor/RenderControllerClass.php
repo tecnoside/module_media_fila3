@@ -486,29 +486,13 @@ if (! is_dir(\dirname($tmpDirPath))) {
             $videoOutName = $ind.':v';
 
             $dur = 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if ('image' === $input['type']) {
-=======
             if ('image' == $input['type']) {
->>>>>>> 51fcb2a (up)
-=======
-            if ('image' == $input['type']) {
->>>>>>> 3b1a9f8 (up)
                 $cmdInput .= ' \\'.PHP_EOL.'-loop 1 -r '.$options['fps'];
                 $dur = $imageDuration ? $imageDuration / 1000 : $input['duration'];
                 $cmdInput .= ' -t '.number_format($dur, 3, '.', '');
             }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if (! empty($input['time']) && \is_array($input['time'])) {
-=======
             if (! empty($input['time']) && is_array($input['time'])) {
->>>>>>> 51fcb2a (up)
-=======
-            if (! empty($input['time']) && is_array($input['time'])) {
->>>>>>> 3b1a9f8 (up)
                 $cmdInput .= $this->getFilterTrim($videoOutName, $input['time'], 'input_trim', $ind.'_trimmed');
                 $dur = ($input['time'][1] - $input['time'][0]) / 1000;
             }
@@ -534,28 +518,13 @@ if (! is_dir(\dirname($tmpDirPath))) {
                 $videoOutName = $ind.'_txt';
             }
 
-<<<<<<< HEAD
             $inputs[] = $videoOutName;
             $inputTypes[] = $input['type'];
-=======
-            array_push($inputs, $videoOutName);
-            array_push($inputTypes, $input['type']);
-<<<<<<< HEAD
->>>>>>> 51fcb2a (up)
-=======
->>>>>>> 3b1a9f8 (up)
             ++$inputIndex;
         }
 
         // Concat video
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (\count($inputs) > 1) {
-=======
-=======
->>>>>>> 3b1a9f8 (up)
         if (count($inputs) > 1) {
->>>>>>> 51fcb2a (up)
             $videoOutName = 'video_out';
             $cmdFilters .= $this->getFilterConcat($inputs, $videoOutName, 'video', $inputTypes, $options['aspect']).';';
         }
@@ -582,15 +551,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
             if (! empty($input['time'])) {
                 $time = [0, $input['time'][1] - $input['time'][0]];
             } elseif (! empty($input['duration'])) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                $dur = 'image' === $input['type'] && $imageDuration ? $imageDuration : (int) ($input['duration']);
-=======
                 $dur = 'image' == $input['type'] && $imageDuration ? $imageDuration : intval($input['duration']);
->>>>>>> 51fcb2a (up)
-=======
-                $dur = 'image' == $input['type'] && $imageDuration ? $imageDuration : intval($input['duration']);
->>>>>>> 3b1a9f8 (up)
                 $time = [0, $dur * 1000];
             }
 
@@ -694,24 +655,10 @@ if (! is_dir(\dirname($tmpDirPath))) {
         ];
         $queueStore->set($outputFileName, $queue);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $cmdFilePath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'.txt';
-        file_put_contents($cmdFilePath, $cmd);
-
-        $progressLogPath = $tmpDirPath.\DIRECTORY_SEPARATOR.$outputFileName.'_progress_.txt';
-=======
         $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
         file_put_contents($cmdFilePath, $cmd);
 
         $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'_progress_.txt';
->>>>>>> 51fcb2a (up)
-=======
-        $cmdFilePath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'.txt';
-        file_put_contents($cmdFilePath, $cmd);
-
-        $progressLogPath = $tmpDirPath.DIRECTORY_SEPARATOR.$outputFileName.'_progress_.txt';
->>>>>>> 3b1a9f8 (up)
         if (file_exists($progressLogPath)) {
             @unlink($progressLogPath);
         }
@@ -737,15 +684,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
     public function addFiltersCommand($cmdFilters) {
         $output = '';
         if ($cmdFilters) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if (';' === substr($cmdFilters, -1)) {
-=======
             if (';' == substr($cmdFilters, -1)) {
->>>>>>> 51fcb2a (up)
-=======
-            if (';' == substr($cmdFilters, -1)) {
->>>>>>> 3b1a9f8 (up)
                 $cmdFilters = substr($cmdFilters, 0, -1);
             }
             $output = ' \\'.PHP_EOL.'-filter_complex "'.$cmdFilters.' \\'.PHP_EOL.'"';
@@ -765,15 +704,7 @@ if (! is_dir(\dirname($tmpDirPath))) {
      */
     public function getFilterConcat($inputs, $outputName, $type = 'video', $inputTypes = [], $aspectRatio = '16:9') {
         $cmd = '';
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if ('video' === $type) {
-=======
         if ('video' == $type) {
->>>>>>> 51fcb2a (up)
-=======
-        if ('video' == $type) {
->>>>>>> 3b1a9f8 (up)
             if (empty($inputTypes)) {
                 $inputTypes = ['video'];
             }
