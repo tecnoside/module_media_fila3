@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
+use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -38,39 +39,35 @@ class GetVideoScreenshotAction {
     /**
      * Execute the action.
      */
-    public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, string $file_jpg): array {
-        $this->currentTime = 2;
-        $model = Press::find($id);
+    public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, ?string $file_jpg = null): array {
+        if (null == $file_jpg) {
+            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
+            $file_jpg = Str::slug($file_jpg).'.jpg';
+        }
 
-        $file_mp4 = $model->file_mp4;
-        $filename = Str::replace('.mp4', '-'.$this->currentTime, basename($file_mp4));
-        $filename = Str::slug($filename).'.jpg';
-
-        $toDisk = 'snaps';
-
-        FFMpeg::fromDisk($model->disk)
+        FFMpeg::fromDisk($disk_mp4)
             ->open($file_mp4)
-            ->getFrameFromSeconds($this->currentTime)
+            ->getFrameFromSeconds($time)
             ->export()
-            // local_root
-            ->toDisk($toDisk)
-            ->save($filename);
+            ->toDisk($disk_jpg)
+            ->save($file_jpg);
 
+        /*
         $morph_map = [
             'media' => 'Modules\Mediamonitor\Models\Media',
             'press' => 'Modules\Mediamonitor\Models\Press',
         ];
         Relation::morphMap($morph_map);
-        /**
-         * @var SpatieImage
-         */
+
         $image = $model
             ->addMediaFromDisk($filename, $toDisk)
             ->toMediaCollection($toDisk);
-
+        */
         return [
             'message' => 'ok',
             'status' => 200,
+            'disk_jpg' => $disk_jpg,
+            'file_jpg' => $file_jpg,
         ];
     }
 }
