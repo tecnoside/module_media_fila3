@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
@@ -40,6 +41,15 @@ class GetVideoScreenshotAction {
      * Execute the action.
      */
     public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, ?string $file_jpg = null): array {
+        if (! Storage::disk($disk_mp4)->exists($file_mp4)) {
+            return [
+                'message' => 'video not exists',
+                'status' => 500,
+                'disk_jpg' => $disk_jpg,
+                'file_jpg' => 'video_not_exists.jpg',
+            ];
+        }
+
         if (null == $file_jpg) {
             $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg).'.jpg';
