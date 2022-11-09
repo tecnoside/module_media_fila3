@@ -213,7 +213,7 @@ class Toolbar extends Component {
         // ExportClipJob::dispatch($this->model_class, $this->model_id, $this->rangeFrom, $this->rangeTo);
 
         $res = app(ExportPressClipAction::class)
-            ->execute($this->model_id, $this->rangeFrom, $this->rangeTo);
+            ->execute($this->model_id, $this->rangeFrom, $this->rangeTo, Auth::id());
     }
 
     /**
