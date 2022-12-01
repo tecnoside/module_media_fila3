@@ -55,29 +55,38 @@ class GetVideoScreenshotAction {
             $file_jpg = Str::slug($file_jpg).'.jpg';
         }
 
-        FFMpeg::fromDisk($disk_mp4)
-            ->open($file_mp4)
-            ->getFrameFromSeconds($time)
-            ->export()
-            ->toDisk($disk_jpg)
-            ->save($file_jpg);
+        try {
+            FFMpeg::fromDisk($disk_mp4)
+                ->open($file_mp4)
+                ->getFrameFromSeconds($time)
+                ->export()
+                ->toDisk($disk_jpg)
+                ->save($file_jpg);
+        } catch (\Exception $e) {
+            // dddx($e->getMessage());
+            return [
+                'message' => $e->getMessage(),
+                'status' => 500,
+                // 'disk_jpg' => $disk_jpg,
+                // 'file_jpg' => $file_jpg,
+            ];
+        }
+            /*
+            $morph_map = [
+                'media' => 'Modules\Mediamonitor\Models\Media',
+                'press' => 'Modules\Mediamonitor\Models\Press',
+            ];
+            Relation::morphMap($morph_map);
 
-        /*
-        $morph_map = [
-            'media' => 'Modules\Mediamonitor\Models\Media',
-            'press' => 'Modules\Mediamonitor\Models\Press',
-        ];
-        Relation::morphMap($morph_map);
-
-        $image = $model
-            ->addMediaFromDisk($filename, $toDisk)
-            ->toMediaCollection($toDisk);
-        */
-        return [
-            'message' => 'ok',
-            'status' => 200,
-            'disk_jpg' => $disk_jpg,
-            'file_jpg' => $file_jpg,
-        ];
+            $image = $model
+                ->addMediaFromDisk($filename, $toDisk)
+                ->toMediaCollection($toDisk);
+            */
+            return [
+                'message' => 'ok',
+                'status' => 200,
+                'disk_jpg' => $disk_jpg,
+                'file_jpg' => $file_jpg,
+            ];
     }
 }
