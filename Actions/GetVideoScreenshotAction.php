@@ -71,17 +71,7 @@ class GetVideoScreenshotAction {
                 // 'file_jpg' => $file_jpg,
             ];
         }
-            /*
-            $morph_map = [
-                'media' => 'Modules\Mediamonitor\Models\Media',
-                'press' => 'Modules\Mediamonitor\Models\Press',
-            ];
-            Relation::morphMap($morph_map);
 
-            $image = $model
-                ->addMediaFromDisk($filename, $toDisk)
-                ->toMediaCollection($toDisk);
-            */
             return [
                 'message' => 'ok',
                 'status' => 200,

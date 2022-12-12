@@ -23,7 +23,6 @@ use Modules\Media\Models\SpatieImage;
 use Modules\Mediamonitor\Actions\ExportPressClipAction;
 use Modules\Mediamonitor\Actions\ExportPressFrameAction;
 use Modules\Mediamonitor\Models\Press;
-use Modules\Mediamonitor\Services\PressService;
 use Modules\Tag\Models\Tag;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\MediaLibrary\HasMedia;

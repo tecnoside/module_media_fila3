@@ -7,7 +7,6 @@ namespace Modules\Media\Models;
 // use Spatie\MediaLibrary\Models\Media as BaseMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Lang\Models\Traits\LinkedTrait;
-use Modules\Mediamonitor\Models\Traits\HasDomains;
 use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
 use Spatie\ModelStatus\HasStatuses;
@@ -106,7 +105,8 @@ class SpatieImage extends BaseMedia {
     use HasStatuses;
     use HasTags; // spatie status
     // use HasDomains; //vecchio, non si usa più
-    use LinkedTrait; use Updater;
+    use LinkedTrait;
+    use Updater;
     /**
      * Indicates whether attributes are snake cased on arrays.
      *

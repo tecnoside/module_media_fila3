@@ -34,10 +34,4 @@ On Item
 
 Handler functionality:
 
-1. It connects to TMDB driver.
-
-The TMDB driver in Laravel is an add-on component for the Laravel web framework that provides functionality for using the The Movie Database (TMDB) API within a Laravel project.
-
-2. Gets the popular movies from TMDB
-3. For each movie, gets the detailed informations, its poster, etc..
-4. If it's a youtube video, it creates the model with its url in /Modules/Media/Models/Video.php
+1. 
