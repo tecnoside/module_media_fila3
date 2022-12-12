@@ -39,7 +39,7 @@ class TestVideoPlayerAction extends XotBasePanelAction {
             // 'afterglowplayer', //afterglowplayer.com Time to say goodbye.
             'flowplayer',
             'flowplayer.v1',
-            'flowplayer.v2',
+            // 'flowplayer.v2',
         ];
         $i = request('i', 0);
 
