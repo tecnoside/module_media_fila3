@@ -1,3 +1,12 @@
+---
+title: About Media
+description: About Media
+extends: _layouts.documentation
+section: content
+---
+
+# About Media {#about-media}
+
 Per creare la documentazione per un modulo Laravel ipotetico chiamato "module_media", potrebbero essere incluse le seguenti informazioni:
 
 - Introduzione: una breve descrizione delle funzionalità e delle opzioni offerte dal modulo.
