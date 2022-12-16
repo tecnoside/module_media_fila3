@@ -3,6 +3,9 @@ title: About Media
 description: About Media
 extends: _layouts.documentation
 section: content
+lang: it
+id: 1
+parent_id: 0
 ---
 
 # About Media {#about-media}

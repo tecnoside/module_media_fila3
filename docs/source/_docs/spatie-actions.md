@@ -3,6 +3,9 @@ title: Spatie Actions
 description: Spatie Actions
 extends: _layouts.documentation
 section: content
+lang: it
+id: 10
+parent_id: 0
 ---
 
 # Spatie Actions {#spatie-actions}

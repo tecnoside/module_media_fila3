@@ -3,6 +3,9 @@ title: Populate Video
 description: Populate Video Action
 extends: _layouts.documentation
 section: content
+lang: it
+id: 21
+parent_id: 8
 ---
 
 # Populate Video Action {#populate-video-action}

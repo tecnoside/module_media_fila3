@@ -3,6 +3,9 @@ title: Get Video Resized
 description: Get Video Resized Action
 extends: _layouts.documentation
 section: content
+lang: it
+id: 41
+parent_id: 10
 ---
 
 # Get Video Resized Action {#get-video-resized-action}

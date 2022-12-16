@@ -3,6 +3,9 @@ title: Download Video
 description: Download Video Action
 extends: _layouts.documentation
 section: content
+lang: it
+id: 20
+parent_id: 8
 ---
 
 # Download Video Action {#download-video-action}

@@ -3,6 +3,9 @@ title: Get Video Duration
 description: Get Video Duration Action
 extends: _layouts.documentation
 section: content
+lang: it
+id: 40
+parent_id: 10
 ---
 
 # Get Video Duration Action {#get-video-duration-action}

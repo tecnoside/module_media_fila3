@@ -3,6 +3,9 @@ title: Panel Actions
 description: Panel Actions
 extends: _layouts.documentation
 section: content
+lang: it
+id: 8
+parent_id: 0
 ---
 
 # Panel Actions {#panel-actions}

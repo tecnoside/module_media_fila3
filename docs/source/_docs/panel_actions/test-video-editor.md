@@ -3,6 +3,9 @@ title:  xxx
 description:  xxx Action
 extends: _layouts.documentation
 section: content
+lang: it
+id: 23
+parent_id: 8
 ---
 
 # xxx Action {#xxx-action}

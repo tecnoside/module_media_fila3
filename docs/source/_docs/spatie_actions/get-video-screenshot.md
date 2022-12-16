@@ -3,6 +3,9 @@ title: Get Video Screenshot
 description: Get Video Screenshot Action
 extends: _layouts.documentation
 section: content
+lang: it
+id: 42
+parent_id: 10
 ---
 
 # Get Video Screenshot Action {#get-video-screenshot-action}
