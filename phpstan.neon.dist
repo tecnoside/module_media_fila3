@@ -4,9 +4,13 @@ includes:
 parameters:
     level: 4
     paths:
-        - src
-        - config
-        - database
+        - .
+
+    excludePaths:
+        - ./vendor/*
+        - ./docs/*
+        - ./Tests/*
+        
     tmpDir: build/phpstan
     #checkOctaneCompatibility: true
     #checkModelProperties: true
