@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +16,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 /**
  * ---.
  */
-class StreamController extends Controller {
+class StreamController extends BaseController {
     /**
      * ---.
      */

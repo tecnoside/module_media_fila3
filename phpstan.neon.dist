@@ -12,6 +12,6 @@ parameters:
         - ./Tests/*
         
     tmpDir: build/phpstan
-    #checkOctaneCompatibility: true
-    #checkModelProperties: true
+    checkOctaneCompatibility: false
+    checkModelProperties: false
     checkMissingIterableValueType: false

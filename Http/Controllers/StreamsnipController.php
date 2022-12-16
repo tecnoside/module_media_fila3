@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -17,7 +16,7 @@ use Modules\Xot\Services\ArrayService;
 /**
  * ---.
  */
-class StreamsnipController extends Controller {
+class StreamsnipController extends BaseController {
     /**
      * ---.
      *
