@@ -18,6 +18,7 @@ return [
             'GetVideoDuration' => 'docs/spatie_actions/get-video-duration',
             'GetVideoResized' => 'docs/spatie_actions/get-video-resized',
             'GetVideoScreenshot' => 'docs/spatie_actions/get-video-screenshot',
+            'GetVideoFrameContent' => 'docs/spatie_actions/get-video-frame-content',
         ],
     ],
     'Panel Actions' => [
