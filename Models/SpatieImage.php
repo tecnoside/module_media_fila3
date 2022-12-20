@@ -57,7 +57,6 @@ use Spatie\Tags\HasTags; // spatie tags
  * @property \Illuminate\Database\Eloquent\Collection|\Spatie\ModelStatus\Status[] $statuses
  * @property int|null                                                              $statuses_count
  * @property int|null                                                              $tags_count
- *
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|static[] all($columns = ['*'])
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 currentStatus(...$names)
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|static[] get($columns = ['*'])
@@ -93,8 +92,8 @@ use Spatie\Tags\HasTags; // spatie tags
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 withAnyTagsOfAnyType($tags)
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 withPost(string $guid)
- *
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  */
 class SpatieImage extends BaseMedia {
     // use Searchable;

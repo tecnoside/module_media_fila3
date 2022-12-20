@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use Modules\Media\Models\Video;
 use Modules\Media\Services\ThemoviedbService;
-use Modules\Xot\Models\Panels\XotBasePanel;
+use Modules\Cms\Models\Panels\XotBasePanel;
 
 class VideoPanel extends XotBasePanel {
     /**
