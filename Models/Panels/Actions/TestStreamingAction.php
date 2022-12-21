@@ -8,7 +8,7 @@ namespace Modules\Media\Models\Panels\Actions;
 
 use Exception;
 use Modules\Media\Services\VideoStreaming;
-use Modules\Xot\Models\Panels\Actions\XotBasePanelAction;
+use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
 use Psr\Http\Message\ServerRequestInterface;
 use React\EventLoop\Factory;
 use React\Filesystem\Filesystem;
