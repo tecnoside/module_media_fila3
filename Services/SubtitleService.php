@@ -144,8 +144,8 @@ class SubtitleService {
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
-                $start = (int) ($attributes->start->__toString()) / 1000;
-                $end = (int) ($attributes->end->__toString()) / 1000;
+                $start = (int) $attributes->start->__toString() / 1000;
+                $end = (int) $attributes->end->__toString() / 1000;
                 // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
                 $tmp = [
                     // 'id' => $i++,

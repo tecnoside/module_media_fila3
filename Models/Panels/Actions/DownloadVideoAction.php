@@ -8,8 +8,8 @@ namespace Modules\Media\Models\Panels\Actions;
 
 // -------- services --------
 
-use Modules\Media\Jobs\DownloadVideo;
 use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
+use Modules\Media\Jobs\DownloadVideo;
 
 // -------- bases -----------
 

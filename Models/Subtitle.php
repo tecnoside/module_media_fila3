@@ -20,6 +20,7 @@ namespace Modules\Media\Models;
  * @property string|null                     $created_by
  * @property string|null                     $updated_by
  * @property string|null                     $guid
+ *
  * @method static \Modules\Media\Database\Factories\SubtitleFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle    newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle    newQuery()
@@ -37,6 +38,7 @@ namespace Modules\Media\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle    whereTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle    whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subtitle    whereUpdatedBy($value)
+ *
  * @mixin \Eloquent
  */
 class Subtitle extends BaseModel {

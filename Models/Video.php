@@ -35,6 +35,7 @@ namespace Modules\Media\Models;
  * @property string|null                     $guid
  * @property string|null                     $status
  * @property mixed|null                      $info
+ *
  * @method static \Modules\Media\Database\Factories\VideoFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Video    newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Video    newQuery()
@@ -65,6 +66,7 @@ namespace Modules\Media\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Video    whereVideo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Video    whereVoteAverage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Video    whereVoteCount($value)
+ *
  * @mixin \Eloquent
  */
 class Video extends BaseModel {

@@ -226,8 +226,8 @@ class VideoEditorSub extends Component {
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
                 // 00:06:35,360
-                $start = (int) ($item->attributes()->start->__toString()) / 1000;
-                $end = (int) ($item->attributes()->end->__toString()) / 1000;
+                $start = (int) $item->attributes()->start->__toString() / 1000;
+                $end = (int) $item->attributes()->end->__toString() / 1000;
 
                 // dddx([$start,$this->secondsToHms($start),$end,$this->secondsToHms($end)]);
 

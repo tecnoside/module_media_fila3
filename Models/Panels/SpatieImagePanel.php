@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Media\Models\Panels;
 
 use Illuminate\Http\Request;
-use Modules\Media\Models\SpatieImage;
+use Modules\Cms\Models\Panels\XotBasePanel;
 // --- Services --
 
+use Modules\Media\Models\SpatieImage;
 use Modules\Xot\Contracts\RowsContract;
-use Modules\Cms\Models\Panels\XotBasePanel;
 
 class SpatieImagePanel extends XotBasePanel {
     /**

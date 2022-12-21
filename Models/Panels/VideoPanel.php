@@ -7,9 +7,9 @@ namespace Modules\Media\Models\Panels;
 use Illuminate\Http\Request;
 // --- Services --
 
+use Modules\Cms\Models\Panels\XotBasePanel;
 use Modules\Media\Models\Video;
 use Modules\Media\Services\ThemoviedbService;
-use Modules\Cms\Models\Panels\XotBasePanel;
 
 class VideoPanel extends XotBasePanel {
     /**
