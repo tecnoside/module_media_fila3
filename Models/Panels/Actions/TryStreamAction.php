@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Str;
 use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
 use Modules\Media\Services\VideoStream;
-use Modules\Theme\Services\ThemeService;
+use Modules\UI\Services\ThemeService;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 // -------- bases -----------

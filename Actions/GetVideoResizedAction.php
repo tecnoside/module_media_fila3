@@ -40,9 +40,10 @@ class GetVideoResizedAction {
      * Execute the action.
      */
     public function execute(string $from_disk, string $from_file, int $width, int $height, string $to_disk, string $to_file): array {
+        
         FFMpeg::fromDisk($from_disk)
             ->open($from_file)
-            ->addFilter(function (VideoFilters $filters) {
+            ->addFilter(function (VideoFilters $filters) use($width,$height) {
                 $filters->resize(new \FFMpeg\Coordinate\Dimension($width, $height));
             })
             ->export()

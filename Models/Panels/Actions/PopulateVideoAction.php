@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
 use Modules\Media\Jobs\DownloadVideo;
 use Modules\Media\Models\Video;
-use Modules\Theme\Services\ThemeService;
+use Modules\UI\Services\ThemeService;
 
 // -------- bases -----------
 
