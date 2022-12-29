@@ -54,11 +54,12 @@ class AuthControllerClass extends BaseControllerClass {
     /**
      * Create user.
      *
+     * @param string|array $data
      * @param string $prefix
      *
      * @return array|bool
      */
-    public function createUser($data, $prefix = '') {
+    public function createUser($data, string $prefix = '') {
         if (! isset($data['email'])) {
             return false;
         }
