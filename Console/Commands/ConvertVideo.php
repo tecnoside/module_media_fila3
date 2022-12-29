@@ -18,7 +18,6 @@ class ConvertVideo extends Command {
      */
     protected $name = 'videosConvert';
 
-    private $timeout = 7200;
     /**
      * The console command description.
      *
@@ -88,17 +87,6 @@ class ConvertVideo extends Command {
             return false;
         }
 
-        // $model = Video::whereRaw('( status="'.Video::CONVERT_STATUS.'" OR status="'.Video::STATUS_FAILED.'" )')->first();
-
-        // if(!empty($model)){
-        // 	$model->status = Video::IN_PROCESS;
-        // 	$model->save();
-        // }
-        // if (!$model) {
-        // 	echo 'No video found';
-        // 	return false;
-        // }
-
         // Get Path of video
         $get_path_date = date_format(new DateTime($model->created_at), 'Y-m-d');
 
@@ -114,7 +102,7 @@ class ConvertVideo extends Command {
                 // $command = '/usr/local/bin/ffmpeg -y -i ' . $videoInput . ' -s 480x360  ' . $videoSD; //Convert to SD video
                 $command = 'cp '.$videoInput.' '.$videoSD; // Convert to SD video
                 $command .= ' &&  '.$ffmpegPath.' -y -i '.$videoInput.' -deinterlace -an -ss 5 -f mjpeg -t 1 -r 1 -y -s 640x360 '.$thumbnailPath.' 2>&1'; // create thumbnail
-                $process = new Process($command); // start process
+                $process = new Process([$command]); // start process
                 $process->setTimeout(7200);
                 $process->run(function ($type, $buffer) {
                     if (Process::ERR === $type) {
@@ -126,7 +114,7 @@ class ConvertVideo extends Command {
                 });
 
                 $durationCommand = $ffprobePath.' -v quiet -of csv=p=0 -show_entries format=duration '.$videoInput; // get video duration
-                $processDuration = new Process($durationCommand); // start  process
+                $processDuration = new Process([$durationCommand]); // start  process
                 $processDuration->setTimeout(7200);
                 $processDuration->run(function ($type, $buffer) {
                     if (Process::ERR === $type) {
@@ -141,7 +129,7 @@ class ConvertVideo extends Command {
                 }
 
                 $getFrame = $ffprobePath.' -i '.$videoInput.' -show_frames 2>&1 | grep -c media_type=video';
-                $processFrame = new Process($getFrame);
+                $processFrame = new Process([$getFrame]);
                 $processFrame->setTimeout(7200);
                 $processFrame->run(function ($type, $buffer) {
                     if (Process::ERR === $type) {
@@ -155,7 +143,7 @@ class ConvertVideo extends Command {
                 if ($processFrame->isSuccessful()) {
                     $frame = $processFrame->getOutput() / 100;
                     $imagePreview = $ffmpegPath.' -y -i '.$videoInput.' -frames 1 -q:v 1 -vf "select=not(mod(n\,'.(int) $frame.')),scale=-1:145,tile=12x1" '.$previewPath;
-                    $processPreview = new Process($imagePreview);
+                    $processPreview = new Process([$imagePreview]);
                     $processPreview->setTimeout(7200);
                     $processPreview->run();
                     if ($processPreview->isSuccessful()) {
@@ -185,7 +173,7 @@ class ConvertVideo extends Command {
                 }
             } else {
                 $conver_in_array = $ffmpegPath.' -y -i '.$videoInput.' -c:v libx264 '.$videoOutput;
-                $processConvert = new Process($conver_in_array);
+                $processConvert = new Process([$conver_in_array]);
                 $processConvert->setTimeout(7200);
                 $processConvert->run();
                 if ($processConvert->isSuccessful()) {
@@ -195,7 +183,7 @@ class ConvertVideo extends Command {
 
                 $command = $ffmpegPath.' -y -i '.$videoInput.' -s 480X360  '.$videoSD;
                 $command .= ' && '.$ffmpegPath.' -y -i '.$videoInput.' -deinterlace -an -ss 5 -f mjpeg -t 1 -r 1 -y -s 640x360 '.$thumbnailPath.' 2>&1';
-                $process = new Process($command);
+                $process = new Process([$command]);
                 $process->setTimeout(7200);
                 $process->run(function ($type, $buffer) {
                     if (Process::ERR === $type) {
@@ -207,7 +195,7 @@ class ConvertVideo extends Command {
                 });
 
                 $durationCommand = $ffprobePath.' -v quiet -of csv=p=0 -show_entries format=duration '.$videoInput;
-                $processDuration = new Process($durationCommand);
+                $processDuration = new Process([$durationCommand]);
                 $processDuration->setTimeout(7200);
                 $processDuration->run(function ($type, $buffer) {
                     if (Process::ERR === $type) {
@@ -222,7 +210,7 @@ class ConvertVideo extends Command {
                 }
 
                 $getFrame = $ffprobePath.' -i '.$videoInput.' -show_frames 2>&1 | grep -c media_type=video';
-                $processFrame = new Process($getFrame);
+                $processFrame = new Process([$getFrame]);
                 $processFrame->setTimeout(7200);
                 $processFrame->run(function ($type, $buffer) {
                     if (Process::ERR === $type) {
@@ -236,7 +224,7 @@ class ConvertVideo extends Command {
                 if ($processFrame->isSuccessful()) {
                     $frame = $processFrame->getOutput() / 100;
                     $imagePreview = $ffmpegPath.' -y -i '.$videoInput.' -frames 1 -q:v 1 -vf "select=not(mod(n\,'.(int) $frame.')),scale=-1:145,tile=12x1" '.$previewPath;
-                    $processPreview = new Process($imagePreview);
+                    $processPreview = new Process([$imagePreview]);
                     $processPreview->setTimeout(7200);
                     $processPreview->run();
                     if ($processPreview->isSuccessful()) {
@@ -266,6 +254,7 @@ class ConvertVideo extends Command {
                     throw new ProcessFailedException($process);
                 }
             }
+            return true;
         } catch (ProcessFailedException $e) {
             Log::error('ERR: '.$e);
 
