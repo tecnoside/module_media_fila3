@@ -15,7 +15,6 @@ class removeVideoCategoryEmptyCatId extends Command {
      */
     protected $name = 'videoCategory:removeEmptyCatId';
 
-    private $timeout = 7200;
     /**
      * The console command description.
      *

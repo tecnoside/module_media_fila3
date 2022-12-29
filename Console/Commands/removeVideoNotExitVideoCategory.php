@@ -14,7 +14,6 @@ class removeVideoNotExitVideoCategory extends Command {
      */
     protected $name = 'videoCategory:removeVideoNotExis';
 
-    private $timeout = 7200;
     /**
      * The console command description.
      *
