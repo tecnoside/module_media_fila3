@@ -32,10 +32,11 @@ class removeVideoCategoryEmptyCatId extends Command {
         parent::__construct();
     }
 
-    public function handle() {
+    public function handle():bool {
         DB::transaction(function () {
             $status = VideoCat::where('cat_id', 0)->delete();
             echo $status ? 'Success' : 'Fail';
         });
+        return true;
     }
 }

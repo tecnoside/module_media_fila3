@@ -113,7 +113,7 @@ class AuthControllerClass extends BaseControllerClass {
     /**
      * Authorization by Facebook.
      */
-    public function authFacebook() {
+    public function authFacebook():void {
         if (! isset($_GET['code'])) {
             self::redirectTo($this->config['base_url'].$this->config['home_url']);
         }
@@ -159,7 +159,7 @@ class AuthControllerClass extends BaseControllerClass {
     /**
      * Authorization by Google.
      */
-    public function authGoogle() {
+    public function authGoogle():void {
         $client = self::getGoogleClient();
 
         if (isset($_GET['code'])) {

@@ -104,7 +104,7 @@ class BaseControllerClass {
         return $output;
     }
 
-    public function dbInsert($storeName, $dataKey, $data) {
+    public function dbInsert($storeName, $dataKey, $data):void {
         $dataKey = $this->escapeKeyName($dataKey);
         $store = $this->dbGetStore($storeName);
         $store->set($dataKey, $data);
@@ -578,7 +578,7 @@ class BaseControllerClass {
      *
      * @param mixed $url
      */
-    public function getYoutubeId($url) {
+    public function getYoutubeId($url):string {
         // http://stackoverflow.com/a/10315969/2252921
         preg_match('/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/',
             $url, $founded);
@@ -674,7 +674,7 @@ class BaseControllerClass {
     }
 
     /**
-     * @return array|bool
+     * @return string|bool
      */
     public static function sessionGet($name) {
         return ! empty($_SESSION[$name])
@@ -682,16 +682,16 @@ class BaseControllerClass {
             : false;
     }
 
-    public static function sessionSet($name, $data) {
+    public static function sessionSet($name, $data):void {
         $_SESSION[$name] = $data;
     }
 
-    public static function sessionDelete($name) {
+    public static function sessionDelete($name):void {
         $_SESSION[$name] = null;
         unset($_SESSION[$name]);
     }
 
-    public static function setFlash($key, $value) {
+    public static function setFlash($key, $value):void {
         $current = self::sessionGet($key);
         if (! is_array($current)) {
             $current = [];
@@ -701,7 +701,7 @@ class BaseControllerClass {
     }
 
     /**
-     * @return array|bool
+     * @return string|bool
      */
     public static function getFlash($key) {
         $output = self::sessionGet($key);
@@ -713,7 +713,7 @@ class BaseControllerClass {
     /**
      * @param bool $permanent
      */
-    public static function redirectTo($redirectUrl, $permanent = false) {
+    public static function redirectTo($redirectUrl, $permanent = false):void {
         header('Location: '.$redirectUrl, true, $permanent ? 301 : 302);
         exit;
     }
@@ -721,7 +721,7 @@ class BaseControllerClass {
     /**
      * Log out.
      */
-    public static function logout() {
+    public static function logout():void {
         $_SESSION['user'] = null;
         unset($_SESSION['user']);
         self::redirectTo(str_replace('?action=logout', '', $_SERVER['REQUEST_URI']));
@@ -730,7 +730,7 @@ class BaseControllerClass {
     /**
      * Download file.
      */
-    public function downloadFile($filePath, $fileName = '') {
+    public function downloadFile($filePath, $fileName = ''):void {
         $pathInfo = pathinfo($filePath);
         $fileSize = filesize($filePath);
         if (! $fileName) {
@@ -775,7 +775,7 @@ class BaseControllerClass {
     /**
      * Get current site base URL.
      */
-    public static function getCurrentBaseUrl() {
+    public static function getCurrentBaseUrl():string {
         $requestScheme = ! empty($_SERVER['REQUEST_SCHEME']) ? $_SERVER['REQUEST_SCHEME'] : 'http';
         $domainName = $_SERVER['HTTP_HOST'];
         $baseUrl = ! empty($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '';
@@ -793,7 +793,7 @@ class BaseControllerClass {
     /**
      * @return mixed
      */
-    public function beautifyQuotes($str) {
+    public function beautifyQuotes($str):string {
         $str = preg_replace_callback(
             '#(([\"]{2,})|(?![^\W])(\"))|([^\s][\"]+(?![\w]))#u',
             function ($matches) {
@@ -819,7 +819,7 @@ class BaseControllerClass {
      *
      * @return bool
      */
-    public function logging($str, $userId = 0) {
+    public function logging($str, $userId = 0):bool {
         if ($userId) {
             $logFilePath = $this->getPublicPath('tmp_dir',
                 $userId).DIRECTORY_SEPARATOR.$this->config['log_filename'];
@@ -851,7 +851,7 @@ class BaseControllerClass {
     /**
      * @return bool
      */
-    public function is_running($pid) {
+    public function is_running($pid):bool {
         exec("ps $pid", $ProcessState);
 
         return count($ProcessState) >= 2;
@@ -860,7 +860,7 @@ class BaseControllerClass {
     /**
      * @return bool
      */
-    public function kill($pid) {
+    public function kill($pid):bool {
         if ($this->is_running($pid)) {
             exec("kill -KILL $pid");
 
@@ -875,7 +875,7 @@ class BaseControllerClass {
      *
      * @return string
      */
-    public function execInBackground($cmd) {
+    public function execInBackground($cmd):string{
         $pid = '';
         if ('Windows' == substr(php_uname(), 0, 7)) {
             pclose(popen('start /B '.$cmd, 'r'));

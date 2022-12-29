@@ -61,7 +61,7 @@ class ConvertVideo extends Command {
         return [];
     }
 
-    public function handle() {
+    public function handle():bool {
         $ffmpegPath = env('FFMPEG_PATH', '/usr/local/bin/ffmpeg');
         $ffprobePath = env('FFPROBE_PATH', '/usr/local/bin/ffprobe');
 

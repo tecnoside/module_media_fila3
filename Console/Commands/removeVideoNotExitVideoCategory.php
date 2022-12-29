@@ -31,11 +31,12 @@ class removeVideoNotExitVideoCategory extends Command {
         parent::__construct();
     }
 
-    public function handle() {
+    public function handle():bool {
         \DB::transaction(function () {
             $videos = Video::lists('string_id');
             $videoCatNotExits = VideoCat::whereNotIn('video_id', $videos)->delete();
             echo $videoCatNotExits ? 'Success' : 'Fail';
         });
+        return true;
     }
 }
