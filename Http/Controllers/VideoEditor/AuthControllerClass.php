@@ -368,8 +368,8 @@ class AuthControllerClass extends BaseControllerClass {
     public static function getGoogleClient() {
         $client = new \Google_Client();
         require \dirname(__DIR__, 2).'/config/config.php';
+        
         /* @var array $config */
-
         $client->setClientId($config['google_client_id']);
         $client->setClientSecret($config['google_secret_key']);
         $client->setRedirectUri(self::getReturnUrl().'&type=google');
