@@ -37,7 +37,6 @@ class VideoStream {
     /**
      * Undocumented function.
      *
-     * @param string $filePath
      *
      * @return void
      */
@@ -115,7 +114,7 @@ class VideoStream {
                 exit;
             }
             if ('-' === $range) {
-                $c_start = $this->size - substr($range, 1);
+                $c_start = $this->size - (int)substr($range, 1);
             } else {
                 $range = explode('-', $range);
                 $c_start = $range[0];
