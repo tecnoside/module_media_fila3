@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-2 order-md-10 text-right">
 
@@ -12,25 +11,25 @@
                     <?php echo 'lingua profile'; ?>
                 </a>
                 <?php if ('utente role' === 'admin') { ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo 'config base_urlconfig home_url'; ?>?action=users">
-                        <span class="icon-users"></span>
-                        <?php echo 'lingua users'; ?>
-                    </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?php echo 'config base_urlconfig home_url'; ?>?action=users">
+                    <span class="icon-users"></span>
+                    <?php echo 'lingua users'; ?>
+                </a>
                 <?php } ?>
                 <?php if ('opzioni utente show_log') { ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
-                        <span class="icon-file-text"></span>
-                        <?php echo 'lingua log'; ?>
-                    </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
+                    <span class="icon-file-text"></span>
+                    <?php echo 'lingua log'; ?>
+                </a>
                 <?php } ?>
                 <?php if ('config authentication') { ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo 'config base_urlconfig home_url'; ?>index.php?action=logout">
-                        <span class="icon-exit"></span>
-                        <?php echo 'lingua log_out'; ?>
-                    </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?php echo 'config base_urlconfig home_url'; ?>index.php?action=logout">
+                    <span class="icon-exit"></span>
+                    <?php echo 'lingua log_out'; ?>
+                </a>
                 <?php } ?>
             </div>
         </div>
@@ -45,7 +44,9 @@
     <div class="col-md-4 order-md-2">
         <div id="wve-user-stat">
             <div class="progress mt-3">
-                <div class="progress-bar <?php if ('opzioni utente files_size_percent' >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>" role="progressbar" style="width: <?php echo 'opzioni utente files_size_percent'; ?>%" aria-valuenow="<?php echo 'opzioni utente files_size_percent'; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar <?php if ('opzioni utente files_size_percent' >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>"
+                    role="progressbar" style="width: <?php echo 'opzioni utente files_size_percent'; ?>%" aria-valuenow="<?php echo 'opzioni utente files_size_percent'; ?>"
+                    aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="text-center small mb-3">
                 <?php echo 'lingua used'; ?>:
@@ -65,7 +66,8 @@
     <div class="col-md-4 order-md-last">
 
         <div class="form-group">
-            <button type="button" class="btn btn-lg btn-smp btn-outline-primary btn-block" data-toggle="action" data-action="import">
+            <button type="button" class="btn btn-lg btn-smp btn-outline-primary btn-block" data-toggle="action"
+                data-action="import">
                 <span class="icon-download"></span>
                 <?php echo 'lingua import_media'; ?>
             </button>
@@ -84,7 +86,8 @@
             <div class="card-body">
 
                 <div class="wve-editor-player">
-                    <video src="" preload="auto" width="400" height="360" class="d-block" id="wve-video"></video>
+                    <video src="" preload="auto" width="400" height="360" class="d-block"
+                        id="wve-video"></video>
                     <div class="wve-editor-player-panel" style="display: none;">
                         <div class="time" id="wve-editor-player-time"></div>
                         <div class="time time-current" id="wve-editor-player-time-current"></div>
@@ -113,7 +116,8 @@
                             <input type="text" class="form-control form-control-sm wve-time-input-in" value="">
                         </div>
                         <div class="col-5 pl-1 pr-1">
-                            <input type="text" class="form-control form-control-sm wve-time-input-out" value="">
+                            <input type="text" class="form-control form-control-sm wve-time-input-out"
+                                value="">
                         </div>
                         <div class="col-2 pl-1 pr-1">
                             <button type="button" class="btn btn-outline-light btn-block text-center p-1">
@@ -132,16 +136,20 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="btn-group btn-group-justified btn-group-lg my-2" role="group">
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="stepback_main" title="<?php echo 'lingua step_back'; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="stepback_main" title="<?php echo 'lingua step_back'; ?>">
                         <span class="icon-arrow-left2"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="play_main" title="<?php echo 'lingua play'; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="play_main" title="<?php echo 'lingua play'; ?>">
                         <span class="icon-play3"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="stepforward_main" title="<?php echo 'lingua step_forward'; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="stepforward_main" title="<?php echo 'lingua step_forward'; ?>">
                         <span class="icon-arrow-right2"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="play_selected" title="<?php echo 'lingua play_episode'; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="play_selected" title="<?php echo 'lingua play_episode'; ?>">
                         <span class="icon-play2"></span>
                     </button>
                 </div>
@@ -153,10 +161,12 @@
 
                 <div class="my-2">
                     <div class="btn-group btn-group-justified btn-group-lg margin-bottom-md" role="group">
-                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="take-episode" title="<?php echo 'lingua take_episode'; ?>">
+                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                            data-action="take-episode" title="<?php echo 'lingua take_episode'; ?>">
                             <span class="icon-plus"></span>
                         </button>
-                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="cut-fast" title="<?php echo 'lingua cut_fast'; ?>">
+                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                            data-action="cut-fast" title="<?php echo 'lingua cut_fast'; ?>">
                             <span class="icon-scissors"></span>
                         </button>
                     </div>
@@ -167,7 +177,8 @@
             <div class="col-lg-4 col-sm-6">
 
                 <div class="my-2">
-                    <button type="button" class="btn btn-block btn-lg btn-smp btn-outline-primary" data-toggle="action" data-action="render">
+                    <button type="button" class="btn btn-block btn-lg btn-smp btn-outline-primary"
+                        data-toggle="action" data-action="render">
                         <span class="icon-checkmark"></span>
                         <?php echo 'lingua create_video'; ?>
                     </button>
@@ -216,9 +227,9 @@
 {{-- per aggiungere javascript e css come files --}}
 {{-- per le immagini è theme assets --}}
 {{-- per script e css inline è @push('scripts') e @push('styles') --}}
-{{Theme::add('theme::components.video_editor.css.icomoon/style.css')}}
-{{Theme::add('theme::components.video_editor.css/styles.css')}}
-{{Theme::add('theme::components.video_editor.js/webvideoedit.js')}}
+{{ Theme::add('ui::components.video_editor.css.icomoon/style.css') }}
+{{ Theme::add('ui::components.video_editor.css/styles.css') }}
+{{ Theme::add('ui::components.video_editor.js/webvideoedit.js') }}
 
 @push('scripts')
     <script>

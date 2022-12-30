@@ -46,6 +46,7 @@ if ($config_component['authentication']) {
         // BaseController::redirectTo($config_component['base_url']);
     }
 }*/
+
 ?>
 
 <!--
@@ -80,9 +81,9 @@ if ($config_component['authentication']) {
 
             <?php
             /*echo '<pre>';
-                                                                                                echo var_export('theme::components.video-editor.custom.templates.'.$action.'',true);
+                                                                                                echo var_export('ui::components.video-editor.custom.templates.'.$action.'',true);
                                                                                                 echo '</pre>';*/
-?>
+            ?>
 
             @if (View::exists($included_view))
                 @include($included_view)
@@ -90,13 +91,13 @@ if ($config_component['authentication']) {
                 @include('media::components.video-editor.custom.templates.default')
             @endif
             <?php
-/* sostituito tutto con l'include sopra */
-/*if(file_exists( $config_component['root_path'] . "templates/{$action}.html.php")) {
+            /* sostituito tutto con l'include sopra */
+            /*if(file_exists( $config_component['root_path'] . "templates/{$action}.html.php")) {
                                                                                                                                                                     include $config_component['root_path'] . "templates/{$action}.html.php";
                                                                                                                                                                 } else {
                                                                                                                                                                     include $config_component['root_path'] . "templates/default.html.php";
                                                                                                                                                                 }*/
-?>
+            ?>
 
         </div>
     </div>
@@ -105,7 +106,7 @@ if ($config_component['authentication']) {
 
 <?php
 /*echo '<pre>';
-echo var_export('theme::components.video-editor.custom.templates.'.$action.'_templates',true);
+echo var_export('ui::components.video-editor.custom.templates.'.$action.'_templates',true);
 echo '</pre>';*/
 ?>
 
@@ -158,7 +159,6 @@ echo '</pre>';*/
 
 
 @push('scripts')
-
     <script>
         $(document).ready(() => {
             var LANG = {
@@ -305,5 +305,4 @@ echo '</pre>';*/
 
         });
     </script>
-
 @endpush
