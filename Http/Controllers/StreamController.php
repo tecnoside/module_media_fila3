@@ -25,7 +25,7 @@ class StreamController extends BaseController {
          * @var class-string
          */
         $press_class = config('morph_map.press');
-        if (null === $press_class) {
+        if (null == $press_class) {
             throw new Exception('add media class to config morph_map');
         }
         $press = $press_class::find($press_id);

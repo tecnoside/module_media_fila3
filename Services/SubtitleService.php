@@ -81,7 +81,7 @@ class SubtitleService {
         $xmlObject = simplexml_load_string($content);
         if (false === $xmlObject) {
             return '';
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            //throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $txt = '';
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
@@ -116,9 +116,11 @@ class SubtitleService {
         $path = realpath($this->file_path);
         if (false === $path) {
             return '';
+            /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
                 file_path:['.$this->file_path.']'.PHP_EOL.'
                 ['.__LINE__.']['.__FILE__.']'.PHP_EOL);
+            */
         }
         $content = File::get($path);
 
