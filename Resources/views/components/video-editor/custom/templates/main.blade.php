@@ -2,7 +2,7 @@
 
 /* use App\Controller\BaseControllerClass as BaseController; */
 
-use Modules\Theme\Http\Controllers\VideoEditor\BaseControllerClass as BaseController;
+use Modules\UI\Http\Controllers\VideoEditor\BaseControllerClass as BaseController;
 
 /** @var array $config */
 /** @var array $user */
@@ -10,11 +10,8 @@ use Modules\Theme\Http\Controllers\VideoEditor\BaseControllerClass as BaseContro
 $userOptions = [
     'files_size_total' => BaseController::sizeFormat($user['files_size_total']),
     'files_size_max' => BaseController::sizeFormat($user['files_size_max']),
-    'files_size_percent' => floor($user['files_size_total'] / $user['files_size_max'] * 100),
-    'show_log' => ! empty($config_component['users_restrictions'][$user['role']])
-        && isset($config_component['users_restrictions'][$user['role']]['show_log'])
-            ? $config_component['users_restrictions'][$user['role']]['show_log']
-            : true,
+    'files_size_percent' => floor(($user['files_size_total'] / $user['files_size_max']) * 100),
+    'show_log' => !empty($config_component['users_restrictions'][$user['role']]) && isset($config_component['users_restrictions'][$user['role']]['show_log']) ? $config_component['users_restrictions'][$user['role']]['show_log'] : true,
 ];
 
 ?>
@@ -31,25 +28,25 @@ $userOptions = [
                     <?php echo $lang_arr['profile']; ?>
                 </a>
                 <?php if ('admin' === $user['role']) { ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
-                        <span class="icon-users"></span>
-                        <?php echo $lang_arr['users']; ?>
-                    </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=users">
+                    <span class="icon-users"></span>
+                    <?php echo $lang_arr['users']; ?>
+                </a>
                 <?php } ?>
                 <?php if ($userOptions['show_log']) { ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
-                        <span class="icon-file-text"></span>
-                        <?php echo $lang_arr['log']; ?>
-                    </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
+                    <span class="icon-file-text"></span>
+                    <?php echo $lang_arr['log']; ?>
+                </a>
                 <?php } ?>
                 <?php if ($config_component['authentication']) { ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>index.php?action=logout">
-                        <span class="icon-exit"></span>
-                        <?php echo $lang_arr['log_out']; ?>
-                    </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>index.php?action=logout">
+                    <span class="icon-exit"></span>
+                    <?php echo $lang_arr['log_out']; ?>
+                </a>
                 <?php } ?>
             </div>
         </div>
@@ -64,7 +61,9 @@ $userOptions = [
     <div class="col-md-4 order-md-2">
         <div id="wve-user-stat">
             <div class="progress mt-3">
-                <div class="progress-bar <?php if ($userOptions['files_size_percent'] >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>" role="progressbar" style="width: <?php echo $userOptions['files_size_percent']; ?>%" aria-valuenow="<?php echo $userOptions['files_size_percent']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar <?php if ($userOptions['files_size_percent'] >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>"
+                    role="progressbar" style="width: <?php echo $userOptions['files_size_percent']; ?>%" aria-valuenow="<?php echo $userOptions['files_size_percent']; ?>"
+                    aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="text-center small mb-3">
                 <?php echo $lang_arr['used']; ?>:
@@ -103,7 +102,8 @@ $userOptions = [
             <div class="card-body">
 
                 <div class="wve-editor-player">
-                    <video src="" preload="auto" width="400" height="360" class="d-block" id="wve-video"></video>
+                    <video src="" preload="auto" width="400" height="360" class="d-block"
+                        id="wve-video"></video>
                     <div class="wve-editor-player-panel" style="display: none;">
                         <div class="time" id="wve-editor-player-time"></div>
                         <div class="time time-current" id="wve-editor-player-time-current"></div>
@@ -132,7 +132,8 @@ $userOptions = [
                             <input type="text" class="form-control form-control-sm wve-time-input-in" value="">
                         </div>
                         <div class="col-5 pl-1 pr-1">
-                            <input type="text" class="form-control form-control-sm wve-time-input-out" value="">
+                            <input type="text" class="form-control form-control-sm wve-time-input-out"
+                                value="">
                         </div>
                         <div class="col-2 pl-1 pr-1">
                             <button type="button" class="btn btn-outline-light btn-block text-center p-1">
@@ -151,16 +152,20 @@ $userOptions = [
         <div class="row">
             <div class="col-lg-6">
                 <div class="btn-group btn-group-justified btn-group-lg my-2" role="group">
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="stepback_main" title="<?php echo $lang_arr['step_back']; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="stepback_main" title="<?php echo $lang_arr['step_back']; ?>">
                         <span class="icon-arrow-left2"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="play_main" title="<?php echo $lang_arr['play']; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="play_main" title="<?php echo $lang_arr['play']; ?>">
                         <span class="icon-play3"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="stepforward_main" title="<?php echo $lang_arr['step_forward']; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="stepforward_main" title="<?php echo $lang_arr['step_forward']; ?>">
                         <span class="icon-arrow-right2"></span>
                     </button>
-                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="play_selected" title="<?php echo $lang_arr['play_episode']; ?>">
+                    <button type="button" class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                        data-action="play_selected" title="<?php echo $lang_arr['play_episode']; ?>">
                         <span class="icon-play2"></span>
                     </button>
                 </div>
@@ -172,10 +177,12 @@ $userOptions = [
 
                 <div class="my-2">
                     <div class="btn-group btn-group-justified btn-group-lg margin-bottom-md" role="group">
-                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="take-episode" title="<?php echo $lang_arr['take_episode']; ?>">
+                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                            data-action="take-episode" title="<?php echo $lang_arr['take_episode']; ?>">
                             <span class="icon-plus"></span>
                         </button>
-                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action" data-action="cut-fast" title="<?php echo $lang_arr['cut_fast']; ?>">
+                        <button class="btn btn-outline-primary toggle-tooltip" data-toggle="action"
+                            data-action="cut-fast" title="<?php echo $lang_arr['cut_fast']; ?>">
                             <span class="icon-scissors"></span>
                         </button>
                     </div>
@@ -186,7 +193,8 @@ $userOptions = [
             <div class="col-lg-4 col-sm-6">
 
                 <div class="my-2">
-                    <button type="button" class="btn btn-block btn-lg btn-smp btn-outline-primary" data-toggle="action" data-action="render">
+                    <button type="button" class="btn btn-block btn-lg btn-smp btn-outline-primary"
+                        data-toggle="action" data-action="render">
                         <span class="icon-checkmark"></span>
                         <?php echo $lang_arr['create_video']; ?>
                     </button>
