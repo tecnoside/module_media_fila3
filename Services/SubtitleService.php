@@ -81,7 +81,7 @@ class SubtitleService {
         $xmlObject = simplexml_load_string($content);
         if (false === $xmlObject) {
             return '';
-            //throw new Exception('['.__LINE__.']['.__FILE__.']');
+            // throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $txt = '';
         foreach ($xmlObject->annotation->type->sentence as $sentence) {

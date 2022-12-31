@@ -37,7 +37,6 @@ class VideoStream {
     /**
      * Undocumented function.
      *
-     *
      * @return void
      */
     public function __construct(string $disk, string $path) {
@@ -51,8 +50,8 @@ class VideoStream {
             ]);
         }
         $this->vars['stream'] = $storage->readStream($path);
-        $mime=$storage->mimeType($path);
-        if(!is_string($mime)){
+        $mime = $storage->mimeType($path);
+        if (! is_string($mime)) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->mime = $mime;
@@ -68,13 +67,13 @@ class VideoStream {
      *
      * @return void
      */
-    //private function open() {
+    // private function open() {
         /*
         if (!($this->vars['stream'] = fopen($this->path, 'rb'))) {
             die('Could not open stream for reading');
         }
         */
-    //}
+    // }
 
     /**
      * Set proper header to serve the video content.
@@ -118,7 +117,7 @@ class VideoStream {
                 exit;
             }
             if ('-' === $range) {
-                $c_start = $this->size - (int)substr($range, 1);
+                $c_start = $this->size - (int) substr($range, 1);
             } else {
                 $range = explode('-', $range);
                 $c_start = $range[0];
@@ -166,7 +165,7 @@ class VideoStream {
             if (($i + $bytesToRead) > $this->end) {
                 $bytesToRead = $this->end - $i + 1;
             }
-            //169    Parameter #2 $length of function fread expects int<0, max>, int given.
+            // 169    Parameter #2 $length of function fread expects int<0, max>, int given.
             $data = fread($this->vars['stream'], $bytesToRead);
             echo $data;
             flush();

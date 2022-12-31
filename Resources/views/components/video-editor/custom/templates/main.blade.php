@@ -11,7 +11,7 @@ $userOptions = [
     'files_size_total' => BaseController::sizeFormat($user['files_size_total']),
     'files_size_max' => BaseController::sizeFormat($user['files_size_max']),
     'files_size_percent' => floor(($user['files_size_total'] / $user['files_size_max']) * 100),
-    'show_log' => !empty($config_component['users_restrictions'][$user['role']]) && isset($config_component['users_restrictions'][$user['role']]['show_log']) ? $config_component['users_restrictions'][$user['role']]['show_log'] : true,
+    'show_log' => ! empty($config_component['users_restrictions'][$user['role']]) && isset($config_component['users_restrictions'][$user['role']]['show_log']) ? $config_component['users_restrictions'][$user['role']]['show_log'] : true,
 ];
 
 ?>
@@ -29,7 +29,7 @@ $userOptions = [
                 </a>
                 <?php if ('admin' === $user['role']) { ?>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>?action=users">
+                <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
                     <span class="icon-users"></span>
                     <?php echo $lang_arr['users']; ?>
                 </a>
@@ -43,7 +43,7 @@ $userOptions = [
                 <?php } ?>
                 <?php if ($config_component['authentication']) { ?>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?php echo $config_component['base_url'] . $config_component['home_url']; ?>index.php?action=logout">
+                <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>index.php?action=logout">
                     <span class="icon-exit"></span>
                     <?php echo $lang_arr['log_out']; ?>
                 </a>

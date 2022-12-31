@@ -83,7 +83,7 @@ if ($config_component['authentication']) {
             /*echo '<pre>';
                                                                                                 echo var_export('ui::components.video-editor.custom.templates.'.$action.'',true);
                                                                                                 echo '</pre>';*/
-            ?>
+?>
 
             @if (View::exists($included_view))
                 @include($included_view)
@@ -91,13 +91,13 @@ if ($config_component['authentication']) {
                 @include('media::components.video-editor.custom.templates.default')
             @endif
             <?php
-            /* sostituito tutto con l'include sopra */
-            /*if(file_exists( $config_component['root_path'] . "templates/{$action}.html.php")) {
-                                                                                                                                                                    include $config_component['root_path'] . "templates/{$action}.html.php";
-                                                                                                                                                                } else {
-                                                                                                                                                                    include $config_component['root_path'] . "templates/default.html.php";
-                                                                                                                                                                }*/
-            ?>
+/* sostituito tutto con l'include sopra */
+/*if(file_exists( $config_component['root_path'] . "templates/{$action}.html.php")) {
+                                                                                                                                                        include $config_component['root_path'] . "templates/{$action}.html.php";
+                                                                                                                                                    } else {
+                                                                                                                                                        include $config_component['root_path'] . "templates/default.html.php";
+                                                                                                                                                    }*/
+?>
 
         </div>
     </div>
