@@ -38,7 +38,10 @@ class GetVideoDurationAction {
     /**
      * Execute the action.
      */
-    public function execute(string $disk, string $path): int {
+    public function execute(string $disk, ?string $path): int {
+        if($path==null){
+            return -1;
+        }
         // ffprobe -i <file> -show_entries format=duration -v quiet -of csv="p=0"
         $duration = FFMpeg::fromDisk($disk)
             ->open($path)
