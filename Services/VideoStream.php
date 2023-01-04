@@ -161,7 +161,7 @@ class VideoStream {
         $i = $this->start;
         set_time_limit(0);
         while (! feof($this->vars['stream']) && $i <= $this->end) {
-            /** @var int $bytesToRead */
+            /** @var int<0, max> $bytesToRead */
             $bytesToRead = $this->buffer;
             if (($i + $bytesToRead) > $this->end) {
                 $bytesToRead = $this->end - $i + 1;
