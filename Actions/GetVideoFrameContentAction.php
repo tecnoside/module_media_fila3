@@ -30,13 +30,15 @@ class GetVideoFrameContentAction {
      */
     public function execute(string $disk_mp4, string $file_mp4, int $time): string {
         if (! Storage::disk($disk_mp4)->exists($file_mp4)) {
-            $msg = [
+            /*$msg = [
                 'message' => 'video not exists',
                 'status' => 500,
                 'disk_mp4' => $disk_mp4,
                 'file_mp4' => $file_mp4,
             ];
-            throw new Exception(implode(PHP_EOL, $msg));
+            throw new Exception(implode(PHP_EOL, $msg));*/
+
+            return '';
         }
 
         $res = FFMpeg::fromDisk($disk_mp4)
