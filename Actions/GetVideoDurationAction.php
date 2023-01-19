@@ -39,7 +39,7 @@ class GetVideoDurationAction {
      * Execute the action.
      */
     public function execute(string $disk, ?string $path): int {
-        if($path==null){
+        if (null == $path) {
             return -1;
         }
         // ffprobe -i <file> -show_entries format=duration -v quiet -of csv="p=0"
