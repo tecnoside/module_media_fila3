@@ -6,3 +6,4 @@
     collection="images" 
     />
 @endsection
+{{ Theme::add('media::css/media.css') }}
