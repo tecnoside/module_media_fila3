@@ -1,2 +1,8 @@
-media::admin.media.index
-media::admin.media.index
+@extends('adm_theme::layouts.app')
+@section('content')
+    <x-media.index
+    name="images"
+    :model="$_panel->getParent()->row"
+    collection="images" 
+    />
+@endsection
