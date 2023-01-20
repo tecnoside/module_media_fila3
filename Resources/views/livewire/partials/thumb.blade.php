@@ -10,7 +10,7 @@
         </span>
     @endif
 
-    <livewire:media-library-uploader
+    <livewire:media.uploader
         :key="'thumb-uploader' . $mediaItem->uuid"
         :name="$this->name"
         :rules="$rules"

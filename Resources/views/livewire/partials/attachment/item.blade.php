@@ -1,9 +1,9 @@
 <div class="media-library-item" wire:key="item-{{ $mediaItem->uuid }}">
-    @include('media-library::livewire.partials.thumb')
+    @include('media::livewire.partials.thumb')
 
     <div class="media-library-properties">
         @if((! $mediaItem->hideError) && ($mediaItem->uploadError || $errors->has($mediaItem->errorName())))
-            @include('media-library::livewire.partials.item-error', ['message' => $mediaItem->uploadError ?? $errors->first($mediaItem->errorName())])
+            @include('media::livewire.partials.item-error', ['message' => $mediaItem->uploadError ?? $errors->first($mediaItem->errorName())])
         @else
             @include($propertiesView)
 
@@ -15,5 +15,5 @@
         @endif
     </div>
 
-    @include('media-library::livewire.partials.hidden-fields')
+    @include('media::livewire.partials.hidden-fields')
 </div>

@@ -46,7 +46,7 @@
             <div class="media-library-help" wire:loading.remove>
                 <div x-show="@this.data.uploadError">
                     @if($uploadError)
-                        @include('media-library::livewire.partials.item-error', ['message' => $uploadError])
+                        @include('media::livewire.partials.item-error', ['message' => $uploadError])
                     @endif
                 </div>
 

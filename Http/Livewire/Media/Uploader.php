@@ -79,7 +79,7 @@ class Uploader extends Component {
         try {
             $this->validate([
                 $field => $this->rules,
-            ], ["{$field}.mimes" => __('media-library::validation.type')]);
+            ], ["{$field}.mimes" => __('media::validation.type')]);
         } catch (ValidationException $validationException) {
             $uploadError = Arr::flatten($validationException->errors())[0];
 
