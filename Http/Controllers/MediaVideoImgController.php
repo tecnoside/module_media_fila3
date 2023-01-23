@@ -14,7 +14,7 @@ use Modules\Media\Actions\GetVideoFrameContentAction;
 class MediaVideoImgController extends Controller {
     public function getSecond($second) {
         $disk = 'cache';
-        $file = 'test01.mp4';
+        $file = 'test.mp4';
         $cache_key = Str::slug($disk.'-'.$file.'-'.$second);
         $bin = Cache::rememberForever($cache_key, function () use ($disk, $file, $second) {
             $binaryImageContent = app(GetVideoFrameContentAction::class)->execute($disk, $file, (int) $second);
