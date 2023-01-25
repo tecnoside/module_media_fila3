@@ -16,11 +16,13 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 /**
  * ---.
  */
-class StreamController extends BaseController {
+class StreamController extends BaseController
+{
     /**
      * ---.
      */
-    public function __invoke(int $press_id): StreamedResponse {
+    public function __invoke(int $press_id): StreamedResponse
+    {
         /**
          * @var class-string
          */

@@ -8,13 +8,16 @@ use Illuminate\Contracts\Validation\Rule;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\File;
 
-class MaxTotalSizeInKbRule implements Rule {
+class MaxTotalSizeInKbRule implements Rule
+{
     protected int $actualTotalSizeInKb;
 
-    public function __construct(protected int $maxTotalSizeInKb) {
+    public function __construct(protected int $maxTotalSizeInKb)
+    {
     }
 
-    public function passes($attribute, $uploadedItems): bool {
+    public function passes($attribute, $uploadedItems): bool
+    {
         $uuids = collect($uploadedItems)
             ->map(fn (array $uploadedItemAttributes) => $uploadedItemAttributes['uuid'])
             ->toArray();
@@ -26,7 +29,8 @@ class MaxTotalSizeInKbRule implements Rule {
         return $this->actualTotalSizeInKb <= ($this->maxTotalSizeInKb * 1024);
     }
 
-    public function message(): string {
+    public function message(): string
+    {
         return __('media-library::validation.total_upload_size_too_high', [
             'max' => File::getHumanReadableSize($this->maxTotalSizeInKb * 1024),
             'maxInKb' => $this->maxTotalSizeInKb,

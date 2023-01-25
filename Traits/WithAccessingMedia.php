@@ -7,8 +7,10 @@ namespace Modules\Media\Traits;
 use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
 
-trait WithAccessingMedia {
-    protected function getMedia(string $name, HasMedia $model, string $collection): array {
+trait WithAccessingMedia
+{
+    protected function getMedia(string $name, HasMedia $model, string $collection): array
+    {
         return old($name) ? old($name) : $model
             ->getMedia($collection)
             ->map(function (Media $media) {

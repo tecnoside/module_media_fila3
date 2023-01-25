@@ -10,7 +10,8 @@ use Illuminate\Support\ViewErrorBag;
 use Livewire\Component;
 use Modules\Media\Dto\ViewMediaItem;
 
-class Index extends Component {
+class Index extends Component
+{
     public $name;
     public $multiple;
     public $sortable;
@@ -59,7 +60,8 @@ class Index extends Component {
         $this->listErrorMessage = $this->determineListErrorMessage();
     }
 
-    protected function getListeners() {
+    protected function getListeners()
+    {
         return [
             "{$this->name}:fileAdded" => 'onFileAdded',
             "{$this->name}:uploadError" => 'onUploadError',
@@ -69,7 +71,8 @@ class Index extends Component {
         ];
     }
 
-    public function onFileAdded(array $newMediaItem): void {
+    public function onFileAdded(array $newMediaItem): void
+    {
         if (! $this->allowsUpload($newMediaItem)) {
             return;
         }
@@ -88,7 +91,8 @@ class Index extends Component {
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function remove(string $uuid): void {
+    public function remove(string $uuid): void
+    {
         $this->media = collect($this->media)
             ->reject(fn (array $mediaItem) => $mediaItem['uuid'] === $uuid)
             ->toArray();
@@ -96,7 +100,8 @@ class Index extends Component {
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function allowsUpload(array $mediaItem): bool {
+    public function allowsUpload(array $mediaItem): bool
+    {
         if ($this->isReplacing($mediaItem)) {
             return true;
         }
@@ -104,7 +109,8 @@ class Index extends Component {
         return $this->allowsUploads();
     }
 
-    public function allowsUploads(): bool {
+    public function allowsUploads(): bool
+    {
         if (is_null($this->maxItems)) {
             return true;
         }
@@ -112,7 +118,8 @@ class Index extends Component {
         return (is_countable($this->media) ? count($this->media) : 0) < $this->maxItems;
     }
 
-    public function isReplacing(array $newMediaItem): bool {
+    public function isReplacing(array $newMediaItem): bool
+    {
         if (! $newMediaItem['oldUuid']) {
             return false;
         }
@@ -121,7 +128,8 @@ class Index extends Component {
             ->contains(fn (array $existingMediaItem): bool => $existingMediaItem['uuid'] === $newMediaItem['oldUuid']);
     }
 
-    public function hideError(string $uuid) {
+    public function hideError(string $uuid)
+    {
         if (! isset($this->media[$uuid])) {
             return;
         }
@@ -129,7 +137,8 @@ class Index extends Component {
         $this->media[$uuid]['hideError'] = true;
     }
 
-    public function determineListErrorMessage(MessageBag $viewErrorBag = null): ?string {
+    public function determineListErrorMessage(MessageBag $viewErrorBag = null): ?string
+    {
         if ($viewErrorBag) {
             return $viewErrorBag->first($this->name);
         }
@@ -143,11 +152,13 @@ class Index extends Component {
         return $errors->first($this->name);
     }
 
-    public function clearListErrorMessage() {
+    public function clearListErrorMessage()
+    {
         $this->listErrorMessage = null;
     }
 
-    public function onUploadError(string $uuid, string $uploadError) {
+    public function onUploadError(string $uuid, string $uploadError)
+    {
         if (! isset($this->media[$uuid])) {
             return;
         }
@@ -155,11 +166,13 @@ class Index extends Component {
         $this->media[$uuid]['uploadError'] = $uploadError;
     }
 
-    public function onShowListErrorMessage(string $message) {
+    public function onShowListErrorMessage(string $message)
+    {
         $this->listErrorMessage = $message;
     }
 
-    public function onMediaComponentValidationErrors(string $componentName, array $validationErrors) {
+    public function onMediaComponentValidationErrors(string $componentName, array $validationErrors)
+    {
         if ($componentName !== $this->name) {
             return;
         }
@@ -175,7 +188,8 @@ class Index extends Component {
         $this->validationErrors = $messageBag;
     }
 
-    public function onClearMedia(string $componentName): void {
+    public function onClearMedia(string $componentName): void
+    {
         if ($componentName !== $this->name) {
             return;
         }
@@ -186,19 +200,22 @@ class Index extends Component {
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setMediaProperty(string $uuid, string $attributeName, $value) {
+    public function setMediaProperty(string $uuid, string $attributeName, $value)
+    {
         $this->media[$uuid][$attributeName] = $value;
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setCustomProperty(string $uuid, string $customPropertyName, $value) {
+    public function setCustomProperty(string $uuid, string $customPropertyName, $value)
+    {
         Arr::set($this->media, "{$uuid}.custom_properties.{$customPropertyName}", $value);
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setNewOrder(array $newOrder) {
+    public function setNewOrder(array $newOrder)
+    {
         foreach ($newOrder as $newOrderItem) {
             Arr::set($this->media, "{$newOrderItem['uuid']}.order", $newOrderItem['order']);
         }
@@ -210,7 +227,8 @@ class Index extends Component {
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function render() {
+    public function render()
+    {
         return view($this->view, [
             'errors' => $this->validationErrors,
             'sortedMedia' => collect($this->media)

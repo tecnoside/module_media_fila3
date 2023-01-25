@@ -16,14 +16,16 @@ use Modules\UI\Services\ThemeService;
 /**
  * Class TestAction.
  */
-class TestVideoPlayerAction extends XotBasePanelAction {
+class TestVideoPlayerAction extends XotBasePanelAction
+{
     public bool $onItem = true;
     public string $icon = '<i class="fab fa-youtube"></i>';
 
     /**
      * @return mixed
      */
-    public function handle() {
+    public function handle()
+    {
         $video_players = [
             'plyr_io',
             // 'plyr_io.viola',

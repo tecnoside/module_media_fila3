@@ -6,10 +6,12 @@ namespace Modules\Media\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class FileExtensionRule implements Rule {
+class FileExtensionRule implements Rule
+{
     protected array $validExtensions = [];
 
-    public function __construct(array $validExtensions = []) {
+    public function __construct(array $validExtensions = [])
+    {
         $this->validExtensions = array_map(
             fn (string $extension) => strtolower($extension),
             $validExtensions,
@@ -20,7 +22,8 @@ class FileExtensionRule implements Rule {
      * @param string                        $attribute
      * @param \Illuminate\Http\UploadedFile $value
      */
-    public function passes($attribute, $value): bool {
+    public function passes($attribute, $value): bool
+    {
         return in_array(
             strtolower($value->getClientOriginalExtension()),
             $this->validExtensions,
@@ -28,7 +31,8 @@ class FileExtensionRule implements Rule {
         );
     }
 
-    public function message(): string {
+    public function message(): string
+    {
         return trans('media-library::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),
         ]);

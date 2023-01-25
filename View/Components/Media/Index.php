@@ -9,7 +9,8 @@ use Illuminate\View\Component;
 use Modules\Media\Traits\WithAccessingMedia;
 use Spatie\MediaLibrary\HasMedia;
 
-class Index extends Component {
+class Index extends Component
+{
     use WithAccessingMedia;
     public string $tpl = 'v1';
 
@@ -70,7 +71,8 @@ class Index extends Component {
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): Renderable {
+    public function render(): Renderable
+    {
         /**
          * @phpstan-var view-string
          */

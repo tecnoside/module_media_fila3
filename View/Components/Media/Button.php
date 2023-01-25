@@ -7,19 +7,22 @@ namespace Modules\Media\View\Components\Media;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 
-class Button extends Component {
+class Button extends Component
+{
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): Renderable {
+    public function render(): Renderable
+    {
         /**
          * @phpstan-var view-string
          */
