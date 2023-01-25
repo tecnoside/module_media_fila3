@@ -7,8 +7,9 @@
         "email": "marco.sottana@gmail.com"
     }],
     "require": {
-        "laraxot/module_xot": "dev-master",
-        "laraxot/module_lang": "dev-master"
+        "laraxot/module_lang": "dev-master",
+        "laraxot/module_ui": "*",
+        "laraxot/module_xot": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",
