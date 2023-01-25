@@ -34,3 +34,4 @@ node_modules
 *.cache
 .git-rewrite
 /build
+package-lock.json

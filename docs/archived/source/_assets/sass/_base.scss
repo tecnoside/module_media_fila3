@@ -3,7 +3,7 @@ body {
 }
 
 a {
-    @apply .font-semibold;
+
     @apply .no-underline;
     @apply .text-blue-600;
 
@@ -97,6 +97,7 @@ hr {
 }
 
 li {
+
     ul,
     ol {
         @apply .my-0;
