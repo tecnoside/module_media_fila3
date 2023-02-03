@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Dto;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\HtmlString;
 
 class ViewMediaItem

@@ -5,17 +5,21 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Livewire\Media;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Modules\Media\Traits\WithMedia;
 use Illuminate\Database\Eloquent\Model;
 
 class Crud extends Component
 {
-    //use WithMedia;
+    use WithMedia;
 
     public $name;
 
     public $model = null;
 
-    public $mediaComponentNames = ['images'];
+    public $mediaComponentNames = ['upload'];
+
+    public $upload;
 
     public $collection;
 
@@ -28,15 +32,18 @@ class Crud extends Component
 
     public function submit()
     {
-        /*$formSubmission = BlogPost::create([
-            'name' => $this->name,
-        ]);
+        foreach($this->upload as $attachment)
+        {
+            $url = Str::before($attachment['previewUrl'], 'conversions').$attachment['name'];
 
-        $formSubmission
-            ->addFromMediaLibraryRequest($this->images)
-            ->toMediaCollection('images');
+            dddx($url);
 
-        $this->message = 'Your form has been submitted';*/
+            $this->model
+                ->addMedia($attachment)
+                ->toMediaCollection($this->collection);
+        }
+
+        session()->flash('message', 'Post successfully updated.');
     }
 
     public function render()
