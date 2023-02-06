@@ -19,10 +19,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class TemporaryUpload extends Model implements HasMedia
 {
-    protected $fillable=['id','session_id','created_at','updated_at'];
-
     use InteractsWithMedia;
     use MassPrunable;
+    protected $fillable=['id','session_id','created_at','updated_at'];
 
     protected $guarded = [];
 

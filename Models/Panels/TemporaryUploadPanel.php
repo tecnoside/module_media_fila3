@@ -9,7 +9,8 @@ use Illuminate\Contracts\Support\Renderable;
 
 use Modules\Cms\Models\Panels\XotBasePanel;
 
-class TemporaryUploadPanel extends XotBasePanel {
+class TemporaryUploadPanel extends XotBasePanel
+{
     /**
      * The model the resource corresponds to.
      *
@@ -29,19 +30,20 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @var array
      */
-    public static $search = array (
+    public static $search = array(
 );
 
     /**
      * The relationships that should be eager loaded on index queries.
      *
      */
-    public function with():array {
+    public function with(): array
+    {
         return [];
     }
 
-    public function search() :array {
-
+    public function search(): array
+    {
         return [];
     }
 
@@ -55,9 +57,10 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @return int|string|null
      */
-    public function optionId($row) {
+    public function optionId($row)
+    {
         $key = $row->getKey();
-        if(null===$key||(!is_string($key)&&!is_int($key))){
+        if (null===$key||(!is_string($key)&&!is_int($key))) {
             throw new \Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
         }
         return $key;
@@ -68,14 +71,16 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @param TemporaryUpload $row
      */
-    public function optionLabel($row):string {
+    public function optionLabel($row): string
+    {
         return 'To Set';
     }
 
     /**
      * index navigation.
      */
-    public function indexNav(): ?Renderable {
+    public function indexNav(): ?Renderable
+    {
         return null;
     }
 
@@ -104,32 +109,33 @@ class TemporaryUploadPanel extends XotBasePanel {
         'rules_messages' => ['it'=>['required'=>'Nome Obbligatorio']],
         'value'=>'..',
      */
-    public function fields(): array {
-        return array (
-  0 => 
+    public function fields(): array
+    {
+        return array(
+  0 =>
   (object) array(
      'type' => 'Id',
      'name' => 'id',
-     'comment' => NULL,
+     'comment' => null,
   ),
-  1 => 
+  1 =>
   (object) array(
      'type' => 'String',
      'name' => 'session_id',
      'rules' => 'required',
-     'comment' => NULL,
+     'comment' => null,
   ),
-  2 => 
+  2 =>
   (object) array(
      'type' => 'Datetime',
      'name' => 'created_at',
-     'comment' => NULL,
+     'comment' => null,
   ),
-  3 => 
+  3 =>
   (object) array(
      'type' => 'Datetime',
      'name' => 'updated_at',
-     'comment' => NULL,
+     'comment' => null,
   ),
 );
     }
@@ -139,7 +145,8 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @return array
      */
-    public function tabs():array {
+    public function tabs(): array
+    {
         $tabs_name = [];
 
         return $tabs_name;
@@ -150,7 +157,8 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @return array
      */
-    public function cards(Request $request):array {
+    public function cards(Request $request): array
+    {
         return [];
     }
 
@@ -161,7 +169,8 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @return array
      */
-    public function filters(Request $request = null):array {
+    public function filters(Request $request = null): array
+    {
         return [];
     }
 
@@ -170,7 +179,8 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @return array
      */
-    public function lenses(Request $request):array {
+    public function lenses(Request $request): array
+    {
         return [];
     }
 
@@ -179,7 +189,8 @@ class TemporaryUploadPanel extends XotBasePanel {
      *
      * @return array
      */
-    public function actions():array {
+    public function actions(): array
+    {
         return [];
     }
 }

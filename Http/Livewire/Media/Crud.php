@@ -32,8 +32,7 @@ class Crud extends Component
 
     public function submit()
     {
-        foreach($this->upload as $attachment)
-        {
+        foreach ($this->upload as $attachment) {
             $url = Str::before($attachment['previewUrl'], 'conversions').$attachment['name'];
 
             dddx($url);
