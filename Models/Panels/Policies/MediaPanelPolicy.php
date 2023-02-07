@@ -1,13 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Models\Panels\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
-use Modules\LU\Models\User as User;
-use Modules\Media\Models\Panels\Policies\MediaPanelPolicy as Post;
-
+use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Models\Panels\Policies\XotBasePanelPolicy;
+use Modules\LU\Services\ProfileService;
+use Modules\Xot\Contracts\UserContract;
 
-class MediaPanelPolicy extends XotBasePanelPolicy
-{
+class MediaPanelPolicy extends XotBasePanelPolicy {
+    public function index(?UserContract $user, PanelContract $panel): bool {
+        return ProfileService::make()->get($user)->hasPermissionTo($panel->getPath().'-'.__FUNCTION__);
+    }
+
+    public function show(?UserContract $user, PanelContract $panel): bool {
+        return ProfileService::make()->get($user)->hasPermissionTo($panel->getPath().'-'.__FUNCTION__);
+    }
 }
