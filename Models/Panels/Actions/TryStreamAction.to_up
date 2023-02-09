@@ -50,7 +50,8 @@ class TryStreamAction extends XotBasePanelAction {
             $driver = $drivers[$i];
         }
 
-        $view = ThemeService::getView();
+        //$view = ThemeService::g1etView();
+        $view = $this->panel->getView();
 
         $view_params = [
             'view' => $view,

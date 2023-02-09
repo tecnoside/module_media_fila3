@@ -32,7 +32,7 @@ class PopulateVideoAction extends XotBasePanelAction {
         ];
         $i = request('i', 0);
 
-        $view = ThemeService::getView();
+        $view = ThemeService::g1etView();
         $driver = isset($drivers[$i]) ? $drivers[$i] : null;
 
         if (isset($driver)) {
