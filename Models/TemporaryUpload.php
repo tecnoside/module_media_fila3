@@ -17,11 +17,10 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class TemporaryUpload extends Model implements HasMedia
-{
+class TemporaryUpload extends Model implements HasMedia {
     use InteractsWithMedia;
     use MassPrunable;
-    protected $fillable=['id','session_id','created_at','updated_at'];
+    protected $fillable = ['id', 'session_id', 'created_at', 'updated_at'];
 
     protected $guarded = [];
 
@@ -29,13 +28,13 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static ?string $disk = null;
 
-    public function scopeOld(Builder $builder): void
-    {
+    public string $session_id;
+
+    public function scopeOld(Builder $builder): void {
         $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
     }
 
-    public function registerMediaConversions(Media $media = null): void
-    {
+    public function registerMediaConversions(Media $media = null): void {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
         }
@@ -49,25 +48,21 @@ class TemporaryUpload extends Model implements HasMedia
         $previewManipulation($conversion);
     }
 
-    public static function previewManipulation(\Closure $closure): void
-    {
+    public static function previewManipulation(\Closure $closure): void {
         static::$manipulatePreview = $closure;
     }
 
-    protected function getPreviewManipulation(): \Closure
-    {
+    protected function getPreviewManipulation(): \Closure {
         return static::$manipulatePreview ?? function (Conversion $conversion) {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
         };
     }
 
-    protected static function getDiskName(): string
-    {
+    protected static function getDiskName(): string {
         return static::$disk ?? config('media-library.disk_name');
     }
 
-    public static function findByMediaUuid(?string $mediaUuid): ?TemporaryUpload
-    {
+    public static function findByMediaUuid(?string $mediaUuid): ?TemporaryUpload {
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $media */
@@ -88,8 +83,7 @@ class TemporaryUpload extends Model implements HasMedia
         return $temporaryUpload;
     }
 
-    public static function findByMediaUuidInCurrentSession(?string $mediaUuid): ?TemporaryUpload
-    {
+    public static function findByMediaUuidInCurrentSession(?string $mediaUuid): ?TemporaryUpload {
         if (! $temporaryUpload = static::findByMediaUuid($mediaUuid)) {
             return null;
         }
@@ -153,8 +147,7 @@ class TemporaryUpload extends Model implements HasMedia
         return $temporaryUpload->fresh();
     }
 
-    public function moveMedia(HasMedia $toModel, string $collectionName, string $diskName, string $fileName): Media
-    {
+    public function moveMedia(HasMedia $toModel, string $collectionName, string $diskName, string $fileName): Media {
         if (config('media-library.enable_temporary_uploads_session_affinity', true)) {
             if ($this->session_id !== session()->getId()) {
                 throw TemporaryUploadDoesNotBelongToCurrentSession::create();
@@ -175,8 +168,7 @@ class TemporaryUpload extends Model implements HasMedia
         return $newMedia;
     }
 
-    public function prunable(): Builder
-    {
+    public function prunable(): Builder {
         return self::query()->old();
     }
 }
