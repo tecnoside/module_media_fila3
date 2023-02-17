@@ -17,6 +17,6 @@ class MediaServiceProvider extends XotBaseServiceProvider
 
     public function bootCallback(): void
     {
-        BladeService::registerComponents($this->module_dir.'/../View/Components', 'Modules\\Media');
+       // BladeService::registerComponents($this->module_dir.'/../View/Components', 'Modules\\Media');
     }
 }
