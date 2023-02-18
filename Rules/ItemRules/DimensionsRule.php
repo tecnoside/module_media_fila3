@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\ItemRules;
 
-class DimensionsRule extends MediaItemRule
-{
+class DimensionsRule extends MediaItemRule {
     public function __construct(
         protected int $requiredWidth = 0,
         protected int $requiredHeight = 0
     ) {
     }
 
-    public function validateMediaItem(): bool
-    {
+    public function validateMediaItem(): bool {
         if (! $media = $this->getTemporaryUploadMedia()) {
             return true;
         }
@@ -37,8 +35,10 @@ class DimensionsRule extends MediaItemRule
         return false;
     }
 
-    public function message()
-    {
+    /**
+     * @return array|string
+     */
+    public function message() {
         $params = [
             'width' => $this->requiredWidth,
             'height' => $this->requiredHeight,
