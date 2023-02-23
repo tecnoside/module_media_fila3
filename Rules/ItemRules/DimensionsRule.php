@@ -55,5 +55,7 @@ class DimensionsRule extends MediaItemRule {
         if ($this->requiredHeight) {
             return __('media-library::validation.incorrect_dimensions.height', $params);
         }
+
+        return [];
     }
 }
