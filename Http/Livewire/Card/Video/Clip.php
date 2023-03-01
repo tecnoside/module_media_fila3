@@ -14,7 +14,7 @@ use Illuminate\Contracts\Support\Renderable;
  */
 class Clip extends Component
 {
-    public string $type = 'edit';
+    public string $tpl = 'edit';
     public Model $model;
 
     /**
@@ -44,7 +44,12 @@ class Clip extends Component
         /**
          * @phpstan-var view-string
          */
+<<<<<<< Updated upstream
         $view = app(GetViewAction::class)->execute();
+=======
+
+        $view = app(GetViewAction::class)->execute($this->tpl);
+>>>>>>> Stashed changes
         $view_params = [
             'view' => $view,
         ];
