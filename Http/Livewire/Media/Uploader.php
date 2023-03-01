@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Livewire\Component;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
-use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\Cms\Actions\GetViewAction;
+use Illuminate\Validation\ValidationException;
 use Modules\Media\Actions\ConvertLivewireUploadToMediaAction;
 
 class Uploader extends Component
@@ -128,6 +129,15 @@ class Uploader extends Component
 
     public function render()
     {
-        return view('media::livewire.media.uploader');
+        /**
+         * @phpstan-var view-string
+         */
+        $view = app(GetViewAction::class)->execute();
+        
+        $view_params = [
+            'view' => $view,
+        ];
+
+        return view($view, $view_params);
     }
 }
