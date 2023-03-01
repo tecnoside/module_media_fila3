@@ -47,6 +47,6 @@ class TestVideoEditorAction extends XotBasePanelAction {
             'player' => $video_players[$i],
         ];
 
-        return view()->make($view, $view_params);
+        return view($view, $view_params);
     }
 }

@@ -59,7 +59,7 @@ class TryStreamAction extends XotBasePanelAction {
             'driver' => $driver,
         ];
         if (null === $driver) {
-            return view()->make($view, $view_params);
+            return view($view, $view_params);
         }
 
         return $this->{$driver}();

@@ -33,6 +33,6 @@ class TryVideoEditorSubAction extends XotBasePanelAction {
             'srt_src' => '/videos/test.xml',
         ];
 
-        return view()->make($view, $view_params);
+        return view($view, $view_params);
     }
 }
