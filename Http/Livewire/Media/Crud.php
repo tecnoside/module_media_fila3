@@ -7,7 +7,6 @@ namespace Modules\Media\Http\Livewire\Media;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Modules\Media\Traits\WithMedia;
-use Modules\Cms\Actions\GetViewAction;
 use Illuminate\Database\Eloquent\Model;
 
 class Crud extends Component
@@ -52,11 +51,8 @@ class Crud extends Component
          * @phpstan-var view-string
          */
         $view = app(GetViewAction::class)->execute();
-        
-        $view_params = [
-            'view' => $view,
-        ];
 
-        return view($view, $view_params);
+
+        return view($view);
     }
 }

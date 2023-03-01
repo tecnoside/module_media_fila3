@@ -12,8 +12,7 @@ use Illuminate\Contracts\Support\Renderable;
 /**
  * Class Clip.
  */
-class Clip extends Component
-{
+class Clip extends Component {
     public string $tpl = 'edit';
     public Model $model;
 
@@ -31,25 +30,19 @@ class Clip extends Component
      *
      * @return void
      */
-    public function mount(Model $model)
-    {
+    public function mount(Model $model)  {
         $this->model = $model;
     }
 
     /**
      * Undocumented function.
      */
-    public function render(): Renderable
-    {
+    public function render(): Renderable {
         /**
          * @phpstan-var view-string
          */
-<<<<<<< Updated upstream
-        $view = app(GetViewAction::class)->execute();
-=======
 
         $view = app(GetViewAction::class)->execute($this->tpl);
->>>>>>> Stashed changes
         $view_params = [
             'view' => $view,
         ];
@@ -60,8 +53,7 @@ class Clip extends Component
     /**
      * Undocumented function.
      */
-    public function editClip(): void
-    {
+    public function editClip(): void {
         $data = $this->model->toArray();
         $this->emit('showModal', 'editClip', $data);
     }
