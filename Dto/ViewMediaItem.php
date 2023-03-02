@@ -15,6 +15,7 @@ class ViewMediaItem {
         protected string $formFieldName,
         protected array $mediaAttributes
     ) {
+        $this->uuid = $mediaAttributes['uuid'];
     }
 
     public function __get($name) {
@@ -65,7 +66,9 @@ class ViewMediaItem {
     public function downloadUrl(): string {
         $mediaModelClass = config('media-library.media_model');
 
-        return $mediaModelClass::findByUuid($this->uuid)->getUrl();
+        return $mediaModelClass::findByUuid($this->uuid) != null
+         ? $mediaModelClass::findByUuid($this->uuid)->getUrl()
+         : "";
     }
 
     public function createdAt(): Carbon {

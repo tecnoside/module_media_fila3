@@ -31,12 +31,10 @@ class Crud extends Component {
 
     public function submit() {
         foreach ($this->upload as $attachment) {
-            $url = Str::before($attachment['previewUrl'], 'conversions').$attachment['name'];
-
-            dddx($url);
+            $url = storage_path("app/public".Str::between($attachment['previewUrl'], 'storage', 'conversions').$attachment['name']);
 
             $this->model
-                ->addMedia($attachment)
+                ->addMedia($url)
                 ->toMediaCollection($this->collection);
         }
 
