@@ -30,11 +30,7 @@ class Clip extends Component {
      *
      * @return void
      */
-<<<<<<< HEAD
-    public function mount(Model $model)  {
-=======
     public function mount(Model $model) {
->>>>>>> 67fd07c (up)
         $this->model = $model;
     }
 
@@ -45,12 +41,7 @@ class Clip extends Component {
         /**
          * @phpstan-var view-string
          */
-<<<<<<< HEAD
-
         $view = app(GetViewAction::class)->execute($this->tpl);
-=======
-        $view = app(GetViewAction::class)->execute();
->>>>>>> 67fd07c (up)
         $view_params = [
             'view' => $view,
         ];
