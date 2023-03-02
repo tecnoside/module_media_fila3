@@ -515,7 +515,8 @@ class Model extends Component {
     }
 
     public function render() {
-        return view('media::livewire.video-editor-sub.model');
+        $view=app(GetViewAction::class)->execute();
+        return view($view);
     }
 
     public function srtToVtt($srtFile, $webVttFile) {
