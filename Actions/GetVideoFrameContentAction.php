@@ -9,9 +9,11 @@ declare(strict_types=1);
 namespace Modules\Media\Actions;
 
 use Exception;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class GetVideoFrameContentAction
 {
@@ -43,12 +45,24 @@ class GetVideoFrameContentAction
 
             return '';
         }
+        $seconds=3600;
+        $cache_key=Str::slug($disk_mp4.' '.$file_mp4.' '.$time.' 1');
+        $res= Cache::store('file')->remember(
+            $cache_key, 
+            $seconds, 
+                function () use ($disk_mp4, $file_mp4, $time){
+                    try{
+                        return FFMpeg::fromDisk($disk_mp4)
+                        ->open($file_mp4)
+                        ->getFrameFromSeconds($time)
+                        ->export()
+                        ->getFrameContents();
+                    }catch(Exception $e){
+                        return Storage::disk('public_html')->get('img/video_not_exists.jpg');
+                    }
+                }
+            );
 
-        $res = FFMpeg::fromDisk($disk_mp4)
-            ->open($file_mp4)
-            ->getFrameFromSeconds($time)
-            ->export()
-            ->getFrameContents();
 
         return $res;
     }
