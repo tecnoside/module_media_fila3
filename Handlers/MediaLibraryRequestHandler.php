@@ -10,8 +10,7 @@ use Modules\Media\Dto\MediaLibraryRequestItem;
 use Modules\Media\Dto\PendingMediaItem;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class MediaLibraryRequestHandler
-{
+class MediaLibraryRequestHandler {
     protected Model $model;
 
     protected array $existingUuids;
@@ -29,8 +28,7 @@ class MediaLibraryRequestHandler
         return new self($model, $mediaLibraryRequestItems, $collectionName);
     }
 
-    protected function __construct(Model $model, Collection $mediaLibraryRequestItems, string $collectionName)
-    {
+    protected function __construct(Model $model, Collection $mediaLibraryRequestItems, string $collectionName) {
         $this->model = $model;
 
         $this->existingUuids = $this->model->getMedia($collectionName)->pluck('uuid')->toArray();
@@ -40,8 +38,7 @@ class MediaLibraryRequestHandler
         $this->collectionName = $collectionName;
     }
 
-    public function updateExistingMedia(): self
-    {
+    public function updateExistingMedia(): self {
         $this
             ->existingMediaLibraryRequestItems()
             ->each(function (MediaLibraryRequestItem $mediaResponseItem) {
@@ -51,8 +48,7 @@ class MediaLibraryRequestHandler
         return $this;
     }
 
-    public function deleteObsoleteMedia(): self
-    {
+    public function deleteObsoleteMedia(): self {
         $keepUuids = $this->mediaLibraryRequestItems->pluck('uuid')->toArray();
 
         $this->model->getMedia($this->collectionName)
@@ -62,8 +58,7 @@ class MediaLibraryRequestHandler
         return $this;
     }
 
-    public function getPendingMediaItems(): Collection
-    {
+    public function getPendingMediaItems(): Collection {
         return $this
             ->newMediaLibraryRequestItems()
             ->map(function (MediaLibraryRequestItem $item) {
@@ -78,22 +73,19 @@ class MediaLibraryRequestHandler
             });
     }
 
-    protected function existingMediaLibraryRequestItems(): Collection
-    {
+    protected function existingMediaLibraryRequestItems(): Collection {
         return $this
             ->mediaLibraryRequestItems
             ->filter(fn (MediaLibraryRequestItem $item) => in_array($item->uuid, $this->existingUuids));
     }
 
-    protected function newMediaLibraryRequestItems(): Collection
-    {
+    protected function newMediaLibraryRequestItems(): Collection {
         return $this
             ->mediaLibraryRequestItems
             ->reject(fn (MediaLibraryRequestItem $item) => in_array($item->uuid, $this->existingUuids));
     }
 
-    protected function handleExistingMediaLibraryRequestItem(MediaLibraryRequestItem $mediaLibraryRequestItem): void
-    {
+    protected function handleExistingMediaLibraryRequestItem(MediaLibraryRequestItem $mediaLibraryRequestItem): void {
         $mediaModelClass = config('media-library.media_model');
 
         $media = $mediaModelClass::findByUuid($mediaLibraryRequestItem->uuid);
