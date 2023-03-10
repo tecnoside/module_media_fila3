@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Media\Exceptions;
 
-class CouldNotAddUpload extends \Exception
-{
-    public static function uuidAlreadyExists()
-    {
-        //prima era new static
+class CouldNotAddUpload extends \Exception {
+    public static function uuidAlreadyExists() {
+        // prima era new static
         return new self('The given uuid is being used for an existing media item.');
     }
 }
