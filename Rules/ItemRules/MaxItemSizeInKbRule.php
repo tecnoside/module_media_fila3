@@ -6,19 +6,16 @@ namespace Modules\Media\Rules\ItemRules;
 
 use Spatie\MediaLibrary\Support\File;
 
-class MaxItemSizeInKbRule extends MediaItemRule
-{
+class MaxItemSizeInKbRule extends MediaItemRule {
     protected int $maxSizeInKb;
 
     protected int $actualSizeInBytes;
 
-    public function __construct(int $maxSizeInKb)
-    {
+    public function __construct(int $maxSizeInKb) {
         $this->maxSizeInKb = $maxSizeInKb;
     }
 
-    public function validateMediaItem(): bool
-    {
+    public function validateMediaItem(): bool {
         if (! $media = $this->getTemporaryUploadMedia()) {
             return true;
         }
@@ -28,8 +25,7 @@ class MaxItemSizeInKbRule extends MediaItemRule
         return $this->actualSizeInBytes <= ($this->maxSizeInKb * 1024);
     }
 
-    public function message()
-    {
+    public function message() {
         return __('media-library::validation.file_too_big', [
             'max' => File::getHumanReadableSize($this->maxSizeInKb * 1024),
             'maxInKb' => $this->maxSizeInKb,

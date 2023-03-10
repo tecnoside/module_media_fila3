@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'total_upload_size_too_high' => 'الحجم الأقصى المسموح به هو :max',
     'total_upload_size_too_low' => 'الحجم الأدنى المسموح به هو :minx',

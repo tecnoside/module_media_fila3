@@ -8,21 +8,17 @@ use Illuminate\Contracts\Validation\Rule;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\File;
 
-class MinTotalSizeInKbRule implements Rule
-{
+class MinTotalSizeInKbRule implements Rule {
     protected int $actualTotalSizeInBytes;
 
-    public function __construct(protected int $minTotalSizeInKb)
-    {
+    public function __construct(protected int $minTotalSizeInKb) {
     }
 
-    public function getMinTotalSizeInKb()
-    {
+    public function getMinTotalSizeInKb() {
         return $this->minTotalSizeInKb;
     }
 
-    public function passes($attribute, $uploadedItems): bool
-    {
+    public function passes($attribute, $uploadedItems): bool {
         $uuids = collect($uploadedItems)
             ->map(fn (array $uploadedItemAttributes) => $uploadedItemAttributes['uuid'])
             ->toArray();
@@ -34,8 +30,7 @@ class MinTotalSizeInKbRule implements Rule
         return $this->actualTotalSizeInBytes >= ($this->minTotalSizeInKb * 1024);
     }
 
-    public function message(): string
-    {
+    public function message(): string {
         return __('media-library::validation.total_upload_size_too_low', [
             'min' => File::getHumanReadableSize($this->minTotalSizeInKb * 1024),
             'minInKb' => $this->minTotalSizeInKb,

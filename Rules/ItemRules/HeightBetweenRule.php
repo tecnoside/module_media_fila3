@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\ItemRules;
 
-class HeightBetweenRule extends MediaItemRule
-{
+class HeightBetweenRule extends MediaItemRule {
     public function __construct(
         protected int $minHeight = 0,
         protected int $maxHeight = 0
     ) {
     }
 
-    public function validateMediaItem(): bool
-    {
+    public function validateMediaItem(): bool {
         if (! $media = $this->getTemporaryUploadMedia()) {
             return true;
         }
@@ -24,8 +22,7 @@ class HeightBetweenRule extends MediaItemRule
         return $actualHeight >= $this->minHeight && $actualHeight <= $this->maxHeight;
     }
 
-    public function message()
-    {
+    public function message() {
         return __('media-library::validation.height_not_between', [
             'min' => $this->minHeight,
             'max' => $this->maxHeight,

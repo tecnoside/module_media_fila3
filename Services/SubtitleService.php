@@ -13,8 +13,7 @@ use Illuminate\Support\Str;
 /**
  * SubtitleService.
  */
-class SubtitleService
-{
+class SubtitleService {
     private static ?self $instance = null;
 
     public string $disk = 'media'; // nome che usa storage
@@ -29,15 +28,13 @@ class SubtitleService
     /**
      * ---.
      */
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
      * ---.
      */
-    public static function getInstance(): self
-    {
+    public static function getInstance(): self {
         if (null === self::$instance) {
             self::$instance = new self();
         }
@@ -48,32 +45,27 @@ class SubtitleService
     /**
      * ---.
      */
-    public static function make(): self
-    {
+    public static function make(): self {
         return static::getInstance();
     }
 
-    public function setFilePath(string $file_path): self
-    {
+    public function setFilePath(string $file_path): self {
         $this->file_path = $file_path;
 
         return $this;
     }
 
-    public function setModel(Model $model): self
-    {
+    public function setModel(Model $model): self {
         $this->model = $model;
 
         return $this;
     }
 
-    public function getModel(): Model
-    {
+    public function getModel(): Model {
         return $this->model;
     }
 
-    public function upateModel(): self
-    {
+    public function upateModel(): self {
         $txt = $this->getPlain();
         $up = [$this->field_name => $txt];
         $this->model = tap($this->model)->update($up);
@@ -84,8 +76,7 @@ class SubtitleService
     /**
      * Undocumented function.
      */
-    public function getPlain(): string
-    {
+    public function getPlain(): string {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
         if (false === $xmlObject) {
@@ -105,8 +96,7 @@ class SubtitleService
     /**
      * restituisce i sottotitoli, dal file ..
      */
-    public function get(): array
-    {
+    public function get(): array {
         $info = pathinfo($this->file_path);
         if (! isset($info['extension'])) {
             return [];
@@ -119,8 +109,7 @@ class SubtitleService
     /**
      * Undocumented function.
      */
-    public function getContent(): string
-    {
+    public function getContent(): string {
         // $path = Storage::disk($this->disk)->path('videos/'.$this->file_path);
         // $path = Storage::path($this->file_path);
         // $path = realpath($path);
@@ -138,13 +127,12 @@ class SubtitleService
         return $content;
     }
 
-    public function getFromXml(): array
-    {
+    public function getFromXml(): array {
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
         if (false === $xmlObject) {
-            throw new Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
 
         $data = [];
@@ -155,7 +143,7 @@ class SubtitleService
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
                 if (null === $attributes) {
-                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
                 $start = (int) $attributes->start->__toString() / 1000;
@@ -187,8 +175,7 @@ class SubtitleService
      *
      * @return void
      */
-    public function srtToVtt($srtFile, $webVttFile)
-    {
+    public function srtToVtt($srtFile, $webVttFile) {
         $fileHandle = fopen(public_path($srtFile), 'r');
         $lines = [];
         if ($fileHandle) {

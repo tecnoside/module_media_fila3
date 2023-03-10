@@ -15,16 +15,14 @@ use Modules\Cms\Models\Panels\Actions\XotBasePanelAction;
 /**
  * Class PopulateVideoAction.
  */
-class FillVideoFromDirectory extends XotBasePanelAction
-{
+class FillVideoFromDirectory extends XotBasePanelAction {
     public bool $onItem = true;
     public string $icon = '<i class="fas fa-file-import"></i>';
 
     /**
      * @return mixed
      */
-    public function handle()
-    {
+    public function handle() {
 //        $files=  array_diff(scandir(public_path('/snaps/' . $path_parts['filename'])), array('.', '..'));
         dddx('i am here');
     }

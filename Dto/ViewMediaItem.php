@@ -66,9 +66,9 @@ class ViewMediaItem {
     public function downloadUrl(): string {
         $mediaModelClass = config('media-library.media_model');
 
-        return $mediaModelClass::findByUuid($this->uuid) != null
+        return null != $mediaModelClass::findByUuid($this->uuid)
          ? $mediaModelClass::findByUuid($this->uuid)->getUrl()
-         : "";
+         : '';
     }
 
     public function createdAt(): Carbon {

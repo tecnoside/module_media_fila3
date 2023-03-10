@@ -12,15 +12,13 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateImagesTable.
  */
-class CreateMediasTable extends XotBaseMigration
-{
+class CreateMediasTable extends XotBaseMigration {
     /**
      * i don't write table name, it take from Model, model is singular of this class wit.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {

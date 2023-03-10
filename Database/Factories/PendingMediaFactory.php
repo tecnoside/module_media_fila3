@@ -6,19 +6,16 @@ namespace Modules\Media\Database\Factories;
 
 use Modules\Media\Dto\PendingMediaItem;
 
-class PendingMediaFactory
-{
+class PendingMediaFactory {
     protected array $temporaryUploadAttributes = [];
 
-    public function withTemporaryUploadAttributes(array $temporaryUploadAttributes = []): self
-    {
+    public function withTemporaryUploadAttributes(array $temporaryUploadAttributes = []): self {
         $this->temporaryUploadAttributes = $temporaryUploadAttributes;
 
         return $this;
     }
 
-    public function create(array $attributes = []): PendingMediaItem
-    {
+    public function create(array $attributes = []): PendingMediaItem {
         $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
 
         return new PendingMediaItem(

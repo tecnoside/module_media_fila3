@@ -1,16 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Handlers;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Media\Dto\PendingMediaItem;
+use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
-use Modules\Media\Handlers\MediaLibraryRequestHandler;
+use Modules\Media\Dto\PendingMediaItem;
 use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 
-class PendingMediaLibraryRequestHandler
-{
+class PendingMediaLibraryRequestHandler {
     protected Collection $mediaLibraryRequestItems;
 
     protected Model $model;
@@ -21,8 +21,7 @@ class PendingMediaLibraryRequestHandler
 
     protected ?array $customHeaders = null;
 
-    public function __construct(array $mediaLibraryRequestItems, Model $model, bool $preserveExisting)
-    {
+    public function __construct(array $mediaLibraryRequestItems, Model $model, bool $preserveExisting) {
         $this->mediaLibraryRequestItems = collect($mediaLibraryRequestItems)
             ->map(fn (array $properties) => MediaLibraryRequestItem::fromArray($properties));
 
@@ -31,8 +30,7 @@ class PendingMediaLibraryRequestHandler
         $this->preserveExisting = $preserveExisting;
     }
 
-    public function usingName($mediaName): self
-    {
+    public function usingName($mediaName): self {
         if (is_string($mediaName)) {
             return $this->usingName(fn () => $mediaName);
         }
@@ -48,8 +46,7 @@ class PendingMediaLibraryRequestHandler
         return $this;
     }
 
-    public function usingFileName($fileName): self
-    {
+    public function usingFileName($fileName): self {
         if (is_string($fileName)) {
             return $this->usingFileName(fn () => $fileName);
         }
@@ -65,27 +62,23 @@ class PendingMediaLibraryRequestHandler
         return $this;
     }
 
-    public function withCustomProperties(...$customPropertyNames): self
-    {
+    public function withCustomProperties(...$customPropertyNames): self {
         $this->processCustomProperties = $customPropertyNames;
 
         return $this;
     }
 
-    public function addCustomHeaders(array $customHeaders): self
-    {
+    public function addCustomHeaders(array $customHeaders): self {
         $this->customHeaders = $customHeaders;
 
         return $this;
     }
 
-    public function toMediaLibrary(string $collectionName = 'default', string $diskName = ''): void
-    {
+    public function toMediaLibrary(string $collectionName = 'default', string $diskName = ''): void {
         $this->toMediaCollection($collectionName, $diskName);
     }
 
-    public function toMediaCollection(string $collectionName = 'default', string $diskName = ''): void
-    {
+    public function toMediaCollection(string $collectionName = 'default', string $diskName = ''): void {
         $mediaLibraryRequestHandler = MediaLibraryRequestHandler::createForMediaLibraryRequestItems($this->model, $this->mediaLibraryRequestItems, $collectionName)
             ->updateExistingMedia();
 

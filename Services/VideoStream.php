@@ -20,8 +20,7 @@ use Illuminate\Support\Facades\Storage;
 /**
  * Undocumented class.
  */
-class VideoStream
-{
+class VideoStream {
     // private $stream = "";
 
     // private string $path = "";
@@ -40,8 +39,7 @@ class VideoStream
      *
      * @return void
      */
-    public function __construct(string $disk, string $path)
-    {
+    public function __construct(string $disk, string $path) {
         // $this->path = $path;
         $storage = Storage::disk($disk);
         if (! $storage->exists($path)) {
@@ -54,7 +52,7 @@ class VideoStream
         $this->vars['stream'] = $storage->readStream($path);
         $mime = $storage->mimeType($path);
         if (! is_string($mime)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->mime = $mime;
 
@@ -82,8 +80,7 @@ class VideoStream
      *
      * @return void
      */
-    private function setHeader()
-    {
+    private function setHeader() {
         ob_get_clean();
         // header("Content-Type: video/mp4");
         header('Content-Type: '.$this->mime);
@@ -150,8 +147,7 @@ class VideoStream
      *
      * @return void
      */
-    private function end()
-    {
+    private function end() {
         fclose($this->vars['stream']);
         exit;
     }
@@ -161,8 +157,7 @@ class VideoStream
      *
      * @return void
      */
-    private function stream()
-    {
+    private function stream() {
         $i = $this->start;
         set_time_limit(0);
         while (! feof($this->vars['stream']) && $i <= $this->end) {
@@ -184,8 +179,7 @@ class VideoStream
      *
      * @return void
      */
-    public function start()
-    {
+    public function start() {
         // $this->open();
         $this->setHeader();
         $this->stream();

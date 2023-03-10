@@ -8,16 +8,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
 
-class PendingMediaItem
-{
+class PendingMediaItem {
     public TemporaryUpload $temporaryUpload;
     public string $name;
     public int $order;
     public array $customProperties;
     public ?string $fileName;
 
-    public static function createFromArray(array $pendingMediaItems): Collection
-    {
+    public static function createFromArray(array $pendingMediaItems): Collection {
         return collect($pendingMediaItems)
             ->map(fn (array $uploadAttributes) => new static(
                 $uploadAttributes['uuid'],
@@ -53,8 +51,7 @@ class PendingMediaItem
         $this->fileName = $fileName;
     }
 
-    public function toArray(): array
-    {
+    public function toArray(): array {
         $media = $this->temporaryUpload->getFirstMedia();
 
         return [
@@ -67,8 +64,7 @@ class PendingMediaItem
         ];
     }
 
-    public function getCustomProperties(array $customPropertyNames): array
-    {
+    public function getCustomProperties(array $customPropertyNames): array {
         if (! count($customPropertyNames)) {
             return $this->customProperties;
         }

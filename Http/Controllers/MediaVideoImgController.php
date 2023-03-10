@@ -11,10 +11,8 @@ use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 use Modules\Media\Actions\GetVideoFrameContentAction;
 
-class MediaVideoImgController extends Controller
-{
-    public function getSecond($second)
-    {
+class MediaVideoImgController extends Controller {
+    public function getSecond($second) {
         $disk = 'cache';
         $file = 'test.mp4';
         $cache_key = Str::slug($disk.'-'.$file.'-'.$second);

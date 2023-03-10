@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'total_upload_size_too_high' => 'La taille totale maximale des fichiers est :max',
     'total_upload_size_too_low' => 'La taille totale minimale des fichiers est :min',

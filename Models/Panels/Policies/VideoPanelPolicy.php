@@ -8,10 +8,8 @@ use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Models\Panels\Policies\XotBasePanelPolicy;
 use Modules\Xot\Contracts\UserContract;
 
-class VideoPanelPolicy extends XotBasePanelPolicy
-{
-    public function downloadVideo(UserContract $user, PanelContract $panel): bool
-    {
+class VideoPanelPolicy extends XotBasePanelPolicy {
+    public function downloadVideo(UserContract $user, PanelContract $panel): bool {
         return true;
     }
 }
