@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Livewire\Media;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Modules\Cms\Actions\GetViewAction;
@@ -31,10 +32,15 @@ class Crud extends Component {
 
     public function submit() {
         foreach ($this->upload as $attachment) {
-            $url = storage_path('app/public'.Str::between($attachment['previewUrl'], 'storage', 'conversions').$attachment['name']);
+            $disk = config('media-library.disk_name');
+            $disk_url = Storage::disk($disk)->url('');
+            $n = Str::between($attachment['previewUrl'], $disk_url, '/conversions');
+            $path = Storage::disk($disk)->path($n.'/'.$attachment['fileName']);
 
+            // $url = storage_path('app/public'.Str::between($attachment['previewUrl'], 'storage', 'conversions').$attachment['name']);
+            // $url = $disk['previewUrl']
             $this->model
-                ->addMedia($url)
+                ->addMedia($path)
                 ->toMediaCollection($this->collection);
         }
 
