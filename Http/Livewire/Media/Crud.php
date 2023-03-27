@@ -34,9 +34,17 @@ class Crud extends Component {
         foreach ($this->upload as $attachment) {
             $disk = config('media-library.disk_name');
             $disk_url = Storage::disk($disk)->url('');
-            $n = Str::between($attachment['previewUrl'], $disk_url, '/conversions');
-            $path = Storage::disk($disk)->path($n.'/'.$attachment['fileName']);
+            $n = Str::between(str_replace(['\\', '/'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], $attachment['previewUrl']), str_replace(['\\', '/'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], $disk_url), DIRECTORY_SEPARATOR.'conversions');
 
+            $path = Storage::disk($disk)->path($n.DIRECTORY_SEPARATOR.$attachment['fileName']);
+            // dddx([
+            //     'attachment' => $attachment,
+            //     '$attachment previewUrl' => $attachment['previewUrl'],
+            //     'n' => $n,
+            //     'path' => $path,
+            //     'this collection' => $this->collection,
+            //     'model' => $this->model,
+            // ]);
             // $url = storage_path('app/public'.Str::between($attachment['previewUrl'], 'storage', 'conversions').$attachment['name']);
             // $url = $disk['previewUrl']
             $this->model
