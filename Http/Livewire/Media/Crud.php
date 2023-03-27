@@ -31,6 +31,17 @@ class Crud extends Component {
     }
 
     public function submit() {
+        $this->model
+            ->addFromMediaLibraryRequest($this->upload)
+            ->toMediaCollection($this->collection);
+        session()->flash('message', 'Media successfully updated.');
+        $this->clearMedia();
+
+    }
+
+
+
+    public function submit_AAA() {
         foreach ($this->upload as $attachment) {
             $disk = config('media-library.disk_name');
             $disk_url = Storage::disk($disk)->url('');

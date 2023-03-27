@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\Media\Database\Factories;
 
 use Illuminate\Http\UploadedFile;
@@ -9,16 +7,18 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Media\Models\TemporaryUpload;
 
-class TemporaryUploadFactory {
+class TemporaryUploadFactory
+{
     private int $fakeImageWidth = 10;
     private int $fakeImageHeight = 10;
 
-    public static function new(): self {
-        // prima era new static
-        return new self();
+    public static function new(): self
+    {
+        return new static;
     }
 
-    public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self {
+    public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self
+    {
         $this->fakeImageWidth = $fakeImageWidth;
 
         $this->fakeImageHeight = $fakeImageHeight;
@@ -26,7 +26,8 @@ class TemporaryUploadFactory {
         return $this;
     }
 
-    public function create(array $attributes = []): TemporaryUpload {
+    public function create(array $attributes = []): TemporaryUpload
+    {
         $fakeUpload = UploadedFile::fake()->image('test.jpg', $this->fakeImageWidth, $this->fakeImageHeight);
 
         return TemporaryUpload::createForFile(
@@ -37,7 +38,8 @@ class TemporaryUploadFactory {
         );
     }
 
-    public function createMultiple(int $count, array $attributes = []): array {
+    public function createMultiple(int $count, array $attributes = []): array
+    {
         return Collection::times($count)
             ->map(fn () => $this->create($attributes))->toArray();
     }
