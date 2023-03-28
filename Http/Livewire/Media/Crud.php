@@ -32,6 +32,7 @@ class Crud extends Component {
     }
 
     public function submit() {
+
         // *
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
@@ -39,7 +40,7 @@ class Crud extends Component {
         // ->toMediaCollectionFromTemporaryUpload($this->collection,'',)
         // $collectionName, $diskName, $this->fileName)
 
-        // session()->flash('message', 'Post successfully updated.');
+
         // */
 
         // dddx(collect($this->upload)->pluck('order')->all());
@@ -47,11 +48,11 @@ class Crud extends Component {
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
 
             if (null != $temporaryUpload) {
-                $media = $temporaryUpload->getFirstMedia();
-                // $temporaryUpload->moveMedia($this->model, $this->collection, 'media', $attachment['fileName']);
-                $media->move($this->model, $this->collection);
+                //$media = $temporaryUpload->getFirstMedia();
+                $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
+                //$media->move($this->model, $this->collection);
             } else {
-                $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
+                //$media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
             }
 
             // $media->setOrder($attachment['order']);
@@ -67,6 +68,7 @@ class Crud extends Component {
             dddx($fa);
             */
         }
+        session()->flash('message', 'Post successfully updated.');
         // $order=collect($this->upload)->pluck('order')->all();
         // \Modules\Media\Models\Media::setNewOrder($order);
 

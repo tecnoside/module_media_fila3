@@ -9,6 +9,8 @@ use Illuminate\View\Component;
 use Modules\Cms\Actions\GetViewAction;
 
 class Icon extends Component {
+    public string $tpl = 'v1';
+
     /**
      * Create a new component instance.
      *
@@ -25,7 +27,7 @@ class Icon extends Component {
          * @phpstan-var view-string
          */
         // $view = 'media::components.media.icon';
-        $view = app(GetViewAction::class)->execute();
+        $view = app(GetViewAction::class)->execute($this->tpl);
         $view_params = [
             'view' => $view,
         ];

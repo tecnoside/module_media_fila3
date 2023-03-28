@@ -26,12 +26,12 @@ class CreateTemporaryUploadsTable extends XotBaseMigration {
             }
         );
         // -- UPDATE --
-        $this->tableUpdate(
-            function (Blueprint $table) {
-                // if (! $this->hasColumn('channel_id')) { //+"source": "Internazionali" +"channel": "BBCnews"
+        //$this->tableUpdate(
+            //function (Blueprint $table) {
+                // if (! $this->hasColumn('channel_id')) {
                 //    $table->integer('channel_id')->nullable();
                 // }
-            }
-        );
+            //}
+        //);
     }
 }
