@@ -32,14 +32,12 @@ class Crud extends Component {
     }
 
     public function submit() {
-
         // *
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
         // ->toMediaCollection($this->collection);
         // ->toMediaCollectionFromTemporaryUpload($this->collection,'',)
         // $collectionName, $diskName, $this->fileName)
-
 
         // */
 
@@ -48,11 +46,11 @@ class Crud extends Component {
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
 
             if (null != $temporaryUpload) {
-                //$media = $temporaryUpload->getFirstMedia();
+                // $media = $temporaryUpload->getFirstMedia();
                 $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
-                //$media->move($this->model, $this->collection);
+            // $media->move($this->model, $this->collection);
             } else {
-                //$media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
+                // $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
             }
 
             // $media->setOrder($attachment['order']);

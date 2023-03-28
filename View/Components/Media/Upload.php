@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\View\Components\Media;
 
 use Illuminate\View\Component;
 
-class Upload extends Component
-{
+class Upload extends Component {
     public array $media;
 
     public ?string $propertiesView = null;
@@ -26,13 +27,11 @@ class Upload extends Component
         $this->propertiesView = $propertiesView ?? 'media-library::livewire.partials.attachment.properties';
     }
 
-    public function render()
-    {
+    public function render() {
         return view('media-library::components.media-library-attachment');
     }
 
-    public function determineListViewName(): string
-    {
+    public function determineListViewName(): string {
         if (! is_null($this->listView)) {
             return $this->listView;
         }
@@ -40,8 +39,7 @@ class Upload extends Component
         return 'media-library::livewire.partials.attachment.list';
     }
 
-    public function determineItemViewName(): string
-    {
+    public function determineItemViewName(): string {
         if (! is_null($this->itemView)) {
             return $this->itemView;
         }
@@ -49,8 +47,7 @@ class Upload extends Component
         return 'media-library::livewire.partials.attachment.item';
     }
 
-    public function determineFieldsViewName(): string
-    {
+    public function determineFieldsViewName(): string {
         if (! is_null($this->fieldsView)) {
             return $this->fieldsView;
         }
@@ -58,8 +55,7 @@ class Upload extends Component
         return 'media-library::livewire.partials.attachment.fields';
     }
 
-    public function determineMaxItems(): ?int
-    {
+    public function determineMaxItems(): ?int {
         return $this->multiple
             ? $this->maxItems
             : 1;

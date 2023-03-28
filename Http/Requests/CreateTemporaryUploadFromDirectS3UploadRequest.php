@@ -1,14 +1,13 @@
 <?php
 
-namespace Modules\Media\Http\Requests;
+declare(strict_types=1);
 
+namespace Modules\Media\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
-{
-    public function rules(): array
-    {
+class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest {
+    public function rules(): array {
         return [
             'uuid' => "unique:{$this->getDatabaseConnection()}{$this->getMediaTableName()}",
             'key' => 'required',
@@ -19,32 +18,29 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         ];
     }
 
-    protected function getDatabaseConnection(): string
-    {
+    protected function getDatabaseConnection(): string {
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
-        $mediaModel = new $mediaModelClass;
+        $mediaModel = new $mediaModelClass();
 
-        if ($mediaModel->getConnectionName() === 'default') {
+        if ('default' === $mediaModel->getConnectionName()) {
             return '';
         }
 
         return "{$mediaModel->getConnectionName()}.";
     }
 
-    protected function getMediaTableName(): string
-    {
+    protected function getMediaTableName(): string {
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
-        $mediaModel = new $mediaModelClass;
+        $mediaModel = new $mediaModelClass();
 
         return $mediaModel->getTable();
     }
 
-    public function messages()
-    {
+    public function messages() {
         return [
             'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),
         ];
