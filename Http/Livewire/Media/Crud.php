@@ -32,25 +32,23 @@ class Crud extends Component {
     }
 
     public function submit() {
-        $order=1;
-        foreach ($this->upload ?? [] as  $attachment) {
-            $order++;
+        $order = 1;
+        foreach ($this->upload ?? [] as $attachment) {
+            ++$order;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if (null != $temporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
-                $media=$temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
-                //dddx($res);
+                $media = $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
+            // dddx($res);
             // $media->move($this->model, $this->collection);
             } else {
                 $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
-                //$media->update(['order_column'=>$order]);
-                //dddx(['media'=>$media,'order'=>$order]);
+                // $media->update(['order_column'=>$order]);
+                // dddx(['media'=>$media,'order'=>$order]);
             }
-            $media?->update(['order_column'=>$order]);
-
+            $media?->update(['order_column' => $order]);
         }
         session()->flash('message', 'Post successfully updated.');
-
     }
 
     public function submitVecio() {
@@ -76,7 +74,7 @@ class Crud extends Component {
         }
 
         session()->flash('message', 'Post successfully updated.');
-         // *
+        // *
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
         // ->toMediaCollection($this->collection);
@@ -86,18 +84,18 @@ class Crud extends Component {
         // */
 
         // dddx(collect($this->upload)->pluck('order')->all());
-            // $media->setOrder($attachment['order']);
+        // $media->setOrder($attachment['order']);
 
-            /* @var \Spatie\MediaLibrary\MediaCollections\FileAdder $fileAdder */
-            /*
-            $fileAdder = app(\Spatie\MediaLibrary\MediaCollections\FileAdder::class);
-            $fa=$fileAdder
-                ->setSubject($this->model)
-                ->setFile($temporaryUpload)
-                ->setName($attachment['name'])
-                ->setOrder($attachment['order']);
-            dddx($fa);
-            */
+        /* @var \Spatie\MediaLibrary\MediaCollections\FileAdder $fileAdder */
+        /*
+        $fileAdder = app(\Spatie\MediaLibrary\MediaCollections\FileAdder::class);
+        $fa=$fileAdder
+            ->setSubject($this->model)
+            ->setFile($temporaryUpload)
+            ->setName($attachment['name'])
+            ->setOrder($attachment['order']);
+        dddx($fa);
+        */
         // $order=collect($this->upload)->pluck('order')->all();
         // \Modules\Media\Models\Media::setNewOrder($order);
 
