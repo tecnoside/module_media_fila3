@@ -1,38 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Traits;
 
 /** @mixin \Livewire\Component */
-trait WithMedia
-{
-    public function getMediaComponentNames(): array
-    {
+trait WithMedia {
+    public function getMediaComponentNames(): array {
         return $this->mediaComponentNames ?? [];
     }
 
-    public function mountWithMedia(): void
-    {
+    public function mountWithMedia(): void {
         foreach ($this->getMediaComponentNames() as $mediaComponentName) {
             $this->$mediaComponentName = null;
         }
     }
 
-    public function hydrateWithMedia()
-    {
+    public function hydrateWithMedia() {
         foreach ($this->getMediaComponentNames() as $mediaComponent) {
             $this->listeners["$mediaComponent:mediaChanged"] = 'onMediaChanged';
         }
     }
 
-    public function onMediaChanged($name, $media): void
-    {
+    public function onMediaChanged($name, $media): void {
         $media = $this->makeSureCustomPropertiesUseRightCasing($media);
 
         $this->$name = $media;
     }
 
-    public function renderingWithMedia(): void
-    {
+    public function renderingWithMedia(): void {
         $errorBag = $this->getErrorBag();
 
         foreach ($this->getMediaComponentNames() as $mediaComponentName) {
@@ -40,8 +36,7 @@ trait WithMedia
         }
     }
 
-    public function clearMedia($mediaComponentNames = null)
-    {
+    public function clearMedia($mediaComponentNames = null) {
         if (is_null($mediaComponentNames)) {
             $mediaComponentNames = $this->getMediaComponentNames();
         }
@@ -57,8 +52,7 @@ trait WithMedia
         }
     }
 
-    protected function makeSureCustomPropertiesUseRightCasing(array $media): array
-    {
+    protected function makeSureCustomPropertiesUseRightCasing(array $media): array {
         $media = collect($media)
             ->map(function (array $mediaItemAttributes) {
                 if (! isset($mediaItemAttributes['custom_properties']) && isset($mediaItemAttributes['customProperties'])) {
