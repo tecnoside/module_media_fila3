@@ -24,12 +24,7 @@ class TemporaryUpload extends Model implements HasMedia {
 
     public static ?string $disk = null;
 
-<<<<<<< HEAD
-    public function scopeOld(Builder $builder): void
-    {
-=======
     public function scopeOld(Builder $builder): void {
->>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9
         $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
     }
 
@@ -173,8 +168,4 @@ class TemporaryUpload extends Model implements HasMedia {
 
         return $newMedia;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9

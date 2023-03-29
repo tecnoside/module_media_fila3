@@ -32,19 +32,6 @@ class Crud extends Component {
     }
 
     public function submit() {
-<<<<<<< HEAD
-        $this->model
-            ->addFromMediaLibraryRequest($this->upload)
-            ->toMediaCollection($this->collection);
-        session()->flash('message', 'Media successfully updated.');
-        $this->clearMedia();
-
-    }
-
-
-
-    public function submit_AAA() {
-=======
         $order = 1;
         foreach ($this->upload ?? [] as $attachment) {
             ++$order;
@@ -65,7 +52,6 @@ class Crud extends Component {
     }
 
     public function submitVecio() {
->>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9
         foreach ($this->upload as $attachment) {
             $disk = config('media-library.disk_name');
             $disk_url = Storage::disk($disk)->url('');
