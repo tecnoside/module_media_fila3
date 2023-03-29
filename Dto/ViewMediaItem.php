@@ -5,8 +5,12 @@ namespace Modules\Media\Dto;
 use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 
+<<<<<<< HEAD
 class ViewMediaItem
 {
+=======
+class ViewMediaItem {
+>>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9
     public function __construct(
         protected string $formFieldName,
         protected array $mediaAttributes
@@ -74,4 +78,8 @@ class ViewMediaItem
 
         return $mediaModelClass::findByUuid($this->uuid)->getUrl();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9

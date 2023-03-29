@@ -1,5 +1,4 @@
 <div class="media-library-thumb" dusk="thumb">
-    {{-- {{ dddx($mediaItem->previewUrl) }} --}}
     @if ($mediaItem->previewUrl)
         <img class="media-library-thumb-img" src="{{ $mediaItem->previewUrl }}" alt="{{ $mediaItem->fileName }}">
     @else

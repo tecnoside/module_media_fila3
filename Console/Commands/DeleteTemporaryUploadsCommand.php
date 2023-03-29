@@ -1,6 +1,12 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Media\Console\Commands;
+=======
+declare(strict_types=1);
+
+namespace Themes\Media\Console\Commands;
+>>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9
 
 use Illuminate\Console\Command;
 
@@ -20,4 +26,8 @@ class DeleteTemporaryUploadsCommand extends Command {
 
         $this->comment($temporaryUploads->count().' old temporary upload(s) deleted!');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 784b0f8acff5748761998ab083fdbd20d6ffa3d9

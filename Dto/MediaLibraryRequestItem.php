@@ -11,8 +11,7 @@ class MediaLibraryRequestItem {
         $properties = collect($properties)
             ->keyBy(fn ($value, $key) => Str::snake($key));
 
-        // prima era new static
-        return new self(
+        return new static(
             $properties['uuid'],
             $properties['name'] ?? '',
             $properties['order'] ?? 0,
