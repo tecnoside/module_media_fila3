@@ -12,7 +12,8 @@ use Modules\Cms\Actions\GetViewAction;
 /**
  * Class Clip.
  */
-class Clip extends Component {
+class Clip extends Component
+{
     public string $tpl = 'edit';
     public Model $model;
 
@@ -30,14 +31,16 @@ class Clip extends Component {
      *
      * @return void
      */
-    public function mount(Model $model) {
+    public function mount(Model $model)
+    {
         $this->model = $model;
     }
 
     /**
      * Undocumented function.
      */
-    public function render(): Renderable {
+    public function render(): Renderable
+    {
         /**
          * @phpstan-var view-string
          */
@@ -52,7 +55,8 @@ class Clip extends Component {
     /**
      * Undocumented function.
      */
-    public function editClip(): void {
+    public function editClip(): void
+    {
         $data = $this->model->toArray();
         $this->emit('showModal', 'editClip', $data);
     }
@@ -62,7 +66,8 @@ class Clip extends Component {
      *
      * @return void
      */
-    public function updateDataFromModal(string $id, array $data) {
+    public function updateDataFromModal(string $id, array $data)
+    {
         if ('editClip' !== $id) {
             return;
         }

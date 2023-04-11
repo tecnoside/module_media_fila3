@@ -12,7 +12,8 @@ use Modules\Cms\Actions\GetViewAction;
 use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Traits\WithMedia;
 
-class Crud extends Component {
+class Crud extends Component
+{
     use WithMedia;
 
     public $name;
@@ -25,13 +26,15 @@ class Crud extends Component {
 
     public $collection;
 
-    public function mount(string $name, Model $model, string $collection) {
+    public function mount(string $name, Model $model, string $collection)
+    {
         $this->name = $name;
         $this->model = $model;
         $this->collection = $collection;
     }
 
-    public function submit() {
+    public function submit()
+    {
         $order = 1;
         foreach ($this->upload ?? [] as $attachment) {
             ++$order;
@@ -51,7 +54,8 @@ class Crud extends Component {
         session()->flash('message', 'Post successfully updated.');
     }
 
-    public function submitVecio() {
+    public function submitVecio()
+    {
         foreach ($this->upload as $attachment) {
             $disk = config('media-library.disk_name');
             $disk_url = Storage::disk($disk)->url('');
@@ -116,7 +120,8 @@ class Crud extends Component {
         // }
     }
 
-    public function render() {
+    public function render()
+    {
         /**
          * @phpstan-var view-string
          */

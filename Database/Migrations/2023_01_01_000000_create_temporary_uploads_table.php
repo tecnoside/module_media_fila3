@@ -10,13 +10,15 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateInvitationsTable.
  */
-class CreateTemporaryUploadsTable extends XotBaseMigration {
+class CreateTemporaryUploadsTable extends XotBaseMigration
+{
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
@@ -29,7 +31,7 @@ class CreateTemporaryUploadsTable extends XotBaseMigration {
         // $this->tableUpdate(
         // function (Blueprint $table) {
         // if (! $this->hasColumn('channel_id')) {
-                //    $table->integer('channel_id')->nullable();
+        //    $table->integer('channel_id')->nullable();
         // }
         // }
         // );

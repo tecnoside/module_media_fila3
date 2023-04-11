@@ -11,7 +11,8 @@ use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
 
-class GetVideoScreenshotAction {
+class GetVideoScreenshotAction
+{
     use QueueableAction;
 
     /**
@@ -33,14 +34,16 @@ class GetVideoScreenshotAction {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         // Prepare the action for execution, leveraging constructor injection.
     }
 
     /**
      * Execute the action.
      */
-    public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, ?string $file_jpg = null): array {
+    public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, ?string $file_jpg = null): array
+    {
         if (! Storage::disk($disk_mp4)->exists($file_mp4)) {
             return [
                 'message' => 'video not exists',

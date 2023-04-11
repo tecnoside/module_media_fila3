@@ -10,7 +10,8 @@ use Modules\Cms\Actions\GetViewAction;
 /**
  * Class VideoPlayer.
  */
-class VideoPlayer extends Component {
+class VideoPlayer extends Component
+{
     public string $driver;
     public string $mp4Src;
     public int $currentTime;
@@ -20,7 +21,8 @@ class VideoPlayer extends Component {
      *
      * @return void
      */
-    public function __construct(string $mp4Src, int $currentTime, ?string $driver = null) {
+    public function __construct(string $mp4Src, int $currentTime, ?string $driver = null)
+    {
         if (null === $driver) {
             /**
              * @var string
@@ -37,7 +39,8 @@ class VideoPlayer extends Component {
      *
      * @return \Illuminate\Contracts\View\View|string
      */
-    public function render() {
+    public function render()
+    {
         /**
          * @phpstan-var view-string
          */

@@ -9,7 +9,8 @@ use Modules\Cms\Models\Panels\Policies\XotBasePanelPermissionPolicy;
 use Modules\LU\Services\ProfileService;
 use Modules\Xot\Contracts\UserContract;
 
-class MediaPanelPolicy extends XotBasePanelPermissionPolicy {
+class MediaPanelPolicy extends XotBasePanelPermissionPolicy
+{
     /*
     public function index(?UserContract $user, PanelContract $panel): bool {
         return ProfileService::make()->get($user)->hasPermissionTo($panel->getPath().'-'.__FUNCTION__);

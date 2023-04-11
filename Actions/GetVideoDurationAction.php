@@ -9,7 +9,8 @@ namespace Modules\Media\Actions;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
 
-class GetVideoDurationAction {
+class GetVideoDurationAction
+{
     use QueueableAction;
 
     /**
@@ -31,14 +32,16 @@ class GetVideoDurationAction {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         // Prepare the action for execution, leveraging constructor injection.
     }
 
     /**
      * Execute the action.
      */
-    public function execute(string $disk, ?string $path): int {
+    public function execute(string $disk, ?string $path): int
+    {
         if (null == $path) {
             return -1;
         }

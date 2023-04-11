@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\Support;
 
-class DefaultAllowedExtensions {
-    public static function all(): array {
+class DefaultAllowedExtensions
+{
+    public static function all(): array
+    {
         return [
             '7z',
             'aiff',

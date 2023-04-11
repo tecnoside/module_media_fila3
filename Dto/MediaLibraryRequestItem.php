@@ -6,8 +6,10 @@ namespace Modules\Media\Dto;
 
 use Illuminate\Support\Str;
 
-class MediaLibraryRequestItem {
-    public static function fromArray(array $properties): self {
+class MediaLibraryRequestItem
+{
+    public static function fromArray(array $properties): self
+    {
         $properties = collect($properties)
             ->keyBy(fn ($value, $key) => Str::snake($key));
 

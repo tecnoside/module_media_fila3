@@ -10,16 +10,20 @@ use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
 /** @var $this \Illuminate\Foundation\Http\FormRequest */
-trait ValidatesMedia {
-    protected function validateSingleMedia(): UploadedMediaRules {
+trait ValidatesMedia
+{
+    protected function validateSingleMedia(): UploadedMediaRules
+    {
         return (new UploadedMediaRules())->maxItems(1);
     }
 
-    protected function validateMultipleMedia() {
+    protected function validateMultipleMedia()
+    {
         return new UploadedMediaRules();
     }
 
-    public function validateResolved() {
+    public function validateResolved()
+    {
         $this->prepareForValidation();
 
         if (! $this->passesAuthorization()) {
@@ -41,17 +45,20 @@ trait ValidatesMedia {
         $this->passedValidation();
     }
 
-    public function getRewrittenRules(): array {
+    public function getRewrittenRules(): array
+    {
         return $this->rewrittenRules ?? [];
     }
 
-    public function moveItemRulesToMediaItems(array $rules): array {
+    public function moveItemRulesToMediaItems(array $rules): array
+    {
         [$itemRules, $remainingRules] = $this->filterItemRules($rules);
 
         return array_merge($remainingRules, $itemRules);
     }
 
-    public function filterItemRules(array $allAttributeRules): array {
+    public function filterItemRules(array $allAttributeRules): array
+    {
         $itemRules = [];
         $remainingRules = [];
 
