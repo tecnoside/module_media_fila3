@@ -106,7 +106,7 @@ class VideoEditor extends Component {
             'download' => 'Download',
             'empty' => 'Empty.',
             'yes' => 'Yes',
-            'cancel' => 'Cancel',
+            'cancel' => 'Annulla',
             'confirm' => 'Confirm',
             'duration' => 'Duration',
             'text_on_image' => 'Text in the picture',
