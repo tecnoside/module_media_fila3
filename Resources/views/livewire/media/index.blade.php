@@ -4,11 +4,10 @@
     {{ count($sortedMedia) == 0 ? 'media-library-empty' : 'media-library-filled' }}"
 >
     @include('media::livewire.partials.list-error')
-
     @include($listView)
 
     <div class="{{ !$this->allowsUploads() ? 'media-library-hidden' : 'media-library-uploader' }}">
-        
+
         <livewire:media.uploader
             :key="'' . \Illuminate\Support\Str::uuid()"
             :name="$this->name"
@@ -16,6 +15,6 @@
             :multiple="$multiple"
             :add="true"
         />
-        
+
     </div>
 </div>
