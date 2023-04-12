@@ -8,12 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Modules\Cms\Actions\GetViewAction;
 
-<<<<<<< HEAD
-class Button extends Component
-{
-=======
 class Button extends Component {
->>>>>>> 21c6e7d (up)
     public string $tpl = 'v1';
 
     /**
