@@ -53,6 +53,7 @@ class ViewMediaItem {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> a573407 (up)
@@ -61,6 +62,9 @@ class ViewMediaItem {
 =======
     public function propertyErrorName(string $name): string {
 >>>>>>> 931017b (Fix styling)
+=======
+    public function propertyErrorName(string $name): string {
+>>>>>>> 3683366 (Fix styling)
         return "{$this->formFieldName}.{$this->uuid}.{$name}";
     }
 
@@ -76,6 +80,7 @@ class ViewMediaItem {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -86,3 +91,6 @@ class ViewMediaItem {
 =======
 }
 >>>>>>> ecdd4cb (up)
+=======
+}
+>>>>>>> 3683366 (Fix styling)

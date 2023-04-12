@@ -3,6 +3,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 3683366 (Fix styling)
 declare(strict_types=1);
 
 namespace Modules\Media\Console\Commands;
@@ -38,6 +41,7 @@ class DeleteTemporaryUploadsCommand extends Command {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -48,3 +52,6 @@ class DeleteTemporaryUploadsCommand extends Command {
 =======
 }
 >>>>>>> ecdd4cb (up)
+=======
+}
+>>>>>>> 3683366 (Fix styling)

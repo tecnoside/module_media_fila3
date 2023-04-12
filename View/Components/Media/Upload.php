@@ -131,6 +131,7 @@ class Upload extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -141,3 +142,6 @@ class Upload extends Component {
 =======
 }
 >>>>>>> ecdd4cb (up)
+=======
+}
+>>>>>>> 3683366 (Fix styling)

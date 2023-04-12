@@ -45,6 +45,7 @@ class TemporaryUpload extends Model implements HasMedia {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static function previewManipulation(\Closure $closure): void
 =======
     public static function previewManipulation(Closure $closure): void
@@ -66,6 +67,13 @@ class TemporaryUpload extends Model implements HasMedia {
 
     protected function getPreviewManipulation(): \Closure {
 >>>>>>> 931017b (Fix styling)
+=======
+    public static function previewManipulation(\Closure $closure): void {
+        static::$manipulatePreview = $closure;
+    }
+
+    protected function getPreviewManipulation(): \Closure {
+>>>>>>> 3683366 (Fix styling)
         return static::$manipulatePreview ?? function (Conversion $conversion) {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
         };
@@ -183,6 +191,7 @@ class TemporaryUpload extends Model implements HasMedia {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -193,3 +202,6 @@ class TemporaryUpload extends Model implements HasMedia {
 =======
 }
 >>>>>>> ecdd4cb (up)
+=======
+}
+>>>>>>> 3683366 (Fix styling)
