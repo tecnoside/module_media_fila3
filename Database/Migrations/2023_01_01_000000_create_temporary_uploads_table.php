@@ -29,6 +29,7 @@ class CreateTemporaryUploadsTable extends XotBaseMigration
         );
         // -- UPDATE --
 <<<<<<< HEAD
+<<<<<<< HEAD
         // $this->tableUpdate(
         // function (Blueprint $table) {
         // if (! $this->hasColumn('channel_id')) {
@@ -45,5 +46,14 @@ class CreateTemporaryUploadsTable extends XotBaseMigration
             //}
         //);
 >>>>>>> a573407 (up)
+=======
+        // $this->tableUpdate(
+        // function (Blueprint $table) {
+        // if (! $this->hasColumn('channel_id')) {
+                //    $table->integer('channel_id')->nullable();
+        // }
+        // }
+        // );
+>>>>>>> 931017b (Fix styling)
     }
 }

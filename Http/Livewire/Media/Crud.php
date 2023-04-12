@@ -41,14 +41,12 @@ class Crud extends Component
             ++$order;
 =======
     public function submit() {
-
         // *
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
         // ->toMediaCollection($this->collection);
         // ->toMediaCollectionFromTemporaryUpload($this->collection,'',)
         // $collectionName, $diskName, $this->fileName)
-
 
         // */
 
@@ -57,6 +55,7 @@ class Crud extends Component
 >>>>>>> a573407 (up)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if (null != $temporaryUpload) {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 // $media = $temporaryUpload->getFirstMedia();
                 $media = $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
@@ -68,11 +67,18 @@ class Crud extends Component
                 // dddx(['media'=>$media,'order'=>$order]);
 =======
                 //$media = $temporaryUpload->getFirstMedia();
+=======
+                // $media = $temporaryUpload->getFirstMedia();
+>>>>>>> 931017b (Fix styling)
                 $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
-                //$media->move($this->model, $this->collection);
+            // $media->move($this->model, $this->collection);
             } else {
+<<<<<<< HEAD
                 //$media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
 >>>>>>> a573407 (up)
+=======
+                // $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
+>>>>>>> 931017b (Fix styling)
             }
             $media?->update(['order_column' => $order]);
         }

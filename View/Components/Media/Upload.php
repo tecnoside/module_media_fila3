@@ -1,6 +1,9 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 931017b (Fix styling)
 declare(strict_types=1);
 
 namespace Modules\Media\View\Components\Media;
@@ -14,8 +17,7 @@ namespace Modules\Media\View\Components\Media;
 use Illuminate\View\Component;
 >>>>>>> a573407 (up)
 
-class Upload extends Component
-{
+class Upload extends Component {
     public array $media;
 <<<<<<< HEAD
     public string $tpl = 'v1';
@@ -45,6 +47,7 @@ class Upload extends Component
 >>>>>>> a573407 (up)
     }
 
+<<<<<<< HEAD
     public function render()
     {
 <<<<<<< HEAD
@@ -59,12 +62,14 @@ class Upload extends Component
 
         return view($view, $view_params);
 =======
+=======
+    public function render() {
+>>>>>>> 931017b (Fix styling)
         return view('media-library::components.media-library-attachment');
 >>>>>>> a573407 (up)
     }
 
-    public function determineListViewName(): string
-    {
+    public function determineListViewName(): string {
         if (! is_null($this->listView)) {
             return $this->listView;
         }
@@ -76,8 +81,7 @@ class Upload extends Component
 >>>>>>> a573407 (up)
     }
 
-    public function determineItemViewName(): string
-    {
+    public function determineItemViewName(): string {
         if (! is_null($this->itemView)) {
             return $this->itemView;
         }
@@ -89,8 +93,7 @@ class Upload extends Component
 >>>>>>> a573407 (up)
     }
 
-    public function determineFieldsViewName(): string
-    {
+    public function determineFieldsViewName(): string {
         if (! is_null($this->fieldsView)) {
             return $this->fieldsView;
         }
@@ -102,14 +105,17 @@ class Upload extends Component
 >>>>>>> a573407 (up)
     }
 
-    public function determineMaxItems(): ?int
-    {
+    public function determineMaxItems(): ?int {
         return $this->multiple
             ? $this->maxItems
             : 1;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> a573407 (up)
+=======
+}
+>>>>>>> 931017b (Fix styling)
