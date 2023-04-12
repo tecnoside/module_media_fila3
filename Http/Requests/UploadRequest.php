@@ -8,8 +8,10 @@ use Illuminate\Foundation\Http\FormRequest;
 use Modules\Media\Rules\FileExtensionRule;
 use Modules\Media\Support\DefaultAllowedExtensions;
 
-class UploadRequest extends FormRequest {
-    public function rules(): array {
+class UploadRequest extends FormRequest
+{
+    public function rules(): array
+    {
         $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
 
         $allowedExtensions = $configuredAllowedExtensions ?? DefaultAllowedExtensions::all();
@@ -28,7 +30,8 @@ class UploadRequest extends FormRequest {
         ];
     }
 
-    protected function getDatabaseConnection(): string {
+    protected function getDatabaseConnection(): string
+    {
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
@@ -41,7 +44,8 @@ class UploadRequest extends FormRequest {
         return "{$mediaModel->getConnectionName()}.";
     }
 
-    protected function getMediaTableName(): string {
+    protected function getMediaTableName(): string
+    {
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
@@ -50,7 +54,8 @@ class UploadRequest extends FormRequest {
         return $mediaModel->getTable();
     }
 
-    public function messages() {
+    public function messages()
+    {
         return [
             'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),
         ];

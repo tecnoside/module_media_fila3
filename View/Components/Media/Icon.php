@@ -8,7 +8,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Modules\Cms\Actions\GetViewAction;
 
-class Icon extends Component {
+class Icon extends Component
+{
     public string $tpl = 'v1';
 
     /**
@@ -16,13 +17,15 @@ class Icon extends Component {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): Renderable {
+    public function render(): Renderable
+    {
         /**
          * @phpstan-var view-string
          */
