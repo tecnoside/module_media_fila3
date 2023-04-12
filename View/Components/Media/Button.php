@@ -8,8 +8,12 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Modules\Cms\Actions\GetViewAction;
 
+<<<<<<< HEAD
 class Button extends Component
 {
+=======
+class Button extends Component {
+>>>>>>> 21c6e7d (up)
     public string $tpl = 'v1';
 
     /**
@@ -17,15 +21,13 @@ class Button extends Component
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): Renderable
-    {
+    public function render(): Renderable {
         /**
          * @phpstan-var view-string
          */

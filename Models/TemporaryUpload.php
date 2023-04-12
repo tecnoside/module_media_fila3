@@ -46,6 +46,7 @@ class TemporaryUpload extends Model implements HasMedia
         $previewManipulation($conversion);
     }
 
+<<<<<<< HEAD
     public static function previewManipulation(\Closure $closure): void
     {
         static::$manipulatePreview = $closure;
@@ -53,6 +54,13 @@ class TemporaryUpload extends Model implements HasMedia
 
     protected function getPreviewManipulation(): \Closure
     {
+=======
+    public static function previewManipulation(\Closure $closure): void {
+        static::$manipulatePreview = $closure;
+    }
+
+    protected function getPreviewManipulation(): \Closure {
+>>>>>>> 21c6e7d (up)
         return static::$manipulatePreview ?? function (Conversion $conversion) {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
         };
