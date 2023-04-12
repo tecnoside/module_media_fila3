@@ -10,7 +10,8 @@ use Modules\Media\Models\TemporaryUpload;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\QueueableAction\QueueableAction;
 
-class AttachMediaAction {
+class AttachMediaAction
+{
     use QueueableAction;
 
     /**
@@ -18,14 +19,16 @@ class AttachMediaAction {
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         // Prepare the action for execution, leveraging constructor injection.
     }
 
     /**
      * Execute the action.
      */
-    public function execute(HasMedia $model, array $attachments, ?string $collection = null) {
+    public function execute(HasMedia $model, array $attachments, ?string $collection = null)
+    {
         $order = 1;
         foreach ($attachments ?? [] as $attachment) {
             ++$order;
