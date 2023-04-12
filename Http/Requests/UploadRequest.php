@@ -1,7 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
+=======
+>>>>>>> a573407 (up)
 namespace Modules\Media\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,8 +26,13 @@ class UploadRequest extends FormRequest
             'name' => '',
             'custom_properties' => '',
             'file' => [
+<<<<<<< HEAD
                 'max:'.config('media-library.max_file_size') / 1024,
                 'mimes:'.$allowedExtensionsString,
+=======
+                'max:' . config('media-library.max_file_size') / 1024,
+                "mimes:" . $allowedExtensionsString,
+>>>>>>> a573407 (up)
                 new FileExtensionRule($allowedExtensions),
             ],
         ];
@@ -35,9 +43,15 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
 
         if ('default' === $mediaModel->getConnectionName()) {
+=======
+        $mediaModel = new $mediaModelClass;
+
+        if ($mediaModel->getConnectionName() === 'default') {
+>>>>>>> a573407 (up)
             return '';
         }
 
@@ -49,7 +63,11 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> a573407 (up)
 
         return $mediaModel->getTable();
     }
@@ -60,4 +78,8 @@ class UploadRequest extends FormRequest
             'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),
         ];
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a573407 (up)

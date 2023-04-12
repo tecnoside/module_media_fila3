@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace Modules\Media\View\Components\Media;
@@ -7,11 +8,19 @@ namespace Modules\Media\View\Components\Media;
 use Illuminate\View\Component;
 use Modules\Cms\Actions\GetViewAction;
 use Modules\UI\Services\ThemeService;
+=======
+namespace Modules\Media\View\Components\Media;
+
+use Illuminate\View\Component;
+>>>>>>> a573407 (up)
 
 class Upload extends Component
 {
     public array $media;
+<<<<<<< HEAD
     public string $tpl = 'v1';
+=======
+>>>>>>> a573407 (up)
 
     public ?string $propertiesView = null;
 
@@ -28,12 +37,17 @@ class Upload extends Component
         public ?string $fieldsView = null
     ) {
         $this->media = old($name) ?? [];
+<<<<<<< HEAD
         $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
         ThemeService::add('media::css/media.css');
+=======
+        $this->propertiesView = $propertiesView ?? 'media-library::livewire.partials.attachment.properties';
+>>>>>>> a573407 (up)
     }
 
     public function render()
     {
+<<<<<<< HEAD
         /**
          * @phpstan-var view-string
          */
@@ -44,6 +58,9 @@ class Upload extends Component
         ];
 
         return view($view, $view_params);
+=======
+        return view('media-library::components.media-library-attachment');
+>>>>>>> a573407 (up)
     }
 
     public function determineListViewName(): string
@@ -52,7 +69,11 @@ class Upload extends Component
             return $this->listView;
         }
 
+<<<<<<< HEAD
         return 'media::livewire.partials.attachment.list';
+=======
+        return 'media-library::livewire.partials.attachment.list';
+>>>>>>> a573407 (up)
     }
 
     public function determineItemViewName(): string
@@ -61,7 +82,11 @@ class Upload extends Component
             return $this->itemView;
         }
 
+<<<<<<< HEAD
         return 'media::livewire.partials.attachment.item';
+=======
+        return 'media-library::livewire.partials.attachment.item';
+>>>>>>> a573407 (up)
     }
 
     public function determineFieldsViewName(): string
@@ -70,7 +95,11 @@ class Upload extends Component
             return $this->fieldsView;
         }
 
+<<<<<<< HEAD
         return 'media::livewire.partials.attachment.fields';
+=======
+        return 'media-library::livewire.partials.attachment.fields';
+>>>>>>> a573407 (up)
     }
 
     public function determineMaxItems(): ?int
@@ -79,4 +108,8 @@ class Upload extends Component
             ? $this->maxItems
             : 1;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a573407 (up)

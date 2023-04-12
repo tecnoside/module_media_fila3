@@ -1,9 +1,15 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace Modules\Media\Http\Requests;
 
+=======
+namespace Modules\Media\Http\Requests;
+
+
+>>>>>>> a573407 (up)
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
@@ -25,9 +31,15 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
 
         if ('default' === $mediaModel->getConnectionName()) {
+=======
+        $mediaModel = new $mediaModelClass;
+
+        if ($mediaModel->getConnectionName() === 'default') {
+>>>>>>> a573407 (up)
             return '';
         }
 
@@ -39,7 +51,11 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> a573407 (up)
 
         return $mediaModel->getTable();
     }
@@ -50,4 +66,8 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
             'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),
         ];
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a573407 (up)

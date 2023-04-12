@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\Media\Database\Factories;
 
 use Illuminate\Http\UploadedFile;
@@ -16,7 +14,11 @@ class TemporaryUploadFactory
 
     public static function new(): self
     {
+<<<<<<< HEAD
         return new static();
+=======
+        return new static;
+>>>>>>> a573407 (up)
     }
 
     public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self
