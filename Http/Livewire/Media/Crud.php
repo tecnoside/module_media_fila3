@@ -41,6 +41,7 @@ class Crud extends Component
             ++$order;
 =======
     public function submit() {
+<<<<<<< HEAD
         // *
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
@@ -53,11 +54,17 @@ class Crud extends Component
         // dddx(collect($this->upload)->pluck('order')->all());
         foreach ($this->upload as $attachment) {
 >>>>>>> a573407 (up)
+=======
+        $order=1;
+        foreach ($this->upload ?? [] as  $attachment) {
+            $order++;
+>>>>>>> 7303911 (up)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if (null != $temporaryUpload) {
 <<<<<<< HEAD
 <<<<<<< HEAD
                 // $media = $temporaryUpload->getFirstMedia();
+<<<<<<< HEAD
                 $media = $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
             // dddx($res);
             // $media->move($this->model, $this->collection);
@@ -104,6 +111,21 @@ class Crud extends Component
 
         // }
 >>>>>>> a573407 (up)
+=======
+                $media=$temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
+                //dddx($res);
+            // $media->move($this->model, $this->collection);
+            } else {
+                $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
+                //$media->update(['order_column'=>$order]);
+                //dddx(['media'=>$media,'order'=>$order]);
+            }
+            $media?->update(['order_column'=>$order]);
+
+        }
+        session()->flash('message', 'Post successfully updated.');
+
+>>>>>>> 7303911 (up)
     }
 
     public function submitVecio()
@@ -130,7 +152,11 @@ class Crud extends Component
         }
 
         session()->flash('message', 'Post successfully updated.');
+<<<<<<< HEAD
         // *
+=======
+         // *
+>>>>>>> 7303911 (up)
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
         // ->toMediaCollection($this->collection);
@@ -140,6 +166,7 @@ class Crud extends Component
         // */
 
         // dddx(collect($this->upload)->pluck('order')->all());
+<<<<<<< HEAD
         // $media->setOrder($attachment['order']);
 
         /* @var \Spatie\MediaLibrary\MediaCollections\FileAdder $fileAdder */
@@ -152,6 +179,20 @@ class Crud extends Component
             ->setOrder($attachment['order']);
         dddx($fa);
         */
+=======
+            // $media->setOrder($attachment['order']);
+
+            /* @var \Spatie\MediaLibrary\MediaCollections\FileAdder $fileAdder */
+            /*
+            $fileAdder = app(\Spatie\MediaLibrary\MediaCollections\FileAdder::class);
+            $fa=$fileAdder
+                ->setSubject($this->model)
+                ->setFile($temporaryUpload)
+                ->setName($attachment['name'])
+                ->setOrder($attachment['order']);
+            dddx($fa);
+            */
+>>>>>>> 7303911 (up)
         // $order=collect($this->upload)->pluck('order')->all();
         // \Modules\Media\Models\Media::setNewOrder($order);
 
