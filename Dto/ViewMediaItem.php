@@ -51,20 +51,7 @@ class ViewMediaItem {
         return "{$this->formFieldName}.{$this->uuid}";
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> a573407 (up)
-    public function propertyErrorName(string $name): string
-    {
-=======
     public function propertyErrorName(string $name): string {
->>>>>>> 931017b (Fix styling)
-=======
-    public function propertyErrorName(string $name): string {
->>>>>>> 3683366 (Fix styling)
         return "{$this->formFieldName}.{$this->uuid}.{$name}";
     }
 
@@ -77,20 +64,4 @@ class ViewMediaItem {
 
         return $mediaModelClass::findByUuid($this->uuid)->getUrl();
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a573407 (up)
-=======
-}
->>>>>>> 931017b (Fix styling)
-=======
-}
->>>>>>> ecdd4cb (up)
-=======
-}
->>>>>>> 3683366 (Fix styling)
