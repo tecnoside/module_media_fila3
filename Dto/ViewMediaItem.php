@@ -75,6 +75,7 @@ class ViewMediaItem {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -82,3 +83,6 @@ class ViewMediaItem {
 =======
 }
 >>>>>>> 931017b (Fix styling)
+=======
+}
+>>>>>>> ecdd4cb (up)

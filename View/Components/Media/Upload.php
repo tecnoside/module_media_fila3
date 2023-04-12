@@ -2,13 +2,17 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 931017b (Fix styling)
+=======
+>>>>>>> ecdd4cb (up)
 declare(strict_types=1);
 
 namespace Modules\Media\View\Components\Media;
 
 use Illuminate\View\Component;
+<<<<<<< HEAD
 use Modules\Cms\Actions\GetViewAction;
 use Modules\UI\Services\ThemeService;
 =======
@@ -16,6 +20,8 @@ namespace Modules\Media\View\Components\Media;
 
 use Illuminate\View\Component;
 >>>>>>> a573407 (up)
+=======
+>>>>>>> ecdd4cb (up)
 
 class Upload extends Component {
     public array $media;
@@ -40,9 +46,12 @@ class Upload extends Component {
     ) {
         $this->media = old($name) ?? [];
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
         ThemeService::add('media::css/media.css');
 =======
+=======
+>>>>>>> ecdd4cb (up)
         $this->propertiesView = $propertiesView ?? 'media-library::livewire.partials.attachment.properties';
 >>>>>>> a573407 (up)
     }
@@ -75,8 +84,11 @@ class Upload extends Component {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         return 'media::livewire.partials.attachment.list';
 =======
+=======
+>>>>>>> ecdd4cb (up)
         return 'media-library::livewire.partials.attachment.list';
 >>>>>>> a573407 (up)
     }
@@ -87,8 +99,11 @@ class Upload extends Component {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         return 'media::livewire.partials.attachment.item';
 =======
+=======
+>>>>>>> ecdd4cb (up)
         return 'media-library::livewire.partials.attachment.item';
 >>>>>>> a573407 (up)
     }
@@ -99,8 +114,11 @@ class Upload extends Component {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         return 'media::livewire.partials.attachment.fields';
 =======
+=======
+>>>>>>> ecdd4cb (up)
         return 'media-library::livewire.partials.attachment.fields';
 >>>>>>> a573407 (up)
     }
@@ -112,6 +130,7 @@ class Upload extends Component {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -119,3 +138,6 @@ class Upload extends Component {
 =======
 }
 >>>>>>> 931017b (Fix styling)
+=======
+}
+>>>>>>> ecdd4cb (up)

@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace Modules\Media\Console\Commands;
@@ -12,6 +13,9 @@ declare(strict_types=1);
 >>>>>>> 931017b (Fix styling)
 namespace Themes\Media\Console\Commands;
 >>>>>>> a573407 (up)
+=======
+namespace Modules\Media\Console\Commands;
+>>>>>>> ecdd4cb (up)
 
 use Illuminate\Console\Command;
 
@@ -33,6 +37,7 @@ class DeleteTemporaryUploadsCommand extends Command {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -40,3 +45,6 @@ class DeleteTemporaryUploadsCommand extends Command {
 =======
 }
 >>>>>>> 931017b (Fix styling)
+=======
+}
+>>>>>>> ecdd4cb (up)

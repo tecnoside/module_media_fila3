@@ -14,6 +14,7 @@ class TemporaryUploadFactory {
     private int $fakeImageHeight = 10;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static function new(): self
     {
 <<<<<<< HEAD
@@ -25,6 +26,10 @@ class TemporaryUploadFactory {
     public static function new(): self {
         return new static();
 >>>>>>> 931017b (Fix styling)
+=======
+    public static function new(): self {
+        return new static();
+>>>>>>> ecdd4cb (up)
     }
 
     public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self {

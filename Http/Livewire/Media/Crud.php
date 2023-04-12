@@ -43,6 +43,7 @@ class Crud extends Component
     public function submit() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         // *
         // $t1=$this->model
         // ->addFromMediaLibraryRequest($this->upload)
@@ -61,6 +62,8 @@ class Crud extends Component
             $order++;
 >>>>>>> 7303911 (up)
 =======
+=======
+>>>>>>> ecdd4cb (up)
         $order = 1;
         foreach ($this->upload ?? [] as $attachment) {
             ++$order;
@@ -141,8 +144,12 @@ class Crud extends Component
 >>>>>>> 784b0f8 (Fix styling)
     }
 
+<<<<<<< HEAD
     public function submitVecio()
     {
+=======
+    public function submitVecio() {
+>>>>>>> ecdd4cb (up)
         foreach ($this->upload as $attachment) {
             $disk = config('media-library.disk_name');
             $disk_url = Storage::disk($disk)->url('');

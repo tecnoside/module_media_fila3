@@ -182,6 +182,7 @@ class TemporaryUpload extends Model implements HasMedia {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
@@ -189,3 +190,6 @@ class TemporaryUpload extends Model implements HasMedia {
 =======
 }
 >>>>>>> 931017b (Fix styling)
+=======
+}
+>>>>>>> ecdd4cb (up)
