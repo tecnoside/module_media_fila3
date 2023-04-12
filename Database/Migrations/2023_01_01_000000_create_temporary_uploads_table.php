@@ -27,13 +27,5 @@ class CreateTemporaryUploadsTable extends XotBaseMigration
                 $table->timestamps();
             }
         );
-        // -- UPDATE --
-        // $this->tableUpdate(
-        // function (Blueprint $table) {
-        // if (! $this->hasColumn('channel_id')) {
-        //    $table->integer('channel_id')->nullable();
-        // }
-        // }
-        // );
     }
 }

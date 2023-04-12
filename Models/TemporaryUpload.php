@@ -43,37 +43,11 @@ class TemporaryUpload extends Model implements HasMedia {
         $previewManipulation($conversion);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public static function previewManipulation(\Closure $closure): void
-=======
-    public static function previewManipulation(Closure $closure): void
->>>>>>> a573407 (up)
-    {
-        static::$manipulatePreview = $closure;
-    }
-
-<<<<<<< HEAD
-    protected function getPreviewManipulation(): \Closure
-=======
-    protected function getPreviewManipulation(): Closure
->>>>>>> a573407 (up)
-    {
-=======
     public static function previewManipulation(\Closure $closure): void {
         static::$manipulatePreview = $closure;
     }
 
     protected function getPreviewManipulation(): \Closure {
->>>>>>> 931017b (Fix styling)
-=======
-    public static function previewManipulation(\Closure $closure): void {
-        static::$manipulatePreview = $closure;
-    }
-
-    protected function getPreviewManipulation(): \Closure {
->>>>>>> 3683366 (Fix styling)
         return static::$manipulatePreview ?? function (Conversion $conversion) {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
         };
@@ -188,20 +162,4 @@ class TemporaryUpload extends Model implements HasMedia {
 
         return $newMedia;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a573407 (up)
-=======
-}
->>>>>>> 931017b (Fix styling)
-=======
-}
->>>>>>> ecdd4cb (up)
-=======
-}
->>>>>>> 3683366 (Fix styling)
