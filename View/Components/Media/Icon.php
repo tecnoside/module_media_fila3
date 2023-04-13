@@ -8,12 +8,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Modules\Cms\Actions\GetViewAction;
 
-<<<<<<< HEAD
-class Icon extends Component
-{
-=======
 class Icon extends Component {
->>>>>>> bc58b5d (.)
     public string $tpl = 'v1';
 
     /**
