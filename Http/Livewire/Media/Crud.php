@@ -31,7 +31,8 @@ class Crud extends Component
         $this->collection = $collection;
     }
 
-    public function submit() {
+    public function submit()
+    {
         $order = 1;
         foreach ($this->upload ?? [] as $attachment) {
             ++$order;
@@ -49,8 +50,8 @@ class Crud extends Component
         session()->flash('message', 'Post successfully updated.');
     }
 
-
-    public function render() {
+    public function render()
+    {
         /**
          * @phpstan-var view-string
          */
