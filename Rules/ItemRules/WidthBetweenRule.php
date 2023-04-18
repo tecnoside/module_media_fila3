@@ -19,6 +19,9 @@ class WidthBetweenRule extends MediaItemRule
         }
 
         $size = getimagesize($media->getPath());
+        if (false === $size) {
+            return false;
+        }
         $actualWidth = $size[0];
 
         return $actualWidth >= $this->minWidth && $actualWidth <= $this->maxWidth;

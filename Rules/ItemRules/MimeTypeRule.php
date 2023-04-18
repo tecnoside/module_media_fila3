@@ -10,7 +10,9 @@ class MimeTypeRule extends MediaItemRule
 {
     protected array $allowedMimeTypes;
 
-    /** @var string|array */
+    /**
+     * @param string|array $allowedMimeTypes
+     */
     public function __construct($allowedMimeTypes)
     {
         $this->allowedMimeTypes = Arr::wrap($allowedMimeTypes);

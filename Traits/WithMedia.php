@@ -19,6 +19,11 @@ trait WithMedia
         }
     }
 
+    /**
+     * Undocumented function.
+     *
+     * @return void
+     */
     public function hydrateWithMedia()
     {
         foreach ($this->getMediaComponentNames() as $mediaComponent) {
