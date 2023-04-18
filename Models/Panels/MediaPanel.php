@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Modules\Cms\Models\Panels\XotBasePanel;
 use Modules\Xot\Contracts\RowsContract;
 
-class MediaPanel extends XotBasePanel
-{
+class MediaPanel extends XotBasePanel {
     /**
      * The model the resource corresponds to.
      */
@@ -32,13 +31,11 @@ class MediaPanel extends XotBasePanel
     /**
      * The relationships that should be eager loaded on index queries.
      */
-    public function with(): array
-    {
+    public function with(): array {
         return [];
     }
 
-    public function search(): array
-    {
+    public function search(): array {
         return [];
     }
 
@@ -48,12 +45,11 @@ class MediaPanel extends XotBasePanel
      * quando aggiungi un campo select, è il numero della chiave
      * che viene messo come valore su value="id"
      *
-     * @param Modules\Media\Models\Media $row
+     * @param \Modules\Media\Models\Media $row
      *
      * @return int|string|null
      */
-    public function optionId($row)
-    {
+    public function optionId($row) {
         $key = $row->getKey();
         if (null === $key || (! is_string($key) && ! is_int($key))) {
             throw new \Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
@@ -65,18 +61,16 @@ class MediaPanel extends XotBasePanel
     /**
      * on select the option label.
      *
-     * @param Modules\Media\Models\Media $row
+     * @param \Modules\Media\Models\Media $row
      */
-    public function optionLabel($row): string
-    {
+    public function optionLabel($row): string {
         return 'To Set';
     }
 
     /**
      * index navigation.
      */
-    public function indexNav(): ?Renderable
-    {
+    public function indexNav(): ?Renderable {
         return null;
     }
 
@@ -87,8 +81,7 @@ class MediaPanel extends XotBasePanel
      *
      * @return RowsContract
      */
-    public function indexQuery(array $data, $query)
-    {
+    public function indexQuery(array $data, $query) {
         // return $query->where('user_id', $request->user()->id);
         return $query;
     }
@@ -97,8 +90,7 @@ class MediaPanel extends XotBasePanel
      * Get the fields displayed by the resource.
         'value'=>'..',
      */
-    public function fields(): array
-    {
+    public function fields(): array {
         return [
             (object) [
                 'type' => 'Id',
@@ -214,8 +206,7 @@ class MediaPanel extends XotBasePanel
     /**
      * Get the tabs available.
      */
-    public function tabs(): array
-    {
+    public function tabs(): array {
         $tabs_name = [];
 
         return $tabs_name;
@@ -224,8 +215,7 @@ class MediaPanel extends XotBasePanel
     /**
      * Get the cards available for the request.
      */
-    public function cards(Request $request): array
-    {
+    public function cards(Request $request): array {
         return [];
     }
 
@@ -234,24 +224,21 @@ class MediaPanel extends XotBasePanel
      *
      * @param \Illuminate\Http\Request $request
      */
-    public function filters(Request $request = null): array
-    {
+    public function filters(Request $request = null): array {
         return [];
     }
 
     /**
      * Get the lenses available for the resource.
      */
-    public function lenses(Request $request): array
-    {
+    public function lenses(Request $request): array {
         return [];
     }
 
     /**
      * Get the actions available for the resource.
      */
-    public function actions(): array
-    {
+    public function actions(): array {
         return [];
     }
 }
