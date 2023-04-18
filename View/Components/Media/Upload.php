@@ -15,8 +15,8 @@ class Upload extends Component
     public function __construct(
         public string $name,
         public string $rules = '',
-        public $multiple = false,
-        public $editableName = false,
+        public bool $multiple = false,
+        public bool $editableName = false,
         public ?int $maxItems = null,
         public ?string $componentView = null,
         public ?string $listView = null,
@@ -25,12 +25,12 @@ class Upload extends Component
         public ?string $fieldsView = null
     ) {
         $this->media = old($name) ?? [];
-        $this->propertiesView = $propertiesView ?? 'media-library::livewire.partials.attachment.properties';
+        $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
     }
 
     public function render()
     {
-        return view('media-library::components.media-library-attachment');
+        return view('media::components.media-library-attachment');
     }
 
     public function determineListViewName(): string
@@ -39,7 +39,7 @@ class Upload extends Component
             return $this->listView;
         }
 
-        return 'media-library::livewire.partials.attachment.list';
+        return 'media::livewire.partials.attachment.list';
     }
 
     public function determineItemViewName(): string
@@ -48,7 +48,7 @@ class Upload extends Component
             return $this->itemView;
         }
 
-        return 'media-library::livewire.partials.attachment.item';
+        return 'media::livewire.partials.attachment.item';
     }
 
     public function determineFieldsViewName(): string
@@ -57,7 +57,7 @@ class Upload extends Component
             return $this->fieldsView;
         }
 
-        return 'media-library::livewire.partials.attachment.fields';
+        return 'media::livewire.partials.attachment.fields';
     }
 
     public function determineMaxItems(): ?int
