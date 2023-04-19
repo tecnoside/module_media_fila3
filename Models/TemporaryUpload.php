@@ -84,7 +84,11 @@ class TemporaryUpload extends Model implements HasMedia
 
     protected static function getDiskName(): string
     {
-        return static::$disk ?? config('media-library.disk_name');
+        $res = static::$disk ?? config('media-library.disk_name');
+        if (is_string($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
     public static function findByMediaUuid(?string $mediaUuid): ?TemporaryUpload

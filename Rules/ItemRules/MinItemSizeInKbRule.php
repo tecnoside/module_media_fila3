@@ -32,7 +32,7 @@ class MinItemSizeInKbRule extends MediaItemRule
         return $this->actualSizeInBytes >= ($this->minSizeInKb * 1024);
     }
 
-    public function message(): string
+    public function message()
     {
         return __('media-library::validation.file_too_small', [
             'min' => File::getHumanReadableSize($this->minSizeInKb * 1024),

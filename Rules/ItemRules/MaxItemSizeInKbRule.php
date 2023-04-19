@@ -34,11 +34,15 @@ class MaxItemSizeInKbRule extends MediaItemRule
 
     public function message()
     {
-        return __('media-library::validation.file_too_big', [
+        $res = __('media-library::validation.file_too_big', [
             'max' => File::getHumanReadableSize($this->maxSizeInKb * 1024),
             'maxInKb' => $this->maxSizeInKb,
             'actual' => File::getHumanReadableSize($this->actualSizeInBytes),
             'actualInKb' => round($this->actualSizeInBytes / 1024),
         ]);
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

@@ -29,9 +29,13 @@ class WidthBetweenRule extends MediaItemRule
 
     public function message()
     {
-        return __('media-library::validation.width_not_between', [
+        $res = __('media-library::validation.width_not_between', [
             'min' => $this->minWidth,
             'max' => $this->maxWidth,
         ]);
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

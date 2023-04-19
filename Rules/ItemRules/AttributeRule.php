@@ -15,7 +15,7 @@ class AttributeRule extends MediaItemRule
 
     protected Validator $validator;
 
-    public function __construct($attribute, $rules)
+    public function __construct(string $attribute, string|array $rules)
     {
         $this->attribute = $attribute;
 

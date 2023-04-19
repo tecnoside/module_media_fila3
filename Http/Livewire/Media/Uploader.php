@@ -18,37 +18,22 @@ class Uploader extends Component
         uploadErrored as protected uploadErroredTrait;
     }
 
-    /** @var string */
-    public $rules;
-
-    /** @var string */
-    public $name;
+    public string $rules;
+    public string $name;
+    public ?string $uuid;
+    public bool $multiple;
+    public bool $add;
+    public ?string $uploadError;
 
     /** @var \Livewire\TemporaryUploadedFile|null */
     public $upload;
 
-    /** @var string|null */
-    public $uuid;
-
-    /** @var bool */
-    public $multiple;
-
-    /** @var bool */
-    public $add;
-
-    /** @var string|null */
-    public $uploadError;
-
-    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
+    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false): void
     {
         $this->rules = $rules;
-
         $this->name = $name;
-
         $this->multiple = $multiple;
-
         $this->uuid = $uuid ?? (string) Str::uuid();
-
         $this->add = $add;
     }
 

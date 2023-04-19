@@ -19,6 +19,9 @@ class DimensionsRule extends MediaItemRule
         }
 
         $size = getimagesize($media->getPath());
+        if (false === $size) {
+            return false;
+        }
         $actualWidth = $size[0];
         $actualHeight = $size[1];
 

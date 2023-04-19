@@ -172,7 +172,9 @@ class VideoStream
                 $bytesToRead = $this->end - $i + 1;
             }
             // 169    Parameter #2 $length of function fread expects int<0, max>, int given.
-            $data = fread($this->vars['stream'], $bytesToRead);
+            /** @var int<0, max> */
+            $length = $bytesToRead;
+            $data = fread($this->vars['stream'], $length);
             echo $data;
             flush();
             $i += $bytesToRead;

@@ -16,7 +16,7 @@ class MinTotalSizeInKbRule implements Rule
     {
     }
 
-    public function getMinTotalSizeInKb()
+    public function getMinTotalSizeInKb(): int
     {
         return $this->minTotalSizeInKb;
     }
@@ -34,13 +34,17 @@ class MinTotalSizeInKbRule implements Rule
         return $this->actualTotalSizeInBytes >= ($this->minTotalSizeInKb * 1024);
     }
 
-    public function message(): string
+    public function message()
     {
-        return __('media-library::validation.total_upload_size_too_low', [
+        $res = __('media-library::validation.total_upload_size_too_low', [
             'min' => File::getHumanReadableSize($this->minTotalSizeInKb * 1024),
             'minInKb' => $this->minTotalSizeInKb,
             'actual' => File::getHumanReadableSize(round($this->actualTotalSizeInBytes / 1024)),
             'actualTotalSizeInKb' => round($this->actualTotalSizeInBytes / 1024),
         ]);
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

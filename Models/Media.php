@@ -6,6 +6,7 @@ namespace Modules\Media\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 /**
@@ -80,7 +81,7 @@ class Media extends SpatieMedia
         return $this->belongsTo(TemporaryUpload::class);
     }
 
-    public static function findWithTemporaryUploadInCurrentSession(array $uuids)
+    public static function findWithTemporaryUploadInCurrentSession(array $uuids): Collection
     {
         // MediaLibraryPro::ensureInstalled();
 

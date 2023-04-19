@@ -40,7 +40,7 @@ class Index extends Component
         string $itemView = null,
         string $propertiesView = null,
         string $fieldsView = null
-    ) {
+    ): void {
         $this->name = $name;
         $this->multiple = $multiple;
         $this->sortable = $sortable;
