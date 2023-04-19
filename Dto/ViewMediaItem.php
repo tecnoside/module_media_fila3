@@ -9,6 +9,8 @@ use Illuminate\Support\HtmlString;
 
 class ViewMediaItem
 {
+    public string $uuid;
+
     public function __construct(
         protected string $formFieldName,
         protected array $mediaAttributes

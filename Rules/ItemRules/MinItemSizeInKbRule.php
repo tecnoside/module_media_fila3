@@ -23,6 +23,10 @@ class MinItemSizeInKbRule extends MediaItemRule
             return true;
         }
 
+        if (! property_exists($media, 'size')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+
         $this->actualSizeInBytes = $media->size;
 
         return $this->actualSizeInBytes >= ($this->minSizeInKb * 1024);

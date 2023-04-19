@@ -11,8 +11,8 @@ class ExtensionRule extends MediaItemRule
 {
     protected array $allowedExtensions;
 
-    /** @var string|array */
-    public function __construct($allowedExtensions)
+    // /** @var string|array */
+    public function __construct(array $allowedExtensions)
     {
         $this->allowedExtensions = Arr::wrap($allowedExtensions);
     }
@@ -24,6 +24,9 @@ class ExtensionRule extends MediaItemRule
         }
 
         if (empty($media->mime_type)) {
+            if (! property_exists($media, 'file_name')) {
+                throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            }
             $extension = pathinfo($media->file_name, PATHINFO_EXTENSION);
 
             return in_array($extension, $this->allowedExtensions);

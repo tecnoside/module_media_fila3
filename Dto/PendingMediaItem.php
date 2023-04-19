@@ -19,7 +19,7 @@ class PendingMediaItem
     public static function createFromArray(array $pendingMediaItems): Collection
     {
         return collect($pendingMediaItems)
-            ->map(fn (array $uploadAttributes) => new static(
+            ->map(fn (array $uploadAttributes) => new self(
                 $uploadAttributes['uuid'],
                 $uploadAttributes['name'] ?? '',
                 $uploadAttributes['order'] ?? 0,
