@@ -24,7 +24,11 @@ class Upload extends Component
         ?string $propertiesView = null,
         public ?string $fieldsView = null
     ) {
-        $this->media = old($name) ?? [];
+        $media = old($name) ?? [];
+        if (! is_array($media)) {
+            $media = [];
+        }
+        $this->media = $media;
         $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
     }
 

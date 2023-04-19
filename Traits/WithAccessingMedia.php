@@ -11,7 +11,7 @@ trait WithAccessingMedia
 {
     protected function getMedia(string $name, HasMedia $model, string $collection): array
     {
-        return old($name) ? old($name) : $model
+        $res = old($name) ? old($name) : $model
             ->getMedia($collection)
             ->map(function (Media $media) {
                 return [
@@ -28,5 +28,9 @@ trait WithAccessingMedia
             })
             ->keyBy('uuid')
             ->toArray();
+        if (is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

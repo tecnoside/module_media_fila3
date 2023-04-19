@@ -33,8 +33,12 @@ class FileExtensionRule implements Rule
 
     public function message(): string
     {
-        return trans('media-library::validation.mime', [
+        $res = trans('media-library::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),
         ]);
+        if (is_string($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

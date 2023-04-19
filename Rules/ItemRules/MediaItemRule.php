@@ -9,9 +9,16 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 abstract class MediaItemRule implements Rule
 {
-    public $value;
+    public array $value;
 
-    public function passes($attribute, $value)
+    /**
+     * Undocumented function.
+     *
+     * @param mixed $attribute
+     *
+     * @return void
+     */
+    public function passes($attribute, array $value)
     {
         $this->value = $value;
 

@@ -67,7 +67,9 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    /** @var string|array */
+    /**
+     *  @param string|array $mimes
+     */
     public function mime($mimes): self
     {
         $this->itemRules[] = new MimeTypeRule($mimes);

@@ -12,20 +12,20 @@ use Modules\Media\Dto\ViewMediaItem;
 
 class Index extends Component
 {
-    public $name;
-    public $multiple;
-    public $sortable;
-    public $editableName;
-    public $rules;
-    public $maxItems = null;
-    public $media;
-    public $view;
-    public $listView;
-    public $itemView;
-    public $propertiesView;
-    public $fieldsView;
-    public $listErrorMessage = null;
-    protected $validationErrors = null;
+    public string $name;
+    public bool $multiple;
+    public bool $sortable;
+    public bool $editableName;
+    public string $rules;
+    public ?int $maxItems = null;
+    public array $media;
+    public string $view;
+    public string $listView;
+    public string $itemView;
+    public string $propertiesView;
+    public string $fieldsView;
+    public ?string $listErrorMessage = null;
+    protected ?string $validationErrors = null;
 
     public function mount(
         string $name,
