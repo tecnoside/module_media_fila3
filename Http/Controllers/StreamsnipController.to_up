@@ -59,7 +59,8 @@ class StreamsnipController extends BaseController {
 
                     ];
                     return (Str::startsWith($item,'get') && !in_array($item,$exclude));
-                })->map(function($item) use($media){
+                })->map(
+function($item) use($media){
                     $value='---';
                     try{
                         $value=$media->{$item}();

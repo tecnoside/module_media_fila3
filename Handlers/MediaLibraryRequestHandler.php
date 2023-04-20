@@ -66,16 +66,17 @@ class MediaLibraryRequestHandler
     {
         return $this
             ->newMediaLibraryRequestItems()
-            ->map(function (MediaLibraryRequestItem $item) {
-                return new PendingMediaItem(
-                    $item->uuid,
-                    $item->name,
-                    $item->order,
-                    $item->customProperties,
-                    $item->customHeaders,
-                    $item->fileName,
-                );
-            });
+            ->map(
+                function (MediaLibraryRequestItem $item) {
+                    return new PendingMediaItem(
+                        $item->uuid,
+                        $item->name,
+                        $item->order,
+                        $item->customProperties,
+                        $item->customHeaders,
+                        $item->fileName,
+                    );
+                });
     }
 
     protected function existingMediaLibraryRequestItems(): Collection

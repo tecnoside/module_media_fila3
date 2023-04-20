@@ -13,19 +13,20 @@ trait WithAccessingMedia
     {
         $res = old($name) ? old($name) : $model
             ->getMedia($collection)
-            ->map(function (Media $media) {
-                return [
-                    'name' => $media->name,
-                    'fileName' => $media->file_name,
-                    'uuid' => $media->uuid,
-                    'previewUrl' => $media->hasGeneratedConversion('preview') ? $media->getUrl('preview') : '',
-                    'order' => $media->order_column,
-                    'customProperties' => $media->custom_properties,
-                    'extension' => $media->extension,
-                    'size' => $media->size,
-                    'createdAt' => $media->created_at->timestamp,
-                ];
-            })
+            ->map(
+                function (Media $media) {
+                    return [
+                        'name' => $media->name,
+                        'fileName' => $media->file_name,
+                        'uuid' => $media->uuid,
+                        'previewUrl' => $media->hasGeneratedConversion('preview') ? $media->getUrl('preview') : '',
+                        'order' => $media->order_column,
+                        'customProperties' => $media->custom_properties,
+                        'extension' => $media->extension,
+                        'size' => $media->size,
+                        'createdAt' => $media->created_at->timestamp,
+                    ];
+                })
             ->keyBy('uuid')
             ->toArray();
         if (is_array($res)) {
