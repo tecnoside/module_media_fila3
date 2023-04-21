@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -31,18 +30,12 @@ class GetVideoFrameContentAction
 
     /**
      * Execute the action.
+     *
+     * @return string|null
      */
-    public function execute(string $disk_mp4, string $file_mp4, int $time): string
+    public function execute(string $disk_mp4, string $file_mp4, int $time)
     {
         if (! Storage::disk($disk_mp4)->exists($file_mp4)) {
-            /*$msg = [
-                'message' => 'video not exists',
-                'status' => 500,
-                'disk_mp4' => $disk_mp4,
-                'file_mp4' => $file_mp4,
-            ];
-            throw new Exception(implode(PHP_EOL, $msg));*/
-
             return '';
         }
         $seconds = 3600;
