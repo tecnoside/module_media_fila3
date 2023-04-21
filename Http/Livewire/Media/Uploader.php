@@ -84,12 +84,26 @@ class Uploader extends Component
     }
 
     /**
-     * @param $upload \Livewire\TemporaryUploadedFile
+     * @param \Livewire\TemporaryUploadedFile $upload
      */
     protected function handleUpload($upload): void
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
-
+        if (! property_exists($media, 'name')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'file_name')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'order_column')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'mime_type')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'size')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
             'fileName' => $media->file_name,
@@ -103,7 +117,7 @@ class Uploader extends Component
         ]);
     }
 
-    public function uploadErrored(string $name, $errorsInJson, $isMultiple): void
+    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);

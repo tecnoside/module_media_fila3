@@ -32,7 +32,7 @@ class AttachMediaAction
     public function execute(HasMedia $model, array $attachments, ?string $collection = null)
     {
         $order = 1;
-        foreach ($attachments ?? [] as $attachment) {
+        foreach ($attachments as $attachment) {
             ++$order;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if (null != $temporaryUpload) {
