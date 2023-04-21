@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
@@ -20,12 +21,12 @@ class Index extends Component
     public ?int $maxItems = null;
     public array $media;
     public string $view;
-    public string $listView;
-    public string $itemView;
-    public string $propertiesView;
-    public string $fieldsView;
+    public ?string $listView; // ?????????
+    public ?string $itemView; // ?????????
+    public ?string $propertiesView; // ???????
+    public ?string $fieldsView; // ??????????
     public ?string $listErrorMessage = null;
-    protected ?string $validationErrors = null;
+    protected MessageBag $validationErrors;
 
     public function mount(
         string $name,
@@ -60,7 +61,7 @@ class Index extends Component
         $this->listErrorMessage = $this->determineListErrorMessage();
     }
 
-    protected function getListeners()
+    protected function getListeners(): array
     {
         return [
             "{$this->name}:fileAdded" => 'onFileAdded',
@@ -128,7 +129,7 @@ class Index extends Component
             ->contains(fn (array $existingMediaItem): bool => $existingMediaItem['uuid'] === $newMediaItem['oldUuid']);
     }
 
-    public function hideError(string $uuid)
+    public function hideError(string $uuid): void
     {
         if (! isset($this->media[$uuid])) {
             return;
@@ -152,12 +153,12 @@ class Index extends Component
         return $errors->first($this->name);
     }
 
-    public function clearListErrorMessage()
+    public function clearListErrorMessage(): void
     {
         $this->listErrorMessage = null;
     }
 
-    public function onUploadError(string $uuid, string $uploadError)
+    public function onUploadError(string $uuid, string $uploadError): void
     {
         if (! isset($this->media[$uuid])) {
             return;
@@ -166,12 +167,12 @@ class Index extends Component
         $this->media[$uuid]['uploadError'] = $uploadError;
     }
 
-    public function onShowListErrorMessage(string $message)
+    public function onShowListErrorMessage(string $message): void
     {
         $this->listErrorMessage = $message;
     }
 
-    public function onMediaComponentValidationErrors(string $componentName, array $validationErrors)
+    public function onMediaComponentValidationErrors(string $componentName, array $validationErrors): void
     {
         if ($componentName !== $this->name) {
             return;
@@ -200,21 +201,21 @@ class Index extends Component
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setMediaProperty(string $uuid, string $attributeName, $value)
+    public function setMediaProperty(string $uuid, string $attributeName, string $value): void
     {
         $this->media[$uuid][$attributeName] = $value;
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setCustomProperty(string $uuid, string $customPropertyName, $value)
+    public function setCustomProperty(string $uuid, string $customPropertyName, string $value): void
     {
         Arr::set($this->media, "{$uuid}.custom_properties.{$customPropertyName}", $value);
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setNewOrder(array $newOrder)
+    public function setNewOrder(array $newOrder): void
     {
         foreach ($newOrder as $newOrderItem) {
             Arr::set($this->media, "{$newOrderItem['uuid']}.order", $newOrderItem['order']);
@@ -227,7 +228,7 @@ class Index extends Component
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function render()
+    public function render(): Renderable
     {
         return view($this->view, [
             'errors' => $this->validationErrors,

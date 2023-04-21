@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
 use Modules\Media\Dto\PendingMediaItem;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaLibraryRequestHandler
@@ -32,6 +33,9 @@ class MediaLibraryRequestHandler
     protected function __construct(Model $model, Collection $mediaLibraryRequestItems, string $collectionName)
     {
         $this->model = $model;
+        if (! $this->model instanceof HasMedia) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
 
         $this->existingUuids = $this->model->getMedia($collectionName)->pluck('uuid')->toArray();
 
@@ -44,9 +48,11 @@ class MediaLibraryRequestHandler
     {
         $this
             ->existingMediaLibraryRequestItems()
-            ->each(function (MediaLibraryRequestItem $mediaResponseItem) {
-                $this->handleExistingMediaLibraryRequestItem($mediaResponseItem);
-            });
+            ->each(
+                function (MediaLibraryRequestItem $mediaResponseItem) {
+                    $this->handleExistingMediaLibraryRequestItem($mediaResponseItem);
+                }
+            );
 
         return $this;
     }

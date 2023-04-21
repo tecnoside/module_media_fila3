@@ -49,19 +49,22 @@ class DimensionsRule extends MediaItemRule
             'width' => $this->requiredWidth,
             'height' => $this->requiredHeight,
         ];
-
+        $res = [];
         if ($this->requiredWidth && $this->requiredHeight) {
-            return __('media-library::validation.incorrect_dimensions.both', $params);
+            $res = __('media-library::validation.incorrect_dimensions.both', $params);
         }
 
         if ($this->requiredWidth) {
-            return __('media-library::validation.incorrect_dimensions.width', $params);
+            $res = __('media-library::validation.incorrect_dimensions.width', $params);
         }
 
         if ($this->requiredHeight) {
-            return __('media-library::validation.incorrect_dimensions.height', $params);
+            $res = __('media-library::validation.incorrect_dimensions.height', $params);
         }
 
-        return [];
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

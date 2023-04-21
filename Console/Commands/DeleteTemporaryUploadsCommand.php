@@ -12,11 +12,11 @@ class DeleteTemporaryUploadsCommand extends Command
 
     protected $description = 'Delete old temporary uploads';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Start removing old temporary uploads...');
 
-        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
+        $temporaryUploadModelClass = strval(config('media-library.temporary_upload_model'));
 
         $temporaryUploads = $temporaryUploadModelClass::old()->get();
 
