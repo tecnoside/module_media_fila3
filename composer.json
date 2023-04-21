@@ -8,7 +8,8 @@
     }],
     "require": {
         "laraxot/module_lang": "dev-master",
-        "laraxot/module_ui": "*",
+        "laraxot/module_ui": "dev-master",
+        "pbmedia/laravel-ffmpeg" : "dev-master",
         "laraxot/module_xot": "dev-master"
     },
     "require-dev": {

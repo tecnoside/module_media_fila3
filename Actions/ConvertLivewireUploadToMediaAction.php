@@ -26,7 +26,7 @@ class ConvertLivewireUploadToMediaAction
 
         $diskBeforeTestFake = config('livewire.temporary_file_upload.disk') ?: config('filesystems.default');
 
-        return 'local' === config('filesystems.disks.'.strtolower($diskBeforeTestFake).'.driver');
+        return 'local' === config('filesystems.disks.'.strtolower(strval($diskBeforeTestFake)).'.driver');
     }
 
     protected function createFromLocalLivewireUpload(TemporaryUploadedFile $livewireUpload): Media
