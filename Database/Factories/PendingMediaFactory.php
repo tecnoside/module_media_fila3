@@ -21,8 +21,15 @@ class PendingMediaFactory
     {
         $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
 
+        $uuid = $temporaryUpload->getFirstMedia()?->uuid;
+
+        if (null == $uuid) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+
         return new PendingMediaItem(
-            $temporaryUpload->getFirstMedia()->uuid,
+            // $temporaryUpload->getFirstMedia()?->uuid,
+            $uuid,
             $attributes['name'] ?? 'name',
             $attributes['order'] ?? 0,
             $attributes['custom_properties'] ?? [],

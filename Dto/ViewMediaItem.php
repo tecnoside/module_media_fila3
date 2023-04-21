@@ -17,7 +17,7 @@ class ViewMediaItem
     ) {
     }
 
-    public function __get($name)
+    public function __get(string $name): string
     {
         return $this->mediaAttributes[$name] ?? null;
     }
@@ -49,6 +49,9 @@ class ViewMediaItem
         return "{$this->formFieldName}[{$this->uuid}][custom_properties][$name]";
     }
 
+    /**
+     * @return mixed
+     */
     public function customPropertyAttributeValue(string $name)
     {
         $value = Arr::get($this->mediaAttributes['customProperties'] ?? [], $name);
@@ -73,7 +76,7 @@ class ViewMediaItem
 
     public function downloadUrl(): string
     {
-        $mediaModelClass = config('media-library.media_model');
+        $mediaModelClass = strval(config('media-library.media_model'));
 
         return $mediaModelClass::findByUuid($this->uuid)->getUrl();
     }

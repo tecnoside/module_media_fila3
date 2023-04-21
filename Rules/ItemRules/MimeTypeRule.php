@@ -27,10 +27,14 @@ class MimeTypeRule extends MediaItemRule
         return in_array($media->mime_type, $this->allowedMimeTypes);
     }
 
-    public function message(): string
+    public function message()
     {
-        return __('media-library::validation.mime', [
+        $res = __('media-library::validation.mime', [
             'mimes' => implode(', ', $this->allowedMimeTypes),
         ]);
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

@@ -19,6 +19,9 @@ class HeightBetweenRule extends MediaItemRule
         }
 
         $size = getimagesize($media->getPath());
+        if (false === $size) {
+            return false;
+        }
         $actualHeight = $size[1];
 
         return $actualHeight >= $this->minHeight && $actualHeight <= $this->maxHeight;
@@ -26,9 +29,13 @@ class HeightBetweenRule extends MediaItemRule
 
     public function message()
     {
-        return __('media-library::validation.height_not_between', [
+        $res = __('media-library::validation.height_not_between', [
             'min' => $this->minHeight,
             'max' => $this->maxHeight,
         ]);
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

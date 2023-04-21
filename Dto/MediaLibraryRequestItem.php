@@ -13,7 +13,7 @@ class MediaLibraryRequestItem
         $properties = collect($properties)
             ->keyBy(fn ($value, $key) => Str::snake($key));
 
-        return new static(
+        return new self(
             $properties['uuid'],
             $properties['name'] ?? '',
             $properties['order'] ?? 0,

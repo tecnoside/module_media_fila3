@@ -12,7 +12,7 @@ class MinItemsRule implements Rule
     {
     }
 
-    public function getMinItemCount()
+    public function getMinItemCount(): int
     {
         return $this->minItemCount;
     }

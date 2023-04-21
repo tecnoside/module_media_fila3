@@ -137,6 +137,9 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function customItemRules(string|array $rules)
     {
         $this->itemRules = array_merge($this->itemRules, Arr::wrap($rules));
@@ -144,6 +147,9 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function customGroupRules(string|array $rules)
     {
         $this->groupRules = array_merge($this->groupRules, Arr::wrap($rules));
@@ -151,13 +157,20 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function passes($attribute, $value): void
+    /**
+     * @param string $attribute
+     * @param mixed  $value
+     */
+    public function passes($attribute, $value): bool
     {
-        // this page has been left intentionally blank
+        return true;
     }
 
-    public function message(): void
+    /**
+     * @return array|string
+     */
+    public function message()
     {
-        // this page has been left intentionally blank
+        return 'string';
     }
 }
