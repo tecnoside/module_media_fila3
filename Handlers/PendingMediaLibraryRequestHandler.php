@@ -53,7 +53,7 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
-     * @param string|\Closure $filename
+     * @param string|\Closure $fileName
      */
     public function usingFileName($fileName): self
     {
