@@ -79,7 +79,7 @@ class MediaLibraryRequestHandler
                         $item->name,
                         $item->order,
                         $item->customProperties,
-                        $item->customHeaders,
+                        // $item->customHeaders,
                         $item->fileName,
                     );
                 });
