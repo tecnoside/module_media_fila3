@@ -26,6 +26,8 @@ class AttachMediaAction
 
     /**
      * Execute the action.
+     *
+     * @return void
      */
     public function execute(HasMedia $model, array $attachments, ?string $collection = null)
     {

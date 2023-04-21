@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -37,7 +38,7 @@ class Uploader extends Component
         $this->add = $add;
     }
 
-    public function updatedUpload()
+    public function updatedUpload(): void
     {
         $uploadError = $this->getUploadError();
 
@@ -54,9 +55,10 @@ class Uploader extends Component
         $uploads = $this->multiple
             ? $this->upload
             : [$this->upload];
-
-        foreach ($uploads as $upload) {
-            $this->handleUpload($upload);
+        if (is_iterable($uploads)) {
+            foreach ($uploads as $upload) {
+                $this->handleUpload($upload);
+            }
         }
     }
 
@@ -81,8 +83,10 @@ class Uploader extends Component
         return $uploadError;
     }
 
-    /** @param $upload \Livewire\TemporaryUploadedFile */
-    protected function handleUpload($upload)
+    /**
+     * @param $upload \Livewire\TemporaryUploadedFile
+     */
+    protected function handleUpload($upload): void
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
 
@@ -99,7 +103,7 @@ class Uploader extends Component
         ]);
     }
 
-    public function uploadErrored($name, $errorsInJson, $isMultiple)
+    public function uploadErrored(string $name, $errorsInJson, $isMultiple): void
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
@@ -112,7 +116,7 @@ class Uploader extends Component
         }
     }
 
-    public function render()
+    public function render(): Renderable
     {
         /**
          * @phpstan-var view-string

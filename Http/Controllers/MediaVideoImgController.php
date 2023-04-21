@@ -13,7 +13,10 @@ use Modules\Media\Actions\GetVideoFrameContentAction;
 
 class MediaVideoImgController extends Controller
 {
-    public function getSecond($second)
+    /**
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function getSecond(int $second)
     {
         $disk = 'cache';
         $file = 'test.mp4';

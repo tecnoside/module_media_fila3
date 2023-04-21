@@ -15,12 +15,16 @@ abstract class MediaItemRule implements Rule
     /**
      * Undocumented function.
      *
-     * @param mixed $attribute
+     * @param string $attribute
+     * @param mixed  $value
      *
-     * @return void
+     * @return bool
      */
-    public function passes($attribute, array $value)
+    public function passes($attribute, $value)
     {
+        if (! is_array($value)) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
         $this->value = $value;
 
         return $this->validateMediaItem();
@@ -28,7 +32,7 @@ abstract class MediaItemRule implements Rule
 
     public function getTemporaryUploadMedia(): ?Media
     {
-        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
+        $temporaryUploadModelClass = strval(config('media-library.temporary_upload_model'));
 
         $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($this->value['uuid']);
 

@@ -93,7 +93,7 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static function findByMediaUuid(?string $mediaUuid): ?TemporaryUpload
     {
-        $mediaModelClass = config('media-library.media_model');
+        $mediaModelClass = strval(config('media-library.media_model'));
 
         /** @var Media $media */
         $media = $mediaModelClass::query()
@@ -134,7 +134,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $uuid,
         string $name
     ): self {
-        /** @var \Spatie\MediaLibraryPro\Models\TemporaryUpload $temporaryUpload */
+        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -149,7 +149,9 @@ class TemporaryUpload extends Model implements HasMedia
             ->withProperties(['uuid' => $uuid])
             ->toMediaCollection('default', static::getDiskName());
 
-        return $temporaryUpload->fresh();
+        $temporaryUpload->fresh();
+
+        return $temporaryUpload;
     }
 
     public static function createForRemoteFile(
@@ -159,7 +161,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $name,
         string $diskName
     ): self {
-        /** @var \Spatie\MediaLibraryPro\Models\TemporaryUpload $temporaryUpload */
+        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -175,7 +177,9 @@ class TemporaryUpload extends Model implements HasMedia
             ->withProperties(['uuid' => $uuid])
             ->toMediaCollection('default', static::getDiskName());
 
-        return $temporaryUpload->fresh();
+        $temporaryUpload->fresh();
+
+        return $temporaryUpload;
     }
 
     public function moveMedia(HasMedia $toModel, string $collectionName, string $diskName, string $fileName): Media
@@ -187,6 +191,10 @@ class TemporaryUpload extends Model implements HasMedia
         }
 
         $media = $this->getFirstMedia();
+
+        if (null == $media) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
 
         $temporaryUploadModel = $media->model;
         $uuid = $media->uuid;

@@ -33,7 +33,7 @@ class PendingMediaItem
         string $name,
         int $order,
         array $customProperties,
-        array $customHeaders,
+        // array $customHeaders,
         string $fileName = null
     ) {
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
@@ -56,6 +56,16 @@ class PendingMediaItem
     public function toArray(): array
     {
         $media = $this->temporaryUpload->getFirstMedia();
+
+        if (null == $media) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'size')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'mime')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
 
         return [
             'uuid' => $media->uuid,

@@ -12,9 +12,10 @@ class UploadRequest extends FormRequest
 {
     public function rules(): array
     {
-        $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
+        // $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
 
-        $allowedExtensions = $configuredAllowedExtensions ?? DefaultAllowedExtensions::all();
+        // $allowedExtensions = $configuredAllowedExtensions ?? DefaultAllowedExtensions::all();
+        $allowedExtensions = DefaultAllowedExtensions::all();
 
         $allowedExtensionsString = implode(',', $allowedExtensions);
 

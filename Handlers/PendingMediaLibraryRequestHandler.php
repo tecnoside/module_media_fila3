@@ -32,6 +32,9 @@ class PendingMediaLibraryRequestHandler
         $this->preserveExisting = $preserveExisting;
     }
 
+    /**
+     * @param string|callable $mediaName
+     */
     public function usingName($mediaName): self
     {
         if (is_string($mediaName)) {
@@ -49,6 +52,9 @@ class PendingMediaLibraryRequestHandler
         return $this;
     }
 
+    /**
+     * @param string|\Closure $filename
+     */
     public function usingFileName($fileName): self
     {
         if (is_string($fileName)) {

@@ -39,8 +39,12 @@ class ExtensionRule extends MediaItemRule
 
     public function message()
     {
-        return __('media-library::validation.extension', [
+        $res = __('media-library::validation.extension', [
             'extensions' => implode(', ', $this->allowedExtensions),
         ]);
+        if (is_string($res) || is_array($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }
