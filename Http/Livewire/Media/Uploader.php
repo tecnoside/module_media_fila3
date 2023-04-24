@@ -117,7 +117,6 @@ class Uploader extends Component
         ]);
     }
 
-
     public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
     {
         try {
