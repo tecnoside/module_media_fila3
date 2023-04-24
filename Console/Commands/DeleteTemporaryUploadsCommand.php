@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Console\Commands;
+namespace Modules\Media\Commands;
 
 use Illuminate\Console\Command;
 
@@ -12,11 +10,11 @@ class DeleteTemporaryUploadsCommand extends Command
 
     protected $description = 'Delete old temporary uploads';
 
-    public function handle(): void
+    public function handle()
     {
         $this->info('Start removing old temporary uploads...');
 
-        $temporaryUploadModelClass = strval(config('media-library.temporary_upload_model'));
+        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         $temporaryUploads = $temporaryUploadModelClass::old()->get();
 

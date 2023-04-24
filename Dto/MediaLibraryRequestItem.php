@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\Media\Dto;
 
 use Illuminate\Support\Str;
@@ -13,7 +11,7 @@ class MediaLibraryRequestItem
         $properties = collect($properties)
             ->keyBy(fn ($value, $key) => Str::snake($key));
 
-        return new self(
+        return new static(
             $properties['uuid'],
             $properties['name'] ?? '',
             $properties['order'] ?? 0,
