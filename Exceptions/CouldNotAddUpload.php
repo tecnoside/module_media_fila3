@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\Media\Exceptions;
 
-class CouldNotAddUpload extends \Exception
+use Exception;
+
+class CouldNotAddUpload extends Exception
 {
-    public static function uuidAlreadyExists(): self
+    public static function uuidAlreadyExists():self
     {
-        return new self('The given uuid is being used for an existing media item.');
+        return new static("The given uuid is being used for an existing media item.");
     }
 }

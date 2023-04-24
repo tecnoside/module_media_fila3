@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Modules\Media\Dto;
 
 use Illuminate\Support\Arr;
@@ -9,15 +7,13 @@ use Illuminate\Support\HtmlString;
 
 class ViewMediaItem
 {
-    public string $uuid;
-
     public function __construct(
         protected string $formFieldName,
         protected array $mediaAttributes
     ) {
     }
 
-    public function __get(string $name): string
+    public function __get($name)
     {
         return $this->mediaAttributes[$name] ?? null;
     }
@@ -38,9 +34,9 @@ class ViewMediaItem
     public function livewireCustomPropertyAttributes(string $name, int $debounceInMs = 150): HtmlString
     {
         return new HtmlString(implode(PHP_EOL, [
-            'x-data',
-            'x-on:keyup.debounce.'.$debounceInMs.'="$wire.setCustomProperty(\''.$this->uuid.'\', \''.$name.'\', document.getElementsByName(\''.$this->customPropertyAttributeName($name).'\')[0].value)"',
-            $this->customPropertyAttributes($name),
+                'x-data',
+                'x-on:keyup.debounce.' . $debounceInMs . '="$wire.setCustomProperty(\'' . $this->uuid .'\', \''  . $name . '\', document.getElementsByName(\'' . $this->customPropertyAttributeName($name) .'\')[0].value)"',
+                $this->customPropertyAttributes($name),
         ]));
     }
 
@@ -49,9 +45,6 @@ class ViewMediaItem
         return "{$this->formFieldName}[{$this->uuid}][custom_properties][$name]";
     }
 
-    /**
-     * @return mixed
-     */
     public function customPropertyAttributeValue(string $name)
     {
         $value = Arr::get($this->mediaAttributes['customProperties'] ?? [], $name);
@@ -63,6 +56,7 @@ class ViewMediaItem
     {
         return "{$this->formFieldName}.{$this->uuid}";
     }
+
 
     public function propertyErrorName(string $name): string
     {
@@ -76,8 +70,13 @@ class ViewMediaItem
 
     public function downloadUrl(): string
     {
-        $mediaModelClass = strval(config('media-library.media_model'));
+        $mediaModelClass = config('media-library.media_model');
 
         return $mediaModelClass::findByUuid($this->uuid)->getUrl();
+    }
+
+    public function createdAt(): Carbon
+    {
+        return Carbon::createFromTimestamp($this->mediaAttributes['createdAt']);
     }
 }

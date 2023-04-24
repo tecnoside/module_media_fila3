@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Modules\Media\Http\Livewire\Media;
 
 use Illuminate\Contracts\Support\Renderable;
@@ -16,41 +19,26 @@ class Uploader extends Component
         uploadErrored as protected uploadErroredTrait;
     }
 
-    /** @var string */
-    public $rules;
-
-    /** @var string */
-    public $name;
+    public string $rules;
+    public string $name;
+    public ?string $uuid;
+    public bool $multiple;
+    public bool $add;
+    public ?string $uploadError;
 
     /** @var \Livewire\TemporaryUploadedFile|null */
     public $upload;
 
-    /** @var string|null */
-    public $uuid;
-
-    /** @var bool */
-    public $multiple;
-
-    /** @var bool */
-    public $add;
-
-    /** @var null|string */
-    public $uploadError;
-
-    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
+    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false): void
     {
         $this->rules = $rules;
-
         $this->name = $name;
-
         $this->multiple = $multiple;
-
-        $this->uuid = $uuid ?? (string)Str::uuid();
-
+        $this->uuid = $uuid ?? (string) Str::uuid();
         $this->add = $add;
     }
 
-    public function updatedUpload()
+    public function updatedUpload(): void
     {
         $uploadError = $this->getUploadError();
 
@@ -67,9 +55,12 @@ class Uploader extends Component
         $uploads = $this->multiple
             ? $this->upload
             : [$this->upload];
-
-        foreach ($uploads as $upload) {
-            $this->handleUpload($upload);
+        if (is_iterable($uploads)) {
+            foreach ($uploads as $upload) {
+                if (null != $upload) {
+                    $this->handleUpload($upload);
+                }
+            }
         }
     }
 
@@ -82,7 +73,7 @@ class Uploader extends Component
         try {
             $this->validate([
                 $field => $this->rules,
-            ], ["{$field}.mimes" => __('media-library::validation.type')]);
+            ], ["{$field}.mimes" => __('media::validation.type')]);
         } catch (ValidationException $validationException) {
             $uploadError = Arr::flatten($validationException->errors())[0];
 
@@ -94,11 +85,29 @@ class Uploader extends Component
         return $uploadError;
     }
 
-    /** @param $upload \Livewire\TemporaryUploadedFile */
-    protected function handleUpload($upload)
+    /**
+     * @param \Livewire\TemporaryUploadedFile $upload
+     */
+    protected function handleUpload($upload): void
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
-
+        /* NON SI USA property_exists ma si restituisce un CONTRATTO !!
+        if (! property_exists($media, 'name')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'file_name')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'order_column')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'mime_type')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        if (! property_exists($media, 'size')) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        }
+        */
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
             'fileName' => $media->file_name,
@@ -112,7 +121,7 @@ class Uploader extends Component
         ]);
     }
 
-    public function uploadErrored($name, $errorsInJson, $isMultiple)
+    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
