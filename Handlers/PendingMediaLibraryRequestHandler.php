@@ -43,11 +43,13 @@ class PendingMediaLibraryRequestHandler
 
         $callable = $mediaName;
 
-        $this->mediaLibraryRequestItems->each(function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
+        $this->mediaLibraryRequestItems->each(
+        function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
             $name = $callable($mediaLibraryRequestItem);
 
             $mediaLibraryRequestItem->name = $name;
-        });
+        }
+    );
 
         return $this;
     }
@@ -63,7 +65,8 @@ class PendingMediaLibraryRequestHandler
 
         $callable = $fileName;
 
-        $this->mediaLibraryRequestItems->each(function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
+        $this->mediaLibraryRequestItems->each(
+function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
             $fileName = $callable($mediaLibraryRequestItem);
 
             $mediaLibraryRequestItem->fileName = $fileName;
@@ -101,7 +104,8 @@ class PendingMediaLibraryRequestHandler
         }
         $mediaLibraryRequestHandler
             ->getPendingMediaItems()
-            ->each(function (PendingMediaItem $pendingMedia) use ($diskName, $collectionName) {
+            ->each(
+function (PendingMediaItem $pendingMedia) use ($diskName, $collectionName) {
                 $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMedia);
 
                 if (! is_null($this->processCustomProperties)) {

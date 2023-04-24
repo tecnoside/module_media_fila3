@@ -43,7 +43,7 @@ class MinTotalSizeInKbRule implements Rule
         $res = __('media-library::validation.total_upload_size_too_low', [
             'min' => File::getHumanReadableSize($this->minTotalSizeInKb * 1024),
             'minInKb' => $this->minTotalSizeInKb,
-            'actual' => File::getHumanReadableSize(round($this->actualTotalSizeInBytes / 1024)),
+            'actual' => File::getHumanReadableSize(intval($this->actualTotalSizeInBytes / 1024)),
             'actualTotalSizeInKb' => round($this->actualTotalSizeInBytes / 1024),
         ]);
         if (is_string($res) || is_array($res)) {

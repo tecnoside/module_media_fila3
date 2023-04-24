@@ -27,7 +27,8 @@
 @push('scripts')
     <script>
     window.onload = function() {
-    $('.video-container').each(function(idx, item) {
+    $('.video-container').each(
+function(idx, item) {
         var $item = $(item);
 
         // Video
