@@ -91,6 +91,7 @@ class Uploader extends Component
     protected function handleUpload($upload): void
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
+        /* NON SI USA property_exists ma si restituisce un CONTRATTO !!
         if (! property_exists($media, 'name')) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
@@ -106,6 +107,7 @@ class Uploader extends Component
         if (! property_exists($media, 'size')) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
+        */
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
             'fileName' => $media->file_name,
