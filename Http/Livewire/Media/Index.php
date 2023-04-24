@@ -20,13 +20,16 @@ class Index extends Component
     public string $rules;
     public ?int $maxItems = null;
     public array $media;
-    public string $view;
+    public ?string $view; // ??????????
     public ?string $listView; // ?????????
     public ?string $itemView; // ?????????
     public ?string $propertiesView; // ???????
     public ?string $fieldsView; // ??????????
     public ?string $listErrorMessage = null;
-    protected MessageBag $validationErrors;
+    /**
+     * @var MessageBag
+     */
+    protected $validationErrors;
 
     public function mount(
         string $name,
