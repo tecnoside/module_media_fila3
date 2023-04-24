@@ -57,7 +57,7 @@ class Uploader extends Component
             : [$this->upload];
         if (is_iterable($uploads)) {
             foreach ($uploads as $upload) {
-                if($upload != null){
+                if (null != $upload) {
                     $this->handleUpload($upload);
                 }
             }
