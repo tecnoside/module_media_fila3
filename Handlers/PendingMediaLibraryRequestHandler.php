@@ -44,12 +44,12 @@ class PendingMediaLibraryRequestHandler
         $callable = $mediaName;
 
         $this->mediaLibraryRequestItems->each(
-        function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
-            $name = $callable($mediaLibraryRequestItem);
+            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
+                $name = $callable($mediaLibraryRequestItem);
 
-            $mediaLibraryRequestItem->name = $name;
-        }
-    );
+                $mediaLibraryRequestItem->name = $name;
+            }
+        );
 
         return $this;
     }
@@ -66,11 +66,11 @@ class PendingMediaLibraryRequestHandler
         $callable = $fileName;
 
         $this->mediaLibraryRequestItems->each(
-function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
-            $fileName = $callable($mediaLibraryRequestItem);
+            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
+                $fileName = $callable($mediaLibraryRequestItem);
 
-            $mediaLibraryRequestItem->fileName = $fileName;
-        });
+                $mediaLibraryRequestItem->fileName = $fileName;
+            });
 
         return $this;
     }
@@ -105,22 +105,22 @@ function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
         $mediaLibraryRequestHandler
             ->getPendingMediaItems()
             ->each(
-function (PendingMediaItem $pendingMedia) use ($diskName, $collectionName) {
-                $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMedia);
+                function (PendingMediaItem $pendingMedia) use ($diskName, $collectionName) {
+                    $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMedia);
 
-                if (! is_null($this->processCustomProperties)) {
-                    $fileAdder->withCustomProperties($pendingMedia->getCustomProperties($this->processCustomProperties));
-                }
+                    if (! is_null($this->processCustomProperties)) {
+                        $fileAdder->withCustomProperties($pendingMedia->getCustomProperties($this->processCustomProperties));
+                    }
 
-                if (! is_null($this->customHeaders)) {
-                    $fileAdder = $fileAdder->addCustomHeaders($this->customHeaders);
-                }
+                    if (! is_null($this->customHeaders)) {
+                        $fileAdder = $fileAdder->addCustomHeaders($this->customHeaders);
+                    }
 
-                if (! is_null($pendingMedia->fileName)) {
-                    $fileAdder->setFileName($pendingMedia->fileName);
-                }
+                    if (! is_null($pendingMedia->fileName)) {
+                        $fileAdder->setFileName($pendingMedia->fileName);
+                    }
 
-                $fileAdder->toMediaCollection($collectionName, $diskName);
-            });
+                    $fileAdder->toMediaCollection($collectionName, $diskName);
+                });
     }
 }
