@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Http\Livewire\Media;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 use Livewire\Component;
 use Modules\Media\Dto\ViewMediaItem;
 
-class Index extends Component {
+class Index extends Component
+{
     public $name;
     public $multiple;
     public $sortable;

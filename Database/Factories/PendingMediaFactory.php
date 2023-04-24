@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Database\Factories;
 
 use Modules\Media\Dto\PendingMediaItem;
@@ -17,7 +19,7 @@ class PendingMediaFactory
 
     public function create(array $attributes = []): PendingMediaItem
     {
-        $temporaryUpload = (new TemporaryUploadFactory)->create($this->temporaryUploadAttributes);
+        $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
 
         return new PendingMediaItem(
             $temporaryUpload->getFirstMedia()->uuid,
