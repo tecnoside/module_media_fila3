@@ -16,6 +16,13 @@ class MaxTotalSizeInKbRule implements Rule
     {
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $attribute
+     * @param array $uploadedItems
+     * @return boolean
+     */
     public function passes($attribute, $uploadedItems): bool
     {
         $uuids = collect($uploadedItems)
