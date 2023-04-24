@@ -56,15 +56,9 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
      * @param string|\Closure $filename
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
      * @param string|\Closure $fileName
      * @param string|\Closure $filename
      * @param string|\Closure $fileName
->>>>>>> 129608d (up)
->>>>>>> 9d3aaf8 (rebase)
-=======
      * @param string|\Closure $fileName
 >>>>>>> 376622f (up)
      */
