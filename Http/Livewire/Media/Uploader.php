@@ -57,7 +57,9 @@ class Uploader extends Component
             : [$this->upload];
         if (is_iterable($uploads)) {
             foreach ($uploads as $upload) {
-                $this->handleUpload($upload);
+                if($upload != null){
+                    $this->handleUpload($upload);
+                }
             }
         }
     }
@@ -86,13 +88,19 @@ class Uploader extends Component
     /**
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6d2ef0a (up)
      * @param \Livewire\TemporaryUploadedFile $upload
 =======
      * @param $upload \Livewire\TemporaryUploadedFile
 >>>>>>> a17d5a2 (up)
+<<<<<<< HEAD
 =======
      * @param \Livewire\TemporaryUploadedFile $upload
 >>>>>>> 9816c8b (up)
+=======
+>>>>>>> 6d2ef0a (up)
      */
     protected function handleUpload($upload): void
     {
@@ -127,13 +135,19 @@ class Uploader extends Component
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6d2ef0a (up)
     public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
 =======
     public function uploadErrored(string $name, $errorsInJson, $isMultiple): void
 >>>>>>> a17d5a2 (up)
+<<<<<<< HEAD
 =======
     public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
 >>>>>>> 9816c8b (up)
+=======
+>>>>>>> 6d2ef0a (up)
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);

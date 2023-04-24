@@ -22,7 +22,8 @@ class MinTotalSizeInKbRule implements Rule
     }
 
     /**
-     * --.
+     * @param string $attribute
+     * @param array $uploadedItems
      */
     public function passes($attribute, $uploadedItems): bool
     {
