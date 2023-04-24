@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Modules\Media\Http\Livewire\Media;
 
 use Illuminate\Contracts\Support\Renderable;
@@ -34,7 +37,7 @@ class Uploader extends Component
     /** @var bool */
     public $add;
 
-    /** @var null|string */
+    /** @var string|null */
     public $uploadError;
 
     public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
@@ -45,7 +48,7 @@ class Uploader extends Component
 
         $this->multiple = $multiple;
 
-        $this->uuid = $uuid ?? (string)Str::uuid();
+        $this->uuid = $uuid ?? (string) Str::uuid();
 
         $this->add = $add;
     }
