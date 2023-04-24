@@ -84,15 +84,7 @@ class Uploader extends Component
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * @param \Livewire\TemporaryUploadedFile $upload
-=======
-     * @param $upload \Livewire\TemporaryUploadedFile
->>>>>>> a17d5a2 (up)
-=======
-     * @param \Livewire\TemporaryUploadedFile $upload
->>>>>>> 9816c8b (up)
      */
     protected function handleUpload($upload): void
     {
@@ -125,15 +117,8 @@ class Uploader extends Component
         ]);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
-=======
-    public function uploadErrored(string $name, $errorsInJson, $isMultiple): void
->>>>>>> a17d5a2 (up)
-=======
-    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
->>>>>>> 9816c8b (up)
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
