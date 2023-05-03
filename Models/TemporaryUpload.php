@@ -17,15 +17,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
- * Modules\Media\Models\TemporaryUpload.
+ * Modules\Media\Models\TemporaryUpload
  *
- * @property int                                                                                                        $id
- * @property string                                                                                                     $session_id
- * @property \Illuminate\Support\Carbon|null                                                                            $created_at
- * @property \Illuminate\Support\Carbon|null                                                                            $updated_at
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- * @property int|null                                                                                                   $media_count
- *
+ * @property int $id
+ * @property string $session_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property-read int|null $media_count
  * @method static Builder|TemporaryUpload newModelQuery()
  * @method static Builder|TemporaryUpload newQuery()
  * @method static Builder|TemporaryUpload old()
@@ -34,10 +33,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static Builder|TemporaryUpload whereId($value)
  * @method static Builder|TemporaryUpload whereSessionId($value)
  * @method static Builder|TemporaryUpload whereUpdatedAt($value)
- *
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- *
  * @mixin \Eloquent
  */
 class TemporaryUpload extends Model implements HasMedia
