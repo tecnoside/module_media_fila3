@@ -47,11 +47,8 @@ class AttachMediaAction
                 // $media->update(['order_column'=>$order]);
                 // dddx(['media'=>$media,'order'=>$order]);
             }
-            foreach ($attachment['custom_properties'] as $k => $v) {
-                $media?->setCustomProperty($k, $v);
-            }
 
-            $media?->update(['order_column' => $order]);
+            $media?->update(['order_column' => $order, 'custom_properties' => $attachment['custom_properties']]);
         }
     }
 }
