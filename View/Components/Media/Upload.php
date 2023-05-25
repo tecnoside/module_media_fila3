@@ -21,7 +21,7 @@ class Upload extends Component
         public ?string $componentView = null,
         public ?string $listView = null,
         public ?string $itemView = null,
-        ?string $propertiesView = null,
+        string $propertiesView = null,
         public ?string $fieldsView = null
     ) {
         $media = old($name) ?? [];

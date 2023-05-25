@@ -21,9 +21,6 @@ class TestVideoPlayerAction extends XotBasePanelAction
     public bool $onItem = true;
     public string $icon = '<i class="fab fa-youtube"></i>';
 
-    /**
-     * @return mixed
-     */
     public function handle()
     {
         $video_players = [
