@@ -42,7 +42,7 @@ class GetVideoScreenshotAction
     /**
      * Execute the action.
      */
-    public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, ?string $file_jpg = null): array
+    public function execute(string $disk_mp4, string $file_mp4, int $time, string $disk_jpg, string $file_jpg = null): array
     {
         if (! Storage::disk($disk_mp4)->exists($file_mp4)) {
             return [

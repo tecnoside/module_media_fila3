@@ -21,9 +21,6 @@ class TryVideoEditorSubAction extends XotBasePanelAction
     public bool $onItem = true;
     public string $icon = '<i class="fas fa-photo-video"></i><i class="fas fa-pen"></i>';
 
-    /**
-     * @return mixed
-     */
     public function handle()
     {
         // $view = ThemeService::g1etView();

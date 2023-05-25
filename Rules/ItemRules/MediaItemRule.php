@@ -16,7 +16,6 @@ abstract class MediaItemRule implements Rule
      * Undocumented function.
      *
      * @param string $attribute
-     * @param mixed  $value
      *
      * @return bool
      */
