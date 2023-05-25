@@ -48,7 +48,7 @@ class AttachMediaAction
                 // dddx(['media'=>$media,'order'=>$order]);
             }
 
-            $media?->update(['order_column' => $order, 'custom_properties' => $attachment['custom_properties']]);
+            $media?->update(['order_column' => $order, 'custom_properties' => $attachment['custom_properties'] ?? []]);
         }
     }
 }
