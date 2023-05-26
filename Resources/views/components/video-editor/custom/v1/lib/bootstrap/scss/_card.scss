@@ -40,6 +40,16 @@
   > .list-group + .card-footer {
     border-top: 0;
   }
+
+  &:hover
+  {
+    background-color: azure;
+  }
+}
+
+.active
+{
+  background-color: azure;
 }
 
 .card-body {
