@@ -16,7 +16,7 @@ class MediaLibraryRequestItem
         return new static(
             $properties['uuid'],
             $properties['name'] ?? '',
-            $properties['order'] ?? 0,
+            (int) $properties['order'] ?? 0,
             $properties['custom_properties'] ?? [],
             $properties['custom_headers'] ?? [],
             $properties['file_name'] ?? null,
