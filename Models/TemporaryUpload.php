@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -145,7 +146,7 @@ class TemporaryUpload extends Model implements HasMedia
             ->setName($name)
             ->withProperties(['uuid' => $uuid])
             ->toMediaCollection('default', static::getDiskName());
-
+        Debugbar::info('TemporaruUpload UUID', $uuid);
         $temporaryUpload->fresh();
 
         return $temporaryUpload;
