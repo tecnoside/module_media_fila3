@@ -41,8 +41,8 @@ class AttachMediaAction
             if (null != $temporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
                 $media = $temporaryUpload->moveMedia($model, $collection, '', $attachment['fileName']);
-            // dddx($res);
-            // $media->move($this->model, $this->collection);
+                // dddx($res);
+                // $media->move($this->model, $this->collection);
             } else {
                 $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
                 // $media->update(['order_column'=>$order]);
