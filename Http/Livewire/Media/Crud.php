@@ -40,7 +40,7 @@ class Crud extends Component
     public function submit(): void
     {
         $order = 1;
-        foreach ($this->upload  as $attachment) {
+        foreach ($this->upload as $attachment) {
             ++$order;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if (null != $temporaryUpload) {
