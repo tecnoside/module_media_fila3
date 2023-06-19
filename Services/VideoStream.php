@@ -70,11 +70,11 @@ class VideoStream
      * @return void
      */
     // private function open() {
-        /*
-        if (!($this->vars['stream'] = fopen($this->path, 'rb'))) {
-            die('Could not open stream for reading');
-        }
-        */
+    /*
+    if (!($this->vars['stream'] = fopen($this->path, 'rb'))) {
+        die('Could not open stream for reading');
+    }
+    */
     // }
 
     /**
