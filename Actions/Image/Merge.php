@@ -8,9 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions\Image;
 
-use Spatie\MediaLibrary\HasMedia;
 use Intervention\Image\Facades\Image;
-use Modules\Media\Models\TemporaryUpload;
 use Spatie\QueueableAction\QueueableAction;
 
 class Merge
@@ -32,7 +30,7 @@ class Merge
         $width = 0;
         $height = 0;
         $imgs = [];
-        foreach($filenames as $filename){
+        foreach ($filenames as $filename) {
             $img = Image::make(public_path($filename));
             $imgs[] = $img;
             $width += $img->width();
