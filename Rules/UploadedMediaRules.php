@@ -147,7 +147,7 @@ class UploadedMediaRules implements Rule
 
         return $this;
     }
-    
+
     public function customGroupRules($rules)
     {
         $this->groupRules = array_merge($this->groupRules, Arr::wrap($rules));

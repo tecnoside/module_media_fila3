@@ -43,6 +43,6 @@ class AttributeRule extends MediaItemRule
 
     protected function shortAttributeName(): string
     {
-        return str_replace("custom_properties.", '', $this->attribute);
+        return str_replace('custom_properties.', '', $this->attribute);
     }
 }
