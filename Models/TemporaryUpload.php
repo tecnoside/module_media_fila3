@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
-use Modules\Media\Exceptions\CouldNotAddUpload;
-use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
 use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\Conversions\Conversion;
+use Illuminate\Http\UploadedFile;
 use Spatie\MediaLibrary\HasMedia;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\MassPrunable;
+use Modules\Media\Exceptions\CouldNotAddUpload;
+use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
 
 /**
  * Modules\Media\Models\TemporaryUpload.
@@ -41,6 +42,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use MassPrunable;
 
     protected $guarded = [];
 
@@ -146,7 +148,7 @@ class TemporaryUpload extends Model implements HasMedia
             ->setName($name)
             ->withProperties(['uuid' => $uuid])
             ->toMediaCollection('default', static::getDiskName());
-        Debugbar::info('TemporaruUpload UUID', $uuid);
+        //Debugbar::info('TemporaruUpload UUID', $uuid);
         $temporaryUpload->fresh();
 
         return $temporaryUpload;
@@ -204,5 +206,10 @@ class TemporaryUpload extends Model implements HasMedia
         $newMedia->update(compact('uuid'));
 
         return $newMedia;
+    }
+
+    public function prunable(): Builder
+    {
+        return self::query()->old();
     }
 }

@@ -19,9 +19,6 @@ class WidthBetweenRule extends MediaItemRule
         }
 
         $size = getimagesize($media->getPath());
-        if (false === $size) {
-            return false;
-        }
         $actualWidth = $size[0];
 
         return $actualWidth >= $this->minWidth && $actualWidth <= $this->maxWidth;
@@ -29,13 +26,9 @@ class WidthBetweenRule extends MediaItemRule
 
     public function message()
     {
-        $res = __('media-library::validation.width_not_between', [
+        return __('media::validation.width_not_between', [
             'min' => $this->minWidth,
             'max' => $this->maxWidth,
         ]);
-        if (is_string($res) || is_array($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

@@ -10,9 +10,7 @@ class MimeTypeRule extends MediaItemRule
 {
     protected array $allowedMimeTypes;
 
-    /**
-     * @param string|array $allowedMimeTypes
-     */
+    /** @var string|array */
     public function __construct($allowedMimeTypes)
     {
         $this->allowedMimeTypes = Arr::wrap($allowedMimeTypes);
@@ -27,14 +25,10 @@ class MimeTypeRule extends MediaItemRule
         return in_array($media->mime_type, $this->allowedMimeTypes);
     }
 
-    public function message()
+    public function message(): string
     {
-        $res = __('media-library::validation.mime', [
+        return __('media::validation.mime', [
             'mimes' => implode(', ', $this->allowedMimeTypes),
         ]);
-        if (is_string($res) || is_array($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }
