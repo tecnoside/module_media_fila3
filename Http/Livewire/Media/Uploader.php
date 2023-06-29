@@ -13,7 +13,8 @@ use Livewire\WithFileUploads;
 use Modules\Cms\Actions\GetViewAction;
 use Modules\Media\Actions\ConvertLivewireUploadToMediaAction;
 
-class Uploader extends Component {
+class Uploader extends Component
+{
     use WithFileUploads {
         uploadErrored as protected uploadErroredTrait;
     }
@@ -39,7 +40,8 @@ class Uploader extends Component {
     /** @var string|null */
     public $uploadError;
 
-    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false) {
+    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
+    {
         $this->rules = $rules;
 
         $this->name = $name;
@@ -51,7 +53,8 @@ class Uploader extends Component {
         $this->add = $add;
     }
 
-    public function updatedUpload() {
+    public function updatedUpload()
+    {
         $uploadError = $this->getUploadError();
 
         if (! is_null($uploadError)) {
@@ -73,7 +76,8 @@ class Uploader extends Component {
         }
     }
 
-    protected function getUploadError(): ?string {
+    protected function getUploadError(): ?string
+    {
         $uploadError = null;
 
         $field = $this->multiple ? 'upload.*' : 'upload';
@@ -96,7 +100,8 @@ class Uploader extends Component {
     /**
      * @param \Livewire\TemporaryUploadedFile $upload
      */
-    protected function handleUpload($upload): void {
+    protected function handleUpload($upload): void
+    {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
 
         $this->emit("{$this->name}:fileAdded", [
@@ -112,7 +117,8 @@ class Uploader extends Component {
         ]);
     }
 
-    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void {
+    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
+    {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
         } catch (ValidationException $exception) {
@@ -124,7 +130,8 @@ class Uploader extends Component {
         }
     }
 
-    public function render(): Renderable {
+    public function render(): Renderable
+    {
         /**
          * @phpstan-var view-string
          */
