@@ -9,7 +9,7 @@ trait WithMedia
 {
     public function getMediaComponentNames(): array
     {
-        return $this->mediaComponentNames;
+        return $this->mediaComponentNames ?? [];
     }
 
     public function mountWithMedia(): void
