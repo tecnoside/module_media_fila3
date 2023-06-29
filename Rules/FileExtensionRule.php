@@ -19,10 +19,8 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param string $attribute
+     * @param string                        $attribute
      * @param \Illuminate\Http\UploadedFile $value
-     *
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {

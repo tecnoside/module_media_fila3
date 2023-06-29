@@ -17,15 +17,15 @@ class Index extends Component
     public $sortable;
     public $editableName;
     public $rules;
-    public $maxItems = null;
+    public $maxItems;
     public $media;
     public $view;
     public $listView;
     public $itemView;
     public $propertiesView;
     public $fieldsView;
-    public $listErrorMessage = null;
-    protected $validationErrors = null;
+    public $listErrorMessage;
+    protected $validationErrors;
 
     public function mount(
         string $name,
@@ -33,7 +33,7 @@ class Index extends Component
         bool $sortable = true,
         bool $editableName = true,
         string $rules = '',
-        ?int $maxItems = null,
+        int $maxItems = null,
         array $media = [],
         string $view = null,
         string $listView = null,
