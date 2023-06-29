@@ -19,8 +19,10 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param string                        $attribute
+     * @param string $attribute
      * @param \Illuminate\Http\UploadedFile $value
+     *
+     * @return bool
      */
     public function passes($attribute, $value): bool
     {
@@ -33,12 +35,8 @@ class FileExtensionRule implements Rule
 
     public function message(): string
     {
-        $res = trans('media-library::validation.mime', [
+        return trans('media::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),
         ]);
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

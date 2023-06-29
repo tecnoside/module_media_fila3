@@ -23,26 +23,18 @@ class MinItemSizeInKbRule extends MediaItemRule
             return true;
         }
 
-        if (! property_exists($media, 'size')) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-        }
-
         $this->actualSizeInBytes = $media->size;
 
         return $this->actualSizeInBytes >= ($this->minSizeInKb * 1024);
     }
 
-    public function message()
+    public function message(): string
     {
-        $res = __('media-library::validation.file_too_small', [
+        return __('media::validation.file_too_small', [
             'min' => File::getHumanReadableSize($this->minSizeInKb * 1024),
             'minInKb' => $this->minSizeInKb,
             'actual' => File::getHumanReadableSize($this->actualSizeInBytes),
             'actualInKb' => round($this->actualSizeInBytes / 1024),
         ]);
-        if (is_string($res) || is_array($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

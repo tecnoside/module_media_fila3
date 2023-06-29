@@ -67,21 +67,25 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function mime(string|array $mimes): self
+    /** @var string|array */
+    public function mime($mimes): self
     {
         $this->itemRules[] = new MimeTypeRule($mimes);
 
         return $this;
     }
 
-    public function extension(string|array $extensions): self
+    /**
+     * @var string|array
+     */
+    public function extension($extensions): self
     {
         $this->itemRules[] = new ExtensionRule($extensions);
 
         return $this;
     }
 
-    public function itemName(string|array $rules): self
+    public function itemName($rules): self
     {
         return $this->attribute('name', $rules);
     }
@@ -93,7 +97,7 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function customProperty(string $customPropertyName, array|string $rules): self
+    public function customProperty(string $customPropertyName, $rules): self
     {
         $customPropertyName = "custom_properties.{$customPropertyName}";
 
@@ -137,39 +141,27 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function customItemRules(string|array $rules)
+    public function customItemRules($rules)
     {
         $this->itemRules = array_merge($this->itemRules, Arr::wrap($rules));
 
         return $this;
     }
-
-    /**
-     * @return $this
-     */
-    public function customGroupRules(string|array $rules)
+    
+    public function customGroupRules($rules)
     {
         $this->groupRules = array_merge($this->groupRules, Arr::wrap($rules));
 
         return $this;
     }
 
-    /**
-     * @param string $attribute
-     */
-    public function passes($attribute, $value): bool
+    public function passes($attribute, $value)
     {
-        return true;
+        // this page has been left intentionally blank
     }
 
-    /**
-     * @return array|string
-     */
     public function message()
     {
-        return 'string';
+        // this page has been left intentionally blank
     }
 }

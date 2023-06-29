@@ -23,10 +23,6 @@ class MaxItemSizeInKbRule extends MediaItemRule
             return true;
         }
 
-        if (! property_exists($media, 'size')) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-        }
-
         $this->actualSizeInBytes = $media->size;
 
         return $this->actualSizeInBytes <= ($this->maxSizeInKb * 1024);
@@ -34,15 +30,11 @@ class MaxItemSizeInKbRule extends MediaItemRule
 
     public function message()
     {
-        $res = __('media-library::validation.file_too_big', [
+        return __('media::validation.file_too_big', [
             'max' => File::getHumanReadableSize($this->maxSizeInKb * 1024),
             'maxInKb' => $this->maxSizeInKb,
             'actual' => File::getHumanReadableSize($this->actualSizeInBytes),
             'actualInKb' => round($this->actualSizeInBytes / 1024),
         ]);
-        if (is_string($res) || is_array($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

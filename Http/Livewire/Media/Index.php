@@ -17,15 +17,15 @@ class Index extends Component
     public $sortable;
     public $editableName;
     public $rules;
-    public $maxItems;
+    public $maxItems = null;
     public $media;
     public $view;
     public $listView;
     public $itemView;
     public $propertiesView;
     public $fieldsView;
-    public $listErrorMessage;
-    protected $validationErrors;
+    public $listErrorMessage = null;
+    protected $validationErrors = null;
 
     public function mount(
         string $name,
@@ -33,7 +33,7 @@ class Index extends Component
         bool $sortable = true,
         bool $editableName = true,
         string $rules = '',
-        int $maxItems = null,
+        ?int $maxItems = null,
         array $media = [],
         string $view = null,
         string $listView = null,
@@ -217,12 +217,14 @@ class Index extends Component
     public function setNewOrder(array $newOrder)
     {
         foreach ($newOrder as $newOrderItem) {
-            $this->media = collect($this->media)
-                ->sortBy('order')
-                ->toArray();
-
-            $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+            Arr::set($this->media, "{$newOrderItem['uuid']}.order", $newOrderItem['order']);
         }
+
+        $this->media = collect($this->media)
+            ->sortBy('order')
+            ->toArray();
+
+        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function render()

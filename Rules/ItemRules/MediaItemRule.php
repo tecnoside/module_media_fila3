@@ -10,20 +10,10 @@ use Modules\Media\Models\Media;
 
 abstract class MediaItemRule implements Rule
 {
-    public array $value;
+    public $value;
 
-    /**
-     * Undocumented function.
-     *
-     * @param string $attribute
-     *
-     * @return bool
-     */
     public function passes($attribute, $value)
     {
-        if (! is_array($value)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-        }
         $this->value = $value;
 
         return $this->validateMediaItem();
@@ -31,7 +21,7 @@ abstract class MediaItemRule implements Rule
 
     public function getTemporaryUploadMedia(): ?Media
     {
-        $temporaryUploadModelClass = strval(config('media-library.temporary_upload_model'));
+        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($this->value['uuid']);
 

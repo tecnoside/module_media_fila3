@@ -19,9 +19,6 @@ class DimensionsRule extends MediaItemRule
         }
 
         $size = getimagesize($media->getPath());
-        if (false === $size) {
-            return false;
-        }
         $actualWidth = $size[0];
         $actualHeight = $size[1];
 
@@ -40,31 +37,23 @@ class DimensionsRule extends MediaItemRule
         return false;
     }
 
-    /**
-     * @return array|string
-     */
     public function message()
     {
         $params = [
             'width' => $this->requiredWidth,
             'height' => $this->requiredHeight,
         ];
-        $res = [];
+
         if ($this->requiredWidth && $this->requiredHeight) {
-            $res = __('media-library::validation.incorrect_dimensions.both', $params);
+            return __('media::validation.incorrect_dimensions.both', $params);
         }
 
         if ($this->requiredWidth) {
-            $res = __('media-library::validation.incorrect_dimensions.width', $params);
+            return __('media::validation.incorrect_dimensions.width', $params);
         }
 
         if ($this->requiredHeight) {
-            $res = __('media-library::validation.incorrect_dimensions.height', $params);
+            return __('media::validation.incorrect_dimensions.height', $params);
         }
-
-        if (is_string($res) || is_array($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

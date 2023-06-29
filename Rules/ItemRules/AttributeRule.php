@@ -15,7 +15,7 @@ class AttributeRule extends MediaItemRule
 
     protected Validator $validator;
 
-    public function __construct(string $attribute, string|array $rules)
+    public function __construct($attribute, $rules)
     {
         $this->attribute = $attribute;
 
@@ -43,6 +43,6 @@ class AttributeRule extends MediaItemRule
 
     protected function shortAttributeName(): string
     {
-        return str_replace('custom_properties.', '', $this->attribute);
+        return str_replace("custom_properties.", '', $this->attribute);
     }
 }
