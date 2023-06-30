@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Http\Requests;
+namespace Spatie\MediaLibraryPro\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,9 +23,9 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
-        $mediaModel = new $mediaModelClass();
+        $mediaModel = new $mediaModelClass;
 
-        if ('default' === $mediaModel->getConnectionName()) {
+        if ($mediaModel->getConnectionName() === 'default') {
             return '';
         }
 
@@ -39,7 +37,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
-        $mediaModel = new $mediaModelClass();
+        $mediaModel = new $mediaModelClass;
 
         return $mediaModel->getTable();
     }

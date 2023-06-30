@@ -1,15 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Actions;
+namespace Spatie\MediaLibraryPro\Actions;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Livewire\FileUploadConfiguration;
 use Livewire\TemporaryUploadedFile;
-use Modules\Media\Models\Media;
-use Modules\Media\Models\TemporaryUpload;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibraryPro\Models\TemporaryUpload;
 
 class ConvertLivewireUploadToMediaAction
 {
@@ -26,7 +24,7 @@ class ConvertLivewireUploadToMediaAction
 
         $diskBeforeTestFake = config('livewire.temporary_file_upload.disk') ?: config('filesystems.default');
 
-        return 'local' === config('filesystems.disks.'.strtolower($diskBeforeTestFake).'.driver');
+        return config('filesystems.disks.'.strtolower($diskBeforeTestFake).'.driver') === 'local';
     }
 
     protected function createFromLocalLivewireUpload(TemporaryUploadedFile $livewireUpload): Media
@@ -39,7 +37,7 @@ class ConvertLivewireUploadToMediaAction
         $temporaryUpload = $temporaryUploadModelClass::createForFile(
             $uploadedFile,
             session()->getId(),
-            (string) Str::uuid(),
+            (string)Str::uuid(),
             $livewireUpload->getClientOriginalName()
         );
 
@@ -54,7 +52,7 @@ class ConvertLivewireUploadToMediaAction
         $livewireDisk = config('livewire.temporary_file_upload.disk', 's3');
 
         $livewireDirectory = FileUploadConfiguration::directory();
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$livewireUpload->getFilename();
+        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $livewireUpload->getFilename();
 
         $temporaryUpload = $temporaryUploadModelClass::createForRemoteFile(
             $remotePath,

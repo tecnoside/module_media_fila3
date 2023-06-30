@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules;
+namespace Spatie\MediaLibraryPro\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -19,8 +17,10 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param string                        $attribute
+     * @param string $attribute
      * @param \Illuminate\Http\UploadedFile $value
+     *
+     * @return bool
      */
     public function passes($attribute, $value): bool
     {
@@ -33,7 +33,7 @@ class FileExtensionRule implements Rule
 
     public function message(): string
     {
-        return trans('media::validation.mime', [
+        return trans('media-library::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),
         ]);
     }

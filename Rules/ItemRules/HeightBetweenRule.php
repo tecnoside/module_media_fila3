@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules\ItemRules;
+namespace Spatie\MediaLibraryPro\Rules\ItemRules;
 
 class HeightBetweenRule extends MediaItemRule
 {
@@ -26,7 +24,7 @@ class HeightBetweenRule extends MediaItemRule
 
     public function message()
     {
-        return __('media::validation.height_not_between', [
+        return __('media-library::validation.height_not_between', [
             'min' => $this->minHeight,
             'max' => $this->maxHeight,
         ]);

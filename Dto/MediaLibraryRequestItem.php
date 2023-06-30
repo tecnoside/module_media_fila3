@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Dto;
+namespace Spatie\MediaLibraryPro\Dto;
 
 use Illuminate\Support\Str;
 
@@ -16,7 +14,7 @@ class MediaLibraryRequestItem
         return new static(
             $properties['uuid'],
             $properties['name'] ?? '',
-            (int) $properties['order'] ?? 0,
+            $properties['order'] ?? 0,
             $properties['custom_properties'] ?? [],
             $properties['custom_headers'] ?? [],
             $properties['file_name'] ?? null,

@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Database\Factories;
+namespace Spatie\MediaLibraryPro\Factories;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Modules\Media\Models\TemporaryUpload;
+use Spatie\MediaLibraryPro\Models\TemporaryUpload;
 
 class TemporaryUploadFactory
 {
@@ -16,7 +14,7 @@ class TemporaryUploadFactory
 
     public static function new(): self
     {
-        return new static();
+        return new static;
     }
 
     public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self
