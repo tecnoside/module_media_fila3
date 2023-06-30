@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'total_upload_size_too_high' => 'A maximum engedélyezett méret :max',
     'total_upload_size_too_low' => 'A minimum engedélyezett méret :min',

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Http\Livewire\Concerns;
 
 /** @mixin \Livewire\Component */
