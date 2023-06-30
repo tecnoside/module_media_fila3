@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\ItemRules;
+namespace Modules\Media\Rules\ItemRules;
 
 use Illuminate\Support\Arr;
 
@@ -27,7 +27,7 @@ class MimeTypeRule extends MediaItemRule
 
     public function message(): string
     {
-        return __('media-library::validation.mime', [
+        return __('media::validation.mime', [
             'mimes' => implode(', ', $this->allowedMimeTypes),
         ]);
     }

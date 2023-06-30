@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Http\Controllers;
+namespace Modules\Media\Http\Controllers;
 
 use Illuminate\Validation\ValidationException;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibraryPro\Models\TemporaryUpload;
-use Spatie\MediaLibraryPro\Request\UploadRequest;
+use Modules\Media\Models\Media;
+use Modules\Media\Models\TemporaryUpload;
+use Modules\Media\Request\UploadRequest;
 
 class MediaLibraryUploadController
 {
@@ -32,7 +32,7 @@ class MediaLibraryUploadController
             throw ValidationException::withMessages(['file' => 'Could not handle upload. Make sure you are uploading a valid file.']);
         }
 
-        /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $media */
+        /** @var \Modules\Media\Models\Media $media */
         $media = $temporaryUpload->getFirstMedia();
 
         return response()->json($this->responseFields($media, $temporaryUpload));

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Http\Components;
+namespace Modules\Media\Http\Components;
 
 use Illuminate\View\Component;
 
@@ -25,12 +25,12 @@ class MediaLibraryAttachmentComponent extends Component
         public ?string $fieldsView = null
     ) {
         $this->media = old($name) ?? [];
-        $this->propertiesView = $propertiesView ?? 'media-library::livewire.partials.attachment.properties';
+        $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
     }
 
     public function render()
     {
-        return view('media-library::components.media-library-attachment');
+        return view('media::components.media.attachment');
     }
 
     public function determineListViewName(): string
@@ -39,7 +39,7 @@ class MediaLibraryAttachmentComponent extends Component
             return $this->listView;
         }
 
-        return 'media-library::livewire.partials.attachment.list';
+        return 'media::livewire.partials.attachment.list';
     }
 
     public function determineItemViewName(): string
@@ -48,7 +48,7 @@ class MediaLibraryAttachmentComponent extends Component
             return $this->itemView;
         }
 
-        return 'media-library::livewire.partials.attachment.item';
+        return 'media::livewire.partials.attachment.item';
     }
 
     public function determineFieldsViewName(): string
@@ -57,7 +57,7 @@ class MediaLibraryAttachmentComponent extends Component
             return $this->fieldsView;
         }
 
-        return 'media-library::livewire.partials.attachment.fields';
+        return 'media::livewire.partials.attachment.fields';
     }
 
     public function determineMaxItems(): ?int

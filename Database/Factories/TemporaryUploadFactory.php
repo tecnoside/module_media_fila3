@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Factories;
+namespace Modules\Media\Database\Factories;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Spatie\MediaLibraryPro\Models\TemporaryUpload;
+use Modules\Media\Models\TemporaryUpload;
 
 class TemporaryUploadFactory
 {

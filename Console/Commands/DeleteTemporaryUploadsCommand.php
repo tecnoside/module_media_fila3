@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Commands;
+namespace Modules\Media\Console\Commands;
 
 use Illuminate\Console\Command;
 

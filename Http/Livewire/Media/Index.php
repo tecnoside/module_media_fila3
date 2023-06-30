@@ -216,6 +216,7 @@ class Index extends Component
 
     public function setNewOrder(array $newOrder)
     {
+        dddx('aaa');
         foreach ($newOrder as $newOrderItem) {
             Arr::set($this->media, "{$newOrderItem['uuid']}.order", $newOrderItem['order']);
         }

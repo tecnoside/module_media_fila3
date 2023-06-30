@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\GroupRules;
+namespace Modules\Media\Rules\GroupRules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -24,7 +24,7 @@ class MinItemsRule implements Rule
 
     public function message()
     {
-        return trans_choice('media-library::validation.min_items', $this->minItemCount, [
+        return trans_choice('media::validation.min_items', $this->minItemCount, [
             'min' => $this->minItemCount,
         ]);
     }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\GroupRules;
+namespace Modules\Media\Rules\GroupRules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\Support\File;
 
 class MaxTotalSizeInKbRule implements Rule
@@ -31,7 +31,7 @@ class MaxTotalSizeInKbRule implements Rule
 
     public function message(): string
     {
-        return __('media-library::validation.total_upload_size_too_high', [
+        return __('media::validation.total_upload_size_too_high', [
             'max' => File::getHumanReadableSize($this->maxTotalSizeInKb * 1024),
             'maxInKb' => $this->maxTotalSizeInKb,
             'actual' => File::getHumanReadableSize($this->actualTotalSizeInKb * 1024),

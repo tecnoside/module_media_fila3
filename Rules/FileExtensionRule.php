@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules;
+namespace Modules\Media\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -33,7 +33,7 @@ class FileExtensionRule implements Rule
 
     public function message(): string
     {
-        return trans('media-library::validation.mime', [
+        return trans('media::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),
         ]);
     }

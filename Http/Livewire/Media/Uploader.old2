@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Http\Livewire;
+namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Spatie\MediaLibraryPro\Actions\ConvertLivewireUploadToMediaAction;
+use Modules\Cms\Actions\GetViewAction;
+use Modules\Media\Actions\ConvertLivewireUploadToMediaAction;
 
-class LivewireUploaderComponent extends Component
+class Uploader extends Component
 {
     use WithFileUploads {
         uploadErrored as protected uploadErroredTrait;
@@ -83,7 +85,7 @@ class LivewireUploaderComponent extends Component
         try {
             $this->validate([
                 $field => $this->rules,
-            ], ["{$field}.mimes" => __('media-library::validation.type')]);
+            ], ["{$field}.mimes" => __('media::validation.type')]);
         } catch (ValidationException $validationException) {
             $uploadError = Arr::flatten($validationException->errors())[0];
 
@@ -95,8 +97,10 @@ class LivewireUploaderComponent extends Component
         return $uploadError;
     }
 
-    /** @param $upload \Livewire\TemporaryUploadedFile */
-    protected function handleUpload($upload)
+    /**
+     * @param \Livewire\TemporaryUploadedFile $upload
+     */
+    protected function handleUpload($upload): void
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
 
@@ -113,7 +117,7 @@ class LivewireUploaderComponent extends Component
         ]);
     }
 
-    public function uploadErrored($name, $errorsInJson, $isMultiple)
+    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
@@ -126,8 +130,17 @@ class LivewireUploaderComponent extends Component
         }
     }
 
-    public function render()
+    public function render(): Renderable
     {
-        return view('media-library::livewire.uploader');
+        /**
+         * @phpstan-var view-string
+         */
+        $view = app(GetViewAction::class)->execute();
+
+        $view_params = [
+            'view' => $view,
+        ];
+
+        return view($view, $view_params);
     }
 }

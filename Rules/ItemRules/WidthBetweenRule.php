@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\ItemRules;
+namespace Modules\Media\Rules\ItemRules;
 
 class WidthBetweenRule extends MediaItemRule
 {
@@ -26,7 +26,7 @@ class WidthBetweenRule extends MediaItemRule
 
     public function message()
     {
-        return __('media-library::validation.width_not_between', [
+        return __('media::validation.width_not_between', [
             'min' => $this->minWidth,
             'max' => $this->maxWidth,
         ]);

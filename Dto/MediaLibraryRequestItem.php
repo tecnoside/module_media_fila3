@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Dto;
+namespace Modules\Media\Dto;
 
 use Illuminate\Support\Str;
 

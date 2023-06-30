@@ -16,29 +16,8 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Models\Media;
 
-/**
- * Modules\Media\Models\TemporaryUpload.
- *
- * @property int                                                                                                        $id
- * @property string                                                                                                     $session_id
- * @property \Illuminate\Support\Carbon|null                                                                            $created_at
- * @property \Illuminate\Support\Carbon|null                                                                            $updated_at
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- * @property int|null                                                                                                   $media_count
- *
- * @method static Builder|TemporaryUpload newModelQuery()
- * @method static Builder|TemporaryUpload newQuery()
- * @method static Builder|TemporaryUpload old()
- * @method static Builder|TemporaryUpload query()
- * @method static Builder|TemporaryUpload whereCreatedAt($value)
- * @method static Builder|TemporaryUpload whereId($value)
- * @method static Builder|TemporaryUpload whereSessionId($value)
- * @method static Builder|TemporaryUpload whereUpdatedAt($value)
- *
- * @mixin \Eloquent
- */
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
@@ -55,7 +34,7 @@ class TemporaryUpload extends Model implements HasMedia
         $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\ItemRules;
+namespace Modules\Media\Rules\ItemRules;
 
 class DimensionsRule extends MediaItemRule
 {
@@ -45,15 +45,15 @@ class DimensionsRule extends MediaItemRule
         ];
 
         if ($this->requiredWidth && $this->requiredHeight) {
-            return __('media-library::validation.incorrect_dimensions.both', $params);
+            return __('media::validation.incorrect_dimensions.both', $params);
         }
 
         if ($this->requiredWidth) {
-            return __('media-library::validation.incorrect_dimensions.width', $params);
+            return __('media::validation.incorrect_dimensions.width', $params);
         }
 
         if ($this->requiredHeight) {
-            return __('media-library::validation.incorrect_dimensions.height', $params);
+            return __('media::validation.incorrect_dimensions.height', $params);
         }
     }
 }

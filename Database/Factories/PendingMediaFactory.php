@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Factories;
+namespace Modules\Media\Database\Factories;
 
-use Spatie\MediaLibraryPro\Dto\PendingMediaItem;
+use Modules\Media\Dto\PendingMediaItem;
 
 class PendingMediaFactory
 {
