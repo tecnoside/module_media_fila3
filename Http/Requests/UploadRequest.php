@@ -1,21 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Http\Requests;
+namespace Spatie\MediaLibraryPro\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Modules\Media\Rules\FileExtensionRule;
-use Modules\Media\Support\DefaultAllowedExtensions;
+use Spatie\MediaLibraryPro\Rules\FileExtensionRule;
+use Spatie\MediaLibraryPro\Support\DefaultAllowedExtensions;
 
 class UploadRequest extends FormRequest
 {
     public function rules(): array
     {
-        // $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
+        $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
 
-        // $allowedExtensions = $configuredAllowedExtensions ?? DefaultAllowedExtensions::all();
-        $allowedExtensions = DefaultAllowedExtensions::all();
+        $allowedExtensions = $configuredAllowedExtensions ?? DefaultAllowedExtensions::all();
 
         $allowedExtensionsString = implode(',', $allowedExtensions);
 
@@ -24,8 +21,8 @@ class UploadRequest extends FormRequest
             'name' => '',
             'custom_properties' => '',
             'file' => [
-                'max:'.config('media-library.max_file_size') / 1024,
-                'mimes:'.$allowedExtensionsString,
+                'max:' . config('media-library.max_file_size') / 1024,
+                "mimes:" . $allowedExtensionsString,
                 new FileExtensionRule($allowedExtensions),
             ],
         ];
@@ -36,9 +33,9 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
-        $mediaModel = new $mediaModelClass();
+        $mediaModel = new $mediaModelClass;
 
-        if ('default' === $mediaModel->getConnectionName()) {
+        if ($mediaModel->getConnectionName() === 'default') {
             return '';
         }
 
@@ -50,7 +47,7 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $mediaModel */
-        $mediaModel = new $mediaModelClass();
+        $mediaModel = new $mediaModelClass;
 
         return $mediaModel->getTable();
     }

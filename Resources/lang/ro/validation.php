@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'total_upload_size_too_high' => 'Dimensiunea totală permisă este :max',
     'total_upload_size_too_low' => 'Dimensiunea minimă permisă este :min',

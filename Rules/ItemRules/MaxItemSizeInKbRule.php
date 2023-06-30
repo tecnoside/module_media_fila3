@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules\ItemRules;
+namespace Spatie\MediaLibraryPro\Rules\ItemRules;
 
 use Spatie\MediaLibrary\Support\File;
 
@@ -30,7 +28,7 @@ class MaxItemSizeInKbRule extends MediaItemRule
 
     public function message()
     {
-        return __('media::validation.file_too_big', [
+        return __('media-library::validation.file_too_big', [
             'max' => File::getHumanReadableSize($this->maxSizeInKb * 1024),
             'maxInKb' => $this->maxSizeInKb,
             'actual' => File::getHumanReadableSize($this->actualSizeInBytes),

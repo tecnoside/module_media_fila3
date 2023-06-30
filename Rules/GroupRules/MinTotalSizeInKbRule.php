@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules\GroupRules;
+namespace Spatie\MediaLibraryPro\Rules\GroupRules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -16,15 +14,11 @@ class MinTotalSizeInKbRule implements Rule
     {
     }
 
-    public function getMinTotalSizeInKb(): int
+    public function getMinTotalSizeInKb()
     {
         return $this->minTotalSizeInKb;
     }
 
-    /**
-     * @param string $attribute
-     * @param array  $uploadedItems
-     */
     public function passes($attribute, $uploadedItems): bool
     {
         $uuids = collect($uploadedItems)
@@ -38,17 +32,13 @@ class MinTotalSizeInKbRule implements Rule
         return $this->actualTotalSizeInBytes >= ($this->minTotalSizeInKb * 1024);
     }
 
-    public function message()
+    public function message(): string
     {
-        $res = __('media-library::validation.total_upload_size_too_low', [
+        return __('media-library::validation.total_upload_size_too_low', [
             'min' => File::getHumanReadableSize($this->minTotalSizeInKb * 1024),
             'minInKb' => $this->minTotalSizeInKb,
-            'actual' => File::getHumanReadableSize(intval($this->actualTotalSizeInBytes / 1024)),
+            'actual' => File::getHumanReadableSize(round($this->actualTotalSizeInBytes / 1024)),
             'actualTotalSizeInKb' => round($this->actualTotalSizeInBytes / 1024),
         ]);
-        if (is_string($res) || is_array($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

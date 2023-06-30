@@ -1,23 +1,21 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules;
+namespace Spatie\MediaLibraryPro\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Arr;
-use Modules\Media\Rules\GroupRules\MaxItemsRule;
-use Modules\Media\Rules\GroupRules\MaxTotalSizeInKbRule;
-use Modules\Media\Rules\GroupRules\MinItemsRule;
-use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
-use Modules\Media\Rules\ItemRules\AttributeRule;
-use Modules\Media\Rules\ItemRules\DimensionsRule;
-use Modules\Media\Rules\ItemRules\ExtensionRule;
-use Modules\Media\Rules\ItemRules\HeightBetweenRule;
-use Modules\Media\Rules\ItemRules\MaxItemSizeInKbRule;
-use Modules\Media\Rules\ItemRules\MimeTypeRule;
-use Modules\Media\Rules\ItemRules\MinItemSizeInKbRule;
-use Modules\Media\Rules\ItemRules\WidthBetweenRule;
+use Spatie\MediaLibraryPro\Rules\GroupRules\MaxItemsRule;
+use Spatie\MediaLibraryPro\Rules\GroupRules\MaxTotalSizeInKbRule;
+use Spatie\MediaLibraryPro\Rules\GroupRules\MinItemsRule;
+use Spatie\MediaLibraryPro\Rules\GroupRules\MinTotalSizeInKbRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\AttributeRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\DimensionsRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\ExtensionRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\HeightBetweenRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\MaxItemSizeInKbRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\MimeTypeRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\MinItemSizeInKbRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\WidthBetweenRule;
 
 class UploadedMediaRules implements Rule
 {
@@ -147,7 +145,7 @@ class UploadedMediaRules implements Rule
 
         return $this;
     }
-
+    
     public function customGroupRules($rules)
     {
         $this->groupRules = array_merge($this->groupRules, Arr::wrap($rules));

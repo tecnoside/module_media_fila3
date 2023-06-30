@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules\GroupRules;
+namespace Spatie\MediaLibraryPro\Rules\GroupRules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -12,7 +10,7 @@ class MinItemsRule implements Rule
     {
     }
 
-    public function getMinItemCount(): int
+    public function getMinItemCount()
     {
         return $this->minItemCount;
     }

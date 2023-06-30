@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
+namespace Spatie\MediaLibraryPro\Rules\Concerns;
 
-namespace Modules\Media\Rules\Concerns;
-
-use Modules\Media\Rules\GroupRules\MinItemsRule;
-use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
-use Modules\Media\Rules\ItemRules\AttributeRule;
-use Modules\Media\Rules\UploadedMediaRules;
+use Spatie\MediaLibraryPro\Rules\GroupRules\MinItemsRule;
+use Spatie\MediaLibraryPro\Rules\GroupRules\MinTotalSizeInKbRule;
+use Spatie\MediaLibraryPro\Rules\ItemRules\AttributeRule;
+use Spatie\MediaLibraryPro\Rules\UploadedMediaRules;
 
 /** @var $this \Illuminate\Foundation\Http\FormRequest */
 trait ValidatesMedia

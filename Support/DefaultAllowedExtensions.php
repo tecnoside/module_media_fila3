@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Support;
+namespace Spatie\MediaLibraryPro\Support;
 
 class DefaultAllowedExtensions
 {

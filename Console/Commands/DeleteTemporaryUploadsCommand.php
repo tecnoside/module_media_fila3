@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Console\Commands;
+namespace Spatie\MediaLibraryPro\Commands;
 
 use Illuminate\Console\Command;
 

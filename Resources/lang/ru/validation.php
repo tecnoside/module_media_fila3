@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
     'total_upload_size_too_high' => 'Максимальный размер загружаемых файлов :max',
     'total_upload_size_too_low' => 'Минимальный размер загружаемых файлов :min',

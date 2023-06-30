@@ -1,12 +1,9 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Modules\Media\Rules\ItemRules;
+namespace Spatie\MediaLibraryPro\Rules\ItemRules;
 
 use Illuminate\Contracts\Validation\Rule;
-// use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Modules\Media\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 abstract class MediaItemRule implements Rule
 {
