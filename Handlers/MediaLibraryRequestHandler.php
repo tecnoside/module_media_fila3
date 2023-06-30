@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
 use Modules\Media\Dto\PendingMediaItem;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Models\Media;
 
 class MediaLibraryRequestHandler
 {

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Http\Livewire;
+namespace Modules\Media\Http\Livewire\Media;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 use Livewire\Component;
-use Spatie\MediaLibraryPro\Dto\ViewMediaItem;
+use Modules\Media\Dto\ViewMediaItem;
 
-class LivewireMediaLibraryComponent extends Component
+class Index extends Component
 {
     public $name;
     public $multiple;
@@ -51,7 +51,7 @@ class LivewireMediaLibraryComponent extends Component
 
         $this->media = $media;
 
-        $this->view = empty($view) ? 'media-library::livewire.media-library' : $view;
+        $this->view = empty($view) ? 'media::livewire.media.index' : $view;
         $this->listView = $listView;
         $this->itemView = $itemView;
         $this->propertiesView = $propertiesView;

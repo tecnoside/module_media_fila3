@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Modules\Cms\Actions\GetViewAction;
 use Modules\Media\Actions\ConvertLivewireUploadToMediaAction;
 
 class Uploader extends Component
@@ -85,7 +83,7 @@ class Uploader extends Component
         try {
             $this->validate([
                 $field => $this->rules,
-            ], ["{$field}.mimes" => __('media-library::validation.type')]);
+            ], ["{$field}.mimes" => __('media::validation.type')]);
         } catch (ValidationException $validationException) {
             $uploadError = Arr::flatten($validationException->errors())[0];
 
@@ -97,10 +95,8 @@ class Uploader extends Component
         return $uploadError;
     }
 
-    /**
-     * @param \Livewire\TemporaryUploadedFile $upload
-     */
-    protected function handleUpload($upload): void
+    /** @param $upload \Livewire\TemporaryUploadedFile */
+    protected function handleUpload($upload)
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($upload);
 
@@ -117,7 +113,7 @@ class Uploader extends Component
         ]);
     }
 
-    public function uploadErrored(string $name, string $errorsInJson, bool $isMultiple): void
+    public function uploadErrored($name, $errorsInJson, $isMultiple)
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
@@ -130,17 +126,8 @@ class Uploader extends Component
         }
     }
 
-    public function render(): Renderable
+    public function render()
     {
-        /**
-         * @phpstan-var view-string
-         */
-        $view = app(GetViewAction::class)->execute();
-
-        $view_params = [
-            'view' => $view,
-        ];
-
-        return view($view, $view_params);
+        return view('media::livewire.uploader');
     }
 }

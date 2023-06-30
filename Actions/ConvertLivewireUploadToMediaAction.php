@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Actions;
+namespace Modules\Media\Actions;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Livewire\FileUploadConfiguration;
 use Livewire\TemporaryUploadedFile;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\MediaLibraryPro\Models\TemporaryUpload;
+use Modules\Media\Models\Media;
+use Modules\Media\Models\TemporaryUpload;
 
 class ConvertLivewireUploadToMediaAction
 {

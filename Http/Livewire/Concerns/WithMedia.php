@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Http\Livewire\Concerns;
+namespace Modules\Media\Http\Livewire\Concerns;
 
 /** @mixin \Livewire\Component */
 trait WithMedia

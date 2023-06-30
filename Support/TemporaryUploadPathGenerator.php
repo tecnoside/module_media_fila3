@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Support;
+namespace Modules\Media\Support;
 
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 
 class TemporaryUploadPathGenerator implements PathGenerator

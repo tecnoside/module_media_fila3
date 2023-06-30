@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Support;
+namespace Modules\Media\Support;
 
 class DefaultAllowedExtensions
 {

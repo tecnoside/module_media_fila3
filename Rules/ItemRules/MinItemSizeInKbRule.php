@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\ItemRules;
+namespace Modules\Media\Rules\ItemRules;
 
 use Spatie\MediaLibrary\Support\File;
 
@@ -30,7 +30,7 @@ class MinItemSizeInKbRule extends MediaItemRule
 
     public function message(): string
     {
-        return __('media-library::validation.file_too_small', [
+        return __('media::validation.file_too_small', [
             'min' => File::getHumanReadableSize($this->minSizeInKb * 1024),
             'minInKb' => $this->minSizeInKb,
             'actual' => File::getHumanReadableSize($this->actualSizeInBytes),

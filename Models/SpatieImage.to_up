@@ -8,7 +8,7 @@ namespace Modules\Media\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Lang\Models\Traits\LinkedTrait;
 use Modules\Xot\Traits\Updater;
-use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
+use Modules\Media\Models\Media as BaseMedia;
 use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags; // spatie tags
 
@@ -58,9 +58,9 @@ use Spatie\Tags\HasTags; // spatie tags
  * @property int|null                                                              $statuses_count
  * @property int|null                                                              $tags_count
  *
- * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|static[] all($columns = ['*'])
+ * @method static \Modules\Media\Models\Collections\MediaCollection|static[] all($columns = ['*'])
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 currentStatus(...$names)
- * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|static[] get($columns = ['*'])
+ * @method static \Modules\Media\Models\Collections\MediaCollection|static[] get($columns = ['*'])
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SpatieImage                                 ofItem(string $guid)

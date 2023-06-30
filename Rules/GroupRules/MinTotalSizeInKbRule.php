@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\GroupRules;
+namespace Modules\Media\Rules\GroupRules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\Support\File;
 
 class MinTotalSizeInKbRule implements Rule
@@ -36,7 +36,7 @@ class MinTotalSizeInKbRule implements Rule
 
     public function message(): string
     {
-        return __('media-library::validation.total_upload_size_too_low', [
+        return __('media::validation.total_upload_size_too_low', [
             'min' => File::getHumanReadableSize($this->minTotalSizeInKb * 1024),
             'minInKb' => $this->minTotalSizeInKb,
             'actual' => File::getHumanReadableSize(round($this->actualTotalSizeInBytes / 1024)),

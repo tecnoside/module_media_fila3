@@ -1,59 +1,49 @@
-<div
-    x-data="initDropZone({ _this: @this, rules: '{{ $rules }}', multiple: '{{ $multiple }}', uploadError: '{{ $uploadError }}' })"
-    x-ref="element"
-    @dragenter.document="handleDocumentDragenter($event)"
-    @dragleave.document="handleDocumentDragleave($event)"
-    @drop.document="handleDocumentDrop($event)"
-    @dragover.document="handleDocumentDragOver($event, $refs.element)"
-    @drop="handleDrop"
-    @click="$refs.input.click()"
-
-    class="{{ $add ? 'media-library-add' : 'media-library-replace' }}"
->
-    <button
-        :disabled="!isValid"
-        type="button"
+<div x-data="initDropZone({ _this: @this, rules: '{{ $rules }}', multiple: '{{ $multiple }}', uploadError: '{{ $uploadError }}' })" x-ref="element" @dragenter.document="handleDocumentDragenter($event)"
+    @dragleave.document="handleDocumentDragleave($event)" @drop.document="handleDocumentDrop($event)"
+    @dragover.document="handleDocumentDragOver($event, $refs.element)" @drop="handleDrop" @click="$refs.input.click()"
+    class="{{ $add ? 'media-library-add' : 'media-library-replace' }}">
+    <button :disabled="!isValid" type="button"
         :class="{
-                'media-library-dropzone-drag': hasDragObject && !isDropTarget,
-                'media-library-dropzone-drop': hasDragObject && isDropTarget,
-            }"
+            'media-library-dropzone-drag': hasDragObject && !isDropTarget,
+            'media-library-dropzone-drop': hasDragObject && isDropTarget,
+        }"
         class="media-library-dropzone {{ $add ? 'media-library-dropzone-add' : 'media-library-dropzone-replace' }}">
 
         <input dusk="{{ $add ? 'main-uploader' : 'uploader' }}" class="media-library-hidden" x-ref="input"
-               @if($multiple) multiple @endif type="file" wire:model="upload"
-               wire:key="{{ \Illuminate\Support\Str::uuid() }}"
-               x-on:livewire-upload-error="console.log('upload error')"
-               x-on:livewire-upload-progress="uploadProgress = $event.detail.progress"
-               x-on:livewire-upload-finish="uploadCompletedSuccessfully"
-        />
+            @if ($multiple) multiple @endif type="file" wire:model="upload"
+            wire:key="{{ \Illuminate\Support\Str::uuid() }}" x-on:livewire-upload-error="console.log('upload error')"
+            x-on:livewire-upload-progress="uploadProgress = $event.detail.progress"
+            x-on:livewire-upload-finish="uploadCompletedSuccessfully" />
 
         <div class="media-library-placeholder">
-            <x-media-library-button wire:loading.remove x-show="isValid" level="info" icon="{{ $add ? 'add' : 'replace' }}"/>
-            <x-media-library-button x-show="!isValid" level="warning" icon="not-allowed"/>
+            <x-media.button wire:loading.remove x-show="isValid" level="info" icon="{{ $add ? 'add' : 'replace' }}" />
+            <x-media.button x-show="!isValid" level="warning" icon="not-allowed" />
 
-            @unless($add)
-            <div class="media-library-progress-wrap" wire:target="upload" wire:loading.class="media-library-progress-wrap-loading">
-                <progress max="100" :value="uploadProgress" class="media-library-progress"></progress>
-            </div>
+            @unless ($add)
+                <div class="media-library-progress-wrap" wire:target="upload"
+                    wire:loading.class="media-library-progress-wrap-loading">
+                    <progress max="100" :value="uploadProgress" class="media-library-progress"></progress>
+                </div>
             @endunless
         </div>
 
-        @if($add)
-            <div class="media-library-progress-wrap" wire:target="upload" wire:loading.class="media-library-progress-wrap-loading">
+        @if ($add)
+            <div class="media-library-progress-wrap" wire:target="upload"
+                wire:loading.class="media-library-progress-wrap-loading">
                 <progress max="100" :value="uploadProgress" class="media-library-progress"></progress>
             </div>
 
             <div class="media-library-help" wire:loading.remove>
                 <div x-show="@this.data.uploadError">
-                    @if($uploadError)
-                        @include('media-library::livewire.partials.item-error', ['message' => $uploadError])
+                    @if ($uploadError)
+                        @include('media::livewire.partials.item-error', ['message' => $uploadError])
                     @endif
                 </div>
 
                 <div>
                     <span x-show="isValid && hasDragObject">
-                            <span x-show="!isDropTarget">{{ __('Drag file here') }}</span>
-                            <span x-show="isDropTarget">{{ __('Drop file to upload') }}</span>
+                        <span x-show="!isDropTarget">{{ __('Drag file here') }}</span>
+                        <span x-show="isDropTarget">{{ __('Drop file to upload') }}</span>
                     </span>
                     <span x-show="!isValid || !hasDragObject" x-text="ruleHelpText"></span>
                 </div>
@@ -63,14 +53,22 @@
     </button>
 
     <script>
-        window.initDropZone = function({ _this, rules, multiple, uploadError }) {
+        window.initDropZone = function({
+            _this,
+            rules,
+            multiple,
+            uploadError
+        }) {
             const isValid = true;
 
             const hasDragObject = false;
             const isDropTarget = false;
             const uploadProgress = 0;
 
-            const { ruleHelpText, fileTypeRules } = buildRuleHelpText(rules, undefined, multiple);
+            const {
+                ruleHelpText,
+                fileTypeRules
+            } = buildRuleHelpText(rules, undefined, multiple);
 
             function getFileTypeIsAllowed(fileType) {
                 let checkType = fileType;
@@ -87,7 +85,8 @@
                     return true;
                 }
 
-                if (fileTypeRules.some((acceptType) => acceptType.endsWith('*') && checkType.includes(acceptType.replace('*', '')))) {
+                if (fileTypeRules.some((acceptType) => acceptType.endsWith('*') && checkType.includes(acceptType
+                        .replace('*', '')))) {
                     return true;
                 }
 
@@ -189,7 +188,10 @@
 
         function buildRuleHelpText(rules = '', maxItems, multiple) {
             let fileTypeRules = [];
-            let fileSizeRules = { min: '', max: '' };
+            let fileSizeRules = {
+                min: '',
+                max: ''
+            };
 
             rules.split('|').forEach(rule => {
                 const [ruleName, ruleValue] = rule.split(':');
@@ -209,7 +211,8 @@
 
             let ruleHelpText = '';
 
-            ruleHelpText = addToRuleHelpText(ruleHelpText, multiple ? '{{ __('Select or drag files') }}' : '{{  __('Select or drag a file') }}');
+            ruleHelpText = addToRuleHelpText(ruleHelpText, multiple ? '{{ __('Select or drag files') }}' :
+                '{{ __('Select or drag a file') }}');
 
             if (fileTypeRules) {
                 const amountOfRules = fileTypeRules.length;
@@ -238,7 +241,10 @@
                 ruleHelpText = addToRuleHelpText(ruleHelpText, `< ${maxSizeString}`);
             }
 
-            return { ruleHelpText, fileTypeRules };
+            return {
+                ruleHelpText,
+                fileTypeRules
+            };
         }
     </script>
 

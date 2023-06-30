@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Exceptions;
+namespace Modules\Media\Exceptions;
 
 class TemporaryUploadDoesNotBelongToCurrentSession extends \Exception
 {

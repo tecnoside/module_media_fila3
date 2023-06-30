@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Http\Controllers;
+namespace Modules\Media\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
-use Spatie\MediaLibraryPro\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
+use Modules\Media\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
 
 class MediaLibraryPostS3Controller
 {
@@ -23,7 +23,7 @@ class MediaLibraryPostS3Controller
             'session_id' => session()->getId(),
         ]);
 
-        /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $media */
+        /** @var \Modules\Media\Models\Media $media */
         $media = $temporaryUpload->media()->create([
             'name' => $request->name,
             'uuid' => $request->uuid,

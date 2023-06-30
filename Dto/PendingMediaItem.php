@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Dto;
+namespace Modules\Media\Dto;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Spatie\MediaLibraryPro\Models\TemporaryUpload;
+use Modules\Media\Models\TemporaryUpload;
 
 class PendingMediaItem
 {

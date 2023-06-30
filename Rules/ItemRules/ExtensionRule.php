@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spatie\MediaLibraryPro\Rules\ItemRules;
+namespace Modules\Media\Rules\ItemRules;
 
 use Illuminate\Support\Arr;
 use Symfony\Component\Mime\MimeTypes;
@@ -36,7 +36,7 @@ class ExtensionRule extends MediaItemRule
 
     public function message()
     {
-        return __('media-library::validation.extension', [
+        return __('media::validation.extension', [
             'extensions' => implode(', ', $this->allowedExtensions),
         ]);
     }
