@@ -1,7 +1,8 @@
 <?php
 
-namespace Modules\Media\View\Components\Media;
+declare(strict_types=1);
 
+namespace Modules\Media\View\Components\Media;
 
 use Illuminate\View\Component;
 
@@ -20,7 +21,7 @@ class Upload extends Component
         public ?string $componentView = null,
         public ?string $listView = null,
         public ?string $itemView = null,
-        ?string $propertiesView = null,
+        string $propertiesView = null,
         public ?string $fieldsView = null
     ) {
         $this->media = old($name) ?? [];

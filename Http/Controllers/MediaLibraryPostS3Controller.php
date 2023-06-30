@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Modules\Media\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
-use Modules\Media\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
 
 class MediaLibraryPostS3Controller
 {

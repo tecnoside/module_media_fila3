@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
 use Modules\Media\Dto\PendingMediaItem;
-use Spatie\MediaLibrary\HasMedia;
 use Modules\Media\Models\Media;
+use Spatie\MediaLibrary\HasMedia;
 
 class MediaLibraryRequestHandler
 {

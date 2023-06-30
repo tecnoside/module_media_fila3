@@ -16,7 +16,6 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Modules\Media\Models\Media;
 
 class TemporaryUpload extends Model implements HasMedia
 {
@@ -34,7 +33,7 @@ class TemporaryUpload extends Model implements HasMedia
         $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
     }
 
-    public function registerMediaConversions(?\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
