@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -145,7 +147,7 @@ class UploadedMediaRules implements Rule
 
         return $this;
     }
-    
+
     public function customGroupRules($rules)
     {
         $this->groupRules = array_merge($this->groupRules, Arr::wrap($rules));

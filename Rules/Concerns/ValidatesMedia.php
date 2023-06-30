@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Rules\Concerns;
 
 use Spatie\MediaLibraryPro\Rules\GroupRules\MinItemsRule;

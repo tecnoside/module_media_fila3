@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Http\Controllers;
 
 use Illuminate\Validation\ValidationException;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibraryPro\Models\TemporaryUpload;
 use Spatie\MediaLibraryPro\Request\UploadRequest;
-use Throwable;
 
 class MediaLibraryUploadController
 {
@@ -21,7 +22,7 @@ class MediaLibraryUploadController
                 $request->uuid,
                 $request->name ?? '',
             );
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Rules\ItemRules;
 
 use Illuminate\Contracts\Validation\Rule;

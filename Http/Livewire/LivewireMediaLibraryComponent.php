@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Http\Livewire;
 
 use Illuminate\Support\Arr;
@@ -15,15 +17,15 @@ class LivewireMediaLibraryComponent extends Component
     public $sortable;
     public $editableName;
     public $rules;
-    public $maxItems = null;
+    public $maxItems;
     public $media;
     public $view;
     public $listView;
     public $itemView;
     public $propertiesView;
     public $fieldsView;
-    public $listErrorMessage = null;
-    protected $validationErrors = null;
+    public $listErrorMessage;
+    protected $validationErrors;
 
     public function mount(
         string $name,
@@ -31,7 +33,7 @@ class LivewireMediaLibraryComponent extends Component
         bool $sortable = true,
         bool $editableName = true,
         string $rules = '',
-        ?int $maxItems = null,
+        int $maxItems = null,
         array $media = [],
         string $view = null,
         string $listView = null,

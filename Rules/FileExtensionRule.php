@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
@@ -17,10 +19,8 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param string $attribute
+     * @param string                        $attribute
      * @param \Illuminate\Http\UploadedFile $value
-     *
-     * @return bool
      */
     public function passes($attribute, $value): bool
     {

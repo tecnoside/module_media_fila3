@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Exceptions;
 
-use Exception;
-
-class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
+class TemporaryUploadDoesNotBelongToCurrentSession extends \Exception
 {
     public static function create(): self
     {

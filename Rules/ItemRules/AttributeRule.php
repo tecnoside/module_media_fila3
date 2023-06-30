@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Rules\ItemRules;
 
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
@@ -41,6 +43,6 @@ class AttributeRule extends MediaItemRule
 
     protected function shortAttributeName(): string
     {
-        return str_replace("custom_properties.", '', $this->attribute);
+        return str_replace('custom_properties.', '', $this->attribute);
     }
 }

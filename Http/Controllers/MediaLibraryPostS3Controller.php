@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
@@ -23,26 +25,26 @@ class MediaLibraryPostS3Controller
 
         /** @var \Spatie\MediaLibrary\MediaCollections\Models\Media $media */
         $media = $temporaryUpload->media()->create([
-           'name' => $request->name,
-           'uuid' => $request->uuid,
-           'collection_name' => 'default',
-           'file_name' => $request->name,
-           'mime_type' => $request->content_type,
-           'disk' => $diskName,
-           'conversions_disk' => $diskName,
-           'manipulations' => [],
-           'custom_properties' => [],
-           'responsive_images' => [],
-           'generated_conversions' => [],
-           'size' => $request->size,
-       ]);
+            'name' => $request->name,
+            'uuid' => $request->uuid,
+            'collection_name' => 'default',
+            'file_name' => $request->name,
+            'mime_type' => $request->content_type,
+            'disk' => $diskName,
+            'conversions_disk' => $diskName,
+            'manipulations' => [],
+            'custom_properties' => [],
+            'responsive_images' => [],
+            'generated_conversions' => [],
+            'size' => $request->size,
+        ]);
 
         /** @var \Spatie\MediaLibrary\Support\PathGenerator\PathGenerator $pathGenerator */
         $pathGenerator = PathGeneratorFactory::create($media);
 
         Storage::disk($diskName)->copy(
             $request->key,
-            $pathGenerator->getPath($media) . $request->name,
+            $pathGenerator->getPath($media).$request->name,
         );
 
         $fileManipulator->createDerivedFiles($media);

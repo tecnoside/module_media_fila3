@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Http\Livewire;
 
 use Illuminate\Support\Arr;
@@ -33,7 +35,7 @@ class LivewireUploaderComponent extends Component
     /** @var bool */
     public $add;
 
-    /** @var null|string */
+    /** @var string|null */
     public $uploadError;
 
     public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
@@ -44,7 +46,7 @@ class LivewireUploaderComponent extends Component
 
         $this->multiple = $multiple;
 
-        $this->uuid = $uuid ?? (string)Str::uuid();
+        $this->uuid = $uuid ?? (string) Str::uuid();
 
         $this->add = $add;
     }

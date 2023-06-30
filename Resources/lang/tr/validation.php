@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'total_upload_size_too_high' => 'Toplamda izin verilen maksimum boyut :max',
     'total_upload_size_too_low' => 'Toplamda izin verilen minimum boyut :min',

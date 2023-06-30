@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Spatie\MediaLibraryPro\Dto;
 
 use Illuminate\Support\Arr;
@@ -34,9 +36,9 @@ class ViewMediaItem
     public function livewireCustomPropertyAttributes(string $name, int $debounceInMs = 150): HtmlString
     {
         return new HtmlString(implode(PHP_EOL, [
-                'x-data',
-                'x-on:keyup.debounce.' . $debounceInMs . '="$wire.setCustomProperty(\'' . $this->uuid .'\', \''  . $name . '\', document.getElementsByName(\'' . $this->customPropertyAttributeName($name) .'\')[0].value)"',
-                $this->customPropertyAttributes($name),
+            'x-data',
+            'x-on:keyup.debounce.'.$debounceInMs.'="$wire.setCustomProperty(\''.$this->uuid.'\', \''.$name.'\', document.getElementsByName(\''.$this->customPropertyAttributeName($name).'\')[0].value)"',
+            $this->customPropertyAttributes($name),
         ]));
     }
 
@@ -56,7 +58,6 @@ class ViewMediaItem
     {
         return "{$this->formFieldName}.{$this->uuid}";
     }
-
 
     public function propertyErrorName(string $name): string
     {
