@@ -6,7 +6,7 @@ namespace Modules\Media\Models\Panels\Policies;
 
 use Modules\Cms\Contracts\PanelContract;
 use Modules\Cms\Models\Panels\Policies\XotBasePanelPermissionPolicy;
-use Modules\LU\Services\ProfileService;
+use Modules\User\Services\ProfileService;
 use Modules\Xot\Contracts\UserContract;
 
 class MediaPanelPolicy extends XotBasePanelPermissionPolicy
