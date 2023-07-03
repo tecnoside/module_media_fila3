@@ -6,44 +6,44 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-//----- models -----
+// ----- models -----
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
  * Class CreateImagesTable.
  */
-class CreateFilamentMediaLibraryModelTable extends XotBaseMigration {
+class CreateFilamentMediaLibraryModelTable extends XotBaseMigration
+{
     /**
      * i don't write table name, it take from Model, model is singular of this class wit.
      *
      * @return void
      */
-    public function up() {
-        //-- CREATE --
+    public function up()
+    {
+        // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
-               $table->bigIncrements('id');
+                $table->bigIncrements('id');
 
                 $table->morphs('model');
                 $table->string('media_library_item_id');
                 $table->text('note');
                 $table->nullableTimestamps();
-                //----------------------------------------------------------
+                // ----------------------------------------------------------
                 $table->string('created_by')->nullable();
                 $table->string('updated_by')->nullable();
-
             }
         );
 
-        //-- UPDATE --
+        // -- UPDATE --
 
         $this->tableUpdate(
             function (Blueprint $table) {
-                if(!$this->hasColumn('media_library_item_id') && $this->hasColumn('media_library_id')){
-                    $table->renameColumn('media_library_id','media_library_item_id');
+                if (! $this->hasColumn('media_library_item_id') && $this->hasColumn('media_library_id')) {
+                    $table->renameColumn('media_library_id', 'media_library_item_id');
                 }
             }
         );
-
     }
 }
