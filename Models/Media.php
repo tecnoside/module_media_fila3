@@ -31,4 +31,11 @@ class Media extends SpatieMedia
             )
             ->get();
     }
+
+    public function setCustomProperties(array $data)
+    {
+        foreach ($data as $k => $v) {
+            $this->setCustomProperty($k, $v);
+        }
+    }
 }
