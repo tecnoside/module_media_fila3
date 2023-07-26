@@ -9,7 +9,7 @@ use Modules\Cms\Models\Panels\XotBasePanel;
 // --- Services --
 
 use Modules\Media\Models\SpatieImage;
-use Modules\Xot\Contracts\RowsContract;
+use Modules\Cms\Contracts\RowsContract;
 
 class SpatieImagePanel extends XotBasePanel {
     /**
