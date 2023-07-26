@@ -6,8 +6,8 @@ namespace Modules\Media\Models\Panels;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Modules\Cms\Models\Panels\XotBasePanel;
 use Modules\Cms\Contracts\RowsContract;
+use Modules\Cms\Models\Panels\XotBasePanel;
 
 class MediaPanel extends XotBasePanel
 {
