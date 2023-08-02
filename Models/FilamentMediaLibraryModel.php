@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 /**
- * Modules\Media\Models\FilamentMediaLibraryModel
+ * Modules\Media\Models\FilamentMediaLibraryModel.
  *
- * @property int $id
- * @property string $model_type
- * @property int $model_id
- * @property string $media_library_item_id
- * @property string $note
+ * @property int                             $id
+ * @property string                          $model_type
+ * @property int                             $model_id
+ * @property string                          $media_library_item_id
+ * @property string                          $note
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
+ * @property string|null                     $created_by
+ * @property string|null                     $updated_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|FilamentMediaLibraryModel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FilamentMediaLibraryModel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FilamentMediaLibraryModel query()
@@ -28,6 +29,7 @@ namespace Modules\Media\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|FilamentMediaLibraryModel whereNote($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilamentMediaLibraryModel whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|FilamentMediaLibraryModel whereUpdatedBy($value)
+ *
  * @mixin \Eloquent
  */
 class FilamentMediaLibraryModel extends BaseMorphPivot
