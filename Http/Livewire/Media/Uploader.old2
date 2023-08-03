@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 use Modules\Media\Actions\ConvertLivewireUploadToMediaAction;
 
 class Uploader extends Component

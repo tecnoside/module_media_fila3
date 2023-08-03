@@ -7,7 +7,7 @@ namespace Modules\Media\Http\Livewire\Card\Video;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 
 /**
  * Class Clip.
