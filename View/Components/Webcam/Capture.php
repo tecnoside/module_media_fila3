@@ -6,7 +6,7 @@ namespace Modules\Media\View\Components\Webcam;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 
 class Capture extends Component
 {

@@ -6,7 +6,7 @@ namespace Modules\Media\View\Components\Media;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 
 class Upload extends Component
 {

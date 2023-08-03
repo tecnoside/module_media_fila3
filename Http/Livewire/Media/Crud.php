@@ -6,7 +6,7 @@ namespace Modules\Media\Http\Livewire\Media;
 
 use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Traits\WithMedia;
 use Spatie\MediaLibrary\HasMedia;

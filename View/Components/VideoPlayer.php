@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\View\Components;
 
 use Illuminate\View\Component;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 
 /**
  * Class VideoPlayer.
