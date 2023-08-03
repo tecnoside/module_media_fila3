@@ -6,9 +6,9 @@ namespace Modules\Media\Http\Livewire\Media;
 
 use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
-use Modules\Xot\Actions\GetViewAction;
 use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Traits\WithMedia;
+use Modules\Xot\Actions\GetViewAction;
 use Spatie\MediaLibrary\HasMedia;
 
 class Crud extends Component
