@@ -100,7 +100,7 @@ use Spatie\Tags\HasTags; // spatie tags
  */
 class SpatieImage extends BaseMedia {
     // use Searchable;
-    // use Cachable;
+    // //use Cachable;
     use HasFactory;
 
     // spatie tags
