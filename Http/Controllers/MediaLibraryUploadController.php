@@ -8,7 +8,6 @@ use Illuminate\Validation\ValidationException;
 use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Request\UploadRequest;
-use Throwable;
 
 class MediaLibraryUploadController
 {
@@ -23,7 +22,7 @@ class MediaLibraryUploadController
                 $request->uuid,
                 $request->name ?? '',
             );
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();
