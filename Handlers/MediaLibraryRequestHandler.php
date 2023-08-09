@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Handlers;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -21,20 +22,11 @@ class MediaLibraryRequestHandler
 
     protected string $collectionName;
 
-    public static function createForMediaLibraryRequestItems(
-        Model $model,
-        Collection $mediaLibraryRequestItems,
-        string $collectionName
-    ): self {
-        // prima era new static
-        return new self($model, $mediaLibraryRequestItems, $collectionName);
-    }
-
     protected function __construct(Model $model, Collection $mediaLibraryRequestItems, string $collectionName)
     {
         $this->model = $model;
         if (! $this->model instanceof HasMedia) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
         }
 
         $this->existingUuids = $this->model->getMedia($collectionName)->pluck('uuid')->toArray();
@@ -42,6 +34,15 @@ class MediaLibraryRequestHandler
         $this->mediaLibraryRequestItems = $mediaLibraryRequestItems;
 
         $this->collectionName = $collectionName;
+    }
+
+    public static function createForMediaLibraryRequestItems(
+        Model $model,
+        Collection $mediaLibraryRequestItems,
+        string $collectionName
+    ): self {
+        // prima era new static
+        return new self($model, $mediaLibraryRequestItems, $collectionName);
     }
 
     public function updateExistingMedia(): self

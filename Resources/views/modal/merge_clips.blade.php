@@ -11,7 +11,7 @@
     --}}
     <ul wire:sortable="updateTaskOrder">
 
-        @foreach($this->clips as $clip)
+        @foreach ($this->clips as $clip)
             <li wire:sortable.item="{{ $clip->id }}" wire:key="task-{{ $clip->id }}">
                 <div wire:sortable.handle>
                     <x-card type="video" >

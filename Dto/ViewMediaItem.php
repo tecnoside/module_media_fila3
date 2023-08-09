@@ -15,14 +15,9 @@ class ViewMediaItem
     ) {
     }
 
-    public function __get($name)
-    {
-        return $this->mediaAttributes[$name] ?? null;
-    }
-
     public function propertyAttributeName(string $name): string
     {
-        return "{$this->formFieldName}[{$this->uuid}][$name]";
+        return "{$this->formFieldName}[{$this->uuid}][{$name}]";
     }
 
     public function customPropertyAttributes(string $name): HtmlString
@@ -37,14 +32,14 @@ class ViewMediaItem
     {
         return new HtmlString(implode(PHP_EOL, [
             'x-data',
-            'x-on:keyup.debounce.'.$debounceInMs.'="$wire.setCustomProperty(\''.$this->uuid.'\', \''.$name.'\', document.getElementsByName(\''.$this->customPropertyAttributeName($name).'\')[0].value)"',
+            'x-on:keyup.debounce.' . $debounceInMs . '="$wire.setCustomProperty(\'' . $this->uuid . '\', \'' . $name . '\', document.getElementsByName(\'' . $this->customPropertyAttributeName($name) . '\')[0].value)"',
             $this->customPropertyAttributes($name),
         ]));
     }
 
     public function customPropertyAttributeName(string $name): string
     {
-        return "{$this->formFieldName}[{$this->uuid}][custom_properties][$name]";
+        return "{$this->formFieldName}[{$this->uuid}][custom_properties][{$name}]";
     }
 
     public function customPropertyAttributeValue(string $name)
@@ -66,7 +61,7 @@ class ViewMediaItem
 
     public function customPropertyErrorName(string $name): string
     {
-        return "{$this->formFieldName}.{$this->uuid}.custom_properties.$name";
+        return "{$this->formFieldName}.{$this->uuid}.custom_properties.{$name}";
     }
 
     public function downloadUrl(): string
@@ -79,5 +74,10 @@ class ViewMediaItem
     public function createdAt(): Carbon
     {
         return Carbon::createFromTimestamp($this->mediaAttributes['createdAt']);
+    }
+
+    public function __get($name)
+    {
+        return $this->mediaAttributes[$name] ?? null;
     }
 }

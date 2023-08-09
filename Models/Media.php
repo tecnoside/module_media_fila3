@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
@@ -33,7 +34,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null                                   $created_by
  * @property string|null                                   $updated_by
  * @property int                                           $user_id
- * @property \Illuminate\Database\Eloquent\Model|\Eloquent $model
+ * @property \Illuminate\Database\Eloquent\Model|Eloquent $model
  * @property \Modules\Media\Models\TemporaryUpload|null    $temporaryUpload
  *
  * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> all($columns = ['*'])
@@ -68,13 +69,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  */
 class Media extends SpatieMedia
 {
-    public function temporaryUpload(): BelongsTo
-    {
-        // MediaLibraryPro::ensureInstalled();
-
-        return $this->belongsTo(TemporaryUpload::class);
-    }
-
     public static function findWithTemporaryUploadInCurrentSession(array $uuids): Collection
     {
         // MediaLibraryPro::ensureInstalled();
@@ -87,6 +81,13 @@ class Media extends SpatieMedia
                 fn (Builder $builder) => $builder->where('session_id', session()->getId())
             )
             ->get();
+    }
+
+    public function temporaryUpload(): BelongsTo
+    {
+        // MediaLibraryPro::ensureInstalled();
+
+        return $this->belongsTo(TemporaryUpload::class);
     }
 
     public function setCustomProperties(array $data)

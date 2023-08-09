@@ -6,7 +6,7 @@
 <div class="video-container">
     <video class="video" preload="auto" width="640" height="264" {{-- poster="MY_VIDEO_POSTER.jpg" --}}
         data-setup="{}">
-        <source src="{{ $mp4Src}}" type="video/mp4" />
+        <source src="{{ $mp4Src }}" type="video/mp4" />
         <source src="MY_VIDEO.webm" type="video/webm" />
         <p class="">
             To view this video please enable JavaScript, and consider upgrading to a

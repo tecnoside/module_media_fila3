@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Dto;
 
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
@@ -16,18 +17,6 @@ class PendingMediaItem
     public array $customProperties;
     public ?string $fileName;
 
-    public static function createFromArray(array $pendingMediaItems): Collection
-    {
-        return collect($pendingMediaItems)
-            ->map(fn (array $uploadAttributes) => new static(
-                $uploadAttributes['uuid'],
-                $uploadAttributes['name'] ?? '',
-                $uploadAttributes['order'] ?? 0,
-                $uploadAttributes['custom_properties'] ?? [],
-                $uploadAttributes['fileName'] ?? null,
-            ));
-    }
-
     public function __construct(
         string $uuid,
         string $name,
@@ -39,7 +28,7 @@ class PendingMediaItem
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
-            throw new \Exception('invalid uuid');
+            throw new Exception('invalid uuid');
         }
 
         $this->temporaryUpload = $temporaryUpload;
@@ -51,6 +40,18 @@ class PendingMediaItem
         $this->customProperties = $customProperties;
 
         $this->fileName = $fileName;
+    }
+
+    public static function createFromArray(array $pendingMediaItems): Collection
+    {
+        return collect($pendingMediaItems)
+            ->map(fn (array $uploadAttributes) => new static(
+                $uploadAttributes['uuid'],
+                $uploadAttributes['name'] ?? '',
+                $uploadAttributes['order'] ?? 0,
+                $uploadAttributes['custom_properties'] ?? [],
+                $uploadAttributes['fileName'] ?? null,
+            ));
     }
 
     public function toArray(): array
