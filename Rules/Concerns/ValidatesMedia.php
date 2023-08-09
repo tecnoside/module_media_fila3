@@ -9,19 +9,9 @@ use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
 use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
-/** @var $this \Illuminate\Foundation\Http\FormRequest */
+/** @var \Illuminate\Foundation\Http\FormRequest $this */
 trait ValidatesMedia
 {
-    protected function validateSingleMedia(): UploadedMediaRules
-    {
-        return (new UploadedMediaRules())->maxItems(1);
-    }
-
-    protected function validateMultipleMedia()
-    {
-        return new UploadedMediaRules();
-    }
-
     public function validateResolved()
     {
         $this->prepareForValidation();
@@ -114,5 +104,14 @@ trait ValidatesMedia
         }
 
         return [$itemRules, $remainingRules];
+    }
+    protected function validateSingleMedia(): UploadedMediaRules
+    {
+        return (new UploadedMediaRules())->maxItems(1);
+    }
+
+    protected function validateMultipleMedia()
+    {
+        return new UploadedMediaRules();
     }
 }

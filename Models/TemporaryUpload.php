@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Barryvdh\Debugbar\Facades\Debugbar;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
@@ -22,18 +21,18 @@ class TemporaryUpload extends Model implements HasMedia
     use InteractsWithMedia;
     use MassPrunable;
 
-    protected $guarded = [];
-
     public static ?\Closure $manipulatePreview = null;
 
     public static ?string $disk = null;
+
+    protected $guarded = [];
 
     public function scopeOld(Builder $builder): void
     {
         $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
     }
 
-    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(?\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
@@ -51,22 +50,6 @@ class TemporaryUpload extends Model implements HasMedia
     public static function previewManipulation(\Closure $closure): void
     {
         static::$manipulatePreview = $closure;
-    }
-
-    protected function getPreviewManipulation(): \Closure
-    {
-        return static::$manipulatePreview ?? function (Conversion $conversion) {
-            $conversion->fit(Manipulations::FIT_CROP, 300, 300);
-        };
-    }
-
-    protected static function getDiskName(): string
-    {
-        $res = static::$disk ?? config('media-library.disk_name');
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
     public static function findByMediaUuid(?string $mediaUuid): ?TemporaryUpload
@@ -170,7 +153,7 @@ class TemporaryUpload extends Model implements HasMedia
 
         $media = $this->getFirstMedia();
 
-        if (null == $media) {
+        if ($media === null) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
@@ -189,5 +172,21 @@ class TemporaryUpload extends Model implements HasMedia
     public function prunable(): Builder
     {
         return self::query()->old();
+    }
+
+    protected function getPreviewManipulation(): \Closure
+    {
+        return static::$manipulatePreview ?? function (Conversion $conversion) {
+            $conversion->fit(Manipulations::FIT_CROP, 300, 300);
+        };
+    }
+
+    protected static function getDiskName(): string
+    {
+        $res = static::$disk ?? config('media-library.disk_name');
+        if (is_string($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }

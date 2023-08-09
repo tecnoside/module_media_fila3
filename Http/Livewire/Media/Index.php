@@ -33,13 +33,13 @@ class Index extends Component
         bool $sortable = true,
         bool $editableName = true,
         string $rules = '',
-        int $maxItems = null,
+        ?int $maxItems = null,
         array $media = [],
-        string $view = null,
-        string $listView = null,
-        string $itemView = null,
-        string $propertiesView = null,
-        string $fieldsView = null
+        ?string $view = null,
+        ?string $listView = null,
+        ?string $itemView = null,
+        ?string $propertiesView = null,
+        ?string $fieldsView = null
     ) {
         $this->name = $name;
         $this->multiple = $multiple;
@@ -58,17 +58,6 @@ class Index extends Component
         $this->fieldsView = $fieldsView;
 
         $this->listErrorMessage = $this->determineListErrorMessage();
-    }
-
-    protected function getListeners()
-    {
-        return [
-            "{$this->name}:fileAdded" => 'onFileAdded',
-            "{$this->name}:uploadError" => 'onUploadError',
-            "{$this->name}:showListErrorMessage" => 'onShowListErrorMessage',
-            "{$this->name}:clearMedia" => 'onClearMedia',
-            "{$this->name}:mediaComponentValidationErrors" => 'onMediaComponentValidationErrors',
-        ];
     }
 
     public function onFileAdded(array $newMediaItem): void
@@ -137,7 +126,7 @@ class Index extends Component
         $this->media[$uuid]['hideError'] = true;
     }
 
-    public function determineListErrorMessage(MessageBag $viewErrorBag = null): ?string
+    public function determineListErrorMessage(?MessageBag $viewErrorBag = null): ?string
     {
         if ($viewErrorBag) {
             return $viewErrorBag->first($this->name);
@@ -237,5 +226,16 @@ class Index extends Component
                 ->sortBy('order')
                 ->values(),
         ]);
+    }
+
+    protected function getListeners()
+    {
+        return [
+            "{$this->name}:fileAdded" => 'onFileAdded',
+            "{$this->name}:uploadError" => 'onUploadError',
+            "{$this->name}:showListErrorMessage" => 'onShowListErrorMessage',
+            "{$this->name}:clearMedia" => 'onClearMedia',
+            "{$this->name}:mediaComponentValidationErrors" => 'onMediaComponentValidationErrors',
+        ];
     }
 }

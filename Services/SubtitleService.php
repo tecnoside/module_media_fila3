@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Services;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -15,8 +13,6 @@ use Illuminate\Support\Str;
  */
 class SubtitleService
 {
-    private static ?self $instance = null;
-
     public string $disk = 'media'; // nome che usa storage
     public string $file_path; // siamo in subtitle, percio' il file e' dei subtitle
 
@@ -25,6 +21,7 @@ class SubtitleService
     public Model $model;
 
     public array $subtitles;
+    private static ?self $instance = null;
 
     /**
      * ---.
@@ -38,7 +35,7 @@ class SubtitleService
      */
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
+        if (self::$instance === null) {
             self::$instance = new self();
         }
 
@@ -88,7 +85,7 @@ class SubtitleService
     {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if (false === $xmlObject) {
+        if ($xmlObject === false) {
             return '';
             // throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
@@ -125,7 +122,7 @@ class SubtitleService
         // $path = Storage::path($this->file_path);
         // $path = realpath($path);
         $path = realpath($this->file_path);
-        if (false === $path) {
+        if ($path === false) {
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
@@ -133,9 +130,7 @@ class SubtitleService
                 ['.__LINE__.']['.__FILE__.']'.PHP_EOL);
             */
         }
-        $content = File::get($path);
-
-        return $content;
+        return File::get($path);
     }
 
     public function getFromXml(): array
@@ -143,7 +138,7 @@ class SubtitleService
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if (false === $xmlObject) {
+        if ($xmlObject === false) {
             throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
 
@@ -154,7 +149,7 @@ class SubtitleService
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
-                if (null === $attributes) {
+                if ($attributes === null) {
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
@@ -193,19 +188,18 @@ class SubtitleService
         $lines = [];
         if ($fileHandle) {
             // $lines = [];
-            while (false !== ($line = fgets($fileHandle, 8192))) {
+            while (($line = fgets($fileHandle, 8192)) !== false) {
                 $lines[] = $line;
             }
             if (! feof($fileHandle)) {
                 exit("Error: unexpected fgets() fail\n");
-            } else {
-                // ($fileHandle);
             }
+            // ($fileHandle);
         }
 
         $length = \count($lines);
         for ($index = 1; $index < $length; ++$index) {
-            if (1 === $index || '' === trim($lines[$index - 2])) {
+            if ($index === 1 || trim($lines[$index - 2]) === '') {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }

@@ -26,7 +26,7 @@ class MaxTotalSizeInKbRule implements Rule
 
         $this->actualTotalSizeInKb = $media->totalSizeInBytes();
 
-        return $this->actualTotalSizeInKb <= ($this->maxTotalSizeInKb * 1024);
+        return $this->actualTotalSizeInKb <= $this->maxTotalSizeInKb * 1024;
     }
 
     public function message(): string

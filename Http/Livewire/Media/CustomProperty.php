@@ -25,6 +25,17 @@ class CustomProperty extends Component implements Forms\Contracts\HasForms
         ]);
     }
 
+    public function render()
+    {
+        /**
+         * @phpstan-var view-string
+         */
+        // $view = app(GetViewAction::class)->execute();
+        $view = 'media::livewire.media.custom-property';
+
+        return view($view);
+    }
+
     protected function getFormSchema(): array
     {
         return [
@@ -38,16 +49,5 @@ class CustomProperty extends Component implements Forms\Contracts\HasForms
                 }),
             // ...
         ];
-    }
-
-    public function render()
-    {
-        /**
-         * @phpstan-var view-string
-         */
-        // $view = app(GetViewAction::class)->execute();
-        $view = 'media::livewire.media.custom-property';
-
-        return view($view);
     }
 }

@@ -22,7 +22,7 @@ trait WithMedia
     public function hydrateWithMedia()
     {
         foreach ($this->getMediaComponentNames() as $mediaComponent) {
-            $this->listeners["$mediaComponent:mediaChanged"] = 'onMediaChanged';
+            $this->listeners["{$mediaComponent}:mediaChanged"] = 'onMediaChanged';
         }
     }
 
@@ -38,7 +38,7 @@ trait WithMedia
         $errorBag = $this->getErrorBag();
 
         foreach ($this->getMediaComponentNames() as $mediaComponentName) {
-            $this->emit("$mediaComponentName:mediaComponentValidationErrors", $mediaComponentName, $errorBag->toArray());
+            $this->emit("{$mediaComponentName}:mediaComponentValidationErrors", $mediaComponentName, $errorBag->toArray());
         }
     }
 
@@ -53,7 +53,7 @@ trait WithMedia
         }
 
         foreach ($mediaComponentNames as $mediaComponentName) {
-            $this->emit("$mediaComponentName:clearMedia", $mediaComponentName);
+            $this->emit("{$mediaComponentName}:clearMedia", $mediaComponentName);
 
             $this->$mediaComponentName = [];
         }
