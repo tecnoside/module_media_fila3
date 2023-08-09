@@ -31,7 +31,7 @@ class MinTotalSizeInKbRule implements Rule
 
         $this->actualTotalSizeInBytes = $media->totalSizeInBytes();
 
-        return $this->actualTotalSizeInBytes >= ($this->minTotalSizeInKb * 1024);
+        return $this->actualTotalSizeInBytes >= $this->minTotalSizeInKb * 1024;
     }
 
     public function message(): string

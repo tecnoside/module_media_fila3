@@ -38,7 +38,7 @@ class Uploader extends Component
     /** @var string|null */
     public $uploadError;
 
-    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
+    public function mount(string $rules, string $name, bool $multiple = false, ?string $uuid = null, bool $add = false)
     {
         $this->rules = $rules;
 
@@ -72,6 +72,24 @@ class Uploader extends Component
         foreach ($uploads as $upload) {
             $this->handleUpload($upload);
         }
+    }
+
+    public function uploadErrored($name, $errorsInJson, $isMultiple)
+    {
+        try {
+            $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
+        } catch (ValidationException $exception) {
+            $uploadError = str_replace('.0', '', $exception->validator->errors()->first());
+
+            $this->add
+                ? $this->emit("{$this->name}:showListErrorMessage", $uploadError)
+                : $this->emit("{$this->name}:uploadError", $this->uuid, $exception->validator->errors()->first());
+        }
+    }
+
+    public function render()
+    {
+        return view('media::livewire.uploader');
     }
 
     protected function getUploadError(): ?string
@@ -111,23 +129,5 @@ class Uploader extends Component
             'mime_type' => $media->mime_type,
             'extension' => pathinfo($media->file_name, PATHINFO_EXTENSION),
         ]);
-    }
-
-    public function uploadErrored($name, $errorsInJson, $isMultiple)
-    {
-        try {
-            $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
-        } catch (ValidationException $exception) {
-            $uploadError = str_replace('.0', '', $exception->validator->errors()->first());
-
-            $this->add
-                ? $this->emit("{$this->name}:showListErrorMessage", $uploadError)
-                : $this->emit("{$this->name}:uploadError", $this->uuid, $exception->validator->errors()->first());
-        }
-    }
-
-    public function render()
-    {
-        return view('media::livewire.uploader');
     }
 }

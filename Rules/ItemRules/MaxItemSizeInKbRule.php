@@ -25,7 +25,7 @@ class MaxItemSizeInKbRule extends MediaItemRule
 
         $this->actualSizeInBytes = $media->size;
 
-        return $this->actualSizeInBytes <= ($this->maxSizeInKb * 1024);
+        return $this->actualSizeInBytes <= $this->maxSizeInKb * 1024;
     }
 
     public function message()

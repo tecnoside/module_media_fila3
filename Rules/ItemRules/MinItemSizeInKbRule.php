@@ -25,7 +25,7 @@ class MinItemSizeInKbRule extends MediaItemRule
 
         $this->actualSizeInBytes = $media->size;
 
-        return $this->actualSizeInBytes >= ($this->minSizeInKb * 1024);
+        return $this->actualSizeInBytes >= $this->minSizeInKb * 1024;
     }
 
     public function message(): string

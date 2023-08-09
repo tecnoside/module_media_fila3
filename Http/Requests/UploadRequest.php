@@ -30,6 +30,13 @@ class UploadRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),
+        ];
+    }
+
     protected function getDatabaseConnection(): string
     {
         $mediaModelClass = config('media-library.media_model');
@@ -37,7 +44,7 @@ class UploadRequest extends FormRequest
         /** @var \Modules\Media\Models\Media $mediaModel */
         $mediaModel = new $mediaModelClass();
 
-        if ('default' === $mediaModel->getConnectionName()) {
+        if ($mediaModel->getConnectionName() === 'default') {
             return '';
         }
 
@@ -52,12 +59,5 @@ class UploadRequest extends FormRequest
         $mediaModel = new $mediaModelClass();
 
         return $mediaModel->getTable();
-    }
-
-    public function messages()
-    {
-        return [
-            'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),
-        ];
     }
 }
