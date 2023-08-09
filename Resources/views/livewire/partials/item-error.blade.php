@@ -1,4 +1,4 @@
-@if($message && isset($mediaItem))
+@if ($message && isset($mediaItem))
     <span class="media-library-text-error">
         {{ $message }}
     </span>

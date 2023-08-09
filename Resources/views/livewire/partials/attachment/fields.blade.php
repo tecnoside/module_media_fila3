@@ -1,5 +1,5 @@
 <div @class(['media-library-field', 'media-library-hidden' => ! $editableName])>
-    @if($editableName)
+    @if ($editableName)
         <label class="media-library-label">{{ __("Name") }}</label>
         <input
             x-data

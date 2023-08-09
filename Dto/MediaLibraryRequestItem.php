@@ -8,6 +8,16 @@ use Illuminate\Support\Str;
 
 class MediaLibraryRequestItem
 {
+    protected function __construct(
+        public string $uuid,
+        public string $name,
+        public int $order,
+        public array $customProperties,
+        public array $customHeaders,
+        public ?string $fileName = null,
+    ) {
+    }
+
     public static function fromArray(array $properties): self
     {
         $properties = collect($properties)
@@ -21,15 +31,5 @@ class MediaLibraryRequestItem
             $properties['custom_headers'] ?? [],
             $properties['file_name'] ?? null,
         );
-    }
-
-    protected function __construct(
-        public string $uuid,
-        public string $name,
-        public int $order,
-        public array $customProperties,
-        public array $customHeaders,
-        public ?string $fileName = null,
-    ) {
     }
 }

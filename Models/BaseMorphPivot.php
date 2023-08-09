@@ -21,10 +21,12 @@ abstract class BaseMorphPivot extends MorphPivot
      * @var bool
      */
     public static $snakeAttributes = true;
+
     /**
      * @var bool
      */
     public $incrementing = true;
+
     /**
      * @var bool
      */
@@ -38,10 +40,12 @@ abstract class BaseMorphPivot extends MorphPivot
      * @var array
      */
     protected $appends = [];
+
     /**
      * @var string
      */
     protected $primaryKey = 'id';
+
     // protected $attributes = ['related_type' => 'cuisine_cat'];
     /**
      * @var array<string>
@@ -52,6 +56,7 @@ abstract class BaseMorphPivot extends MorphPivot
         'deleted_at',
         // 'published_at',
     ];
+
     /**
      * @var array<string>
      */

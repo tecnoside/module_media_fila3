@@ -26,7 +26,8 @@
         "spatie/laravel-typescript-transformer": "*",
         "spatie/pest-plugin-snapshots": "*",
         "spatie/phpunit-snapshot-assertions": "*",
-        "spatie/test-time": "*"
+        "spatie/test-time": "*",
+        "tightenco/duster": "*"
     },
     "extra": {
         "laravel": {

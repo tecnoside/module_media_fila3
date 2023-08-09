@@ -25,6 +25,7 @@ class Index extends Component
     public $propertiesView;
     public $fieldsView;
     public $listErrorMessage;
+
     protected $validationErrors;
 
     public function mount(

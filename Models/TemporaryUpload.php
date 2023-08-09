@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Carbon\Carbon;
+use Closure;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -21,33 +23,13 @@ class TemporaryUpload extends Model implements HasMedia
     use InteractsWithMedia;
     use MassPrunable;
 
-    public static ?\Closure $manipulatePreview = null;
+    public static ?Closure $manipulatePreview = null;
 
     public static ?string $disk = null;
 
     protected $guarded = [];
 
-    public function scopeOld(Builder $builder): void
-    {
-        $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
-    }
-
-    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
-    {
-        if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
-            return;
-        }
-
-        $conversion = $this
-            ->addMediaConversion('preview')
-            ->nonQueued();
-
-        $previewManipulation = $this->getPreviewManipulation();
-
-        $previewManipulation($conversion);
-    }
-
-    public static function previewManipulation(\Closure $closure): void
+    public static function previewManipulation(Closure $closure): void
     {
         static::$manipulatePreview = $closure;
     }
@@ -143,6 +125,35 @@ class TemporaryUpload extends Model implements HasMedia
         return $temporaryUpload;
     }
 
+    protected static function getDiskName(): string
+    {
+        $res = static::$disk ?? config('media-library.disk_name');
+        if (is_string($res)) {
+            return $res;
+        }
+        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+    }
+
+    public function scopeOld(Builder $builder): void
+    {
+        $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
+    }
+
+    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    {
+        if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
+            return;
+        }
+
+        $conversion = $this
+            ->addMediaConversion('preview')
+            ->nonQueued();
+
+        $previewManipulation = $this->getPreviewManipulation();
+
+        $previewManipulation($conversion);
+    }
+
     public function moveMedia(HasMedia $toModel, string $collectionName, string $diskName, string $fileName): Media
     {
         if (config('media-library.enable_temporary_uploads_session_affinity', true)) {
@@ -154,7 +165,7 @@ class TemporaryUpload extends Model implements HasMedia
         $media = $this->getFirstMedia();
 
         if (null === $media) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
         }
 
         $temporaryUploadModel = $media->model;
@@ -174,19 +185,10 @@ class TemporaryUpload extends Model implements HasMedia
         return self::query()->old();
     }
 
-    protected function getPreviewManipulation(): \Closure
+    protected function getPreviewManipulation(): Closure
     {
         return static::$manipulatePreview ?? function (Conversion $conversion) {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
         };
-    }
-
-    protected static function getDiskName(): string
-    {
-        $res = static::$disk ?? config('media-library.disk_name');
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 }
