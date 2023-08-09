@@ -44,7 +44,7 @@ class UploadRequest extends FormRequest
         /** @var \Modules\Media\Models\Media $mediaModel */
         $mediaModel = new $mediaModelClass();
 
-        if ($mediaModel->getConnectionName() === 'default') {
+        if ('default' === $mediaModel->getConnectionName()) {
             return '';
         }
 

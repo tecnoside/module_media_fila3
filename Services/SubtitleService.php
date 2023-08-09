@@ -35,7 +35,7 @@ class SubtitleService
      */
     public static function getInstance(): self
     {
-        if (self::$instance === null) {
+        if (null === self::$instance) {
             self::$instance = new self();
         }
 
@@ -85,7 +85,7 @@ class SubtitleService
     {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if ($xmlObject === false) {
+        if (false === $xmlObject) {
             return '';
             // throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
@@ -122,7 +122,7 @@ class SubtitleService
         // $path = Storage::path($this->file_path);
         // $path = realpath($path);
         $path = realpath($this->file_path);
-        if ($path === false) {
+        if (false === $path) {
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
@@ -130,6 +130,7 @@ class SubtitleService
                 ['.__LINE__.']['.__FILE__.']'.PHP_EOL);
             */
         }
+
         return File::get($path);
     }
 
@@ -138,7 +139,7 @@ class SubtitleService
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if ($xmlObject === false) {
+        if (false === $xmlObject) {
             throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
 
@@ -149,7 +150,7 @@ class SubtitleService
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
-                if ($attributes === null) {
+                if (null === $attributes) {
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
@@ -199,7 +200,7 @@ class SubtitleService
 
         $length = \count($lines);
         for ($index = 1; $index < $length; ++$index) {
-            if ($index === 1 || trim($lines[$index - 2]) === '') {
+            if (1 === $index || '' === trim($lines[$index - 2])) {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }

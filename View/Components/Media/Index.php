@@ -34,16 +34,16 @@ class Index extends Component
     public function __construct(
         string $name,
         HasMedia $model,
-        ?string $collection = null,
+        string $collection = null,
         string $rules = '',
-        ?int $maxItems = null,
+        int $maxItems = null,
         bool $sortable = true,
         bool $editableName = true,
-        ?string $view = null,
-        ?string $listView = null,
-        ?string $itemView = null,
-        ?string $propertiesView = null,
-        ?string $fieldsView = null,
+        string $view = null,
+        string $listView = null,
+        string $itemView = null,
+        string $propertiesView = null,
+        string $fieldsView = null,
         bool $multiple = true
     ) {
         $this->name = $name;

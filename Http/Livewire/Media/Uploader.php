@@ -38,7 +38,7 @@ class Uploader extends Component
     /** @var string|null */
     public $uploadError;
 
-    public function mount(string $rules, string $name, bool $multiple = false, ?string $uuid = null, bool $add = false)
+    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
     {
         $this->rules = $rules;
 

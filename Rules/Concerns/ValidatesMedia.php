@@ -105,6 +105,7 @@ trait ValidatesMedia
 
         return [$itemRules, $remainingRules];
     }
+
     protected function validateSingleMedia(): UploadedMediaRules
     {
         return (new UploadedMediaRules())->maxItems(1);
