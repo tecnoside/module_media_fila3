@@ -32,7 +32,7 @@ class TemporaryUpload extends Model implements HasMedia
         $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
     }
 
-    public function registerMediaConversions(?\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
@@ -153,7 +153,7 @@ class TemporaryUpload extends Model implements HasMedia
 
         $media = $this->getFirstMedia();
 
-        if ($media === null) {
+        if (null === $media) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 

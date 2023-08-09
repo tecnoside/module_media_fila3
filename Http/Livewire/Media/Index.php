@@ -33,13 +33,13 @@ class Index extends Component
         bool $sortable = true,
         bool $editableName = true,
         string $rules = '',
-        ?int $maxItems = null,
+        int $maxItems = null,
         array $media = [],
-        ?string $view = null,
-        ?string $listView = null,
-        ?string $itemView = null,
-        ?string $propertiesView = null,
-        ?string $fieldsView = null
+        string $view = null,
+        string $listView = null,
+        string $itemView = null,
+        string $propertiesView = null,
+        string $fieldsView = null
     ) {
         $this->name = $name;
         $this->multiple = $multiple;
@@ -126,7 +126,7 @@ class Index extends Component
         $this->media[$uuid]['hideError'] = true;
     }
 
-    public function determineListErrorMessage(?MessageBag $viewErrorBag = null): ?string
+    public function determineListErrorMessage(MessageBag $viewErrorBag = null): ?string
     {
         if ($viewErrorBag) {
             return $viewErrorBag->first($this->name);
