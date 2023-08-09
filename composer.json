@@ -7,9 +7,7 @@
         "email": "marco.sottana@gmail.com"
     }],
     "require": {
-        "laraxot/module_lang": "dev-master",
-        "laraxot/module_ui": "dev-master",
-        "pbmedia/laravel-ffmpeg": "dev-master",
+        "pbmedia/laravel-ffmpeg": "*",
         "laraxot/module_xot": "dev-master"
     },
     "require-dev": {
@@ -24,6 +22,7 @@
         "pestphp/pest-plugin-laravel": "*",
         "phpstan/extension-installer": "*",
         "phpunit/phpunit": "*",
+        "psalm/plugin-laravel": "*",
         "spatie/laravel-typescript-transformer": "*",
         "spatie/pest-plugin-snapshots": "*",
         "spatie/phpunit-snapshot-assertions": "*",
