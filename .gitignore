@@ -40,4 +40,3 @@ node_modules
 .git-rewrite
 /build
 package-lock.json
-/build
