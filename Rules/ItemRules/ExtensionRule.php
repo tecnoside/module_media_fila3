@@ -29,7 +29,7 @@ class ExtensionRule extends MediaItemRule
             return in_array($extension, $this->allowedExtensions);
         }
 
-        $actualExtensions = (new MimeTypes)->getExtensions($media->mime_type);
+        $actualExtensions = (new MimeTypes())->getExtensions($media->mime_type);
 
         return count(array_intersect($actualExtensions, $this->allowedExtensions)) > 0;
     }

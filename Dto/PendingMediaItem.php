@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Dto;
 
-use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
@@ -28,7 +27,7 @@ class PendingMediaItem
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
-            throw new Exception('invalid uuid');
+            throw new \Exception('invalid uuid');
         }
 
         $this->temporaryUpload = $temporaryUpload;
