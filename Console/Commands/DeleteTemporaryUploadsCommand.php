@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 declare(strict_types=1);
@@ -26,32 +25,3 @@ class DeleteTemporaryUploadsCommand extends Command
         $this->comment($temporaryUploads->count().' old temporary upload(s) deleted!');
     }
 }
-=======
-<?php
-
-declare(strict_types=1);
-
-namespace Modules\Media\Console\Commands;
-
-use Illuminate\Console\Command;
-
-class DeleteTemporaryUploadsCommand extends Command
-{
-    protected $signature = 'media-library:delete-old-temporary-uploads';
-
-    protected $description = 'Delete old temporary uploads';
-
-    public function handle()
-    {
-        $this->info('Start removing old temporary uploads...');
-
-        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
-
-        $temporaryUploads = $temporaryUploadModelClass::old()->get();
-
-        $temporaryUploads->each->delete();
-
-        $this->comment($temporaryUploads->count() . ' old temporary upload(s) deleted!');
-    }
-}
->>>>>>> a3a7396af796524a496143c651cbef32b21962d2
