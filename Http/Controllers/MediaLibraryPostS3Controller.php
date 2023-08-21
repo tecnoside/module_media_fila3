@@ -44,7 +44,7 @@ class MediaLibraryPostS3Controller
 
         Storage::disk($diskName)->copy(
             $request->key,
-            $pathGenerator->getPath($media).$request->name,
+            $pathGenerator->getPath($media) . $request->name,
         );
 
         $fileManipulator->createDerivedFiles($media);
