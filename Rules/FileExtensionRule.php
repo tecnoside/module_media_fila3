@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 declare(strict_types=1);
@@ -25,7 +24,7 @@ class FileExtensionRule implements Rule
      */
     public function passes($attribute, $value): bool
     {
-        return in_array(
+        return \in_array(
             strtolower($value->getClientOriginalExtension()),
             $this->validExtensions,
             strict: true,
@@ -39,45 +38,3 @@ class FileExtensionRule implements Rule
         ]);
     }
 }
-=======
-<?php
-
-declare(strict_types=1);
-
-namespace Modules\Media\Rules;
-
-use Illuminate\Contracts\Validation\Rule;
-
-class FileExtensionRule implements Rule
-{
-    protected array $validExtensions = [];
-
-    public function __construct(array $validExtensions = [])
-    {
-        $this->validExtensions = array_map(
-            fn (string $extension) => strtolower($extension),
-            $validExtensions,
-        );
-    }
-
-    /**
-     * @param  string  $attribute
-     * @param  \Illuminate\Http\UploadedFile  $value
-     */
-    public function passes($attribute, $value): bool
-    {
-        return in_array(
-            strtolower($value->getClientOriginalExtension()),
-            $this->validExtensions,
-            strict: true,
-        );
-    }
-
-    public function message(): string
-    {
-        return trans('media::validation.mime', [
-            'mimes' => implode(', ', $this->validExtensions),
-        ]);
-    }
-}
->>>>>>> a3a7396af796524a496143c651cbef32b21962d2
