@@ -1,6 +1,18 @@
 {
     "name": "laraxot/module_media_fila",
-    "description": "",
+    "description": "media module dedicated to image and video management",
+    "keywords": [
+        "laraxot",
+        "laravel",
+        "filament",
+        "module_media",
+        "Laravel", 
+        "Media module", 
+        "Media",
+        "Images",
+        "Videos"
+    ],
+    "homepage": "https://github.com/laraxot/module_media_fila",
     "license": "MIT",
     "authors": [{
         "name": "Marco Xot",
