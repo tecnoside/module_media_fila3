@@ -7,9 +7,6 @@ namespace Modules\Media\Rules\ItemRules;
 use Illuminate\Support\Arr;
 use Symfony\Component\Mime\MimeTypes;
 
-use function count;
-use function in_array;
-
 class ExtensionRule extends MediaItemRule
 {
     protected array $allowedExtensions;
@@ -29,12 +26,12 @@ class ExtensionRule extends MediaItemRule
         if (empty($media->mime_type)) {
             $extension = pathinfo($media->file_name, PATHINFO_EXTENSION);
 
-            return in_array($extension, $this->allowedExtensions, true);
+            return \in_array($extension, $this->allowedExtensions, true);
         }
 
-        $actualExtensions = (new MimeTypes)->getExtensions($media->mime_type);
+        $actualExtensions = (new MimeTypes())->getExtensions($media->mime_type);
 
-        return count(array_intersect($actualExtensions, $this->allowedExtensions)) > 0;
+        return \count(array_intersect($actualExtensions, $this->allowedExtensions)) > 0;
     }
 
     public function message()
