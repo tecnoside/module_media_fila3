@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Media\Dto;
 
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
+
+use function count;
 
 class PendingMediaItem
 {
@@ -27,7 +30,7 @@ class PendingMediaItem
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
-            throw new \Exception('invalid uuid');
+            throw new Exception('invalid uuid');
         }
 
         $this->temporaryUpload = $temporaryUpload;
@@ -69,7 +72,7 @@ class PendingMediaItem
 
     public function getCustomProperties(array $customPropertyNames): array
     {
-        if (! \count($customPropertyNames)) {
+        if (! count($customPropertyNames)) {
             return $this->customProperties;
         }
 
