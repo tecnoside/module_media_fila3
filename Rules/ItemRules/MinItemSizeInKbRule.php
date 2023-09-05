@@ -16,7 +16,7 @@ class MinItemSizeInKbRule extends MediaItemRule
 
     public function validateMediaItem(): bool
     {
-        if (!($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
+        if (! ($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
             return true;
         }
 

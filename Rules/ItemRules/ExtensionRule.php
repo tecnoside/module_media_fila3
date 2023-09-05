@@ -7,9 +7,6 @@ namespace Modules\Media\Rules\ItemRules;
 use Illuminate\Support\Arr;
 use Symfony\Component\Mime\MimeTypes;
 
-use function count;
-use function in_array;
-
 class ExtensionRule extends MediaItemRule
 {
     protected array $allowedExtensions;
@@ -22,19 +19,19 @@ class ExtensionRule extends MediaItemRule
 
     public function validateMediaItem(): bool
     {
-        if (!($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
+        if (! ($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
             return true;
         }
 
         if (empty($media->mime_type)) {
             $extension = pathinfo($media->file_name, PATHINFO_EXTENSION);
 
-            return in_array($extension, $this->allowedExtensions, true);
+            return \in_array($extension, $this->allowedExtensions, true);
         }
 
-        $actualExtensions = (new MimeTypes)->getExtensions($media->mime_type);
+        $actualExtensions = (new MimeTypes())->getExtensions($media->mime_type);
 
-        return array_intersect($actualExtensions, $this->allowedExtensions) !== [];
+        return [] !== array_intersect($actualExtensions, $this->allowedExtensions);
     }
 
     public function message()

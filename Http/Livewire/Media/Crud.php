@@ -41,7 +41,7 @@ class Crud extends Component
     {
         $order = 1;
         foreach ($this->upload as $attachment) {
-            $order++;
+            ++$order;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if ($temporaryUpload instanceof \Modules\Media\Models\TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();

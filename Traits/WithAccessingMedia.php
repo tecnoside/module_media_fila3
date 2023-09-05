@@ -13,7 +13,7 @@ trait WithAccessingMedia
     {
         return old($name) ?: $hasMedia
             ->getMedia($collection)
-            ->map(fn(Media $media): array => [
+            ->map(fn (Media $media): array => [
                 'name' => $media->name,
                 'fileName' => $media->file_name,
                 'uuid' => $media->uuid,

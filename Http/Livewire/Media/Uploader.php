@@ -113,10 +113,9 @@ class Uploader extends Component
         return $uploadError;
     }
 
-    /** @param $upload \Livewire\TemporaryUploadedFile */
     protected function handleUpload(\Livewire\TemporaryUploadedFile $temporaryUploadedFile)
     {
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
+        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
 
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
