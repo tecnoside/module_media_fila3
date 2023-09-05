@@ -17,7 +17,7 @@ class MediaLibraryRequestHandler
 
     protected string $collectionName;
 
-    protected function __construct(protected Model $model, protected Collection $mediaLibraryRequestItems, string $collectionName)
+    protected function __construct(protected Model $model, protected Collection $collection, string $collectionName)
     {
         if (! $this->model instanceof HasMedia) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
@@ -30,11 +30,11 @@ class MediaLibraryRequestHandler
 
     public static function createForMediaLibraryRequestItems(
         Model $model,
-        Collection $mediaLibraryRequestItems,
+        Collection $collection,
         string $collectionName
     ): self {
         // prima era new static
-        return new self($model, $mediaLibraryRequestItems, $collectionName);
+        return new self($model, $collection, $collectionName);
     }
 
     public function updateExistingMedia(): self
@@ -52,7 +52,7 @@ class MediaLibraryRequestHandler
 
     public function deleteObsoleteMedia(): self
     {
-        $keepUuids = $this->mediaLibraryRequestItems->pluck('uuid')->toArray();
+        $keepUuids = $this->collection->pluck('uuid')->toArray();
 
         $this->model->getMedia($this->collectionName)
             ->reject(fn (Media $media): bool => \in_array($media->uuid, $keepUuids, true))
@@ -79,14 +79,14 @@ class MediaLibraryRequestHandler
     protected function existingMediaLibraryRequestItems(): Collection
     {
         return $this
-            ->mediaLibraryRequestItems
+            ->collection
             ->filter(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => \in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
     }
 
     protected function newMediaLibraryRequestItems(): Collection
     {
         return $this
-            ->mediaLibraryRequestItems
+            ->collection
             ->reject(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => \in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
     }
 
