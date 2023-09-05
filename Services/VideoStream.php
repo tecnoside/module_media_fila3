@@ -45,16 +45,16 @@ class VideoStream
     public function __construct(string $disk, string $path)
     {
         // $this->path = $path;
-        $storage = Storage::disk($disk);
-        if (! $storage->exists($path)) {
+        $filesystem = Storage::disk($disk);
+        if (! $filesystem->exists($path)) {
             dddx([
                 'message' => 'file not exists',
                 'disk' => $disk,
                 'path' => $path,
             ]);
         }
-        $this->vars['stream'] = $storage->readStream($path);
-        $mime = $storage->mimeType($path);
+        $this->vars['stream'] = $filesystem->readStream($path);
+        $mime = $filesystem->mimeType($path);
         if (! is_string($mime)) {
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
         }
@@ -62,16 +62,14 @@ class VideoStream
 
         // dddx([$path, $storage->lastModified($path)]);
 
-        $this->filemtime = $storage->lastModified($path);
-        $this->size = $storage->size($path);
+        $this->filemtime = $filesystem->lastModified($path);
+        $this->size = $filesystem->size($path);
     }
 
     /**
      * Start streaming video content.
-     *
-     * @return void
      */
-    public function start()
+    public function start(): never
     {
         // $this->open();
         $this->setHeader();
@@ -91,20 +89,17 @@ class VideoStream
     }
     */
     // }
-
     /**
      * Set proper header to serve the video content.
-     *
-     * @return void
      */
-    private function setHeader()
+    private function setHeader(): void
     {
         ob_get_clean();
         // header("Content-Type: video/mp4");
         header('Content-Type: ' . $this->mime);
 
         header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2592000) . ' GMT');
+        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
         /*
         $time=@filemtime($this->path);
         if($time==false){
@@ -128,8 +123,8 @@ class VideoStream
             $c_start = $this->start;
             $c_end = $this->end;
 
-            [, $range] = explode('=', $_SERVER['HTTP_RANGE'], 2);
-            if (false !== strpos($range, ',')) {
+            [, $range] = explode('=', (string) $_SERVER['HTTP_RANGE'], 2);
+            if (str_contains($range, ',')) {
                 header('HTTP/1.1 416 Requested Range Not Satisfiable');
                 header("Content-Range: bytes {$this->start}-{$this->end}/{$this->size}");
                 exit;
@@ -165,7 +160,7 @@ class VideoStream
      *
      * @return void
      */
-    private function end()
+    private function end(): never
     {
         fclose($this->vars['stream']);
         exit;
@@ -173,10 +168,8 @@ class VideoStream
 
     /**
      * perform the streaming of calculated range.
-     *
-     * @return void
      */
-    private function stream()
+    private function stream(): void
     {
         $i = $this->start;
         set_time_limit(0);

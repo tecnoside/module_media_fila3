@@ -12,7 +12,7 @@ class DeleteTemporaryUploadsCommand extends Command
 
     protected $description = 'Delete old temporary uploads';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Start removing old temporary uploads...');
 

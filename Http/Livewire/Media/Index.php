@@ -41,7 +41,7 @@ class Index extends Component
         string $itemView = null,
         string $propertiesView = null,
         string $fieldsView = null
-    ) {
+    ): void {
         $this->name = $name;
         $this->multiple = $multiple;
         $this->sortable = $sortable;
@@ -52,7 +52,7 @@ class Index extends Component
 
         $this->media = $media;
 
-        $this->view = empty($view) ? 'media::livewire.media.index' : $view;
+        $this->view = $view === null || $view === '' ? 'media::livewire.media.index' : $view;
         $this->listView = $listView;
         $this->itemView = $itemView;
         $this->propertiesView = $propertiesView;
@@ -84,7 +84,7 @@ class Index extends Component
     public function remove(string $uuid): void
     {
         $this->media = collect($this->media)
-            ->reject(fn (array $mediaItem) => $mediaItem['uuid'] === $uuid)
+            ->reject(fn (array $mediaItem): bool => $mediaItem['uuid'] === $uuid)
             ->toArray();
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
@@ -118,7 +118,7 @@ class Index extends Component
             ->contains(fn (array $existingMediaItem): bool => $existingMediaItem['uuid'] === $newMediaItem['oldUuid']);
     }
 
-    public function hideError(string $uuid)
+    public function hideError(string $uuid): void
     {
         if (! isset($this->media[$uuid])) {
             return;
@@ -127,10 +127,10 @@ class Index extends Component
         $this->media[$uuid]['hideError'] = true;
     }
 
-    public function determineListErrorMessage(MessageBag $viewErrorBag = null): ?string
+    public function determineListErrorMessage(MessageBag $messageBag = null): ?string
     {
-        if ($viewErrorBag) {
-            return $viewErrorBag->first($this->name);
+        if ($messageBag instanceof \Illuminate\Support\MessageBag) {
+            return $messageBag->first($this->name);
         }
 
         $errors = session()->get('errors');
@@ -142,12 +142,12 @@ class Index extends Component
         return $errors->first($this->name);
     }
 
-    public function clearListErrorMessage()
+    public function clearListErrorMessage(): void
     {
         $this->listErrorMessage = null;
     }
 
-    public function onUploadError(string $uuid, string $uploadError)
+    public function onUploadError(string $uuid, string $uploadError): void
     {
         if (! isset($this->media[$uuid])) {
             return;
@@ -156,12 +156,12 @@ class Index extends Component
         $this->media[$uuid]['uploadError'] = $uploadError;
     }
 
-    public function onShowListErrorMessage(string $message)
+    public function onShowListErrorMessage(string $message): void
     {
         $this->listErrorMessage = $message;
     }
 
-    public function onMediaComponentValidationErrors(string $componentName, array $validationErrors)
+    public function onMediaComponentValidationErrors(string $componentName, array $validationErrors): void
     {
         if ($componentName !== $this->name) {
             return;
@@ -190,21 +190,21 @@ class Index extends Component
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setMediaProperty(string $uuid, string $attributeName, $value)
+    public function setMediaProperty(string $uuid, string $attributeName, $value): void
     {
         $this->media[$uuid][$attributeName] = $value;
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setCustomProperty(string $uuid, string $customPropertyName, $value)
+    public function setCustomProperty(string $uuid, string $customPropertyName, $value): void
     {
         Arr::set($this->media, "{$uuid}.custom_properties.{$customPropertyName}", $value);
 
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function setNewOrder(array $newOrder)
+    public function setNewOrder(array $newOrder): void
     {
         dddx('aaa');
         foreach ($newOrder as $newOrderItem) {
@@ -223,13 +223,13 @@ class Index extends Component
         return view($this->view, [
             'errors' => $this->validationErrors,
             'sortedMedia' => collect($this->media)
-                ->map(fn (array $mediaItem) => new ViewMediaItem($this->name, $mediaItem))
+                ->map(fn (array $mediaItem): \Modules\Media\Dto\ViewMediaItem => new ViewMediaItem($this->name, $mediaItem))
                 ->sortBy('order')
                 ->values(),
         ]);
     }
 
-    protected function getListeners()
+    protected function getListeners(): array
     {
         return [
             "{$this->name}:fileAdded" => 'onFileAdded',

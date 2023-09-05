@@ -8,18 +8,15 @@ use Spatie\MediaLibrary\Support\File;
 
 class MinItemSizeInKbRule extends MediaItemRule
 {
-    protected int $minSizeInKb;
-
     protected int $actualSizeInBytes;
 
-    public function __construct(int $minSizeInKb)
+    public function __construct(protected int $minSizeInKb)
     {
-        $this->minSizeInKb = $minSizeInKb;
     }
 
     public function validateMediaItem(): bool
     {
-        if (! $media = $this->getTemporaryUploadMedia()) {
+        if (!($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
             return true;
         }
 

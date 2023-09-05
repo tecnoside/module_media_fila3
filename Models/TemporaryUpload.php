@@ -60,21 +60,19 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static function findByMediaUuidInCurrentSession(?string $mediaUuid): ?self
     {
-        if (! $temporaryUpload = static::findByMediaUuid($mediaUuid)) {
+        if (!($temporaryUpload = static::findByMediaUuid($mediaUuid)) instanceof \Modules\Media\Models\TemporaryUpload) {
             return null;
         }
 
-        if (config('media-library.enable_temporary_uploads_session_affinity', true)) {
-            if ($temporaryUpload->session_id !== session()->getId()) {
-                return null;
-            }
+        if (config('media-library.enable_temporary_uploads_session_affinity', true) && $temporaryUpload->session_id !== session()->getId()) {
+            return null;
         }
 
         return $temporaryUpload;
     }
 
     public static function createForFile(
-        UploadedFile $file,
+        UploadedFile $uploadedFile,
         string $sessionId,
         string $uuid,
         string $name
@@ -84,12 +82,12 @@ class TemporaryUpload extends Model implements HasMedia
             'session_id' => $sessionId,
         ]);
 
-        if (static::findByMediaUuid($uuid)) {
+        if (static::findByMediaUuid($uuid) instanceof \Modules\Media\Models\TemporaryUpload) {
             throw CouldNotAddUpload::uuidAlreadyExists();
         }
 
         $temporaryUpload
-            ->addMedia($file)
+            ->addMedia($uploadedFile)
             ->setName($name)
             ->withProperties(['uuid' => $uuid])
             ->toMediaCollection('default', static::getDiskName());
@@ -111,7 +109,7 @@ class TemporaryUpload extends Model implements HasMedia
             'session_id' => $sessionId,
         ]);
 
-        if (static::findByMediaUuid($uuid)) {
+        if (static::findByMediaUuid($uuid) instanceof \Modules\Media\Models\TemporaryUpload) {
             throw CouldNotAddUpload::uuidAlreadyExists();
         }
 
@@ -156,28 +154,26 @@ class TemporaryUpload extends Model implements HasMedia
         $previewManipulation($conversion);
     }
 
-    public function moveMedia(HasMedia $toModel, string $collectionName, string $diskName, string $fileName): Media
+    public function moveMedia(HasMedia $hasMedia, string $collectionName, string $diskName, string $fileName): Media
     {
-        if (config('media-library.enable_temporary_uploads_session_affinity', true)) {
-            if ($this->session_id !== session()->getId()) {
-                throw TemporaryUploadDoesNotBelongToCurrentSession::create();
-            }
+        if (config('media-library.enable_temporary_uploads_session_affinity', true) && $this->session_id !== session()->getId()) {
+            throw TemporaryUploadDoesNotBelongToCurrentSession::create();
         }
 
         $media = $this->getFirstMedia();
 
-        if (null === $media) {
+        if (!$media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
         }
 
         $temporaryUploadModel = $media->model;
         $uuid = $media->uuid;
 
-        $newMedia = $media->move($toModel, $collectionName, $diskName, $fileName);
+        $newMedia = $media->move($hasMedia, $collectionName, $diskName, $fileName);
 
         $temporaryUploadModel->delete();
 
-        $newMedia->update(compact('uuid'));
+        $newMedia->update(['uuid' => $uuid]);
 
         return $newMedia;
     }
@@ -189,7 +185,7 @@ class TemporaryUpload extends Model implements HasMedia
 
     protected function getPreviewManipulation(): Closure
     {
-        return static::$manipulatePreview ?? function (Conversion $conversion) {
+        return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
         };
     }

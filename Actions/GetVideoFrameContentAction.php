@@ -41,7 +41,8 @@ class GetVideoFrameContentAction
         }
         $seconds = 3600;
         $cache_key = Str::slug($disk_mp4 . ' ' . $file_mp4 . ' ' . $time . ' 1');
-        $res = Cache::store('file')->remember(
+
+        return Cache::store('file')->remember(
             $cache_key,
             $seconds,
             function () use ($disk_mp4, $file_mp4, $time) {
@@ -51,12 +52,10 @@ class GetVideoFrameContentAction
                         ->getFrameFromSeconds($time)
                         ->export()
                         ->getFrameContents();
-                } catch (Exception $e) {
+                } catch (Exception) {
                     return Storage::disk('public_html')->get('img/video_not_exists.jpg');
                 }
             }
         );
-
-        return $res;
     }
 }

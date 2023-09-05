@@ -28,19 +28,17 @@ class AttachMediaAction
 
     /**
      * Execute the action.
-     *
-     * @return void
      */
-    public function execute(HasMedia $model, array $attachments, string $collection = null)
+    public function execute(HasMedia $hasMedia, array $attachments, string $collection = null): void
     {
         $order = 1;
         foreach ($attachments as $attachment) {
             $order++;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
 
-            if (null !== $temporaryUpload) {
+            if ($temporaryUpload instanceof \Modules\Media\Models\TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
-                $media = $temporaryUpload->moveMedia($model, $collection, '', $attachment['fileName']);
+                $media = $temporaryUpload->moveMedia($hasMedia, $collection, '', $attachment['fileName']);
                 // dddx($res);
                 // $media->move($this->model, $this->collection);
             } else {

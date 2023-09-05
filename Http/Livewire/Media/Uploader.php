@@ -38,7 +38,7 @@ class Uploader extends Component
     /** @var string|null */
     public $uploadError;
 
-    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false)
+    public function mount(string $rules, string $name, bool $multiple = false, string $uuid = null, bool $add = false): void
     {
         $this->rules = $rules;
 
@@ -51,7 +51,7 @@ class Uploader extends Component
         $this->add = $add;
     }
 
-    public function updatedUpload()
+    public function updatedUpload(): void
     {
         $uploadError = $this->getUploadError();
 
@@ -74,7 +74,7 @@ class Uploader extends Component
         }
     }
 
-    public function uploadErrored($name, $errorsInJson, $isMultiple)
+    public function uploadErrored($name, $errorsInJson, $isMultiple): void
     {
         try {
             $this->uploadErroredTrait($name, $errorsInJson, $isMultiple);
@@ -114,9 +114,9 @@ class Uploader extends Component
     }
 
     /** @param $upload \Livewire\TemporaryUploadedFile */
-    protected function handleUpload($upload)
+    protected function handleUpload(\Livewire\TemporaryUploadedFile $temporaryUploadedFile)
     {
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($upload);
+        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
 
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,

@@ -30,10 +30,10 @@ class TemporaryUploadFactory
 
     public function create(array $attributes = []): TemporaryUpload
     {
-        $fakeUpload = UploadedFile::fake()->image('test.jpg', $this->fakeImageWidth, $this->fakeImageHeight);
+        $file = UploadedFile::fake()->image('test.jpg', $this->fakeImageWidth, $this->fakeImageHeight);
 
         return TemporaryUpload::createForFile(
-            $fakeUpload,
+            $file,
             session()->getId(),
             $attributes['uuid'] ?? Str::uuid(),
             $attributes['name'] ?? 'name',
@@ -43,6 +43,6 @@ class TemporaryUploadFactory
     public function createMultiple(int $count, array $attributes = []): array
     {
         return Collection::times($count)
-            ->map(fn () => $this->create($attributes))->toArray();
+            ->map(fn (): \Modules\Media\Models\TemporaryUpload => $this->create($attributes))->toArray();
     }
 }

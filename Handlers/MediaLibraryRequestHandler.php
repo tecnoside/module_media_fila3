@@ -16,24 +16,17 @@ use function in_array;
 
 class MediaLibraryRequestHandler
 {
-    protected Model $model;
-
     protected array $existingUuids;
-
-    protected Collection $mediaLibraryRequestItems;
 
     protected string $collectionName;
 
-    protected function __construct(Model $model, Collection $mediaLibraryRequestItems, string $collectionName)
+    protected function __construct(protected Model $model, protected Collection $mediaLibraryRequestItems, string $collectionName)
     {
-        $this->model = $model;
         if (! $this->model instanceof HasMedia) {
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
         }
 
         $this->existingUuids = $this->model->getMedia($collectionName)->pluck('uuid')->toArray();
-
-        $this->mediaLibraryRequestItems = $mediaLibraryRequestItems;
 
         $this->collectionName = $collectionName;
     }
@@ -52,8 +45,8 @@ class MediaLibraryRequestHandler
         $this
             ->existingMediaLibraryRequestItems()
             ->each(
-                function (MediaLibraryRequestItem $mediaResponseItem) {
-                    $this->handleExistingMediaLibraryRequestItem($mediaResponseItem);
+                function (MediaLibraryRequestItem $mediaLibraryRequestItem): void {
+                    $this->handleExistingMediaLibraryRequestItem($mediaLibraryRequestItem);
                 }
             );
 
@@ -65,7 +58,7 @@ class MediaLibraryRequestHandler
         $keepUuids = $this->mediaLibraryRequestItems->pluck('uuid')->toArray();
 
         $this->model->getMedia($this->collectionName)
-            ->reject(fn (Media $media) => in_array($media->uuid, $keepUuids, true))
+            ->reject(fn (Media $media): bool => in_array($media->uuid, $keepUuids, true))
             ->each(fn (Media $media) => $media->delete());
 
         return $this;
@@ -76,30 +69,28 @@ class MediaLibraryRequestHandler
         return $this
             ->newMediaLibraryRequestItems()
             ->map(
-                function (MediaLibraryRequestItem $item) {
-                    return new PendingMediaItem(
-                        $item->uuid,
-                        $item->name,
-                        $item->order,
-                        $item->customProperties,
-                        $item->customHeaders,
-                        $item->fileName,
-                    );
-                });
+                fn(MediaLibraryRequestItem $mediaLibraryRequestItem): \Modules\Media\Dto\PendingMediaItem => new PendingMediaItem(
+                    $mediaLibraryRequestItem->uuid,
+                    $mediaLibraryRequestItem->name,
+                    $mediaLibraryRequestItem->order,
+                    $mediaLibraryRequestItem->customProperties,
+                    $mediaLibraryRequestItem->customHeaders,
+                    $mediaLibraryRequestItem->fileName,
+                ));
     }
 
     protected function existingMediaLibraryRequestItems(): Collection
     {
         return $this
             ->mediaLibraryRequestItems
-            ->filter(fn (MediaLibraryRequestItem $item) => in_array($item->uuid, $this->existingUuids, true));
+            ->filter(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
     }
 
     protected function newMediaLibraryRequestItems(): Collection
     {
         return $this
             ->mediaLibraryRequestItems
-            ->reject(fn (MediaLibraryRequestItem $item) => in_array($item->uuid, $this->existingUuids, true));
+            ->reject(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
     }
 
     protected function handleExistingMediaLibraryRequestItem(MediaLibraryRequestItem $mediaLibraryRequestItem): void

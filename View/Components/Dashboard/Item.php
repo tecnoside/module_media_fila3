@@ -13,7 +13,7 @@ use Illuminate\View\Component;
  */
 class Item extends Component
 {
-    public function render()
+    public function render(): string
     {
         return '';
     }

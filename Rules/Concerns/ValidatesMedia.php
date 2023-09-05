@@ -14,7 +14,7 @@ use function is_string;
 /** @var \Illuminate\Foundation\Http\FormRequest $this */
 trait ValidatesMedia
 {
-    public function validateResolved()
+    public function validateResolved(): void
     {
         $this->prepareForValidation();
 
@@ -63,14 +63,14 @@ trait ValidatesMedia
                 continue;
             }
 
-            foreach ($attributeRules as $rule) {
-                if (is_string($rule)) {
-                    $remainingRules[$attribute][] = $rule;
-                } elseif ($rule instanceof UploadedMediaRules) {
-                    foreach ($rule->groupRules as $groupRule) {
+            foreach ($attributeRules as $attributeRule) {
+                if (is_string($attributeRule)) {
+                    $remainingRules[$attribute][] = $attributeRule;
+                } elseif ($attributeRule instanceof UploadedMediaRules) {
+                    foreach ($attributeRule->groupRules as $groupRule) {
                         $remainingRules[$attribute][] = $groupRule;
                     }
-                    foreach ($rule->itemRules as $itemRule) {
+                    foreach ($attributeRule->itemRules as $itemRule) {
                         if ($itemRule instanceof AttributeRule) {
                             $ruleAttribute = $itemRule->attribute;
 
@@ -80,23 +80,18 @@ trait ValidatesMedia
                         }
                     }
                 } else {
-                    $remainingRules[$attribute][] = $rule;
+                    $remainingRules[$attribute][] = $attributeRule;
                 }
 
-                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($rule) {
-                    if (is_string($rule)) {
+                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
+                    if (is_string($attributeRule)) {
                         return false;
                     }
 
-                    if ($rule instanceof MinItemsRule && $rule->getMinItemCount()) {
+                    if ($attributeRule instanceof MinItemsRule && $attributeRule->getMinItemCount()) {
                         return true;
                     }
-
-                    if ($rule instanceof MinTotalSizeInKbRule && $rule->getMinTotalSizeInKb()) {
-                        return true;
-                    }
-
-                    return false;
+                    return $attributeRule instanceof MinTotalSizeInKbRule && $attributeRule->getMinTotalSizeInKb();
                 });
 
                 if ($minimumRuleUsed) {
@@ -113,7 +108,7 @@ trait ValidatesMedia
         return (new UploadedMediaRules)->maxItems(1);
     }
 
-    protected function validateMultipleMedia()
+    protected function validateMultipleMedia(): \Modules\Media\Rules\UploadedMediaRules
     {
         return new UploadedMediaRules;
     }

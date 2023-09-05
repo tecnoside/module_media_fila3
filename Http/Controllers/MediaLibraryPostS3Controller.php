@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
 class MediaLibraryPostS3Controller
 {
     public function __invoke(
-        CreateTemporaryUploadFromDirectS3UploadRequest $request,
+        CreateTemporaryUploadFromDirectS3UploadRequest $createTemporaryUploadFromDirectS3UploadRequest,
         FileManipulator $fileManipulator
     ) {
         $diskName = config('media-library.disk_name');
@@ -25,26 +25,26 @@ class MediaLibraryPostS3Controller
 
         /** @var \Modules\Media\Models\Media $media */
         $media = $temporaryUpload->media()->create([
-            'name' => $request->name,
-            'uuid' => $request->uuid,
+            'name' => $createTemporaryUploadFromDirectS3UploadRequest->name,
+            'uuid' => $createTemporaryUploadFromDirectS3UploadRequest->uuid,
             'collection_name' => 'default',
-            'file_name' => $request->name,
-            'mime_type' => $request->content_type,
+            'file_name' => $createTemporaryUploadFromDirectS3UploadRequest->name,
+            'mime_type' => $createTemporaryUploadFromDirectS3UploadRequest->content_type,
             'disk' => $diskName,
             'conversions_disk' => $diskName,
             'manipulations' => [],
             'custom_properties' => [],
             'responsive_images' => [],
             'generated_conversions' => [],
-            'size' => $request->size,
+            'size' => $createTemporaryUploadFromDirectS3UploadRequest->size,
         ]);
 
         /** @var \Spatie\MediaLibrary\Support\PathGenerator\PathGenerator $pathGenerator */
         $pathGenerator = PathGeneratorFactory::create($media);
 
         Storage::disk($diskName)->copy(
-            $request->key,
-            $pathGenerator->getPath($media) . $request->name,
+            $createTemporaryUploadFromDirectS3UploadRequest->key,
+            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
         );
 
         $fileManipulator->createDerivedFiles($media);
