@@ -17,8 +17,6 @@ namespace Modules\Media\Services;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
-use function is_string;
-
 /**
  * Undocumented class.
  */
@@ -55,8 +53,8 @@ class VideoStream
         }
         $this->vars['stream'] = $filesystem->readStream($path);
         $mime = $filesystem->mimeType($path);
-        if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+        if (! \is_string($mime)) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->mime = $mime;
 
@@ -79,8 +77,6 @@ class VideoStream
 
     /**
      * Open stream.
-     *
-     * @return void
      */
     // private function open() {
     /*
@@ -96,10 +92,10 @@ class VideoStream
     {
         ob_get_clean();
         // header("Content-Type: video/mp4");
-        header('Content-Type: ' . $this->mime);
+        header('Content-Type: '.$this->mime);
 
         header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
+        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
         /*
         $time=@filemtime($this->path);
         if($time==false){
@@ -107,7 +103,7 @@ class VideoStream
         }
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', $time).' GMT');
         */
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
+        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
         $this->start = 0;
         /*
         $size=filesize($this->path);
@@ -117,7 +113,7 @@ class VideoStream
         $this->size = $size;
         */
         $this->end = $this->size - 1;
-        header('Accept-Ranges: 0-' . $this->end);
+        header('Accept-Ranges: 0-'.$this->end);
 
         if (isset($_SERVER['HTTP_RANGE'])) {
             $c_start = $this->start;
@@ -148,10 +144,10 @@ class VideoStream
             $length = $this->end - $this->start + 1;
             fseek($this->vars['stream'], $this->start);
             header('HTTP/1.1 206 Partial Content');
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
+            header('Content-Length: '.$length);
+            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
         } else {
-            header('Content-Length: ' . $this->size);
+            header('Content-Length: '.$this->size);
         }
     }
 

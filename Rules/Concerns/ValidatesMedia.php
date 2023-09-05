@@ -9,8 +9,6 @@ use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
 use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
-use function is_string;
-
 /** @var \Illuminate\Foundation\Http\FormRequest $this */
 trait ValidatesMedia
 {
@@ -57,14 +55,14 @@ trait ValidatesMedia
         foreach ($allAttributeRules as $attribute => $attributeRules) {
             $remainingRules[$attribute] = [];
 
-            if (is_string($attributeRules)) {
+            if (\is_string($attributeRules)) {
                 $remainingRules[$attribute] = $allAttributeRules;
 
                 continue;
             }
 
             foreach ($attributeRules as $attributeRule) {
-                if (is_string($attributeRule)) {
+                if (\is_string($attributeRule)) {
                     $remainingRules[$attribute][] = $attributeRule;
                 } elseif ($attributeRule instanceof UploadedMediaRules) {
                     foreach ($attributeRule->groupRules as $groupRule) {
@@ -84,13 +82,14 @@ trait ValidatesMedia
                 }
 
                 $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
-                    if (is_string($attributeRule)) {
+                    if (\is_string($attributeRule)) {
                         return false;
                     }
 
                     if ($attributeRule instanceof MinItemsRule && $attributeRule->getMinItemCount()) {
                         return true;
                     }
+
                     return $attributeRule instanceof MinTotalSizeInKbRule && $attributeRule->getMinTotalSizeInKb();
                 });
 
@@ -105,11 +104,11 @@ trait ValidatesMedia
 
     protected function validateSingleMedia(): UploadedMediaRules
     {
-        return (new UploadedMediaRules)->maxItems(1);
+        return (new UploadedMediaRules())->maxItems(1);
     }
 
-    protected function validateMultipleMedia(): \Modules\Media\Rules\UploadedMediaRules
+    protected function validateMultipleMedia(): UploadedMediaRules
     {
-        return new UploadedMediaRules;
+        return new UploadedMediaRules();
     }
 }
