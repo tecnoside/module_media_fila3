@@ -39,16 +39,16 @@ class Merge
         }
 
         if (! is_numeric($width) || ! is_numeric($height)) {
-            throw new Exception('[' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
+            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
         }
 
         $width = (int) $width;
         $height = (int) $height;
         $img_canvas = Image::canvas($width, $height);
         $delta = 0;
-        foreach ($imgs as $v) {
-            $img_canvas->insert($v, 'top-left ', $delta, 0);
-            $delta += $v->width();
+        foreach ($imgs as $img) {
+            $img_canvas->insert($img, 'top-left ', $delta, 0);
+            $delta += $img->width();
         }
 
         $img_canvas->save(public_path() . '/' . $filenameOut, 100);

@@ -13,25 +13,18 @@ use Modules\Xot\Actions\GetViewAction;
 class VideoPlayer extends Component
 {
     public string $driver;
-    public string $mp4Src;
-    public int $currentTime;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $mp4Src, int $currentTime, string $driver = null)
+    public function __construct(public string $mp4Src, public int $currentTime, string $driver = null)
     {
         if (null === $driver) {
-            /**
-             * @var string
-             */
             $driver = config('xra.video.player');
         }
         $this->driver = $driver;
-        $this->mp4Src = $mp4Src;
-        $this->currentTime = $currentTime;
     }
 
     /**

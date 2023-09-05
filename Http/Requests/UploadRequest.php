@@ -30,7 +30,7 @@ class UploadRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'uuid.unique' => trans('medialibrary-pro::upload_request.uuid_not_unique'),

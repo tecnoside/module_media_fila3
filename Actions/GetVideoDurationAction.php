@@ -46,10 +46,10 @@ class GetVideoDurationAction
             return -1;
         }
         // ffprobe -i <file> -show_entries format=duration -v quiet -of csv="p=0"
-        $duration = FFMpeg::fromDisk($disk)
+        $durationInMiliseconds = FFMpeg::fromDisk($disk)
             ->open($path)
             ->getDurationInMiliseconds();
 
-        return $duration;
+        return $durationInMiliseconds;
     }
 }

@@ -31,16 +31,9 @@ class SubtitleService
     /**
      * ---.
      */
-    public function __construct()
-    {
-    }
-
-    /**
-     * ---.
-     */
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
+        if (!self::$instance instanceof \Modules\Media\Services\SubtitleService) {
             self::$instance = new self;
         }
 
@@ -76,8 +69,8 @@ class SubtitleService
 
     public function upateModel(): self
     {
-        $txt = $this->getPlain();
-        $up = [$this->field_name => $txt];
+        $plain = $this->getPlain();
+        $up = [$this->field_name => $plain];
         $this->model = tap($this->model)->update($up);
 
         return $this;
@@ -149,13 +142,12 @@ class SubtitleService
         }
 
         $data = [];
-        $i = 0;
         $sentence_i = 0;
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
-                if (null === $attributes) {
+                if (!$attributes instanceof \SimpleXMLElement) {
                     throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
                 }
                 // 00:06:35,360
@@ -185,9 +177,8 @@ class SubtitleService
      *
      * @param  string  $srtFile
      * @param  string  $webVttFile
-     * @return void
      */
-    public function srtToVtt($srtFile, $webVttFile)
+    public function srtToVtt($srtFile, $webVttFile): void
     {
         $fileHandle = fopen(public_path($srtFile), 'r');
         $lines = [];

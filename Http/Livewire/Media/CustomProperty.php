@@ -15,7 +15,7 @@ class CustomProperty extends Component implements Forms\Contracts\HasForms
     public string $attributeName;
     public Media $media;
 
-    public function mount(Media $media, string $attributeName = 'description')
+    public function mount(Media $media, string $attributeName = 'description'): void
     {
         $this->media = $media;
         $this->attributeName = $attributeName;
@@ -43,7 +43,7 @@ class CustomProperty extends Component implements Forms\Contracts\HasForms
                 ->label('')
                 // ->reactive()
                 ->lazy()
-                ->afterStateUpdated(function ($state) {
+                ->afterStateUpdated(function ($state): void {
                     $this->media->setCustomProperty($this->attributeName, $state);
                     $this->media->save();
                 }),

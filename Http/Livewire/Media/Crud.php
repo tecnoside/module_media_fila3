@@ -30,10 +30,10 @@ class Crud extends Component
 
     public string $collection;
 
-    public function mount(string $name, HasMedia $model, string $collection): void
+    public function mount(string $name, HasMedia $hasMedia, string $collection): void
     {
         $this->name = $name;
-        $this->model = $model;
+        $this->model = $hasMedia;
         $this->collection = $collection;
     }
 
@@ -43,7 +43,7 @@ class Crud extends Component
         foreach ($this->upload as $attachment) {
             $order++;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
-            if (null !== $temporaryUpload) {
+            if ($temporaryUpload instanceof \Modules\Media\Models\TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
                 $media = $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
             } else {

@@ -26,12 +26,12 @@ class ConvertLivewireUploadToMediaAction
 
         $diskBeforeTestFake = config('livewire.temporary_file_upload.disk') ?: config('filesystems.default');
 
-        return 'local' === config('filesystems.disks.' . strtolower($diskBeforeTestFake) . '.driver');
+        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
     }
 
-    protected function createFromLocalLivewireUpload(TemporaryUploadedFile $livewireUpload): Media
+    protected function createFromLocalLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
     {
-        $uploadedFile = new UploadedFile($livewireUpload->path(), $livewireUpload->getClientOriginalName());
+        $uploadedFile = new UploadedFile($temporaryUploadedFile->path(), $temporaryUploadedFile->getClientOriginalName());
 
         /** @var class-string<TemporaryUpload> $temporaryUploadModelClass */
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
@@ -40,13 +40,13 @@ class ConvertLivewireUploadToMediaAction
             $uploadedFile,
             session()->getId(),
             (string) Str::uuid(),
-            $livewireUpload->getClientOriginalName()
+            $temporaryUploadedFile->getClientOriginalName()
         );
 
         return $temporaryUpload->getFirstMedia();
     }
 
-    protected function createFromRemoteLivewireUpload(TemporaryUploadedFile $livewireUpload): Media
+    protected function createFromRemoteLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
     {
         /** @var class-string<TemporaryUpload> $temporaryUploadModelClass */
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
@@ -54,13 +54,13 @@ class ConvertLivewireUploadToMediaAction
         $livewireDisk = config('livewire.temporary_file_upload.disk', 's3');
 
         $livewireDirectory = FileUploadConfiguration::directory();
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $livewireUpload->getFilename();
+        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
 
         $temporaryUpload = $temporaryUploadModelClass::createForRemoteFile(
             $remotePath,
             session()->getId(),
             (string) Str::uuid(),
-            $livewireUpload->getClientOriginalName(),
+            $temporaryUploadedFile->getClientOriginalName(),
             $livewireDisk
         );
 

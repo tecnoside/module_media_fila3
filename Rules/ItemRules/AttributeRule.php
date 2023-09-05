@@ -9,16 +9,12 @@ use Illuminate\Validation\Validator;
 
 class AttributeRule extends MediaItemRule
 {
-    public string $attribute;
-
     protected array $rules;
 
     protected Validator $validator;
 
-    public function __construct($attribute, $rules)
+    public function __construct(public string $attribute, $rules)
     {
-        $this->attribute = $attribute;
-
         if (is_string($rules)) {
             $rules = explode('|', $rules);
         }

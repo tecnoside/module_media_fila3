@@ -14,18 +14,14 @@ use function count;
 class PendingMediaItem
 {
     public TemporaryUpload $temporaryUpload;
-    public string $name;
-    public int $order;
-    public array $customProperties;
-    public ?string $fileName;
 
     public function __construct(
         string $uuid,
-        string $name,
-        int $order,
-        array $customProperties,
+        public string $name,
+        public int $order,
+        public array $customProperties,
         array $customHeaders,
-        string $fileName = null
+        public ?string $fileName = null
     ) {
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
@@ -34,20 +30,12 @@ class PendingMediaItem
         }
 
         $this->temporaryUpload = $temporaryUpload;
-
-        $this->name = $name;
-
-        $this->order = $order;
-
-        $this->customProperties = $customProperties;
-
-        $this->fileName = $fileName;
     }
 
     public static function createFromArray(array $pendingMediaItems): Collection
     {
         return collect($pendingMediaItems)
-            ->map(fn (array $uploadAttributes) => new static(
+            ->map(fn (array $uploadAttributes): static => new static(
                 $uploadAttributes['uuid'],
                 $uploadAttributes['name'] ?? '',
                 $uploadAttributes['order'] ?? 0,
@@ -72,13 +60,13 @@ class PendingMediaItem
 
     public function getCustomProperties(array $customPropertyNames): array
     {
-        if (! count($customPropertyNames)) {
+        if ($customPropertyNames === []) {
             return $this->customProperties;
         }
 
         return collect($customPropertyNames)
             ->filter(fn (string $customProperty) => Arr::has($this->customProperties, $customProperty))
-            ->mapWithKeys(fn ($name) => [$name => Arr::get($this->customProperties, $name)])
+            ->mapWithKeys(fn ($name): array => [$name => Arr::get($this->customProperties, $name)])
             ->toArray();
     }
 }

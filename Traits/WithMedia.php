@@ -19,10 +19,10 @@ trait WithMedia
         }
     }
 
-    public function hydrateWithMedia()
+    public function hydrateWithMedia(): void
     {
-        foreach ($this->getMediaComponentNames() as $mediaComponent) {
-            $this->listeners["{$mediaComponent}:mediaChanged"] = 'onMediaChanged';
+        foreach ($this->getMediaComponentNames() as $mediaComponentName) {
+            $this->listeners["{$mediaComponentName}:mediaChanged"] = 'onMediaChanged';
         }
     }
 
@@ -42,7 +42,7 @@ trait WithMedia
         }
     }
 
-    public function clearMedia($mediaComponentNames = null)
+    public function clearMedia($mediaComponentNames = null): void
     {
         if (is_null($mediaComponentNames)) {
             $mediaComponentNames = $this->getMediaComponentNames();
@@ -52,17 +52,17 @@ trait WithMedia
             $mediaComponentNames = [$mediaComponentNames];
         }
 
-        foreach ($mediaComponentNames as $mediaComponentName) {
-            $this->emit("{$mediaComponentName}:clearMedia", $mediaComponentName);
+        foreach ($mediaComponentNames as $mediumComponentName) {
+            $this->emit("{$mediumComponentName}:clearMedia", $mediumComponentName);
 
-            $this->$mediaComponentName = [];
+            $this->{$mediumComponentName} = [];
         }
     }
 
     protected function makeSureCustomPropertiesUseRightCasing(array $media): array
     {
-        $media = collect($media)
-            ->map(function (array $mediaItemAttributes) {
+        return collect($media)
+            ->map(function (array $mediaItemAttributes): array {
                 if (! isset($mediaItemAttributes['custom_properties']) && isset($mediaItemAttributes['customProperties'])) {
                     $mediaItemAttributes['custom_properties'] = $mediaItemAttributes['customProperties'];
                     unset($mediaItemAttributes['customProperties']);
@@ -71,7 +71,5 @@ trait WithMedia
                 return $mediaItemAttributes;
             })
             ->toArray();
-
-        return $media;
     }
 }

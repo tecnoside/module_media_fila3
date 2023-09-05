@@ -90,7 +90,7 @@ class Media extends SpatieMedia
         return $this->belongsTo(TemporaryUpload::class);
     }
 
-    public function setCustomProperties(array $data)
+    public function setCustomProperties(array $data): void
     {
         foreach ($data as $k => $v) {
             $this->setCustomProperty($k, $v);

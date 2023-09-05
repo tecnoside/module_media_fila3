@@ -83,7 +83,7 @@ if (empty($user) || 'admin' !== $user['role']) {
                     <?php
                         if ('admin' !== $user['role']
                             && ! empty($user['type'])) {
-                            echo ucfirst($user['type']);
+                            echo ucfirst((string) $user['type']);
                         }
                 ?>
                 </td>
@@ -95,10 +95,10 @@ if (empty($user) || 'admin' !== $user['role']) {
                     <?php } ?>
                 </td>
                 <td class="text-right no-wrap">
-                    <a class="btn btn-secondary btn-sm" href="<?php echo $config_component['base_url'].$config_component['home_url'].'?action=edit_user&user_id='.urlencode($user['id']); ?>">
+                    <a class="btn btn-secondary btn-sm" href="<?php echo $config_component['base_url'].$config_component['home_url'].'?action=edit_user&user_id='.urlencode((string) $user['id']); ?>">
                         <?php echo $lang_arr['edit']; ?>
                     </a>
-                    <a class="btn btn-danger btn-sm" href="<?php echo $config_component['base_url'].$config_component['home_url'].'?action=delete_user&user_id='.urlencode($user['id']); ?>">
+                    <a class="btn btn-danger btn-sm" href="<?php echo $config_component['base_url'].$config_component['home_url'].'?action=delete_user&user_id='.urlencode((string) $user['id']); ?>">
                         <?php echo $lang_arr['delete']; ?>
                     </a>
                 </td>

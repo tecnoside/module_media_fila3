@@ -17,22 +17,14 @@ class PendingMediaLibraryRequestHandler
 {
     protected Collection $mediaLibraryRequestItems;
 
-    protected Model $model;
-
-    protected bool $preserveExisting;
-
     protected ?array $processCustomProperties = null;
 
     protected ?array $customHeaders = null;
 
-    public function __construct(array $mediaLibraryRequestItems, Model $model, bool $preserveExisting)
+    public function __construct(array $mediaLibraryRequestItems, protected Model $model, protected bool $preserveExisting)
     {
         $this->mediaLibraryRequestItems = collect($mediaLibraryRequestItems)
-            ->map(fn (array $properties) => MediaLibraryRequestItem::fromArray($properties));
-
-        $this->model = $model;
-
-        $this->preserveExisting = $preserveExisting;
+            ->map(fn (array $properties): \Modules\Media\Dto\MediaLibraryRequestItem => MediaLibraryRequestItem::fromArray($properties));
     }
 
     /**
@@ -41,13 +33,13 @@ class PendingMediaLibraryRequestHandler
     public function usingName($mediaName): self
     {
         if (is_string($mediaName)) {
-            return $this->usingName(fn () => $mediaName);
+            return $this->usingName(fn (): string => $mediaName);
         }
 
         $callable = $mediaName;
 
         $this->mediaLibraryRequestItems->each(
-            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
+            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable): void {
                 $name = $callable($mediaLibraryRequestItem);
 
                 $mediaLibraryRequestItem->name = $name;
@@ -63,13 +55,13 @@ class PendingMediaLibraryRequestHandler
     public function usingFileName($fileName): self
     {
         if (is_string($fileName)) {
-            return $this->usingFileName(fn () => $fileName);
+            return $this->usingFileName(fn (): string => $fileName);
         }
 
         $callable = $fileName;
 
         $this->mediaLibraryRequestItems->each(
-            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable) {
+            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable): void {
                 $fileName = $callable($mediaLibraryRequestItem);
 
                 $mediaLibraryRequestItem->fileName = $fileName;
@@ -108,19 +100,19 @@ class PendingMediaLibraryRequestHandler
         $mediaLibraryRequestHandler
             ->getPendingMediaItems()
             ->each(
-                function (PendingMediaItem $pendingMedia) use ($diskName, $collectionName) {
-                    $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMedia);
+                function (PendingMediaItem $pendingMediaItem) use ($diskName, $collectionName): void {
+                    $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMediaItem);
 
                     if (null !== $this->processCustomProperties) {
-                        $fileAdder->withCustomProperties($pendingMedia->getCustomProperties($this->processCustomProperties));
+                        $fileAdder->withCustomProperties($pendingMediaItem->getCustomProperties($this->processCustomProperties));
                     }
 
                     if (null !== $this->customHeaders) {
                         $fileAdder = $fileAdder->addCustomHeaders($this->customHeaders);
                     }
 
-                    if (null !== $pendingMedia->fileName) {
-                        $fileAdder->setFileName($pendingMedia->fileName);
+                    if (null !== $pendingMediaItem->fileName) {
+                        $fileAdder->setFileName($pendingMediaItem->fileName);
                     }
 
                     $fileAdder->toMediaCollection($collectionName, $diskName);

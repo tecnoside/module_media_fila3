@@ -21,9 +21,6 @@ class StreamController extends BaseController
      */
     public function __invoke(int $press_id): StreamedResponse
     {
-        /**
-         * @var class-string
-         */
         $press_class = config('morph_map.press');
         if (null === $press_class) {
             throw new Exception('add media class to config morph_map');
@@ -44,10 +41,10 @@ class StreamController extends BaseController
         // $press->delete();
         // }
 
-        $stream = new VideoStream($press->disk, $press->file_mp4);
+        $videoStream = new VideoStream($press->disk, $press->file_mp4);
 
-        return response()->stream(function () use ($stream) {
-            $stream->start();
+        return response()->stream(function () use ($videoStream): void {
+            $videoStream->start();
         });
     }
 }

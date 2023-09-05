@@ -16,7 +16,7 @@ class MinTotalSizeInKbRule implements Rule
     {
     }
 
-    public function getMinTotalSizeInKb()
+    public function getMinTotalSizeInKb(): int
     {
         return $this->minTotalSizeInKb;
     }

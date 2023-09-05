@@ -8,18 +8,15 @@ use Spatie\MediaLibrary\Support\File;
 
 class MaxItemSizeInKbRule extends MediaItemRule
 {
-    protected int $maxSizeInKb;
-
     protected int $actualSizeInBytes;
 
-    public function __construct(int $maxSizeInKb)
+    public function __construct(protected int $maxSizeInKb)
     {
-        $this->maxSizeInKb = $maxSizeInKb;
     }
 
     public function validateMediaItem(): bool
     {
-        if (! $media = $this->getTemporaryUploadMedia()) {
+        if (!($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
             return true;
         }
 

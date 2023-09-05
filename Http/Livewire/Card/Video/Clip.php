@@ -28,10 +28,8 @@ class Clip extends Component
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function mount(Model $model)
+    public function mount(Model $model): void
     {
         $this->model = $model;
     }
@@ -63,10 +61,8 @@ class Clip extends Component
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function updateDataFromModal(string $id, array $data)
+    public function updateDataFromModal(string $id, array $data): void
     {
         if ('editClip' !== $id) {
             return;

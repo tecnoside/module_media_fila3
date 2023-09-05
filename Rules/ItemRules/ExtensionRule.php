@@ -22,7 +22,7 @@ class ExtensionRule extends MediaItemRule
 
     public function validateMediaItem(): bool
     {
-        if (! $media = $this->getTemporaryUploadMedia()) {
+        if (!($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
             return true;
         }
 
@@ -34,7 +34,7 @@ class ExtensionRule extends MediaItemRule
 
         $actualExtensions = (new MimeTypes)->getExtensions($media->mime_type);
 
-        return count(array_intersect($actualExtensions, $this->allowedExtensions)) > 0;
+        return array_intersect($actualExtensions, $this->allowedExtensions) !== [];
     }
 
     public function message()

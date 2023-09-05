@@ -85,7 +85,7 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function itemName($rules): self
+    public function itemName(array|string $rules): self
     {
         return $this->attribute('name', $rules);
     }
@@ -155,12 +155,12 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): void
     {
         // this page has been left intentionally blank
     }
 
-    public function message()
+    public function message(): void
     {
         // this page has been left intentionally blank
     }

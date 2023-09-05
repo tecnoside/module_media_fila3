@@ -12,16 +12,16 @@ use Throwable;
 
 class MediaLibraryUploadController
 {
-    public function __invoke(UploadRequest $request)
+    public function __invoke(UploadRequest $uploadRequest)
     {
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         try {
             $temporaryUpload = $temporaryUploadModelClass::createForFile(
-                $request->file,
+                $uploadRequest->file,
                 session()->getId(),
-                $request->uuid,
-                $request->name ?? '',
+                $uploadRequest->uuid,
+                $uploadRequest->name ?? '',
             );
         } catch (Throwable $exception) {
             $temporaryUploadModelClass::query()
