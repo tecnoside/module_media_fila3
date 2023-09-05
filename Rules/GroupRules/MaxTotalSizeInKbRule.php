@@ -22,9 +22,9 @@ class MaxTotalSizeInKbRule implements Rule
             ->map(fn (array $uploadedItemAttributes) => $uploadedItemAttributes['uuid'])
             ->toArray();
 
-        $media = Media::findWithTemporaryUploadInCurrentSession($uuids);
+        $collection = Media::findWithTemporaryUploadInCurrentSession($uuids);
 
-        $this->actualTotalSizeInKb = $media->totalSizeInBytes();
+        $this->actualTotalSizeInKb = $collection->totalSizeInBytes();
 
         return $this->actualTotalSizeInKb <= $this->maxTotalSizeInKb * 1024;
     }

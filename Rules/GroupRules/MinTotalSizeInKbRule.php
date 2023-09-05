@@ -27,9 +27,9 @@ class MinTotalSizeInKbRule implements Rule
             ->map(fn (array $uploadedItemAttributes) => $uploadedItemAttributes['uuid'])
             ->toArray();
 
-        $media = Media::findWithTemporaryUploadInCurrentSession($uuids);
+        $collection = Media::findWithTemporaryUploadInCurrentSession($uuids);
 
-        $this->actualTotalSizeInBytes = $media->totalSizeInBytes();
+        $this->actualTotalSizeInBytes = $collection->totalSizeInBytes();
 
         return $this->actualTotalSizeInBytes >= $this->minTotalSizeInKb * 1024;
     }
