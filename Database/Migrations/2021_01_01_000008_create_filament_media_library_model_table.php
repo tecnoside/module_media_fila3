@@ -21,25 +21,25 @@ class CreateFilamentMediaLibraryModelTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $blueprint): void {
-                $blueprint->bigIncrements('id');
+            function (Blueprint $table): void {
+                $table->bigIncrements('id');
 
-                $blueprint->morphs('model');
-                $blueprint->string('media_library_item_id');
-                $blueprint->text('note');
-                $blueprint->nullableTimestamps();
+                $table->morphs('model');
+                $table->string('media_library_item_id');
+                $table->text('note');
+                $table->nullableTimestamps();
                 // ----------------------------------------------------------
-                $blueprint->string('created_by')->nullable();
-                $blueprint->string('updated_by')->nullable();
+                $table->string('created_by')->nullable();
+                $table->string('updated_by')->nullable();
             }
         );
 
         // -- UPDATE --
 
         $this->tableUpdate(
-            function (Blueprint $blueprint): void {
+            function (Blueprint $table): void {
                 if (! $this->hasColumn('media_library_item_id') && $this->hasColumn('media_library_id')) {
-                    $blueprint->renameColumn('media_library_id', 'media_library_item_id');
+                    $table->renameColumn('media_library_id', 'media_library_item_id');
                 }
             }
         );
