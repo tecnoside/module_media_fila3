@@ -21,85 +21,85 @@ class CreateMediasTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $blueprint): void {
-                $blueprint->bigIncrements('id');
+            function (Blueprint $table): void {
+                $table->bigIncrements('id');
 
-                $blueprint->morphs('model');
-                $blueprint->uuid('uuid')->nullable()->unique();
-                $blueprint->string('collection_name');
-                $blueprint->string('name');
-                $blueprint->string('file_name');
-                $blueprint->string('mime_type')->nullable();
-                $blueprint->string('disk');
-                $blueprint->string('conversions_disk')->nullable();
-                $blueprint->unsignedBigInteger('size');
-                $blueprint->json('manipulations');
-                $blueprint->json('custom_properties');
-                $blueprint->json('generated_conversions');
-                $blueprint->json('responsive_images');
-                $blueprint->unsignedInteger('order_column')->nullable()->index();
+                $table->morphs('model');
+                $table->uuid('uuid')->nullable()->unique();
+                $table->string('collection_name');
+                $table->string('name');
+                $table->string('file_name');
+                $table->string('mime_type')->nullable();
+                $table->string('disk');
+                $table->string('conversions_disk')->nullable();
+                $table->unsignedBigInteger('size');
+                $table->json('manipulations');
+                $table->json('custom_properties');
+                $table->json('generated_conversions');
+                $table->json('responsive_images');
+                $table->unsignedInteger('order_column')->nullable()->index();
 
-                $blueprint->nullableTimestamps();
+                $table->nullableTimestamps();
                 // ----------------------------------------------------------
-                $blueprint->string('created_by')->nullable();
-                $blueprint->string('updated_by')->nullable();
+                $table->string('created_by')->nullable();
+                $table->string('updated_by')->nullable();
             }
         );
 
         // -- UPDATE --
         $this->tableUpdate(
-            function (Blueprint $blueprint): void {
+            function (Blueprint $table): void {
                 if (! $this->hasColumn('user_id')) {
-                    $blueprint->integer('user_id');
+                    $table->integer('user_id');
                 }
                 if (! $this->hasColumn('order_column')) {
-                    $blueprint->unsignedInteger('order_column')->nullable()->index();
+                    $table->unsignedInteger('order_column')->nullable()->index();
                 }
 
                 if (! $this->hasColumn('disk')) {
-                    $blueprint->string('disk')->default('public');
+                    $table->string('disk')->default('public');
                 }
                 if (! $this->hasColumn('directory')) {
-                    $blueprint->string('directory')->default('media');
+                    $table->string('directory')->default('media');
                 }
                 if (! $this->hasColumn('name')) {
-                    $blueprint->string('name')->nullable();
+                    $table->string('name')->nullable();
                 }
                 if (! $this->hasColumn('path')) {
-                    $blueprint->string('path')->nullable();
+                    $table->string('path')->nullable();
                 }
                 if (! $this->hasColumn('width')) {
-                    $blueprint->unsignedInteger('width')->nullable();
+                    $table->unsignedInteger('width')->nullable();
                 }
                 if (! $this->hasColumn('height')) {
-                    $blueprint->unsignedInteger('height')->nullable();
+                    $table->unsignedInteger('height')->nullable();
                 }
                 if (! $this->hasColumn('size')) {
-                    $blueprint->unsignedInteger('size')->nullable();
+                    $table->unsignedInteger('size')->nullable();
                 }
                 if (! $this->hasColumn('type')) {
-                    $blueprint->string('type')->default('image')->nullable();
+                    $table->string('type')->default('image')->nullable();
                 }
                 if (! $this->hasColumn('ext')) {
-                    $blueprint->string('ext')->nullable();
+                    $table->string('ext')->nullable();
                 }
                 if (! $this->hasColumn('alt')) {
-                    $blueprint->string('alt')->nullable();
+                    $table->string('alt')->nullable();
                 }
                 if (! $this->hasColumn('title')) {
-                    $blueprint->string('title')->nullable();
+                    $table->string('title')->nullable();
                 }
                 if (! $this->hasColumn('description')) {
-                    $blueprint->text('description')->nullable();
+                    $table->text('description')->nullable();
                 }
                 if (! $this->hasColumn('caption')) {
-                    $blueprint->text('caption')->nullable();
+                    $table->text('caption')->nullable();
                 }
                 if (! $this->hasColumn('exif')) {
-                    $blueprint->text('exif')->nullable();
+                    $table->text('exif')->nullable();
                 }
                 if (! $this->hasColumn('curations')) {
-                    $blueprint->longText('curations')->nullable();
+                    $table->longText('curations')->nullable();
                 }
             }
         );

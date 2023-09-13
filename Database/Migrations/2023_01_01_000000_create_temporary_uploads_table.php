@@ -19,10 +19,10 @@ class CreateTemporaryUploadsTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $blueprint): void {
-                $blueprint->id();
-                $blueprint->string('session_id');
-                $blueprint->timestamps();
+            function (Blueprint $table): void {
+                $table->id();
+                $table->string('session_id');
+                $table->timestamps();
             }
         );
     }
