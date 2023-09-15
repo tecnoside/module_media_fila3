@@ -22,3 +22,5 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 .git-rewrite
+.git-blame-ignore-revs
+.git-rewrite
