@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Providers\Filament;
+namespace Modules\Media\Providers\Filament;
 
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
 
