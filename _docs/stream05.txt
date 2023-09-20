@@ -26,7 +26,7 @@ https://world.hey.com/akviby/using-the-live-camera-feature-in-laravel-livewire-2
 https://stackify.com/a-guide-to-streams-in-php-in-depth-tutorial-with-examples/  !!!!!!!!
 
 
-https://kipalog.com/posts/Chong-download-file-video-tren-web-co-ban-bang-HLS--ket-hop-voi-Laravel   !!!!!!!!!!!!!
+https://kipalog.com/posts/Chong-download-file-video-tren-web-co-x-circle-bang-HLS--ket-hop-voi-Laravel   !!!!!!!!!!!!!
 
 https://github.com/hoangdh/ghichep-StreamingVideo  !!!!!!!!
 

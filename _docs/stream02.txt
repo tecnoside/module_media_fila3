@@ -32,7 +32,7 @@ https://morioh.com/p/c431bec28eed
 
 https://awesomeopensource.com/projects/laravel/video-streaming
 
-https://kipalog.com/posts/Chong-download-file-video-tren-web-co-ban-bang-HLS--ket-hop-voi-Laravel
+https://kipalog.com/posts/Chong-download-file-video-tren-web-co-x-circle-bang-HLS--ket-hop-voi-Laravel
 
 http://www.alvinchen.club/2019/11/05/laravel-video-upload-streaming-%E5%BD%B1%E7%89%87%E4%B8%8A%E5%82%B3%E4%BB%A5%E5%8F%8A%E7%B7%A8%E7%A2%BC%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88-mux/
 
