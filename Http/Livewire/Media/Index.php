@@ -129,7 +129,7 @@ class Index extends Component
 
     public function determineListErrorMessage(MessageBag $messageBag = null): ?string
     {
-        if ($messageBag instanceof \Illuminate\Support\MessageBag) {
+        if ($messageBag instanceof MessageBag) {
             return $messageBag->first($this->name);
         }
 
@@ -223,7 +223,7 @@ class Index extends Component
         return view($this->view, [
             'errors' => $this->validationErrors,
             'sortedMedia' => collect($this->media)
-                ->map(fn (array $mediaItem): \Modules\Media\Dto\ViewMediaItem => new ViewMediaItem($this->name, $mediaItem))
+                ->map(fn (array $mediaItem): ViewMediaItem => new ViewMediaItem($this->name, $mediaItem))
                 ->sortBy('order')
                 ->values(),
         ]);

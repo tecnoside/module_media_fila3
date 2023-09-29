@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
+use Throwable;
 use Illuminate\Validation\ValidationException;
 use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
@@ -22,7 +23,7 @@ class MediaLibraryUploadController
                 $uploadRequest->uuid,
                 $uploadRequest->name ?? '',
             );
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();
@@ -32,7 +33,7 @@ class MediaLibraryUploadController
             throw ValidationException::withMessages(['file' => 'Could not handle upload. Make sure you are uploading a valid file.']);
         }
 
-        /** @var \Modules\Media\Models\Media $media */
+        /** @var Media $media */
         $media = $temporaryUpload->getFirstMedia();
 
         return response()->json($this->responseFields($media, $temporaryUpload));

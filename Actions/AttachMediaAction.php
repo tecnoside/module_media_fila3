@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
+use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\QueueableAction\QueueableAction;
@@ -36,13 +37,13 @@ class AttachMediaAction
             ++$order;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
 
-            if ($temporaryUpload instanceof \Modules\Media\Models\TemporaryUpload) {
+            if ($temporaryUpload instanceof TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
                 $media = $temporaryUpload->moveMedia($hasMedia, $collection, '', $attachment['fileName']);
                 // dddx($res);
                 // $media->move($this->model, $this->collection);
             } else {
-                $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
+                $media = Media::findByUuid($attachment['uuid']);
                 // $media->update(['order_column'=>$order]);
                 // dddx(['media'=>$media,'order'=>$order]);
             }

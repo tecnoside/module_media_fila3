@@ -43,6 +43,6 @@ class TemporaryUploadFactory
     public function createMultiple(int $count, array $attributes = []): array
     {
         return Collection::times($count)
-            ->map(fn (): \Modules\Media\Models\TemporaryUpload => $this->create($attributes))->toArray();
+            ->map(fn (): TemporaryUpload => $this->create($attributes))->toArray();
     }
 }

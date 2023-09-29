@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\ItemRules;
 
+use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\Support\File;
 
 class MaxItemSizeInKbRule extends MediaItemRule
@@ -16,7 +17,7 @@ class MaxItemSizeInKbRule extends MediaItemRule
 
     public function validateMediaItem(): bool
     {
-        if (! ($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
+        if (! ($media = $this->getTemporaryUploadMedia()) instanceof Media) {
             return true;
         }
 

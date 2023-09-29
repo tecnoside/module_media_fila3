@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\ItemRules;
 
+use Modules\Media\Models\Media;
 class DimensionsRule extends MediaItemRule
 {
     public function __construct(
@@ -14,7 +15,7 @@ class DimensionsRule extends MediaItemRule
 
     public function validateMediaItem(): bool
     {
-        if (! ($media = $this->getTemporaryUploadMedia()) instanceof \Modules\Media\Models\Media) {
+        if (! ($media = $this->getTemporaryUploadMedia()) instanceof Media) {
             return true;
         }
 

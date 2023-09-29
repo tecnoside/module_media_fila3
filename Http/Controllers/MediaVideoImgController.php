@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
+use Psr\Http\Message\ResponseInterface;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -13,7 +14,7 @@ use Modules\Media\Actions\GetVideoFrameContentAction;
 class MediaVideoImgController extends Controller
 {
     /**
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      */
     public function getSecond(int $second)
     {
