@@ -26,7 +26,7 @@ class FileExtensionRule implements Rule
     public function passes($attribute, $value): bool
     {
         return \in_array(
-            strtolower((string) $value->getClientOriginalExtension()),
+            strtolower($value->getClientOriginalExtension()),
             $this->validExtensions,
             strict: true,
         );
