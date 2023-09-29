@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Services;
 
+use SimpleXMLElement;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
@@ -136,7 +137,7 @@ class SubtitleService
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
         if (false === $xmlObject) {
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
+            throw new Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
 
         $data = [];
@@ -145,8 +146,8 @@ class SubtitleService
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
-                if (! $attributes instanceof \SimpleXMLElement) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                if (! $attributes instanceof SimpleXMLElement) {
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
                 $start = (int) $attributes->start->__toString() / 1000;

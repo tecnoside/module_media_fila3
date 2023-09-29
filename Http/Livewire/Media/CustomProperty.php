@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms;
 use Livewire\Component;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class CustomProperty extends Component implements Forms\Contracts\HasForms
+class CustomProperty extends Component implements HasForms
 {
-    use Forms\Concerns\InteractsWithForms;
+    use InteractsWithForms;
 
     public string $attributeName;
     public Media $media;
@@ -39,7 +42,7 @@ class CustomProperty extends Component implements Forms\Contracts\HasForms
     protected function getFormSchema(): array
     {
         return [
-            Forms\Components\Textarea::make($this->attributeName)
+            Textarea::make($this->attributeName)
                 ->label('')
                 // ->reactive()
                 ->lazy()

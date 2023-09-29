@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\Concerns;
 
+use Illuminate\Foundation\Http\FormRequest;
 use Modules\Media\Rules\GroupRules\MinItemsRule;
 use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
 use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
-/** @var \Illuminate\Foundation\Http\FormRequest $this */
+/** @var FormRequest $this */
 trait ValidatesMedia
 {
     public function validateResolved(): void

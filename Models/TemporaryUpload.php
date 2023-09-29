@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
+use Closure;
+use Exception;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
@@ -21,13 +23,13 @@ class TemporaryUpload extends Model implements HasMedia
     use InteractsWithMedia;
     use MassPrunable;
 
-    public static ?\Closure $manipulatePreview = null;
+    public static ?Closure $manipulatePreview = null;
 
     public static ?string $disk = null;
 
     protected $guarded = [];
 
-    public static function previewManipulation(\Closure $closure): void
+    public static function previewManipulation(Closure $closure): void
     {
         static::$manipulatePreview = $closure;
     }
@@ -127,7 +129,7 @@ class TemporaryUpload extends Model implements HasMedia
         if (\is_string($res)) {
             return $res;
         }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        throw new Exception('['.__LINE__.']['.__FILE__.']');
     }
 
     public function scopeOld(Builder $builder): void
@@ -159,7 +161,7 @@ class TemporaryUpload extends Model implements HasMedia
         $media = $this->getFirstMedia();
 
         if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $temporaryUploadModel = $media->model;
@@ -179,7 +181,7 @@ class TemporaryUpload extends Model implements HasMedia
         return self::query()->old();
     }
 
-    protected function getPreviewManipulation(): \Closure
+    protected function getPreviewManipulation(): Closure
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);

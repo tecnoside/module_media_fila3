@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Contracts\Validation\Rule;
 
 class FileExtensionRule implements Rule
@@ -20,12 +21,12 @@ class FileExtensionRule implements Rule
 
     /**
      * @param string                        $attribute
-     * @param \Illuminate\Http\UploadedFile $value
+     * @param UploadedFile $value
      */
     public function passes($attribute, $value): bool
     {
         return \in_array(
-            strtolower($value->getClientOriginalExtension()),
+            strtolower((string) $value->getClientOriginalExtension()),
             $this->validExtensions,
             strict: true,
         );

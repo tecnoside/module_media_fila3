@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Requests;
 
+use Modules\Media\Models\Media;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
@@ -31,7 +32,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
     {
         $mediaModelClass = config('media-library.media_model');
 
-        /** @var \Modules\Media\Models\Media $mediaModel */
+        /** @var Media $mediaModel */
         $mediaModel = new $mediaModelClass();
 
         if ('default' === $mediaModel->getConnectionName()) {
@@ -45,7 +46,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
     {
         $mediaModelClass = config('media-library.media_model');
 
-        /** @var \Modules\Media\Models\Media $mediaModel */
+        /** @var Media $mediaModel */
         $mediaModel = new $mediaModelClass();
 
         return $mediaModel->getTable();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Modules\Media\Models\Media;
 use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 use Modules\Media\Models\TemporaryUpload;
@@ -43,11 +44,11 @@ class Crud extends Component
         foreach ($this->upload as $attachment) {
             ++$order;
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
-            if ($temporaryUpload instanceof \Modules\Media\Models\TemporaryUpload) {
+            if ($temporaryUpload instanceof TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
                 $media = $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
             } else {
-                $media = \Modules\Media\Models\Media::findByUuid($attachment['uuid']);
+                $media = Media::findByUuid($attachment['uuid']);
                 // $media->update(['order_column'=>$order]);
                 // dddx(['media'=>$media,'order'=>$order]);
             }

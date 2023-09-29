@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Traits;
 
-/** @mixin \Livewire\Component */
+use Livewire\Component;
+/** @mixin Component */
 trait WithMedia
 {
     public function getMediaComponentNames(): array

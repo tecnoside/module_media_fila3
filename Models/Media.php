@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
@@ -28,16 +31,16 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property array                                         $generated_conversions
  * @property array                                         $responsive_images
  * @property int|null                                      $order_column
- * @property \Illuminate\Support\Carbon|null               $created_at
- * @property \Illuminate\Support\Carbon|null               $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null                                   $created_by
  * @property string|null                                   $updated_by
  * @property int                                           $user_id
- * @property \Illuminate\Database\Eloquent\Model|\Eloquent $model
- * @property \Modules\Media\Models\TemporaryUpload|null    $temporaryUpload
+ * @property Model|\Eloquent $model
+ * @property TemporaryUpload|null $temporaryUpload
  *
- * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> all($columns = ['*'])
- * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> get($columns = ['*'])
+ * @method static MediaCollection<int, static> all($columns = ['*'])
+ * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static Builder|Media                                                                         newModelQuery()
  * @method static Builder|Media                                                                         newQuery()
  * @method static Builder|Media                                                                         ordered()

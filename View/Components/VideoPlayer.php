@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Modules\Xot\Actions\GetViewAction;
 
@@ -30,7 +31,7 @@ class VideoPlayer extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|string
+     * @return View|string
      */
     public function render()
     {

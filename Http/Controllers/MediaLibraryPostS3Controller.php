@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
+use Modules\Media\Models\Media;
+use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 use Illuminate\Support\Facades\Storage;
 use Modules\Media\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
@@ -23,7 +25,7 @@ class MediaLibraryPostS3Controller
             'session_id' => session()->getId(),
         ]);
 
-        /** @var \Modules\Media\Models\Media $media */
+        /** @var Media $media */
         $media = $temporaryUpload->media()->create([
             'name' => $createTemporaryUploadFromDirectS3UploadRequest->name,
             'uuid' => $createTemporaryUploadFromDirectS3UploadRequest->uuid,
@@ -39,7 +41,7 @@ class MediaLibraryPostS3Controller
             'size' => $createTemporaryUploadFromDirectS3UploadRequest->size,
         ]);
 
-        /** @var \Spatie\MediaLibrary\Support\PathGenerator\PathGenerator $pathGenerator */
+        /** @var PathGenerator $pathGenerator */
         $pathGenerator = PathGeneratorFactory::create($media);
 
         Storage::disk($diskName)->copy(

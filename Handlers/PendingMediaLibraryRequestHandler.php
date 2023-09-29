@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Handlers;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -21,7 +22,7 @@ class PendingMediaLibraryRequestHandler
     public function __construct(array $mediaLibraryRequestItems, protected Model $model, protected bool $preserveExisting)
     {
         $this->mediaLibraryRequestItems = collect($mediaLibraryRequestItems)
-            ->map(fn (array $properties): \Modules\Media\Dto\MediaLibraryRequestItem => MediaLibraryRequestItem::fromArray($properties));
+            ->map(fn (array $properties): MediaLibraryRequestItem => MediaLibraryRequestItem::fromArray($properties));
     }
 
     /**
@@ -47,7 +48,7 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
-     * @param string|\Closure $fileName
+     * @param string|Closure $fileName
      */
     public function usingFileName($fileName): self
     {

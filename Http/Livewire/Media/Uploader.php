@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Livewire\TemporaryUploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -113,7 +114,7 @@ class Uploader extends Component
         return $uploadError;
     }
 
-    protected function handleUpload(\Livewire\TemporaryUploadedFile $temporaryUploadedFile)
+    protected function handleUpload(TemporaryUploadedFile $temporaryUploadedFile)
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
 
