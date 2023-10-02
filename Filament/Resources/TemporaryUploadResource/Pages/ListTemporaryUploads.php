@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Filament\Resources\TemporaryUploadResource\Pages;
 
-use Modules\Media\Filament\Resources\TemporaryUploadResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Modules\Media\Filament\Resources\TemporaryUploadResource;
 
 class ListTemporaryUploads extends ListRecords
 {
