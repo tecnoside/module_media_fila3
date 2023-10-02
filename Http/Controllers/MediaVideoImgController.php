@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
-use Psr\Http\Message\ResponseInterface;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 use Modules\Media\Actions\GetVideoFrameContentAction;
+use Psr\Http\Message\ResponseInterface;
 
 class MediaVideoImgController extends Controller
 {

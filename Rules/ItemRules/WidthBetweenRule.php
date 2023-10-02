@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Rules\ItemRules;
 
 use Modules\Media\Models\Media;
+
 class WidthBetweenRule extends MediaItemRule
 {
     public function __construct(

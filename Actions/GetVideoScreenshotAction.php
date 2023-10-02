@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -66,7 +65,7 @@ class GetVideoScreenshotAction
                 ->export()
                 ->toDisk($disk_jpg)
                 ->save($file_jpg);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // dddx($e->getMessage());
             return [
                 'message' => $e->getMessage(),

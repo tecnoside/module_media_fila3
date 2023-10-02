@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
-use Modules\Media\Models\Media;
-use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 use Illuminate\Support\Facades\Storage;
+use Modules\Media\Models\Media;
 use Modules\Media\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
+use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
 
 class MediaLibraryPostS3Controller

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\ItemRules;
 
-use Modules\Media\Models\Media;
 use Illuminate\Support\Arr;
+use Modules\Media\Models\Media;
 use Symfony\Component\Mime\MimeTypes;
 
 class ExtensionRule extends MediaItemRule
