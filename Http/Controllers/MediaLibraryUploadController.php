@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Controllers;
 
-use Throwable;
 use Illuminate\Validation\ValidationException;
 use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
@@ -23,7 +22,7 @@ class MediaLibraryUploadController
                 $uploadRequest->uuid,
                 $uploadRequest->name ?? '',
             );
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules;
 
-use Illuminate\Http\UploadedFile;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Http\UploadedFile;
 
 class FileExtensionRule implements Rule
 {
@@ -20,7 +20,7 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param string                        $attribute
+     * @param string       $attribute
      * @param UploadedFile $value
      */
     public function passes($attribute, $value): bool

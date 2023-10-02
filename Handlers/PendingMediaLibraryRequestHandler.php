@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Handlers;
 
-use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -48,7 +47,7 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
-     * @param string|Closure $fileName
+     * @param string|\Closure $fileName
      */
     public function usingFileName($fileName): self
     {

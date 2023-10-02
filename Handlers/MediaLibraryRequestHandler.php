@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Handlers;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -21,7 +20,7 @@ class MediaLibraryRequestHandler
     protected function __construct(protected Model $model, protected Collection $collection, string $collectionName)
     {
         if (! $this->model instanceof HasMedia) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $this->existingUuids = $this->model->getMedia($collectionName)->pluck('uuid')->toArray();

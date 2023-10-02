@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
-use Livewire\TemporaryUploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
+use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 use Modules\Media\Actions\ConvertLivewireUploadToMediaAction;
 

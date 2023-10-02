@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Http\Livewire\Concerns;
 
 use Livewire\Component;
+
 /** @mixin Component */
 trait WithMedia
 {

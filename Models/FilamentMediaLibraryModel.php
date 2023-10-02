@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+
 /**
  * Modules\Media\Models\FilamentMediaLibraryModel.
  *
- * @property int                             $id
- * @property string                          $model_type
- * @property int                             $model_id
- * @property string                          $media_library_item_id
- * @property string                          $note
+ * @property int         $id
+ * @property string      $model_type
+ * @property int         $model_id
+ * @property string      $media_library_item_id
+ * @property string      $note
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string|null                     $created_by
- * @property string|null                     $updated_by
+ * @property string|null $created_by
+ * @property string|null $updated_by
  *
  * @method static Builder|FilamentMediaLibraryModel newModelQuery()
  * @method static Builder|FilamentMediaLibraryModel newQuery()

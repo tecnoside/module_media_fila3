@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -52,7 +51,7 @@ class GetVideoFrameContentAction
                         ->getFrameFromSeconds($time)
                         ->export()
                         ->getFrameContents();
-                } catch (Exception) {
+                } catch (\Exception) {
                     return Storage::disk('public_html')->get('img/video_not_exists.jpg');
                 }
             }

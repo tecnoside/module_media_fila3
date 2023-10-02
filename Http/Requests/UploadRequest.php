@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Requests;
 
-use Modules\Media\Models\Media;
 use Illuminate\Foundation\Http\FormRequest;
+use Modules\Media\Models\Media;
 use Modules\Media\Rules\FileExtensionRule;
 use Modules\Media\Support\DefaultAllowedExtensions;
 
