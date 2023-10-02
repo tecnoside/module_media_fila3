@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Filament\Resources\MediaResource\Pages;
 
-use Modules\Media\Filament\Resources\MediaResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Modules\Media\Filament\Resources\MediaResource;
 
 class CreateMedia extends CreateRecord
 {

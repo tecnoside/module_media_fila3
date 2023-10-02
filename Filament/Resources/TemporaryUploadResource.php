@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Filament\Resources;
 
-use Modules\Media\Filament\Resources\TemporaryUploadResource\Pages;
-//use Modules\Media\Filament\Resources\TemporaryUploadResource\RelationManagers;
-use Modules\Media\Models\TemporaryUpload;
-//use Filament\Forms;
 use Filament\Forms\Form;
+// use Modules\Media\Filament\Resources\TemporaryUploadResource\RelationManagers;
 use Filament\Resources\Resource;
+// use Filament\Forms;
 use Filament\Tables;
 use Filament\Tables\Table;
-//use Illuminate\Database\Eloquent\Builder;
-//use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Media\Filament\Resources\TemporaryUploadResource\Pages;
+use Modules\Media\Models\TemporaryUpload;
+
+// use Illuminate\Database\Eloquent\Builder;
+// use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TemporaryUploadResource extends Resource
 {
@@ -23,7 +26,6 @@ class TemporaryUploadResource extends Resource
     {
         return $form
             ->schema([
-                //
             ]);
     }
 
@@ -31,10 +33,8 @@ class TemporaryUploadResource extends Resource
     {
         return $table
             ->columns([
-                //
             ])
             ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -45,14 +45,13 @@ class TemporaryUploadResource extends Resource
                 ]),
             ])
             ->emptyStateActions([
-                //{{ tableEmptyStateActions }}
+                // {{ tableEmptyStateActions }}
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 

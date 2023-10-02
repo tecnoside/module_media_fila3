@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Filament\Resources\TemporaryUploadResource\Pages;
 
-use Modules\Media\Filament\Resources\TemporaryUploadResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Modules\Media\Filament\Resources\TemporaryUploadResource;
 
 class CreateTemporaryUpload extends CreateRecord
 {

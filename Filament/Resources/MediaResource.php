@@ -1,33 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Media\Filament\Resources;
 
-use Modules\Media\Filament\Resources\MediaResource\Pages;
-use Modules\Media\Filament\Resources\MediaResource\RelationManagers;
-use Modules\Media\Models\Media;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
-
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-
+use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
-
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
-//use Modules\Camping\Constants\AttachmentType;
-//use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Modules\Media\Filament\Resources\MediaResource\Pages;
+use Modules\Media\Models\Media;
 
+// use Modules\Camping\Constants\AttachmentType;
+// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 
 class MediaResource extends Resource
 {
@@ -120,31 +114,31 @@ class MediaResource extends Resource
             ->filters([
             ])
             ->actions([
-                //ActionGroup::make([
-                    Action::make('view_attachment')
-                        //->translateLabel()
-                        //->label('camping::actions.view.labels.main_label')
-                        ->label('')
-                        ->icon('heroicon-s-eye')
-                        ->color('gray')
-                        ->url(
-                            fn ($record): string => $record->getUrl()
-                        )->openUrlInNewTab(true),
-                    DeleteAction::make()->label('')->requiresConfirmation(),
-                    Action::make('download_attachment')
-                        //->translateLabel()
-                        //->label('camping::actions.download.labels.main_label')
-                        ->label('')
-                        ->icon('heroicon-o-arrow-down-tray')
-                        ->color('primary')
-                        ->action(
-                            fn ($record) => response()->download($record->getPath(), $record->file_name)
-                        ),
-                //]),
+                // ActionGroup::make([
+                Action::make('view_attachment')
+                    // ->translateLabel()
+                    // ->label('camping::actions.view.labels.main_label')
+                    ->label('')
+                    ->icon('heroicon-s-eye')
+                    ->color('gray')
+                    ->url(
+                        fn ($record): string => $record->getUrl()
+                    )->openUrlInNewTab(true),
+                DeleteAction::make()->label('')->requiresConfirmation(),
+                Action::make('download_attachment')
+                    // ->translateLabel()
+                    // ->label('camping::actions.download.labels.main_label')
+                    ->label('')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('primary')
+                    ->action(
+                        fn ($record) => response()->download($record->getPath(), $record->file_name)
+                    ),
+                // ]),
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),
-                //AttachmentDownloadBulkAction::make(),
+                // AttachmentDownloadBulkAction::make(),
             ])
             ->defaultSort(
                 column: 'created_at',
@@ -172,7 +166,6 @@ class MediaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 
