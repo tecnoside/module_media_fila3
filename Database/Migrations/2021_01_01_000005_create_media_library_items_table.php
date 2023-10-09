@@ -12,7 +12,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateVideosTable.
  */
-class CreateMediaLibraryItemTable extends XotBaseMigration
+class CreateMediaLibraryItemsTable extends XotBaseMigration
 {
     /**
      * i don't write table name, it take from Model, model is singular of this class wit.
@@ -24,7 +24,19 @@ class CreateMediaLibraryItemTable extends XotBaseMigration
         // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table) {
-                $table->increments('id');
+                $table->id();
+
+                // $table->foreignId('uploaded_by_user_id')
+                //    ->nullable()
+                // ->constrained('users')
+                // ->nullOnDelete()
+                // ->cascadeOnUpdate()
+
+                $table->foreignUuid('uploaded_by_user_id')->nullable();
+                $table->string('caption')->nullable();
+                $table->string('alt_text')->nullable();
+                $table->integer('order_column')->nullable();
+                $this->timestamps($table);
             }
         );
 

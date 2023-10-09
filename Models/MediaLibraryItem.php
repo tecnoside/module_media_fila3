@@ -48,4 +48,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class MediaLibraryItem extends BaseMediaLibraryItem implements Sortable
 {
     use SortableTrait;
+
+    protected $table = 'media_library_items';
 }
