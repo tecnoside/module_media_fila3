@@ -68,6 +68,7 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
                 }
                 if (! $this->hasColumn('folder_id')) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $table->foreignId('folder_id')->nullable()->after('alt_text');
                     // ->constrained('filament_media_library_folders');
 =======
@@ -75,6 +76,10 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
                         // ->constrained('filament_media_library_folders');
                     ;
 >>>>>>> 0f96da5 (.)
+=======
+                    $table->foreignId('folder_id')->nullable()->after('alt_text');
+                    // ->constrained('filament_media_library_folders');
+>>>>>>> bfbc13edd8cd778c6d05c5f3ad578f59624ab6d2
                 }
             }
         );
