@@ -24,3 +24,13 @@ Homestead.json
 .git-rewrite
 .git-blame-ignore-revs
 .git-rewrite
+.git-blame-ignore-revs
+/vendor
+*.lock
+composer.lock
+package-lock.json
+.php-cs-fixer.cache
+*.cache
+.git-blame-ignore-revs
+.git-rewrite
+
