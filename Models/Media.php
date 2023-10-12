@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,7 +36,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null          $created_by
  * @property string|null          $updated_by
  * @property int                  $user_id
- * @property Model|Eloquent      $model
+ * @property Model|\Eloquent      $model
  * @property TemporaryUpload|null $temporaryUpload
  *
  * @method static MediaCollection<int, static> all($columns = ['*'])
