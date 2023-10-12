@@ -47,19 +47,8 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
                     $table->integer('order_column')->nullable();
                 }
                 if (! $this->hasColumn('folder_id')) {
-<<<<<<< HEAD
-<<<<<<< HEAD:Database/Migrations/2021_01_01_000006_create_media_library_items_table.php
                     $table->foreignId('folder_id')->nullable()->after('alt_text');
                     // ->constrained('filament_media_library_folders');
-=======
-                    $table->foreignId('folder_id')->nullable()->after('alt_text')
-                        // ->constrained('filament_media_library_folders');
-                    ;
->>>>>>> 6de5f29 (.):Database/Migrations/2021_01_01_000005_create_media_library_items_table.php
-=======
-                    $table->foreignId('folder_id')->nullable()->after('alt_text');
-                    // ->constrained('filament_media_library_folders');
->>>>>>> 59c1db1 (Dusting)
                 }
             }
         );
