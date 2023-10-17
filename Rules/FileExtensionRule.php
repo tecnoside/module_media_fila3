@@ -7,6 +7,11 @@ namespace Modules\Media\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\UploadedFile;
 
+<<<<<<< HEAD
+=======
+use function in_array;
+
+>>>>>>> 49d7c0c (first)
 class FileExtensionRule implements Rule
 {
     protected array $validExtensions = [];
@@ -20,12 +25,21 @@ class FileExtensionRule implements Rule
     }
 
     /**
+<<<<<<< HEAD
      * @param string       $attribute
      * @param UploadedFile $value
      */
     public function passes($attribute, $value): bool
     {
         return \in_array(
+=======
+     * @param  string  $attribute
+     * @param  UploadedFile  $value
+     */
+    public function passes($attribute, $value): bool
+    {
+        return in_array(
+>>>>>>> 49d7c0c (first)
             strtolower($value->getClientOriginalExtension()),
             $this->validExtensions,
             strict: true,

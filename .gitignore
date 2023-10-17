@@ -24,6 +24,7 @@ Homestead.json
 .git-rewrite
 .git-blame-ignore-revs
 .git-rewrite
+<<<<<<< HEAD
 .git-blame-ignore-revs
 /vendor
 *.lock
@@ -35,3 +36,5 @@ package-lock.json
 .git-rewrite
 
 .git-blame-ignore-revs
+=======
+>>>>>>> 49d7c0c (first)

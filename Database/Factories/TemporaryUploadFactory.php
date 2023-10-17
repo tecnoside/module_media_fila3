@@ -16,7 +16,11 @@ class TemporaryUploadFactory
 
     public static function new(): self
     {
+<<<<<<< HEAD
         return new static();
+=======
+        return new static;
+>>>>>>> 49d7c0c (first)
     }
 
     public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self

@@ -24,8 +24,13 @@ class UploadRequest extends FormRequest
             'name' => '',
             'custom_properties' => '',
             'file' => [
+<<<<<<< HEAD
                 'max:'.config('media-library.max_file_size') / 1024,
                 'mimes:'.$allowedExtensionsString,
+=======
+                'max:' . config('media-library.max_file_size') / 1024,
+                'mimes:' . $allowedExtensionsString,
+>>>>>>> 49d7c0c (first)
                 new FileExtensionRule($allowedExtensions),
             ],
         ];
@@ -43,7 +48,11 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> 49d7c0c (first)
 
         if ('default' === $mediaModel->getConnectionName()) {
             return '';
@@ -57,7 +66,11 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> 49d7c0c (first)
 
         return $mediaModel->getTable();
     }

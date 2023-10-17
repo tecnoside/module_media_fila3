@@ -19,7 +19,11 @@ class PendingMediaFactory
 
     public function create(array $attributes = []): PendingMediaItem
     {
+<<<<<<< HEAD
         $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
+=======
+        $temporaryUpload = (new TemporaryUploadFactory)->create($this->temporaryUploadAttributes);
+>>>>>>> 49d7c0c (first)
 
         return new PendingMediaItem(
             $temporaryUpload->getFirstMedia()->uuid,

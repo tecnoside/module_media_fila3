@@ -10,6 +10,11 @@ use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
 use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
+<<<<<<< HEAD
+=======
+use function is_string;
+
+>>>>>>> 49d7c0c (first)
 /** @var FormRequest $this */
 trait ValidatesMedia
 {
@@ -56,14 +61,22 @@ trait ValidatesMedia
         foreach ($allAttributeRules as $attribute => $attributeRules) {
             $remainingRules[$attribute] = [];
 
+<<<<<<< HEAD
             if (\is_string($attributeRules)) {
+=======
+            if (is_string($attributeRules)) {
+>>>>>>> 49d7c0c (first)
                 $remainingRules[$attribute] = $allAttributeRules;
 
                 continue;
             }
 
             foreach ($attributeRules as $attributeRule) {
+<<<<<<< HEAD
                 if (\is_string($attributeRule)) {
+=======
+                if (is_string($attributeRule)) {
+>>>>>>> 49d7c0c (first)
                     $remainingRules[$attribute][] = $attributeRule;
                 } elseif ($attributeRule instanceof UploadedMediaRules) {
                     foreach ($attributeRule->groupRules as $groupRule) {
@@ -83,7 +96,11 @@ trait ValidatesMedia
                 }
 
                 $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
+<<<<<<< HEAD
                     if (\is_string($attributeRule)) {
+=======
+                    if (is_string($attributeRule)) {
+>>>>>>> 49d7c0c (first)
                         return false;
                     }
 
@@ -105,11 +122,19 @@ trait ValidatesMedia
 
     protected function validateSingleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
         return (new UploadedMediaRules())->maxItems(1);
+=======
+        return (new UploadedMediaRules)->maxItems(1);
+>>>>>>> 49d7c0c (first)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
         return new UploadedMediaRules();
+=======
+        return new UploadedMediaRules;
+>>>>>>> 49d7c0c (first)
     }
 }
