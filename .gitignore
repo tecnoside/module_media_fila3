@@ -36,5 +36,9 @@ package-lock.json
 .git-rewrite
 
 .git-blame-ignore-revs
+<<<<<<< HEAD
 =======
 >>>>>>> 49d7c0c (first)
+=======
+.git-blame-ignore-revs
+>>>>>>> master
