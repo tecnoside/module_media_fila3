@@ -5,6 +5,11 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Carbon\Carbon;
+<<<<<<< HEAD
+=======
+use Closure;
+use Exception;
+>>>>>>> 49d7c0c (first)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -16,18 +21,31 @@ use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
+<<<<<<< HEAD
+=======
+use function is_string;
+
+>>>>>>> 49d7c0c (first)
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use MassPrunable;
 
+<<<<<<< HEAD
     public static ?\Closure $manipulatePreview = null;
+=======
+    public static ?Closure $manipulatePreview = null;
+>>>>>>> 49d7c0c (first)
 
     public static ?string $disk = null;
 
     protected $guarded = [];
 
+<<<<<<< HEAD
     public static function previewManipulation(\Closure $closure): void
+=======
+    public static function previewManipulation(Closure $closure): void
+>>>>>>> 49d7c0c (first)
     {
         static::$manipulatePreview = $closure;
     }
@@ -124,10 +142,17 @@ class TemporaryUpload extends Model implements HasMedia
     protected static function getDiskName(): string
     {
         $res = static::$disk ?? config('media-library.disk_name');
+<<<<<<< HEAD
         if (\is_string($res)) {
             return $res;
         }
         throw new \Exception('['.__LINE__.']['.__FILE__.']');
+=======
+        if (is_string($res)) {
+            return $res;
+        }
+        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+>>>>>>> 49d7c0c (first)
     }
 
     public function scopeOld(Builder $builder): void
@@ -159,7 +184,11 @@ class TemporaryUpload extends Model implements HasMedia
         $media = $this->getFirstMedia();
 
         if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
+<<<<<<< HEAD
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
+=======
+            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+>>>>>>> 49d7c0c (first)
         }
 
         $temporaryUploadModel = $media->model;
@@ -179,7 +208,11 @@ class TemporaryUpload extends Model implements HasMedia
         return self::query()->old();
     }
 
+<<<<<<< HEAD
     protected function getPreviewManipulation(): \Closure
+=======
+    protected function getPreviewManipulation(): Closure
+>>>>>>> 49d7c0c (first)
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);

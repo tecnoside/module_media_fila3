@@ -6,6 +6,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
+<<<<<<< HEAD
+=======
+use Exception;
+>>>>>>> 49d7c0c (first)
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -54,8 +58,13 @@ class GetVideoScreenshotAction
         }
 
         if (null === $file_jpg) {
+<<<<<<< HEAD
             $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg).'.jpg';
+=======
+            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
+            $file_jpg = Str::slug($file_jpg) . '.jpg';
+>>>>>>> 49d7c0c (first)
         }
 
         try {
@@ -65,7 +74,11 @@ class GetVideoScreenshotAction
                 ->export()
                 ->toDisk($disk_jpg)
                 ->save($file_jpg);
+<<<<<<< HEAD
         } catch (\Exception $e) {
+=======
+        } catch (Exception $e) {
+>>>>>>> 49d7c0c (first)
             // dddx($e->getMessage());
             return [
                 'message' => $e->getMessage(),

@@ -4,7 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Media\Exceptions;
 
+<<<<<<< HEAD
 class TemporaryUploadDoesNotBelongToCurrentSession extends \Exception
+=======
+use Exception;
+
+class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
+>>>>>>> 49d7c0c (first)
 {
     public static function create(): self
     {

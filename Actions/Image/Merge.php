@@ -8,6 +8,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions\Image;
 
+<<<<<<< HEAD
+=======
+use Exception;
+>>>>>>> 49d7c0c (first)
 use Intervention\Image\Facades\Image;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -38,7 +42,11 @@ class Merge
         }
 
         if (! is_numeric($width) || ! is_numeric($height)) {
+<<<<<<< HEAD
             throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+=======
+            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
+>>>>>>> 49d7c0c (first)
         }
 
         $width = (int) $width;
@@ -50,6 +58,10 @@ class Merge
             $delta += $img->width();
         }
 
+<<<<<<< HEAD
         $img_canvas->save(public_path().'/'.$filenameOut, 100);
+=======
+        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
+>>>>>>> 49d7c0c (first)
     }
 }
