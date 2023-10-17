@@ -32,6 +32,7 @@ class ConvertLivewireUploadToMediaAction
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
 =======
         return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
@@ -51,6 +52,9 @@ class ConvertLivewireUploadToMediaAction
 =======
         return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
 >>>>>>> ca4973d (Dusting)
+=======
+        return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
+>>>>>>> 93f1e9f (Check & fix styling)
     }
 
     protected function createFromLocalLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
@@ -84,6 +88,7 @@ class ConvertLivewireUploadToMediaAction
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
 =======
         $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
@@ -103,6 +108,9 @@ class ConvertLivewireUploadToMediaAction
 =======
         $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
 >>>>>>> ca4973d (Dusting)
+=======
+        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
+>>>>>>> 93f1e9f (Check & fix styling)
 
         $temporaryUpload = $temporaryUploadModelClass::createForRemoteFile(
             $remotePath,

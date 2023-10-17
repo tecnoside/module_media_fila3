@@ -10,6 +10,7 @@ namespace Modules\Media\Handlers;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Closure;
 >>>>>>> 49d7c0c (first)
@@ -26,6 +27,8 @@ use Closure;
 =======
 use Closure;
 >>>>>>> ca4973d (Dusting)
+=======
+>>>>>>> 93f1e9f (Check & fix styling)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -38,6 +41,7 @@ use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -58,6 +62,8 @@ use function is_string;
 use function is_string;
 
 >>>>>>> ca4973d (Dusting)
+=======
+>>>>>>> 93f1e9f (Check & fix styling)
 class PendingMediaLibraryRequestHandler
 {
     protected Collection $mediaLibraryRequestItems;
@@ -79,6 +85,7 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string|callable $mediaName
      */
     public function usingName($mediaName): self
@@ -126,6 +133,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (is_string($mediaName)) {
 >>>>>>> ca4973d (Dusting)
+=======
+     * @param string|callable $mediaName
+     */
+    public function usingName($mediaName): self
+    {
+        if (\is_string($mediaName)) {
+>>>>>>> 93f1e9f (Check & fix styling)
             return $this->usingName(fn (): string => $mediaName);
         }
 
@@ -149,6 +163,7 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string|\Closure $fileName
      */
     public function usingFileName($fileName): self
@@ -196,6 +211,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (is_string($fileName)) {
 >>>>>>> ca4973d (Dusting)
+=======
+     * @param string|\Closure $fileName
+     */
+    public function usingFileName($fileName): self
+    {
+        if (\is_string($fileName)) {
+>>>>>>> 93f1e9f (Check & fix styling)
             return $this->usingFileName(fn (): string => $fileName);
         }
 

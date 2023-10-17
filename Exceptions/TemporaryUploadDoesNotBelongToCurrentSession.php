@@ -10,6 +10,7 @@ namespace Modules\Media\Exceptions;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 class TemporaryUploadDoesNotBelongToCurrentSession extends \Exception
 =======
 use Exception;
@@ -37,6 +38,9 @@ use Exception;
 
 class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
 >>>>>>> ca4973d (Dusting)
+=======
+class TemporaryUploadDoesNotBelongToCurrentSession extends \Exception
+>>>>>>> 93f1e9f (Check & fix styling)
 {
     public static function create(): self
     {

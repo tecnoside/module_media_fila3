@@ -28,6 +28,7 @@ class DeleteTemporaryUploadsCommand extends Command
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->comment($temporaryUploads->count().' old temporary upload(s) deleted!');
 =======
         $this->comment($temporaryUploads->count() . ' old temporary upload(s) deleted!');
@@ -47,5 +48,8 @@ class DeleteTemporaryUploadsCommand extends Command
 =======
         $this->comment($temporaryUploads->count() . ' old temporary upload(s) deleted!');
 >>>>>>> ca4973d (Dusting)
+=======
+        $this->comment($temporaryUploads->count().' old temporary upload(s) deleted!');
+>>>>>>> 93f1e9f (Check & fix styling)
     }
 }
