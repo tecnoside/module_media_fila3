@@ -27,6 +27,7 @@ class MediaVideoImgController extends Controller
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $cache_key = Str::slug($disk.'-'.$file.'-'.$second);
 =======
         $cache_key = Str::slug($disk . '-' . $file . '-' . $second);
@@ -49,6 +50,9 @@ class MediaVideoImgController extends Controller
 =======
         $cache_key = Str::slug($disk.'-'.$file.'-'.$second);
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+        $cache_key = Str::slug($disk . '-' . $file . '-' . $second);
+>>>>>>> cafc8d1 (Dusting)
         $bin = Cache::rememberForever($cache_key, fn () => app(GetVideoFrameContentAction::class)->execute($disk, $file, $second));
         /*
         $res = Response::make(Image::cache(function ($image) use ($binaryImageContent) {

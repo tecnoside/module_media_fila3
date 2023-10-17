@@ -15,6 +15,7 @@ use Modules\Media\Request\UploadRequest;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Throwable;
 >>>>>>> 49d7c0c (first)
@@ -33,6 +34,9 @@ use Throwable;
 >>>>>>> ca4973d (Dusting)
 =======
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+use Throwable;
+>>>>>>> cafc8d1 (Dusting)
 
 class MediaLibraryUploadController
 {
@@ -54,6 +58,7 @@ class MediaLibraryUploadController
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         } catch (\Throwable $exception) {
 =======
         } catch (Throwable $exception) {
@@ -76,6 +81,9 @@ class MediaLibraryUploadController
 =======
         } catch (\Throwable $exception) {
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+        } catch (Throwable $exception) {
+>>>>>>> cafc8d1 (Dusting)
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();

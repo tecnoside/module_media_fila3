@@ -15,6 +15,7 @@ namespace Modules\Media\Actions\Image;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Exception;
 >>>>>>> 49d7c0c (first)
@@ -33,6 +34,9 @@ use Exception;
 >>>>>>> ca4973d (Dusting)
 =======
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+use Exception;
+>>>>>>> cafc8d1 (Dusting)
 use Intervention\Image\Facades\Image;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -70,6 +74,7 @@ class Merge
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
 =======
             throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
@@ -92,6 +97,9 @@ class Merge
 =======
             throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
+>>>>>>> cafc8d1 (Dusting)
         }
 
         $width = (int) $width;
@@ -110,6 +118,7 @@ class Merge
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $img_canvas->save(public_path().'/'.$filenameOut, 100);
 =======
         $img_canvas->save(public_path() . '/' . $filenameOut, 100);
@@ -132,5 +141,8 @@ class Merge
 =======
         $img_canvas->save(public_path().'/'.$filenameOut, 100);
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
+>>>>>>> cafc8d1 (Dusting)
     }
 }
