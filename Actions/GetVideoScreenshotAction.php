@@ -8,12 +8,15 @@ namespace Modules\Media\Actions;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Exception;
 >>>>>>> 49d7c0c (first)
 =======
 use Exception;
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -64,6 +67,7 @@ class GetVideoScreenshotAction
         if (null === $file_jpg) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg).'.jpg';
 =======
@@ -74,6 +78,10 @@ class GetVideoScreenshotAction
             $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg) . '.jpg';
 >>>>>>> master
+=======
+            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
+            $file_jpg = Str::slug($file_jpg).'.jpg';
+>>>>>>> ed2c51e (Check & fix styling)
         }
 
         try {
@@ -85,6 +93,7 @@ class GetVideoScreenshotAction
                 ->save($file_jpg);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         } catch (\Exception $e) {
 =======
         } catch (Exception $e) {
@@ -92,6 +101,9 @@ class GetVideoScreenshotAction
 =======
         } catch (Exception $e) {
 >>>>>>> master
+=======
+        } catch (\Exception $e) {
+>>>>>>> ed2c51e (Check & fix styling)
             // dddx($e->getMessage());
             return [
                 'message' => $e->getMessage(),

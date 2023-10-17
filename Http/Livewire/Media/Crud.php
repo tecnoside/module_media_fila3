@@ -44,6 +44,7 @@ class Crud extends Component
         foreach ($this->upload as $attachment) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ++$order;
 =======
             $order++;
@@ -51,6 +52,9 @@ class Crud extends Component
 =======
             $order++;
 >>>>>>> master
+=======
+            ++$order;
+>>>>>>> ed2c51e (Check & fix styling)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if ($temporaryUpload instanceof TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();
