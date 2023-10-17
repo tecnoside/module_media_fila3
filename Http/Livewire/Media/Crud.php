@@ -50,6 +50,7 @@ class Crud extends Component
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ++$order;
 =======
             $order++;
@@ -75,6 +76,9 @@ class Crud extends Component
 =======
             $order++;
 >>>>>>> cafc8d1 (Dusting)
+=======
+            ++$order;
+>>>>>>> c47cbe6 (Check & fix styling)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if ($temporaryUpload instanceof TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();

@@ -42,6 +42,7 @@ class AttachMediaAction
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ++$order;
 =======
             $order++;
@@ -67,6 +68,9 @@ class AttachMediaAction
 =======
             $order++;
 >>>>>>> cafc8d1 (Dusting)
+=======
+            ++$order;
+>>>>>>> c47cbe6 (Check & fix styling)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
 
             if ($temporaryUpload instanceof TemporaryUpload) {
