@@ -49,6 +49,7 @@ class MediaLibraryPostS3Controller
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
 =======
             $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
@@ -59,6 +60,9 @@ class MediaLibraryPostS3Controller
 =======
             $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
+>>>>>>> 0d0c96c (Dusting)
         );
 
         $fileManipulator->createDerivedFiles($media);
