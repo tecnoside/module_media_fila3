@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Eloquent;
 >>>>>>> 49d7c0c (first)
+=======
+use Eloquent;
+>>>>>>> master
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -41,10 +45,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null          $updated_by
  * @property int                  $user_id
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @property Model|\Eloquent      $model
 =======
  * @property Model|Eloquent      $model
 >>>>>>> 49d7c0c (first)
+=======
+ * @property Model|Eloquent      $model
+>>>>>>> master
  * @property TemporaryUpload|null $temporaryUpload
  *
  * @method static MediaCollection<int, static> all($columns = ['*'])

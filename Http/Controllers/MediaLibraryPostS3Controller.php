@@ -47,10 +47,14 @@ class MediaLibraryPostS3Controller
         Storage::disk($diskName)->copy(
             $createTemporaryUploadFromDirectS3UploadRequest->key,
 <<<<<<< HEAD
+<<<<<<< HEAD
             $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
 =======
             $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
 >>>>>>> 49d7c0c (first)
+=======
+            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
+>>>>>>> master
         );
 
         $fileManipulator->createDerivedFiles($media);
