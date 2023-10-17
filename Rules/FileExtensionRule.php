@@ -15,6 +15,7 @@ use Illuminate\Http\UploadedFile;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function in_array;
 
@@ -41,6 +42,8 @@ use function in_array;
 use function in_array;
 
 >>>>>>> cafc8d1 (Dusting)
+=======
+>>>>>>> c47cbe6 (Check & fix styling)
 class FileExtensionRule implements Rule
 {
     protected array $validExtensions = [];
@@ -62,6 +65,7 @@ class FileExtensionRule implements Rule
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string       $attribute
      * @param UploadedFile $value
      */
@@ -132,6 +136,14 @@ class FileExtensionRule implements Rule
     {
         return in_array(
 >>>>>>> cafc8d1 (Dusting)
+=======
+     * @param string       $attribute
+     * @param UploadedFile $value
+     */
+    public function passes($attribute, $value): bool
+    {
+        return \in_array(
+>>>>>>> c47cbe6 (Check & fix styling)
             strtolower($value->getClientOriginalExtension()),
             $this->validExtensions,
             strict: true,

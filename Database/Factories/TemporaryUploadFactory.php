@@ -24,6 +24,7 @@ class TemporaryUploadFactory
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return new static();
 =======
         return new static;
@@ -49,6 +50,9 @@ class TemporaryUploadFactory
 =======
         return new static;
 >>>>>>> cafc8d1 (Dusting)
+=======
+        return new static();
+>>>>>>> c47cbe6 (Check & fix styling)
     }
 
     public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self
