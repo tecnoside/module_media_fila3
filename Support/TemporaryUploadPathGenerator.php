@@ -16,6 +16,7 @@ class TemporaryUploadPathGenerator implements PathGenerator
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
 =======
         return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'original') . '/';
@@ -32,6 +33,9 @@ class TemporaryUploadPathGenerator implements PathGenerator
 =======
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
 >>>>>>> a4cf9d3 (Check & fix styling)
+=======
+        return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'original') . '/';
+>>>>>>> ca4973d (Dusting)
     }
 
     public function getPathForConversions(Media $media): string
@@ -41,6 +45,7 @@ class TemporaryUploadPathGenerator implements PathGenerator
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'conversion');
 =======
         return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'conversion');
@@ -57,6 +62,9 @@ class TemporaryUploadPathGenerator implements PathGenerator
 =======
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'conversion');
 >>>>>>> a4cf9d3 (Check & fix styling)
+=======
+        return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'conversion');
+>>>>>>> ca4973d (Dusting)
     }
 
     public function getPathForResponsiveImages(Media $media): string
@@ -66,6 +74,7 @@ class TemporaryUploadPathGenerator implements PathGenerator
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'responsive');
 =======
         return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'responsive');
@@ -82,6 +91,9 @@ class TemporaryUploadPathGenerator implements PathGenerator
 =======
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'responsive');
 >>>>>>> a4cf9d3 (Check & fix styling)
+=======
+        return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'responsive');
+>>>>>>> ca4973d (Dusting)
     }
 
     /*
@@ -96,6 +108,7 @@ class TemporaryUploadPathGenerator implements PathGenerator
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $key = md5($media->uuid.$media->getKey());
 
         if ('' !== $prefix) {
@@ -130,6 +143,12 @@ class TemporaryUploadPathGenerator implements PathGenerator
         if ('' !== $prefix) {
             return $prefix.'/'.$key;
 >>>>>>> a4cf9d3 (Check & fix styling)
+=======
+        $key = md5($media->uuid . $media->getKey());
+
+        if ('' !== $prefix) {
+            return $prefix . '/' . $key;
+>>>>>>> ca4973d (Dusting)
         }
 
         return $key;
