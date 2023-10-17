@@ -8,6 +8,7 @@ namespace Modules\Media\Dto;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Exception;
 >>>>>>> 49d7c0c (first)
@@ -19,6 +20,8 @@ use Exception;
 =======
 use Exception;
 >>>>>>> 0d0c96c (Dusting)
+=======
+>>>>>>> a4cf9d3 (Check & fix styling)
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
@@ -42,6 +45,7 @@ class PendingMediaItem
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('invalid uuid');
 =======
             throw new Exception('invalid uuid');
@@ -55,6 +59,9 @@ class PendingMediaItem
 =======
             throw new Exception('invalid uuid');
 >>>>>>> 0d0c96c (Dusting)
+=======
+            throw new \Exception('invalid uuid');
+>>>>>>> a4cf9d3 (Check & fix styling)
         }
 
         $this->temporaryUpload = $temporaryUpload;

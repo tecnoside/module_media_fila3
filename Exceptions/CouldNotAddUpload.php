@@ -8,6 +8,7 @@ namespace Modules\Media\Exceptions;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 class CouldNotAddUpload extends \Exception
 =======
 use Exception;
@@ -27,6 +28,9 @@ use Exception;
 
 class CouldNotAddUpload extends Exception
 >>>>>>> 0d0c96c (Dusting)
+=======
+class CouldNotAddUpload extends \Exception
+>>>>>>> a4cf9d3 (Check & fix styling)
 {
     public static function uuidAlreadyExists(): static
     {
