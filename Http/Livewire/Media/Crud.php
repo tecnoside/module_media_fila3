@@ -42,47 +42,7 @@ class Crud extends Component
     {
         $order = 1;
         foreach ($this->upload as $attachment) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ++$order;
-=======
             $order++;
->>>>>>> 49d7c0c (first)
-=======
-            $order++;
->>>>>>> master
-=======
-            ++$order;
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            $order++;
->>>>>>> 0d0c96c (Dusting)
-=======
-            ++$order;
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            $order++;
->>>>>>> ca4973d (Dusting)
-=======
-            ++$order;
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            $order++;
->>>>>>> cafc8d1 (Dusting)
-=======
-            ++$order;
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            $order++;
->>>>>>> 214f9b0 (Dusting)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
             if ($temporaryUpload instanceof TemporaryUpload) {
                 // $media = $temporaryUpload->getFirstMedia();

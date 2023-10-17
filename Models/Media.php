@@ -4,42 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use Eloquent;
->>>>>>> 49d7c0c (first)
-=======
-use Eloquent;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Eloquent;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Eloquent;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Eloquent;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Eloquent;
->>>>>>> 214f9b0 (Dusting)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -72,47 +37,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null          $created_by
  * @property string|null          $updated_by
  * @property int                  $user_id
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
- * @property Model|\Eloquent      $model
-=======
  * @property Model|Eloquent      $model
->>>>>>> 49d7c0c (first)
-=======
- * @property Model|Eloquent      $model
->>>>>>> master
-=======
- * @property Model|\Eloquent      $model
->>>>>>> ed2c51e (Check & fix styling)
-=======
- * @property Model|Eloquent      $model
->>>>>>> 0d0c96c (Dusting)
-=======
- * @property Model|\Eloquent      $model
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
- * @property Model|Eloquent      $model
->>>>>>> ca4973d (Dusting)
-=======
- * @property Model|\Eloquent      $model
->>>>>>> 93f1e9f (Check & fix styling)
-=======
- * @property Model|Eloquent      $model
->>>>>>> cafc8d1 (Dusting)
-=======
- * @property Model|\Eloquent      $model
->>>>>>> c47cbe6 (Check & fix styling)
-=======
- * @property Model|Eloquent      $model
->>>>>>> 214f9b0 (Dusting)
  * @property TemporaryUpload|null $temporaryUpload
  *
  * @method static MediaCollection<int, static> all($columns = ['*'])

@@ -8,54 +8,10 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 use SimpleXMLElement;
 
 use function count;
->>>>>>> 49d7c0c (first)
-=======
-use SimpleXMLElement;
-
-use function count;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use SimpleXMLElement;
-
-use function count;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use SimpleXMLElement;
-
-use function count;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use SimpleXMLElement;
-
-use function count;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use SimpleXMLElement;
-
-use function count;
->>>>>>> 214f9b0 (Dusting)
 
 /**
  * SubtitleService.
@@ -80,47 +36,8 @@ class SubtitleService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Media\Services\SubtitleService) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            self::$instance = new self();
-=======
+
             self::$instance = new self;
->>>>>>> 49d7c0c (first)
-=======
-            self::$instance = new self;
->>>>>>> master
-=======
-            self::$instance = new self();
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            self::$instance = new self;
->>>>>>> 0d0c96c (Dusting)
-=======
-            self::$instance = new self();
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            self::$instance = new self;
->>>>>>> ca4973d (Dusting)
-=======
-            self::$instance = new self();
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            self::$instance = new self;
->>>>>>> cafc8d1 (Dusting)
-=======
-            self::$instance = new self();
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            self::$instance = new self;
->>>>>>> 214f9b0 (Dusting)
         }
 
         return self::$instance;
@@ -176,47 +93,8 @@ class SubtitleService
         $txt = '';
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                $txt .= $item->__toString().' ';
-=======
+
                 $txt .= $item->__toString() . ' ';
->>>>>>> 49d7c0c (first)
-=======
-                $txt .= $item->__toString() . ' ';
->>>>>>> master
-=======
-                $txt .= $item->__toString().' ';
->>>>>>> ed2c51e (Check & fix styling)
-=======
-                $txt .= $item->__toString() . ' ';
->>>>>>> 0d0c96c (Dusting)
-=======
-                $txt .= $item->__toString().' ';
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-                $txt .= $item->__toString() . ' ';
->>>>>>> ca4973d (Dusting)
-=======
-                $txt .= $item->__toString().' ';
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-                $txt .= $item->__toString() . ' ';
->>>>>>> cafc8d1 (Dusting)
-=======
-                $txt .= $item->__toString().' ';
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-                $txt .= $item->__toString() . ' ';
->>>>>>> 214f9b0 (Dusting)
             }
         }
 
@@ -232,47 +110,8 @@ class SubtitleService
         if (! isset($info['extension'])) {
             return [];
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $func = 'getFrom'.Str::studly($info['extension']);
-=======
+
         $func = 'getFrom' . Str::studly($info['extension']);
->>>>>>> 49d7c0c (first)
-=======
-        $func = 'getFrom' . Str::studly($info['extension']);
->>>>>>> master
-=======
-        $func = 'getFrom'.Str::studly($info['extension']);
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $func = 'getFrom' . Str::studly($info['extension']);
->>>>>>> 0d0c96c (Dusting)
-=======
-        $func = 'getFrom'.Str::studly($info['extension']);
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $func = 'getFrom' . Str::studly($info['extension']);
->>>>>>> ca4973d (Dusting)
-=======
-        $func = 'getFrom'.Str::studly($info['extension']);
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $func = 'getFrom' . Str::studly($info['extension']);
->>>>>>> cafc8d1 (Dusting)
-=======
-        $func = 'getFrom'.Str::studly($info['extension']);
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $func = 'getFrom' . Str::studly($info['extension']);
->>>>>>> 214f9b0 (Dusting)
 
         return $this->{$func}();
     }
@@ -304,47 +143,8 @@ class SubtitleService
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
         if (false === $xmlObject) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
-=======
+
             throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 49d7c0c (first)
-=======
-            throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> master
-=======
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 0d0c96c (Dusting)
-=======
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> ca4973d (Dusting)
-=======
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> cafc8d1 (Dusting)
-=======
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 214f9b0 (Dusting)
         }
 
         $data = [];
@@ -353,58 +153,9 @@ class SubtitleService
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if (! $attributes instanceof \SimpleXMLElement) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
-=======
+
                 if (! $attributes instanceof SimpleXMLElement) {
                     throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 49d7c0c (first)
-=======
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> master
-=======
-                if (! $attributes instanceof \SimpleXMLElement) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 0d0c96c (Dusting)
-=======
-                if (! $attributes instanceof \SimpleXMLElement) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> ca4973d (Dusting)
-=======
-                if (! $attributes instanceof \SimpleXMLElement) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> cafc8d1 (Dusting)
-=======
-                if (! $attributes instanceof \SimpleXMLElement) {
-                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 214f9b0 (Dusting)
                 }
                 // 00:06:35,360
                 $start = (int) $attributes->start->__toString() / 1000;
@@ -416,95 +167,14 @@ class SubtitleService
                     'item_i' => $item_i,
                     'start' => $start,
                     'end' => $end,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    'time' => secondsToHms($start).','.secondsToHms($end),
-=======
                     'time' => secondsToHms($start) . ',' . secondsToHms($end),
->>>>>>> master
-=======
-                    'time' => secondsToHms($start).','.secondsToHms($end),
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-                    'time' => secondsToHms($start) . ',' . secondsToHms($end),
->>>>>>> ca4973d (Dusting)
-=======
-                    'time' => secondsToHms($start).','.secondsToHms($end),
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-                    'time' => secondsToHms($start) . ',' . secondsToHms($end),
->>>>>>> cafc8d1 (Dusting)
-=======
-                    'time' => secondsToHms($start).','.secondsToHms($end),
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-                    'time' => secondsToHms($start) . ',' . secondsToHms($end),
->>>>>>> 214f9b0 (Dusting)
                     'text' => $item->__toString(),
                 ];
                 $data[] = $tmp;
                 $item_i++;
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ++$sentence_i;
-=======
-                    'time' => secondsToHms($start) . ',' . secondsToHms($end),
-=======
-                    'time' => secondsToHms($start).','.secondsToHms($end),
->>>>>>> ed2c51e (Check & fix styling)
-=======
-                    'time' => secondsToHms($start) . ',' . secondsToHms($end),
->>>>>>> 0d0c96c (Dusting)
-                    'text' => $item->__toString(),
-                ];
-                $data[] = $tmp;
-                $item_i++;
-            }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             $sentence_i++;
->>>>>>> 49d7c0c (first)
-=======
-            $sentence_i++;
->>>>>>> master
-=======
-            ++$sentence_i;
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            $sentence_i++;
->>>>>>> 0d0c96c (Dusting)
-=======
-            ++$sentence_i;
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            $sentence_i++;
->>>>>>> ca4973d (Dusting)
-=======
-            ++$sentence_i;
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            $sentence_i++;
->>>>>>> cafc8d1 (Dusting)
-=======
-            ++$sentence_i;
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            $sentence_i++;
->>>>>>> 214f9b0 (Dusting)
         }
 
         return $data;
@@ -513,58 +183,9 @@ class SubtitleService
     /**
      * Undocumented function.
      *
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * @param string $srtFile
-     * @param string $webVttFile
-=======
+
      * @param  string  $srtFile
      * @param  string  $webVttFile
->>>>>>> 49d7c0c (first)
-=======
-     * @param  string  $srtFile
-     * @param  string  $webVttFile
->>>>>>> master
-=======
-     * @param string $srtFile
-     * @param string $webVttFile
->>>>>>> ed2c51e (Check & fix styling)
-=======
-     * @param  string  $srtFile
-     * @param  string  $webVttFile
->>>>>>> 0d0c96c (Dusting)
-=======
-     * @param string $srtFile
-     * @param string $webVttFile
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-     * @param  string  $srtFile
-     * @param  string  $webVttFile
->>>>>>> ca4973d (Dusting)
-=======
-     * @param string $srtFile
-     * @param string $webVttFile
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-     * @param  string  $srtFile
-     * @param  string  $webVttFile
->>>>>>> cafc8d1 (Dusting)
-=======
-     * @param string $srtFile
-     * @param string $webVttFile
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-     * @param  string  $srtFile
-     * @param  string  $webVttFile
->>>>>>> 214f9b0 (Dusting)
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {
@@ -581,103 +202,15 @@ class SubtitleService
             // ($fileHandle);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $length = \count($lines);
-        for ($index = 1; $index < $length; ++$index) {
-=======
+
         $length = count($lines);
         for ($index = 1; $index < $length; $index++) {
->>>>>>> 49d7c0c (first)
-=======
-        $length = count($lines);
-        for ($index = 1; $index < $length; $index++) {
->>>>>>> master
-=======
-        $length = \count($lines);
-        for ($index = 1; $index < $length; ++$index) {
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $length = count($lines);
-        for ($index = 1; $index < $length; $index++) {
->>>>>>> 0d0c96c (Dusting)
-=======
-        $length = \count($lines);
-        for ($index = 1; $index < $length; ++$index) {
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $length = count($lines);
-        for ($index = 1; $index < $length; $index++) {
->>>>>>> ca4973d (Dusting)
-=======
-        $length = \count($lines);
-        for ($index = 1; $index < $length; ++$index) {
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $length = count($lines);
-        for ($index = 1; $index < $length; $index++) {
->>>>>>> cafc8d1 (Dusting)
-=======
-        $length = \count($lines);
-        for ($index = 1; $index < $length; ++$index) {
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $length = count($lines);
-        for ($index = 1; $index < $length; $index++) {
->>>>>>> 214f9b0 (Dusting)
             if (1 === $index || '' === trim($lines[$index - 2])) {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }
         $header = "WEBVTT\n\n";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        file_put_contents(public_path($webVttFile), $header.implode('', $lines));
-=======
+
         file_put_contents(public_path($webVttFile), $header . implode('', $lines));
->>>>>>> 49d7c0c (first)
-=======
-        file_put_contents(public_path($webVttFile), $header . implode('', $lines));
->>>>>>> master
-=======
-        file_put_contents(public_path($webVttFile), $header.implode('', $lines));
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        file_put_contents(public_path($webVttFile), $header . implode('', $lines));
->>>>>>> 0d0c96c (Dusting)
-=======
-        file_put_contents(public_path($webVttFile), $header.implode('', $lines));
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        file_put_contents(public_path($webVttFile), $header . implode('', $lines));
->>>>>>> ca4973d (Dusting)
-=======
-        file_put_contents(public_path($webVttFile), $header.implode('', $lines));
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        file_put_contents(public_path($webVttFile), $header . implode('', $lines));
->>>>>>> cafc8d1 (Dusting)
-=======
-        file_put_contents(public_path($webVttFile), $header.implode('', $lines));
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        file_put_contents(public_path($webVttFile), $header . implode('', $lines));
->>>>>>> 214f9b0 (Dusting)
     }
 }

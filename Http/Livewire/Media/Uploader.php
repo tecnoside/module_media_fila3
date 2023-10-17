@@ -116,47 +116,7 @@ class Uploader extends Component
 
     protected function handleUpload(TemporaryUploadedFile $temporaryUploadedFile)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
-=======
         $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
->>>>>>> 49d7c0c (first)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
->>>>>>> master
-=======
-        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
->>>>>>> 0d0c96c (Dusting)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
->>>>>>> ca4973d (Dusting)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
->>>>>>> cafc8d1 (Dusting)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
->>>>>>> 214f9b0 (Dusting)
 
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
