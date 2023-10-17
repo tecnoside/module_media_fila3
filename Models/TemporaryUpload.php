@@ -7,6 +7,7 @@ namespace Modules\Media\Models;
 use Carbon\Carbon;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Closure;
 use Exception;
@@ -15,6 +16,8 @@ use Exception;
 use Closure;
 use Exception;
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +31,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -36,11 +40,14 @@ use function is_string;
 use function is_string;
 
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use MassPrunable;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     public static ?\Closure $manipulatePreview = null;
@@ -50,11 +57,15 @@ class TemporaryUpload extends Model implements HasMedia
 =======
     public static ?Closure $manipulatePreview = null;
 >>>>>>> master
+=======
+    public static ?\Closure $manipulatePreview = null;
+>>>>>>> ed2c51e (Check & fix styling)
 
     public static ?string $disk = null;
 
     protected $guarded = [];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     public static function previewManipulation(\Closure $closure): void
@@ -64,6 +75,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
     public static function previewManipulation(Closure $closure): void
 >>>>>>> master
+=======
+    public static function previewManipulation(\Closure $closure): void
+>>>>>>> ed2c51e (Check & fix styling)
     {
         static::$manipulatePreview = $closure;
     }
@@ -162,6 +176,7 @@ class TemporaryUpload extends Model implements HasMedia
         $res = static::$disk ?? config('media-library.disk_name');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (\is_string($res)) {
             return $res;
         }
@@ -178,6 +193,12 @@ class TemporaryUpload extends Model implements HasMedia
         }
         throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
 >>>>>>> master
+=======
+        if (\is_string($res)) {
+            return $res;
+        }
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> ed2c51e (Check & fix styling)
     }
 
     public function scopeOld(Builder $builder): void
@@ -211,6 +232,7 @@ class TemporaryUpload extends Model implements HasMedia
         if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
 =======
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
@@ -218,6 +240,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
 >>>>>>> master
+=======
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> ed2c51e (Check & fix styling)
         }
 
         $temporaryUploadModel = $media->model;
@@ -239,6 +264,7 @@ class TemporaryUpload extends Model implements HasMedia
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     protected function getPreviewManipulation(): \Closure
 =======
     protected function getPreviewManipulation(): Closure
@@ -246,6 +272,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
     protected function getPreviewManipulation(): Closure
 >>>>>>> master
+=======
+    protected function getPreviewManipulation(): \Closure
+>>>>>>> ed2c51e (Check & fix styling)
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);

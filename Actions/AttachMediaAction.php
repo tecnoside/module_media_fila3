@@ -36,6 +36,7 @@ class AttachMediaAction
         foreach ($attachments as $attachment) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ++$order;
 =======
             $order++;
@@ -43,6 +44,9 @@ class AttachMediaAction
 =======
             $order++;
 >>>>>>> master
+=======
+            ++$order;
+>>>>>>> ed2c51e (Check & fix styling)
             $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
 
             if ($temporaryUpload instanceof TemporaryUpload) {

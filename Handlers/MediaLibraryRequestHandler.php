@@ -6,12 +6,15 @@ namespace Modules\Media\Handlers;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Exception;
 >>>>>>> 49d7c0c (first)
 =======
 use Exception;
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -21,6 +24,7 @@ use Spatie\MediaLibrary\HasMedia;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function in_array;
 
@@ -29,6 +33,8 @@ use function in_array;
 use function in_array;
 
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 class MediaLibraryRequestHandler
 {
     protected array $existingUuids;
@@ -40,6 +46,7 @@ class MediaLibraryRequestHandler
         if (! $this->model instanceof HasMedia) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
 =======
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
@@ -47,6 +54,9 @@ class MediaLibraryRequestHandler
 =======
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
 >>>>>>> master
+=======
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> ed2c51e (Check & fix styling)
         }
 
         $this->existingUuids = $this->model->getMedia($collectionName)->pluck('uuid')->toArray();
@@ -83,6 +93,7 @@ class MediaLibraryRequestHandler
         $this->model->getMedia($this->collectionName)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ->reject(fn (Media $media): bool => \in_array($media->uuid, $keepUuids, true))
 =======
             ->reject(fn (Media $media): bool => in_array($media->uuid, $keepUuids, true))
@@ -90,6 +101,9 @@ class MediaLibraryRequestHandler
 =======
             ->reject(fn (Media $media): bool => in_array($media->uuid, $keepUuids, true))
 >>>>>>> master
+=======
+            ->reject(fn (Media $media): bool => \in_array($media->uuid, $keepUuids, true))
+>>>>>>> ed2c51e (Check & fix styling)
             ->each(fn (Media $media) => $media->delete());
 
         return $this;
@@ -116,6 +130,7 @@ class MediaLibraryRequestHandler
             ->collection
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             ->filter(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => \in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
 =======
             ->filter(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
@@ -123,12 +138,16 @@ class MediaLibraryRequestHandler
 =======
             ->filter(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
 >>>>>>> master
+=======
+            ->filter(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => \in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
+>>>>>>> ed2c51e (Check & fix styling)
     }
 
     protected function newMediaLibraryRequestItems(): Collection
     {
         return $this
             ->collection
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             ->reject(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => \in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
@@ -138,6 +157,9 @@ class MediaLibraryRequestHandler
 =======
             ->reject(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
 >>>>>>> master
+=======
+            ->reject(fn (MediaLibraryRequestItem $mediaLibraryRequestItem): bool => \in_array($mediaLibraryRequestItem->uuid, $this->existingUuids, true));
+>>>>>>> ed2c51e (Check & fix styling)
     }
 
     protected function handleExistingMediaLibraryRequestItem(MediaLibraryRequestItem $mediaLibraryRequestItem): void

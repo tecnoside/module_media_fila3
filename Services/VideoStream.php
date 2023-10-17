@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -27,6 +28,8 @@ use function is_string;
 use function is_string;
 
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 /**
  * Undocumented class.
  */
@@ -65,6 +68,7 @@ class VideoStream
         $mime = $filesystem->mimeType($path);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! \is_string($mime)) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
 =======
@@ -75,6 +79,10 @@ class VideoStream
         if (! is_string($mime)) {
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
 >>>>>>> master
+=======
+        if (! \is_string($mime)) {
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> ed2c51e (Check & fix styling)
         }
         $this->mime = $mime;
 
@@ -114,6 +122,7 @@ class VideoStream
         // header("Content-Type: video/mp4");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         header('Content-Type: '.$this->mime);
 
         header('Cache-Control: max-age=2592000, public');
@@ -130,6 +139,12 @@ class VideoStream
         header('Cache-Control: max-age=2592000, public');
         header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
 >>>>>>> master
+=======
+        header('Content-Type: '.$this->mime);
+
+        header('Cache-Control: max-age=2592000, public');
+        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
+>>>>>>> ed2c51e (Check & fix styling)
         /*
         $time=@filemtime($this->path);
         if($time==false){
@@ -139,6 +154,7 @@ class VideoStream
         */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
 =======
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
@@ -146,6 +162,9 @@ class VideoStream
 =======
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
 >>>>>>> master
+=======
+        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
+>>>>>>> ed2c51e (Check & fix styling)
         $this->start = 0;
         /*
         $size=filesize($this->path);
@@ -157,6 +176,7 @@ class VideoStream
         $this->end = $this->size - 1;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         header('Accept-Ranges: 0-'.$this->end);
 =======
         header('Accept-Ranges: 0-' . $this->end);
@@ -164,6 +184,9 @@ class VideoStream
 =======
         header('Accept-Ranges: 0-' . $this->end);
 >>>>>>> master
+=======
+        header('Accept-Ranges: 0-'.$this->end);
+>>>>>>> ed2c51e (Check & fix styling)
 
         if (isset($_SERVER['HTTP_RANGE'])) {
             $c_start = $this->start;
@@ -196,6 +219,7 @@ class VideoStream
             header('HTTP/1.1 206 Partial Content');
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             header('Content-Length: '.$length);
             header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
         } else {
@@ -212,6 +236,12 @@ class VideoStream
         } else {
             header('Content-Length: ' . $this->size);
 >>>>>>> master
+=======
+            header('Content-Length: '.$length);
+            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
+        } else {
+            header('Content-Length: '.$this->size);
+>>>>>>> ed2c51e (Check & fix styling)
         }
     }
 

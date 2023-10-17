@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use SimpleXMLElement;
 
@@ -20,6 +21,8 @@ use SimpleXMLElement;
 
 use function count;
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 
 /**
  * SubtitleService.
@@ -46,6 +49,7 @@ class SubtitleService
         if (! self::$instance instanceof \Modules\Media\Services\SubtitleService) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             self::$instance = new self();
 =======
             self::$instance = new self;
@@ -53,6 +57,9 @@ class SubtitleService
 =======
             self::$instance = new self;
 >>>>>>> master
+=======
+            self::$instance = new self();
+>>>>>>> ed2c51e (Check & fix styling)
         }
 
         return self::$instance;
@@ -110,6 +117,7 @@ class SubtitleService
             foreach ($sentence->item as $item) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $txt .= $item->__toString().' ';
 =======
                 $txt .= $item->__toString() . ' ';
@@ -117,6 +125,9 @@ class SubtitleService
 =======
                 $txt .= $item->__toString() . ' ';
 >>>>>>> master
+=======
+                $txt .= $item->__toString().' ';
+>>>>>>> ed2c51e (Check & fix styling)
             }
         }
 
@@ -134,6 +145,7 @@ class SubtitleService
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $func = 'getFrom'.Str::studly($info['extension']);
 =======
         $func = 'getFrom' . Str::studly($info['extension']);
@@ -141,6 +153,9 @@ class SubtitleService
 =======
         $func = 'getFrom' . Str::studly($info['extension']);
 >>>>>>> master
+=======
+        $func = 'getFrom'.Str::studly($info['extension']);
+>>>>>>> ed2c51e (Check & fix styling)
 
         return $this->{$func}();
     }
@@ -174,6 +189,7 @@ class SubtitleService
         if (false === $xmlObject) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
 =======
             throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
@@ -181,6 +197,9 @@ class SubtitleService
 =======
             throw new Exception('content:[' . $content . ']' . PHP_EOL . '[' . __LINE__ . '][' . __FILE__ . ']');
 >>>>>>> master
+=======
+            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
+>>>>>>> ed2c51e (Check & fix styling)
         }
 
         $data = [];
@@ -189,6 +208,7 @@ class SubtitleService
             $item_i = 0;
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 if (! $attributes instanceof \SimpleXMLElement) {
@@ -201,6 +221,10 @@ class SubtitleService
                 if (! $attributes instanceof SimpleXMLElement) {
                     throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
 >>>>>>> master
+=======
+                if (! $attributes instanceof \SimpleXMLElement) {
+                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> ed2c51e (Check & fix styling)
                 }
                 // 00:06:35,360
                 $start = (int) $attributes->start->__toString() / 1000;
@@ -212,6 +236,7 @@ class SubtitleService
                     'item_i' => $item_i,
                     'start' => $start,
                     'end' => $end,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                     'time' => secondsToHms($start).','.secondsToHms($end),
@@ -227,16 +252,23 @@ class SubtitleService
             ++$sentence_i;
 =======
                     'time' => secondsToHms($start) . ',' . secondsToHms($end),
+=======
+                    'time' => secondsToHms($start).','.secondsToHms($end),
+>>>>>>> ed2c51e (Check & fix styling)
                     'text' => $item->__toString(),
                 ];
                 $data[] = $tmp;
-                $item_i++;
+                ++$item_i;
             }
+<<<<<<< HEAD
             $sentence_i++;
 >>>>>>> 49d7c0c (first)
 =======
             $sentence_i++;
 >>>>>>> master
+=======
+            ++$sentence_i;
+>>>>>>> ed2c51e (Check & fix styling)
         }
 
         return $data;
@@ -245,6 +277,7 @@ class SubtitleService
     /**
      * Undocumented function.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * @param string $srtFile
@@ -257,6 +290,10 @@ class SubtitleService
      * @param  string  $srtFile
      * @param  string  $webVttFile
 >>>>>>> master
+=======
+     * @param string $srtFile
+     * @param string $webVttFile
+>>>>>>> ed2c51e (Check & fix styling)
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {
@@ -275,6 +312,7 @@ class SubtitleService
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $length = \count($lines);
         for ($index = 1; $index < $length; ++$index) {
 =======
@@ -285,11 +323,16 @@ class SubtitleService
         $length = count($lines);
         for ($index = 1; $index < $length; $index++) {
 >>>>>>> master
+=======
+        $length = \count($lines);
+        for ($index = 1; $index < $length; ++$index) {
+>>>>>>> ed2c51e (Check & fix styling)
             if (1 === $index || '' === trim($lines[$index - 2])) {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }
         $header = "WEBVTT\n\n";
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         file_put_contents(public_path($webVttFile), $header.implode('', $lines));
@@ -299,5 +342,8 @@ class SubtitleService
 =======
         file_put_contents(public_path($webVttFile), $header . implode('', $lines));
 >>>>>>> master
+=======
+        file_put_contents(public_path($webVttFile), $header.implode('', $lines));
+>>>>>>> ed2c51e (Check & fix styling)
     }
 }

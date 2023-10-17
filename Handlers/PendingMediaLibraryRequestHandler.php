@@ -6,12 +6,15 @@ namespace Modules\Media\Handlers;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Closure;
 >>>>>>> 49d7c0c (first)
 =======
 use Closure;
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -20,6 +23,7 @@ use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -28,6 +32,8 @@ use function is_string;
 use function is_string;
 
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 class PendingMediaLibraryRequestHandler
 {
     protected Collection $mediaLibraryRequestItems;
@@ -43,6 +49,7 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * @param string|callable $mediaName
@@ -64,6 +71,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (is_string($mediaName)) {
 >>>>>>> master
+=======
+     * @param string|callable $mediaName
+     */
+    public function usingName($mediaName): self
+    {
+        if (\is_string($mediaName)) {
+>>>>>>> ed2c51e (Check & fix styling)
             return $this->usingName(fn (): string => $mediaName);
         }
 
@@ -81,6 +95,7 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * @param string|\Closure $fileName
@@ -102,6 +117,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (is_string($fileName)) {
 >>>>>>> master
+=======
+     * @param string|\Closure $fileName
+     */
+    public function usingFileName($fileName): self
+    {
+        if (\is_string($fileName)) {
+>>>>>>> ed2c51e (Check & fix styling)
             return $this->usingFileName(fn (): string => $fileName);
         }
 

@@ -6,12 +6,15 @@ namespace Modules\Media\Models;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Eloquent;
 >>>>>>> 49d7c0c (first)
 =======
 use Eloquent;
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -46,6 +49,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property int                  $user_id
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @property Model|\Eloquent      $model
 =======
  * @property Model|Eloquent      $model
@@ -53,6 +57,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 =======
  * @property Model|Eloquent      $model
 >>>>>>> master
+=======
+ * @property Model|\Eloquent      $model
+>>>>>>> ed2c51e (Check & fix styling)
  * @property TemporaryUpload|null $temporaryUpload
  *
  * @method static MediaCollection<int, static> all($columns = ['*'])

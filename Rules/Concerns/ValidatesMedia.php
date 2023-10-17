@@ -12,6 +12,7 @@ use Modules\Media\Rules\UploadedMediaRules;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -20,6 +21,8 @@ use function is_string;
 use function is_string;
 
 >>>>>>> master
+=======
+>>>>>>> ed2c51e (Check & fix styling)
 /** @var FormRequest $this */
 trait ValidatesMedia
 {
@@ -68,6 +71,7 @@ trait ValidatesMedia
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (\is_string($attributeRules)) {
 =======
             if (is_string($attributeRules)) {
@@ -75,12 +79,16 @@ trait ValidatesMedia
 =======
             if (is_string($attributeRules)) {
 >>>>>>> master
+=======
+            if (\is_string($attributeRules)) {
+>>>>>>> ed2c51e (Check & fix styling)
                 $remainingRules[$attribute] = $allAttributeRules;
 
                 continue;
             }
 
             foreach ($attributeRules as $attributeRule) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 if (\is_string($attributeRule)) {
@@ -90,6 +98,9 @@ trait ValidatesMedia
 =======
                 if (is_string($attributeRule)) {
 >>>>>>> master
+=======
+                if (\is_string($attributeRule)) {
+>>>>>>> ed2c51e (Check & fix styling)
                     $remainingRules[$attribute][] = $attributeRule;
                 } elseif ($attributeRule instanceof UploadedMediaRules) {
                     foreach ($attributeRule->groupRules as $groupRule) {
@@ -111,6 +122,7 @@ trait ValidatesMedia
                 $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (\is_string($attributeRule)) {
 =======
                     if (is_string($attributeRule)) {
@@ -118,6 +130,9 @@ trait ValidatesMedia
 =======
                     if (is_string($attributeRule)) {
 >>>>>>> master
+=======
+                    if (\is_string($attributeRule)) {
+>>>>>>> ed2c51e (Check & fix styling)
                         return false;
                     }
 
@@ -141,6 +156,7 @@ trait ValidatesMedia
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return (new UploadedMediaRules())->maxItems(1);
 =======
         return (new UploadedMediaRules)->maxItems(1);
@@ -148,10 +164,14 @@ trait ValidatesMedia
 =======
         return (new UploadedMediaRules)->maxItems(1);
 >>>>>>> master
+=======
+        return (new UploadedMediaRules())->maxItems(1);
+>>>>>>> ed2c51e (Check & fix styling)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         return new UploadedMediaRules();
@@ -161,5 +181,8 @@ trait ValidatesMedia
 =======
         return new UploadedMediaRules;
 >>>>>>> master
+=======
+        return new UploadedMediaRules();
+>>>>>>> ed2c51e (Check & fix styling)
     }
 }
