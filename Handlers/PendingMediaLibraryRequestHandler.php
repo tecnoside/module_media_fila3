@@ -7,6 +7,7 @@ namespace Modules\Media\Handlers;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Closure;
 >>>>>>> 49d7c0c (first)
@@ -15,6 +16,9 @@ use Closure;
 >>>>>>> master
 =======
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+use Closure;
+>>>>>>> 0d0c96c (Dusting)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -24,6 +28,7 @@ use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -34,6 +39,10 @@ use function is_string;
 >>>>>>> master
 =======
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+use function is_string;
+
+>>>>>>> 0d0c96c (Dusting)
 class PendingMediaLibraryRequestHandler
 {
     protected Collection $mediaLibraryRequestItems;
@@ -52,6 +61,7 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string|callable $mediaName
      */
     public function usingName($mediaName): self
@@ -78,6 +88,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (\is_string($mediaName)) {
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+     * @param  string|callable  $mediaName
+     */
+    public function usingName($mediaName): self
+    {
+        if (is_string($mediaName)) {
+>>>>>>> 0d0c96c (Dusting)
             return $this->usingName(fn (): string => $mediaName);
         }
 
@@ -98,6 +115,7 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string|\Closure $fileName
      */
     public function usingFileName($fileName): self
@@ -124,6 +142,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (\is_string($fileName)) {
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+     * @param  string|Closure  $fileName
+     */
+    public function usingFileName($fileName): self
+    {
+        if (is_string($fileName)) {
+>>>>>>> 0d0c96c (Dusting)
             return $this->usingFileName(fn (): string => $fileName);
         }
 

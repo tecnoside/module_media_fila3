@@ -13,6 +13,7 @@ use Modules\Media\Rules\UploadedMediaRules;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -23,6 +24,10 @@ use function is_string;
 >>>>>>> master
 =======
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+use function is_string;
+
+>>>>>>> 0d0c96c (Dusting)
 /** @var FormRequest $this */
 trait ValidatesMedia
 {
@@ -72,6 +77,7 @@ trait ValidatesMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (\is_string($attributeRules)) {
 =======
             if (is_string($attributeRules)) {
@@ -82,6 +88,9 @@ trait ValidatesMedia
 =======
             if (\is_string($attributeRules)) {
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+            if (is_string($attributeRules)) {
+>>>>>>> 0d0c96c (Dusting)
                 $remainingRules[$attribute] = $allAttributeRules;
 
                 continue;
@@ -91,6 +100,7 @@ trait ValidatesMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (\is_string($attributeRule)) {
 =======
                 if (is_string($attributeRule)) {
@@ -101,6 +111,9 @@ trait ValidatesMedia
 =======
                 if (\is_string($attributeRule)) {
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+                if (is_string($attributeRule)) {
+>>>>>>> 0d0c96c (Dusting)
                     $remainingRules[$attribute][] = $attributeRule;
                 } elseif ($attributeRule instanceof UploadedMediaRules) {
                     foreach ($attributeRule->groupRules as $groupRule) {
@@ -123,6 +136,7 @@ trait ValidatesMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (\is_string($attributeRule)) {
 =======
                     if (is_string($attributeRule)) {
@@ -133,6 +147,9 @@ trait ValidatesMedia
 =======
                     if (\is_string($attributeRule)) {
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+                    if (is_string($attributeRule)) {
+>>>>>>> 0d0c96c (Dusting)
                         return false;
                     }
 
@@ -157,6 +174,7 @@ trait ValidatesMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return (new UploadedMediaRules())->maxItems(1);
 =======
         return (new UploadedMediaRules)->maxItems(1);
@@ -167,6 +185,9 @@ trait ValidatesMedia
 =======
         return (new UploadedMediaRules())->maxItems(1);
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+        return (new UploadedMediaRules)->maxItems(1);
+>>>>>>> 0d0c96c (Dusting)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
@@ -174,6 +195,7 @@ trait ValidatesMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return new UploadedMediaRules();
 =======
         return new UploadedMediaRules;
@@ -184,5 +206,8 @@ trait ValidatesMedia
 =======
         return new UploadedMediaRules();
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+        return new UploadedMediaRules;
+>>>>>>> 0d0c96c (Dusting)
     }
 }

@@ -22,6 +22,7 @@ class PendingMediaFactory
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
 =======
         $temporaryUpload = (new TemporaryUploadFactory)->create($this->temporaryUploadAttributes);
@@ -32,6 +33,9 @@ class PendingMediaFactory
 =======
         $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+        $temporaryUpload = (new TemporaryUploadFactory)->create($this->temporaryUploadAttributes);
+>>>>>>> 0d0c96c (Dusting)
 
         return new PendingMediaItem(
             $temporaryUpload->getFirstMedia()->uuid,

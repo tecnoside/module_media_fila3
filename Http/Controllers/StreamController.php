@@ -10,6 +10,7 @@ namespace Modules\Media\Http\Controllers;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Exception;
 >>>>>>> 49d7c0c (first)
@@ -18,6 +19,9 @@ use Exception;
 >>>>>>> master
 =======
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+use Exception;
+>>>>>>> 0d0c96c (Dusting)
 use Modules\Media\Services\VideoStream;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -36,6 +40,7 @@ class StreamController extends BaseController
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('add media class to config morph_map');
 =======
             throw new Exception('add media class to config morph_map');
@@ -46,6 +51,9 @@ class StreamController extends BaseController
 =======
             throw new \Exception('add media class to config morph_map');
 >>>>>>> ed2c51e (Check & fix styling)
+=======
+            throw new Exception('add media class to config morph_map');
+>>>>>>> 0d0c96c (Dusting)
         }
         $press = $press_class::find($press_id);
         // $video_path=Storage::disk($press->disk)
