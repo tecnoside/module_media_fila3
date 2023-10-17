@@ -37,8 +37,12 @@ package-lock.json
 
 .git-blame-ignore-revs
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 49d7c0c (first)
 =======
 .git-blame-ignore-revs
 >>>>>>> master
+=======
+.git-blame-ignore-revs
+>>>>>>> 92dd147 (up)
