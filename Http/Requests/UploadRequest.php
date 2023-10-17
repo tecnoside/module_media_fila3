@@ -31,6 +31,7 @@ class UploadRequest extends FormRequest
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 'max:'.config('media-library.max_file_size') / 1024,
                 'mimes:'.$allowedExtensionsString,
 =======
@@ -61,6 +62,10 @@ class UploadRequest extends FormRequest
                 'max:'.config('media-library.max_file_size') / 1024,
                 'mimes:'.$allowedExtensionsString,
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+                'max:' . config('media-library.max_file_size') / 1024,
+                'mimes:' . $allowedExtensionsString,
+>>>>>>> cafc8d1 (Dusting)
                 new FileExtensionRule($allowedExtensions),
             ],
         ];
@@ -85,6 +90,7 @@ class UploadRequest extends FormRequest
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
 =======
         $mediaModel = new $mediaModelClass;
@@ -107,6 +113,9 @@ class UploadRequest extends FormRequest
 =======
         $mediaModel = new $mediaModelClass();
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> cafc8d1 (Dusting)
 
         if ('default' === $mediaModel->getConnectionName()) {
             return '';
@@ -127,6 +136,7 @@ class UploadRequest extends FormRequest
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass();
 =======
         $mediaModel = new $mediaModelClass;
@@ -149,6 +159,9 @@ class UploadRequest extends FormRequest
 =======
         $mediaModel = new $mediaModelClass();
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> cafc8d1 (Dusting)
 
         return $mediaModel->getTable();
     }

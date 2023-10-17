@@ -13,6 +13,7 @@ namespace Modules\Media\Actions;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Exception;
 >>>>>>> 49d7c0c (first)
@@ -31,6 +32,9 @@ use Exception;
 >>>>>>> ca4973d (Dusting)
 =======
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+use Exception;
+>>>>>>> cafc8d1 (Dusting)
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -86,6 +90,7 @@ class GetVideoScreenshotAction
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg).'.jpg';
 =======
@@ -116,6 +121,10 @@ class GetVideoScreenshotAction
             $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg).'.jpg';
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
+            $file_jpg = Str::slug($file_jpg) . '.jpg';
+>>>>>>> cafc8d1 (Dusting)
         }
 
         try {
@@ -132,6 +141,7 @@ class GetVideoScreenshotAction
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         } catch (\Exception $e) {
 =======
         } catch (Exception $e) {
@@ -154,6 +164,9 @@ class GetVideoScreenshotAction
 =======
         } catch (\Exception $e) {
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+        } catch (Exception $e) {
+>>>>>>> cafc8d1 (Dusting)
             // dddx($e->getMessage());
             return [
                 'message' => $e->getMessage(),

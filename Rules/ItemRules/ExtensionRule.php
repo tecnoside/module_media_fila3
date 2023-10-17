@@ -15,6 +15,7 @@ use Symfony\Component\Mime\MimeTypes;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function in_array;
 
@@ -37,6 +38,10 @@ use function in_array;
 >>>>>>> ca4973d (Dusting)
 =======
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+use function in_array;
+
+>>>>>>> cafc8d1 (Dusting)
 class ExtensionRule extends MediaItemRule
 {
     protected array $allowedExtensions;
@@ -63,6 +68,7 @@ class ExtensionRule extends MediaItemRule
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             return \in_array($extension, $this->allowedExtensions, true);
         }
 
@@ -109,6 +115,12 @@ class ExtensionRule extends MediaItemRule
 
         $actualExtensions = (new MimeTypes())->getExtensions($media->mime_type);
 >>>>>>> 93f1e9f (Check & fix styling)
+=======
+            return in_array($extension, $this->allowedExtensions, true);
+        }
+
+        $actualExtensions = (new MimeTypes)->getExtensions($media->mime_type);
+>>>>>>> cafc8d1 (Dusting)
 
         return [] !== array_intersect($actualExtensions, $this->allowedExtensions);
     }
