@@ -26,47 +26,7 @@ class ConvertLivewireUploadToMediaAction
 
         $diskBeforeTestFake = config('livewire.temporary_file_upload.disk') ?: config('filesystems.default');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
-=======
         return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
->>>>>>> 49d7c0c (first)
-=======
-        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
->>>>>>> master
-=======
-        return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
->>>>>>> 0d0c96c (Dusting)
-=======
-        return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
->>>>>>> ca4973d (Dusting)
-=======
-        return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
->>>>>>> cafc8d1 (Dusting)
-=======
-        return 'local' === config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
->>>>>>> 214f9b0 (Dusting)
     }
 
     protected function createFromLocalLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
@@ -94,47 +54,8 @@ class ConvertLivewireUploadToMediaAction
         $livewireDisk = config('livewire.temporary_file_upload.disk', 's3');
 
         $livewireDirectory = FileUploadConfiguration::directory();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
-=======
+
         $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
->>>>>>> 49d7c0c (first)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
->>>>>>> master
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
->>>>>>> 0d0c96c (Dusting)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
->>>>>>> ca4973d (Dusting)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
->>>>>>> cafc8d1 (Dusting)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/').$temporaryUploadedFile->getFilename();
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
->>>>>>> 214f9b0 (Dusting)
 
         $temporaryUpload = $temporaryUploadModelClass::createForRemoteFile(
             $remotePath,

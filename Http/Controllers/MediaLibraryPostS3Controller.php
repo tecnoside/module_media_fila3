@@ -46,47 +46,8 @@ class MediaLibraryPostS3Controller
 
         Storage::disk($diskName)->copy(
             $createTemporaryUploadFromDirectS3UploadRequest->key,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
-=======
+
             $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> 49d7c0c (first)
-=======
-            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> master
-=======
-            $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> 0d0c96c (Dusting)
-=======
-            $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> ca4973d (Dusting)
-=======
-            $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> cafc8d1 (Dusting)
-=======
-            $pathGenerator->getPath($media).$createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            $pathGenerator->getPath($media) . $createTemporaryUploadFromDirectS3UploadRequest->name,
->>>>>>> 214f9b0 (Dusting)
         );
 
         $fileManipulator->createDerivedFiles($media);

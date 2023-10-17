@@ -4,42 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Dto;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use Exception;
->>>>>>> 49d7c0c (first)
-=======
-use Exception;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Exception;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Exception;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Exception;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Exception;
->>>>>>> 214f9b0 (Dusting)
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
@@ -59,47 +24,7 @@ class PendingMediaItem
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            throw new \Exception('invalid uuid');
-=======
             throw new Exception('invalid uuid');
->>>>>>> 49d7c0c (first)
-=======
-            throw new Exception('invalid uuid');
->>>>>>> master
-=======
-            throw new \Exception('invalid uuid');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            throw new Exception('invalid uuid');
->>>>>>> 0d0c96c (Dusting)
-=======
-            throw new \Exception('invalid uuid');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            throw new Exception('invalid uuid');
->>>>>>> ca4973d (Dusting)
-=======
-            throw new \Exception('invalid uuid');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            throw new Exception('invalid uuid');
->>>>>>> cafc8d1 (Dusting)
-=======
-            throw new \Exception('invalid uuid');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            throw new Exception('invalid uuid');
->>>>>>> 214f9b0 (Dusting)
         }
 
         $this->temporaryUpload = $temporaryUpload;

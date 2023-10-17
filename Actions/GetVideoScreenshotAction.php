@@ -6,42 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use Exception;
->>>>>>> 49d7c0c (first)
-=======
-use Exception;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Exception;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Exception;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Exception;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Exception;
->>>>>>> 214f9b0 (Dusting)
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
@@ -90,58 +55,9 @@ class GetVideoScreenshotAction
         }
 
         if (null === $file_jpg) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg).'.jpg';
-=======
+
             $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
             $file_jpg = Str::slug($file_jpg) . '.jpg';
->>>>>>> 49d7c0c (first)
-=======
-            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg) . '.jpg';
->>>>>>> master
-=======
-            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg).'.jpg';
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg) . '.jpg';
->>>>>>> 0d0c96c (Dusting)
-=======
-            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg).'.jpg';
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg) . '.jpg';
->>>>>>> ca4973d (Dusting)
-=======
-            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg).'.jpg';
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg) . '.jpg';
->>>>>>> cafc8d1 (Dusting)
-=======
-            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg).'.jpg';
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg) . '.jpg';
->>>>>>> 214f9b0 (Dusting)
         }
 
         try {
@@ -151,47 +67,8 @@ class GetVideoScreenshotAction
                 ->export()
                 ->toDisk($disk_jpg)
                 ->save($file_jpg);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-=======
+
         } catch (Exception $e) {
->>>>>>> 49d7c0c (first)
-=======
-        } catch (Exception $e) {
->>>>>>> master
-=======
-        } catch (\Exception $e) {
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        } catch (Exception $e) {
->>>>>>> 0d0c96c (Dusting)
-=======
-        } catch (\Exception $e) {
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        } catch (Exception $e) {
->>>>>>> ca4973d (Dusting)
-=======
-        } catch (\Exception $e) {
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        } catch (Exception $e) {
->>>>>>> cafc8d1 (Dusting)
-=======
-        } catch (\Exception $e) {
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        } catch (Exception $e) {
->>>>>>> 214f9b0 (Dusting)
             // dddx($e->getMessage());
             return [
                 'message' => $e->getMessage(),
