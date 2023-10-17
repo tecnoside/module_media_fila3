@@ -17,48 +17,9 @@ namespace Modules\Media\Services;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 use function is_string;
 
->>>>>>> 49d7c0c (first)
-=======
-use function is_string;
-
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> 214f9b0 (Dusting)
 /**
  * Undocumented class.
  */
@@ -95,58 +56,9 @@ class VideoStream
         }
         $this->vars['stream'] = $filesystem->readStream($path);
         $mime = $filesystem->mimeType($path);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (! \is_string($mime)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-=======
+
         if (! is_string($mime)) {
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 49d7c0c (first)
-=======
-        if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> master
-=======
-        if (! \is_string($mime)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 0d0c96c (Dusting)
-=======
-        if (! \is_string($mime)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> ca4973d (Dusting)
-=======
-        if (! \is_string($mime)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> cafc8d1 (Dusting)
-=======
-        if (! \is_string($mime)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 214f9b0 (Dusting)
         }
         $this->mime = $mime;
 
@@ -184,80 +96,11 @@ class VideoStream
     {
         ob_get_clean();
         // header("Content-Type: video/mp4");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        header('Content-Type: '.$this->mime);
 
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
-=======
         header('Content-Type: ' . $this->mime);
 
         header('Cache-Control: max-age=2592000, public');
         header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
->>>>>>> 49d7c0c (first)
-=======
-        header('Content-Type: ' . $this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
->>>>>>> master
-=======
-        header('Content-Type: '.$this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        header('Content-Type: ' . $this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
->>>>>>> 0d0c96c (Dusting)
-=======
-        header('Content-Type: '.$this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        header('Content-Type: ' . $this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
->>>>>>> ca4973d (Dusting)
-=======
-        header('Content-Type: '.$this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        header('Content-Type: ' . $this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
->>>>>>> cafc8d1 (Dusting)
-=======
-        header('Content-Type: '.$this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        header('Content-Type: ' . $this->mime);
-
-        header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
->>>>>>> 214f9b0 (Dusting)
         /*
         $time=@filemtime($this->path);
         if($time==false){
@@ -265,47 +108,8 @@ class VideoStream
         }
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', $time).' GMT');
         */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
-=======
+
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
->>>>>>> 49d7c0c (first)
-=======
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
->>>>>>> master
-=======
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
->>>>>>> 0d0c96c (Dusting)
-=======
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
->>>>>>> ca4973d (Dusting)
-=======
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
->>>>>>> cafc8d1 (Dusting)
-=======
-        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
->>>>>>> 214f9b0 (Dusting)
         $this->start = 0;
         /*
         $size=filesize($this->path);
@@ -315,47 +119,8 @@ class VideoStream
         $this->size = $size;
         */
         $this->end = $this->size - 1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        header('Accept-Ranges: 0-'.$this->end);
-=======
+
         header('Accept-Ranges: 0-' . $this->end);
->>>>>>> 49d7c0c (first)
-=======
-        header('Accept-Ranges: 0-' . $this->end);
->>>>>>> master
-=======
-        header('Accept-Ranges: 0-'.$this->end);
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        header('Accept-Ranges: 0-' . $this->end);
->>>>>>> 0d0c96c (Dusting)
-=======
-        header('Accept-Ranges: 0-'.$this->end);
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        header('Accept-Ranges: 0-' . $this->end);
->>>>>>> ca4973d (Dusting)
-=======
-        header('Accept-Ranges: 0-'.$this->end);
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        header('Accept-Ranges: 0-' . $this->end);
->>>>>>> cafc8d1 (Dusting)
-=======
-        header('Accept-Ranges: 0-'.$this->end);
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        header('Accept-Ranges: 0-' . $this->end);
->>>>>>> 214f9b0 (Dusting)
 
         if (isset($_SERVER['HTTP_RANGE'])) {
             $c_start = $this->start;
@@ -386,80 +151,11 @@ class VideoStream
             $length = $this->end - $this->start + 1;
             fseek($this->vars['stream'], $this->start);
             header('HTTP/1.1 206 Partial Content');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            header('Content-Length: '.$length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
-        } else {
-            header('Content-Length: '.$this->size);
-=======
+
             header('Content-Length: ' . $length);
             header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
         } else {
             header('Content-Length: ' . $this->size);
->>>>>>> 49d7c0c (first)
-=======
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
-        } else {
-            header('Content-Length: ' . $this->size);
->>>>>>> master
-=======
-            header('Content-Length: '.$length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
-        } else {
-            header('Content-Length: '.$this->size);
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
-        } else {
-            header('Content-Length: ' . $this->size);
->>>>>>> 0d0c96c (Dusting)
-=======
-            header('Content-Length: '.$length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
-        } else {
-            header('Content-Length: '.$this->size);
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
-        } else {
-            header('Content-Length: ' . $this->size);
->>>>>>> ca4973d (Dusting)
-=======
-            header('Content-Length: '.$length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
-        } else {
-            header('Content-Length: '.$this->size);
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
-        } else {
-            header('Content-Length: ' . $this->size);
->>>>>>> cafc8d1 (Dusting)
-=======
-            header('Content-Length: '.$length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
-        } else {
-            header('Content-Length: '.$this->size);
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
-        } else {
-            header('Content-Length: ' . $this->size);
->>>>>>> 214f9b0 (Dusting)
         }
     }
 
