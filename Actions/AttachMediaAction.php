@@ -1,94 +1,69 @@
 <?php
 
-/**
- * @see https://github.com/protonemedia/laravel-ffmpeg
- */
-
 declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
+use Livewire\FileUploadConfiguration;
+use Livewire\TemporaryUploadedFile;
 use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\QueueableAction\QueueableAction;
 
-class AttachMediaAction
+class ConvertLivewireUploadToMediaAction
 {
-    use QueueableAction;
-
-    /**
-     * Create a new action instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function execute(TemporaryUploadedFile $temporaryUploadedFile): Media
     {
-        // Prepare the action for execution, leveraging constructor injection.
+        return $this->isLocalTemporaryDisk()
+            ? $this->createFromLocalLivewireUpload($temporaryUploadedFile)
+            : $this->createFromRemoteLivewireUpload($temporaryUploadedFile);
     }
 
-    /**
-     * Execute the action.
-     */
-    public function execute(HasMedia $hasMedia, array $attachments, string $collection = null): void
+    protected function isLocalTemporaryDisk(): bool
     {
-        $order = 1;
-        foreach ($attachments as $attachment) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            ++$order;
-=======
-            $order++;
->>>>>>> 49d7c0c (first)
-=======
-            $order++;
->>>>>>> master
-=======
-            ++$order;
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            $order++;
->>>>>>> 0d0c96c (Dusting)
-=======
-            ++$order;
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            $order++;
->>>>>>> ca4973d (Dusting)
-=======
-            ++$order;
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            $order++;
->>>>>>> cafc8d1 (Dusting)
-=======
-            ++$order;
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            $order++;
->>>>>>> 214f9b0 (Dusting)
-            $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
+        // See \Livewire\FileUploadConfiguration::isUsingS3()
 
-            if ($temporaryUpload instanceof TemporaryUpload) {
-                // $media = $temporaryUpload->getFirstMedia();
-                $media = $temporaryUpload->moveMedia($hasMedia, $collection, '', $attachment['fileName']);
-                // dddx($res);
-                // $media->move($this->model, $this->collection);
-            } else {
-                $media = Media::findByUuid($attachment['uuid']);
-                // $media->update(['order_column'=>$order]);
-                // dddx(['media'=>$media,'order'=>$order]);
-            }
+        $diskBeforeTestFake = config('livewire.temporary_file_upload.disk') ?: config('filesystems.default');
 
-            $media?->update(['order_column' => $order, 'custom_properties' => $attachment['custom_properties'] ?? []]);
-        }
+        return 'local' === config('filesystems.disks.' . strtolower((string) $diskBeforeTestFake) . '.driver');
+    }
+
+    protected function createFromLocalLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
+    {
+        $uploadedFile = new UploadedFile($temporaryUploadedFile->path(), $temporaryUploadedFile->getClientOriginalName());
+
+        /** @var class-string<TemporaryUpload> $temporaryUploadModelClass */
+        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
+
+        $temporaryUpload = $temporaryUploadModelClass::createForFile(
+            $uploadedFile,
+            session()->getId(),
+            (string) Str::uuid(),
+            $temporaryUploadedFile->getClientOriginalName()
+        );
+
+        return $temporaryUpload->getFirstMedia();
+    }
+
+    protected function createFromRemoteLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
+    {
+        /** @var class-string<TemporaryUpload> $temporaryUploadModelClass */
+        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
+
+        $livewireDisk = config('livewire.temporary_file_upload.disk', 's3');
+
+        $livewireDirectory = FileUploadConfiguration::directory();
+        $remotePath = Str::of($livewireDirectory)->start('/')->finish('/') . $temporaryUploadedFile->getFilename();
+
+        $temporaryUpload = $temporaryUploadModelClass::createForRemoteFile(
+            $remotePath,
+            session()->getId(),
+            (string) Str::uuid(),
+            $temporaryUploadedFile->getClientOriginalName(),
+            $livewireDisk
+        );
+
+        return $temporaryUpload->getFirstMedia();
     }
 }

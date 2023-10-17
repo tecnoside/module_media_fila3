@@ -4,90 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Media\Handlers;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use Closure;
->>>>>>> 49d7c0c (first)
-=======
-use Closure;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Closure;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Closure;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Closure;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Closure;
->>>>>>> 214f9b0 (Dusting)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
 use Modules\Media\Dto\PendingMediaItem;
 use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use function is_string;
 
->>>>>>> 49d7c0c (first)
-=======
-use function is_string;
-
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> 214f9b0 (Dusting)
 class PendingMediaLibraryRequestHandler
 {
     protected Collection $mediaLibraryRequestItems;
@@ -103,91 +28,12 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
      * @param string|callable $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (\is_string($mediaName)) {
-=======
      * @param  string|callable  $mediaName
      */
     public function usingName($mediaName): self
     {
         if (is_string($mediaName)) {
->>>>>>> 49d7c0c (first)
-=======
-     * @param  string|callable  $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (is_string($mediaName)) {
->>>>>>> master
-=======
-     * @param string|callable $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (\is_string($mediaName)) {
->>>>>>> ed2c51e (Check & fix styling)
-=======
-     * @param  string|callable  $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (is_string($mediaName)) {
->>>>>>> 0d0c96c (Dusting)
-=======
-     * @param string|callable $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (\is_string($mediaName)) {
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-     * @param  string|callable  $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (is_string($mediaName)) {
->>>>>>> ca4973d (Dusting)
-=======
-     * @param string|callable $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (\is_string($mediaName)) {
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-     * @param  string|callable  $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (is_string($mediaName)) {
->>>>>>> cafc8d1 (Dusting)
-=======
-     * @param string|callable $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (\is_string($mediaName)) {
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-     * @param  string|callable  $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (is_string($mediaName)) {
->>>>>>> 214f9b0 (Dusting)
             return $this->usingName(fn (): string => $mediaName);
         }
 
@@ -205,91 +51,11 @@ class PendingMediaLibraryRequestHandler
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * @param string|\Closure $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (\is_string($fileName)) {
-=======
      * @param  string|Closure  $fileName
      */
     public function usingFileName($fileName): self
     {
         if (is_string($fileName)) {
->>>>>>> 49d7c0c (first)
-=======
-     * @param  string|Closure  $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (is_string($fileName)) {
->>>>>>> master
-=======
-     * @param string|\Closure $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (\is_string($fileName)) {
->>>>>>> ed2c51e (Check & fix styling)
-=======
-     * @param  string|Closure  $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (is_string($fileName)) {
->>>>>>> 0d0c96c (Dusting)
-=======
-     * @param string|\Closure $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (\is_string($fileName)) {
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-     * @param  string|Closure  $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (is_string($fileName)) {
->>>>>>> ca4973d (Dusting)
-=======
-     * @param string|\Closure $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (\is_string($fileName)) {
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-     * @param  string|Closure  $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (is_string($fileName)) {
->>>>>>> cafc8d1 (Dusting)
-=======
-     * @param string|\Closure $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (\is_string($fileName)) {
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-     * @param  string|Closure  $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (is_string($fileName)) {
->>>>>>> 214f9b0 (Dusting)
             return $this->usingFileName(fn (): string => $fileName);
         }
 

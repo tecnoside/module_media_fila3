@@ -16,47 +16,7 @@ class TemporaryUploadFactory
 
     public static function new(): self
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        return new static();
-=======
         return new static;
->>>>>>> 49d7c0c (first)
-=======
-        return new static;
->>>>>>> master
-=======
-        return new static();
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        return new static;
->>>>>>> 0d0c96c (Dusting)
-=======
-        return new static();
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        return new static;
->>>>>>> ca4973d (Dusting)
-=======
-        return new static();
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        return new static;
->>>>>>> cafc8d1 (Dusting)
-=======
-        return new static();
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        return new static;
->>>>>>> 214f9b0 (Dusting)
     }
 
     public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self

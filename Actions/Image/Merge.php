@@ -8,42 +8,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions\Image;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 use Exception;
->>>>>>> 49d7c0c (first)
-=======
-use Exception;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Exception;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Exception;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Exception;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Exception;
->>>>>>> 214f9b0 (Dusting)
 use Intervention\Image\Facades\Image;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -74,47 +40,8 @@ class Merge
         }
 
         if (! is_numeric($width) || ! is_numeric($height)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
-=======
+
             throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
->>>>>>> 49d7c0c (first)
-=======
-            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
->>>>>>> master
-=======
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
->>>>>>> 0d0c96c (Dusting)
-=======
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
->>>>>>> ca4973d (Dusting)
-=======
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
->>>>>>> cafc8d1 (Dusting)
-=======
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
->>>>>>> 214f9b0 (Dusting)
         }
 
         $width = (int) $width;
@@ -126,46 +53,7 @@ class Merge
             $delta += $img->width();
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $img_canvas->save(public_path().'/'.$filenameOut, 100);
-=======
+
         $img_canvas->save(public_path() . '/' . $filenameOut, 100);
->>>>>>> 49d7c0c (first)
-=======
-        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
->>>>>>> master
-=======
-        $img_canvas->save(public_path().'/'.$filenameOut, 100);
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
->>>>>>> 0d0c96c (Dusting)
-=======
-        $img_canvas->save(public_path().'/'.$filenameOut, 100);
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
->>>>>>> ca4973d (Dusting)
-=======
-        $img_canvas->save(public_path().'/'.$filenameOut, 100);
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
->>>>>>> cafc8d1 (Dusting)
-=======
-        $img_canvas->save(public_path().'/'.$filenameOut, 100);
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
->>>>>>> 214f9b0 (Dusting)
     }
 }
