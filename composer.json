@@ -1,0 +1,82 @@
+{
+    "name": "laraxot/module_media_fila",
+    "description": "media module dedicated to image and video management",
+    "keywords": [
+        "laraxot",
+        "laravel",
+        "filament",
+        "module_media",
+        "Laravel", 
+        "Media module", 
+        "Media",
+        "Images",
+        "Videos"
+    ],
+    "homepage": "https://github.com/laraxot/module_media_fila",
+    "license": "MIT",
+    "authors": [{
+        "name": "Marco Xot",
+        "email": "marco.sottana@gmail.com"
+    }],
+    "require": {
+        "pbmedia/laravel-ffmpeg": "*",
+        "laraxot/module_xot": "dev-master"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "*",
+        "fakerphp/faker": "*",
+        "friendsofphp/php-cs-fixer": "*",
+        "nesbot/carbon": "*",
+        "nette/php-generator": "*",
+        "nunomaduro/larastan": "*",
+        "orchestra/testbench": "*",
+        "pestphp/pest": "*",
+        "pestphp/pest-plugin-laravel": "*",
+        "phpstan/extension-installer": "*",
+        "phpunit/phpunit": "*",
+        "psalm/plugin-laravel": "*",
+        "spatie/laravel-typescript-transformer": "*",
+        "spatie/pest-plugin-snapshots": "*",
+        "spatie/phpunit-snapshot-assertions": "*",
+        "spatie/test-time": "*",
+        "tightenco/duster": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Media\\Providers\\MediaServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Media\\": ""
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php vendor/bin/testbench package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
+        ],
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "./vendor/bin/pest --no-coverage",
+        "test-coverage": "vendor/bin/pest --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
