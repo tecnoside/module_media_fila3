@@ -33,47 +33,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $mediaModel = new $mediaModelClass();
-=======
         $mediaModel = new $mediaModelClass;
->>>>>>> 49d7c0c (first)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> master
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> 0d0c96c (Dusting)
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> ca4973d (Dusting)
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> cafc8d1 (Dusting)
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> 214f9b0 (Dusting)
 
         if ('default' === $mediaModel->getConnectionName()) {
             return '';
@@ -87,47 +47,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        $mediaModel = new $mediaModelClass();
-=======
         $mediaModel = new $mediaModelClass;
->>>>>>> 49d7c0c (first)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> master
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> 0d0c96c (Dusting)
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> ca4973d (Dusting)
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> cafc8d1 (Dusting)
-=======
-        $mediaModel = new $mediaModelClass();
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        $mediaModel = new $mediaModelClass;
->>>>>>> 214f9b0 (Dusting)
 
         return $mediaModel->getTable();
     }

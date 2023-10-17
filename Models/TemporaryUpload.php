@@ -5,48 +5,8 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Carbon\Carbon;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use Closure;
 use Exception;
->>>>>>> 49d7c0c (first)
-=======
-use Closure;
-use Exception;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Closure;
-use Exception;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Closure;
-use Exception;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Closure;
-use Exception;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Closure;
-use Exception;
->>>>>>> 214f9b0 (Dusting)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -58,140 +18,20 @@ use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use function is_string;
 
->>>>>>> 49d7c0c (first)
-=======
-use function is_string;
-
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use function is_string;
-
->>>>>>> 214f9b0 (Dusting)
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use MassPrunable;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public static ?\Closure $manipulatePreview = null;
-=======
     public static ?Closure $manipulatePreview = null;
->>>>>>> 49d7c0c (first)
-=======
-    public static ?Closure $manipulatePreview = null;
->>>>>>> master
-=======
-    public static ?\Closure $manipulatePreview = null;
->>>>>>> ed2c51e (Check & fix styling)
-=======
-    public static ?Closure $manipulatePreview = null;
->>>>>>> 0d0c96c (Dusting)
-=======
-    public static ?\Closure $manipulatePreview = null;
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-    public static ?Closure $manipulatePreview = null;
->>>>>>> ca4973d (Dusting)
-=======
-    public static ?\Closure $manipulatePreview = null;
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-    public static ?Closure $manipulatePreview = null;
->>>>>>> cafc8d1 (Dusting)
-=======
-    public static ?\Closure $manipulatePreview = null;
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-    public static ?Closure $manipulatePreview = null;
->>>>>>> 214f9b0 (Dusting)
 
     public static ?string $disk = null;
 
     protected $guarded = [];
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public static function previewManipulation(\Closure $closure): void
-=======
     public static function previewManipulation(Closure $closure): void
->>>>>>> 49d7c0c (first)
-=======
-    public static function previewManipulation(Closure $closure): void
->>>>>>> master
-=======
-    public static function previewManipulation(\Closure $closure): void
->>>>>>> ed2c51e (Check & fix styling)
-=======
-    public static function previewManipulation(Closure $closure): void
->>>>>>> 0d0c96c (Dusting)
-=======
-    public static function previewManipulation(\Closure $closure): void
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-    public static function previewManipulation(Closure $closure): void
->>>>>>> ca4973d (Dusting)
-=======
-    public static function previewManipulation(\Closure $closure): void
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-    public static function previewManipulation(Closure $closure): void
->>>>>>> cafc8d1 (Dusting)
-=======
-    public static function previewManipulation(\Closure $closure): void
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-    public static function previewManipulation(Closure $closure): void
->>>>>>> 214f9b0 (Dusting)
     {
         static::$manipulatePreview = $closure;
     }
@@ -288,80 +128,10 @@ class TemporaryUpload extends Model implements HasMedia
     protected static function getDiskName(): string
     {
         $res = static::$disk ?? config('media-library.disk_name');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (\is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
-=======
         if (is_string($res)) {
             return $res;
         }
         throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 49d7c0c (first)
-=======
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> master
-=======
-        if (\is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 0d0c96c (Dusting)
-=======
-        if (\is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> ca4973d (Dusting)
-=======
-        if (\is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> cafc8d1 (Dusting)
-=======
-        if (\is_string($res)) {
-            return $res;
-        }
-        throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        if (is_string($res)) {
-            return $res;
-        }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 214f9b0 (Dusting)
     }
 
     public function scopeOld(Builder $builder): void
@@ -393,47 +163,7 @@ class TemporaryUpload extends Model implements HasMedia
         $media = $this->getFirstMedia();
 
         if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-=======
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 49d7c0c (first)
-=======
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> master
-=======
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> ed2c51e (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 0d0c96c (Dusting)
-=======
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> ca4973d (Dusting)
-=======
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> cafc8d1 (Dusting)
-=======
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
->>>>>>> 214f9b0 (Dusting)
         }
 
         $temporaryUploadModel = $media->model;
@@ -453,47 +183,8 @@ class TemporaryUpload extends Model implements HasMedia
         return self::query()->old();
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    protected function getPreviewManipulation(): \Closure
-=======
+
     protected function getPreviewManipulation(): Closure
->>>>>>> 49d7c0c (first)
-=======
-    protected function getPreviewManipulation(): Closure
->>>>>>> master
-=======
-    protected function getPreviewManipulation(): \Closure
->>>>>>> ed2c51e (Check & fix styling)
-=======
-    protected function getPreviewManipulation(): Closure
->>>>>>> 0d0c96c (Dusting)
-=======
-    protected function getPreviewManipulation(): \Closure
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-    protected function getPreviewManipulation(): Closure
->>>>>>> ca4973d (Dusting)
-=======
-    protected function getPreviewManipulation(): \Closure
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-    protected function getPreviewManipulation(): Closure
->>>>>>> cafc8d1 (Dusting)
-=======
-    protected function getPreviewManipulation(): \Closure
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-    protected function getPreviewManipulation(): Closure
->>>>>>> 214f9b0 (Dusting)
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);

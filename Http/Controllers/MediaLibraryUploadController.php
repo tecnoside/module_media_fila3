@@ -8,42 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Request\UploadRequest;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 use Throwable;
->>>>>>> 49d7c0c (first)
-=======
-use Throwable;
->>>>>>> master
-=======
->>>>>>> ed2c51e (Check & fix styling)
-=======
-use Throwable;
->>>>>>> 0d0c96c (Dusting)
-=======
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-use Throwable;
->>>>>>> ca4973d (Dusting)
-=======
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-use Throwable;
->>>>>>> cafc8d1 (Dusting)
-=======
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-use Throwable;
->>>>>>> 214f9b0 (Dusting)
 
 class MediaLibraryUploadController
 {
@@ -58,47 +23,7 @@ class MediaLibraryUploadController
                 $uploadRequest->uuid,
                 $uploadRequest->name ?? '',
             );
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        } catch (\Throwable $exception) {
-=======
         } catch (Throwable $exception) {
->>>>>>> 49d7c0c (first)
-=======
-        } catch (Throwable $exception) {
->>>>>>> master
-=======
-        } catch (\Throwable $exception) {
->>>>>>> ed2c51e (Check & fix styling)
-=======
-        } catch (Throwable $exception) {
->>>>>>> 0d0c96c (Dusting)
-=======
-        } catch (\Throwable $exception) {
->>>>>>> a4cf9d3 (Check & fix styling)
-=======
-        } catch (Throwable $exception) {
->>>>>>> ca4973d (Dusting)
-=======
-        } catch (\Throwable $exception) {
->>>>>>> 93f1e9f (Check & fix styling)
-=======
-        } catch (Throwable $exception) {
->>>>>>> cafc8d1 (Dusting)
-=======
-        } catch (\Throwable $exception) {
->>>>>>> c47cbe6 (Check & fix styling)
-=======
-        } catch (Throwable $exception) {
->>>>>>> 214f9b0 (Dusting)
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();
