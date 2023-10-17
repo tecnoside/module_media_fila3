@@ -121,6 +121,7 @@ class Uploader extends Component
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
 =======
         $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
@@ -137,6 +138,9 @@ class Uploader extends Component
 =======
         $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
 >>>>>>> a4cf9d3 (Check & fix styling)
+=======
+        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
+>>>>>>> ca4973d (Dusting)
 
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
