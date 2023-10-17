@@ -41,6 +41,7 @@ class ViewMediaItem
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             'x-on:keyup.debounce.'.$debounceInMs.'="$wire.setCustomProperty(\''.$this->uuid.'\', \''.$name.'\', document.getElementsByName(\''.$this->customPropertyAttributeName($name).'\')[0].value)"',
 =======
             'x-on:keyup.debounce.' . $debounceInMs . '="$wire.setCustomProperty(\'' . $this->uuid . '\', \'' . $name . '\', document.getElementsByName(\'' . $this->customPropertyAttributeName($name) . '\')[0].value)"',
@@ -69,6 +70,9 @@ class ViewMediaItem
 =======
             'x-on:keyup.debounce.'.$debounceInMs.'="$wire.setCustomProperty(\''.$this->uuid.'\', \''.$name.'\', document.getElementsByName(\''.$this->customPropertyAttributeName($name).'\')[0].value)"',
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+            'x-on:keyup.debounce.' . $debounceInMs . '="$wire.setCustomProperty(\'' . $this->uuid . '\', \'' . $name . '\', document.getElementsByName(\'' . $this->customPropertyAttributeName($name) . '\')[0].value)"',
+>>>>>>> 214f9b0 (Dusting)
             $this->customPropertyAttributes($name),
         ]));
     }

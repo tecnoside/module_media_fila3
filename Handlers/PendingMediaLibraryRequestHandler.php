@@ -13,6 +13,7 @@ namespace Modules\Media\Handlers;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Closure;
 >>>>>>> 49d7c0c (first)
@@ -36,6 +37,9 @@ use Closure;
 >>>>>>> cafc8d1 (Dusting)
 =======
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+use Closure;
+>>>>>>> 214f9b0 (Dusting)
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Modules\Media\Dto\MediaLibraryRequestItem;
@@ -51,6 +55,7 @@ use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -79,6 +84,10 @@ use function is_string;
 >>>>>>> cafc8d1 (Dusting)
 =======
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+use function is_string;
+
+>>>>>>> 214f9b0 (Dusting)
 class PendingMediaLibraryRequestHandler
 {
     protected Collection $mediaLibraryRequestItems;
@@ -103,6 +112,7 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string|callable $mediaName
      */
     public function usingName($mediaName): self
@@ -171,6 +181,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (\is_string($mediaName)) {
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+     * @param  string|callable  $mediaName
+     */
+    public function usingName($mediaName): self
+    {
+        if (is_string($mediaName)) {
+>>>>>>> 214f9b0 (Dusting)
             return $this->usingName(fn (): string => $mediaName);
         }
 
@@ -197,6 +214,7 @@ class PendingMediaLibraryRequestHandler
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string|\Closure $fileName
      */
     public function usingFileName($fileName): self
@@ -265,6 +283,13 @@ class PendingMediaLibraryRequestHandler
     {
         if (\is_string($fileName)) {
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+     * @param  string|Closure  $fileName
+     */
+    public function usingFileName($fileName): self
+    {
+        if (is_string($fileName)) {
+>>>>>>> 214f9b0 (Dusting)
             return $this->usingFileName(fn (): string => $fileName);
         }
 
