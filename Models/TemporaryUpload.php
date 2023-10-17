@@ -14,6 +14,7 @@ use Carbon\Carbon;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Closure;
 use Exception;
@@ -42,6 +43,10 @@ use Exception;
 >>>>>>> cafc8d1 (Dusting)
 =======
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+use Closure;
+use Exception;
+>>>>>>> 214f9b0 (Dusting)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -62,6 +67,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use function is_string;
 
@@ -90,6 +96,10 @@ use function is_string;
 >>>>>>> cafc8d1 (Dusting)
 =======
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+use function is_string;
+
+>>>>>>> 214f9b0 (Dusting)
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
@@ -104,6 +114,7 @@ class TemporaryUpload extends Model implements HasMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static ?\Closure $manipulatePreview = null;
 =======
     public static ?Closure $manipulatePreview = null;
@@ -132,6 +143,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
     public static ?\Closure $manipulatePreview = null;
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+    public static ?Closure $manipulatePreview = null;
+>>>>>>> 214f9b0 (Dusting)
 
     public static ?string $disk = null;
 
@@ -146,6 +160,7 @@ class TemporaryUpload extends Model implements HasMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public static function previewManipulation(\Closure $closure): void
 =======
     public static function previewManipulation(Closure $closure): void
@@ -174,6 +189,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
     public static function previewManipulation(\Closure $closure): void
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+    public static function previewManipulation(Closure $closure): void
+>>>>>>> 214f9b0 (Dusting)
     {
         static::$manipulatePreview = $closure;
     }
@@ -279,6 +297,7 @@ class TemporaryUpload extends Model implements HasMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (\is_string($res)) {
             return $res;
         }
@@ -337,6 +356,12 @@ class TemporaryUpload extends Model implements HasMedia
         }
         throw new \Exception('['.__LINE__.']['.__FILE__.']');
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+        if (is_string($res)) {
+            return $res;
+        }
+        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+>>>>>>> 214f9b0 (Dusting)
     }
 
     public function scopeOld(Builder $builder): void
@@ -377,6 +402,7 @@ class TemporaryUpload extends Model implements HasMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
 =======
             throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
@@ -405,6 +431,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+>>>>>>> 214f9b0 (Dusting)
         }
 
         $temporaryUploadModel = $media->model;
@@ -433,6 +462,7 @@ class TemporaryUpload extends Model implements HasMedia
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     protected function getPreviewManipulation(): \Closure
 =======
     protected function getPreviewManipulation(): Closure
@@ -461,6 +491,9 @@ class TemporaryUpload extends Model implements HasMedia
 =======
     protected function getPreviewManipulation(): \Closure
 >>>>>>> c47cbe6 (Check & fix styling)
+=======
+    protected function getPreviewManipulation(): Closure
+>>>>>>> 214f9b0 (Dusting)
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);
