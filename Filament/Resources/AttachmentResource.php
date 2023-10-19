@@ -56,7 +56,7 @@ class AttachmentResource extends Resource
                 TextColumn::make('created_at')
                     ->translateLabel()
                     ->label('camping::tables.attachments.uploaded_at')
-                    ->dateTime()
+                    ->dateTime('d M, Y H:i:s')
                     ->toggleable(),
             ])
             ->filters([
@@ -78,7 +78,7 @@ class AttachmentResource extends Resource
                         ->icon('heroicon-o-arrow-down-tray')
                         ->color('primary')
                         ->action(
-                            fn ($record) => response()->download($record->getPath(), $record->file_name)
+                            fn ($record) => response()->download($record->getPath(), $record->name)
                         ),
                 ]),
             ])
