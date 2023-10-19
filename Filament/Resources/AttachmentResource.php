@@ -78,7 +78,7 @@ class AttachmentResource extends Resource
                         ->icon('heroicon-o-arrow-down-tray')
                         ->color('primary')
                         ->action(
-                            fn ($record) => response()->download($record->getPath(), $record->name)
+                            fn ($record) => response()->download($record->getPath(), $record->file_name)
                         ),
                 ]),
             ])
