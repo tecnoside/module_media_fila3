@@ -19,27 +19,35 @@
         "email": "marco.sottana@gmail.com"
     }],
     "require": {
+        "laraxot/module_xot": "dev-master",
         "pbmedia/laravel-ffmpeg": "*",
-        "laraxot/module_xot": "dev-master"
+        "thecodingmachine/safe": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "*",
+        "driftingly/rector-laravel": "*",
         "fakerphp/faker": "*",
         "friendsofphp/php-cs-fixer": "*",
+        "laravel/pint": "*",
         "nesbot/carbon": "*",
         "nette/php-generator": "*",
         "nunomaduro/larastan": "*",
+        "nunomaduro/phpinsights": "*",
         "orchestra/testbench": "*",
         "pestphp/pest": "*",
         "pestphp/pest-plugin-laravel": "*",
         "phpstan/extension-installer": "*",
         "phpunit/phpunit": "*",
         "psalm/plugin-laravel": "*",
+        "rector/phpstan-rules": "*",
         "spatie/laravel-typescript-transformer": "*",
         "spatie/pest-plugin-snapshots": "*",
         "spatie/phpunit-snapshot-assertions": "*",
         "spatie/test-time": "*",
-        "tightenco/duster": "*"
+        "symplify/phpstan-rules": "*",
+        "thecodingmachine/phpstan-safe-rule": "*",
+        "tightenco/duster": "*",
+        "vimeo/psalm": "*"
     },
     "extra": {
         "laravel": {
@@ -74,7 +82,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "phpstan/extension-installer": true,
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "minimum-stability": "dev",

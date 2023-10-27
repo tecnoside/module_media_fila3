@@ -1,4 +1,4 @@
 providers:
-  - Modules\Activity\Providers\ActivityServiceProvider
+  - Modules\Media\Providers\MediaServiceProvider
   - Nwidart\Modules\LaravelModulesServiceProvider
 
