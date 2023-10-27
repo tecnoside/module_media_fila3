@@ -26,6 +26,7 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "*",
         "driftingly/rector-laravel": "*",
+        "enlightn/enlightn": "*",
         "fakerphp/faker": "*",
         "friendsofphp/php-cs-fixer": "*",
         "laravel/pint": "*",
@@ -49,6 +50,18 @@
         "tightenco/duster": "*",
         "vimeo/psalm": "*"
     },
+    "repositories": [ {
+        "type": "path",
+        "url": "../module_xot_fila3"
+    },
+    {
+        "type": "path",
+        "url": "../module_tenant_fila3"
+    },
+    {
+        "type": "path",
+        "url": "../module_ui_fila3"
+    }],
     "extra": {
         "laravel": {
             "providers": [
