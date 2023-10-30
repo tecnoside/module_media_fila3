@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Database\Factories;
 
+use Webmozart\Assert\Assert;
 use Modules\Media\Dto\PendingMediaItem;
 
 class PendingMediaFactory
@@ -21,7 +22,7 @@ class PendingMediaFactory
     {
 
         $temporaryUpload = (new TemporaryUploadFactory)->create($this->temporaryUploadAttributes);
-
+        Assert::notNull($temporaryUpload->getFirstMedia());
         return new PendingMediaItem(
             $temporaryUpload->getFirstMedia()->uuid,
             $attributes['name'] ?? 'name',

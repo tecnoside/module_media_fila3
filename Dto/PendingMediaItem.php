@@ -6,6 +6,7 @@ namespace Modules\Media\Dto;
 
 use Exception;
 use Illuminate\Support\Arr;
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
 
@@ -18,7 +19,7 @@ class PendingMediaItem
         public string $name,
         public int $order,
         public array $customProperties,
-        array $customHeaders,
+        // array $customHeaders,
         public ?string $fileName = null
     ) {
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
@@ -44,7 +45,7 @@ class PendingMediaItem
 
     public function toArray(): array
     {
-        $media = $this->temporaryUpload->getFirstMedia();
+        Assert::notNull($media = $this->temporaryUpload->getFirstMedia());
 
         return [
             'uuid' => $media->uuid,
