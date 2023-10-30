@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
@@ -230,6 +232,9 @@ class Index extends Component
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
+    /**
+     * @return Factory|View
+     */
     public function render()
     {
         return view($this->view, [

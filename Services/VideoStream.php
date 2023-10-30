@@ -170,7 +170,7 @@ class VideoStream
      *
      * @return void
      */
-    private function end()
+    private function end(): never
     {
         fclose($this->vars['stream']);
         exit;

@@ -1,5 +1,5 @@
 {
-    "name": "laraxot/module_media_fila",
+    "name": "laraxot/module_media_fila3",
     "description": "media module dedicated to image and video management",
     "keywords": [
         "laraxot",
@@ -12,7 +12,7 @@
         "Images",
         "Videos"
     ],
-    "homepage": "https://github.com/laraxot/module_media_fila",
+    "homepage": "https://github.com/laraxot/module_media_fila3",
     "license": "MIT",
     "authors": [{
         "name": "Marco Xot",
@@ -41,6 +41,7 @@
         "phpunit/phpunit": "*",
         "psalm/plugin-laravel": "*",
         "rector/phpstan-rules": "*",
+        "rector/rector": "*",
         "spatie/laravel-typescript-transformer": "*",
         "spatie/pest-plugin-snapshots": "*",
         "spatie/phpunit-snapshot-assertions": "*",
@@ -52,15 +53,15 @@
     },
     "repositories": [ {
         "type": "path",
-        "url": "../module_xot_fila3"
+        "url": "../Xot"
     },
     {
         "type": "path",
-        "url": "../module_tenant_fila3"
+        "url": "../Tenant"
     },
     {
         "type": "path",
-        "url": "../module_ui_fila3"
+        "url": "../UI"
     }],
     "extra": {
         "laravel": {
