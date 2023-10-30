@@ -56,7 +56,7 @@ class Uploader extends Component
     {
         $uploadError = $this->getUploadError();
 
-        if (null !== $uploadError) {
+        if ($uploadError !== null) {
             $this->uploadError = $uploadError;
 
             if (! $this->add) {

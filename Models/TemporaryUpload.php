@@ -131,7 +131,7 @@ class TemporaryUpload extends Model implements HasMedia
         if (is_string($res)) {
             return $res;
         }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+        throw new Exception('['.__LINE__.']['.__FILE__.']');
     }
 
     public function scopeOld(Builder $builder): void
@@ -163,7 +163,7 @@ class TemporaryUpload extends Model implements HasMedia
         $media = $this->getFirstMedia();
 
         if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $temporaryUploadModel = $media->model;
@@ -182,7 +182,6 @@ class TemporaryUpload extends Model implements HasMedia
     {
         return self::query()->old();
     }
-
 
     protected function getPreviewManipulation(): Closure
     {

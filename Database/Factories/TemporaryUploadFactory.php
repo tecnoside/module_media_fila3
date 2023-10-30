@@ -12,6 +12,7 @@ use Modules\Media\Models\TemporaryUpload;
 class TemporaryUploadFactory
 {
     private int $fakeImageWidth = 10;
+
     private int $fakeImageHeight = 10;
 
     public static function new(): self
