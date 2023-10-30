@@ -10,7 +10,6 @@ use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
 use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
-
 use function is_string;
 
 /** @var FormRequest $this */
@@ -58,7 +57,6 @@ trait ValidatesMedia
 
         foreach ($allAttributeRules as $attribute => $attributeRules) {
             $remainingRules[$attribute] = [];
-
 
             if (is_string($attributeRules)) {
                 $remainingRules[$attribute] = $allAttributeRules;

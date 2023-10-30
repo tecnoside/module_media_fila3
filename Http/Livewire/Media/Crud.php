@@ -19,6 +19,7 @@ class Crud extends Component
     public string $name;
 
     public HasMedia $model;
+
     /**
      * @var array<string>
      */

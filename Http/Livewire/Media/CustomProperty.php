@@ -15,6 +15,7 @@ class CustomProperty extends Component implements HasForms
     use InteractsWithForms;
 
     public string $attributeName;
+
     public Media $media;
 
     public function mount(Media $media, string $attributeName = 'description'): void
