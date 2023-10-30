@@ -15,6 +15,7 @@ use Modules\Xot\Actions\GetViewAction;
 class Clip extends Component
 {
     public string $tpl = 'edit';
+
     public Model $model;
 
     /**
@@ -64,7 +65,7 @@ class Clip extends Component
      */
     public function updateDataFromModal(string $id, array $data): void
     {
-        if ('editClip' !== $id) {
+        if ($id !== 'editClip') {
             return;
         }
         if ($data['id'] !== $this->model->getKey()) {
