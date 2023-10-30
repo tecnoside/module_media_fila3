@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -24,7 +25,7 @@ class Uploader extends Component
     /** @var string */
     public $name;
 
-    /** @var \Livewire\TemporaryUploadedFile|null */
+    /** @var TemporaryUploadedFile|null */
     public $upload;
 
     /** @var string|null */
@@ -88,6 +89,9 @@ class Uploader extends Component
         }
     }
 
+    /**
+     * @return View
+     */
     public function render()
     {
         return view('media::livewire.uploader');
@@ -114,7 +118,7 @@ class Uploader extends Component
         return $uploadError;
     }
 
-    protected function handleUpload(TemporaryUploadedFile $temporaryUploadedFile)
+    protected function handleUpload(TemporaryUploadedFile $temporaryUploadedFile): void
     {
         $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
 

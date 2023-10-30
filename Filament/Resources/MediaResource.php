@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
+use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
+use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
+use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
@@ -172,9 +175,9 @@ class MediaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMedia::route('/'),
-            'create' => Pages\CreateMedia::route('/create'),
-            'edit' => Pages\EditMedia::route('/{record}/edit'),
+            'index' => ListMedia::route('/'),
+            'create' => CreateMedia::route('/create'),
+            'edit' => EditMedia::route('/{record}/edit'),
         ];
     }
 }

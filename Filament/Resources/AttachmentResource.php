@@ -79,7 +79,7 @@ class AttachmentResource extends Resource
                         ->color('primary')
                         ->action(
                             // File extension obtained by substringing
-                            fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr($record->file_name, '.'), 0))
+                            fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr((string) $record->file_name, '.'), 0))
                         ),
                 ]),
             ])
