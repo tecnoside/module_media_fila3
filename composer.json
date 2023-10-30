@@ -22,28 +22,28 @@
         "filament/spatie-laravel-media-library-plugin": "*",
         "laraxot/module_xot_fila3": "dev-master",
         "pbmedia/laravel-ffmpeg": "*",
-        "thecodingmachine/safe": "^2.5"
+        "thecodingmachine/safe": "*"
     },
     "require-dev": {
-        "driftingly/rector-laravel": "^0.26.2",
-        "enlightn/enlightn": "^2.5",
-        "laravel/pint": "^1.13",
+        "driftingly/rector-laravel": "*",
+        "enlightn/enlightn": "*",
+        "laravel/pint": "*",
         "nunomaduro/collision": "^7.9",
-        "nunomaduro/larastan": "^2.6",
-        "nunomaduro/phpinsights": "^2.9",
+        "nunomaduro/larastan": "*",
+        "nunomaduro/phpinsights": "*",
         "orchestra/testbench": "^8.0",
         "pestphp/pest": "^2.0",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "psalm/plugin-laravel": "^2.8",
-        "rector/phpstan-rules": "^0.7.1",
+        "psalm/plugin-laravel": "*",
+        "rector/phpstan-rules": "*",
         "rector/rector": "^0.18.6",
         "spatie/laravel-ray": "^1.26",
         "symplify/phpstan-rules": "*",
-        "thecodingmachine/phpstan-safe-rule": "^1.2",
-        "vimeo/psalm": "^5.15"
+        "thecodingmachine/phpstan-safe-rule": "*",
+        "vimeo/psalm": "*"
     },
     "repositories": [ {
         "type": "path",
