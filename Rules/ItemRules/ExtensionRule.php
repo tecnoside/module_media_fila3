@@ -14,8 +14,7 @@ class ExtensionRule extends MediaItemRule
 {
     protected array $allowedExtensions;
 
-    /** @var string|array */
-    public function __construct($allowedExtensions)
+    public function __construct(string|array $allowedExtensions)
     {
         $this->allowedExtensions = Arr::wrap($allowedExtensions);
     }
