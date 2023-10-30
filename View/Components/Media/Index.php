@@ -11,12 +11,17 @@ use Spatie\MediaLibrary\HasMedia;
 class Index extends Component
 {
     use WithAccessingMedia;
+
     public string $collection;
 
     public array $media;
+
     public ?string $listView;
+
     public ?string $itemView;
+
     public ?string $propertiesView;
+
     public ?string $fieldsView;
 
     public function __construct(

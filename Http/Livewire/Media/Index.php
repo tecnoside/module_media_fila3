@@ -13,17 +13,29 @@ use Modules\Media\Dto\ViewMediaItem;
 class Index extends Component
 {
     public $name;
+
     public $multiple;
+
     public $sortable;
+
     public $editableName;
+
     public $rules;
+
     public $maxItems;
+
     public $media;
+
     public $view;
+
     public $listView;
+
     public $itemView;
+
     public $propertiesView;
+
     public $fieldsView;
+
     public $listErrorMessage;
 
     protected $validationErrors;
@@ -52,7 +64,7 @@ class Index extends Component
 
         $this->media = $media;
 
-        $this->view = null === $view || '' === $view ? 'media::livewire.media.index' : $view;
+        $this->view = $view === null || $view === '' ? 'media::livewire.media.index' : $view;
         $this->listView = $listView;
         $this->itemView = $itemView;
         $this->propertiesView = $propertiesView;
