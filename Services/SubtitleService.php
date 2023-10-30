@@ -11,6 +11,10 @@ use Illuminate\Support\Str;
 use SimpleXMLElement;
 
 use function count;
+use function Safe\simplexml_load_string;
+use function Safe\realpath;
+use function Safe\fopen;
+use function Safe\file_put_contents;
 
 /**
  * SubtitleService.
@@ -126,7 +130,7 @@ class SubtitleService
         // $path = Storage::path($this->file_path);
         // $path = realpath($path);
         $path = realpath($this->file_path);
-        if ($path === false) {
+        if ($path == false) {
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
