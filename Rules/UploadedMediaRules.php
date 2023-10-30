@@ -67,18 +67,14 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    /** @var string|array */
-    public function mime($mimes): self
+    public function mime(string|array $mimes): self
     {
         $this->itemRules[] = new MimeTypeRule($mimes);
 
         return $this;
     }
 
-    /**
-     * @var string|array
-     */
-    public function extension($extensions): self
+    public function extension(string|array $extensions): self
     {
         $this->itemRules[] = new ExtensionRule($extensions);
 
@@ -97,7 +93,7 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function customProperty(string $customPropertyName, $rules): self
+    public function customProperty(string $customPropertyName, string|array $rules): self
     {
         $customPropertyName = "custom_properties.{$customPropertyName}";
 
@@ -141,14 +137,14 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function customItemRules($rules)
+    public function customItemRules(string|array $rules): self
     {
         $this->itemRules = array_merge($this->itemRules, Arr::wrap($rules));
 
         return $this;
     }
 
-    public function customGroupRules($rules)
+    public function customGroupRules(string|array $rules): self
     {
         $this->groupRules = array_merge($this->groupRules, Arr::wrap($rules));
 
