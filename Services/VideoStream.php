@@ -18,6 +18,9 @@ use Exception;
 use Illuminate\Support\Facades\Storage;
 
 use function is_string;
+use function Safe\set_time_limit;
+use function Safe\fread;
+use function Safe\fclose;
 
 /**
  * Undocumented class.
@@ -167,7 +170,7 @@ class VideoStream
      *
      * @return void
      */
-    private function end(): never
+    private function end()
     {
         fclose($this->vars['stream']);
         exit;
