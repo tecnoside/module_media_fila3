@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\Support\Renderable;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -28,7 +29,7 @@ class CustomProperty extends Component implements HasForms
         ]);
     }
 
-    public function render(): \Illuminate\Contracts\Support\Renderable
+    public function render(): Renderable
     {
         /**
          * @phpstan-var view-string

@@ -24,7 +24,7 @@ class Index extends Component
 
     public string $rules;
 
-    public int|null $maxItems;
+    public int|null $maxItems = null;
 
     public array $media;
 
