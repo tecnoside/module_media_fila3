@@ -15,8 +15,8 @@ class Upload extends Component
     public function __construct(
         public string $name,
         public string $rules = '',
-        public $multiple = false,
-        public $editableName = false,
+        public bool $multiple = false,
+        public bool $editableName = false,
         public ?int $maxItems = null,
         public ?string $componentView = null,
         public ?string $listView = null,
