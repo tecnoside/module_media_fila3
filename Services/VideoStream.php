@@ -17,8 +17,10 @@ namespace Modules\Media\Services;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
-
 use function is_string;
+use function Safe\set_time_limit;
+use function Safe\fread;
+use function Safe\fclose;
 
 /**
  * Undocumented class.
@@ -29,13 +31,17 @@ class VideoStream
 
     // private string $path = "";
     private int $buffer = 102400;
+
     private int $start = -1;
+
     private int $end = -1;
+
     private int $size = 0;
 
     private array $vars = [];
 
     private ?string $mime = null;
+
     private ?int $filemtime = null;
 
     /**
@@ -58,7 +64,7 @@ class VideoStream
         $mime = $filesystem->mimeType($path);
 
         if (! is_string($mime)) {
-            throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $this->mime = $mime;
 
@@ -97,10 +103,10 @@ class VideoStream
         ob_get_clean();
         // header("Content-Type: video/mp4");
 
-        header('Content-Type: ' . $this->mime);
+        header('Content-Type: '.$this->mime);
 
         header('Cache-Control: max-age=2592000, public');
-        header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 2_592_000) . ' GMT');
+        header('Expires: '.gmdate('D, d M Y H:i:s', time() + 2_592_000).' GMT');
         /*
         $time=@filemtime($this->path);
         if($time==false){
@@ -109,7 +115,7 @@ class VideoStream
         header('Last-Modified: '.gmdate('D, d M Y H:i:s', $time).' GMT');
         */
 
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $this->filemtime) . ' GMT');
+        header('Last-Modified: '.gmdate('D, d M Y H:i:s', $this->filemtime).' GMT');
         $this->start = 0;
         /*
         $size=filesize($this->path);
@@ -120,7 +126,7 @@ class VideoStream
         */
         $this->end = $this->size - 1;
 
-        header('Accept-Ranges: 0-' . $this->end);
+        header('Accept-Ranges: 0-'.$this->end);
 
         if (isset($_SERVER['HTTP_RANGE'])) {
             $c_start = $this->start;
@@ -132,7 +138,7 @@ class VideoStream
                 header("Content-Range: bytes {$this->start}-{$this->end}/{$this->size}");
                 exit;
             }
-            if ('-' === $range) {
+            if ($range === '-') {
                 $c_start = $this->size - (int) substr($range, 1);
             } else {
                 $range = explode('-', $range);
@@ -152,10 +158,10 @@ class VideoStream
             fseek($this->vars['stream'], $this->start);
             header('HTTP/1.1 206 Partial Content');
 
-            header('Content-Length: ' . $length);
-            header("Content-Range: bytes {$this->start}-{$this->end}/" . $this->size);
+            header('Content-Length: '.$length);
+            header("Content-Range: bytes {$this->start}-{$this->end}/".$this->size);
         } else {
-            header('Content-Length: ' . $this->size);
+            header('Content-Length: '.$this->size);
         }
     }
 
@@ -164,7 +170,7 @@ class VideoStream
      *
      * @return void
      */
-    private function end(): never
+    private function end()
     {
         fclose($this->vars['stream']);
         exit;

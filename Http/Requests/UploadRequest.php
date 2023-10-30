@@ -24,8 +24,8 @@ class UploadRequest extends FormRequest
             'name' => '',
             'custom_properties' => '',
             'file' => [
-                'max:' . config('media-library.max_file_size') / 1024,
-                'mimes:' . $allowedExtensionsString,
+                'max:'.config('media-library.max_file_size') / 1024,
+                'mimes:'.$allowedExtensionsString,
                 new FileExtensionRule($allowedExtensions),
             ],
         ];
@@ -45,7 +45,7 @@ class UploadRequest extends FormRequest
         /** @var Media $mediaModel */
         $mediaModel = new $mediaModelClass;
 
-        if ('default' === $mediaModel->getConnectionName()) {
+        if ($mediaModel->getConnectionName() === 'default') {
             return '';
         }
 
