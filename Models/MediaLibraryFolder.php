@@ -49,5 +49,5 @@ class MediaLibraryFolder extends BaseMediaLibraryFolder implements Sortable
 {
     use SortableTrait;
 
-    protected $table = 'media_library_folders';
+    protected string $table = 'media_library_folders';
 }

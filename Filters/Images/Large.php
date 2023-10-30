@@ -11,7 +11,7 @@ use Intervention\Image\Image;
 
 class Large implements FilterContract
 {
-    public function applyFilter(Image $image)
+    public function applyFilter(Image $image): \Intervention\Image\Image
     {
         return $image->fit(480, 360);
     }

@@ -12,31 +12,31 @@ use Modules\Media\Dto\ViewMediaItem;
 
 class Index extends Component
 {
-    public $name;
+    public string $name;
 
-    public $multiple;
+    public bool $multiple;
 
-    public $sortable;
+    public bool $sortable;
 
-    public $editableName;
+    public bool $editableName;
 
-    public $rules;
+    public string $rules;
 
-    public $maxItems;
+    public int|null $maxItems;
 
-    public $media;
+    public array $media;
 
-    public $view;
+    public string $view;
 
-    public $listView;
+    public string $listView;
 
-    public $itemView;
+    public string $itemView;
 
-    public $propertiesView;
+    public string $propertiesView;
 
-    public $fieldsView;
+    public string $fieldsView;
 
-    public $listErrorMessage;
+    public string $listErrorMessage;
 
     protected $validationErrors;
 

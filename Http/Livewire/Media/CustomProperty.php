@@ -28,7 +28,7 @@ class CustomProperty extends Component implements HasForms
         ]);
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\Support\Renderable
     {
         /**
          * @phpstan-var view-string
