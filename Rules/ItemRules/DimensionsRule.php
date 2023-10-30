@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Rules\ItemRules;
 
 use Modules\Media\Models\Media;
+use function Safe\getimagesize;
 
 class DimensionsRule extends MediaItemRule
 {
@@ -39,6 +40,9 @@ class DimensionsRule extends MediaItemRule
         return false;
     }
 
+    /**
+     * @return array|string
+     */
     public function message()
     {
         $params = [
