@@ -54,10 +54,10 @@ class GetVideoScreenshotAction
             ];
         }
 
-        if (null === $file_jpg) {
+        if ($file_jpg === null) {
 
-            $file_jpg = Str::replace('.mp4', '-' . $time, basename($file_mp4));
-            $file_jpg = Str::slug($file_jpg) . '.jpg';
+            $file_jpg = Str::replace('.mp4', '-'.$time, basename($file_mp4));
+            $file_jpg = Str::slug($file_jpg).'.jpg';
         }
 
         try {
