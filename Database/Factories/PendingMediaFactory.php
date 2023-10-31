@@ -11,12 +11,7 @@ class PendingMediaFactory
 {
     protected array $temporaryUploadAttributes = [];
 
-    public function withTemporaryUploadAttributes(array $temporaryUploadAttributes = []): self
-    {
-        $this->temporaryUploadAttributes = $temporaryUploadAttributes;
 
-        return $this;
-    }
 
     public function create(array $attributes = []): PendingMediaItem
     {

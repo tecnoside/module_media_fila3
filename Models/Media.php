@@ -72,6 +72,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  */
 class Media extends SpatieMedia
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     *
+     * @psalm-return \Illuminate\Database\Eloquent\Collection<int, static>
+     */
     public static function findWithTemporaryUploadInCurrentSession(array $uuids): Collection
     {
         // MediaLibraryPro::ensureInstalled();
@@ -86,6 +91,11 @@ class Media extends SpatieMedia
             ->get();
     }
 
+    /**
+     * @return BelongsTo
+     *
+     * @psalm-return BelongsTo<TemporaryUpload>
+     */
     public function temporaryUpload(): BelongsTo
     {
         // MediaLibraryPro::ensureInstalled();
@@ -93,10 +103,5 @@ class Media extends SpatieMedia
         return $this->belongsTo(TemporaryUpload::class);
     }
 
-    public function setCustomProperties(array $data): void
-    {
-        foreach ($data as $k => $v) {
-            $this->setCustomProperty($k, $v);
-        }
-    }
+
 }

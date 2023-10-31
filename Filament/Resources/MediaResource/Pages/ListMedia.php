@@ -13,6 +13,11 @@ class ListMedia extends ListRecords
 {
     protected static string $resource = MediaResource::class;
 
+    /**
+     * @return CreateAction[]
+     *
+     * @psalm-return list{CreateAction}
+     */
     protected function getHeaderActions(): array
     {
         return [

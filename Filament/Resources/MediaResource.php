@@ -32,6 +32,9 @@ class MediaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    /**
+     * @return Form
+     */
     public static function form(Form $form, bool $asset = true): Form
     {
         return $form
@@ -40,6 +43,11 @@ class MediaResource extends Resource
             );
     }
 
+    /**
+     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload&FileUpload)[]
+     *
+     * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
+     */
     public static function getFormSchema(bool $asset = true): array
     {
         return [
@@ -87,6 +95,9 @@ class MediaResource extends Resource
         ];
     }
 
+    /**
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -149,29 +160,24 @@ class MediaResource extends Resource
             );
     }
 
-    public static function formHandlerCallback(RelationManager $livewire, array $data): void
-    {
-        $disk = config('attachment.upload.disk.driver');
 
-        $attachment = $livewire
-            ->getOwnerRecord()
-            ->addMediaFromDisk(
-                $data['file'],
-                $disk,
-            )
-            ->setName(
-                $data['name'] ?? Str::beforeLast($data['original_file_name'], '.'),
-            )
-            ->preservingOriginal()
-            ->toMediaCollection($data['attachment_type']);
-    }
 
+    /**
+     * @return array
+     *
+     * @psalm-return array<never, never>
+     */
     public static function getRelations(): array
     {
         return [
         ];
     }
 
+    /**
+     * @return \Filament\Resources\Pages\PageRegistration[]
+     *
+     * @psalm-return array{index: \Filament\Resources\Pages\PageRegistration, create: \Filament\Resources\Pages\PageRegistration, edit: \Filament\Resources\Pages\PageRegistration}
+     */
     public static function getPages(): array
     {
         return [

@@ -18,7 +18,7 @@ class MediaLibraryRequestItem
     ) {
     }
 
-    public static function fromArray(array $properties): self
+    public static function fromArray(array $properties): static
     {
         $properties = collect($properties)
             ->keyBy(fn ($value, $key) => Str::snake($key));

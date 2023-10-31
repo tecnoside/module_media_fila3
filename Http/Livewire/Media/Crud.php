@@ -32,39 +32,9 @@ class Crud extends Component
 
     public string $collection;
 
-    public function mount(string $name, HasMedia $hasMedia, string $collection): void
-    {
-        $this->name = $name;
-        $this->model = $hasMedia;
-        $this->collection = $collection;
-    }
 
-    public function submit(): void
-    {
-        $order = 1;
-        foreach ($this->upload as $attachment) {
-            $order++;
-            $temporaryUpload = TemporaryUpload::findByMediaUuidInCurrentSession($attachment['uuid']);
-            if ($temporaryUpload instanceof TemporaryUpload) {
-                // $media = $temporaryUpload->getFirstMedia();
-                $media = $temporaryUpload->moveMedia($this->model, $this->collection, '', $attachment['fileName']);
-            } else {
-                $media = Media::findByUuid($attachment['uuid']);
-                // $media->update(['order_column'=>$order]);
-                // dddx(['media'=>$media,'order'=>$order]);
-            }
-            $media?->update(['order_column' => $order]);
-        }
-        session()->flash('message', 'Post successfully updated.');
-    }
 
-    public function render(): Renderable
-    {
-        /**
-         * @phpstan-var view-string
-         */
-        $view = app(GetViewAction::class)->execute();
 
-        return view($view);
-    }
+
+
 }

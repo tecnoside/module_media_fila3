@@ -2,7 +2,7 @@
 <psalm
     errorLevel="1"
      cacheDirectory="build/psalm"
-    errorBaseline="psalm-baseline.xml"
+    
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -16,6 +16,7 @@
             <directory name="vendor"/>
             <directory name="build"/>
             <directory name="docs"/>
+            <directory name="Tests"/>
         </ignoreFiles>
     </projectFiles>
     <plugins>

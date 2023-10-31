@@ -13,6 +13,11 @@ class EditMedia extends EditRecord
 {
     protected static string $resource = MediaResource::class;
 
+    /**
+     * @return DeleteAction[]
+     *
+     * @psalm-return list{DeleteAction}
+     */
     protected function getHeaderActions(): array
     {
         return [

@@ -8,9 +8,9 @@ use Illuminate\Console\Command;
 
 class DeleteTemporaryUploadsCommand extends Command
 {
-    protected $signature = 'media-library:delete-old-temporary-uploads';
+    protected string $signature = 'media-library:delete-old-temporary-uploads';
 
-    protected $description = 'Delete old temporary uploads';
+    protected string $description = 'Delete old temporary uploads';
 
     public function handle(): void
     {

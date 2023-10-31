@@ -31,18 +31,13 @@ class PendingMediaItem
         $this->temporaryUpload = $temporaryUpload;
     }
 
-    public static function createFromArray(array $pendingMediaItems): Collection
-    {
-        return collect($pendingMediaItems)
-            ->map(fn (array $uploadAttributes): static => new static(
-                $uploadAttributes['uuid'],
-                $uploadAttributes['name'] ?? '',
-                $uploadAttributes['order'] ?? 0,
-                $uploadAttributes['custom_properties'] ?? [],
-                $uploadAttributes['fileName'] ?? null,
-            ));
-    }
 
+
+    /**
+     * @return (array|int|mixed|string)[]
+     *
+     * @psalm-return array{uuid: string, name: string, order: int, custom_properties: array, size: int, mime: mixed}
+     */
     public function toArray(): array
     {
         Assert::notNull($media = $this->temporaryUpload->getFirstMedia());

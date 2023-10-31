@@ -33,7 +33,7 @@ class SubtitleService
 
     public Model $model;
 
-    public array $subtitles;
+
 
     /**
      * ---.
@@ -56,14 +56,14 @@ class SubtitleService
         return static::getInstance();
     }
 
-    public function setFilePath(string $file_path): self
+    public function setFilePath(string $file_path): static
     {
         $this->file_path = $file_path;
 
         return $this;
     }
 
-    public function setModel(Model $model): self
+    public function setModel(Model $model): static
     {
         $this->model = $model;
 
@@ -75,7 +75,7 @@ class SubtitleService
         return $this->model;
     }
 
-    public function upateModel(): self
+    public function upateModel(): static
     {
         $plain = $this->getPlain();
         $up = [$this->field_name => $plain];
@@ -142,6 +142,11 @@ class SubtitleService
         return File::get($path);
     }
 
+    /**
+     * @return (float|int|mixed|string)[][]
+     *
+     * @psalm-return list{0?: array{sentence_i: int<0, max>, item_i: int<0, max>, start: float|int, end: float|int, time: string, text: mixed},...}
+     */
     public function getFromXml(): array
     {
         $this->subtitles = [];

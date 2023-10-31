@@ -20,36 +20,9 @@ class GetVideoDurationAction
      */
     public $backoff = 3;
 
-    /**
-     * The number of seconds the job can run before timing out.
-     *
-     * @var int
-     */
-    public $timeout = 180;
 
-    /**
-     * Create a new action instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // Prepare the action for execution, leveraging constructor injection.
-    }
 
-    /**
-     * Execute the action.
-     */
-    public function execute(string $disk, ?string $path): int
-    {
-        if ($path == null) {
-            return -1;
-        }
-        // ffprobe -i <file> -show_entries format=duration -v quiet -of csv="p=0"
-        $durationInMiliseconds = FFMpeg::fromDisk($disk)
-            ->open($path)
-            ->getDurationInMiliseconds();
 
-        return $durationInMiliseconds;
-    }
+
+
 }

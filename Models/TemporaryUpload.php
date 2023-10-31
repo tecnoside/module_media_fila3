@@ -29,12 +29,12 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static ?string $disk = null;
 
-    protected $guarded = [];
+    /**
+     * @var array
+     */
+    protected array $guarded = [];
 
-    public static function previewManipulation(Closure $closure): void
-    {
-        static::$manipulatePreview = $closure;
-    }
+
 
     public static function findByMediaUuid(?string $mediaUuid): ?self
     {
@@ -134,10 +134,7 @@ class TemporaryUpload extends Model implements HasMedia
         throw new Exception('['.__LINE__.']['.__FILE__.']');
     }
 
-    public function scopeOld(Builder $builder): void
-    {
-        $builder->where('created_at', '<=', Carbon::now()->subDay()->toDateTimeString());
-    }
+
 
     public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {

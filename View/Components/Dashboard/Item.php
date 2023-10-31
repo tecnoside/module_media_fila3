@@ -13,6 +13,11 @@ use Illuminate\View\Component;
  */
 class Item extends Component
 {
+    /**
+     * @return string
+     *
+     * @psalm-return ''
+     */
     public function render(): string
     {
         return '';

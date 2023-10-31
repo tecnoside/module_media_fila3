@@ -9,16 +9,25 @@ use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 
 class TemporaryUploadPathGenerator implements PathGenerator
 {
+    /**
+     * @return string
+     */
     public function getPath(Media $media): string
     {
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
     }
 
+    /**
+     * @return string
+     */
     public function getPathForConversions(Media $media): string
     {
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'conversion');
     }
 
+    /**
+     * @return string
+     */
     public function getPathForResponsiveImages(Media $media): string
     {
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'responsive');
