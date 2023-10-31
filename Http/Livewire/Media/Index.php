@@ -40,7 +40,7 @@ class Index extends Component
 
     public string $listErrorMessage;
 
-    protected $validationErrors;
+    protected MessageBag $validationErrors;
 
     public function mount(
         string $name,
@@ -232,10 +232,7 @@ class Index extends Component
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    /**
-     * @return Factory|View
-     */
-    public function render()
+    public function render(): View
     {
         return view($this->view, [
             'errors' => $this->validationErrors,
@@ -246,6 +243,11 @@ class Index extends Component
         ]);
     }
 
+    /**
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
+     */
     protected function getListeners(): array
     {
         return [

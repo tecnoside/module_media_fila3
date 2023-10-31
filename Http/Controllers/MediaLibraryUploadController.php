@@ -39,6 +39,11 @@ class MediaLibraryUploadController
         return response()->json($this->responseFields($media, $temporaryUpload));
     }
 
+    /**
+     * @return (int|string)[]
+     *
+     * @psalm-return array{uuid: string, name: string, preview_url: string, size: int, mime_type: string, extension: string}
+     */
     protected function responseFields(Media $media, TemporaryUpload $temporaryUpload): array
     {
         return [

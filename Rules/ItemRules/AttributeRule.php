@@ -32,6 +32,9 @@ class AttributeRule extends MediaItemRule
         return $this->validator->passes();
     }
 
+    /**
+     * @return string
+     */
     public function message()
     {
         return $this->validator->messages()->first($this->shortAttributeName());

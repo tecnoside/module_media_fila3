@@ -11,6 +11,11 @@ use Modules\Media\Support\DefaultAllowedExtensions;
 
 class UploadRequest extends FormRequest
 {
+    /**
+     * @return ((FileExtensionRule|string)[]|string)[]
+     *
+     * @psalm-return array{uuid: string, name: '', custom_properties: '', file: list{string, string, FileExtensionRule}}
+     */
     public function rules(): array
     {
         $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
@@ -31,6 +36,11 @@ class UploadRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return (array|string)[]
+     *
+     * @psalm-return array{'uuid.unique': array|string}
+     */
     public function messages(): array
     {
         return [

@@ -29,7 +29,7 @@ class ConvertLivewireUploadToMediaAction
         return config('filesystems.disks.'.strtolower((string) $diskBeforeTestFake).'.driver') === 'local';
     }
 
-    protected function createFromLocalLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
+    protected function createFromLocalLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): \Spatie\MediaLibrary\MediaCollections\Models\Media|null
     {
         $uploadedFile = new UploadedFile($temporaryUploadedFile->path(), $temporaryUploadedFile->getClientOriginalName());
 
@@ -46,7 +46,7 @@ class ConvertLivewireUploadToMediaAction
         return $temporaryUpload->getFirstMedia();
     }
 
-    protected function createFromRemoteLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): Media
+    protected function createFromRemoteLivewireUpload(TemporaryUploadedFile $temporaryUploadedFile): \Spatie\MediaLibrary\MediaCollections\Models\Media|null
     {
         /** @var class-string<TemporaryUpload> $temporaryUploadModelClass */
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');

@@ -17,6 +17,9 @@ class MaxItemsRule implements Rule
         return (is_countable($value) ? count($value) : 0) <= $this->maxItemCount;
     }
 
+    /**
+     * @return string
+     */
     public function message()
     {
         return trans_choice('media::validation.max_items', $this->maxItemCount, [

@@ -13,6 +13,11 @@ class ListTemporaryUploads extends ListRecords
 {
     protected static string $resource = TemporaryUploadResource::class;
 
+    /**
+     * @return CreateAction[]
+     *
+     * @psalm-return list{CreateAction}
+     */
     protected function getHeaderActions(): array
     {
         return [

@@ -15,19 +15,9 @@ class TemporaryUploadFactory
 
     private int $fakeImageHeight = 10;
 
-    public static function new(): self
-    {
-        return new static;
-    }
 
-    public function useFakeImageDimensions(int $fakeImageWidth, int $fakeImageHeight): self
-    {
-        $this->fakeImageWidth = $fakeImageWidth;
 
-        $this->fakeImageHeight = $fakeImageHeight;
 
-        return $this;
-    }
 
     public function create(array $attributes = []): TemporaryUpload
     {
@@ -41,9 +31,5 @@ class TemporaryUploadFactory
         );
     }
 
-    public function createMultiple(int $count, array $attributes = []): array
-    {
-        return Collection::times($count)
-            ->map(fn (): TemporaryUpload => $this->create($attributes))->toArray();
-    }
+
 }

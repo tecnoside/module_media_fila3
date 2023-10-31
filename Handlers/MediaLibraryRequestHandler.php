@@ -40,7 +40,7 @@ class MediaLibraryRequestHandler
         return new self($model, $collection, $collectionName);
     }
 
-    public function updateExistingMedia(): self
+    public function updateExistingMedia(): static
     {
         $this
             ->existingMediaLibraryRequestItems()
@@ -53,7 +53,7 @@ class MediaLibraryRequestHandler
         return $this;
     }
 
-    public function deleteObsoleteMedia(): self
+    public function deleteObsoleteMedia(): static
     {
         $keepUuids = $this->collection->pluck('uuid')->toArray();
 
@@ -64,6 +64,9 @@ class MediaLibraryRequestHandler
         return $this;
     }
 
+    /**
+     * @psalm-return Collection<array-key, PendingMediaItem>
+     */
     public function getPendingMediaItems(): Collection
     {
         return $this

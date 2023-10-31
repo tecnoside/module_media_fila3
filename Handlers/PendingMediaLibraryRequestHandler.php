@@ -21,74 +21,17 @@ class PendingMediaLibraryRequestHandler
 
     protected ?array $customHeaders = null;
 
-    public function __construct(array $mediaLibraryRequestItems, protected Model $model, protected bool $preserveExisting)
-    {
-        $this->mediaLibraryRequestItems = collect($mediaLibraryRequestItems)
-            ->map(fn (array $properties): MediaLibraryRequestItem => MediaLibraryRequestItem::fromArray($properties));
-    }
 
-    /**
-     * @param  string|callable  $mediaName
-     * @param  string|callable  $mediaName
-     */
-    public function usingName($mediaName): self
-    {
-        if (is_string($mediaName)) {
-            return $this->usingName(fn (): string => $mediaName);
-        }
 
-        $callable = $mediaName;
 
-        $this->mediaLibraryRequestItems->each(
-            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable): void {
-                $name = $callable($mediaLibraryRequestItem);
 
-                $mediaLibraryRequestItem->name = $name;
-            }
-        );
 
-        return $this;
-    }
 
-    /**
-     * @param  string|Closure  $fileName
-     */
-    public function usingFileName($fileName): self
-    {
-        if (is_string($fileName)) {
-            return $this->usingFileName(fn (): string => $fileName);
-        }
 
-        $callable = $fileName;
 
-        $this->mediaLibraryRequestItems->each(
-            function (MediaLibraryRequestItem $mediaLibraryRequestItem) use ($callable): void {
-                $fileName = $callable($mediaLibraryRequestItem);
 
-                $mediaLibraryRequestItem->fileName = $fileName;
-            });
 
-        return $this;
-    }
 
-    public function withCustomProperties(...$customPropertyNames): self
-    {
-        $this->processCustomProperties = $customPropertyNames;
-
-        return $this;
-    }
-
-    public function addCustomHeaders(array $customHeaders): self
-    {
-        $this->customHeaders = $customHeaders;
-
-        return $this;
-    }
-
-    public function toMediaLibrary(string $collectionName = 'default', string $diskName = ''): void
-    {
-        $this->toMediaCollection($collectionName, $diskName);
-    }
 
     public function toMediaCollection(string $collectionName = 'default', string $diskName = ''): void
     {

@@ -41,7 +41,7 @@ class MediaLibraryPostS3Controller
             'size' => $createTemporaryUploadFromDirectS3UploadRequest->size,
         ]);
 
-        /** @var PathGenerator $pathGenerator */
+        
         $pathGenerator = PathGeneratorFactory::create($media);
 
         Storage::disk($diskName)->copy(

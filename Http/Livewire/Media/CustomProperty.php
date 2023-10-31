@@ -29,7 +29,7 @@ class CustomProperty extends Component implements HasForms
         ]);
     }
 
-    public function render(): Renderable
+    public function render(): \Illuminate\Contracts\View\View
     {
         /**
          * @phpstan-var view-string
@@ -40,6 +40,11 @@ class CustomProperty extends Component implements HasForms
         return view($view);
     }
 
+    /**
+     * @return Textarea[]
+     *
+     * @psalm-return list{Textarea}
+     */
     protected function getFormSchema(): array
     {
         return [

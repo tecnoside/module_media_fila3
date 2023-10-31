@@ -36,9 +36,10 @@ class Clip extends Component
     }
 
     /**
+     *
      * Undocumented function.
      */
-    public function render(): Renderable
+    public function render(): \Illuminate\Contracts\View\View
     {
         /**
          * @phpstan-var view-string

@@ -13,7 +13,12 @@ trait WithAccessingMedia
     {
         return old($name) ?: $hasMedia
             ->getMedia($collection)
-            ->map(fn (Media $media): array => [
+            ->map(/**
+             * @return (array|float|int|null|string)[]
+             *
+             * @psalm-return array{name: string, fileName: string, uuid: string, previewUrl: string, order: int|null, customProperties: array, extension: string, size: int, createdAt: float|int|null|string}
+             */
+            fn (Media $media): array => [
                 'name' => $media->name,
                 'fileName' => $media->file_name,
                 'uuid' => $media->uuid,

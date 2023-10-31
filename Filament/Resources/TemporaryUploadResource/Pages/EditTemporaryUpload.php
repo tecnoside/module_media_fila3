@@ -13,6 +13,11 @@ class EditTemporaryUpload extends EditRecord
 {
     protected static string $resource = TemporaryUploadResource::class;
 
+    /**
+     * @return DeleteAction[]
+     *
+     * @psalm-return list{DeleteAction}
+     */
     protected function getHeaderActions(): array
     {
         return [
