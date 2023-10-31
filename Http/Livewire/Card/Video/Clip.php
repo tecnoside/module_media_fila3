@@ -23,7 +23,10 @@ class Clip extends Component
      *
      * @var array
      */
-    protected $listeners = [
+    /**
+* @var array<string, string>
+*/
+protected $listeners = [
         'updateDataFromModal' => 'updateDataFromModal',
     ];
 
