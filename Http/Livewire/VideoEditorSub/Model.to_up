@@ -41,7 +41,10 @@ class Model extends Component {
 
     public float $currentTime = 0;
 
-    protected $listeners = [
+    /**
+* @var array<string, string>
+*/
+protected $listeners = [
         'save-subtitle-range' => 'saveSubtitleRange',
         'save-subtitle-model' => 'saveSubtitleModel',
         'take-episode' => 'takeEpisode',
