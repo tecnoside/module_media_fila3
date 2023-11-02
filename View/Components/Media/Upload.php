@@ -24,7 +24,8 @@ class Upload extends Component
         string $propertiesView = null,
         public ?string $fieldsView = null
     ) {
-        $this->media = old($name) ?? [];
+        Assert::isArray($media = old($name) ?? []);
+        $this->media = $media;
         $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
     }
 
@@ -38,7 +39,7 @@ class Upload extends Component
 
     public function determineListViewName(): string
     {
-        if (! is_null($this->listView)) {
+        if (null !== $this->listView) {
             return $this->listView;
         }
 
@@ -47,7 +48,7 @@ class Upload extends Component
 
     public function determineItemViewName(): string
     {
-        if (! is_null($this->itemView)) {
+        if (null !== $this->itemView) {
             return $this->itemView;
         }
 
@@ -56,7 +57,7 @@ class Upload extends Component
 
     public function determineFieldsViewName(): string
     {
-        if (! is_null($this->fieldsView)) {
+        if (null !== $this->fieldsView) {
             return $this->fieldsView;
         }
 
