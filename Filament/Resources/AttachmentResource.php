@@ -8,6 +8,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
@@ -26,7 +27,7 @@ class AttachmentResource extends Resource
     {
         return $form
             ->schema(
-                AttachmentResource::getFormSchema($asset)
+                self::getFormSchema($asset)
             );
     }
 
@@ -126,7 +127,7 @@ class AttachmentResource extends Resource
                 )
                 ->default(AttachmentType::Image())
                 ->columns(
-                    $asset ? count(AttachmentType::cases()) : count(AttachmentType::operationCases()),
+                    $asset ? \count(AttachmentType::cases()) : \count(AttachmentType::operationCases()),
                 )
                 ->required()
                 ->columnSpanFull(),
@@ -141,5 +142,20 @@ class AttachmentResource extends Resource
                 ->maxLength(255)
                 ->columnSpanFull(),
         ];
+    }
+
+    public static function formHandlerCallback(RelationManager $livewire, array $data): void
+    {
+        $attachment = $livewire
+            ->getOwnerRecord()
+            ->addMediaFromDisk(
+                $data['file'],
+                config('attachment.upload.disk.driver'),
+            )
+            ->setName(
+                $data['name'] ?? Str::beforeLast($data['original_file_name'], '.'),
+            )
+            ->preservingOriginal()
+            ->toMediaCollection($data['attachment_type']);
     }
 }
