@@ -51,7 +51,7 @@ trait WithMedia
 
     public function clearMedia($mediaComponentNames = null): void
     {
-        if (null === $mediaComponentNames) {
+        if ($mediaComponentNames === null) {
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 

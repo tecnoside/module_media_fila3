@@ -50,7 +50,7 @@ class PendingMediaItem
 
     public function getCustomProperties(array $customPropertyNames): array
     {
-        if ([] === $customPropertyNames) {
+        if ($customPropertyNames === []) {
             return $this->customProperties;
         }
 
