@@ -11,7 +11,12 @@ trait WithAccessingMedia
 {
     protected function getMedia(string $name, HasMedia $hasMedia, string $collection): array
     {
-        return old($name) ?: $hasMedia
+        /**
+         * @var HasMedia
+         */
+        $myMedia = old($name) ?: $hasMedia;
+
+        return $myMedia
             ->getMedia($collection)
             ->map(/**
              * @return (array|float|int|string|null)[]
