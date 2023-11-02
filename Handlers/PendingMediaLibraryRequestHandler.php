@@ -30,15 +30,15 @@ class PendingMediaLibraryRequestHandler
                 function (PendingMediaItem $pendingMediaItem) use ($diskName, $collectionName): void {
                     $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMediaItem);
 
-                    if (null !== $this->processCustomProperties) {
+                    if ($this->processCustomProperties !== null) {
                         $fileAdder->withCustomProperties($pendingMediaItem->getCustomProperties($this->processCustomProperties));
                     }
 
-                    if (null !== $this->customHeaders) {
+                    if ($this->customHeaders !== null) {
                         $fileAdder = $fileAdder->addCustomHeaders($this->customHeaders);
                     }
 
-                    if (null !== $pendingMediaItem->fileName) {
+                    if ($pendingMediaItem->fileName !== null) {
                         $fileAdder->setFileName($pendingMediaItem->fileName);
                     }
 
