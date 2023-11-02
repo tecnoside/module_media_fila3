@@ -4,14 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Media\Handlers;
 
-use Closure;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Modules\Media\Dto\MediaLibraryRequestItem;
 use Modules\Media\Dto\PendingMediaItem;
 use Spatie\MediaLibrary\MediaCollections\FileAdderFactory;
-
-use function is_string;
 
 class PendingMediaLibraryRequestHandler
 {
@@ -20,18 +15,6 @@ class PendingMediaLibraryRequestHandler
     protected ?array $processCustomProperties = null;
 
     protected ?array $customHeaders = null;
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function toMediaCollection(string $collectionName = 'default', string $diskName = ''): void
     {
@@ -47,15 +30,15 @@ class PendingMediaLibraryRequestHandler
                 function (PendingMediaItem $pendingMediaItem) use ($diskName, $collectionName): void {
                     $fileAdder = app(FileAdderFactory::class)->createForPendingMedia($this->model, $pendingMediaItem);
 
-                    if ($this->processCustomProperties !== null) {
+                    if (null !== $this->processCustomProperties) {
                         $fileAdder->withCustomProperties($pendingMediaItem->getCustomProperties($this->processCustomProperties));
                     }
 
-                    if ($this->customHeaders !== null) {
+                    if (null !== $this->customHeaders) {
                         $fileAdder = $fileAdder->addCustomHeaders($this->customHeaders);
                     }
 
-                    if ($pendingMediaItem->fileName !== null) {
+                    if (null !== $pendingMediaItem->fileName) {
                         $fileAdder->setFileName($pendingMediaItem->fileName);
                     }
 

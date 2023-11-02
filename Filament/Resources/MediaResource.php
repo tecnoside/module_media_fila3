@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
-use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
-use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
@@ -19,8 +15,9 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Modules\Media\Filament\Resources\MediaResource\Pages;
+use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
+use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
+use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
 use Modules\Media\Models\Media;
 
 // use Modules\Camping\Constants\AttachmentType;
@@ -32,9 +29,6 @@ class MediaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    /**
-     * @return Form
-     */
     public static function form(Form $form, bool $asset = true): Form
     {
         return $form
@@ -44,7 +38,7 @@ class MediaResource extends Resource
     }
 
     /**
-     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload&FileUpload)[]
+     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload|FileUpload)[]
      *
      * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
      */
@@ -95,9 +89,6 @@ class MediaResource extends Resource
         ];
     }
 
-    /**
-     * @return Table
-     */
     public static function table(Table $table): Table
     {
         return $table
@@ -160,11 +151,7 @@ class MediaResource extends Resource
             );
     }
 
-
-
     /**
-     * @return array
-     *
      * @psalm-return array<never, never>
      */
     public static function getRelations(): array

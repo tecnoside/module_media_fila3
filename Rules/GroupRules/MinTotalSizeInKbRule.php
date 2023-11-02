@@ -16,8 +16,6 @@ class MinTotalSizeInKbRule implements Rule
     {
     }
 
-
-
     public function passes($attribute, $uploadedItems): bool
     {
         $uuids = collect($uploadedItems)

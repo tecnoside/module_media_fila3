@@ -8,13 +8,11 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use SimpleXMLElement;
 
-use function count;
-use function Safe\simplexml_load_string;
-use function Safe\realpath;
-use function Safe\fopen;
 use function Safe\file_put_contents;
+use function Safe\fopen;
+use function Safe\realpath;
+use function Safe\simplexml_load_string;
 
 /**
  * SubtitleService.
@@ -33,16 +31,13 @@ class SubtitleService
 
     public Model $model;
 
-
-
     /**
      * ---.
      */
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Media\Services\SubtitleService) {
-
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;
@@ -91,14 +86,13 @@ class SubtitleService
     {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if ($xmlObject === false) {
+        if (false === $xmlObject) {
             return '';
             // throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
         $txt = '';
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
-
                 $txt .= $item->__toString().' ';
             }
         }
@@ -130,7 +124,7 @@ class SubtitleService
         // $path = Storage::path($this->file_path);
         // $path = realpath($path);
         $path = realpath($this->file_path);
-        if ($path == false) {
+        if (false == $path) {
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
@@ -152,9 +146,8 @@ class SubtitleService
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if ($xmlObject === false) {
-
-            throw new Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
+        if (false === $xmlObject) {
+            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
         }
 
         $data = [];
@@ -164,8 +157,8 @@ class SubtitleService
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
 
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                if (! $attributes instanceof \SimpleXMLElement) {
+                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
                 // 00:06:35,360
                 $start = (int) $attributes->start->__toString() / 1000;
@@ -181,10 +174,10 @@ class SubtitleService
                     'text' => $item->__toString(),
                 ];
                 $data[] = $tmp;
-                $item_i++;
+                ++$item_i;
             }
 
-            $sentence_i++;
+            ++$sentence_i;
         }
 
         return $data;
@@ -193,9 +186,8 @@ class SubtitleService
     /**
      * Undocumented function.
      *
-
-     * @param  string  $srtFile
-     * @param  string  $webVttFile
+     * @param string $srtFile
+     * @param string $webVttFile
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {
@@ -212,9 +204,9 @@ class SubtitleService
             // ($fileHandle);
         }
 
-        $length = count($lines);
-        for ($index = 1; $index < $length; $index++) {
-            if ($index === 1 || trim($lines[$index - 2]) === '') {
+        $length = \count($lines);
+        for ($index = 1; $index < $length; ++$index) {
+            if (1 === $index || '' === trim($lines[$index - 2])) {
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }

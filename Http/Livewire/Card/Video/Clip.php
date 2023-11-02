@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Card\Video;
 
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 use Modules\Xot\Actions\GetViewAction;
@@ -24,9 +23,9 @@ class Clip extends Component
      * @var array
      */
     /**
-* @var array<string, string>
-*/
-protected $listeners = [
+     * @var array<string, string>
+     */
+    protected $listeners = [
         'updateDataFromModal' => 'updateDataFromModal',
     ];
 
@@ -39,7 +38,6 @@ protected $listeners = [
     }
 
     /**
-     *
      * Undocumented function.
      */
     public function render(): \Illuminate\Contracts\View\View
@@ -69,7 +67,7 @@ protected $listeners = [
      */
     public function updateDataFromModal(string $id, array $data): void
     {
-        if ($id !== 'editClip') {
+        if ('editClip' !== $id) {
             return;
         }
         if ($data['id'] !== $this->model->getKey()) {

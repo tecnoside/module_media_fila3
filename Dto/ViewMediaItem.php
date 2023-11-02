@@ -15,8 +15,6 @@ class ViewMediaItem
     ) {
     }
 
-
-
     public function customPropertyAttributes(string $name): HtmlString
     {
         return new HtmlString(implode(PHP_EOL, [
@@ -24,8 +22,6 @@ class ViewMediaItem
             "value='{$this->customPropertyAttributeValue($name)}'",
         ]));
     }
-
-
 
     public function customPropertyAttributeName(string $name): string
     {
@@ -39,18 +35,10 @@ class ViewMediaItem
         return old($this->customPropertyErrorName($name), $value);
     }
 
-
-
-
-
     public function customPropertyErrorName(string $name): string
     {
         return "{$this->formFieldName}.{$this->uuid}.custom_properties.{$name}";
     }
-
-
-
-
 
     public function __get($name)
     {
