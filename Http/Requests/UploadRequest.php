@@ -53,9 +53,9 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-        $mediaModel = new $mediaModelClass();
+        $mediaModel = new $mediaModelClass;
 
-        if ('default' === $mediaModel->getConnectionName()) {
+        if ($mediaModel->getConnectionName() === 'default') {
             return '';
         }
 
@@ -67,7 +67,7 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-        $mediaModel = new $mediaModelClass();
+        $mediaModel = new $mediaModelClass;
 
         return $mediaModel->getTable();
     }

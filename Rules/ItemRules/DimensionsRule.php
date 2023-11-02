@@ -30,11 +30,11 @@ class DimensionsRule extends MediaItemRule
             return $actualWidth === $this->requiredWidth && $actualHeight === $this->requiredHeight;
         }
 
-        if (0 !== $this->requiredWidth) {
+        if ($this->requiredWidth !== 0) {
             return $actualWidth === $this->requiredWidth;
         }
 
-        if (0 !== $this->requiredHeight) {
+        if ($this->requiredHeight !== 0) {
             return $actualHeight === $this->requiredHeight;
         }
 
@@ -55,11 +55,11 @@ class DimensionsRule extends MediaItemRule
             return __('media::validation.incorrect_dimensions.both', $params);
         }
 
-        if (0 !== $this->requiredWidth) {
+        if ($this->requiredWidth !== 0) {
             return __('media::validation.incorrect_dimensions.width', $params);
         }
 
-        if (0 !== $this->requiredHeight) {
+        if ($this->requiredHeight !== 0) {
             return __('media::validation.incorrect_dimensions.height', $params);
         }
     }
