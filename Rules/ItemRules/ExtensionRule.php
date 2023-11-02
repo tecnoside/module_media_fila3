@@ -29,9 +29,9 @@ class ExtensionRule extends MediaItemRule
             return \in_array($extension, $this->allowedExtensions, true);
         }
 
-        $actualExtensions = (new MimeTypes)->getExtensions($media->mime_type);
+        $actualExtensions = (new MimeTypes())->getExtensions($media->mime_type);
 
-        return array_intersect($actualExtensions, $this->allowedExtensions) !== [];
+        return [] !== array_intersect($actualExtensions, $this->allowedExtensions);
     }
 
     public function message()
