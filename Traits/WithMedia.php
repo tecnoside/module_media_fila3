@@ -51,7 +51,11 @@ trait WithMedia
 
     public function clearMedia($mediaComponentNames = null): void
     {
+<<<<<<< HEAD
         if ($mediaComponentNames === null) {
+=======
+        if (null === $mediaComponentNames) {
+>>>>>>> 16fe374 (up)
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 
