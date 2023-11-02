@@ -57,7 +57,7 @@ class Uploader extends Component
     {
         $uploadError = $this->getUploadError();
 
-        if ($uploadError !== null) {
+        if (null !== $uploadError) {
             $this->uploadError = $uploadError;
 
             if (! $this->add) {
@@ -120,7 +120,7 @@ class Uploader extends Component
 
     protected function handleUpload(TemporaryUploadedFile $temporaryUploadedFile): void
     {
-        $media = (new ConvertLivewireUploadToMediaAction)->execute($temporaryUploadedFile);
+        $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
 
         $this->emit("{$this->name}:fileAdded", [
             'name' => $media->name,
