@@ -33,7 +33,7 @@ trait WithMedia
         }
     }
 
-    public function onMediaChanged($name, $media): void
+    public function onMediaChanged(string $name, array $media): void
     {
         $media = $this->makeSureCustomPropertiesUseRightCasing($media);
 
@@ -51,11 +51,11 @@ trait WithMedia
 
     public function clearMedia($mediaComponentNames = null): void
     {
-        if (is_null($mediaComponentNames)) {
+        if (null === $mediaComponentNames) {
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 
-        if (is_string($mediaComponentNames)) {
+        if (\is_string($mediaComponentNames)) {
             $mediaComponentNames = [$mediaComponentNames];
         }
 
