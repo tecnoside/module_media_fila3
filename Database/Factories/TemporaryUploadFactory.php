@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Media\Database\Factories;
 
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Media\Models\TemporaryUpload;
 
@@ -14,10 +13,6 @@ class TemporaryUploadFactory
     private int $fakeImageWidth = 10;
 
     private int $fakeImageHeight = 10;
-
-
-
-
 
     public function create(array $attributes = []): TemporaryUpload
     {
@@ -30,6 +25,4 @@ class TemporaryUploadFactory
             $attributes['name'] ?? 'name',
         );
     }
-
-
 }

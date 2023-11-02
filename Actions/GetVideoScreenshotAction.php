@@ -6,10 +6,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-use Exception;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetVideoScreenshotAction
@@ -22,10 +18,4 @@ class GetVideoScreenshotAction
      * @var array<int>|int
      */
     public $backoff = 3;
-
-
-
-
-
-
 }

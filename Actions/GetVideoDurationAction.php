@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetVideoDurationAction
@@ -19,10 +18,4 @@ class GetVideoDurationAction
      * @var array<int>|int
      */
     public $backoff = 3;
-
-
-
-
-
-
 }

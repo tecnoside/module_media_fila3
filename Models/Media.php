@@ -37,8 +37,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null          $created_by
  * @property string|null          $updated_by
  * @property int                  $user_id
- * @property Model|Eloquent      $model
+ * @property Model|\Eloquent      $model
  * @property TemporaryUpload|null $temporaryUpload
+ *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static Builder|Media                newModelQuery()
@@ -66,13 +67,15 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media                whereUpdatedBy($value)
  * @method static Builder|Media                whereUserId($value)
  * @method static Builder|Media                whereUuid($value)
+ *
  * @mixin \Eloquent
+ *
  * @property string|null $deleted_by
  * @property string|null $deleted_at
- * @property string $directory
+ * @property string      $directory
  * @property string|null $path
- * @property int|null $width
- * @property int|null $height
+ * @property int|null    $width
+ * @property int|null    $height
  * @property string|null $type
  * @property string|null $ext
  * @property string|null $alt
@@ -81,24 +84,26 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null $caption
  * @property string|null $exif
  * @property string|null $curations
+ *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static Builder|Media whereAlt($value)
- * @method static Builder|Media whereCaption($value)
- * @method static Builder|Media whereCurations($value)
- * @method static Builder|Media whereDeletedAt($value)
- * @method static Builder|Media whereDeletedBy($value)
- * @method static Builder|Media whereDescription($value)
- * @method static Builder|Media whereDirectory($value)
- * @method static Builder|Media whereExif($value)
- * @method static Builder|Media whereExt($value)
- * @method static Builder|Media whereHeight($value)
- * @method static Builder|Media wherePath($value)
- * @method static Builder|Media whereTitle($value)
- * @method static Builder|Media whereType($value)
- * @method static Builder|Media whereWidth($value)
+ * @method static Builder|Media                whereAlt($value)
+ * @method static Builder|Media                whereCaption($value)
+ * @method static Builder|Media                whereCurations($value)
+ * @method static Builder|Media                whereDeletedAt($value)
+ * @method static Builder|Media                whereDeletedBy($value)
+ * @method static Builder|Media                whereDescription($value)
+ * @method static Builder|Media                whereDirectory($value)
+ * @method static Builder|Media                whereExif($value)
+ * @method static Builder|Media                whereExt($value)
+ * @method static Builder|Media                whereHeight($value)
+ * @method static Builder|Media                wherePath($value)
+ * @method static Builder|Media                whereTitle($value)
+ * @method static Builder|Media                whereType($value)
+ * @method static Builder|Media                whereWidth($value)
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
+ *
  * @mixin Eloquent
  */
 class Media extends SpatieMedia
@@ -123,8 +128,6 @@ class Media extends SpatieMedia
     }
 
     /**
-     * @return BelongsTo
-     *
      * @psalm-return BelongsTo<TemporaryUpload>
      */
     public function temporaryUpload(): BelongsTo
@@ -133,6 +136,4 @@ class Media extends SpatieMedia
 
         return $this->belongsTo(TemporaryUpload::class);
     }
-
-
 }

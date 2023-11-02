@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
@@ -66,7 +65,7 @@ class Index extends Component
 
         $this->media = $media;
 
-        $this->view = $view === null || $view === '' ? 'media::livewire.media.index' : $view;
+        $this->view = null === $view || '' === $view ? 'media::livewire.media.index' : $view;
         $this->listView = $listView;
         $this->itemView = $itemView;
         $this->propertiesView = $propertiesView;

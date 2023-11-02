@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
-use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
-use Modules\Media\Models\Media;
-use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Traits\WithMedia;
-use Modules\Xot\Actions\GetViewAction;
 use Spatie\MediaLibrary\HasMedia;
 
 class Crud extends Component
@@ -31,10 +27,4 @@ class Crud extends Component
     public $upload;
 
     public string $collection;
-
-
-
-
-
-
 }

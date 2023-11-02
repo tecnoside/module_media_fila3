@@ -12,8 +12,6 @@ class MinItemsRule implements Rule
     {
     }
 
-
-
     public function passes($attribute, $value): bool
     {
         return (is_countable($value) ? count($value) : 0) >= $this->minItemCount;

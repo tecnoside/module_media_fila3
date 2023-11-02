@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Media\Dto;
 
-use Exception;
 use Illuminate\Support\Arr;
-use Webmozart\Assert\Assert;
-use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
+use Webmozart\Assert\Assert;
 
 class PendingMediaItem
 {
@@ -25,13 +23,11 @@ class PendingMediaItem
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
-            throw new Exception('invalid uuid');
+            throw new \Exception('invalid uuid');
         }
 
         $this->temporaryUpload = $temporaryUpload;
     }
-
-
 
     /**
      * @return (array|int|mixed|string)[]
@@ -54,7 +50,7 @@ class PendingMediaItem
 
     public function getCustomProperties(array $customPropertyNames): array
     {
-        if ($customPropertyNames === []) {
+        if ([] === $customPropertyNames) {
             return $this->customProperties;
         }
 

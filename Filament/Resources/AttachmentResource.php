@@ -8,7 +8,6 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
@@ -16,7 +15,6 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 use Modules\Camping\Constants\AttachmentType;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 
@@ -24,9 +22,6 @@ class AttachmentResource extends Resource
 {
     protected static bool $shouldRegisterNavigation = false;
 
-    /**
-     * @return Form
-     */
     public static function form(Form $form, bool $asset = true): Form
     {
         return $form
@@ -35,9 +30,6 @@ class AttachmentResource extends Resource
             );
     }
 
-    /**
-     * @return Table
-     */
     public static function table(Table $table): Table
     {
         return $table
@@ -99,10 +91,8 @@ class AttachmentResource extends Resource
             );
     }
 
-
-
     /**
-     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload&FileUpload)[]
+     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload|FileUpload)[]
      *
      * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
      */
