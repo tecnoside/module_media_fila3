@@ -22,7 +22,7 @@ class VideoPlayer extends Component
      */
     public function __construct(public string $mp4Src, public int $currentTime, string $driver = null)
     {
-        if (null === $driver) {
+        if ($driver === null) {
             $driver = config('xra.video.player');
         }
         $this->driver = $driver;

@@ -23,7 +23,7 @@ class Index extends Component
 
     public string $rules;
 
-    public int|null $maxItems = null;
+    public ?int $maxItems = null;
 
     public array $media;
 
@@ -65,7 +65,7 @@ class Index extends Component
 
         $this->media = $media;
 
-        $this->view = null === $view || '' === $view ? 'media::livewire.media.index' : $view;
+        $this->view = $view === null || $view === '' ? 'media::livewire.media.index' : $view;
         $this->listView = $listView;
         $this->itemView = $itemView;
         $this->propertiesView = $propertiesView;

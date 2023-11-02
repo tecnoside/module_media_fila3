@@ -33,7 +33,7 @@ class TemporaryUploadPathGenerator implements PathGenerator
 
         $key = md5($media->uuid.$media->getKey());
 
-        if ('' !== $prefix) {
+        if ($prefix !== '') {
             return $prefix.'/'.$key;
         }
 
