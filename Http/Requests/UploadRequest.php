@@ -11,6 +11,11 @@ use Modules\Media\Support\DefaultAllowedExtensions;
 
 class UploadRequest extends FormRequest
 {
+    /**
+     * @return ((FileExtensionRule|string)[]|string)[]
+     *
+     * @psalm-return array{uuid: string, name: '', custom_properties: '', file: list{string, string, FileExtensionRule}}
+     */
     public function rules(): array
     {
         $configuredAllowedExtensions = config('media-library.temporary_uploads_allowed_extensions');
@@ -31,6 +36,11 @@ class UploadRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return (array|string)[]
+     *
+     * @psalm-return array{'uuid.unique': array|string}
+     */
     public function messages(): array
     {
         return [
@@ -43,9 +53,9 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-        $mediaModel = new $mediaModelClass;
+        $mediaModel = new $mediaModelClass();
 
-        if ($mediaModel->getConnectionName() === 'default') {
+        if ('default' === $mediaModel->getConnectionName()) {
             return '';
         }
 
@@ -57,7 +67,7 @@ class UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-        $mediaModel = new $mediaModelClass;
+        $mediaModel = new $mediaModelClass();
 
         return $mediaModel->getTable();
     }

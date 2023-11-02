@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
@@ -12,33 +13,33 @@ use Modules\Media\Dto\ViewMediaItem;
 
 class Index extends Component
 {
-    public $name;
+    public string $name;
 
-    public $multiple;
+    public bool $multiple;
 
-    public $sortable;
+    public bool $sortable;
 
-    public $editableName;
+    public bool $editableName;
 
-    public $rules;
+    public string $rules;
 
-    public $maxItems;
+    public int|null $maxItems = null;
 
-    public $media;
+    public array $media;
 
-    public $view;
+    public string $view;
 
-    public $listView;
+    public string $listView;
 
-    public $itemView;
+    public string $itemView;
 
-    public $propertiesView;
+    public string $propertiesView;
 
-    public $fieldsView;
+    public string $fieldsView;
 
-    public $listErrorMessage;
+    public string $listErrorMessage;
 
-    protected $validationErrors;
+    protected MessageBag $validationErrors;
 
     public function mount(
         string $name,
@@ -64,7 +65,7 @@ class Index extends Component
 
         $this->media = $media;
 
-        $this->view = $view === null || $view === '' ? 'media::livewire.media.index' : $view;
+        $this->view = null === $view || '' === $view ? 'media::livewire.media.index' : $view;
         $this->listView = $listView;
         $this->itemView = $itemView;
         $this->propertiesView = $propertiesView;
@@ -230,7 +231,7 @@ class Index extends Component
         $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
-    public function render()
+    public function render(): View
     {
         return view($this->view, [
             'errors' => $this->validationErrors,
@@ -241,6 +242,11 @@ class Index extends Component
         ]);
     }
 
+    /**
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
+     */
     protected function getListeners(): array
     {
         return [

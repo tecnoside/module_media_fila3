@@ -8,7 +8,6 @@ use Illuminate\Validation\ValidationException;
 use Modules\Media\Models\Media;
 use Modules\Media\Models\TemporaryUpload;
 use Modules\Media\Request\UploadRequest;
-use Throwable;
 
 class MediaLibraryUploadController
 {
@@ -23,7 +22,7 @@ class MediaLibraryUploadController
                 $uploadRequest->uuid,
                 $uploadRequest->name ?? '',
             );
-        } catch (Throwable $exception) {
+        } catch (\Throwable $exception) {
             $temporaryUploadModelClass::query()
                 ->where('session_id', session()->getId())
                 ->get()->each->delete();
@@ -39,6 +38,11 @@ class MediaLibraryUploadController
         return response()->json($this->responseFields($media, $temporaryUpload));
     }
 
+    /**
+     * @return (int|string)[]
+     *
+     * @psalm-return array{uuid: string, name: string, preview_url: string, size: int, mime_type: string, extension: string}
+     */
     protected function responseFields(Media $media, TemporaryUpload $temporaryUpload): array
     {
         return [

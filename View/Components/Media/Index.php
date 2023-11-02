@@ -48,6 +48,9 @@ class Index extends Component
         $this->fieldsView = $fieldsView ?? 'media::livewire.partials.collection.fields';
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('media::components.media.index');

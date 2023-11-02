@@ -9,6 +9,11 @@ use Modules\Media\Models\Media;
 
 class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
 {
+    /**
+     * @return string[]
+     *
+     * @psalm-return array{uuid: string, key: 'required', bucket: 'required', name: 'required', content_type: 'required', size: 'required'}
+     */
     public function rules(): array
     {
         return [
@@ -21,6 +26,11 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return (array|string)[]
+     *
+     * @psalm-return array{'uuid.unique': array|string}
+     */
     public function messages(): array
     {
         return [
@@ -33,9 +43,9 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-        $mediaModel = new $mediaModelClass;
+        $mediaModel = new $mediaModelClass();
 
-        if ($mediaModel->getConnectionName() === 'default') {
+        if ('default' === $mediaModel->getConnectionName()) {
             return '';
         }
 
@@ -47,7 +57,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         $mediaModelClass = config('media-library.media_model');
 
         /** @var Media $mediaModel */
-        $mediaModel = new $mediaModelClass;
+        $mediaModel = new $mediaModelClass();
 
         return $mediaModel->getTable();
     }

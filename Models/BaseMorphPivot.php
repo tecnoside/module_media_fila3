@@ -33,11 +33,22 @@ abstract class BaseMorphPivot extends MorphPivot
      */
     public $timestamps = true;
 
+    /**
+     * @var int
+     */
     protected $perPage = 30;
 
+    /**
+     * @var string
+     */
     protected $connection = 'media';
 
     /**
+     * @var array
+     */
+    /**
+     * The accessors to append to the model's array form.
+     *
      * @var array
      */
     protected $appends = [];
@@ -48,7 +59,7 @@ abstract class BaseMorphPivot extends MorphPivot
     protected $primaryKey = 'id';
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'id',
@@ -58,6 +69,11 @@ abstract class BaseMorphPivot extends MorphPivot
         'note',
     ];
 
+    /**
+     * @var string[]
+     *
+     * @psalm-var array{created_at: 'datetime', updated_at: 'datetime', deleted_at: 'datetime'}
+     */
     protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime',
         'deleted_at' => 'datetime', ];
 }

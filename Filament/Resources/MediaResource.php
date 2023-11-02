@@ -8,7 +8,6 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
@@ -16,8 +15,9 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Modules\Media\Filament\Resources\MediaResource\Pages;
+use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
+use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
+use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
 use Modules\Media\Models\Media;
 
 // use Modules\Camping\Constants\AttachmentType;
@@ -37,6 +37,11 @@ class MediaResource extends Resource
             );
     }
 
+    /**
+     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload|FileUpload)[]
+     *
+     * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
+     */
     public static function getFormSchema(bool $asset = true): array
     {
         return [
@@ -146,35 +151,26 @@ class MediaResource extends Resource
             );
     }
 
-    public static function formHandlerCallback(RelationManager $livewire, array $data): void
-    {
-        $disk = config('attachment.upload.disk.driver');
-
-        $attachment = $livewire
-            ->getOwnerRecord()
-            ->addMediaFromDisk(
-                $data['file'],
-                $disk,
-            )
-            ->setName(
-                $data['name'] ?? Str::beforeLast($data['original_file_name'], '.'),
-            )
-            ->preservingOriginal()
-            ->toMediaCollection($data['attachment_type']);
-    }
-
+    /**
+     * @psalm-return array<never, never>
+     */
     public static function getRelations(): array
     {
         return [
         ];
     }
 
+    /**
+     * @return \Filament\Resources\Pages\PageRegistration[]
+     *
+     * @psalm-return array{index: \Filament\Resources\Pages\PageRegistration, create: \Filament\Resources\Pages\PageRegistration, edit: \Filament\Resources\Pages\PageRegistration}
+     */
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListMedia::route('/'),
-            'create' => Pages\CreateMedia::route('/create'),
-            'edit' => Pages\EditMedia::route('/{record}/edit'),
+            'index' => ListMedia::route('/'),
+            'create' => CreateMedia::route('/create'),
+            'edit' => EditMedia::route('/{record}/edit'),
         ];
     }
 }

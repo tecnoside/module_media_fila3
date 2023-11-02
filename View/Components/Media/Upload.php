@@ -28,6 +28,9 @@ class Upload extends Component
         $this->propertiesView = $propertiesView ?? 'media::livewire.partials.attachment.properties';
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('media::components.media.attachment');

@@ -16,11 +16,6 @@ class MinTotalSizeInKbRule implements Rule
     {
     }
 
-    public function getMinTotalSizeInKb(): int
-    {
-        return $this->minTotalSizeInKb;
-    }
-
     public function passes($attribute, $uploadedItems): bool
     {
         $uuids = collect($uploadedItems)

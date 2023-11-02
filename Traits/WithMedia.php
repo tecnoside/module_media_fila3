@@ -9,6 +9,11 @@ use Livewire\Component;
 /** @mixin Component */
 trait WithMedia
 {
+    /**
+     * @return string[]
+     *
+     * @psalm-return array<string>
+     */
     public function getMediaComponentNames(): array
     {
         return $this->mediaComponentNames ?? [];

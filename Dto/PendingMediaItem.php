@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Media\Dto;
 
-use Exception;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Modules\Media\Models\TemporaryUpload;
+use Webmozart\Assert\Assert;
 
 class PendingMediaItem
 {
@@ -18,33 +17,26 @@ class PendingMediaItem
         public string $name,
         public int $order,
         public array $customProperties,
-        array $customHeaders,
+        // array $customHeaders,
         public ?string $fileName = null
     ) {
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
-            throw new Exception('invalid uuid');
+            throw new \Exception('invalid uuid');
         }
 
         $this->temporaryUpload = $temporaryUpload;
     }
 
-    public static function createFromArray(array $pendingMediaItems): Collection
-    {
-        return collect($pendingMediaItems)
-            ->map(fn (array $uploadAttributes): static => new static(
-                $uploadAttributes['uuid'],
-                $uploadAttributes['name'] ?? '',
-                $uploadAttributes['order'] ?? 0,
-                $uploadAttributes['custom_properties'] ?? [],
-                $uploadAttributes['fileName'] ?? null,
-            ));
-    }
-
+    /**
+     * @return (array|int|mixed|string)[]
+     *
+     * @psalm-return array{uuid: string, name: string, order: int, custom_properties: array, size: int, mime: mixed}
+     */
     public function toArray(): array
     {
-        $media = $this->temporaryUpload->getFirstMedia();
+        Assert::notNull($media = $this->temporaryUpload->getFirstMedia());
 
         return [
             'uuid' => $media->uuid,
@@ -58,7 +50,7 @@ class PendingMediaItem
 
     public function getCustomProperties(array $customPropertyNames): array
     {
-        if ($customPropertyNames === []) {
+        if ([] === $customPropertyNames) {
             return $this->customProperties;
         }
 

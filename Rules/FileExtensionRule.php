@@ -7,8 +7,6 @@ namespace Modules\Media\Rules;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\UploadedFile;
 
-use function in_array;
-
 class FileExtensionRule implements Rule
 {
     protected array $validExtensions = [];
@@ -22,19 +20,19 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param  string  $attribute
-     * @param  UploadedFile  $value
+     * @param string       $attribute
+     * @param UploadedFile $value
      */
     public function passes($attribute, $value): bool
     {
-        return in_array(
+        return \in_array(
             strtolower($value->getClientOriginalExtension()),
             $this->validExtensions,
             strict: true,
         );
     }
 
-    public function message(): string
+    public function message(): array|string
     {
         return trans('media::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),

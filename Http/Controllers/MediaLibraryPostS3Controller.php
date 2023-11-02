@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Media\Models\Media;
 use Modules\Media\Request\CreateTemporaryUploadFromDirectS3UploadRequest;
 use Spatie\MediaLibrary\Conversions\FileManipulator;
-use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 use Spatie\MediaLibrary\Support\PathGenerator\PathGeneratorFactory;
 
 class MediaLibraryPostS3Controller
@@ -41,7 +40,6 @@ class MediaLibraryPostS3Controller
             'size' => $createTemporaryUploadFromDirectS3UploadRequest->size,
         ]);
 
-        /** @var PathGenerator $pathGenerator */
         $pathGenerator = PathGeneratorFactory::create($media);
 
         Storage::disk($diskName)->copy(
