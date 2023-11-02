@@ -12,16 +12,14 @@ class MinItemsRule implements Rule
     {
     }
 
-    public function getMinItemCount(): int
-    {
-        return $this->minItemCount;
-    }
-
     public function passes($attribute, $value): bool
     {
         return (is_countable($value) ? count($value) : 0) >= $this->minItemCount;
     }
 
+    /**
+     * @return string
+     */
     public function message()
     {
         return trans_choice('media::validation.min_items', $this->minItemCount, [

@@ -11,7 +11,7 @@ use Intervention\Image\Image;
 
 class Medium implements FilterContract
 {
-    public function applyFilter(Image $image)
+    public function applyFilter(Image $image): Image
     {
         return $image->fit(240, 180);
     }

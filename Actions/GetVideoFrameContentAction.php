@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
-use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -18,16 +17,6 @@ use Spatie\QueueableAction\QueueableAction;
 class GetVideoFrameContentAction
 {
     use QueueableAction;
-
-    /**
-     * Create a new action instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        // Prepare the action for execution, leveraging constructor injection.
-    }
 
     /**
      * Execute the action.
@@ -53,8 +42,7 @@ class GetVideoFrameContentAction
                         ->getFrameFromSeconds($time)
                         ->export()
                         ->getFrameContents();
-
-                } catch (Exception) {
+                } catch (\Exception) {
                     return Storage::disk('public_html')->get('img/video_not_exists.jpg');
                 }
             }

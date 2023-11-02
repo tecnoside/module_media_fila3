@@ -15,25 +15,11 @@ class ViewMediaItem
     ) {
     }
 
-    public function propertyAttributeName(string $name): string
-    {
-        return "{$this->formFieldName}[{$this->uuid}][{$name}]";
-    }
-
     public function customPropertyAttributes(string $name): HtmlString
     {
         return new HtmlString(implode(PHP_EOL, [
             "name='{$this->customPropertyAttributeName($name)}'",
             "value='{$this->customPropertyAttributeValue($name)}'",
-        ]));
-    }
-
-    public function livewireCustomPropertyAttributes(string $name, int $debounceInMs = 150): HtmlString
-    {
-        return new HtmlString(implode(PHP_EOL, [
-            'x-data',
-            'x-on:keyup.debounce.'.$debounceInMs.'="$wire.setCustomProperty(\''.$this->uuid.'\', \''.$name.'\', document.getElementsByName(\''.$this->customPropertyAttributeName($name).'\')[0].value)"',
-            $this->customPropertyAttributes($name),
         ]));
     }
 
@@ -49,31 +35,9 @@ class ViewMediaItem
         return old($this->customPropertyErrorName($name), $value);
     }
 
-    public function errorName(): string
-    {
-        return "{$this->formFieldName}.{$this->uuid}";
-    }
-
-    public function propertyErrorName(string $name): string
-    {
-        return "{$this->formFieldName}.{$this->uuid}.{$name}";
-    }
-
     public function customPropertyErrorName(string $name): string
     {
         return "{$this->formFieldName}.{$this->uuid}.custom_properties.{$name}";
-    }
-
-    public function downloadUrl(): string
-    {
-        $mediaModelClass = config('media-library.media_model');
-
-        return $mediaModelClass::findByUuid($this->uuid)->getUrl();
-    }
-
-    public function createdAt(): Carbon
-    {
-        return Carbon::createFromTimestamp($this->mediaAttributes['createdAt']);
     }
 
     public function __get($name)

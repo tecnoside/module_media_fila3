@@ -8,7 +8,6 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
@@ -16,7 +15,6 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 use Modules\Camping\Constants\AttachmentType;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 
@@ -79,7 +77,7 @@ class AttachmentResource extends Resource
                         ->color('primary')
                         ->action(
                             // File extension obtained by substringing
-                            fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr($record->file_name, '.'), 0))
+                            fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr((string) $record->file_name, '.'), 0))
                         ),
                 ]),
             ])
@@ -93,23 +91,11 @@ class AttachmentResource extends Resource
             );
     }
 
-    public static function formHandlerCallback(RelationManager $livewire, array $data): void
-    {
-        $disk = config('attachment.upload.disk.driver');
-
-        $attachment = $livewire
-            ->getOwnerRecord()
-            ->addMediaFromDisk(
-                $data['file'],
-                $disk,
-            )
-            ->setName(
-                $data['name'] ?? Str::beforeLast($data['original_file_name'], '.'),
-            )
-            ->preservingOriginal()
-            ->toMediaCollection($data['attachment_type']);
-    }
-
+    /**
+     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload|FileUpload)[]
+     *
+     * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
+     */
     public static function getFormSchema(bool $asset = true): array
     {
         return [

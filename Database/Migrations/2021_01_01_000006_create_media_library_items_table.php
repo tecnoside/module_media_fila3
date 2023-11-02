@@ -16,14 +16,12 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
 {
     /**
      * i don't write table name, it take from Model, model is singular of this class wit.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $table) {
+            function (Blueprint $table): void {
                 $table->id();
 
                 // $table->foreignId('uploaded_by_user_id')
@@ -42,7 +40,7 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
 
         // -- UPDATE --
         $this->tableUpdate(
-            function (Blueprint $table) {
+            function (Blueprint $table): void {
                 if (! $this->hasColumn('order_column')) {
                     $table->integer('order_column')->nullable();
                 }

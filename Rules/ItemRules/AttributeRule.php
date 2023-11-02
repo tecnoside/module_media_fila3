@@ -13,7 +13,7 @@ class AttributeRule extends MediaItemRule
 
     protected Validator $validator;
 
-    public function __construct(public string $attribute, $rules)
+    public function __construct(public string $attribute, array|string $rules)
     {
         if (is_string($rules)) {
             $rules = explode('|', $rules);
@@ -32,6 +32,9 @@ class AttributeRule extends MediaItemRule
         return $this->validator->passes();
     }
 
+    /**
+     * @return string
+     */
     public function message()
     {
         return $this->validator->messages()->first($this->shortAttributeName());

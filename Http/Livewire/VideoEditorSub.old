@@ -33,7 +33,10 @@ class VideoEditorSub extends Component {
     public $selectedSubtitles = [];
     public $editSubtitle = null;
     public $editSubtitleText = null;
-    protected $listeners = [
+    /**
+* @var array<string, string>
+*/
+protected $listeners = [
         'save-subtitle-range' => 'saveSubtitleRange',
         'save-subtitle-model' => 'saveSubtitleModel',
         'take-episode' => 'takeEpisode',
