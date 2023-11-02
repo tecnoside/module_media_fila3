@@ -13,7 +13,7 @@ class PendingMediaFactory
 
     public function create(array $attributes = []): PendingMediaItem
     {
-        $temporaryUpload = (new TemporaryUploadFactory())->create($this->temporaryUploadAttributes);
+        $temporaryUpload = (new TemporaryUploadFactory)->create($this->temporaryUploadAttributes);
         Assert::notNull($temporaryUpload->getFirstMedia());
 
         return new PendingMediaItem(
