@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Carbon\Carbon;
-use Closure;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -18,23 +15,37 @@ use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-use function is_string;
-
+/**
+ * Modules\Media\Models\TemporaryUpload
+ *
+ * @property int $id
+ * @property string $session_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
+ * @property-read int|null $media_count
+ * @method static Builder|TemporaryUpload newModelQuery()
+ * @method static Builder|TemporaryUpload newQuery()
+ * @method static Builder|TemporaryUpload query()
+ * @method static Builder|TemporaryUpload whereCreatedAt($value)
+ * @method static Builder|TemporaryUpload whereId($value)
+ * @method static Builder|TemporaryUpload whereSessionId($value)
+ * @method static Builder|TemporaryUpload whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class TemporaryUpload extends Model implements HasMedia
 {
     use InteractsWithMedia;
     use MassPrunable;
 
-    public static ?Closure $manipulatePreview = null;
+    public static ?\Closure $manipulatePreview = null;
 
     public static ?string $disk = null;
 
     /**
      * @var array
      */
-    protected array $guarded = [];
-
-
+    protected $guarded = [];
 
     public static function findByMediaUuid(?string $mediaUuid): ?self
     {
@@ -60,7 +71,7 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static function findByMediaUuidInCurrentSession(?string $mediaUuid): ?self
     {
-        if (! ($temporaryUpload = static::findByMediaUuid($mediaUuid)) instanceof \Modules\Media\Models\TemporaryUpload) {
+        if (! ($temporaryUpload = static::findByMediaUuid($mediaUuid)) instanceof self) {
             return null;
         }
 
@@ -82,7 +93,7 @@ class TemporaryUpload extends Model implements HasMedia
             'session_id' => $sessionId,
         ]);
 
-        if (static::findByMediaUuid($uuid) instanceof \Modules\Media\Models\TemporaryUpload) {
+        if (static::findByMediaUuid($uuid) instanceof self) {
             throw CouldNotAddUpload::uuidAlreadyExists();
         }
 
@@ -109,7 +120,7 @@ class TemporaryUpload extends Model implements HasMedia
             'session_id' => $sessionId,
         ]);
 
-        if (static::findByMediaUuid($uuid) instanceof \Modules\Media\Models\TemporaryUpload) {
+        if (static::findByMediaUuid($uuid) instanceof self) {
             throw CouldNotAddUpload::uuidAlreadyExists();
         }
 
@@ -128,13 +139,11 @@ class TemporaryUpload extends Model implements HasMedia
     protected static function getDiskName(): string
     {
         $res = static::$disk ?? config('media-library.disk_name');
-        if (is_string($res)) {
+        if (\is_string($res)) {
             return $res;
         }
-        throw new Exception('['.__LINE__.']['.__FILE__.']');
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
-
-
 
     public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
@@ -160,7 +169,7 @@ class TemporaryUpload extends Model implements HasMedia
         $media = $this->getFirstMedia();
 
         if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $temporaryUploadModel = $media->model;
@@ -180,7 +189,7 @@ class TemporaryUpload extends Model implements HasMedia
         return self::query()->old();
     }
 
-    protected function getPreviewManipulation(): Closure
+    protected function getPreviewManipulation(): \Closure
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Manipulations::FIT_CROP, 300, 300);

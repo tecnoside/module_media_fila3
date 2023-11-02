@@ -30,7 +30,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property MediaCollection<int, Media>                                            $media
  * @property int|null                                                               $media_count
  * @property User|null                                                              $user
- *
  * @method static MediaLibraryFactory factory($count = null, $state = [])
  * @method static Builder|MediaLibraryItem                                                       newModelQuery()
  * @method static Builder|MediaLibraryItem                                                       newQuery()
@@ -44,7 +43,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static Builder|MediaLibraryItem                                                       whereOrderColumn($value)
  * @method static Builder|MediaLibraryItem                                                       whereUpdatedAt($value)
  * @method static Builder|MediaLibraryItem                                                       whereUploadedByUserId($value)
- *
+ * @property string|null $user_id
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @method static Builder|MediaLibraryItem whereCreatedBy($value)
+ * @method static Builder|MediaLibraryItem whereUpdatedBy($value)
+ * @method static Builder|MediaLibraryItem whereUserId($value)
  * @mixin \Eloquent
  */
 class MediaLibraryItem extends BaseMediaLibraryItem implements Sortable
