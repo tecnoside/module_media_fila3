@@ -9,14 +9,14 @@ use Illuminate\Console\Command;
 class DeleteTemporaryUploadsCommand extends Command
 {
     /**
-     * @var string 
+     * @var string
      */
-    protected  $signature = 'media-library:delete-old-temporary-uploads';
+    protected $signature = 'media-library:delete-old-temporary-uploads';
 
     /**
-     * @var string 
+     * @var string
      */
-    protected  $description = 'Delete old temporary uploads';
+    protected $description = 'Delete old temporary uploads';
 
     public function handle(): void
     {
