@@ -9,9 +9,9 @@ use Modules\Media\Models\Media;
 
 abstract class MediaItemRule implements Rule
 {
-    public string $value;
+    public mixed $value;
 
-    public function passes(string $attribute, string $value): bool
+    public function passes(mixed $attribute, mixed $value): bool
     {
         $this->value = $value;
 
