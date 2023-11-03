@@ -21,7 +21,7 @@ trait WithAccessingMedia
             ->map(/**
              * @return (array|float|int|string|null)[]
              *
-             * @psalm-return array{name: string, fileName: string, uuid: string, previewUrl: string, order: int|null, customProperties: array, extension: string, size: int, createdAt: float|int|null|string}
+             * - psalm-return array{name: string, fileName: string, uuid: string, previewUrl: string, order: int|null, customProperties: array, extension: string, size: int, createdAt: float|int|null|string}
              */
                 fn (Media $media): array => [
                     'name' => $media->name,
