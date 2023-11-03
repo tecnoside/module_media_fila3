@@ -16,7 +16,7 @@ trait WithMedia
      */
     public function getMediaComponentNames(): array
     {
-        //return $this->mediaComponentNames ?? []; // on left side of ?? is not nullable.
+        // return $this->mediaComponentNames ?? []; // on left side of ?? is not nullable.
         return $this->mediaComponentNames;
     }
 
