@@ -18,7 +18,6 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Modules\Camping\Constants\AttachmentType;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
-use Webmozart\Assert\Assert;
 
 class AttachmentResource extends Resource
 {
