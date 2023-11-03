@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\View\Components;
 
-use Webmozart\Assert\Assert;
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 use Modules\Xot\Actions\GetViewAction;
+use Webmozart\Assert\Assert;
 
 /**
  * Class VideoPlayer.
@@ -23,9 +23,8 @@ class VideoPlayer extends Component
      */
     public function __construct(public string $mp4Src, public int $currentTime, string $driver = null)
     {
-        
-        Assert::string($driver = $driver ?? config('xra.video.player') );
-        
+        Assert::string($driver = $driver ?? config('xra.video.player'));
+
         $this->driver = $driver;
     }
 
