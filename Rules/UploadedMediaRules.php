@@ -20,13 +20,15 @@ class UploadedMediaRules implements Rule
         return $this;
     }
 
-    public function passes($attribute, $value): void
+    public function passes($attribute, $value): bool
     {
+        return true;
         // this page has been left intentionally blank
     }
 
-    public function message(): void
+    public function message(): array|string
     {
+        return 'message';
         // this page has been left intentionally blank
     }
 }
