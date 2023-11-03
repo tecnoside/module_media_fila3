@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Media\Rules\ItemRules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Modules\Media\Models\Media;
 
-abstract class MediaItemRule implements Rule
+abstract class MediaItemRule implements ValidationRule
 {
     public mixed $value;
 
-    public function passes(mixed $attribute, mixed $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $this->value = $value;
 
-        return $this->validateMediaItem();
+        $this->validateMediaItem();
     }
 
     public function getTemporaryUploadMedia(): ?Media
