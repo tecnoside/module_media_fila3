@@ -29,6 +29,8 @@ class SubtitleService
     // siamo in subtitle, percio' il file e' dei subtitle
     public string $field_name = 'txt';
 
+    public array $subtitles = [];
+
     public Model $model;
 
     /**
@@ -86,10 +88,6 @@ class SubtitleService
     {
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if (false == $xmlObject) {
-            return '';
-            // throw new Exception('['.__LINE__.']['.__FILE__.']');
-        }
         $txt = '';
         foreach ($xmlObject->annotation->type->sentence as $sentence) {
             foreach ($sentence->item as $item) {
@@ -146,9 +144,6 @@ class SubtitleService
         $this->subtitles = [];
         $content = $this->getContent();
         $xmlObject = simplexml_load_string($content);
-        if (false === $xmlObject) {
-            throw new \Exception('content:['.$content.']'.PHP_EOL.'['.__LINE__.']['.__FILE__.']');
-        }
 
         $data = [];
         $sentence_i = 0;

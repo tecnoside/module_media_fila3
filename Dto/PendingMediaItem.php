@@ -21,6 +21,7 @@ class PendingMediaItem
         public ?string $fileName = null
     ) {
         $temporaryUploadModelClass = config('media-library.temporary_upload_model');
+        Assert::string($temporaryUploadModelClass);
 
         if (! $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($uuid)) {
             throw new \Exception('invalid uuid');

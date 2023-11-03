@@ -32,7 +32,7 @@ trait WithAccessingMedia
                     'customProperties' => $media->custom_properties,
                     'extension' => $media->extension,
                     'size' => $media->size,
-                    'createdAt' => $media->created_at,
+                    'createdAt' => $media->created_at != null ? $media->created_at->timestamp : null,
                 ])
             ->keyBy('uuid')
             ->toArray();

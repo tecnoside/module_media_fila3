@@ -59,10 +59,6 @@ trait WithMedia
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 
-        if (\is_string($mediaComponentNames)) {
-            $mediaComponentNames = [$mediaComponentNames];
-        }
-
         foreach ($mediaComponentNames as $mediumComponentName) {
             $this->dispatch("{$mediumComponentName}:clearMedia", $mediumComponentName);
 
