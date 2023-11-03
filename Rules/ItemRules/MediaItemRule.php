@@ -11,7 +11,7 @@ abstract class MediaItemRule implements Rule
 {
     public string $value;
 
-    public function passes(string $attribute,string $value):bool
+    public function passes(string $attribute, string $value): bool
     {
         $this->value = $value;
 
