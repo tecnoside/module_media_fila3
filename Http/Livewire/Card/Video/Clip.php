@@ -59,7 +59,7 @@ class Clip extends Component
     public function editClip(): void
     {
         $data = $this->model->toArray();
-        $this->emit('showModal', 'editClip', $data);
+        $this->dispatch('showModal', 'editClip', $data);
     }
 
     /**

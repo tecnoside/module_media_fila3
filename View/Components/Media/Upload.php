@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\View\Components\Media;
 
 use Illuminate\View\Component;
+use Webmozart\Assert\Assert;
 
 class Upload extends Component
 {

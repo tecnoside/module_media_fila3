@@ -40,7 +40,7 @@ trait WithMedia
         $errorBag = $this->getErrorBag();
 
         foreach ($this->getMediaComponentNames() as $mediaComponentName) {
-            $this->emit("{$mediaComponentName}:mediaComponentValidationErrors", $mediaComponentName, $errorBag->toArray());
+            $this->dispatch("{$mediaComponentName}:mediaComponentValidationErrors", $mediaComponentName, $errorBag->toArray());
         }
     }
 
@@ -55,7 +55,7 @@ trait WithMedia
         }
 
         foreach ($mediaComponentNames as $mediumComponentName) {
-            $this->emit("{$mediumComponentName}:clearMedia", $mediumComponentName);
+            $this->dispatch("{$mediumComponentName}:clearMedia", $mediumComponentName);
 
             $this->{$mediumComponentName} = [];
         }

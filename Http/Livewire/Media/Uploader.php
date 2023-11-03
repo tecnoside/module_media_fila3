@@ -61,7 +61,7 @@ class Uploader extends Component
             $this->uploadError = $uploadError;
 
             if (! $this->add) {
-                $this->emit("{$this->name}:uploadError", $this->uuid, $uploadError);
+                $this->dispatch("{$this->name}:uploadError", $this->uuid, $uploadError);
             }
 
             return;
@@ -84,8 +84,8 @@ class Uploader extends Component
             $uploadError = str_replace('.0', '', $exception->validator->errors()->first());
 
             $this->add
-                ? $this->emit("{$this->name}:showListErrorMessage", $uploadError)
-                : $this->emit("{$this->name}:uploadError", $this->uuid, $exception->validator->errors()->first());
+                ? $this->dispatch("{$this->name}:showListErrorMessage", $uploadError)
+                : $this->dispatch("{$this->name}:uploadError", $this->uuid, $exception->validator->errors()->first());
         }
     }
 
@@ -111,7 +111,7 @@ class Uploader extends Component
             $uploadError = Arr::flatten($validationException->errors())[0];
 
             if ($this->add) {
-                $this->emit("{$this->name}:showListErrorMessage", $uploadError);
+                $this->dispatch("{$this->name}:showListErrorMessage", $uploadError);
             }
         }
 
@@ -122,7 +122,7 @@ class Uploader extends Component
     {
         $media = (new ConvertLivewireUploadToMediaAction())->execute($temporaryUploadedFile);
 
-        $this->emit("{$this->name}:fileAdded", [
+        $this->dispatch("{$this->name}:fileAdded", [
             'name' => $media->name,
             'fileName' => $media->file_name,
             'oldUuid' => $this->uuid,

@@ -91,7 +91,7 @@ class Index extends Component
 
         $this->media = collect($this->media)->sortBy('order')->toArray();
 
-        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+        $this->dispatch("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function remove(string $uuid): void
@@ -100,7 +100,7 @@ class Index extends Component
             ->reject(fn (array $mediaItem): bool => $mediaItem['uuid'] === $uuid)
             ->toArray();
 
-        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+        $this->dispatch("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function allowsUpload(array $mediaItem): bool
@@ -200,21 +200,21 @@ class Index extends Component
         $this->media = [];
         $this->listErrorMessage = '';
 
-        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+        $this->dispatch("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function setMediaProperty(string $uuid, string $attributeName, $value): void
     {
         $this->media[$uuid][$attributeName] = $value;
 
-        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+        $this->dispatch("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function setCustomProperty(string $uuid, string $customPropertyName, $value): void
     {
         Arr::set($this->media, "{$uuid}.custom_properties.{$customPropertyName}", $value);
 
-        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+        $this->dispatch("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function setNewOrder(array $newOrder): void
@@ -228,7 +228,7 @@ class Index extends Component
             ->sortBy('order')
             ->toArray();
 
-        $this->emit("{$this->name}:mediaChanged", $this->name, $this->media);
+        $this->dispatch("{$this->name}:mediaChanged", $this->name, $this->media);
     }
 
     public function render(): View
