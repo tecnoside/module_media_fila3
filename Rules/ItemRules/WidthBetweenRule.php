@@ -28,7 +28,7 @@ class WidthBetweenRule extends MediaItemRule
         return $actualWidth >= $this->minWidth && $actualWidth <= $this->maxWidth;
     }
 
-    public function message()
+    public function message():string
     {
         return __('media::validation.width_not_between', [
             'min' => $this->minWidth,
