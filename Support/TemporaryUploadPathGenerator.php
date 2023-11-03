@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Modules\Media\Support;
 
 use Modules\Media\Models\Media;
-use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
+//use Spatie\MediaLibrary\MediaCollections\Models\Media;
+//use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
+//use Modules\Media\Contracts\PathGenerator;
 
-class TemporaryUploadPathGenerator implements PathGenerator
+class TemporaryUploadPathGenerator //implements PathGenerator
 {
     public function getPath(Media $media): string
     { /* @phpstan-ignore-line */
