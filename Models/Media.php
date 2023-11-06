@@ -99,7 +99,7 @@ class Media extends SpatieMedia
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      *
-     * @psalm-return \Illuminate\Database\Eloquent\Collection<int, static>
+     * @psalm-return Collection<int, Media>
      */
     public static function findWithTemporaryUploadInCurrentSession(array $uuids): Collection
     {
