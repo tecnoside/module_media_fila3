@@ -9,6 +9,7 @@ namespace Modules\Media\Http\Controllers;
 
 use Modules\Media\Services\VideoStream;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Webmozart\Assert\Assert;
 
 /**
  * ---.
@@ -20,10 +21,12 @@ class StreamController extends BaseController
      */
     public function __invoke(int $press_id): StreamedResponse
     {
-        $press_class = config('morph_map.press');
+        Assert::classExists($press_class = config('morph_map.press'));
+        /*
         if (null === $press_class) {
             throw new \Exception('add media class to config morph_map');
         }
+        */
         $press = $press_class::find($press_id);
         // $video_path=Storage::disk($press->disk)
         //    ->path($press->file_mp4);
