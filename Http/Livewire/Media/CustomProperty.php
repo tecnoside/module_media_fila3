@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
+use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+/**
+ * @property ComponentContainer $form
+ */
 class CustomProperty extends Component implements HasForms
 {
     use InteractsWithForms;

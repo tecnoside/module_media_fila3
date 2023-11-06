@@ -14,6 +14,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Media\Models\TemporaryUpload.
@@ -45,7 +46,7 @@ class TemporaryUpload extends Model implements HasMedia
     public static ?string $disk = null;
 
     /**
-     * @var array
+     * @var array<string>|bool
      */
     protected $guarded = [];
 
@@ -170,9 +171,10 @@ class TemporaryUpload extends Model implements HasMedia
 
         $media = $this->getFirstMedia();
 
-        if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
-        }
+        // if (! $media instanceof \Spatie\MediaLibrary\MediaCollections\Models\Media) {
+        //    throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        // }
+        Assert::isInstanceOf($media, Media::class);
 
         $temporaryUploadModel = $media->model;
         $uuid = $media->uuid;
@@ -186,10 +188,10 @@ class TemporaryUpload extends Model implements HasMedia
         return $newMedia;
     }
 
-    public function prunable(): Builder
-    {
-        return self::query()->old();
-    }
+    // public function prunable(): Builder
+    // { Call to an undefined method Illuminate\Database\Eloquent\Builder<Modules\Media\Models\TemporaryUpload>::old().
+    //    return self::query()->old();
+    // }
 
     protected function getPreviewManipulation(): \Closure
     {
