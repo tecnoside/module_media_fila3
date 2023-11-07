@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?php
 
 /**
@@ -54,21 +53,3 @@ class Merge
         $img_canvas->save(public_path().'/'.$filenameOut, 100);
     }
 }
-=======
-<?php
-
-/**
- * @see https://github.com/protonemedia/laravel-ffmpeg
- */
-
-declare(strict_types=1);
-
-namespace Modules\Media\Actions\Image;
-
-use Spatie\QueueableAction\QueueableAction;
-
-class Merge
-{
-    use QueueableAction;
-}
->>>>>>> Stashed changes
