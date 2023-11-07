@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:Rules/ItemRules/MediaItemRule.old
 <?php
 
 declare(strict_types=1);
@@ -33,3 +34,40 @@ abstract class MediaItemRule implements ValidationRule
 
     abstract public function validateMediaItem(): bool;
 }
+=======
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\Media\Rules\ItemRules;
+
+use Illuminate\Contracts\Validation\Rule;
+use Modules\Media\Models\Media;
+
+abstract class MediaItemRule implements Rule
+{
+    public $value;
+
+    public function passes($attribute, $value)
+    {
+        $this->value = $value;
+
+        return $this->validateMediaItem();
+    }
+
+    public function getTemporaryUploadMedia(): ?Media
+    {
+        $temporaryUploadModelClass = config('media-library.temporary_upload_model');
+
+        $temporaryUpload = $temporaryUploadModelClass::findByMediaUuidInCurrentSession($this->value['uuid']);
+
+        if (! $temporaryUpload) {
+            return null;
+        }
+
+        return $temporaryUpload->getFirstMedia();
+    }
+
+    abstract public function validateMediaItem(): bool;
+}
+>>>>>>> Stashed changes:Rules/ItemRules/MediaItemRule.php
