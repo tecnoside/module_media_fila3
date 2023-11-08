@@ -65,7 +65,7 @@ class MediaResource extends Resource
                 )
                 ->required()
                 ->columnSpanFull(),
-            /*-- usiamo enum con il casts sul modello 
+            /*-- usiamo enum con il casts sul modello
             Radio::make('attachment_type')
                 ->hiddenLabel()
                 ->options(
