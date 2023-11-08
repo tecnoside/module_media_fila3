@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
-use Filament\Forms\Components\Radio;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
-use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
-use Modules\Media\Enums\AttachmentTypeEnum;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Modules\Camping\Constants\AttachmentType;
-use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Modules\Media\Enums\AttachmentTypeEnum;
 
 class AttachmentResource extends Resource
 {
@@ -150,8 +148,8 @@ class AttachmentResource extends Resource
 
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
-        $ownerRecord= $livewire->getOwnerRecord();
-        if(!method_exists($ownerRecord,'addMediaFromDisk')){
+        $ownerRecord = $livewire->getOwnerRecord();
+        if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
             throw new \Exception('wip');
         }
         $attachment = $ownerRecord
