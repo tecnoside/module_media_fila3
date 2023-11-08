@@ -65,7 +65,7 @@ class MediaResource extends Resource
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            /*-- usiamo enum con il casts sul modello 
             Radio::make('attachment_type')
                 ->hiddenLabel()
                 ->options(
@@ -77,7 +77,8 @@ class MediaResource extends Resource
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            */
+            Radio::make('attachment_type'),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')

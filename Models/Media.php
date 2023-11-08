@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Modules\Media\Enums\AttachmentTypeEnum;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
  * Modules\Media\Models\Media.
@@ -96,6 +97,13 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  */
 class Media extends SpatieMedia
 {
+
+    /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'attachment_type'=>AttachmentTypeEnum::class,
+    ];
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      *
