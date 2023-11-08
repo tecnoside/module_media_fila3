@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\Radio;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Actions\DeleteAction;
+use Modules\Media\Enums\AttachmentTypeEnum;
+use Filament\Tables\Actions\DeleteBulkAction;
 use Modules\Camping\Constants\AttachmentType;
+use Filament\Resources\RelationManagers\RelationManager;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 
 class AttachmentResource extends Resource
@@ -120,19 +122,20 @@ class AttachmentResource extends Resource
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            /*
             Radio::make('attachment_type')
                 ->hiddenLabel()
                 ->options(
-                    AttachmentType::descriptionsByValue($asset ? AttachmentType::cases() : AttachmentType::operationCases()),
+                    AttachmentTypeEnum::descriptionsByValue($asset ? AttachmentTypeEnum::cases() : AttachmentTypeEnum::operationCases()),
                 )
-                ->default(AttachmentType::Image())
+                ->default(AttachmentTypeEnum::Image())
                 ->columns(
-                    $asset ? \count(AttachmentType::cases()) : \count(AttachmentType::operationCases()),
+                    $asset ? \count(AttachmentTypeEnum::cases()) : \count(AttachmentTypeEnum::operationCases()),
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            */
+            Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -147,8 +150,11 @@ class AttachmentResource extends Resource
 
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
-        $attachment = $livewire
-            ->getOwnerRecord()
+        $ownerRecord= $livewire->getOwnerRecord();
+        if(!method_exists($ownerRecord,'addMediaFromDisk')){
+            throw new \Exception('wip');
+        }
+        $attachment = $ownerRecord
             ->addMediaFromDisk(
                 $data['file'],
                 config('attachment.upload.disk.driver'),
