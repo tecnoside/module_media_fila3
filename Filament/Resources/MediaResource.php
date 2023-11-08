@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Modules\Media\Models\Media;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\Radio;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
-use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
+use Modules\Camping\Constants\AttachmentType;
 use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
-use Modules\Media\Models\Media;
+use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
 
 // use Modules\Camping\Constants\AttachmentType;
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
