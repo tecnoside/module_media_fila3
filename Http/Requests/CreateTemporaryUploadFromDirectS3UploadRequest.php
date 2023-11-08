@@ -45,7 +45,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
         /** @var Media $mediaModel */
         $mediaModel = new $mediaModelClass();
 
-        if ('default' === $mediaModel->getConnectionName()) {
+        if ($mediaModel->getConnectionName() === 'default') {
             return '';
         }
 
