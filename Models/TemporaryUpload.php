@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\MassPrunable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
-use Modules\Media\Exceptions\CouldNotAddUpload;
-use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
-use Spatie\Image\Manipulations;
-use Spatie\MediaLibrary\Conversions\Conversion;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Webmozart\Assert\Assert;
+use Spatie\Image\Manipulations;
+use Illuminate\Http\UploadedFile;
+use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\MassPrunable;
+use Modules\Media\Exceptions\CouldNotAddUpload;
+use Spatie\MediaLibrary\Conversions\Conversion;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
 
 /**
  * Modules\Media\Models\TemporaryUpload.

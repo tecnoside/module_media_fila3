@@ -6,8 +6,8 @@ namespace Modules\Media\Exceptions;
 
 class CouldNotAddUpload extends \Exception
 {
-    public static function uuidAlreadyExists(): static
+    public static function uuidAlreadyExists(): self
     {
-        return new static('The given uuid is being used for an existing media item.');
+        return new self('The given uuid is being used for an existing media item.');
     }
 }
