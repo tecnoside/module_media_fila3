@@ -52,7 +52,7 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static function findByMediaUuid(?string $mediaUuid): ?self
     {
-        $mediaModelClass = (string) config('media-library.media_model');
+        Assert::string($mediaModelClass = config('media-library.media_model'));
 
         /** @var Media $media */
         $media = $mediaModelClass::query()
