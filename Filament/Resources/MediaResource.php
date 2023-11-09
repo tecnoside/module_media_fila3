@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Webmozart\Assert\Assert;
+use Modules\Media\Models\Media;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\Radio;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
 use Modules\Camping\Constants\AttachmentType;
-use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
-use Modules\Media\Models\Media;
+use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
 
 // use Modules\Camping\Constants\AttachmentType;
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
@@ -45,9 +46,9 @@ class MediaResource extends Resource
      */
     public static function getFormSchema(bool $asset = true): array
     {
-        $disk = $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver');
-        $file_types = $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types');
-
+        Assert::string($disk = $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver'));
+        Assert::isArray($file_types = $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types'));
+        Assert::integer($max_size=config('media-library.max_file_size'));
         return [
             FileUpload::make('file')
                 ->translateLabel()
@@ -64,7 +65,7 @@ class MediaResource extends Resource
                 )
                 ->visibility('private')
                 ->maxSize(
-                    config('media-library.max_file_size'),
+                    $max_size
                 )
                 ->required()
                 ->columnSpanFull(),
