@@ -45,8 +45,9 @@ class MediaResource extends Resource
      */
     public static function getFormSchema(bool $asset = true): array
     {
-        $disk=$asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver');
-        $file_types= $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types');
+        $disk = $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver');
+        $file_types = $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types');
+
         return [
             FileUpload::make('file')
                 ->translateLabel()
