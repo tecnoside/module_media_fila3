@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Webmozart\Assert\Assert;
-use Spatie\Image\Manipulations;
-use Illuminate\Http\UploadedFile;
-use Spatie\MediaLibrary\HasMedia;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\MassPrunable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use Modules\Media\Exceptions\CouldNotAddUpload;
-use Spatie\MediaLibrary\Conversions\Conversion;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\Conversions\Conversion;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Media\Models\TemporaryUpload.
@@ -149,7 +149,7 @@ class TemporaryUpload extends Model implements HasMedia
         throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
-    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
