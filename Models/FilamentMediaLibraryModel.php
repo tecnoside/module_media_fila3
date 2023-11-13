@@ -10,15 +10,16 @@ use Illuminate\Support\Carbon;
 /**
  * Modules\Media\Models\FilamentMediaLibraryModel.
  *
- * @property int $id
- * @property string $model_type
- * @property int $model_id
- * @property string $media_library_item_id
- * @property string $note
+ * @property int         $id
+ * @property string      $model_type
+ * @property int         $model_id
+ * @property string      $media_library_item_id
+ * @property string      $note
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
+ *
  * @method static Builder|FilamentMediaLibraryModel newModelQuery()
  * @method static Builder|FilamentMediaLibraryModel newQuery()
  * @method static Builder|FilamentMediaLibraryModel query()
@@ -31,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|FilamentMediaLibraryModel whereNote($value)
  * @method static Builder|FilamentMediaLibraryModel whereUpdatedAt($value)
  * @method static Builder|FilamentMediaLibraryModel whereUpdatedBy($value)
+ *
  * @mixin \Eloquent
  */
 class FilamentMediaLibraryModel extends BaseMorphPivot
