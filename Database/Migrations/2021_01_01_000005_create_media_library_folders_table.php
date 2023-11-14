@@ -22,15 +22,13 @@ class CreateMediaLibraryFoldersTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(function (Blueprint $table): void {
-
-                $table->id();
+            $table->id();
             $table->foreignId('parent_id')->nullable();
             $table->string('name');
             $this->timestamps($table);
         });
-// -- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(function (Blueprint $table): void {
-
             if (! $this->hasColumn('order_column')) {
                 $table->integer('order_column')->nullable();
             }

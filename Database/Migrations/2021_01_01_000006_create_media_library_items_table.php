@@ -22,29 +22,27 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(function (Blueprint $table): void {
+            $table->id();
+            // $table->foreignId('uploaded_by_user_id')
+            //    ->nullable()
+            // ->constrained('users')
+            // ->nullOnDelete()
+            // ->cascadeOnUpdate()
 
-                $table->id();
-// $table->foreignId('uploaded_by_user_id')
-                //    ->nullable()
-                // ->constrained('users')
-                // ->nullOnDelete()
-                // ->cascadeOnUpdate()
-
-                $table->foreignUuid('uploaded_by_user_id')->nullable();
+            $table->foreignUuid('uploaded_by_user_id')->nullable();
             $table->string('caption')->nullable();
             $table->string('alt_text')->nullable();
             $table->integer('order_column')->nullable();
             $this->timestamps($table);
         });
-// -- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(function (Blueprint $table): void {
-
             if (! $this->hasColumn('order_column')) {
                 $table->integer('order_column')->nullable();
             }
             if (! $this->hasColumn('folder_id')) {
                 $table->foreignId('folder_id')->nullable()->after('alt_text');
-// ->constrained('filament_media_library_folders');
+                // ->constrained('filament_media_library_folders');
             }
         });
     }
