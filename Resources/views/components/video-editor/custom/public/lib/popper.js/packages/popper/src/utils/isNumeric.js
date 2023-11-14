@@ -5,6 +5,7 @@
  * @param {*} input to check
  * @return {Boolean}
  */
-export default function isNumeric(n) {
-  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+export default function isNumeric(n)
+{
+    return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
 }

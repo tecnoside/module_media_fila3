@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /* use App\Controller\BaseControllerClass; */
 
@@ -13,17 +15,21 @@ $messages = BaseControllerClass::getFlash('messages');
 <div class="row">
     <div class="col-md-6">
 
-        <?php if (! empty($errors) && is_array($errors)) { ?>
+        <?php if (! empty($errors) && is_array($errors)) {
+            ?>
             <div class="alert alert-danger my-2">
                 <?php echo implode('<br>', $errors); ?>
             </div>
-        <?php } ?>
+            <?php
+        } ?>
 
-        <?php if (! empty($messages) && is_array($messages)) { ?>
+        <?php if (! empty($messages) && is_array($messages)) {
+            ?>
             <div class="alert alert-info my-2">
                 <?php echo implode('<br>', $messages); ?>
             </div>
-        <?php } ?>
+            <?php
+        } ?>
 
         <p>
             <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
@@ -62,8 +68,12 @@ $messages = BaseControllerClass::getFlash('messages');
                 </div>
                 <div class="col-md-7">
                     <select class="form-control" name="type" id="formFieldType">
-                        <option value="basic"<?php if (isset($input['type']) && 'basic' === $input['type']) { ?> selected="selected"<?php } ?>>Basic</option>
-                        <option value="advanced"<?php if (isset($input['type']) && 'advanced' === $input['type']) { ?> selected="selected"<?php } ?>>Advanced</option>
+                        <option value="basic"<?php if (isset($input['type']) && 'basic' === $input['type']) {
+                            ?> selected="selected"<?php
+                                             } ?>>Basic</option>
+                        <option value="advanced"<?php if (isset($input['type']) && 'advanced' === $input['type']) {
+                            ?> selected="selected"<?php
+                                                } ?>>Advanced</option>
                     </select>
                 </div>
             </div>
@@ -71,7 +81,9 @@ $messages = BaseControllerClass::getFlash('messages');
             <div class="row form-group">
                 <div class="col-md-7 offset-md-5">
                     <label>
-                        <input type="checkbox" name="blocked" value="1"<?php if (! empty($input['blocked'])) { ?> checked<?php } ?>>
+                        <input type="checkbox" name="blocked" value="1"<?php if (! empty($input['blocked'])) {
+                            ?> checked<?php
+                                                                       } ?>>
                         <?php echo $lang_arr['blocked']; ?>
                     </label>
                 </div>
@@ -79,7 +91,9 @@ $messages = BaseControllerClass::getFlash('messages');
             <div class="row form-group">
                 <div class="col-md-7 offset-md-5">
                     <label>
-                        <input type="checkbox" name="confirmed" value="1"<?php if (! empty($input['confirmed'])) { ?> checked<?php } ?>>
+                        <input type="checkbox" name="confirmed" value="1"<?php if (! empty($input['confirmed'])) {
+                            ?> checked<?php
+                                                                         } ?>>
                         <?php echo $lang_arr['confirmed']; ?>
                     </label>
                 </div>
@@ -96,12 +110,14 @@ $messages = BaseControllerClass::getFlash('messages');
     </div>
     <div class="col-md-6">
 
-        <?php if (! empty($input['input_data']) && ! empty($input['input_data']['data'])) { ?>
+        <?php if (! empty($input['input_data']) && ! empty($input['input_data']['data'])) {
+            ?>
         <div class="card card-primary mb-3">
             <div class="card-header card-inverse text-center"><?php echo $lang_arr['input_files']; ?></div>
             <div class="max-height300">
                 <ul class="list-group list-group-flush">
-                    <?php foreach ($input['input_data']['data'] as $item) { ?>
+                    <?php foreach ($input['input_data']['data'] as $item) {
+                        ?>
                     <li class="list-group-item text-ellipsis">
                         <a href="<?php echo $item['url']; ?>" title="<?php echo $item['title']; ?>">
                             <span class="badge badge-warning">
@@ -110,29 +126,37 @@ $messages = BaseControllerClass::getFlash('messages');
                             <?php echo $item['title']; ?>
                         </a>
                     </li>
-                    <?php } ?>
+                        <?php
+                    } ?>
                 </ul>
             </div>
         </div>
-        <?php } ?>
+            <?php
+        } ?>
 
-        <?php if (! empty($input['output_data']) && ! empty($input['output_data']['data'])) { ?>
+        <?php if (! empty($input['output_data']) && ! empty($input['output_data']['data'])) {
+            ?>
         <div class="card card-primary">
             <div class="card-header card-inverse text-center"><?php echo $lang_arr['output_files']; ?></div>
             <div class="max-height300">
                 <ul class="list-group list-group-flush">
-                    <?php foreach ($input['output_data']['data'] as $item) { ?>
+                    <?php foreach ($input['output_data']['data'] as $item) {
+                        ?>
                         <li class="list-group-item text-ellipsis">
                             <div class="float-right">
-                                <?php if (empty($item['allowed'])) { ?>
+                                <?php if (empty($item['allowed'])) {
+                                    ?>
                                     <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=content_status_toggle&itemId=<?php echo $item['id']; ?>&userId=<?php echo $input['id']; ?>&type=output" data-toggle="tooltip" title="Approva">
                                         <i class="icon-cross"></i>
                                     </a>
-                                <?php } else { ?>
+                                    <?php
+                                } else {
+                                    ?>
                                     <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=content_status_toggle&itemId=<?php echo $item['id']; ?>&userId=<?php echo $input['id']; ?>&type=output" data-toggle="tooltip" title="Disapprova">
                                         <i class="icon-checkmark"></i>
                                     </a>
-                                <?php } ?>
+                                    <?php
+                                } ?>
                             </div>
 
                             <a href="<?php echo $item['url']; ?>" title="<?php echo $item['title']; ?>">
@@ -142,11 +166,13 @@ $messages = BaseControllerClass::getFlash('messages');
                                 <?php echo $item['title']; ?>
                             </a>
                         </li>
-                    <?php } ?>
+                        <?php
+                    } ?>
                 </ul>
             </div>
         </div>
-        <?php } ?>
+            <?php
+        } ?>
 
     </div>
 </div>

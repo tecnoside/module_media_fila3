@@ -18,13 +18,13 @@ QUnit.test("Set & SetHandle exactInput parameter", function (assert) {
         tooltips: true
     });
 
-    newInput.addEventListener('change', function(event) {
+    newInput.addEventListener('change', function (event) {
         var value = parseFloat(event.target.value);
         slider.noUiSlider.set(value, true, true);
     });
 
     slider.noUiSlider.on('change', function (value) {
-        if (newInput.value !== value){
+        if (newInput.value !== value) {
             newInput.value = value;
         }
     });

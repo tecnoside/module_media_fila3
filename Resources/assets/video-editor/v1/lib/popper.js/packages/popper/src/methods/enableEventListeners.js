@@ -6,13 +6,14 @@ import setupEventListeners from '../utils/setupEventListeners';
  * @method
  * @memberof Popper
  */
-export default function enableEventListeners() {
-  if (!this.state.eventsEnabled) {
-    this.state = setupEventListeners(
-      this.reference,
-      this.options,
-      this.state,
-      this.scheduleUpdate
-    );
-  }
+export default function enableEventListeners()
+{
+    if (!this.state.eventsEnabled) {
+        this.state = setupEventListeners(
+            this.reference,
+            this.options,
+            this.state,
+            this.scheduleUpdate
+        );
+    }
 }

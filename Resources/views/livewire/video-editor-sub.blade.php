@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 header('Accept-Ranges: bytes'); ?>
 <div>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">

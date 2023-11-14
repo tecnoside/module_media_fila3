@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /** @var array $lang */
 
@@ -18,11 +20,13 @@ $errors = AuthController::getFlash('errors');
 
 <h1><?php echo $lang_arr['sign_up']; ?></h1>
 
-<?php if (! empty($errors) && is_array($errors)) { ?>
+<?php if (! empty($errors) && is_array($errors)) {
+    ?>
     <div class="alert alert-danger">
         <?php echo implode('<br>', $errors); ?>
     </div>
-<?php } ?>
+    <?php
+} ?>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -33,7 +37,7 @@ $errors = AuthController::getFlash('errors');
                     <label for="registerFormEmail"><?php echo $lang_arr['email_address']; ?>:</label>
                     <input type="email" name="email" class="form-control" id="registerFormEmail" value="<?php if (! empty($_POST['email'])) {
                         echo $_POST['email'];
-                    } ?>" required>
+                                                                                                        } ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="registerFormPassword"><?php echo $lang_arr['password']; ?>:</label>

@@ -28,10 +28,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string                                     $disk
  * @property string|null                                $conversions_disk
  * @property int                                        $size
- * @property array                                      $manipulations
- * @property array                                      $custom_properties
- * @property array                                      $generated_conversions
- * @property array                                      $responsive_images
+ * @property mixed                                      $manipulations
+ * @property mixed                                      $custom_properties
+ * @property mixed                                      $generated_conversions
+ * @property mixed                                      $responsive_images
  * @property int|null                                   $order_column
  * @property Carbon|null                                $created_at
  * @property Carbon|null                                $updated_at
@@ -50,6 +50,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null                                $caption
  * @property string|null                                $exif
  * @property string|null                                $curations
+ * @property AttachmentTypeEnum                         $attachment_type
  * @property Model|\Eloquent                            $model
  * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
  *
@@ -92,11 +93,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media                whereUserId($value)
  * @method static Builder|Media                whereUuid($value)
  * @method static Builder|Media                whereWidth($value)
- *
- * @property AttachmentTypeEnum $attachment_type
- *
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
  *
