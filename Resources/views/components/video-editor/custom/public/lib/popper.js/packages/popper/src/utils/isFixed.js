@@ -9,17 +9,18 @@ import getParentNode from './getParentNode';
  * @argument {Element} customContainer
  * @returns {Boolean} answer to "isFixed?"
  */
-export default function isFixed(element) {
-  const nodeName = element.nodeName;
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
-    return false;
-  }
-  if (getStyleComputedProperty(element, 'position') === 'fixed') {
-    return true;
-  }
-  const parentNode = getParentNode(element);
-  if (!parentNode) {
-    return false;
-  }
-  return isFixed(parentNode);
+export default function isFixed(element)
+{
+    const nodeName = element.nodeName;
+    if (nodeName === 'BODY' || nodeName === 'HTML') {
+        return false;
+    }
+    if (getStyleComputedProperty(element, 'position') === 'fixed') {
+        return true;
+    }
+    const parentNode = getParentNode(element);
+    if (!parentNode) {
+        return false;
+    }
+    return isFixed(parentNode);
 }

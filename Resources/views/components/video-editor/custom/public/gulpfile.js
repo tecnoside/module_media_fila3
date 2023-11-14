@@ -18,10 +18,10 @@ gulp.task('js', function (cb) {
             'lib/nouislider/distribute/nouislider.min.js',
             'assets/js/webvideoedit.js'
         ])
-        .pipe( concat('js_app.js') )
-        .pipe( uglify() )
-        .pipe( rename('app.min.js') )
-        .pipe( gulp.dest('assets/js') )
+        .pipe(concat('js_app.js'))
+        .pipe(uglify())
+        .pipe(rename('app.min.js'))
+        .pipe(gulp.dest('assets/js'))
         .on('end', cb);
 });
 

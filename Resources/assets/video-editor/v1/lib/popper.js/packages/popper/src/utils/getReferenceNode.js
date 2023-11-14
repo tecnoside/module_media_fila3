@@ -5,6 +5,7 @@
  * @param {Element|Object} reference - the reference element (the popper will be relative to this)
  * @returns {Element} parent
  */
-export default function getReferenceNode(reference) {
-  return reference && reference.referenceNode ? reference.referenceNode : reference;
+export default function getReferenceNode(reference)
+{
+    return reference && reference.referenceNode ? reference.referenceNode : reference;
 }

@@ -5,11 +5,12 @@
  * @argument {String} placement variation
  * @returns {String} flipped placement variation
  */
-export default function getOppositeVariation(variation) {
-  if (variation === 'end') {
-    return 'start';
-  } else if (variation === 'start') {
-    return 'end';
-  }
-  return variation;
+export default function getOppositeVariation(variation)
+{
+    if (variation === 'end') {
+        return 'start';
+    } else if (variation === 'start') {
+        return 'end';
+    }
+    return variation;
 }

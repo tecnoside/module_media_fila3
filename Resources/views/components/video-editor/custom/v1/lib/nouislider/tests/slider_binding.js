@@ -48,7 +48,7 @@ QUnit.test("Binding", function (assert) {
     });
 
     // Fires thrice because of different namespace (1 for mousedown + 2 for set) (3)
-    slider.noUiSlider.on('set.othernamespace', function(values, handle) {
+    slider.noUiSlider.on('set.othernamespace', function (values, handle) {
         assert.ok(true);
     });
 
@@ -62,7 +62,8 @@ QUnit.test("Binding", function (assert) {
             console.log(e.clientX, e.clientY);
         });
     */
-    function offset(el) {
+    function offset(el)
+    {
         var rect = el.getBoundingClientRect();
         return {
             top: rect.top + document.body.scrollTop,
@@ -70,12 +71,13 @@ QUnit.test("Binding", function (assert) {
         };
     }
 
-    function getAriaValues() {
+    function getAriaValues()
+    {
         var domAriaValues = [];
         var handlesArray = Array.prototype.slice.call(slider.querySelectorAll('.noUi-handle'));
-        handlesArray.forEach(function(handle) {
+        handlesArray.forEach(function (handle) {
             domAriaValues.push(
-                Number( handle.getAttribute('aria-valuenow') )
+                Number(handle.getAttribute('aria-valuenow'))
             );
         });
         return domAriaValues;

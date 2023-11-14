@@ -4,8 +4,9 @@
  * @memberof Popper.Utils
  * @returns {Boolean}
  */
-export default function isModifierEnabled(modifiers, modifierName) {
-  return modifiers.some(
-    ({ name, enabled }) => enabled && name === modifierName
-  );
+export default function isModifierEnabled(modifiers, modifierName)
+{
+    return modifiers.some(
+        ({ name, enabled }) => enabled && name === modifierName
+    );
 }

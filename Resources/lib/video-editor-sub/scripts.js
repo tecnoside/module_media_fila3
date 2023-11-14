@@ -6,11 +6,12 @@ var slider;
 var myPlayer;
 var trackEl;
 var duration;
-var control; 
+var control;
 var supportPageOffset = window.pageXOffset !== undefined;
 var isCSS1Compat = ((document.compatMode || "") === "CSS1Compat");
 
-function hmsToSecondsOnly(str) {
+function hmsToSecondsOnly(str)
+{
     var p = str.split(':'),
         s = 0, m = 1;
 
@@ -23,23 +24,24 @@ function hmsToSecondsOnly(str) {
     return s;
 }
 
-function loadCode() {
-    
+function loadCode()
+{
+
     //var $ = jQuery.noConflict();
     myPlayer = videojs('video-editor-player', {});
     myPlayer.on("loadedmetadata", onLoadedMetadata);
     document.addEventListener('livewire:load', function () {
-        myPlayer.on('timeupdate', function() {
+        myPlayer.on('timeupdate', function () {
             //@this.currentTime=this.currentTime();
             window.livewire.emit('updateCurrentTime',this.currentTime());
         });
-        myPlayer.on('pause', function() {
+        myPlayer.on('pause', function () {
             //console.log('pause');
             //window.livewire.emit('updateCurrentTime',this.currentTime());
             //@this.currentTime=this.currentTime();
             //console.log(window.livewire.currentTime); //undefined
         });
-       
+
     });
 
 
@@ -53,9 +55,9 @@ function loadCode() {
         console.log(control.i);
     }
     */
-    
 
-    
+
+
     //var template=$('template'):
     //console.log('node');
     //console.log('control');
@@ -63,7 +65,8 @@ function loadCode() {
     //console.log('slider');
     //console.log(slider);
 
-    function secondsToHms(seconds) {
+    function secondsToHms(seconds)
+    {
         var days = Math.floor(seconds / (24 * 60 * 60));
         seconds -= days * (24 * 60 * 60);
         var hours = Math.floor(seconds / (60 * 60));
@@ -78,7 +81,8 @@ function loadCode() {
         return s;
     }
 
-    function onLoadedMetadata() {
+    function onLoadedMetadata()
+    {
         trackEl= myPlayer.addRemoteTextTrack({src: $('#video-editor-player').attr('track')+'?'+Date.now(),kind:'subtitles',srclang:'en',label: 'English',mode:'showing'}, false);
 
         noUiSlider.create(slider, {
@@ -101,7 +105,8 @@ function loadCode() {
 
         });
 
-        function changeSlider(values) {
+        function changeSlider(values)
+        {
             myPlayer.currentTime(hmsToSecondsOnly(values[0]));
 
         }
@@ -133,7 +138,7 @@ function loadCode() {
         };
         let time= $(this).parents('.video-episode').attr('time')
 
-        let readyPlayer = function(){
+        let readyPlayer = function () {
 
             this.src(mp4)
 
@@ -156,15 +161,15 @@ function loadCode() {
         });
         episodePlayer.addChild(modal);
 
-        episodePlayer.on('pause', function() {
+        episodePlayer.on('pause', function () {
             modal.open();
         });
 
-        episodePlayer.on('play', function() {
+        episodePlayer.on('play', function () {
             modal.close();
         });
 
-        modal.on('modalclose', function() {
+        modal.on('modalclose', function () {
             episodePlayer.dispose();
         });
 
@@ -224,14 +229,17 @@ function loadCode() {
 
 
 }
-function basename(path) {
+function basename(path)
+{
     return path.split('/').reverse()[0];
 }
-function refreshTrack() {
+function refreshTrack()
+{
     myPlayer.removeRemoteTextTrack(trackEl)
     trackEl=  myPlayer.addRemoteTextTrack({src: $('#video-editor-player').attr('track')+'?'+Date.now(),kind:'subtitles',srclang:'en',label: 'English',mode:'showing'}, false);
 }
-function isHTML(str) {
+function isHTML(str)
+{
     var doc = new DOMParser().parseFromString(str, "text/html");
     return Array.from(doc.body.childNodes).some(node => node.nodeType === 1);
 }
@@ -242,7 +250,7 @@ var selectedSubtitles=[];
 
 
 document.querySelector('.subtitle-text').onpointerup = ()=>{
-    
+
     let selection = document.getSelection();
     let text = selection.toString();
 
@@ -254,15 +262,15 @@ document.querySelector('.subtitle-text').onpointerup = ()=>{
         var div = document.createElement('div');
         div.appendChild(clonedSelection);
 
-        if(isHTML(div.innerHTML)){
+        if (isHTML(div.innerHTML)) {
             var doc = new DOMParser().parseFromString(div.innerHTML, "text/html");
-            for(var s in doc.getElementsByClassName('subtitle-item')){
-                if(doc.getElementsByClassName('subtitle-item')[s].id){
+            for (var s in doc.getElementsByClassName('subtitle-item')) {
+                if (doc.getElementsByClassName('subtitle-item')[s].id) {
                     selectedSubtitles.push(doc.getElementsByClassName('subtitle-item')[s].id.toString().split('-')[1]);
                     selectedSubtitleTexts.push(doc.getElementsByClassName('subtitle-item')[s].innerText.trim());
                 }
             }
-        }else{
+        } else {
             selectedSubtitles.push(selection.baseNode.parentNode.id.toString().split('-')[1]);
             selectedSubtitleTexts=[selection.toString()];
         }
@@ -274,8 +282,8 @@ document.querySelector('.subtitle-text').onpointerup = ()=>{
         var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop;
         top = window.event.clientY + y;
         left = window.event.clientX;
-        
-    
+
+
         $('#test').css('top',top);
         $('#test').css('left',left);
 
@@ -344,7 +352,8 @@ document.onpointerdown = ()=>{
 }
 */
 
-function setSlider(){
+function setSlider()
+{
     console.log('set slider !!!');
     var subs=$('#test').data('selectedSubtitles');
     var subs_count= subs.length;
@@ -360,16 +369,17 @@ function setSlider(){
     const time=$('#subtitle-'+control.selectedSubtitles[0]).attr('time');
     const time2=$('#subtitle-'+control.selectedSubtitles[control.selectedSubtitles.length-1]).attr('time');
 
-    
+
     */
 }
 
-function editSubtitle(){
+function editSubtitle()
+{
     window.livewire.emit('set-selected-subtitles',control.selectedSubtitles);
 }
 
 window.addEventListener('edit-subtitle-modal', event => {
-    setTimeout(function() {
+    setTimeout(function () {
         $('#subtitle-model').modal('show');
     }, 1000)
 

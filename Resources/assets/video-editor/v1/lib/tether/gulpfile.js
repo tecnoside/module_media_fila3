@@ -17,26 +17,26 @@ var distDir = './dist';
 var pkg = require('./package.json');
 var banner = ['/*!', pkg.name, pkg.version, '*/\n'].join(' ');
 var umdOptions = {
-  exports: 'Tether',
-  namespace: 'Tether'
+    exports: 'Tether',
+    namespace: 'Tether'
 };
 
 
 // Clean
-gulp.task('clean', function() {
-  del.sync([distDir]);
+gulp.task('clean', function () {
+    del.sync([distDir]);
 });
 
 
 // Javascript
-gulp.task('js', function() {
-  gulp.src([
+gulp.task('js', function () {
+    gulp.src([
     './src/js/utils.js',
     './src/js/tether.js',
     './src/js/constraint.js',
     './src/js/abutment.js',
     './src/js/shift.js'
-  ])
+    ])
     .pipe(plumber())
     .pipe(babel())
     .pipe(concat('tether.js'))
@@ -54,8 +54,8 @@ gulp.task('js', function() {
 
 
 // CSS
-gulp.task('css', function() {
-  gulp.src('./src/css/**/*.sass')
+gulp.task('css', function () {
+    gulp.src('./src/css/**/*.sass')
     .pipe(plumber())
     .pipe(sass())
     .pipe(prefixer())
@@ -72,21 +72,21 @@ gulp.task('css', function() {
 
 // Version bump
 var VERSIONS = ['patch', 'minor', 'major'];
-for (var i = 0; i < VERSIONS.length; ++i){
-  (function(version) {
-    gulp.task('version:' + version, function() {
-      gulp.src(['package.json', 'bower.json', 'component.json'])
-        .pipe(bump({type: version}))
-        .pipe(gulp.dest('.'));
-    });
-  })(VERSIONS[i]);
+for (var i = 0; i < VERSIONS.length; ++i) {
+    (function (version) {
+        gulp.task('version:' + version, function () {
+            gulp.src(['package.json', 'bower.json', 'component.json'])
+            .pipe(bump({type: version}))
+            .pipe(gulp.dest('.'));
+        });
+    })(VERSIONS[i]);
 }
 
 
 // Watch
-gulp.task('watch', ['js', 'css'], function() {
-  gulp.watch('./src/js/**/*', ['js']);
-  gulp.watch('./src/css/**/*', ['css']);
+gulp.task('watch', ['js', 'css'], function () {
+    gulp.watch('./src/js/**/*', ['js']);
+    gulp.watch('./src/css/**/*', ['css']);
 });
 
 

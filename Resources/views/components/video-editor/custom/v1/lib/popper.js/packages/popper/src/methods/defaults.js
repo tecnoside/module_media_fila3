@@ -21,26 +21,26 @@ export default {
    * Popper's placement.
    * @prop {Popper.placements} placement='bottom'
    */
-  placement: 'bottom',
+    placement: 'bottom',
 
   /**
    * Set this to true if you want popper to position it self in 'fixed' mode
    * @prop {Boolean} positionFixed=false
    */
-  positionFixed: false,
+        positionFixed: false,
 
   /**
    * Whether events (resize, scroll) are initially enabled.
    * @prop {Boolean} eventsEnabled=true
    */
-  eventsEnabled: true,
+        eventsEnabled: true,
 
   /**
    * Set to true if you want to automatically remove the popper when
    * you call the `destroy` method.
    * @prop {Boolean} removeOnDestroy=false
    */
-  removeOnDestroy: false,
+        removeOnDestroy: false,
 
   /**
    * Callback called when the popper is created.<br />
@@ -48,7 +48,7 @@ export default {
    * Access Popper.js instance with `data.instance`.
    * @prop {onCreate}
    */
-  onCreate: () => {},
+        onCreate: () => {},
 
   /**
    * Callback called when the popper is updated. This callback is not called
@@ -58,15 +58,15 @@ export default {
    * Access Popper.js instance with `data.instance`.
    * @prop {onUpdate}
    */
-  onUpdate: () => {},
+        onUpdate: () => {},
 
   /**
    * List of modifiers used to modify the offsets before they are applied to the popper.
    * They provide most of the functionalities of Popper.js.
    * @prop {modifiers}
    */
-  modifiers,
-};
+        modifiers,
+    };
 
 /**
  * @callback onCreate

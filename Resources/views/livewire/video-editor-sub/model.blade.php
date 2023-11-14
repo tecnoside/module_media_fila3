@@ -1,4 +1,7 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
+
 header('Accept-Ranges: bytes'); ?>
 <div>
     <div class="loading-wrapper hide">
