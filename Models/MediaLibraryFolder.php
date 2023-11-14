@@ -24,7 +24,6 @@ use Spatie\EloquentSortable\SortableTrait;
  * @property int|null                                                          $order_column
  * @property \Illuminate\Database\Eloquent\Collection<int, MediaLibraryFolder> $children
  * @property int|null                                                          $children_count
- *
  * @method static Builder|MediaLibraryFolder newModelQuery()
  * @method static Builder|MediaLibraryFolder newQuery()
  * @method static Builder|MediaLibraryFolder ordered(string $direction = 'asc')
@@ -38,7 +37,6 @@ use Spatie\EloquentSortable\SortableTrait;
  * @method static Builder|MediaLibraryFolder whereUpdatedAt($value)
  * @method static Builder|MediaLibraryFolder whereUpdatedBy($value)
  * @method static Builder|MediaLibraryFolder whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class MediaLibraryFolder extends BaseMediaLibraryFolder implements Sortable

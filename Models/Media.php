@@ -53,7 +53,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property AttachmentTypeEnum                         $attachment_type
  * @property Model|\Eloquent                            $model
  * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
- *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static Builder|Media                newModelQuery()
@@ -93,7 +92,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media                whereUserId($value)
  * @method static Builder|Media                whereUuid($value)
  * @method static Builder|Media                whereWidth($value)
- *
+ * @method static MediaCollection<int, static> all($columns = ['*'])
+ * @method static MediaCollection<int, static> get($columns = ['*'])
  * @mixin Eloquent
  */
 class Media extends SpatieMedia
