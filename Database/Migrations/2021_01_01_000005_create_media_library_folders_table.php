@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Syntax error or access violation: 1118 Row size too large. The maximum row size for the used table type, not counting BLOBs, is 8126. This includes storage overhead, check the manual. You have to change some columns to TEXT or BLOBs (SQL: alter table `places` add `address` text null).
  */
@@ -20,23 +21,19 @@ class CreateMediaLibraryFoldersTable extends XotBaseMigration
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(
-            function (Blueprint $table): void {
+        $this->tableCreate(function (Blueprint $table): void {
+
                 $table->id();
-                $table->foreignId('parent_id')->nullable();
-                $table->string('name');
+            $table->foreignId('parent_id')->nullable();
+            $table->string('name');
+            $this->timestamps($table);
+        });
+// -- UPDATE --
+        $this->tableUpdate(function (Blueprint $table): void {
 
-                $this->timestamps($table);
+            if (! $this->hasColumn('order_column')) {
+                $table->integer('order_column')->nullable();
             }
-        );
-
-        // -- UPDATE --
-        $this->tableUpdate(
-            function (Blueprint $table): void {
-                if (! $this->hasColumn('order_column')) {
-                    $table->integer('order_column')->nullable();
-                }
-            }
-        );
+        });
     }
 }
