@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /* use App\Controller\BaseControllerClass as BaseController; */
 
@@ -27,27 +29,33 @@ $userOptions = [
                     <span class="icon-user-tie"></span>
                     <?php echo $lang_arr['profile']; ?>
                 </a>
-                <?php if ('admin' === $user['role']) { ?>
+                <?php if ('admin' === $user['role']) {
+                    ?>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
                     <span class="icon-users"></span>
                     <?php echo $lang_arr['users']; ?>
                 </a>
-                <?php } ?>
-                <?php if ($userOptions['show_log']) { ?>
+                    <?php
+                } ?>
+                <?php if ($userOptions['show_log']) {
+                    ?>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="action" data-action="log">
                     <span class="icon-file-text"></span>
                     <?php echo $lang_arr['log']; ?>
                 </a>
-                <?php } ?>
-                <?php if ($config_component['authentication']) { ?>
+                    <?php
+                } ?>
+                <?php if ($config_component['authentication']) {
+                    ?>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>index.php?action=logout">
                     <span class="icon-exit"></span>
                     <?php echo $lang_arr['log_out']; ?>
                 </a>
-                <?php } ?>
+                    <?php
+                } ?>
             </div>
         </div>
 
@@ -61,7 +69,11 @@ $userOptions = [
     <div class="col-md-4 order-md-2">
         <div id="wve-user-stat">
             <div class="progress mt-3">
-                <div class="progress-bar <?php if ($userOptions['files_size_percent'] >= 85) { ?>bg-danger<?php } else { ?>bg-success<?php } ?>"
+                <div class="progress-bar <?php if ($userOptions['files_size_percent'] >= 85) {
+                    ?>bg-danger<?php
+                                         } else {
+                                                ?>bg-success<?php
+                                         } ?>"
                     role="progressbar" style="width: <?php echo $userOptions['files_size_percent']; ?>%" aria-valuenow="<?php echo $userOptions['files_size_percent']; ?>"
                     aria-valuemin="0" aria-valuemax="100"></div>
             </div>

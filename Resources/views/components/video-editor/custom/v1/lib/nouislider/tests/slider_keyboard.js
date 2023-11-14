@@ -1,18 +1,22 @@
 QUnit.test("Keyboard support", function (assert) {
 
-    function up(element) {
+    function up(element)
+    {
         element.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowUp'}));
     }
 
-    function down(element) {
+    function down(element)
+    {
         element.dispatchEvent(new KeyboardEvent('keydown', {'key': 'ArrowDown'}));
     }
 
-    function pageUp(element) {
+    function pageUp(element)
+    {
         element.dispatchEvent(new KeyboardEvent('keydown', {'key': 'PageUp'}));
     }
 
-    function pageDown(element) {
+    function pageDown(element)
+    {
         element.dispatchEvent(new KeyboardEvent('keydown', {'key': 'PageDown'}));
     }
 

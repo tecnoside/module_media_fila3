@@ -38,111 +38,121 @@ const CLASS_NAME_SHOW = 'show'
  */
 
 class Alert {
-  constructor(element) {
-    this._element = element
-  }
+    constructor(element)
+    {
+        this._element = element
+    }
 
   // Getters
 
-  static get VERSION() {
-    return VERSION
-  }
+    static get VERSION()
+    {
+        return VERSION
+    }
 
   // Public
 
-  close(element) {
-    let rootElement = this._element
-    if (element) {
-      rootElement = this._getRootElement(element)
+    close(element)
+    {
+        let rootElement = this._element
+        if (element) {
+            rootElement = this._getRootElement(element)
+        }
+
+        const customEvent = this._triggerCloseEvent(rootElement)
+
+        if (customEvent.isDefaultPrevented()) {
+            return
+        }
+
+        this._removeElement(rootElement)
     }
 
-    const customEvent = this._triggerCloseEvent(rootElement)
-
-    if (customEvent.isDefaultPrevented()) {
-      return
+    dispose()
+    {
+        $.removeData(this._element, DATA_KEY)
+        this._element = null
     }
-
-    this._removeElement(rootElement)
-  }
-
-  dispose() {
-    $.removeData(this._element, DATA_KEY)
-    this._element = null
-  }
 
   // Private
 
-  _getRootElement(element) {
-    const selector = Util.getSelectorFromElement(element)
-    let parent = false
+    _getRootElement(element)
+    {
+        const selector = Util.getSelectorFromElement(element)
+        let parent = false
 
-    if (selector) {
-      parent = document.querySelector(selector)
+        if (selector) {
+            parent = document.querySelector(selector)
+        }
+
+        if (!parent) {
+            parent = $(element).closest(`.${CLASS_NAME_ALERT}`)[0]
+        }
+
+        return parent
     }
 
-    if (!parent) {
-      parent = $(element).closest(`.${CLASS_NAME_ALERT}`)[0]
+    _triggerCloseEvent(element)
+    {
+        const closeEvent = $.Event(EVENT_CLOSE)
+
+        $(element).trigger(closeEvent)
+        return closeEvent
     }
 
-    return parent
-  }
+    _removeElement(element)
+    {
+        $(element).removeClass(CLASS_NAME_SHOW)
 
-  _triggerCloseEvent(element) {
-    const closeEvent = $.Event(EVENT_CLOSE)
+        if (!$(element).hasClass(CLASS_NAME_FADE)) {
+            this._destroyElement(element)
+            return
+        }
 
-    $(element).trigger(closeEvent)
-    return closeEvent
-  }
+        const transitionDuration = Util.getTransitionDurationFromElement(element)
 
-  _removeElement(element) {
-    $(element).removeClass(CLASS_NAME_SHOW)
-
-    if (!$(element).hasClass(CLASS_NAME_FADE)) {
-      this._destroyElement(element)
-      return
+        $(element)
+        .one(Util.TRANSITION_END, event => this._destroyElement(element, event))
+        .emulateTransitionEnd(transitionDuration)
     }
 
-    const transitionDuration = Util.getTransitionDurationFromElement(element)
-
-    $(element)
-      .one(Util.TRANSITION_END, event => this._destroyElement(element, event))
-      .emulateTransitionEnd(transitionDuration)
-  }
-
-  _destroyElement(element) {
-    $(element)
-      .detach()
-      .trigger(EVENT_CLOSED)
-      .remove()
-  }
+    _destroyElement(element)
+    {
+        $(element)
+        .detach()
+        .trigger(EVENT_CLOSED)
+        .remove()
+    }
 
   // Static
 
-  static _jQueryInterface(config) {
-    return this.each(function () {
-      const $element = $(this)
-      let data = $element.data(DATA_KEY)
+    static _jQueryInterface(config)
+    {
+        return this.each(function () {
+            const $element = $(this)
+            let data = $element.data(DATA_KEY)
 
-      if (!data) {
-        data = new Alert(this)
-        $element.data(DATA_KEY, data)
-      }
+            if (!data) {
+                data = new Alert(this)
+                $element.data(DATA_KEY, data)
+            }
 
-      if (config === 'close') {
-        data[config](this)
-      }
-    })
-  }
-
-  static _handleDismiss(alertInstance) {
-    return function (event) {
-      if (event) {
-        event.preventDefault()
-      }
-
-      alertInstance.close(this)
+            if (config === 'close') {
+                data[config](this)
+            }
+        })
     }
-  }
+
+    static _handleDismiss(alertInstance)
+    {
+        return function (event) {
+            if (event) {
+                event.preventDefault()
+            }
+
+            alertInstance.close(this)
+        }
+    }
 }
 
 /**
@@ -152,9 +162,9 @@ class Alert {
  */
 
 $(document).on(
-  EVENT_CLICK_DATA_API,
-  SELECTOR_DISMISS,
-  Alert._handleDismiss(new Alert())
+    EVENT_CLICK_DATA_API,
+    SELECTOR_DISMISS,
+    Alert._handleDismiss(new Alert())
 )
 
 /**
@@ -166,8 +176,8 @@ $(document).on(
 $.fn[NAME] = Alert._jQueryInterface
 $.fn[NAME].Constructor = Alert
 $.fn[NAME].noConflict = () => {
-  $.fn[NAME] = JQUERY_NO_CONFLICT
-  return Alert._jQueryInterface
+    $.fn[NAME] = JQUERY_NO_CONFLICT
+    return Alert._jQueryInterface
 }
 
 export default Alert

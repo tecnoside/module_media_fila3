@@ -1,11 +1,13 @@
 QUnit.test("Step API", function (assert) {
 
-    function matchStep(slider, value, steps) {
+    function matchStep(slider, value, steps)
+    {
         slider.noUiSlider.set(value);
         assert.deepEqual(slider.noUiSlider.steps()[0], steps);
     }
 
-    function matchStepBoth(slider, value, steps) {
+    function matchStepBoth(slider, value, steps)
+    {
         slider.noUiSlider.set(value);
         assert.deepEqual(slider.noUiSlider.steps(), steps);
     }
@@ -117,7 +119,8 @@ QUnit.test("Step API", function (assert) {
         }
     });
 
-    function stepRightCheckEnd(slider, expectedEnd) {
+    function stepRightCheckEnd(slider, expectedEnd)
+    {
         var valueBefore = Number(slider.noUiSlider.get());
 
 
@@ -143,7 +146,8 @@ QUnit.test("Step API", function (assert) {
     stepRightCheckEnd(slider5, 105); // 44
 
 
-    function stepLeftCheckEnd(slider, expectedEnd) {
+    function stepLeftCheckEnd(slider, expectedEnd)
+    {
         var valueBefore = Number(slider.noUiSlider.get());
 
 

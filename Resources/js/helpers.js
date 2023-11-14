@@ -11,7 +11,7 @@ export const getPermissions = () => {
     // with getUserMedia as it would overwrite existing properties.
     // Here, we will just add the getUserMedia property if it's missing.
     if (navigator.mediaDevices.getUserMedia === undefined) {
-        navigator.mediaDevices.getUserMedia = function(constraints) {
+        navigator.mediaDevices.getUserMedia = function (constraints) {
             // First get ahold of the legacy getUserMedia, if present
             const getUserMedia =
                 navigator.webkitGetUserMedia || navigator.mozGetUserMedia;

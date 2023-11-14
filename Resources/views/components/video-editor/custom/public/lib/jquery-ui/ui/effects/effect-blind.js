@@ -13,58 +13,56 @@
 //>>docs: http://api.jqueryui.com/blind-effect/
 //>>demos: http://jqueryui.com/effect/
 
-( function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+( function ( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define([
+            "jquery",
+            "../version",
+            "../effect"
+        ], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}( function ( $ ) {
 
-		// AMD. Register as an anonymous module.
-		define( [
-			"jquery",
-			"../version",
-			"../effect"
-		], factory );
-	} else {
+    return $.effects.define("blind", "hide", function ( options, done ) {
+        var map = {
+            up: [ "bottom", "top" ],
+            vertical: [ "bottom", "top" ],
+            down: [ "top", "bottom" ],
+            left: [ "right", "left" ],
+            horizontal: [ "right", "left" ],
+            right: [ "left", "right" ]
+        },
+        element = $(this),
+        direction = options.direction || "up",
+        start = element.cssClip(),
+        animate = { clip: $.extend({}, start) },
+        placeholder = $.effects.createPlaceholder(element);
 
-		// Browser globals
-		factory( jQuery );
-	}
-}( function( $ ) {
+        animate.clip[ map[ direction ][ 0 ] ] = animate.clip[ map[ direction ][ 1 ] ];
 
-return $.effects.define( "blind", "hide", function( options, done ) {
-	var map = {
-			up: [ "bottom", "top" ],
-			vertical: [ "bottom", "top" ],
-			down: [ "top", "bottom" ],
-			left: [ "right", "left" ],
-			horizontal: [ "right", "left" ],
-			right: [ "left", "right" ]
-		},
-		element = $( this ),
-		direction = options.direction || "up",
-		start = element.cssClip(),
-		animate = { clip: $.extend( {}, start ) },
-		placeholder = $.effects.createPlaceholder( element );
+        if ( options.mode === "show" ) {
+            element.cssClip(animate.clip);
+            if ( placeholder ) {
+                placeholder.css($.effects.clipToBox(animate));
+            }
 
-	animate.clip[ map[ direction ][ 0 ] ] = animate.clip[ map[ direction ][ 1 ] ];
+            animate.clip = start;
+        }
 
-	if ( options.mode === "show" ) {
-		element.cssClip( animate.clip );
-		if ( placeholder ) {
-			placeholder.css( $.effects.clipToBox( animate ) );
-		}
+        if ( placeholder ) {
+            placeholder.animate($.effects.clipToBox(animate), options.duration, options.easing);
+        }
 
-		animate.clip = start;
-	}
-
-	if ( placeholder ) {
-		placeholder.animate( $.effects.clipToBox( animate ), options.duration, options.easing );
-	}
-
-	element.animate( animate, {
-		queue: false,
-		duration: options.duration,
-		easing: options.easing,
-		complete: done
-	} );
-} );
+        element.animate(animate, {
+            queue: false,
+            duration: options.duration,
+            easing: options.easing,
+            complete: done
+        });
+    });
 
 } ) );

@@ -20,12 +20,12 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Media\Models\TemporaryUpload.
  *
- * @property int                                                                                                                               $id
- * @property string                                                                                                                            $session_id
- * @property \Illuminate\Support\Carbon|null                                                                                                   $created_at
- * @property \Illuminate\Support\Carbon|null                                                                                                   $updated_at
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
- * @property int|null                                                                                                                          $media_count
+ * @property int                                                                                  $id
+ * @property string                                                                               $session_id
+ * @property \Illuminate\Support\Carbon|null                                                      $created_at
+ * @property \Illuminate\Support\Carbon|null                                                      $updated_at
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property int|null                                                                             $media_count
  *
  * @method static Builder|TemporaryUpload newModelQuery()
  * @method static Builder|TemporaryUpload newQuery()
@@ -34,6 +34,12 @@ use Webmozart\Assert\Assert;
  * @method static Builder|TemporaryUpload whereId($value)
  * @method static Builder|TemporaryUpload whereSessionId($value)
  * @method static Builder|TemporaryUpload whereUpdatedAt($value)
+ *
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ *
+ * @method static Builder|TemporaryUpload whereCreatedBy($value)
+ * @method static Builder|TemporaryUpload whereUpdatedBy($value)
  *
  * @mixin \Eloquent
  */

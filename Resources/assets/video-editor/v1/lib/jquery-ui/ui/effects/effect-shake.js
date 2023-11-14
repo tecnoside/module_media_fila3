@@ -13,62 +13,60 @@
 //>>docs: http://api.jqueryui.com/shake-effect/
 //>>demos: http://jqueryui.com/effect/
 
-( function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+( function ( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define([
+            "jquery",
+            "../version",
+            "../effect"
+        ], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}( function ( $ ) {
 
-		// AMD. Register as an anonymous module.
-		define( [
-			"jquery",
-			"../version",
-			"../effect"
-		], factory );
-	} else {
+    return $.effects.define("shake", function ( options, done ) {
 
-		// Browser globals
-		factory( jQuery );
-	}
-}( function( $ ) {
+        var i = 1,
+        element = $(this),
+        direction = options.direction || "left",
+        distance = options.distance || 20,
+        times = options.times || 3,
+        anims = times * 2 + 1,
+        speed = Math.round(options.duration / anims),
+        ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
+        positiveMotion = ( direction === "up" || direction === "left" ),
+        animation = {},
+        animation1 = {},
+        animation2 = {},
 
-return $.effects.define( "shake", function( options, done ) {
+        queuelen = element.queue().length;
 
-	var i = 1,
-		element = $( this ),
-		direction = options.direction || "left",
-		distance = options.distance || 20,
-		times = options.times || 3,
-		anims = times * 2 + 1,
-		speed = Math.round( options.duration / anims ),
-		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
-		positiveMotion = ( direction === "up" || direction === "left" ),
-		animation = {},
-		animation1 = {},
-		animation2 = {},
+        $.effects.createPlaceholder(element);
 
-		queuelen = element.queue().length;
+        // Animation
+        animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
+        animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
+        animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
 
-	$.effects.createPlaceholder( element );
+        // Animate
+        element.animate(animation, speed, options.easing);
 
-	// Animation
-	animation[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance;
-	animation1[ ref ] = ( positiveMotion ? "+=" : "-=" ) + distance * 2;
-	animation2[ ref ] = ( positiveMotion ? "-=" : "+=" ) + distance * 2;
+        // Shakes
+        for ( ; i < times; i++ ) {
+            element
+            .animate(animation1, speed, options.easing)
+            .animate(animation2, speed, options.easing);
+        }
 
-	// Animate
-	element.animate( animation, speed, options.easing );
+        element
+        .animate(animation1, speed, options.easing)
+        .animate(animation, speed / 2, options.easing)
+        .queue(done);
 
-	// Shakes
-	for ( ; i < times; i++ ) {
-		element
-			.animate( animation1, speed, options.easing )
-			.animate( animation2, speed, options.easing );
-	}
-
-	element
-		.animate( animation1, speed, options.easing )
-		.animate( animation, speed / 2, options.easing )
-		.queue( done );
-
-	$.effects.unshift( element, queuelen, anims + 1 );
-} );
+        $.effects.unshift(element, queuelen, anims + 1);
+    });
 
 } ) );

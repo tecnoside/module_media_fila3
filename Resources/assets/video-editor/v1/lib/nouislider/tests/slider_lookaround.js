@@ -17,18 +17,21 @@ QUnit.test("Padding and margin (lookaround)", function (assert) {
         }
     });
 
-    function m(a) {
+    function m(a)
+    {
         var values = slider.noUiSlider.get();
         values[0] = parseInt(values[0]) + a;
         values[1] = parseInt(values[1]) + a;
         slider.noUiSlider.set(values);
     }
 
-    function up() {
+    function up()
+    {
         m(1);
     }
 
-    function down() {
+    function down()
+    {
         m(-1);
     }
 
@@ -156,18 +159,21 @@ QUnit.test("Padding and margin (lookaround) (non-linear)", function (assert) {
         }
     });
 
-    function m(a) {
+    function m(a)
+    {
         var values = slider.noUiSlider.get();
         values[0] = parseInt(values[0]) + a;
         values[1] = parseInt(values[1]) + a;
         slider.noUiSlider.set(values);
     }
 
-    function up() {
+    function up()
+    {
         m(1);
     }
 
-    function down() {
+    function down()
+    {
         m(-1);
     }
 

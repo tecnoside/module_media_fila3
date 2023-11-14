@@ -13,52 +13,50 @@
 //>>docs: http://api.jqueryui.com/pulsate-effect/
 //>>demos: http://jqueryui.com/effect/
 
-( function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+( function ( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define([
+            "jquery",
+            "../version",
+            "../effect"
+        ], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}( function ( $ ) {
 
-		// AMD. Register as an anonymous module.
-		define( [
-			"jquery",
-			"../version",
-			"../effect"
-		], factory );
-	} else {
+    return $.effects.define("pulsate", "show", function ( options, done ) {
+        var element = $(this),
+        mode = options.mode,
+        show = mode === "show",
+        hide = mode === "hide",
+        showhide = show || hide,
 
-		// Browser globals
-		factory( jQuery );
-	}
-}( function( $ ) {
+        // Showing or hiding leaves off the "last" animation
+        anims = ( ( options.times || 5 ) * 2 ) + ( showhide ? 1 : 0 ),
+        duration = options.duration / anims,
+        animateTo = 0,
+        i = 1,
+        queuelen = element.queue().length;
 
-return $.effects.define( "pulsate", "show", function( options, done ) {
-	var element = $( this ),
-		mode = options.mode,
-		show = mode === "show",
-		hide = mode === "hide",
-		showhide = show || hide,
+        if ( show || !element.is(":visible") ) {
+            element.css("opacity", 0).show();
+            animateTo = 1;
+        }
 
-		// Showing or hiding leaves off the "last" animation
-		anims = ( ( options.times || 5 ) * 2 ) + ( showhide ? 1 : 0 ),
-		duration = options.duration / anims,
-		animateTo = 0,
-		i = 1,
-		queuelen = element.queue().length;
+        // Anims - 1 opacity "toggles"
+        for ( ; i < anims; i++ ) {
+            element.animate({ opacity: animateTo }, duration, options.easing);
+            animateTo = 1 - animateTo;
+        }
 
-	if ( show || !element.is( ":visible" ) ) {
-		element.css( "opacity", 0 ).show();
-		animateTo = 1;
-	}
+        element.animate({ opacity: animateTo }, duration, options.easing);
 
-	// Anims - 1 opacity "toggles"
-	for ( ; i < anims; i++ ) {
-		element.animate( { opacity: animateTo }, duration, options.easing );
-		animateTo = 1 - animateTo;
-	}
+        element.queue(done);
 
-	element.animate( { opacity: animateTo }, duration, options.easing );
-
-	element.queue( done );
-
-	$.effects.unshift( element, queuelen, anims + 1 );
-} );
+        $.effects.unshift(element, queuelen, anims + 1);
+    });
 
 } ) );

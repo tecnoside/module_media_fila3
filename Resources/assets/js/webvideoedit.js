@@ -68,11 +68,10 @@ var WebVideoEditor = function (options) {
                 if (!this.readyState/* && mainVideo.src && mainVideo.src.substr(mainVideo.src.length - 4, 1) === '.'*/) {
                     //self.alert('The video format is not supported by your browser.');
                 } else {
-
                 }
                 self.hidePreloader();
             })
-            .on('canplay', function() {
+            .on('canplay', function () {
                 if (self.autoPlayEnabled) {
                     this.play();
                 }
@@ -98,7 +97,7 @@ var WebVideoEditor = function (options) {
                     }
                     self.timeInputsUpdate(false);
                 }
-                setTimeout(function() {
+                setTimeout(function () {
                     self.hidePreloader();
                 }, 3000);
             })
@@ -154,14 +153,14 @@ var WebVideoEditor = function (options) {
         clearTimeout(this.timer);
     };
 
-    this.onTimelineRangeStart = function() {
+    this.onTimelineRangeStart = function () {
         if ($timeInputIn) {
             $timeInputIn.prop('disabled', true);
             $timeInputOut.prop('disabled', true);
         }
     };
 
-    this.onTimelineRangeStop = function() {
+    this.onTimelineRangeStop = function () {
         if ($timeInputIn) {
             $timeInputIn.prop('disabled', false);
             $timeInputOut.prop('disabled', false);
@@ -218,23 +217,23 @@ var WebVideoEditor = function (options) {
     /**
      * Time inputs initialize
      */
-    this.timeInputsInit = function() {
+    this.timeInputsInit = function () {
         $timeInputIn = $('#wve-time-selected-inputs').find('.wve-time-input-in');
         $timeInputOut = $('#wve-time-selected-inputs').find('.wve-time-input-out');
 
         $timeInputIn.mask('00:00:00.00000');
         $timeInputOut.mask('00:00:00.00000');
 
-        $('#wve-time-selected-inputs').find('button').on('click', function(e) {
+        $('#wve-time-selected-inputs').find('button').on('click', function (e) {
             e.preventDefault();
             $('#wve-time-selected-inputs').fadeOut();
         });
 
         $timeInputIn
             .add($timeInputOut)
-            .on('keyup', function() {
+            .on('keyup', function () {
                 clearTimeout(timeInputTimer);
-                timeInputTimer = setTimeout(function() {
+                timeInputTimer = setTimeout(function () {
 
                     mainVideo.pause();
                     self.clearTimers();
@@ -258,7 +257,7 @@ var WebVideoEditor = function (options) {
     /**
      * Time inputs update
      */
-    this.timeInputsUpdate = function(makeVisible) {
+    this.timeInputsUpdate = function (makeVisible) {
         if (typeof makeVisible === 'undefined') {
             makeVisible = true;
         }
@@ -367,7 +366,7 @@ var WebVideoEditor = function (options) {
      * Import media
      * @param formData
      */
-    this.importMedia = function(formData) {
+    this.importMedia = function (formData) {
 
         self.showPreloader();
 
@@ -420,11 +419,11 @@ var WebVideoEditor = function (options) {
 
         var pagesToDisplay = [], skipped = false;
         for (var i = 1; i <= numberPages; i++) {
-            if((i > 2 && i < numberPages - 2)
-                && (i < currentPage - 3 || i > currentPage + 3) ){
-                    if (!skipped) {
-                        pagesToDisplay.push('...');
-                    }
+            if ((i > 2 && i < numberPages - 2)
+                && (i < currentPage - 3 || i > currentPage + 3) ) {
+                if (!skipped) {
+                    pagesToDisplay.push('...');
+                }
                     skipped = true;
                     continue;
             }
@@ -439,7 +438,7 @@ var WebVideoEditor = function (options) {
         };
         $paginationContainer.append(paginationTemplate(data));
 
-        $paginationContainer.find('.js-page-next').on('click', function(e) {
+        $paginationContainer.find('.js-page-next').on('click', function (e) {
             e.preventDefault();
             var pageNumber = currentPage + 1;
             if (pageNumber < numberPages + 1) {
@@ -447,7 +446,7 @@ var WebVideoEditor = function (options) {
                 pageCallback($itemsContainer, $paginationContainer, options);
             }
         });
-        $paginationContainer.find('.js-page-prev').on('click', function(e) {
+        $paginationContainer.find('.js-page-prev').on('click', function (e) {
             e.preventDefault();
             var pageNumber = currentPage - 1;
             if (pageNumber > 0) {
@@ -455,7 +454,7 @@ var WebVideoEditor = function (options) {
                 pageCallback($itemsContainer, $paginationContainer, options);
             }
         });
-        $paginationContainer.find('.js-page-number').on('click', function(e) {
+        $paginationContainer.find('.js-page-number').on('click', function (e) {
             e.preventDefault();
             var pageNumber = parseInt($(this).text(), 10);
             if (pageNumber !== currentPage) {
@@ -716,7 +715,7 @@ var WebVideoEditor = function (options) {
     /**
      * Get list input audio
      */
-    this.getListAudio = function() {
+    this.getListAudio = function () {
         return _.where(inputList, {type: 'audio'});
     };
 
@@ -742,7 +741,6 @@ var WebVideoEditor = function (options) {
             })
                 .done(function (response) {
                     if (response.success) {
-
                         if (type == 'input') {
                             currentMedia = null;
                             mainVideo.pause();
@@ -752,7 +750,6 @@ var WebVideoEditor = function (options) {
                         }
                         self.updateUserStat();
                         self.updateMediaList(type);
-
                     } else {
                         if (response.msg) {
                             self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -893,13 +890,11 @@ var WebVideoEditor = function (options) {
             videoLoaded = false;
 
         if (type !== 'episode') {
-
             this.getMediaData(itemId, type, function (response) {
                 media = response.data;
                 media.time = [0, media.duration_ms];
                 videoEl.src = media.url;
             });
-
         }
 
         $inputRange
@@ -977,13 +972,13 @@ var WebVideoEditor = function (options) {
      * Get time range values
      * @returns {*}
      */
-    this.getRangeValues = function() {
+    this.getRangeValues = function () {
         var values = $sliderTimelineRange.get(0).noUiSlider.get();
         values.splice(0, 1);
-        values = values.map(function(val) {
+        values = values.map(function (val) {
             return parseFloat(val);
         });
-        values.sort(function(a, b){
+        values.sort(function (a, b) {
             return a - b;
         });
         return values;
@@ -1040,7 +1035,6 @@ var WebVideoEditor = function (options) {
         })
             .done(function (response) {
                 if (response.success) {
-
                     var $container = $('#wve-list_input');
                     $container.find('.list-group-item').removeClass('active');
 
@@ -1057,7 +1051,6 @@ var WebVideoEditor = function (options) {
                         .addClass('active');
 
                     self.updateSelectedMedia();
-
                 } else {
                     if (response.msg) {
                         self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1070,7 +1063,7 @@ var WebVideoEditor = function (options) {
      * Show image options window
      * @param array content
      */
-    this.showWindowAddImage = function(content) {
+    this.showWindowAddImage = function (content) {
         var template = _.template($('#modalImageOptionsTemplate').html()),
             data = {
                 title: this.getLangString('image_parameters'),
@@ -1078,7 +1071,7 @@ var WebVideoEditor = function (options) {
                     ? this.getLangString('save')
                     : this.getLangString('add'),
                 content: ''
-            };
+        };
 
         data.audioList = this.getListAudio();
 
@@ -1088,7 +1081,7 @@ var WebVideoEditor = function (options) {
             $form = $modal.find('form');
 
         if (content && content.options) {
-            Object.keys(content.options).forEach(function(key) {
+            Object.keys(content.options).forEach(function (key) {
                 var $field = $form.find('[name="' + key + '"]');
                 if ($field.is(':checkbox')) {
                     if (content.options[key]) {
@@ -1164,7 +1157,7 @@ var WebVideoEditor = function (options) {
     /**
      * Destroy range slider
      */
-    this.sliderRangeDestroy = function() {
+    this.sliderRangeDestroy = function () {
         if ($sliderTimelineRange.get(0).noUiSlider) {
             $sliderTimelineRange.get(0).noUiSlider.destroy();
         }
@@ -1176,7 +1169,7 @@ var WebVideoEditor = function (options) {
     /**
      * Create range slider
      */
-    this.sliderRangeInit = function() {
+    this.sliderRangeInit = function () {
         noUiSlider.create($sliderTimelineRange.get(0), {
             connect: [false, false, true, false],
             start: [0, 0, 500],
@@ -1196,7 +1189,7 @@ var WebVideoEditor = function (options) {
         // Block slider handlers on click
         $sliderTimelineRange.find('.noUi-connects').on('mousedown touchstart', function () {
             self.disableRangeHandlers(true);
-            setTimeout(function() {
+            setTimeout(function () {
                 self.disableRangeHandlers(false);
             }, 1);
         });
@@ -1206,7 +1199,7 @@ var WebVideoEditor = function (options) {
      * Disable range slider handlers
      * @param disable
      */
-    this.disableRangeHandlers = function(disable) {
+    this.disableRangeHandlers = function (disable) {
         var origins = $sliderTimelineRange.get(0).noUiSlider
             ? $sliderTimelineRange.get(0).getElementsByClassName('noUi-origin')
             : [];
@@ -1246,7 +1239,7 @@ var WebVideoEditor = function (options) {
      *
      * @returns {string}
      */
-    this.getCurrentFrameDataUri = function(mediaElement) {
+    this.getCurrentFrameDataUri = function (mediaElement) {
         var canvasEl = document.createElement('canvas');
         var ctx = canvasEl.getContext('2d');
         var width = mediaElement instanceof HTMLVideoElement
@@ -1381,11 +1374,9 @@ var WebVideoEditor = function (options) {
                 if (response.status && response.status == 'not_logged_in') {
                     clearInterval(self.interval);
                     window.location.reload();
-                }
-                else if (response.status && ['pending', 'processing'].indexOf(response.status) > -1) {
+                } else if (response.status && ['pending', 'processing'].indexOf(response.status) > -1) {
                     setTimeout(self.showProgress.bind(self), 1);
-                }
-                else {
+                } else {
                     if (typeof callback == 'function') {
                         callback();
                     }
@@ -1420,7 +1411,7 @@ var WebVideoEditor = function (options) {
                     self.audioPlayer.pause();
                 }
             })
-            .on('shown.bs.modal', function() {
+            .on('shown.bs.modal', function () {
                 self.updateLibraryContent();
             })
             .find('.js-button-submit')
@@ -1452,10 +1443,8 @@ var WebVideoEditor = function (options) {
                     .done(function (response) {
                         $button.prop('disabled', false);
                         if (response.success) {
-
                             $modal.modal('hide');
                             self.showProgress();
-
                         } else {
                             if (response.msg) {
                                 self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1472,7 +1461,7 @@ var WebVideoEditor = function (options) {
     /**
      * Update library content
      */
-    this.updateLibraryContent = function() {
+    this.updateLibraryContent = function () {
         var $container = $('#audioLibrary'),
             $itemsContainer = $('#wve-audio-library'),
             $libraryCategoriesSelect = $('select[name="audio_category"]', $container),
@@ -1482,9 +1471,9 @@ var WebVideoEditor = function (options) {
             options = {
                 category: '',
                 page: 1
-            };
+        };
 
-        $libraryCategoriesSelect.on('change', function() {
+        $libraryCategoriesSelect.on('change', function () {
             options.page = 1;
             $audioSelect.val('').prop('disabled', false);
             $libraryField.val('');
@@ -1503,7 +1492,7 @@ var WebVideoEditor = function (options) {
      * @param $paginationContainer
      * @param options
      */
-    this.updateLibraryContentRequest = function($itemsContainer, $paginationContainer, options) {
+    this.updateLibraryContentRequest = function ($itemsContainer, $paginationContainer, options) {
 
         var $container = $('#audioLibrary'),
             $libraryCategoriesSelect = $('select[name="audio_category"]', $container),
@@ -1524,11 +1513,11 @@ var WebVideoEditor = function (options) {
             dataType: 'json',
             cache: false
         })
-            .done(function(response) {
+            .done(function (response) {
 
                 if (response.categories && response.categories.length > 0) {
                     $libraryCategoriesSelect.empty();
-                    response.categories.forEach(function(categoryName) {
+                    response.categories.forEach(function (categoryName) {
                         $libraryCategoriesSelect.append('<option value="' + categoryName + '">' + categoryName + '</option>');
                     });
                     if (options.category) {
@@ -1538,13 +1527,13 @@ var WebVideoEditor = function (options) {
 
                 $itemsContainer.empty();
 
-                response.items.forEach(function(item) {
+                response.items.forEach(function (item) {
                     var content = template(item);
                     $itemsContainer.append(content);
                 });
 
                 $itemsContainer.find('.btn-link[data-file-name]')
-                    .on('click', function() {
+                    .on('click', function () {
                         var isActive = $(this).closest('li').is('.active');
                         $itemsContainer.find('li').removeClass('active');
                         if (isActive) {
@@ -1557,15 +1546,21 @@ var WebVideoEditor = function (options) {
                         $libraryField.val($(this).data('file-name'));
                     });
 
-                self.createPagination($itemsContainer, $paginationContainer, numberPerPage, response.total, options,
-                    function($iContainer, $pContainer, opts) {
+                self.createPagination(
+                    $itemsContainer,
+                    $paginationContainer,
+                    numberPerPage,
+                    response.total,
+                    options,
+                    function ($iContainer, $pContainer, opts) {
                         $audioSelect.val('').prop('disabled', false);
                         $libraryField.val('');
                         if (!self.audioPlayer.paused) {
                             self.audioPlayer.pause();
                         }
                         self.updateLibraryContentRequest($iContainer, $pContainer, opts);
-                    });
+                    }
+                );
 
             });
     };
@@ -1613,10 +1608,8 @@ var WebVideoEditor = function (options) {
                     .done(function (response) {
                         $button.prop('disabled', false);
                         if (response.success) {
-
                             $modal.modal('hide');
                             self.showProgress();
-
                         } else {
                             if (response.msg) {
                                 self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1634,7 +1627,6 @@ var WebVideoEditor = function (options) {
     this.getProjectData = function () {
         var data = [];
         if (episodes && episodes.length > 0) {
-
             episodes.forEach(function (episode) {
                 var item = {id: episode.id};
                 item.type = episode.type || null;
@@ -1655,9 +1647,7 @@ var WebVideoEditor = function (options) {
                 }
                 data.push(item);
             });
-
-        }
-        else if (currentMedia
+        } else if (currentMedia
             && currentMedia.url
             && $sliderTimelineRange.data('uiSlider')) {
                 var item = {id: currentMedia.id};
@@ -1699,13 +1689,13 @@ var WebVideoEditor = function (options) {
      * Preview image
      * @param imageUrl
      */
-    this.previewImage = function(imageUrl) {
+    this.previewImage = function (imageUrl) {
 
         var template = _.template($('#modalLargeTemplate').html()),
             data = {
                 title: self.getLangString('image_preview'),
                 content: '<img src="' + imageUrl + '" alt="" style="width: 100%;">'
-            };
+        };
 
         $(document.body).append(template(data));
         var $modal = $('#modalLarge');
@@ -1721,14 +1711,13 @@ var WebVideoEditor = function (options) {
      * Play audio
      * @param audioUrl
      */
-    this.previewAudio = function(audioUrl) {
+    this.previewAudio = function (audioUrl) {
         if ($('.modal.show').length === 0) {
-
             var template = _.template($('#modalSmallTemplate').html()),
                 data = {
                     title: self.getLangString('play_audio'),
                     content: '<audio src="' + audioUrl + '" controls autoplay>'
-                };
+            };
 
             $(document.body).append(template(data));
             var $modal = $('#modalSmall');
@@ -1739,9 +1728,7 @@ var WebVideoEditor = function (options) {
                     $modal.find('audio').get(0).pause();
                     $modal.remove();
                 });
-
-        }
-        else {
+        } else {
             if (!this.audioPlayer.paused && this.audioPlayer.src.indexOf(encodeURI(audioUrl)) > -1) {
                 this.audioPlayer.pause();
             } else {
@@ -1797,7 +1784,6 @@ var WebVideoEditor = function (options) {
             icon_class = icons[type] || icons.info;
 
         if ($('.modal.show').length > 0) {
-
             template = _.template($('#alertTemplate').html());
             $modal = $('.modal.show');
             var $modalBody = $('.modal.show:first').find('.modal-body');
@@ -1811,9 +1797,7 @@ var WebVideoEditor = function (options) {
 
             $modalBody.find('.alert').remove();
             $modalBody.append(alertHtml);
-
         } else {
-
             template = _.template($('#modalAlertTemplate').html());
             var html = template({
                 type: type,
@@ -1835,7 +1819,7 @@ var WebVideoEditor = function (options) {
     /**
      * Remove alert message
      */
-    this.alertClear = function() {
+    this.alertClear = function () {
         if ($('.modal.show').length > 0) {
             var $modalBody = $('.modal.show:first').find('.modal-body');
             $modalBody.find('.alert').remove();
@@ -1937,7 +1921,6 @@ var WebVideoEditor = function (options) {
                     window.location.reload();
                 }
                 if (typeof response.percent !== 'undefined') {
-
                     $progressBar.find('.progress-bar')
                         .css('width', response.percent + '%')
                         .toggleClass('progress-bar-empty', response.percent < 7)
@@ -2015,7 +1998,6 @@ var WebVideoEditor = function (options) {
             .done(function (response) {
                 self.hidePreloader();
                 if (response.success) {
-
                     template = _.template($('#modalLargeTemplate').html());
                     var content = '<pre class="code">' + response.content + '</pre>';
                     $(document.body).append(template({title: 'Log', content: content}));
@@ -2025,7 +2007,6 @@ var WebVideoEditor = function (options) {
                         .on('hidden.bs.modal', function (e) {
                             $modal.remove();
                         });
-
                 } else {
                     if (response.msg) {
                         self.alert(response.msg, 'Error', 'danger');
@@ -2053,8 +2034,7 @@ var WebVideoEditor = function (options) {
                 if (response.status && response.status == 'not_logged_in') {
                     clearInterval(self.interval);
                     window.location.reload();
-                }
-                else if (typeof callback == 'function') {
+                } else if (typeof callback == 'function') {
                     callback(response);
                 }
             });
@@ -2079,7 +2059,7 @@ var WebVideoEditor = function (options) {
      * @param time {string}
      * @returns {number}
      */
-    this.timeToSeconds = function(time) {
+    this.timeToSeconds = function (time) {
         var seconds = 0;
         time = time.replace(/[^\d:.]/g, '');
         var tmp = time.split(':');
@@ -2111,9 +2091,15 @@ var WebVideoEditor = function (options) {
         if (roundValue > 0) {
             seconds = seconds.toFixed(roundValue);
         }
-        if (hours < 10) hours = '0' + hours;
-        if (minutes < 10) minutes = '0' + minutes;
-        if (seconds < 10) seconds = '0' + seconds;
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
 
         return hours + ':' + minutes + ':' + seconds;
     };
@@ -2132,7 +2118,6 @@ var WebVideoEditor = function (options) {
         this.getUserData(function (response) {
             self.hidePreloader();
             if (response.success) {
-
                 var content = template(response.data);
                 var html = modalTemplate({
                     title: 'User profile',
@@ -2167,7 +2152,7 @@ var WebVideoEditor = function (options) {
      * @param {string} langKey
      * @returns {string}
      */
-    this.getLangString = function(langKey) {
+    this.getLangString = function (langKey) {
         if (typeof window.LANG === 'undefined') {
             return langKey;
         }
