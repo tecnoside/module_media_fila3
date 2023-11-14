@@ -15,10 +15,12 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Modules\Camping\Constants\AttachmentType;
 use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
 use Modules\Media\Models\Media;
+use Webmozart\Assert\Assert;
 
 // use Modules\Camping\Constants\AttachmentType;
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
@@ -44,6 +46,10 @@ class MediaResource extends Resource
      */
     public static function getFormSchema(bool $asset = true): array
     {
+        Assert::string($disk = $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver'));
+        Assert::isArray($file_types = $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types'));
+        Assert::integer($max_size = config('media-library.max_file_size'));
+
         return [
             FileUpload::make('file')
                 ->translateLabel()
@@ -53,18 +59,18 @@ class MediaResource extends Resource
                 )
                 ->storeFileNamesIn('original_file_name')
                 ->disk(
-                    $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver'),
+                    $disk
                 )
                 ->acceptedFileTypes(
-                    $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types'),
+                    $file_types
                 )
                 ->visibility('private')
                 ->maxSize(
-                    config('media-library.max_file_size'),
+                    $max_size
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            /*-- usiamo enum con il casts sul modello
             Radio::make('attachment_type')
                 ->hiddenLabel()
                 ->options(
@@ -76,7 +82,8 @@ class MediaResource extends Resource
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            */
+            Radio::make('attachment_type'),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
