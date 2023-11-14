@@ -13,10 +13,11 @@ const validPlacements = placements.slice(3);
  * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
  * @returns {Array} placements including their variations
  */
-export default function clockwise(placement, counter = false) {
-  const index = validPlacements.indexOf(placement);
-  const arr = validPlacements
+export default function clockwise(placement, counter = false)
+{
+    const index = validPlacements.indexOf(placement);
+    const arr = validPlacements
     .slice(index + 1)
     .concat(validPlacements.slice(0, index));
-  return counter ? arr.reverse() : arr;
+    return counter ? arr.reverse() : arr;
 }

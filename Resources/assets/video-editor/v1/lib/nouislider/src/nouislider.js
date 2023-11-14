@@ -1,4 +1,4 @@
-(function(factory) {
+(function (factory) {
     if (typeof define === "function" && define.amd) {
         // AMD. Register as an anonymous module.
         define([], factory);
@@ -9,44 +9,51 @@
         // Browser globals
         window.noUiSlider = factory();
     }
-})(function() {
+})(function () {
     "use strict";
 
     var VERSION = "%%REPLACE_THIS_WITH_VERSION%%";
 
     //region Helper Methods
 
-    function isValidFormatter(entry) {
+    function isValidFormatter(entry)
+    {
         return typeof entry === "object" && typeof entry.to === "function" && typeof entry.from === "function";
     }
 
-    function removeElement(el) {
+    function removeElement(el)
+    {
         el.parentElement.removeChild(el);
     }
 
-    function isSet(value) {
+    function isSet(value)
+    {
         return value !== null && value !== undefined;
     }
 
     // Bindable version
-    function preventDefault(e) {
+    function preventDefault(e)
+    {
         e.preventDefault();
     }
 
     // Removes duplicates from an array.
-    function unique(array) {
-        return array.filter(function(a) {
+    function unique(array)
+    {
+        return array.filter(function (a) {
             return !this[a] ? (this[a] = true) : false;
         }, {});
     }
 
     // Round a value to the closest 'to'.
-    function closest(value, to) {
+    function closest(value, to)
+    {
         return Math.round(value / to) * to;
     }
 
     // Current position of an element relative to the document.
-    function offset(elem, orientation) {
+    function offset(elem, orientation)
+    {
         var rect = elem.getBoundingClientRect();
         var doc = elem.ownerDocument;
         var docElem = doc.documentElement;
@@ -65,40 +72,46 @@
     }
 
     // Checks whether a value is numerical.
-    function isNumeric(a) {
+    function isNumeric(a)
+    {
         return typeof a === "number" && !isNaN(a) && isFinite(a);
     }
 
     // Sets a class and removes it after [duration] ms.
-    function addClassFor(element, className, duration) {
+    function addClassFor(element, className, duration)
+    {
         if (duration > 0) {
             addClass(element, className);
-            setTimeout(function() {
+            setTimeout(function () {
                 removeClass(element, className);
             }, duration);
         }
     }
 
     // Limits a value to 0 - 100
-    function limit(a) {
+    function limit(a)
+    {
         return Math.max(Math.min(a, 100), 0);
     }
 
     // Wraps a variable as an array, if it isn't one yet.
     // Note that an input array is returned by reference!
-    function asArray(a) {
+    function asArray(a)
+    {
         return Array.isArray(a) ? a : [a];
     }
 
     // Counts decimals
-    function countDecimals(numStr) {
+    function countDecimals(numStr)
+    {
         numStr = String(numStr);
         var pieces = numStr.split(".");
         return pieces.length > 1 ? pieces[1].length : 0;
     }
 
     // http://youmightnotneedjquery.com/#add_class
-    function addClass(el, className) {
+    function addClass(el, className)
+    {
         if (el.classList && !/\s/.test(className)) {
             el.classList.add(className);
         } else {
@@ -107,7 +120,8 @@
     }
 
     // http://youmightnotneedjquery.com/#remove_class
-    function removeClass(el, className) {
+    function removeClass(el, className)
+    {
         if (el.classList && !/\s/.test(className)) {
             el.classList.remove(className);
         } else {
@@ -119,14 +133,16 @@
     }
 
     // https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/
-    function hasClass(el, className) {
+    function hasClass(el, className)
+    {
         return el.classList
             ? el.classList.contains(className)
             : new RegExp("\\b" + className + "\\b").test(el.className);
     }
 
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY#Notes
-    function getPageOffset(doc) {
+    function getPageOffset(doc)
+    {
         var supportPageOffset = window.pageXOffset !== undefined;
         var isCSS1Compat = (doc.compatMode || "") === "CSS1Compat";
         var x = supportPageOffset
@@ -149,49 +165,53 @@
     // we provide a function to compute constants instead
     // of accessing window.* as soon as the module needs it
     // so that we do not compute anything if not needed
-    function getActions() {
+    function getActions()
+    {
         // Determine the events to bind. IE11 implements pointerEvents without
         // a prefix, which breaks compatibility with the IE10 implementation.
         return window.navigator.pointerEnabled
             ? {
-                  start: "pointerdown",
-                  move: "pointermove",
-                  end: "pointerup"
-              }
+                start: "pointerdown",
+                move: "pointermove",
+                end: "pointerup"
+        }
             : window.navigator.msPointerEnabled
                 ? {
-                      start: "MSPointerDown",
-                      move: "MSPointerMove",
-                      end: "MSPointerUp"
-                  }
+                    start: "MSPointerDown",
+                    move: "MSPointerMove",
+                    end: "MSPointerUp"
+        }
                 : {
-                      start: "mousedown touchstart",
-                      move: "mousemove touchmove",
-                      end: "mouseup touchend"
-                  };
+                    start: "mousedown touchstart",
+                    move: "mousemove touchmove",
+                    end: "mouseup touchend"
+        };
     }
 
     // https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
     // Issue #785
-    function getSupportsPassive() {
+    function getSupportsPassive()
+    {
         var supportsPassive = false;
 
         /* eslint-disable */
         try {
             var opts = Object.defineProperty({}, "passive", {
-                get: function() {
+                get: function () {
                     supportsPassive = true;
                 }
             });
 
             window.addEventListener("test", null, opts);
-        } catch (e) {}
+        } catch (e) {
+        }
         /* eslint-enable */
 
         return supportsPassive;
     }
 
-    function getSupportsTouchActionNone() {
+    function getSupportsTouchActionNone()
+    {
         return window.CSS && CSS.supports && CSS.supports("touch-action", "none");
     }
 
@@ -200,26 +220,31 @@
     //region Range Calculation
 
     // Determine the size of a sub-range in relation to a full range.
-    function subRangeRatio(pa, pb) {
+    function subRangeRatio(pa, pb)
+    {
         return 100 / (pb - pa);
     }
 
     // (percentage) How many percent is this value of this range?
-    function fromPercentage(range, value, startRange) {
+    function fromPercentage(range, value, startRange)
+    {
         return (value * 100) / (range[startRange + 1] - range[startRange]);
     }
 
     // (percentage) Where is this value on this range?
-    function toPercentage(range, value) {
+    function toPercentage(range, value)
+    {
         return fromPercentage(range, range[0] < 0 ? value + Math.abs(range[0]) : value - range[0], 0);
     }
 
     // (value) How much is this percentage on this range?
-    function isPercentage(range, value) {
+    function isPercentage(range, value)
+    {
         return (value * (range[1] - range[0])) / 100 + range[0];
     }
 
-    function getJ(value, arr) {
+    function getJ(value, arr)
+    {
         var j = 1;
 
         while (value >= arr[j]) {
@@ -230,7 +255,8 @@
     }
 
     // (percentage) Input a value, find where, on a scale of 0-100, it applies.
-    function toStepping(xVal, xPct, value) {
+    function toStepping(xVal, xPct, value)
+    {
         if (value >= xVal.slice(-1)[0]) {
             return 100;
         }
@@ -245,7 +271,8 @@
     }
 
     // (value) Input a percentage, find where it is on the specified range.
-    function fromStepping(xVal, xPct, value) {
+    function fromStepping(xVal, xPct, value)
+    {
         // There is no range group that fits 100
         if (value >= 100) {
             return xVal.slice(-1)[0];
@@ -261,7 +288,8 @@
     }
 
     // (percentage) Get the step that applies at a certain value.
-    function getStep(xPct, xSteps, snap, value) {
+    function getStep(xPct, xSteps, snap, value)
+    {
         if (value === 100) {
             return value;
         }
@@ -287,7 +315,8 @@
         return xPct[j - 1] + closest(value - xPct[j - 1], xSteps[j - 1]);
     }
 
-    function handleEntryPoint(index, value, that) {
+    function handleEntryPoint(index, value, that)
+    {
         var percentage;
 
         // Wrap numerical input in an array.
@@ -332,7 +361,8 @@
         that.xHighestCompleteStep.push(0);
     }
 
-    function handleStepPoint(i, n, that) {
+    function handleStepPoint(i, n, that)
+    {
         // Ignore 'false' stepping.
         if (!n) {
             return;
@@ -360,7 +390,8 @@
 
     //region Spectrum
 
-    function Spectrum(entry, snap, singleStep) {
+    function Spectrum(entry, snap, singleStep)
+    {
         this.xPct = [];
         this.xVal = [];
         this.xSteps = [singleStep || false];
@@ -381,11 +412,11 @@
 
         // Sort all entries by value (numeric sort).
         if (ordered.length && typeof ordered[0][0] === "object") {
-            ordered.sort(function(a, b) {
+            ordered.sort(function (a, b) {
                 return a[0][0] - b[0][0];
             });
         } else {
-            ordered.sort(function(a, b) {
+            ordered.sort(function (a, b) {
                 return a[0] - b[0];
             });
         }
@@ -405,7 +436,7 @@
         }
     }
 
-    Spectrum.prototype.getDistance = function(value) {
+    Spectrum.prototype.getDistance = function (value) {
         var index;
         var distances = [];
 
@@ -432,7 +463,7 @@
 
     // Calculate the percentual distance over the whole scale of ranges.
     // direction: 0 = backwards / 1 = forwards
-    Spectrum.prototype.getAbsoluteDistance = function(value, distances, direction) {
+    Spectrum.prototype.getAbsoluteDistance = function (value, distances, direction) {
         var xPct_index = 0;
 
         // Calculate range where to start calculation
@@ -508,23 +539,23 @@
         return value + abs_distance_counter;
     };
 
-    Spectrum.prototype.toStepping = function(value) {
+    Spectrum.prototype.toStepping = function (value) {
         value = toStepping(this.xVal, this.xPct, value);
 
         return value;
     };
 
-    Spectrum.prototype.fromStepping = function(value) {
+    Spectrum.prototype.fromStepping = function (value) {
         return fromStepping(this.xVal, this.xPct, value);
     };
 
-    Spectrum.prototype.getStep = function(value) {
+    Spectrum.prototype.getStep = function (value) {
         value = getStep(this.xPct, this.xSteps, this.snap, value);
 
         return value;
     };
 
-    Spectrum.prototype.getDefaultStep = function(value, isDown, size) {
+    Spectrum.prototype.getDefaultStep = function (value, isDown, size) {
         var j = getJ(value, this.xPct);
 
         // When at the top or stepping down, look at the previous sub-range
@@ -535,7 +566,7 @@
         return (this.xVal[j] - this.xVal[j - 1]) / size;
     };
 
-    Spectrum.prototype.getNearbySteps = function(value) {
+    Spectrum.prototype.getNearbySteps = function (value) {
         var j = getJ(value, this.xPct);
 
         return {
@@ -557,13 +588,13 @@
         };
     };
 
-    Spectrum.prototype.countStepDecimals = function() {
+    Spectrum.prototype.countStepDecimals = function () {
         var stepDecimals = this.xNumSteps.map(countDecimals);
         return Math.max.apply(null, stepDecimals);
     };
 
     // Outside testing
-    Spectrum.prototype.convert = function(value) {
+    Spectrum.prototype.convert = function (value) {
         return this.getStep(this.toStepping(value));
     };
 
@@ -571,7 +602,7 @@
 
     //region Options
 
-    /*	Every input option is tested and parsed. This'll prevent
+    /*  Every input option is tested and parsed. This'll prevent
         endless validation in internal methods. These tests are
         structured with an item for every option available. An
         option can be marked as required by setting the 'r' flag.
@@ -587,7 +618,7 @@
     //region Defaults
 
     var defaultFormatter = {
-        to: function(value) {
+        to: function (value) {
             return value !== undefined && value.toFixed(2);
         },
         from: Number
@@ -640,7 +671,8 @@
 
     //endregion
 
-    function validateFormat(entry) {
+    function validateFormat(entry)
+    {
         // Any object with a to and from method is supported.
         if (isValidFormatter(entry)) {
             return true;
@@ -649,7 +681,8 @@
         throw new Error("noUiSlider (" + VERSION + "): 'format' requires 'to' and 'from' methods.");
     }
 
-    function testStep(parsed, entry) {
+    function testStep(parsed, entry)
+    {
         if (!isNumeric(entry)) {
             throw new Error("noUiSlider (" + VERSION + "): 'step' is not numeric.");
         }
@@ -659,7 +692,8 @@
         parsed.singleStep = entry;
     }
 
-    function testKeyboardPageMultiplier(parsed, entry) {
+    function testKeyboardPageMultiplier(parsed, entry)
+    {
         if (!isNumeric(entry)) {
             throw new Error("noUiSlider (" + VERSION + "): 'keyboardPageMultiplier' is not numeric.");
         }
@@ -667,7 +701,8 @@
         parsed.keyboardPageMultiplier = entry;
     }
 
-    function testKeyboardDefaultStep(parsed, entry) {
+    function testKeyboardDefaultStep(parsed, entry)
+    {
         if (!isNumeric(entry)) {
             throw new Error("noUiSlider (" + VERSION + "): 'keyboardDefaultStep' is not numeric.");
         }
@@ -675,7 +710,8 @@
         parsed.keyboardDefaultStep = entry;
     }
 
-    function testRange(parsed, entry) {
+    function testRange(parsed, entry)
+    {
         // Filter incorrect input.
         if (typeof entry !== "object" || Array.isArray(entry)) {
             throw new Error("noUiSlider (" + VERSION + "): 'range' is not an object.");
@@ -694,7 +730,8 @@
         parsed.spectrum = new Spectrum(entry, parsed.snap, parsed.singleStep);
     }
 
-    function testStart(parsed, entry) {
+    function testStart(parsed, entry)
+    {
         entry = asArray(entry);
 
         // Validate input. Values aren't tested, as the public .val method
@@ -711,7 +748,8 @@
         parsed.start = entry;
     }
 
-    function testSnap(parsed, entry) {
+    function testSnap(parsed, entry)
+    {
         // Enforce 100% stepping within subranges.
         parsed.snap = entry;
 
@@ -720,7 +758,8 @@
         }
     }
 
-    function testAnimate(parsed, entry) {
+    function testAnimate(parsed, entry)
+    {
         // Enforce 100% stepping within subranges.
         parsed.animate = entry;
 
@@ -729,7 +768,8 @@
         }
     }
 
-    function testAnimationDuration(parsed, entry) {
+    function testAnimationDuration(parsed, entry)
+    {
         parsed.animationDuration = entry;
 
         if (typeof entry !== "number") {
@@ -737,7 +777,8 @@
         }
     }
 
-    function testConnect(parsed, entry) {
+    function testConnect(parsed, entry)
+    {
         var connect = [false];
         var i;
 
@@ -767,7 +808,8 @@
         parsed.connect = connect;
     }
 
-    function testOrientation(parsed, entry) {
+    function testOrientation(parsed, entry)
+    {
         // Set orientation to an a numerical value for easy
         // array selection.
         switch (entry) {
@@ -782,7 +824,8 @@
         }
     }
 
-    function testMargin(parsed, entry) {
+    function testMargin(parsed, entry)
+    {
         if (!isNumeric(entry)) {
             throw new Error("noUiSlider (" + VERSION + "): 'margin' option must be numeric.");
         }
@@ -795,7 +838,8 @@
         parsed.margin = parsed.spectrum.getDistance(entry);
     }
 
-    function testLimit(parsed, entry) {
+    function testLimit(parsed, entry)
+    {
         if (!isNumeric(entry)) {
             throw new Error("noUiSlider (" + VERSION + "): 'limit' option must be numeric.");
         }
@@ -811,7 +855,8 @@
         }
     }
 
-    function testPadding(parsed, entry) {
+    function testPadding(parsed, entry)
+    {
         var index;
 
         if (!isNumeric(entry) && !Array.isArray(entry)) {
@@ -853,7 +898,8 @@
         }
     }
 
-    function testDirection(parsed, entry) {
+    function testDirection(parsed, entry)
+    {
         // Set direction as a numerical value for easy parsing.
         // Invert connection for RTL sliders, so that the proper
         // handles get the connect/background classes.
@@ -869,7 +915,8 @@
         }
     }
 
-    function testBehaviour(parsed, entry) {
+    function testBehaviour(parsed, entry)
+    {
         // Make sure the input is a string.
         if (typeof entry !== "string") {
             throw new Error("noUiSlider (" + VERSION + "): 'behaviour' must be a string containing options.");
@@ -909,7 +956,8 @@
         };
     }
 
-    function testTooltips(parsed, entry) {
+    function testTooltips(parsed, entry)
+    {
         if (entry === false) {
             return;
         }
@@ -927,7 +975,7 @@
                 throw new Error("noUiSlider (" + VERSION + "): must pass a formatter for all handles.");
             }
 
-            parsed.tooltips.forEach(function(formatter) {
+            parsed.tooltips.forEach(function (formatter) {
                 if (
                     typeof formatter !== "boolean" &&
                     (typeof formatter !== "object" || typeof formatter.to !== "function")
@@ -938,17 +986,20 @@
         }
     }
 
-    function testAriaFormat(parsed, entry) {
+    function testAriaFormat(parsed, entry)
+    {
         parsed.ariaFormat = entry;
         validateFormat(entry);
     }
 
-    function testFormat(parsed, entry) {
+    function testFormat(parsed, entry)
+    {
         parsed.format = entry;
         validateFormat(entry);
     }
 
-    function testKeyboardSupport(parsed, entry) {
+    function testKeyboardSupport(parsed, entry)
+    {
         parsed.keyboardSupport = entry;
 
         if (typeof entry !== "boolean") {
@@ -956,12 +1007,14 @@
         }
     }
 
-    function testDocumentElement(parsed, entry) {
+    function testDocumentElement(parsed, entry)
+    {
         // This is an advanced option. Passed values are used without validation.
         parsed.documentElement = entry;
     }
 
-    function testCssPrefix(parsed, entry) {
+    function testCssPrefix(parsed, entry)
+    {
         if (typeof entry !== "string" && entry !== false) {
             throw new Error("noUiSlider (" + VERSION + "): 'cssPrefix' must be a string or `false`.");
         }
@@ -969,7 +1022,8 @@
         parsed.cssPrefix = entry;
     }
 
-    function testCssClasses(parsed, entry) {
+    function testCssClasses(parsed, entry)
+    {
         if (typeof entry !== "object") {
             throw new Error("noUiSlider (" + VERSION + "): 'cssClasses' must be an object.");
         }
@@ -990,7 +1044,8 @@
     }
 
     // Test all developer settings and parse to assumption-safe values.
-    function testOptions(options) {
+    function testOptions(options)
+    {
         // To prove a fix for #537, freeze options here.
         // If the object is modified, an error will be thrown.
         // Object.freeze(options);
@@ -1051,7 +1106,7 @@
         // Run all options through a testing mechanism to ensure correct
         // input. It should be noted that options might get modified to
         // be handled properly. E.g. wrapping integers in arrays.
-        Object.keys(tests).forEach(function(name) {
+        Object.keys(tests).forEach(function (name) {
             // If the option isn't set, but it is required, throw an error.
             if (!isSet(options[name]) && defaults[name] === undefined) {
                 if (tests[name].r) {
@@ -1087,7 +1142,8 @@
 
     //endregion
 
-    function scope(target, options, originalOptions) {
+    function scope(target, options, originalOptions)
+    {
         var actions = getActions();
         var supportsTouchActionNone = getSupportsTouchActionNone();
         var supportsPassive = supportsTouchActionNone && getSupportsPassive();
@@ -1129,7 +1185,8 @@
         var scope_DirOffset = scope_Document.dir === "rtl" || options.ort === 1 ? 0 : 100;
 
         // Creates a node, adds it to target, returns the new node.
-        function addNodeTo(addTarget, className) {
+        function addNodeTo(addTarget, className)
+        {
             var div = scope_Document.createElement("div");
 
             if (className) {
@@ -1142,7 +1199,8 @@
         }
 
         // Append a origin to the base
-        function addOrigin(base, handleNumber) {
+        function addOrigin(base, handleNumber)
+        {
             var origin = addNodeTo(base, options.cssClasses.origin);
             var handle = addNodeTo(origin, options.cssClasses.handle);
 
@@ -1154,7 +1212,7 @@
                 // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
                 // 0 = focusable and reachable
                 handle.setAttribute("tabindex", "0");
-                handle.addEventListener("keydown", function(event) {
+                handle.addEventListener("keydown", function (event) {
                     return eventKeydown(event, handleNumber);
                 });
             }
@@ -1172,7 +1230,8 @@
         }
 
         // Insert nodes for connect elements
-        function addConnect(base, add) {
+        function addConnect(base, add)
+        {
             if (!add) {
                 return false;
             }
@@ -1181,7 +1240,8 @@
         }
 
         // Add handles to the slider base.
-        function addElements(connectOptions, base) {
+        function addElements(connectOptions, base)
+        {
             var connectBase = addNodeTo(base, options.cssClasses.connects);
 
             scope_Handles = [];
@@ -1201,7 +1261,8 @@
         }
 
         // Initialize a single slider.
-        function addSlider(addTarget) {
+        function addSlider(addTarget)
+        {
             // Apply classes and data to the target.
             addClass(addTarget, options.cssClasses.target);
 
@@ -1228,7 +1289,8 @@
             return addNodeTo(addTarget, options.cssClasses.base);
         }
 
-        function addTooltip(handle, handleNumber) {
+        function addTooltip(handle, handleNumber)
+        {
             if (!options.tooltips[handleNumber]) {
                 return false;
             }
@@ -1236,20 +1298,23 @@
             return addNodeTo(handle.firstChild, options.cssClasses.tooltip);
         }
 
-        function isSliderDisabled() {
+        function isSliderDisabled()
+        {
             return scope_Target.hasAttribute("disabled");
         }
 
         // Disable the slider dragging if any handle is disabled
-        function isHandleDisabled(handleNumber) {
+        function isHandleDisabled(handleNumber)
+        {
             var handleOrigin = scope_Handles[handleNumber];
             return handleOrigin.hasAttribute("disabled");
         }
 
-        function removeTooltips() {
+        function removeTooltips()
+        {
             if (scope_Tooltips) {
                 removeEvent("update" + INTERNAL_EVENT_NS.tooltips);
-                scope_Tooltips.forEach(function(tooltip) {
+                scope_Tooltips.forEach(function (tooltip) {
                     if (tooltip) {
                         removeElement(tooltip);
                     }
@@ -1259,13 +1324,14 @@
         }
 
         // The tooltips option is a shorthand for using the 'update' event.
-        function tooltips() {
+        function tooltips()
+        {
             removeTooltips();
 
             // Tooltips are added with options.tooltips in original order.
             scope_Tooltips = scope_Handles.map(addTooltip);
 
-            bindEvent("update" + INTERNAL_EVENT_NS.tooltips, function(values, handleNumber, unencoded) {
+            bindEvent("update" + INTERNAL_EVENT_NS.tooltips, function (values, handleNumber, unencoded) {
                 if (!scope_Tooltips[handleNumber]) {
                     return;
                 }
@@ -1280,11 +1346,12 @@
             });
         }
 
-        function aria() {
+        function aria()
+        {
             removeEvent("update" + INTERNAL_EVENT_NS.aria);
-            bindEvent("update" + INTERNAL_EVENT_NS.aria, function(values, handleNumber, unencoded, tap, positions) {
+            bindEvent("update" + INTERNAL_EVENT_NS.aria, function (values, handleNumber, unencoded, tap, positions) {
                 // Update Aria Values for all handles, as a change in one changes min and max values for the next.
-                scope_HandleNumbers.forEach(function(index) {
+                scope_HandleNumbers.forEach(function (index) {
                     var handle = scope_Handles[index];
 
                     var min = checkHandlePosition(scope_Locations, index, 0, true, true, true);
@@ -1308,7 +1375,8 @@
             });
         }
 
-        function getGroup(mode, values, stepped) {
+        function getGroup(mode, values, stepped)
+        {
             // Use the range.
             if (mode === "range" || mode === "steps") {
                 return scope_Spectrum.xVal;
@@ -1337,7 +1405,7 @@
 
             if (mode === "positions") {
                 // Map all percentages to on-range values.
-                return values.map(function(value) {
+                return values.map(function (value) {
                     return scope_Spectrum.fromStepping(stepped ? scope_Spectrum.getStep(value) : value);
                 });
             }
@@ -1345,7 +1413,7 @@
             if (mode === "values") {
                 // If the value must be stepped, it needs to be converted to a percentage first.
                 if (stepped) {
-                    return values.map(function(value) {
+                    return values.map(function (value) {
                         // Convert to percentage, apply step, return to value.
                         return scope_Spectrum.fromStepping(scope_Spectrum.getStep(scope_Spectrum.toStepping(value)));
                     });
@@ -1356,8 +1424,10 @@
             }
         }
 
-        function generateSpread(density, mode, group) {
-            function safeIncrement(value, increment) {
+        function generateSpread(density, mode, group)
+        {
+            function safeIncrement(value, increment)
+            {
                 // Avoid floating point variance by dropping the smallest decimal places.
                 return (value + increment).toFixed(7) / 1;
             }
@@ -1371,7 +1441,7 @@
 
             // Create a copy of the group, sort it and filter away all duplicates.
             group = unique(
-                group.slice().sort(function(a, b) {
+                group.slice().sort(function (a, b) {
                     return a - b;
                 })
             );
@@ -1388,7 +1458,7 @@
                 ignoreLast = true;
             }
 
-            group.forEach(function(current, index) {
+            group.forEach(function (current, index) {
                 // Get the current step and the lower + upper positions.
                 var step;
                 var i;
@@ -1476,7 +1546,8 @@
             return indexes;
         }
 
-        function addMarking(spread, filterFunc, formatter) {
+        function addMarking(spread, filterFunc, formatter)
+        {
             var element = scope_Document.createElement("div");
 
             var valueSizeClasses = [];
@@ -1495,7 +1566,8 @@
             addClass(element, options.cssClasses.pips);
             addClass(element, options.ort === 0 ? options.cssClasses.pipsHorizontal : options.cssClasses.pipsVertical);
 
-            function getClasses(type, source) {
+            function getClasses(type, source)
+            {
                 var a = source === options.cssClasses.value;
                 var orientationClasses = a ? valueOrientationClasses : markerOrientationClasses;
                 var sizeClasses = a ? valueSizeClasses : markerSizeClasses;
@@ -1503,7 +1575,8 @@
                 return source + " " + orientationClasses[options.ort] + " " + sizeClasses[type];
             }
 
-            function addSpread(offset, value, type) {
+            function addSpread(offset, value, type)
+            {
                 // Apply the filter function, if it is set.
                 type = filterFunc ? filterFunc(value, type) : type;
 
@@ -1527,21 +1600,23 @@
             }
 
             // Append all points.
-            Object.keys(spread).forEach(function(offset) {
+            Object.keys(spread).forEach(function (offset) {
                 addSpread(offset, spread[offset][0], spread[offset][1]);
             });
 
             return element;
         }
 
-        function removePips() {
+        function removePips()
+        {
             if (scope_Pips) {
                 removeElement(scope_Pips);
                 scope_Pips = null;
             }
         }
 
-        function pips(grid) {
+        function pips(grid)
+        {
             // Fix #669
             removePips();
 
@@ -1562,18 +1637,20 @@
         }
 
         // Shorthand for base dimensions.
-        function baseSize() {
+        function baseSize()
+        {
             var rect = scope_Base.getBoundingClientRect();
             var alt = "offset" + ["Width", "Height"][options.ort];
             return options.ort === 0 ? rect.width || scope_Base[alt] : rect.height || scope_Base[alt];
         }
 
         // Handler for attaching events trough a proxy.
-        function attachEvent(events, element, callback, data) {
+        function attachEvent(events, element, callback, data)
+        {
             // This function can be used to 'filter' events to the slider.
             // element is a node, not a nodeList
 
-            var method = function(e) {
+            var method = function (e) {
                 e = fixEvent(e, data.pageOffset, data.target || element);
 
                 // fixEvent returns false if this event has a different target
@@ -1621,7 +1698,7 @@
             var methods = [];
 
             // Bind a closure on the target for every event type.
-            events.split(" ").forEach(function(eventName) {
+            events.split(" ").forEach(function (eventName) {
                 element.addEventListener(eventName, method, supportsPassive ? { passive: true } : false);
                 methods.push([eventName, method]);
             });
@@ -1630,7 +1707,8 @@
         }
 
         // Provide a clean event with standardized offset values.
-        function fixEvent(e, pageOffset, eventTarget) {
+        function fixEvent(e, pageOffset, eventTarget)
+        {
             // Filter the event to register the type, which can be
             // touch, mouse or pointer. Offset changes need to be
             // made on an event specific basis.
@@ -1656,7 +1734,7 @@
             // The only thing one handle should be concerned about is the touches that originated on top of it.
             if (touch) {
                 // Returns true if a touch originated on the target.
-                var isTouchOnTarget = function(checkTouch) {
+                var isTouchOnTarget = function (checkTouch) {
                     return (
                         checkTouch.target === eventTarget ||
                         eventTarget.contains(checkTouch.target) ||
@@ -1705,7 +1783,8 @@
         }
 
         // Translate a coordinate in the document to a percentage on the slider
-        function calcPointToPercentage(calcPoint) {
+        function calcPointToPercentage(calcPoint)
+        {
             var location = calcPoint - offset(scope_Base, options.ort);
             var proposal = (location * 100) / baseSize();
 
@@ -1718,11 +1797,12 @@
         }
 
         // Find handle closest to a certain percentage on the slider
-        function getClosestHandle(clickedPosition) {
+        function getClosestHandle(clickedPosition)
+        {
             var smallestDifference = 100;
             var handleNumber = false;
 
-            scope_Handles.forEach(function(handle, index) {
+            scope_Handles.forEach(function (handle, index) {
                 // Disabled handles are ignored
                 if (isHandleDisabled(index)) {
                     return;
@@ -1748,14 +1828,16 @@
         }
 
         // Fire 'end' when a mouse or pen leaves the document.
-        function documentLeave(event, data) {
+        function documentLeave(event, data)
+        {
             if (event.type === "mouseout" && event.target.nodeName === "HTML" && event.relatedTarget === null) {
                 eventEnd(event, data);
             }
         }
 
         // Handle movement on document for handle and range drag.
-        function eventMove(event, data) {
+        function eventMove(event, data)
+        {
             // Fix #498
             // Check value of .buttons in 'start' to work around a bug in IE10 mobile (data.buttonsProperty).
             // https://connect.microsoft.com/IE/feedback/details/927005/mobile-ie10-windows-phone-buttons-property-of-pointermove-event-always-zero
@@ -1775,7 +1857,8 @@
         }
 
         // Unbind move events on document, call callbacks.
-        function eventEnd(event, data) {
+        function eventEnd(event, data)
+        {
             // The handle is no longer active, so remove the class.
             if (data.handle) {
                 removeClass(data.handle, options.cssClasses.active);
@@ -1783,7 +1866,7 @@
             }
 
             // Unbind the move and end events, which are added on 'start'.
-            data.listeners.forEach(function(c) {
+            data.listeners.forEach(function (c) {
                 scope_DocumentElement.removeEventListener(c[0], c[1]);
             });
 
@@ -1799,7 +1882,7 @@
                 }
             }
 
-            data.handleNumbers.forEach(function(handleNumber) {
+            data.handleNumbers.forEach(function (handleNumber) {
                 fireEvent("change", handleNumber);
                 fireEvent("set", handleNumber);
                 fireEvent("end", handleNumber);
@@ -1807,7 +1890,8 @@
         }
 
         // Bind move events on document.
-        function eventStart(event, data) {
+        function eventStart(event, data)
+        {
             // Ignore event if any handle is disabled
             if (data.handleNumbers.some(isHandleDisabled)) {
                 return false;
@@ -1886,13 +1970,14 @@
                 scope_Body.addEventListener("selectstart", preventDefault, false);
             }
 
-            data.handleNumbers.forEach(function(handleNumber) {
+            data.handleNumbers.forEach(function (handleNumber) {
                 fireEvent("start", handleNumber);
             });
         }
 
         // Move closest handle to tapped location.
-        function eventTap(event) {
+        function eventTap(event)
+        {
             // The tap event shouldn't propagate up
             event.stopPropagation();
 
@@ -1925,15 +2010,16 @@
         }
 
         // Fires a 'hover' event for a hovered mouse/pen position.
-        function eventHover(event) {
+        function eventHover(event)
+        {
             var proposal = calcPointToPercentage(event.calcPoint);
 
             var to = scope_Spectrum.getStep(proposal);
             var value = scope_Spectrum.fromStepping(to);
 
-            Object.keys(scope_Events).forEach(function(targetEvent) {
+            Object.keys(scope_Events).forEach(function (targetEvent) {
                 if ("hover" === targetEvent.split(".")[0]) {
-                    scope_Events[targetEvent].forEach(function(callback) {
+                    scope_Events[targetEvent].forEach(function (callback) {
                         callback.call(scope_Self, value);
                     });
                 }
@@ -1942,7 +2028,8 @@
 
         // Handles keydown on focused handles
         // Don't move the document when pressing arrow keys on focused handles
-        function eventKeydown(event, handleNumber) {
+        function eventKeydown(event, handleNumber)
+        {
             if (isSliderDisabled() || isHandleDisabled(handleNumber)) {
                 return false;
             }
@@ -2029,10 +2116,11 @@
         }
 
         // Attach events to several slider parts.
-        function bindSliderEvents(behaviour) {
+        function bindSliderEvents(behaviour)
+        {
             // Attach the standard drag event to the handles.
             if (!behaviour.fixed) {
-                scope_Handles.forEach(function(handle, index) {
+                scope_Handles.forEach(function (handle, index) {
                     // These events are only bound to the visual handle
                     // element, not the 'real' origin element.
                     attachEvent(actions.start, handle.children[0], eventStart, {
@@ -2055,7 +2143,7 @@
 
             // Make the range draggable.
             if (behaviour.drag) {
-                scope_Connects.forEach(function(connect, index) {
+                scope_Connects.forEach(function (connect, index) {
                     if (connect === false || index === 0 || index === scope_Connects.length - 1) {
                         return;
                     }
@@ -2075,7 +2163,7 @@
                         eventHolders.push(handleAfter.children[0]);
                     }
 
-                    eventHolders.forEach(function(eventHolder) {
+                    eventHolders.forEach(function (eventHolder) {
                         attachEvent(actions.start, eventHolder, eventStart, {
                             handles: [handleBefore, handleAfter],
                             handleNumbers: [index - 1, index]
@@ -2086,28 +2174,31 @@
         }
 
         // Attach an event to this slider, possibly including a namespace
-        function bindEvent(namespacedEvent, callback) {
+        function bindEvent(namespacedEvent, callback)
+        {
             scope_Events[namespacedEvent] = scope_Events[namespacedEvent] || [];
             scope_Events[namespacedEvent].push(callback);
 
             // If the event bound is 'update,' fire it immediately for all handles.
             if (namespacedEvent.split(".")[0] === "update") {
-                scope_Handles.forEach(function(a, index) {
+                scope_Handles.forEach(function (a, index) {
                     fireEvent("update", index);
                 });
             }
         }
 
-        function isInternalNamespace(namespace) {
+        function isInternalNamespace(namespace)
+        {
             return namespace === INTERNAL_EVENT_NS.aria || namespace === INTERNAL_EVENT_NS.tooltips;
         }
 
         // Undo attachment of event
-        function removeEvent(namespacedEvent) {
+        function removeEvent(namespacedEvent)
+        {
             var event = namespacedEvent && namespacedEvent.split(".")[0];
             var namespace = event ? namespacedEvent.substring(event.length) : namespacedEvent;
 
-            Object.keys(scope_Events).forEach(function(bind) {
+            Object.keys(scope_Events).forEach(function (bind) {
                 var tEvent = bind.split(".")[0];
                 var tNamespace = bind.substring(tEvent.length);
                 if ((!event || event === tEvent) && (!namespace || namespace === tNamespace)) {
@@ -2120,12 +2211,13 @@
         }
 
         // External event handling
-        function fireEvent(eventName, handleNumber, tap) {
-            Object.keys(scope_Events).forEach(function(targetEvent) {
+        function fireEvent(eventName, handleNumber, tap)
+        {
+            Object.keys(scope_Events).forEach(function (targetEvent) {
                 var eventType = targetEvent.split(".")[0];
 
                 if (eventName === eventType) {
-                    scope_Events[targetEvent].forEach(function(callback) {
+                    scope_Events[targetEvent].forEach(function (callback) {
                         callback.call(
                             // Use the slider public API as the scope ('this')
                             scope_Self,
@@ -2148,7 +2240,8 @@
         }
 
         // Split out the handle positioning logic so the Move event can use it, too
-        function checkHandlePosition(reference, handleNumber, to, lookBackward, lookForward, getValue) {
+        function checkHandlePosition(reference, handleNumber, to, lookBackward, lookForward, getValue)
+        {
             var distance;
 
             // For sliders with multiple handles, limit movement to the other handle.
@@ -2208,14 +2301,16 @@
         }
 
         // Uses slider orientation to create CSS rules. a = base value;
-        function inRuleOrder(v, a) {
+        function inRuleOrder(v, a)
+        {
             var o = options.ort;
             return (o ? a : v) + ", " + (o ? v : a);
         }
 
         // Moves handle(s) by a percentage
         // (bool, % to move, [% where handle started, ...], [index in scope_Handles, ...])
-        function moveHandles(upward, proposal, locations, handleNumbers) {
+        function moveHandles(upward, proposal, locations, handleNumbers)
+        {
             var proposals = locations.slice();
 
             var b = [!upward, upward];
@@ -2232,7 +2327,7 @@
 
             // Step 1: get the maximum percentage that any of the handles can move
             if (handleNumbers.length > 1) {
-                handleNumbers.forEach(function(handleNumber, o) {
+                handleNumbers.forEach(function (handleNumber, o) {
                     var to = checkHandlePosition(
                         proposals,
                         handleNumber,
@@ -2260,13 +2355,13 @@
             var state = false;
 
             // Step 2: Try to set the handles with the found percentage
-            handleNumbers.forEach(function(handleNumber, o) {
+            handleNumbers.forEach(function (handleNumber, o) {
                 state = setHandle(handleNumber, locations[handleNumber] + proposal, b[o], f[o]) || state;
             });
 
             // Step 3: If a handle moved, fire events
             if (state) {
-                handleNumbers.forEach(function(handleNumber) {
+                handleNumbers.forEach(function (handleNumber) {
                     fireEvent("update", handleNumber);
                     fireEvent("slide", handleNumber);
                 });
@@ -2277,12 +2372,14 @@
         // In the initial design for this feature, the origin element was 1% wide.
         // Unfortunately, a rounding bug in Chrome makes it impossible to implement this feature
         // in this manner: https://bugs.chromium.org/p/chromium/issues/detail?id=798223
-        function transformDirection(a, b) {
+        function transformDirection(a, b)
+        {
             return options.dir ? 100 - a - b : a;
         }
 
         // Updates scope_Locations and scope_Values, updates visual state
-        function updateHandlePosition(handleNumber, to) {
+        function updateHandlePosition(handleNumber, to)
+        {
             // Update locations.
             scope_Locations[handleNumber] = to;
 
@@ -2301,8 +2398,9 @@
         // Handles before the slider middle are stacked later = higher,
         // Handles after the middle later is lower
         // [[7] [8] .......... | .......... [5] [4]
-        function setZindex() {
-            scope_HandleNumbers.forEach(function(handleNumber) {
+        function setZindex()
+        {
+            scope_HandleNumbers.forEach(function (handleNumber) {
                 var dir = scope_Locations[handleNumber] > 50 ? -1 : 1;
                 var zIndex = 3 + (scope_Handles.length + dir * handleNumber);
                 scope_Handles[handleNumber].style.zIndex = zIndex;
@@ -2311,7 +2409,8 @@
 
         // Test suggested values and apply margin, step.
         // if exactInput is true, don't run checkHandlePosition, then the handle can be placed in between steps (#436)
-        function setHandle(handleNumber, to, lookBackward, lookForward, exactInput) {
+        function setHandle(handleNumber, to, lookBackward, lookForward, exactInput)
+        {
             if (!exactInput) {
                 to = checkHandlePosition(scope_Locations, handleNumber, to, lookBackward, lookForward, false);
             }
@@ -2326,7 +2425,8 @@
         }
 
         // Updates style attribute for connect nodes
-        function updateConnect(index) {
+        function updateConnect(index)
+        {
             // Skip connects set to false
             if (!scope_Connects[index]) {
                 return;
@@ -2355,7 +2455,8 @@
         }
 
         // Parses value passed to .set method. Returns current value if not parse-able.
-        function resolveToValue(to, handleNumber) {
+        function resolveToValue(to, handleNumber)
+        {
             // Setting with null indicates an 'ignore'.
             // Inputting 'false' is invalid.
             if (to === null || to === false || to === undefined) {
@@ -2379,7 +2480,8 @@
         }
 
         // Set the slider value.
-        function valueSet(input, fireSetEvent, exactInput) {
+        function valueSet(input, fireSetEvent, exactInput)
+        {
             var values = asArray(input);
             var isInit = scope_Locations[0] === undefined;
 
@@ -2393,7 +2495,7 @@
             }
 
             // First pass, without lookAhead but with lookBackward. Values are set from left to right.
-            scope_HandleNumbers.forEach(function(handleNumber) {
+            scope_HandleNumbers.forEach(function (handleNumber) {
                 setHandle(handleNumber, resolveToValue(values[handleNumber], handleNumber), true, false, exactInput);
             });
 
@@ -2402,14 +2504,14 @@
             // Secondary passes. Now that all base values are set, apply constraints.
             // Iterate all handles to ensure constraints are applied for the entire slider (Issue #1009)
             for (; i < scope_HandleNumbers.length; ++i) {
-                scope_HandleNumbers.forEach(function(handleNumber) {
+                scope_HandleNumbers.forEach(function (handleNumber) {
                     setHandle(handleNumber, scope_Locations[handleNumber], true, true, exactInput);
                 });
             }
 
             setZindex();
 
-            scope_HandleNumbers.forEach(function(handleNumber) {
+            scope_HandleNumbers.forEach(function (handleNumber) {
                 fireEvent("update", handleNumber);
 
                 // Fire the event only for handles that received a new value, as per #579
@@ -2420,12 +2522,14 @@
         }
 
         // Reset slider to initial values
-        function valueReset(fireSetEvent) {
+        function valueReset(fireSetEvent)
+        {
             valueSet(options.start, fireSetEvent);
         }
 
         // Set value for a single handle
-        function valueSetHandle(handleNumber, value, fireSetEvent, exactInput) {
+        function valueSetHandle(handleNumber, value, fireSetEvent, exactInput)
+        {
             // Ensure numeric input
             handleNumber = Number(handleNumber);
 
@@ -2445,7 +2549,8 @@
         }
 
         // Get the slider value.
-        function valueGet() {
+        function valueGet()
+        {
             var values = scope_Values.map(options.format.to);
 
             // If only one handle is used, return a single value.
@@ -2457,7 +2562,8 @@
         }
 
         // Removes classes from the root and empties it.
-        function destroy() {
+        function destroy()
+        {
             // remove protected internal listeners
             removeEvent(INTERNAL_EVENT_NS.aria);
             removeEvent(INTERNAL_EVENT_NS.tooltips);
@@ -2476,7 +2582,8 @@
             delete scope_Target.noUiSlider;
         }
 
-        function getNextStepsForHandle(handleNumber) {
+        function getNextStepsForHandle(handleNumber)
+        {
             var location = scope_Locations[handleNumber];
             var nearbySteps = scope_Spectrum.getNearbySteps(location);
             var value = scope_Values[handleNumber];
@@ -2534,12 +2641,14 @@
         }
 
         // Get the current step size for the slider.
-        function getNextSteps() {
+        function getNextSteps()
+        {
             return scope_HandleNumbers.map(getNextStepsForHandle);
         }
 
         // Updateable: margin, limit, padding, step, range, animate, snap
-        function updateOptions(optionsToUpdate, fireSetEvent) {
+        function updateOptions(optionsToUpdate, fireSetEvent)
+        {
             // Spectrum is created using the range, snap, direction and step options.
             // 'snap' and 'step' can be updated.
             // If 'snap' and 'step' are not passed, they should remain unchanged.
@@ -2559,7 +2668,7 @@
             ];
 
             // Only change options that we're actually passed to update.
-            updateAble.forEach(function(name) {
+            updateAble.forEach(function (name) {
                 // Check for undefined. null removes the value.
                 if (optionsToUpdate[name] !== undefined) {
                     originalOptions[name] = optionsToUpdate[name];
@@ -2569,7 +2678,7 @@
             var newOptions = testOptions(originalOptions);
 
             // Load new options into the slider state
-            updateAble.forEach(function(name) {
+            updateAble.forEach(function (name) {
                 if (optionsToUpdate[name] !== undefined) {
                     options[name] = newOptions[name];
                 }
@@ -2602,7 +2711,8 @@
         }
 
         // Initialization steps
-        function setupSlider() {
+        function setupSlider()
+        {
             // Create the base element, initialize HTML and set classes.
             // Add handles and connect elements.
             scope_Base = addSlider(scope_Target);
@@ -2639,7 +2749,7 @@
             setHandle: valueSetHandle,
             reset: valueReset,
             // Exposed for unit testing, don't use this in your application.
-            __moveHandles: function(a, b, c) {
+            __moveHandles: function (a, b, c) {
                 moveHandles(a, b, scope_Locations, c);
             },
             options: originalOptions, // Issue #600, #678
@@ -2647,10 +2757,10 @@
             target: scope_Target, // Issue #597
             removePips: removePips,
             removeTooltips: removeTooltips,
-            getTooltips: function() {
+            getTooltips: function () {
                 return scope_Tooltips;
             },
-            getOrigins: function() {
+            getOrigins: function () {
                 return scope_Handles;
             },
             pips: pips // Issue #594
@@ -2660,7 +2770,8 @@
     }
 
     // Run the standard initializer
-    function initialize(target, originalOptions) {
+    function initialize(target, originalOptions)
+    {
         if (!target || !target.nodeName) {
             throw new Error("noUiSlider (" + VERSION + "): create requires a single element, got: " + target);
         }

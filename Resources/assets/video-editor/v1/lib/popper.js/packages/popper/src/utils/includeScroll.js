@@ -9,13 +9,14 @@ import getScroll from './getScroll';
  * @param {Boolean} subtract - set to true if you want to subtract the scroll values
  * @return {Object} rect - The modifier rect object
  */
-export default function includeScroll(rect, element, subtract = false) {
-  const scrollTop = getScroll(element, 'top');
-  const scrollLeft = getScroll(element, 'left');
-  const modifier = subtract ? -1 : 1;
-  rect.top += scrollTop * modifier;
-  rect.bottom += scrollTop * modifier;
-  rect.left += scrollLeft * modifier;
-  rect.right += scrollLeft * modifier;
-  return rect;
+export default function includeScroll(rect, element, subtract = false)
+{
+    const scrollTop = getScroll(element, 'top');
+    const scrollLeft = getScroll(element, 'left');
+    const modifier = subtract ? -1 : 1;
+    rect.top += scrollTop * modifier;
+    rect.bottom += scrollTop * modifier;
+    rect.left += scrollLeft * modifier;
+    rect.right += scrollLeft * modifier;
+    return rect;
 }

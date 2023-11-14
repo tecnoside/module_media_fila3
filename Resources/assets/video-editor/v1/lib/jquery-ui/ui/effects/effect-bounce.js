@@ -13,98 +13,96 @@
 //>>docs: http://api.jqueryui.com/bounce-effect/
 //>>demos: http://jqueryui.com/effect/
 
-( function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+( function ( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define([
+            "jquery",
+            "../version",
+            "../effect"
+        ], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}( function ( $ ) {
 
-		// AMD. Register as an anonymous module.
-		define( [
-			"jquery",
-			"../version",
-			"../effect"
-		], factory );
-	} else {
+    return $.effects.define("bounce", function ( options, done ) {
+        var upAnim, downAnim, refValue,
+        element = $(this),
 
-		// Browser globals
-		factory( jQuery );
-	}
-}( function( $ ) {
+        // Defaults:
+        mode = options.mode,
+        hide = mode === "hide",
+        show = mode === "show",
+        direction = options.direction || "up",
+        distance = options.distance,
+        times = options.times || 5,
 
-return $.effects.define( "bounce", function( options, done ) {
-	var upAnim, downAnim, refValue,
-		element = $( this ),
+        // Number of internal animations
+        anims = times * 2 + ( show || hide ? 1 : 0 ),
+        speed = options.duration / anims,
+        easing = options.easing,
 
-		// Defaults:
-		mode = options.mode,
-		hide = mode === "hide",
-		show = mode === "show",
-		direction = options.direction || "up",
-		distance = options.distance,
-		times = options.times || 5,
+        // Utility:
+        ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
+        motion = ( direction === "up" || direction === "left" ),
+        i = 0,
 
-		// Number of internal animations
-		anims = times * 2 + ( show || hide ? 1 : 0 ),
-		speed = options.duration / anims,
-		easing = options.easing,
+        queuelen = element.queue().length;
 
-		// Utility:
-		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
-		motion = ( direction === "up" || direction === "left" ),
-		i = 0,
+        $.effects.createPlaceholder(element);
 
-		queuelen = element.queue().length;
+        refValue = element.css(ref);
 
-	$.effects.createPlaceholder( element );
+        // Default distance for the BIGGEST bounce is the outer Distance / 3
+        if ( !distance ) {
+            distance = element[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
+        }
 
-	refValue = element.css( ref );
+        if ( show ) {
+            downAnim = { opacity: 1 };
+            downAnim[ ref ] = refValue;
 
-	// Default distance for the BIGGEST bounce is the outer Distance / 3
-	if ( !distance ) {
-		distance = element[ ref === "top" ? "outerHeight" : "outerWidth" ]() / 3;
-	}
+            // If we are showing, force opacity 0 and set the initial position
+            // then do the "first" animation
+            element
+            .css("opacity", 0)
+            .css(ref, motion ? -distance * 2 : distance * 2)
+            .animate(downAnim, speed, easing);
+        }
 
-	if ( show ) {
-		downAnim = { opacity: 1 };
-		downAnim[ ref ] = refValue;
+        // Start at the smallest distance if we are hiding
+        if ( hide ) {
+            distance = distance / Math.pow(2, times - 1);
+        }
 
-		// If we are showing, force opacity 0 and set the initial position
-		// then do the "first" animation
-		element
-			.css( "opacity", 0 )
-			.css( ref, motion ? -distance * 2 : distance * 2 )
-			.animate( downAnim, speed, easing );
-	}
+        downAnim = {};
+        downAnim[ ref ] = refValue;
 
-	// Start at the smallest distance if we are hiding
-	if ( hide ) {
-		distance = distance / Math.pow( 2, times - 1 );
-	}
+        // Bounces up/down/left/right then back to 0 -- times * 2 animations happen here
+        for ( ; i < times; i++ ) {
+            upAnim = {};
+            upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
 
-	downAnim = {};
-	downAnim[ ref ] = refValue;
+            element
+            .animate(upAnim, speed, easing)
+            .animate(downAnim, speed, easing);
 
-	// Bounces up/down/left/right then back to 0 -- times * 2 animations happen here
-	for ( ; i < times; i++ ) {
-		upAnim = {};
-		upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+            distance = hide ? distance * 2 : distance / 2;
+        }
 
-		element
-			.animate( upAnim, speed, easing )
-			.animate( downAnim, speed, easing );
+        // Last Bounce when Hiding
+        if ( hide ) {
+            upAnim = { opacity: 0 };
+            upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
 
-		distance = hide ? distance * 2 : distance / 2;
-	}
+            element.animate(upAnim, speed, easing);
+        }
 
-	// Last Bounce when Hiding
-	if ( hide ) {
-		upAnim = { opacity: 0 };
-		upAnim[ ref ] = ( motion ? "-=" : "+=" ) + distance;
+        element.queue(done);
 
-		element.animate( upAnim, speed, easing );
-	}
-
-	element.queue( done );
-
-	$.effects.unshift( element, queuelen, anims + 1 );
-} );
+        $.effects.unshift(element, queuelen, anims + 1);
+    });
 
 } ) );

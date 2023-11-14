@@ -4,7 +4,7 @@
  * @author Andchir<andycoderw@gmail.com>
  */
 
-var WebVideoEditor = function(options) {
+var WebVideoEditor = function (options) {
 
     'use strict';
 
@@ -29,7 +29,7 @@ var WebVideoEditor = function(options) {
     this.audioPlayer = new Audio();
 
     /** initialize */
-    this.init = function() {
+    this.init = function () {
 
         this.options = $.extend({}, defaultOptions, options);
 
@@ -41,7 +41,7 @@ var WebVideoEditor = function(options) {
     };
 
     /** On DOM ready */
-    this.onStart = function() {
+    this.onStart = function () {
 
         $sliderTimeline = $('#wve-timeline');
         $sliderTimelineRange = $('#wve-timeline-range');
@@ -55,32 +55,31 @@ var WebVideoEditor = function(options) {
                 trigger: 'hover',
                 boundary: 'window',
                 animation: false,
-                placement: function(tooltip, element) {
+                placement: function (tooltip, element) {
                     return $(this.element).data('placement') || 'bottom';
                 }
             })
-            .on('mousedown', '[data-toggle="tooltip"],.toggle-tooltip', function() {
+            .on('mousedown', '[data-toggle="tooltip"],.toggle-tooltip', function () {
                 $($(this).data('bs.tooltip')['tip']).remove();
             });
 
         mainVideo = $('#wve-video').get(0);
         $(mainVideo)
-            .on('error', function() {
+            .on('error', function () {
                 if (!this.readyState /* && mainVideo.src && mainVideo.src.substr(mainVideo.src.length - 4, 1) === '.'*/ ) {
                     //self.alert('The video format is not supported by your browser.');
                 } else {
-
                 }
                 self.hidePreloader();
             })
-            .on('canplay', function() {
+            .on('canplay', function () {
                 if (self.autoPlayEnabled) {
                     this.play();
                 }
                 self.autoPlayEnabled = false;
                 self.hidePreloader();
             })
-            .on('loadedmetadata', function() {
+            .on('loadedmetadata', function () {
                 $sliderTimelineRange.get(0).noUiSlider.updateOptions({
                     range: {
                         'min': 0,
@@ -99,12 +98,12 @@ var WebVideoEditor = function(options) {
                     }
                     self.timeInputsUpdate(false);
                 }
-                setTimeout(function() {
+                setTimeout(function () {
                     self.hidePreloader();
                 }, 3000);
             })
             .on('play pause', self.onMainVideoPlayChange.bind(self))
-            .on('timeupdate', { playing: true }, function(event) {
+            .on('timeupdate', { playing: true }, function (event) {
                 if (isVideoPlaying && $sliderTimelineRange.data('uiSlider')) {
                     $sliderTimelineRange.get(0).noUiSlider.set([this.currentTime * 1000, null, null]);
                     $('#wve-editor-player-time-current').text(self.secondsToTime(this.currentTime));
@@ -132,7 +131,7 @@ var WebVideoEditor = function(options) {
         */
     };
 
-    this.welcome_video = function(file) {
+    this.welcome_video = function (file) {
         currentMedia = {
             ext: 'mp4',
             title: 'intro',
@@ -142,7 +141,7 @@ var WebVideoEditor = function(options) {
             isIntro: true,
             url: file
         };
-        setTimeout(function() {
+        setTimeout(function () {
             self.updateSelectedMedia();
         }, 100);
     }
@@ -150,7 +149,7 @@ var WebVideoEditor = function(options) {
     /**
      * On video play state change
      */
-    this.onMainVideoPlayChange = function() {
+    this.onMainVideoPlayChange = function () {
         var $playButton = $('button[data-action="play_main"]');
         if (mainVideo.paused) {
             $playButton.html('<span class="icon-play3"></span>');
@@ -165,19 +164,19 @@ var WebVideoEditor = function(options) {
     /**
      * Clear timers
      */
-    this.clearTimers = function() {
+    this.clearTimers = function () {
         clearInterval(this.interval);
         clearTimeout(this.timer);
     };
 
-    this.onTimelineRangeStart = function() {
+    this.onTimelineRangeStart = function () {
         if ($timeInputIn) {
             $timeInputIn.prop('disabled', true);
             $timeInputOut.prop('disabled', true);
         }
     };
 
-    this.onTimelineRangeStop = function() {
+    this.onTimelineRangeStop = function () {
         if ($timeInputIn) {
             $timeInputIn.prop('disabled', false);
             $timeInputOut.prop('disabled', false);
@@ -189,7 +188,7 @@ var WebVideoEditor = function(options) {
      * @param values
      * @param handlerIndex
      */
-    this.onTimelineRangeChange = function(values, handlerIndex) {
+    this.onTimelineRangeChange = function (values, handlerIndex) {
         isVideoPlaying = false;
         if (!mainVideo.paused) {
             mainVideo.pause();
@@ -206,7 +205,7 @@ var WebVideoEditor = function(options) {
      * @param values
      * @param handleIndex
      */
-    this.onTimelineRangeSlide = function(values, handleIndex) {
+    this.onTimelineRangeSlide = function (values, handleIndex) {
         if (handleIndex === 0) {
             return;
         }
@@ -234,23 +233,23 @@ var WebVideoEditor = function(options) {
     /**
      * Time inputs initialize
      */
-    this.timeInputsInit = function() {
+    this.timeInputsInit = function () {
         $timeInputIn = $('#wve-time-selected-inputs').find('.wve-time-input-in');
         $timeInputOut = $('#wve-time-selected-inputs').find('.wve-time-input-out');
 
         $timeInputIn.mask('00:00:00.00000');
         $timeInputOut.mask('00:00:00.00000');
 
-        $('#wve-time-selected-inputs').find('button').on('click', function(e) {
+        $('#wve-time-selected-inputs').find('button').on('click', function (e) {
             e.preventDefault();
             $('#wve-time-selected-inputs').fadeOut();
         });
 
         $timeInputIn
             .add($timeInputOut)
-            .on('keyup', function() {
+            .on('keyup', function () {
                 clearTimeout(timeInputTimer);
-                timeInputTimer = setTimeout(function() {
+                timeInputTimer = setTimeout(function () {
 
                     mainVideo.pause();
                     self.clearTimers();
@@ -274,7 +273,7 @@ var WebVideoEditor = function(options) {
     /**
      * Time inputs update
      */
-    this.timeInputsUpdate = function(makeVisible) {
+    this.timeInputsUpdate = function (makeVisible) {
         if (typeof makeVisible === 'undefined') {
             makeVisible = true;
         }
@@ -314,7 +313,7 @@ var WebVideoEditor = function(options) {
     /**
      * Import media
      */
-    this.importMediaInit = function() {
+    this.importMediaInit = function () {
 
         var template = _.template($('#modalImportMediaTemplate').html());
         $(document.body).append(template());
@@ -324,10 +323,10 @@ var WebVideoEditor = function(options) {
             $urlInput = $('[name="youtube_url"]', $modal),
             $fileInput = $('[type="file"]', $modal);
 
-        $('.file-input-container', $modal).each(function() {
+        $('.file-input-container', $modal).each(function () {
             var $fileInput = $('[type="file"]', this),
                 $button = $('.file-input', this);
-            $button.on('click', function(e) {
+            $button.on('click', function (e) {
                 e.preventDefault();
                 if ($(this).is('.disabled')) {
                     return;
@@ -335,7 +334,7 @@ var WebVideoEditor = function(options) {
                 $fileInput.trigger('click');
             });
             $fileInput
-                .on('change', function() {
+                .on('change', function () {
                     if (this.files.length > 0) {
                         var fileName = this.files[0].name;
                         if (fileName.length > 26) {
@@ -351,11 +350,11 @@ var WebVideoEditor = function(options) {
                 });
         });
 
-        $modal.on('hidden.bs.modal', function() {
+        $modal.on('hidden.bs.modal', function () {
             $modal.remove();
         });
 
-        $button.on('click', function(e) {
+        $button.on('click', function (e) {
             e.preventDefault();
             if (!$urlInput.val() && !$fileInput.val()) {
                 self.alert(self.getLangString('please_enter_url'), self.getLangString('error'), 'danger');
@@ -383,19 +382,19 @@ var WebVideoEditor = function(options) {
      * Import media
      * @param formData
      */
-    this.importMedia = function(formData) {
+    this.importMedia = function (formData) {
 
         self.showPreloader();
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'POST',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 self.hidePreloader(500);
                 if (typeof response === 'string') {
                     response = JSON.parse(response);
@@ -423,7 +422,7 @@ var WebVideoEditor = function(options) {
      * @param options
      * @param pageCallback
      */
-    this.createPagination = function($itemsContainer, $paginationContainer, numberPerPage, numberTotal, options, pageCallback) {
+    this.createPagination = function ($itemsContainer, $paginationContainer, numberPerPage, numberTotal, options, pageCallback) {
 
         $paginationContainer.empty();
         var paginationTemplate = _.template($('#paginationTemplate').html()),
@@ -456,7 +455,7 @@ var WebVideoEditor = function(options) {
         };
         $paginationContainer.append(paginationTemplate(data));
 
-        $paginationContainer.find('.js-page-next').on('click', function(e) {
+        $paginationContainer.find('.js-page-next').on('click', function (e) {
             e.preventDefault();
             var pageNumber = currentPage + 1;
             if (pageNumber < numberPages + 1) {
@@ -464,7 +463,7 @@ var WebVideoEditor = function(options) {
                 pageCallback($itemsContainer, $paginationContainer, options);
             }
         });
-        $paginationContainer.find('.js-page-prev').on('click', function(e) {
+        $paginationContainer.find('.js-page-prev').on('click', function (e) {
             e.preventDefault();
             var pageNumber = currentPage - 1;
             if (pageNumber > 0) {
@@ -472,7 +471,7 @@ var WebVideoEditor = function(options) {
                 pageCallback($itemsContainer, $paginationContainer, options);
             }
         });
-        $paginationContainer.find('.js-page-number').on('click', function(e) {
+        $paginationContainer.find('.js-page-number').on('click', function (e) {
             e.preventDefault();
             var pageNumber = parseInt($(this).text(), 10);
             if (pageNumber !== currentPage) {
@@ -485,9 +484,9 @@ var WebVideoEditor = function(options) {
     /**
      * Buttons initialization
      */
-    this.buttonsInit = function() {
+    this.buttonsInit = function () {
 
-        $(document.body).on('click', '[data-toggle="action"]', function(e) {
+        $(document.body).on('click', '[data-toggle="action"]', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -631,14 +630,14 @@ var WebVideoEditor = function(options) {
                     break;
                 case 'render':
 
-                    self.checkProcessStatus(function() {
+                    self.checkProcessStatus(function () {
                         self.renderProject();
                     });
 
                     break;
                 case 'convert':
 
-                    self.checkProcessStatus(function() {
+                    self.checkProcessStatus(function () {
                         self.convertMedia(itemId, action[1]);
                     });
 
@@ -687,7 +686,7 @@ var WebVideoEditor = function(options) {
      *
      * @param type
      */
-    this.updateMediaList = function(type) {
+    this.updateMediaList = function (type) {
 
         type = type || 'input';
         var $container = $('#wve-list_' + type);
@@ -698,16 +697,16 @@ var WebVideoEditor = function(options) {
         var isIframeMode = window.parent && typeof window.parent.wveExportUrl !== 'undefined';
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'content_list',
-                    type: type
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'content_list',
+                type: type
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 if (response.success) {
                     var template = _.template($('#listItemTemplate_' + type).html()),
                         templateEmpty = _.template($('#listEmptyTemplate_' + type).html());
@@ -718,7 +717,7 @@ var WebVideoEditor = function(options) {
                         outputList = response.data || [];
                     }
                     if (response.data && response.data.length > 0) {
-                        response.data.forEach(function(item, index) {
+                        response.data.forEach(function (item, index) {
                             item.index = index;
                             item.isIframeMode = isIframeMode;
                             $container.append(template(item));
@@ -733,7 +732,7 @@ var WebVideoEditor = function(options) {
     /**
      * Get list input audio
      */
-    this.getListAudio = function() {
+    this.getListAudio = function () {
         return _.where(inputList, { type: 'audio' });
     };
 
@@ -742,24 +741,23 @@ var WebVideoEditor = function(options) {
      * @param itemId
      * @param type
      */
-    this.mediaRemove = function(itemId, type) {
+    this.mediaRemove = function (itemId, type) {
 
-        self.confirm('Are you sure you want to remove this item?', function() {
+        self.confirm('Are you sure you want to remove this item?', function () {
 
             $.ajax({
-                    url: self.options.baseUrl + self.options.requestHandler,
-                    method: 'POST',
-                    data: {
-                        action: 'delete',
-                        type: type,
-                        itemId: itemId
-                    },
-                    dataType: 'json',
-                    cache: false
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'POST',
+                data: {
+                    action: 'delete',
+                    type: type,
+                    itemId: itemId
+                },
+                dataType: 'json',
+                cache: false
                 })
-                .done(function(response) {
+                .done(function (response) {
                     if (response.success) {
-
                         if (type == 'input') {
                             currentMedia = null;
                             mainVideo.pause();
@@ -769,7 +767,6 @@ var WebVideoEditor = function(options) {
                         }
                         self.updateUserStat();
                         self.updateMediaList(type);
-
                     } else {
                         if (response.msg) {
                             self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -784,9 +781,9 @@ var WebVideoEditor = function(options) {
      * @param itemId
      * @param type
      */
-    this.mediaRename = function(itemId, type) {
+    this.mediaRename = function (itemId, type) {
 
-        this.getMediaData(itemId, type, function(response) {
+        this.getMediaData(itemId, type, function (response) {
 
             var template = _.template($('#mediaRenameModalTemplate').html());
 
@@ -795,34 +792,34 @@ var WebVideoEditor = function(options) {
                 $inputText = $('input[type="text"]', $modal);
 
             $modal
-                .on('shown.bs.modal', function(e) {
+                .on('shown.bs.modal', function (e) {
                     $inputText.get(0).focus();
                     var value = $inputText.val();
                     $inputText.val('').val(value);
                 })
                 .modal('show')
-                .on('hidden.bs.modal', function(e) {
+                .on('hidden.bs.modal', function (e) {
                     $modal.remove();
                 })
                 .find('.js-button-submit')
-                .on('click', function(e) {
+                .on('click', function (e) {
                     e.preventDefault();
 
                     var value = $inputText.val();
 
                     $.ajax({
-                            url: self.options.baseUrl + self.options.requestHandler,
-                            method: 'POST',
-                            data: {
-                                action: 'update_media',
-                                type: type,
-                                itemId: itemId,
-                                value: value
-                            },
-                            dataType: 'json',
-                            cache: false
+                        url: self.options.baseUrl + self.options.requestHandler,
+                        method: 'POST',
+                        data: {
+                            action: 'update_media',
+                            type: type,
+                            itemId: itemId,
+                            value: value
+                        },
+                        dataType: 'json',
+                        cache: false
                         })
-                        .done(function(response) {
+                        .done(function (response) {
                             if (response.success) {
                                 self.updateMediaList(type);
                                 $modal.modal('hide');
@@ -838,11 +835,11 @@ var WebVideoEditor = function(options) {
 
     };
 
-    this.exportUrl = function(itemId, type) {
+    this.exportUrl = function (itemId, type) {
         if (typeof window.parent.wveExportUrl === 'undefined') {
             return;
         }
-        this.getMediaData(itemId, type, function(response) {
+        this.getMediaData(itemId, type, function (response) {
             if (response.success) {
                 window.parent.wveExportUrl(response.data);
             }
@@ -855,20 +852,20 @@ var WebVideoEditor = function(options) {
      * @param type
      * @param callback
      */
-    this.getMediaData = function(itemId, type, callback) {
+    this.getMediaData = function (itemId, type, callback) {
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'select_media',
-                    type: type,
-                    itemId: itemId
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'select_media',
+                type: type,
+                itemId: itemId
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 if (response.success) {
                     if (typeof callback == 'function') {
                         callback(response);
@@ -887,7 +884,7 @@ var WebVideoEditor = function(options) {
      * @param itemId
      * @param index
      */
-    this.playMedia = function(type, itemId, index) {
+    this.playMedia = function (type, itemId, index) {
 
         if (type === 'episode' && !episodes[index]) {
             return;
@@ -910,17 +907,15 @@ var WebVideoEditor = function(options) {
             videoLoaded = false;
 
         if (type !== 'episode') {
-
-            this.getMediaData(itemId, type, function(response) {
+            this.getMediaData(itemId, type, function (response) {
                 media = response.data;
                 media.time = [0, media.duration_ms];
                 videoEl.src = media.url;
             });
-
         }
 
         $inputRange
-            .on('change', function(event) {
+            .on('change', function (event) {
                 var value = parseInt(this.value);
                 if (event.originalEvent) {
                     var episodeTime = (media.time[1] - media.time[0]) / 1000;
@@ -930,10 +925,10 @@ var WebVideoEditor = function(options) {
 
         $(videoEl)
             .css({ visibility: 'hidden' })
-            .on('loadedmetadata error', function() {
+            .on('loadedmetadata error', function () {
                 $(this).css({ visibility: 'visible' });
             })
-            .on('canplay', function() {
+            .on('canplay', function () {
                 if (!videoLoaded) {
                     if (media.time) {
                         this.currentTime = media.time[0] / 1000;
@@ -942,7 +937,7 @@ var WebVideoEditor = function(options) {
                     $(this).css({ visibility: 'visible' });
                 }
             })
-            .on('play pause', function() {
+            .on('play pause', function () {
                 if (this.paused) {
                     $buttonPlay.html('<i class="icon-play3"></i> ' + self.getLangString('play_small'));
                 } else {
@@ -952,7 +947,7 @@ var WebVideoEditor = function(options) {
                     }
                 }
             })
-            .on('timeupdate', function(event) {
+            .on('timeupdate', function (event) {
                 // if (!this.readyState) {
                 //     return;
                 // }
@@ -969,7 +964,7 @@ var WebVideoEditor = function(options) {
             });
 
         $buttonPlay
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
                 if (!videoEl.readyState) {
                     self.alert(self.getLangString('playback_not_possible'), self.getLangString('error'), 'danger');
@@ -984,7 +979,7 @@ var WebVideoEditor = function(options) {
 
         $modal
             .modal('show')
-            .on('hidden.bs.modal', function(e) {
+            .on('hidden.bs.modal', function (e) {
                 videoEl.pause();
                 $modal.remove();
             });
@@ -994,13 +989,13 @@ var WebVideoEditor = function(options) {
      * Get time range values
      * @returns {*}
      */
-    this.getRangeValues = function() {
+    this.getRangeValues = function () {
         var values = $sliderTimelineRange.get(0).noUiSlider.get();
         values.splice(0, 1);
-        values = values.map(function(val) {
+        values = values.map(function (val) {
             return parseFloat(val);
         });
-        values.sort(function(a, b) {
+        values.sort(function (a, b) {
             return a - b;
         });
         return values;
@@ -1009,7 +1004,7 @@ var WebVideoEditor = function(options) {
     /**
      * Play selected episode
      */
-    this.playVideoSelected = function() {
+    this.playVideoSelected = function () {
 
         if (!currentMedia || !currentMedia.url || !$sliderTimelineRange.data('uiSlider')) {
             return;
@@ -1027,7 +1022,7 @@ var WebVideoEditor = function(options) {
             mainVideo.currentTime = values[0] / 1000;
         }
         this.clearTimers();
-        this.interval = setInterval(function() {
+        this.interval = setInterval(function () {
             if (mainVideo.currentTime * 1000 >= values[1]) {
                 self.clearTimers();
                 self.playVideoSelected();
@@ -1040,24 +1035,23 @@ var WebVideoEditor = function(options) {
      * @param itemId
      * @param type
      */
-    this.selectMedia = function(itemId, type) {
+    this.selectMedia = function (itemId, type) {
 
         mainVideo.pause();
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'select_media',
-                    type: type,
-                    itemId: itemId
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'select_media',
+                type: type,
+                itemId: itemId
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 if (response.success) {
-
                     var $container = $('#wve-list_input');
                     $container.find('.list-group-item').removeClass('active');
 
@@ -1074,7 +1068,6 @@ var WebVideoEditor = function(options) {
                         .addClass('active');
 
                     self.updateSelectedMedia();
-
                 } else {
                     if (response.msg) {
                         self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1087,14 +1080,14 @@ var WebVideoEditor = function(options) {
      * Show image options window
      * @param array content
      */
-    this.showWindowAddImage = function(content) {
+    this.showWindowAddImage = function (content) {
         var template = _.template($('#modalImageOptionsTemplate').html()),
             data = {
                 title: this.getLangString('image_parameters'),
                 buttonText: typeof content !== 'undefined' ?
                     this.getLangString('save') : this.getLangString('add'),
                 content: ''
-            };
+        };
 
         data.audioList = this.getListAudio();
 
@@ -1104,7 +1097,7 @@ var WebVideoEditor = function(options) {
             $form = $modal.find('form');
 
         if (content && content.options) {
-            Object.keys(content.options).forEach(function(key) {
+            Object.keys(content.options).forEach(function (key) {
                 var $field = $form.find('[name="' + key + '"]');
                 if ($field.is(':checkbox')) {
                     if (content.options[key]) {
@@ -1118,11 +1111,11 @@ var WebVideoEditor = function(options) {
 
         $modal
             .modal('show')
-            .on('hidden.bs.modal', function(e) {
+            .on('hidden.bs.modal', function (e) {
                 $modal.remove();
             })
             .find('.js-button-submit')
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
 
                 var options = self.serializeForm($form);
@@ -1136,7 +1129,7 @@ var WebVideoEditor = function(options) {
                     content.options = options;
                 } else {
                     var img = new Image();
-                    img.onload = function() {
+                    img.onload = function () {
                         var data = _.clone(currentMedia);
                         data.options = options;
                         data.imageUrl = self.getCurrentFrameDataUri(img);
@@ -1155,7 +1148,7 @@ var WebVideoEditor = function(options) {
     /**
      * Update view on select new video source
      */
-    this.updateSelectedMedia = function() {
+    this.updateSelectedMedia = function () {
         if (currentMedia.type !== 'video') {
             this.sliderRangeDestroy();
             return;
@@ -1180,7 +1173,7 @@ var WebVideoEditor = function(options) {
     /**
      * Destroy range slider
      */
-    this.sliderRangeDestroy = function() {
+    this.sliderRangeDestroy = function () {
         if ($sliderTimelineRange.get(0).noUiSlider) {
             $sliderTimelineRange.get(0).noUiSlider.destroy();
         }
@@ -1192,7 +1185,7 @@ var WebVideoEditor = function(options) {
     /**
      * Create range slider
      */
-    this.sliderRangeInit = function() {
+    this.sliderRangeInit = function () {
         noUiSlider.create($sliderTimelineRange.get(0), {
             connect: [false, false, true, false],
             start: [0, 0, 500],
@@ -1210,9 +1203,9 @@ var WebVideoEditor = function(options) {
         $sliderTimelineRange.data('uiSlider', 1);
 
         // Block slider handlers on click
-        $sliderTimelineRange.find('.noUi-connects').on('mousedown touchstart', function() {
+        $sliderTimelineRange.find('.noUi-connects').on('mousedown touchstart', function () {
             self.disableRangeHandlers(true);
-            setTimeout(function() {
+            setTimeout(function () {
                 self.disableRangeHandlers(false);
             }, 1);
         });
@@ -1222,7 +1215,7 @@ var WebVideoEditor = function(options) {
      * Disable range slider handlers
      * @param disable
      */
-    this.disableRangeHandlers = function(disable) {
+    this.disableRangeHandlers = function (disable) {
         var origins = $sliderTimelineRange.get(0).noUiSlider ?
             $sliderTimelineRange.get(0).getElementsByClassName('noUi-origin') : [];
         if (origins.length === 3) {
@@ -1239,7 +1232,7 @@ var WebVideoEditor = function(options) {
     /**
      * Take episode
      */
-    this.takeEpisode = function() {
+    this.takeEpisode = function () {
 
         if (!currentMedia || !currentMedia.url) {
             return;
@@ -1261,7 +1254,7 @@ var WebVideoEditor = function(options) {
      *
      * @returns {string}
      */
-    this.getCurrentFrameDataUri = function(mediaElement) {
+    this.getCurrentFrameDataUri = function (mediaElement) {
         var canvasEl = document.createElement('canvas');
         var ctx = canvasEl.getContext('2d');
         var width = mediaElement instanceof HTMLVideoElement ?
@@ -1281,7 +1274,7 @@ var WebVideoEditor = function(options) {
     /**
      * Make fast cut
      */
-    this.makeCutFast = function() {
+    this.makeCutFast = function () {
         if (!currentMedia || !currentMedia.url) {
             return;
         }
@@ -1293,23 +1286,23 @@ var WebVideoEditor = function(options) {
             return;
         }
 
-        self.confirm('Attention! Fast cut does not guarantee accuracy and synchronization. Do you want to continue?', function() {
+        self.confirm('Attention! Fast cut does not guarantee accuracy and synchronization. Do you want to continue?', function () {
 
             self.showPreloader();
 
             $.ajax({
-                    url: self.options.baseUrl + self.options.requestHandler,
-                    method: 'POST',
-                    data: {
-                        action: 'cut_fast',
-                        itemId: currentMedia.id,
-                        from: values[0],
-                        to: values[1]
-                    },
-                    dataType: 'json',
-                    cache: false
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'POST',
+                data: {
+                    action: 'cut_fast',
+                    itemId: currentMedia.id,
+                    from: values[0],
+                    to: values[1]
+                },
+                dataType: 'json',
+                cache: false
                 })
-                .done(function(response) {
+                .done(function (response) {
                     self.hidePreloader();
                     if (response.success) {
                         self.updateMediaList('output');
@@ -1326,7 +1319,7 @@ var WebVideoEditor = function(options) {
     /**
      * Update episodes list content
      */
-    this.updateEpisodesContent = function() {
+    this.updateEpisodesContent = function () {
 
         var self = this,
             $container = $('#wve-episode-container'),
@@ -1341,7 +1334,7 @@ var WebVideoEditor = function(options) {
 
         var template = _.template($('#episodeItemTemplate').html());
 
-        episodes.forEach(function(item, index) {
+        episodes.forEach(function (item, index) {
             item.index = index;
             $containerInner.append(template(item));
         });
@@ -1352,13 +1345,13 @@ var WebVideoEditor = function(options) {
      * @param url
      * @param callback
      */
-    this.toDataURL = function(url, callback) {
+    this.toDataURL = function (url, callback) {
         var xhr = new XMLHttpRequest();
         xhr.open('get', url);
         xhr.responseType = 'blob';
-        xhr.onload = function() {
+        xhr.onload = function () {
             var fr = new FileReader();
-            fr.onload = function() {
+            fr.onload = function () {
                 callback(this.result);
             };
             fr.readAsDataURL(xhr.response); // async call
@@ -1370,7 +1363,7 @@ var WebVideoEditor = function(options) {
      * Remove episode
      * @param index
      */
-    this.episodeRemove = function(index) {
+    this.episodeRemove = function (index) {
         episodes.splice(index, 1);
         self.updateEpisodesContent();
     };
@@ -1378,20 +1371,20 @@ var WebVideoEditor = function(options) {
     /**
      * Check process status
      */
-    this.checkProcessStatus = function(callback) {
+    this.checkProcessStatus = function (callback) {
 
         this.showPreloader();
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'queue_status'
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'queue_status'
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 self.hidePreloader();
                 if (response.status && response.status == 'not_logged_in') {
                     clearInterval(self.interval);
@@ -1409,7 +1402,7 @@ var WebVideoEditor = function(options) {
     /**
      * Render project
      */
-    this.renderProject = function() {
+    this.renderProject = function () {
         var template = _.template($('#renderModalTemplate').html());
         var data = { title: self.getLangString('create_video'), type: 'render' };
         data.audioList = this.getListAudio();
@@ -1427,17 +1420,17 @@ var WebVideoEditor = function(options) {
 
         $modal
             .modal('show')
-            .on('hidden.bs.modal', function(e) {
+            .on('hidden.bs.modal', function (e) {
                 $modal.remove();
                 if (!self.audioPlayer.paused) {
                     self.audioPlayer.pause();
                 }
             })
-            .on('shown.bs.modal', function() {
+            .on('shown.bs.modal', function () {
                 self.updateLibraryContent();
             })
             .find('.js-button-submit')
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
 
                 $modal.find('.js-button-submit').prop('disabled', true);
@@ -1451,24 +1444,22 @@ var WebVideoEditor = function(options) {
                 self.alertClear();
 
                 $.ajax({
-                        url: self.options.baseUrl + self.options.requestHandler,
-                        method: 'POST',
-                        data: {
-                            action: 'render',
-                            title: movieTitle,
-                            options: options,
-                            data: JSON.stringify(projectData)
-                        },
-                        dataType: 'json',
-                        cache: false
+                    url: self.options.baseUrl + self.options.requestHandler,
+                    method: 'POST',
+                    data: {
+                        action: 'render',
+                        title: movieTitle,
+                        options: options,
+                        data: JSON.stringify(projectData)
+                    },
+                    dataType: 'json',
+                    cache: false
                     })
-                    .done(function(response) {
+                    .done(function (response) {
                         $button.prop('disabled', false);
                         if (response.success) {
-
                             $modal.modal('hide');
                             self.showProgress();
-
                         } else {
                             if (response.msg) {
                                 self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1476,7 +1467,7 @@ var WebVideoEditor = function(options) {
                             $button.prop('disabled', false);
                         }
                     })
-                    .fail(function() {
+                    .fail(function () {
                         $button.prop('disabled', false);
                     });
             });
@@ -1485,7 +1476,7 @@ var WebVideoEditor = function(options) {
     /**
      * Update library content
      */
-    this.updateLibraryContent = function() {
+    this.updateLibraryContent = function () {
         var $container = $('#audioLibrary'),
             $itemsContainer = $('#wve-audio-library'),
             $libraryCategoriesSelect = $('select[name="audio_category"]', $container),
@@ -1495,9 +1486,9 @@ var WebVideoEditor = function(options) {
             options = {
                 category: '',
                 page: 1
-            };
+        };
 
-        $libraryCategoriesSelect.on('change', function() {
+        $libraryCategoriesSelect.on('change', function () {
             options.page = 1;
             $audioSelect.val('').prop('disabled', false);
             $libraryField.val('');
@@ -1516,7 +1507,7 @@ var WebVideoEditor = function(options) {
      * @param $paginationContainer
      * @param options
      */
-    this.updateLibraryContentRequest = function($itemsContainer, $paginationContainer, options) {
+    this.updateLibraryContentRequest = function ($itemsContainer, $paginationContainer, options) {
 
         var $container = $('#audioLibrary'),
             $libraryCategoriesSelect = $('select[name="audio_category"]', $container),
@@ -1528,20 +1519,20 @@ var WebVideoEditor = function(options) {
         options.category = $libraryCategoriesSelect.val() || '';
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'audio_library',
-                    query: options
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'audio_library',
+                query: options
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
 
                 if (response.categories && response.categories.length > 0) {
                     $libraryCategoriesSelect.empty();
-                    response.categories.forEach(function(categoryName) {
+                    response.categories.forEach(function (categoryName) {
                         $libraryCategoriesSelect.append('<option value="' + categoryName + '">' + categoryName + '</option>');
                     });
                     if (options.category) {
@@ -1551,13 +1542,13 @@ var WebVideoEditor = function(options) {
 
                 $itemsContainer.empty();
 
-                response.items.forEach(function(item) {
+                response.items.forEach(function (item) {
                     var content = template(item);
                     $itemsContainer.append(content);
                 });
 
                 $itemsContainer.find('.btn-link[data-file-name]')
-                    .on('click', function() {
+                    .on('click', function () {
                         var isActive = $(this).closest('li').is('.active');
                         $itemsContainer.find('li').removeClass('active');
                         if (isActive) {
@@ -1570,15 +1561,21 @@ var WebVideoEditor = function(options) {
                         $libraryField.val($(this).data('file-name'));
                     });
 
-                self.createPagination($itemsContainer, $paginationContainer, numberPerPage, response.total, options,
-                    function($iContainer, $pContainer, opts) {
+                self.createPagination(
+                    $itemsContainer,
+                    $paginationContainer,
+                    numberPerPage,
+                    response.total,
+                    options,
+                    function ($iContainer, $pContainer, opts) {
                         $audioSelect.val('').prop('disabled', false);
                         $libraryField.val('');
                         if (!self.audioPlayer.paused) {
                             self.audioPlayer.pause();
                         }
                         self.updateLibraryContentRequest($iContainer, $pContainer, opts);
-                    });
+                    }
+                );
 
             });
     };
@@ -1588,7 +1585,7 @@ var WebVideoEditor = function(options) {
      * @param mediaId
      * @param type
      */
-    this.convertMedia = function(mediaId, type) {
+    this.convertMedia = function (mediaId, type) {
 
         var template = _.template($('#renderModalTemplate').html());
         var data = { title: 'Convert video', type: 'convert', audioList: [] };
@@ -1599,11 +1596,11 @@ var WebVideoEditor = function(options) {
 
         $modal
             .modal('show')
-            .on('hidden.bs.modal', function(e) {
+            .on('hidden.bs.modal', function (e) {
                 $modal.remove();
             })
             .find('.js-button-submit')
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
 
                 options = self.serializeForm($('form', $modal));
@@ -1612,24 +1609,22 @@ var WebVideoEditor = function(options) {
                 $button.prop('disabled', true);
 
                 $.ajax({
-                        url: self.options.baseUrl + self.options.requestHandler,
-                        method: 'POST',
-                        data: {
-                            action: 'convert',
-                            itemId: mediaId,
-                            type: type,
-                            options: options
-                        },
-                        dataType: 'json',
-                        cache: false
+                    url: self.options.baseUrl + self.options.requestHandler,
+                    method: 'POST',
+                    data: {
+                        action: 'convert',
+                        itemId: mediaId,
+                        type: type,
+                        options: options
+                    },
+                    dataType: 'json',
+                    cache: false
                     })
-                    .done(function(response) {
+                    .done(function (response) {
                         $button.prop('disabled', false);
                         if (response.success) {
-
                             $modal.modal('hide');
                             self.showProgress();
-
                         } else {
                             if (response.msg) {
                                 self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1644,11 +1639,10 @@ var WebVideoEditor = function(options) {
      * Get project data
      * @returns {[]}
      */
-    this.getProjectData = function() {
+    this.getProjectData = function () {
         var data = [];
         if (episodes && episodes.length > 0) {
-
-            episodes.forEach(function(episode) {
+            episodes.forEach(function (episode) {
                 var item = { id: episode.id };
                 item.type = episode.type || null;
                 item.time = episode.time || null;
@@ -1668,7 +1662,6 @@ var WebVideoEditor = function(options) {
                 }
                 data.push(item);
             });
-
         } else if (currentMedia &&
             currentMedia.url &&
             $sliderTimelineRange.data('uiSlider')) {
@@ -1684,11 +1677,11 @@ var WebVideoEditor = function(options) {
      * @param form
      * @returns {{}|*}
      */
-    this.serializeForm = function(form) {
+    this.serializeForm = function (form) {
         var arrayData, objectData;
         arrayData = $(form).serializeArray();
         objectData = {};
-        $.each(arrayData, function() {
+        $.each(arrayData, function () {
             var value;
             if (this.value != null) {
                 value = this.value;
@@ -1711,20 +1704,20 @@ var WebVideoEditor = function(options) {
      * Preview image
      * @param imageUrl
      */
-    this.previewImage = function(imageUrl) {
+    this.previewImage = function (imageUrl) {
 
         var template = _.template($('#modalLargeTemplate').html()),
             data = {
                 title: self.getLangString('image_preview'),
                 content: '<img src="' + imageUrl + '" alt="" style="width: 100%;">'
-            };
+        };
 
         $(document.body).append(template(data));
         var $modal = $('#modalLarge');
 
         $modal
             .modal('show')
-            .on('hidden.bs.modal', function(e) {
+            .on('hidden.bs.modal', function (e) {
                 $modal.remove();
             });
     };
@@ -1733,25 +1726,23 @@ var WebVideoEditor = function(options) {
      * Play audio
      * @param audioUrl
      */
-    this.previewAudio = function(audioUrl) {
+    this.previewAudio = function (audioUrl) {
         if ($('.modal.show').length === 0) {
-
             var template = _.template($('#modalSmallTemplate').html()),
                 data = {
                     title: self.getLangString('play_audio'),
                     content: '<audio src="' + audioUrl + '" controls autoplay>'
-                };
+            };
 
             $(document.body).append(template(data));
             var $modal = $('#modalSmall');
 
             $modal
                 .modal('show')
-                .on('hidden.bs.modal', function(e) {
+                .on('hidden.bs.modal', function (e) {
                     $modal.find('audio').get(0).pause();
                     $modal.remove();
                 });
-
         } else {
             if (!this.audioPlayer.paused && this.audioPlayer.src.indexOf(encodeURI(audioUrl)) > -1) {
                 this.audioPlayer.pause();
@@ -1768,7 +1759,7 @@ var WebVideoEditor = function(options) {
      * @param text
      * @param callback
      */
-    this.confirm = function(text, callback) {
+    this.confirm = function (text, callback) {
 
         var template = _.template($('#modalConfirmTemplate').html());
         $(document.body).append(template({ content: text }));
@@ -1776,11 +1767,11 @@ var WebVideoEditor = function(options) {
 
         $modal
             .modal('show')
-            .on('hidden.bs.modal', function(e) {
+            .on('hidden.bs.modal', function (e) {
                 $modal.remove();
             })
             .find('.js-button-submit')
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
                 if (typeof callback == 'function') {
                     callback();
@@ -1795,7 +1786,7 @@ var WebVideoEditor = function(options) {
      * @param title
      * @param type
      */
-    this.alert = function(text, title, type) {
+    this.alert = function (text, title, type) {
 
         title = title || self.getLangString('warning');
         type = type || 'warning';
@@ -1808,7 +1799,6 @@ var WebVideoEditor = function(options) {
             icon_class = icons[type] || icons.info;
 
         if ($('.modal.show').length > 0) {
-
             template = _.template($('#alertTemplate').html());
             $modal = $('.modal.show');
             var $modalBody = $('.modal.show:first').find('.modal-body');
@@ -1822,9 +1812,7 @@ var WebVideoEditor = function(options) {
 
             $modalBody.find('.alert').remove();
             $modalBody.append(alertHtml);
-
         } else {
-
             template = _.template($('#modalAlertTemplate').html());
             var html = template({
                 type: type,
@@ -1837,7 +1825,7 @@ var WebVideoEditor = function(options) {
 
             $modal
                 .modal('show')
-                .on('hidden.bs.modal', function(e) {
+                .on('hidden.bs.modal', function (e) {
                     $modal.remove();
                 });
         }
@@ -1846,7 +1834,7 @@ var WebVideoEditor = function(options) {
     /**
      * Remove alert message
      */
-    this.alertClear = function() {
+    this.alertClear = function () {
         if ($('.modal.show').length > 0) {
             var $modalBody = $('.modal.show:first').find('.modal-body');
             $modalBody.find('.alert').remove();
@@ -1856,7 +1844,7 @@ var WebVideoEditor = function(options) {
     /**
      * Show progress bar
      */
-    this.showProgress = function() {
+    this.showProgress = function () {
 
         if ($('.wve-preloader').length > 0) {
             $('.wve-preloader').remove();
@@ -1881,7 +1869,7 @@ var WebVideoEditor = function(options) {
 
         //Button Close
         $progressBar.find('.js-button-close')
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
                 self.clearTimers();
                 $progressBar.remove();
@@ -1889,22 +1877,22 @@ var WebVideoEditor = function(options) {
 
         //Button Stop
         $buttonStop
-            .on('click', function(e) {
+            .on('click', function (e) {
                 e.preventDefault();
 
                 $buttonStop.prop('disabled', true);
                 self.clearTimers();
 
                 $.ajax({
-                        url: self.options.baseUrl + self.options.requestHandler,
-                        method: 'POST',
-                        data: {
-                            action: 'processing_stop'
-                        },
-                        dataType: 'json',
-                        cache: false
+                    url: self.options.baseUrl + self.options.requestHandler,
+                    method: 'POST',
+                    data: {
+                        action: 'processing_stop'
+                    },
+                    dataType: 'json',
+                    cache: false
                     })
-                    .done(function(response) {
+                    .done(function (response) {
                         if (response.success) {
                             self.clearTimers();
                             self.updateUserStat();
@@ -1926,29 +1914,28 @@ var WebVideoEditor = function(options) {
     /**
      * Update rendering progress data
      */
-    this.updateRenderingProgressData = function() {
+    this.updateRenderingProgressData = function () {
 
         var $progressBar = $('.wve-preloader:first'),
             $progressCaption = $progressBar.find('.wve-preloader-caption'),
             status;
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'queue_status'
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'queue_status'
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
 
                 if (response.status && response.status === 'not_logged_in') {
                     self.clearTimers();
                     window.location.reload();
                 }
                 if (typeof response.percent !== 'undefined') {
-
                     $progressBar.find('.progress-bar')
                         .css('width', response.percent + '%')
                         .toggleClass('progress-bar-empty', response.percent < 7)
@@ -1966,7 +1953,7 @@ var WebVideoEditor = function(options) {
 
                     if (response.percent >= 100 || (!response.status)) {
                         self.clearTimers();
-                        setTimeout(function() {
+                        setTimeout(function () {
                             self.hidePreloader();
                             self.updateUserStat();
                             self.updateMediaList('input');
@@ -1983,7 +1970,7 @@ var WebVideoEditor = function(options) {
     /**
      * Show preloader
      */
-    this.showPreloader = function() {
+    this.showPreloader = function () {
 
         var html = '<div class="wve-preloader" id="wve-preloader">';
         html += '<div class="wve-preloader-inner">';
@@ -1998,9 +1985,9 @@ var WebVideoEditor = function(options) {
     /**
      * Hide preloader
      */
-    this.hidePreloader = function(delay) {
+    this.hidePreloader = function (delay) {
         delay = delay || 0;
-        setTimeout(function() {
+        setTimeout(function () {
             $('#wve-preloader').remove();
         }, delay);
     };
@@ -2008,35 +1995,33 @@ var WebVideoEditor = function(options) {
     /**
      * Show log
      */
-    this.showLog = function() {
+    this.showLog = function () {
 
         this.showPreloader();
 
         var template, $modal;
 
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'user_log'
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'user_log'
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 self.hidePreloader();
                 if (response.success) {
-
                     template = _.template($('#modalLargeTemplate').html());
                     var content = '<pre class="code">' + response.content + '</pre>';
                     $(document.body).append(template({ title: 'Log', content: content }));
                     $modal = $('#modalLarge');
                     $modal
                         .modal('show')
-                        .on('hidden.bs.modal', function(e) {
+                        .on('hidden.bs.modal', function (e) {
                             $modal.remove();
                         });
-
                 } else {
                     if (response.msg) {
                         self.alert(response.msg, 'Error', 'danger');
@@ -2050,17 +2035,17 @@ var WebVideoEditor = function(options) {
      * Get user profile data
      * @param callback
      */
-    this.getUserData = function(callback) {
+    this.getUserData = function (callback) {
         $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'GET',
-                data: {
-                    action: 'user_profile'
-                },
-                dataType: 'json',
-                cache: false
+            url: self.options.baseUrl + self.options.requestHandler,
+            method: 'GET',
+            data: {
+                action: 'user_profile'
+            },
+            dataType: 'json',
+            cache: false
             })
-            .done(function(response) {
+            .done(function (response) {
                 if (response.status && response.status == 'not_logged_in') {
                     clearInterval(self.interval);
                     window.location.reload();
@@ -2073,11 +2058,11 @@ var WebVideoEditor = function(options) {
     /**
      * Update user statistics
      */
-    this.updateUserStat = function() {
+    this.updateUserStat = function () {
         var template = _.template($('#userStatTemplate').html()),
             $container = $('#wve-user-stat');
 
-        this.getUserData(function(response) {
+        this.getUserData(function (response) {
             if (response.success) {
                 $container.html(template(response.data));
             }
@@ -2089,7 +2074,7 @@ var WebVideoEditor = function(options) {
      * @param time {string}
      * @returns {number}
      */
-    this.timeToSeconds = function(time) {
+    this.timeToSeconds = function (time) {
         var seconds = 0;
         time = time.replace(/[^\d:.]/g, '');
         var tmp = time.split(':');
@@ -2111,7 +2096,7 @@ var WebVideoEditor = function(options) {
      * @param roundValue {number}
      * @returns {string}
      */
-    this.secondsToTime = function(in_seconds, roundValue) {
+    this.secondsToTime = function (in_seconds, roundValue) {
         if (typeof roundValue === 'undefined') {
             roundValue = 2;
         }
@@ -2121,9 +2106,15 @@ var WebVideoEditor = function(options) {
         if (roundValue > 0) {
             seconds = seconds.toFixed(roundValue);
         }
-        if (hours < 10) hours = '0' + hours;
-        if (minutes < 10) minutes = '0' + minutes;
-        if (seconds < 10) seconds = '0' + seconds;
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+        if (seconds < 10) {
+            seconds = '0' + seconds;
+        }
 
         return hours + ':' + minutes + ':' + seconds;
     };
@@ -2131,7 +2122,7 @@ var WebVideoEditor = function(options) {
     /**
      * Show user profile
      */
-    this.showUserProfile = function() {
+    this.showUserProfile = function () {
 
         var template = _.template($('#userProfileTemplate').html()),
             modalTemplate = _.template($('#modalAlertTemplate').html()),
@@ -2139,10 +2130,9 @@ var WebVideoEditor = function(options) {
 
         this.showPreloader();
 
-        this.getUserData(function(response) {
+        this.getUserData(function (response) {
             self.hidePreloader();
             if (response.success) {
-
                 var content = template(response.data);
                 var html = modalTemplate({
                     title: 'User profile',
@@ -2155,7 +2145,7 @@ var WebVideoEditor = function(options) {
 
                 $modal
                     .modal('show')
-                    .on('hidden.bs.modal', function(e) {
+                    .on('hidden.bs.modal', function (e) {
                         $modal.remove();
                     });
             }
@@ -2168,7 +2158,7 @@ var WebVideoEditor = function(options) {
      * @param string
      * @returns {string}
      */
-    this.capitalizeFirstLetter = function(string) {
+    this.capitalizeFirstLetter = function (string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     };
 
@@ -2177,7 +2167,7 @@ var WebVideoEditor = function(options) {
      * @param {string} langKey
      * @returns {string}
      */
-    this.getLangString = function(langKey) {
+    this.getLangString = function (langKey) {
         if (typeof window.LANG === 'undefined') {
             return langKey;
         }

@@ -13,57 +13,55 @@
 //>>docs: http://api.jqueryui.com/drop-effect/
 //>>demos: http://jqueryui.com/effect/
 
-( function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+( function ( factory ) {
+    if ( typeof define === "function" && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define([
+            "jquery",
+            "../version",
+            "../effect"
+        ], factory);
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}( function ( $ ) {
 
-		// AMD. Register as an anonymous module.
-		define( [
-			"jquery",
-			"../version",
-			"../effect"
-		], factory );
-	} else {
+    return $.effects.define("drop", "hide", function ( options, done ) {
 
-		// Browser globals
-		factory( jQuery );
-	}
-}( function( $ ) {
+        var distance,
+        element = $(this),
+        mode = options.mode,
+        show = mode === "show",
+        direction = options.direction || "left",
+        ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
+        motion = ( direction === "up" || direction === "left" ) ? "-=" : "+=",
+        oppositeMotion = ( motion === "+=" ) ? "-=" : "+=",
+        animation = {
+            opacity: 0
+        };
 
-return $.effects.define( "drop", "hide", function( options, done ) {
+        $.effects.createPlaceholder(element);
 
-	var distance,
-		element = $( this ),
-		mode = options.mode,
-		show = mode === "show",
-		direction = options.direction || "left",
-		ref = ( direction === "up" || direction === "down" ) ? "top" : "left",
-		motion = ( direction === "up" || direction === "left" ) ? "-=" : "+=",
-		oppositeMotion = ( motion === "+=" ) ? "-=" : "+=",
-		animation = {
-			opacity: 0
-		};
+        distance = options.distance ||
+        element[ ref === "top" ? "outerHeight" : "outerWidth" ](true) / 2;
 
-	$.effects.createPlaceholder( element );
+        animation[ ref ] = motion + distance;
 
-	distance = options.distance ||
-		element[ ref === "top" ? "outerHeight" : "outerWidth" ]( true ) / 2;
+        if ( show ) {
+            element.css(animation);
 
-	animation[ ref ] = motion + distance;
+            animation[ ref ] = oppositeMotion + distance;
+            animation.opacity = 1;
+        }
 
-	if ( show ) {
-		element.css( animation );
-
-		animation[ ref ] = oppositeMotion + distance;
-		animation.opacity = 1;
-	}
-
-	// Animate
-	element.animate( animation, {
-		queue: false,
-		duration: options.duration,
-		easing: options.easing,
-		complete: done
-	} );
-} );
+        // Animate
+        element.animate(animation, {
+            queue: false,
+            duration: options.duration,
+            easing: options.easing,
+            complete: done
+        });
+    });
 
 } ) );

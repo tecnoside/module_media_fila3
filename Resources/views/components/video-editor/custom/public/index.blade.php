@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 // dddx($lang_arr);
 /*sostituiti $config con $config_component
@@ -83,7 +85,7 @@ if ($config_component['authentication']) {
             /*echo '<pre>';
                                                                                                 echo var_export('ui::components.video-editor.custom.templates.'.$action.'',true);
                                                                                                 echo '</pre>';*/
-?>
+            ?>
 
             @if (View::exists($included_view))
                 @include($included_view)
@@ -97,7 +99,7 @@ if ($config_component['authentication']) {
                                                                                                                                                     } else {
                                                                                                                                                         include $config_component['root_path'] . "templates/default.html.php";
                                                                                                                                                     }*/
-?>
+            ?>
 
         </div>
     </div>

@@ -1,3 +1,4 @@
-export default function getRect(element) {
-  return element.getBoundingClientRect();
+export default function getRect(element)
+{
+    return element.getBoundingClientRect();
 }

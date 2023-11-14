@@ -5,10 +5,11 @@
  * @argument {Any} functionToCheck - variable to check
  * @returns {Boolean} answer to: is a function?
  */
-export default function isFunction(functionToCheck) {
-  const getType = {};
-  return (
+export default function isFunction(functionToCheck)
+{
+    const getType = {};
+    return (
     functionToCheck &&
     getType.toString.call(functionToCheck) === '[object Function]'
-  );
+    );
 }

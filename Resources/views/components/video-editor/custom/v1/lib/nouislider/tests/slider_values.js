@@ -26,47 +26,47 @@ QUnit.test("Values", function (assert) {
 
 });
 
-/*	The two tests show some problems with enormous numbers in JavaScript.
-	I've decided not the attempt to work around these issues, instead documenting
-	them and providing a work-around.
+/*  The two tests show some problems with enormous numbers in JavaScript.
+    I've decided not the attempt to work around these issues, instead documenting
+    them and providing a work-around.
 
-	QUnit.test( "Values, Accuracy With Large Numbers 1", function( assert ){
+    QUnit.test( "Values, Accuracy With Large Numbers 1", function( assert ){
 
-		document.getElementById('qunit-fixture').innerHTML = '<div class="slider"></div>';
+        document.getElementById('qunit-fixture').innerHTML = '<div class="slider"></div>';
 
-		var slider = document.getElementById('qunit-fixture').getElementsByClassName('slider')[0];
+        var slider = document.getElementById('qunit-fixture').getElementsByClassName('slider')[0];
 
-		noUiSlider.create(slider, {
-			start: [ 1, 8301034833169290000 ],
-			connect: true,
-			format: { 			to: function(x){ 				return Math.round(x).toString(); 			}, 			from: Number 		},
-			range: {
-				'min': 1,
-				'max': 8301034833169290000
-			}
-		});
+        noUiSlider.create(slider, {
+            start: [ 1, 8301034833169290000 ],
+            connect: true,
+            format: {           to: function(x){                return Math.round(x).toString();            },          from: Number        },
+            range: {
+                'min': 1,
+                'max': 8301034833169290000
+            }
+        });
 
-		assert.deepEqual( slider.noUiSlider.get(), ['1', '8301034833169290000'], 'Values were accurate' );
+        assert.deepEqual( slider.noUiSlider.get(), ['1', '8301034833169290000'], 'Values were accurate' );
 
-	});
+    });
 
-	QUnit.test( "Values, Accuracy With Large Numbers 2", function( assert ){
+    QUnit.test( "Values, Accuracy With Large Numbers 2", function( assert ){
 
-		document.getElementById('qunit-fixture').innerHTML = '<div class="slider"></div>';
+        document.getElementById('qunit-fixture').innerHTML = '<div class="slider"></div>';
 
-		var slider = document.getElementById('qunit-fixture').getElementsByClassName('slider')[0];
+        var slider = document.getElementById('qunit-fixture').getElementsByClassName('slider')[0];
 
-		noUiSlider.create(slider, {
-			start: [ 1, 10000000000000005 ],
-			connect: true,
-			format: { 			to: function(x){ 				return Math.round(x).toString(); 			}, 			from: Number 		},
-			range: {
-				'min': 1,
-				'max': 10000000000000005
-			}
-		});
+        noUiSlider.create(slider, {
+            start: [ 1, 10000000000000005 ],
+            connect: true,
+            format: {           to: function(x){                return Math.round(x).toString();            },          from: Number        },
+            range: {
+                'min': 1,
+                'max': 10000000000000005
+            }
+        });
 
-		assert.deepEqual( slider.noUiSlider.get(), ['1', '10000000000000005'], 'Values were accurate' );
+        assert.deepEqual( slider.noUiSlider.get(), ['1', '10000000000000005'], 'Values were accurate' );
 
-	});
+    });
 */
