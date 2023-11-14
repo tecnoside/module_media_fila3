@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Syntax error or access violation: 1118 Row size too large. The maximum row size for the used table type, not counting BLOBs, is 8126. This includes storage overhead, check the manual. You have to change some columns to TEXT or BLOBs (SQL: alter table `places` add `address` text null).
  */
@@ -20,35 +21,31 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(
-            function (Blueprint $table): void {
-                $table->id();
+        $this->tableCreate(function (Blueprint $table): void {
 
-                // $table->foreignId('uploaded_by_user_id')
+                $table->id();
+// $table->foreignId('uploaded_by_user_id')
                 //    ->nullable()
                 // ->constrained('users')
                 // ->nullOnDelete()
                 // ->cascadeOnUpdate()
 
                 $table->foreignUuid('uploaded_by_user_id')->nullable();
-                $table->string('caption')->nullable();
-                $table->string('alt_text')->nullable();
-                $table->integer('order_column')->nullable();
-                $this->timestamps($table);
-            }
-        );
+            $table->string('caption')->nullable();
+            $table->string('alt_text')->nullable();
+            $table->integer('order_column')->nullable();
+            $this->timestamps($table);
+        });
+// -- UPDATE --
+        $this->tableUpdate(function (Blueprint $table): void {
 
-        // -- UPDATE --
-        $this->tableUpdate(
-            function (Blueprint $table): void {
-                if (! $this->hasColumn('order_column')) {
-                    $table->integer('order_column')->nullable();
-                }
-                if (! $this->hasColumn('folder_id')) {
-                    $table->foreignId('folder_id')->nullable()->after('alt_text');
-                    // ->constrained('filament_media_library_folders');
-                }
+            if (! $this->hasColumn('order_column')) {
+                $table->integer('order_column')->nullable();
             }
-        );
+            if (! $this->hasColumn('folder_id')) {
+                $table->foreignId('folder_id')->nullable()->after('alt_text');
+// ->constrained('filament_media_library_folders');
+            }
+        });
     }
 }

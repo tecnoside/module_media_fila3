@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://github.com/spatie/laravel-medialibrary/blob/main/database/migrations/create_media_table.php.stub
  */
@@ -20,28 +21,24 @@ class CreateFilamentMediaLibraryModelTable extends XotBaseMigration
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(
-            function (Blueprint $table): void {
+        $this->tableCreate(function (Blueprint $table): void {
+
                 $table->bigIncrements('id');
-
-                $table->morphs('model');
-                $table->string('media_library_item_id');
-                $table->text('note');
-                $table->nullableTimestamps();
-                // ----------------------------------------------------------
+            $table->morphs('model');
+            $table->string('media_library_item_id');
+            $table->text('note');
+            $table->nullableTimestamps();
+// ----------------------------------------------------------
                 $table->string('created_by')->nullable();
-                $table->string('updated_by')->nullable();
-            }
-        );
+            $table->string('updated_by')->nullable();
+        });
+// -- UPDATE --
 
-        // -- UPDATE --
+        $this->tableUpdate(function (Blueprint $table): void {
 
-        $this->tableUpdate(
-            function (Blueprint $table): void {
-                if (! $this->hasColumn('media_library_item_id') && $this->hasColumn('media_library_id')) {
-                    $table->renameColumn('media_library_id', 'media_library_item_id');
-                }
+            if (! $this->hasColumn('media_library_item_id') && $this->hasColumn('media_library_id')) {
+                $table->renameColumn('media_library_id', 'media_library_item_id');
             }
-        );
+        });
     }
 }
