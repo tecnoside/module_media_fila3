@@ -48,183 +48,190 @@ const SELECTOR_DROPDOWN_ACTIVE_CHILD = '> .dropdown-menu .active'
  */
 
 class Tab {
-  constructor(element) {
-    this._element = element
-  }
+    constructor(element)
+    {
+        this._element = element
+    }
 
   // Getters
 
-  static get VERSION() {
-    return VERSION
-  }
+    static get VERSION()
+    {
+        return VERSION
+    }
 
   // Public
 
-  show() {
-    if (this._element.parentNode &&
+    show()
+    {
+        if (this._element.parentNode &&
         this._element.parentNode.nodeType === Node.ELEMENT_NODE &&
         $(this._element).hasClass(CLASS_NAME_ACTIVE) ||
         $(this._element).hasClass(CLASS_NAME_DISABLED)) {
-      return
-    }
+            return
+        }
 
-    let target
-    let previous
-    const listElement = $(this._element).closest(SELECTOR_NAV_LIST_GROUP)[0]
-    const selector = Util.getSelectorFromElement(this._element)
+        let target
+        let previous
+        const listElement = $(this._element).closest(SELECTOR_NAV_LIST_GROUP)[0]
+        const selector = Util.getSelectorFromElement(this._element)
 
-    if (listElement) {
-      const itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE
-      previous = $.makeArray($(listElement).find(itemSelector))
-      previous = previous[previous.length - 1]
-    }
+        if (listElement) {
+            const itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? SELECTOR_ACTIVE_UL : SELECTOR_ACTIVE
+            previous = $.makeArray($(listElement).find(itemSelector))
+            previous = previous[previous.length - 1]
+        }
 
-    const hideEvent = $.Event(EVENT_HIDE, {
-      relatedTarget: this._element
-    })
+        const hideEvent = $.Event(EVENT_HIDE, {
+            relatedTarget: this._element
+        })
 
-    const showEvent = $.Event(EVENT_SHOW, {
-      relatedTarget: previous
-    })
+        const showEvent = $.Event(EVENT_SHOW, {
+            relatedTarget: previous
+        })
 
-    if (previous) {
-      $(previous).trigger(hideEvent)
-    }
+        if (previous) {
+            $(previous).trigger(hideEvent)
+        }
 
-    $(this._element).trigger(showEvent)
+        $(this._element).trigger(showEvent)
 
-    if (showEvent.isDefaultPrevented() ||
+        if (showEvent.isDefaultPrevented() ||
         hideEvent.isDefaultPrevented()) {
-      return
+            return
+        }
+
+        if (selector) {
+            target = document.querySelector(selector)
+        }
+
+        this._activate(
+            this._element,
+            listElement
+        )
+
+        const complete = () => {
+            const hiddenEvent = $.Event(EVENT_HIDDEN, {
+                relatedTarget: this._element
+            })
+
+        const shownEvent = $.Event(EVENT_SHOWN, {
+            relatedTarget: previous
+            })
+
+        $(previous).trigger(hiddenEvent)
+        $(this._element).trigger(shownEvent)
+        }
+
+        if (target) {
+            this._activate(target, target.parentNode, complete)
+        } else {
+            complete()
+        }
     }
 
-    if (selector) {
-      target = document.querySelector(selector)
+    dispose()
+    {
+        $.removeData(this._element, DATA_KEY)
+        this._element = null
     }
-
-    this._activate(
-      this._element,
-      listElement
-    )
-
-    const complete = () => {
-      const hiddenEvent = $.Event(EVENT_HIDDEN, {
-        relatedTarget: this._element
-      })
-
-      const shownEvent = $.Event(EVENT_SHOWN, {
-        relatedTarget: previous
-      })
-
-      $(previous).trigger(hiddenEvent)
-      $(this._element).trigger(shownEvent)
-    }
-
-    if (target) {
-      this._activate(target, target.parentNode, complete)
-    } else {
-      complete()
-    }
-  }
-
-  dispose() {
-    $.removeData(this._element, DATA_KEY)
-    this._element = null
-  }
 
   // Private
 
-  _activate(element, container, callback) {
-    const activeElements = container && (container.nodeName === 'UL' || container.nodeName === 'OL') ?
-      $(container).find(SELECTOR_ACTIVE_UL) :
-      $(container).children(SELECTOR_ACTIVE)
+    _activate(element, container, callback)
+    {
+        const activeElements = container && (container.nodeName === 'UL' || container.nodeName === 'OL') ?
+        $(container).find(SELECTOR_ACTIVE_UL) :
+        $(container).children(SELECTOR_ACTIVE)
 
-    const active = activeElements[0]
-    const isTransitioning = callback && (active && $(active).hasClass(CLASS_NAME_FADE))
-    const complete = () => this._transitionComplete(
-      element,
-      active,
-      callback
-    )
+        const active = activeElements[0]
+        const isTransitioning = callback && (active && $(active).hasClass(CLASS_NAME_FADE))
+        const complete = () => this._transitionComplete(
+            element,
+            active,
+            callback
+        )
 
-    if (active && isTransitioning) {
-      const transitionDuration = Util.getTransitionDurationFromElement(active)
+        if (active && isTransitioning) {
+            const transitionDuration = Util.getTransitionDurationFromElement(active)
 
-      $(active)
-        .removeClass(CLASS_NAME_SHOW)
-        .one(Util.TRANSITION_END, complete)
-        .emulateTransitionEnd(transitionDuration)
-    } else {
-      complete()
-    }
-  }
-
-  _transitionComplete(element, active, callback) {
-    if (active) {
-      $(active).removeClass(CLASS_NAME_ACTIVE)
-
-      const dropdownChild = $(active.parentNode).find(
-        SELECTOR_DROPDOWN_ACTIVE_CHILD
-      )[0]
-
-      if (dropdownChild) {
-        $(dropdownChild).removeClass(CLASS_NAME_ACTIVE)
-      }
-
-      if (active.getAttribute('role') === 'tab') {
-        active.setAttribute('aria-selected', false)
-      }
+            $(active)
+            .removeClass(CLASS_NAME_SHOW)
+            .one(Util.TRANSITION_END, complete)
+            .emulateTransitionEnd(transitionDuration)
+        } else {
+            complete()
+        }
     }
 
-    $(element).addClass(CLASS_NAME_ACTIVE)
-    if (element.getAttribute('role') === 'tab') {
-      element.setAttribute('aria-selected', true)
+    _transitionComplete(element, active, callback)
+    {
+        if (active) {
+            $(active).removeClass(CLASS_NAME_ACTIVE)
+
+            const dropdownChild = $(active.parentNode).find(
+                SELECTOR_DROPDOWN_ACTIVE_CHILD
+            )[0]
+
+            if (dropdownChild) {
+                  $(dropdownChild).removeClass(CLASS_NAME_ACTIVE)
+            }
+
+            if (active.getAttribute('role') === 'tab') {
+                active.setAttribute('aria-selected', false)
+            }
+        }
+
+        $(element).addClass(CLASS_NAME_ACTIVE)
+        if (element.getAttribute('role') === 'tab') {
+            element.setAttribute('aria-selected', true)
+        }
+
+        Util.reflow(element)
+
+        if (element.classList.contains(CLASS_NAME_FADE)) {
+            element.classList.add(CLASS_NAME_SHOW)
+        }
+
+        if (element.parentNode && $(element.parentNode).hasClass(CLASS_NAME_DROPDOWN_MENU)) {
+            const dropdownElement = $(element).closest(SELECTOR_DROPDOWN)[0]
+
+            if (dropdownElement) {
+                const dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE))
+
+                $(dropdownToggleList).addClass(CLASS_NAME_ACTIVE)
+            }
+
+            element.setAttribute('aria-expanded', true)
+        }
+
+        if (callback) {
+            callback()
+        }
     }
-
-    Util.reflow(element)
-
-    if (element.classList.contains(CLASS_NAME_FADE)) {
-      element.classList.add(CLASS_NAME_SHOW)
-    }
-
-    if (element.parentNode && $(element.parentNode).hasClass(CLASS_NAME_DROPDOWN_MENU)) {
-      const dropdownElement = $(element).closest(SELECTOR_DROPDOWN)[0]
-
-      if (dropdownElement) {
-        const dropdownToggleList = [].slice.call(dropdownElement.querySelectorAll(SELECTOR_DROPDOWN_TOGGLE))
-
-        $(dropdownToggleList).addClass(CLASS_NAME_ACTIVE)
-      }
-
-      element.setAttribute('aria-expanded', true)
-    }
-
-    if (callback) {
-      callback()
-    }
-  }
 
   // Static
 
-  static _jQueryInterface(config) {
-    return this.each(function () {
-      const $this = $(this)
-      let data = $this.data(DATA_KEY)
+    static _jQueryInterface(config)
+    {
+        return this.each(function () {
+            const $this = $(this)
+            let data = $this.data(DATA_KEY)
 
-      if (!data) {
-        data = new Tab(this)
-        $this.data(DATA_KEY, data)
-      }
+            if (!data) {
+                data = new Tab(this)
+                $this.data(DATA_KEY, data)
+            }
 
-      if (typeof config === 'string') {
-        if (typeof data[config] === 'undefined') {
-          throw new TypeError(`No method named "${config}"`)
-        }
+            if (typeof config === 'string') {
+                if (typeof data[config] === 'undefined') {
+                    throw new TypeError(`No method named "${config}"`)
+                }
 
-        data[config]()
-      }
-    })
-  }
+                data[config]()
+            }
+        })
+    }
 }
 
 /**
@@ -248,8 +255,8 @@ $(document)
 $.fn[NAME] = Tab._jQueryInterface
 $.fn[NAME].Constructor = Tab
 $.fn[NAME].noConflict = () => {
-  $.fn[NAME] = JQUERY_NO_CONFLICT
-  return Tab._jQueryInterface
+    $.fn[NAME] = JQUERY_NO_CONFLICT
+    return Tab._jQueryInterface
 }
 
 export default Tab
