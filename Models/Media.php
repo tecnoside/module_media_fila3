@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Modules\Media\Enums\AttachmentTypeEnum;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
@@ -27,10 +28,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string                                     $disk
  * @property string|null                                $conversions_disk
  * @property int                                        $size
- * @property array                                      $manipulations
- * @property array                                      $custom_properties
- * @property array                                      $generated_conversions
- * @property array                                      $responsive_images
+ * @property mixed                                      $manipulations
+ * @property mixed                                      $custom_properties
+ * @property mixed                                      $generated_conversions
+ * @property mixed                                      $responsive_images
  * @property int|null                                   $order_column
  * @property Carbon|null                                $created_at
  * @property Carbon|null                                $updated_at
@@ -49,6 +50,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null                                $caption
  * @property string|null                                $exif
  * @property string|null                                $curations
+ * @property AttachmentTypeEnum                         $attachment_type
  * @property Model|\Eloquent                            $model
  * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
  *
@@ -97,6 +99,13 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 class Media extends SpatieMedia
 {
     /**
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'attachment_type' => AttachmentTypeEnum::class,
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Collection
      *
      * @psalm-return Collection<int, Media>
@@ -116,7 +125,7 @@ class Media extends SpatieMedia
     }
 
     /**
-     * @psalm-return BelongsTo<TemporaryUpload>
+     * @psalm-return BelongsTo<TemporaryUpload,Media>
      */
     public function temporaryUpload(): BelongsTo
     {

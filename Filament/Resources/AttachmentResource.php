@@ -16,8 +16,9 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Modules\Camping\Constants\AttachmentType;
+use Illuminate\Support\Str;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Modules\Media\Enums\AttachmentTypeEnum;
 
 class AttachmentResource extends Resource
 {
@@ -119,19 +120,20 @@ class AttachmentResource extends Resource
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            /*
             Radio::make('attachment_type')
                 ->hiddenLabel()
                 ->options(
-                    AttachmentType::descriptionsByValue($asset ? AttachmentType::cases() : AttachmentType::operationCases()),
+                    AttachmentTypeEnum::descriptionsByValue($asset ? AttachmentTypeEnum::cases() : AttachmentTypeEnum::operationCases()),
                 )
-                ->default(AttachmentType::Image())
+                ->default(AttachmentTypeEnum::Image())
                 ->columns(
-                    $asset ? \count(AttachmentType::cases()) : \count(AttachmentType::operationCases()),
+                    $asset ? \count(AttachmentTypeEnum::cases()) : \count(AttachmentTypeEnum::operationCases()),
                 )
                 ->required()
                 ->columnSpanFull(),
-
+            */
+            Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -146,8 +148,11 @@ class AttachmentResource extends Resource
 
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
-        $attachment = $livewire
-            ->getOwnerRecord()
+        $ownerRecord = $livewire->getOwnerRecord();
+        if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
+            throw new \Exception('wip');
+        }
+        $attachment = $ownerRecord
             ->addMediaFromDisk(
                 $data['file'],
                 config('attachment.upload.disk.driver'),

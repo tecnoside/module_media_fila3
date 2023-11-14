@@ -14,17 +14,18 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Webmozart\Assert\Assert;
 
 /**
  * Modules\Media\Models\TemporaryUpload.
  *
- * @property int                                                                                                                               $id
- * @property string                                                                                                                            $session_id
- * @property \Illuminate\Support\Carbon|null                                                                                                   $created_at
- * @property \Illuminate\Support\Carbon|null                                                                                                   $updated_at
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
- * @property int|null                                                                                                                          $media_count
+ * @property int                                                                                  $id
+ * @property string                                                                               $session_id
+ * @property \Illuminate\Support\Carbon|null                                                      $created_at
+ * @property \Illuminate\Support\Carbon|null                                                      $updated_at
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property int|null                                                                             $media_count
  *
  * @method static Builder|TemporaryUpload newModelQuery()
  * @method static Builder|TemporaryUpload newQuery()
@@ -52,7 +53,7 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static function findByMediaUuid(?string $mediaUuid): ?self
     {
-        $mediaModelClass = (string) config('media-library.media_model');
+        Assert::string($mediaModelClass = config('media-library.media_model'));
 
         /** @var Media $media */
         $media = $mediaModelClass::query()
@@ -148,7 +149,7 @@ class TemporaryUpload extends Model implements HasMedia
         throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
-    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
