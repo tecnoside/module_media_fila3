@@ -14,12 +14,10 @@ class GetVideoDurationAction
 {
     use QueueableAction;
 
-/**
+    /**
      * The number of seconds to wait before retrying the action.
      *
      * @var array<int>|int
      */
-
-
     public $backoff = 3;
 }
