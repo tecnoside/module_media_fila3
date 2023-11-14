@@ -19,6 +19,7 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
+ *
  * @method static Builder|FilamentMediaLibraryModel newModelQuery()
  * @method static Builder|FilamentMediaLibraryModel newQuery()
  * @method static Builder|FilamentMediaLibraryModel query()
@@ -31,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|FilamentMediaLibraryModel whereNote($value)
  * @method static Builder|FilamentMediaLibraryModel whereUpdatedAt($value)
  * @method static Builder|FilamentMediaLibraryModel whereUpdatedBy($value)
+ *
  * @mixin \Eloquent
  */
 class FilamentMediaLibraryModel extends BaseMorphPivot
