@@ -17,37 +17,37 @@
         inputDir: 'userfiles/input/',
         outputDir: 'userfiles/output/',
         updateDataInterval: 2000
-    };
+        };
 
-    var currentMedia, mainVideo, isVideoPlaying, $sliderTimeline, $sliderTimelineRange,
+        var currentMedia, mainVideo, isVideoPlaying, $sliderTimeline, $sliderTimelineRange,
         $timeInputIn, $timeInputOut, timeInputTimer, $sliderTimelineRangeEl, episodes;
 
-    var inputList = [], outputList = [];
+        var inputList = [], outputList = [];
 
-    this.autoPlayEnabled = false;
-    this.audioPlayer = new Audio();
+        this.autoPlayEnabled = false;
+        this.audioPlayer = new Audio();
 
     /** initialize */
-    this.init = function () {
+        this.init = function () {
 
-        this.options = $.extend({}, defaultOptions, options);
+            this.options = $.extend({}, defaultOptions, options);
 
-        if (document.readyState !== 'loading') {
-            this.onStart();
-        } else {
-            document.addEventListener('DOMContentLoaded', this.onStart.bind(this));
-        }
-    };
+            if (document.readyState !== 'loading') {
+                this.onStart();
+            } else {
+                document.addEventListener('DOMContentLoaded', this.onStart.bind(this));
+            }
+        };
 
     /** On DOM ready */
-    this.onStart = function () {
+        this.onStart = function () {
 
-        $sliderTimeline = $('#wve-timeline');
-        $sliderTimelineRange = $('#wve-timeline-range');
+            $sliderTimeline = $('#wve-timeline');
+            $sliderTimelineRange = $('#wve-timeline-range');
 
-        this.timeInputsInit();
+            this.timeInputsInit();
 
-        $('body')
+            $('body')
             .tooltip({
                 selector: '[data-toggle="tooltip"],.toggle-tooltip',
                 container: 'body',
@@ -62,18 +62,17 @@
                 $($(this).data('bs.tooltip')['tip']).remove();
             });
 
-        mainVideo = $('#wve-video').get(0);
+            mainVideo = $('#wve-video').get(0);
 
-        $(mainVideo)
+            $(mainVideo)
             .on('error', function () {
                 if (!this.readyState/* && mainVideo.src && mainVideo.src.substr(mainVideo.src.length - 4, 1) === '.'*/) {
                     //self.alert('The video format is not supported by your browser.');
                 } else {
-
                 }
                 self.hidePreloader();
             })
-            .on('canplay', function() {
+            .on('canplay', function () {
                 if (self.autoPlayEnabled) {
                     this.play();
                 }
@@ -99,7 +98,7 @@
                     }
                     self.timeInputsUpdate(false);
                 }
-                setTimeout(function() {
+                setTimeout(function () {
                     self.hidePreloader();
                 }, 3000);
             })
@@ -111,134 +110,134 @@
                 }
             });
 
-        this.updateMediaList('input');
-        this.updateMediaList('output');
-        this.buttonsInit();
+            this.updateMediaList('input');
+            this.updateMediaList('output');
+            this.buttonsInit();
 
-        // Welcome video
-        //*
-        currentMedia = {
-            ext: 'mp4',
-            //title: 'intro',
-            //duration_ms: 6000,
-            //duration_time: '00:06:00',
-            type: 'video',
-            //isIntro: true,
-            url: mainVideo.src
+            // Welcome video
+            //*
+            currentMedia = {
+                ext: 'mp4',
+                //title: 'intro',
+                //duration_ms: 6000,
+                //duration_time: '00:06:00',
+                type: 'video',
+                //isIntro: true,
+                url: mainVideo.src
+            };
+            setTimeout(function () {
+                self.updateSelectedMedia();
+            }, 100);
+            //*/
         };
-        setTimeout(function(){
-            self.updateSelectedMedia();
-        }, 100);
-        //*/
-    };
 
     /**
      * On video play state change
      */
-    this.onMainVideoPlayChange = function () {
-        var $playButton = $('button[data-action="play_main"]');
-        if (mainVideo.paused) {
-            $playButton.html('<i class="fas fa-play"></i>');
-            isVideoPlaying = false;
-            self.clearTimers();
-        } else {
-            $playButton.html('<i class="fas fa-pause"></i>');
-            isVideoPlaying = true;
-        }
-    };
+        this.onMainVideoPlayChange = function () {
+            var $playButton = $('button[data-action="play_main"]');
+            if (mainVideo.paused) {
+                $playButton.html('<i class="fas fa-play"></i>');
+                isVideoPlaying = false;
+                self.clearTimers();
+            } else {
+                $playButton.html('<i class="fas fa-pause"></i>');
+                isVideoPlaying = true;
+            }
+        };
 
     /**
      * Clear timers
      */
-    this.clearTimers = function () {
-        clearInterval(this.interval);
-        clearTimeout(this.timer);
-    };
+        this.clearTimers = function () {
+            clearInterval(this.interval);
+            clearTimeout(this.timer);
+        };
 
-    this.onTimelineRangeStart = function() {
-        if ($timeInputIn) {
-            $timeInputIn.prop('disabled', true);
-            $timeInputOut.prop('disabled', true);
-        }
-    };
+        this.onTimelineRangeStart = function () {
+            if ($timeInputIn) {
+                $timeInputIn.prop('disabled', true);
+                $timeInputOut.prop('disabled', true);
+            }
+        };
 
-    this.onTimelineRangeStop = function() {
-        if ($timeInputIn) {
-            $timeInputIn.prop('disabled', false);
-            $timeInputOut.prop('disabled', false);
-        }
-    };
+        this.onTimelineRangeStop = function () {
+            if ($timeInputIn) {
+                $timeInputIn.prop('disabled', false);
+                $timeInputOut.prop('disabled', false);
+            }
+        };
 
     /**
      * On Timeline range change
      * @param values
      * @param handlerIndex
      */
-    this.onTimelineRangeChange = function (values, handlerIndex) {
-        isVideoPlaying = false;
-        if (!mainVideo.paused) {
-            mainVideo.pause();
-        }
-        if (handlerIndex === 0) {
-            mainVideo.currentTime = parseFloat(values[0]) / 1000;
-        } else if (handlerIndex === 1) {
-            mainVideo.currentTime = parseFloat(values[1]) / 1000;
-        }
-    };
+        this.onTimelineRangeChange = function (values, handlerIndex) {
+            isVideoPlaying = false;
+            if (!mainVideo.paused) {
+                mainVideo.pause();
+            }
+            if (handlerIndex === 0) {
+                mainVideo.currentTime = parseFloat(values[0]) / 1000;
+            } else if (handlerIndex === 1) {
+                mainVideo.currentTime = parseFloat(values[1]) / 1000;
+            }
+        };
 
     /**
      * On Timeline tange slide
      * @param values
      * @param handleIndex
      */
-    this.onTimelineRangeSlide = function (values, handleIndex) {
-        if (handleIndex === 0) {
-            return;
-        }
-        this.timeInputsUpdate();
-        var timelineRangeValues = self.getRangeValues(),
+        this.onTimelineRangeSlide = function (values, handleIndex) {
+            if (handleIndex === 0) {
+                return;
+            }
+            this.timeInputsUpdate();
+            var timelineRangeValues = self.getRangeValues(),
             timelineValue = parseFloat(values[0]),
             rangeStep = Math.round(currentMedia.duration_ms * 0.007),
             range = _.range(timelineValue - rangeStep, timelineValue + rangeStep);
-        if (timelineValue === 0) {
-            return;
-        }
-        if (range.indexOf(timelineRangeValues[handleIndex - 1]) > -1) {
-            // self.disableRangeHandlers(true);
-            // $sliderTimelineRange.get(0).noUiSlider.set([
-            //     null,
-            //     handleIndex === 1 ? timelineValue : null,
-            //     handleIndex === 2 ? timelineValue : null
-            // ]);
-            // setTimeout(function() {
-            //     self.disableRangeHandlers(false);
-            // }, 1);
-        }
-    };
+            if (timelineValue === 0) {
+                return;
+            }
+            if (range.indexOf(timelineRangeValues[handleIndex - 1]) > -1) {
+                // self.disableRangeHandlers(true);
+                // $sliderTimelineRange.get(0).noUiSlider.set([
+                //     null,
+                //     handleIndex === 1 ? timelineValue : null,
+                //     handleIndex === 2 ? timelineValue : null
+                // ]);
+                // setTimeout(function() {
+                //     self.disableRangeHandlers(false);
+                // }, 1);
+            }
+        };
 
     /**
      * Time inputs initialize
      */
-    this.timeInputsInit = function() {
-        $timeInputIn = $('#wve-time-selected-inputs').find('.wve-time-input-in');
-        $timeInputOut = $('#wve-time-selected-inputs').find('.wve-time-input-out');
+        this.timeInputsInit = function () {
+            $timeInputIn = $('#wve-time-selected-inputs').find('.wve-time-input-in');
+            $timeInputOut = $('#wve-time-selected-inputs').find('.wve-time-input-out');
 
-        //$timeInputIn.mask('00:00:00.00000');
-        //$timeInputOut.mask('00:00:00.00000');
+            //$timeInputIn.mask('00:00:00.00000');
+            //$timeInputOut.mask('00:00:00.00000');
 
-        $timeInputIn.mask('00:00:00.00');
-        $timeInputOut.mask('00:00:00.00');
+            $timeInputIn.mask('00:00:00.00');
+            $timeInputOut.mask('00:00:00.00');
 
-        $('#wve-time-selected-inputs').find('button').on('click', function(e) {
-            e.preventDefault();
-            $('#wve-time-selected-inputs').fadeOut();
-        });
+            $('#wve-time-selected-inputs').find('button').on('click', function (e) {
+                e.preventDefault();
+                $('#wve-time-selected-inputs').fadeOut();
+            });
 
-        $timeInputIn
+            $timeInputIn
             .add($timeInputOut)
-            .on('keyup', function() {
+            .on('keyup', function () {
                 clearTimeout(timeInputTimer);
-                timeInputTimer = setTimeout(function() {
+                timeInputTimer = setTimeout(function () {
 
                     mainVideo.pause();
                     self.clearTimers();
@@ -257,72 +256,72 @@
                 }, 700);
             });
 
-    };
+        };
 
     /**
      * Time inputs update
      */
-    this.timeInputsUpdate = function(makeVisible) {
-        if (typeof makeVisible === 'undefined') {
-            makeVisible = true;
-        }
-        if (!$sliderTimelineRange.data('uiSlider')) {
-            $('#wve-time-selected-inputs').hide();
-        }
-        if ($('#wve-time-selected-inputs').is(':hidden')) {
-            if (makeVisible) {
-                $('#wve-time-selected-inputs').fadeIn();
-            } else {
+        this.timeInputsUpdate = function (makeVisible) {
+            if (typeof makeVisible === 'undefined') {
+                makeVisible = true;
+            }
+            if (!$sliderTimelineRange.data('uiSlider')) {
+                $('#wve-time-selected-inputs').hide();
+            }
+            if ($('#wve-time-selected-inputs').is(':hidden')) {
+                if (makeVisible) {
+                    $('#wve-time-selected-inputs').fadeIn();
+                } else {
+                    return;
+                }
+            }
+            if (!$sliderTimelineRangeEl) {
+                $sliderTimelineRangeEl = $sliderTimelineRange.find('.noUi-connects .noUi-connect');
+            }
+            if (!$sliderTimelineRangeEl) {
                 return;
             }
-        }
-        if (!$sliderTimelineRangeEl) {
-            $sliderTimelineRangeEl = $sliderTimelineRange.find('.noUi-connects .noUi-connect');
-        }
-        if (!$sliderTimelineRangeEl) {
-            return;
-        }
-        var $inputsContainer = $('#wve-time-selected-inputs'),
+            var $inputsContainer = $('#wve-time-selected-inputs'),
             sliderLeft = $sliderTimelineRangeEl.position()['left'],
             inputsContainerWidth = $inputsContainer.width(),
             sliderOffsetLeft = $sliderTimelineRange.offset()['left'],
             currTransform = new WebKitCSSMatrix(window.getComputedStyle($sliderTimelineRangeEl.get(0)).transform);
 
-        var sliderWidth = $sliderTimelineRangeEl.width() * Math.max(currTransform.a, 0);
-        var maxPosLeft = $(window).width() - inputsContainerWidth - sliderOffsetLeft - 6,
+            var sliderWidth = $sliderTimelineRangeEl.width() * Math.max(currTransform.a, 0);
+            var maxPosLeft = $(window).width() - inputsContainerWidth - sliderOffsetLeft - 6,
             centerPosLeft = Math.min(maxPosLeft, (sliderLeft + ((sliderWidth - inputsContainerWidth) / 2)));
 
-        var values = self.getRangeValues();
-        $timeInputIn.val(this.secondsToTime(values[0] / 1000, 5));
-        $timeInputOut.val(this.secondsToTime(values[1] / 1000, 5));
+            var values = self.getRangeValues();
+            $timeInputIn.val(this.secondsToTime(values[0] / 1000, 5));
+            $timeInputOut.val(this.secondsToTime(values[1] / 1000, 5));
 
-        $inputsContainer.css('left', Math.max(0 - sliderOffsetLeft + 6, centerPosLeft));
-    };
+            $inputsContainer.css('left', Math.max(0 - sliderOffsetLeft + 6, centerPosLeft));
+        };
 
     /**
      * Import media
      */
-    this.importMediaInit = function () {
+        this.importMediaInit = function () {
 
-        var template = _.template($('#modalImportMediaTemplate').html());
-        $(document.body).append(template());
+            var template = _.template($('#modalImportMediaTemplate').html());
+            $(document.body).append(template());
 
-        var $modal = $('#modalImportMedia'),
+            var $modal = $('#modalImportMedia'),
             $button = $('.js-button-submit', $modal),
             $urlInput = $('[name="youtube_url"]', $modal),
             $fileInput = $('[type="file"]', $modal);
 
-        $('.file-input-container', $modal).each(function () {
-            var $fileInput = $('[type="file"]', this),
+            $('.file-input-container', $modal).each(function () {
+                var $fileInput = $('[type="file"]', this),
                 $button = $('.file-input', this);
-            $button.on('click', function (e) {
-                e.preventDefault();
-                if ($(this).is('.disabled')) {
-                    return;
-                }
-                $fileInput.trigger('click');
-            });
-            $fileInput
+                $button.on('click', function (e) {
+                    e.preventDefault();
+                    if ($(this).is('.disabled')) {
+                        return;
+                    }
+                    $fileInput.trigger('click');
+                });
+                $fileInput
                 .on('change', function () {
                     if (this.files.length > 0) {
                         var fileName = this.files[0].name;
@@ -337,52 +336,52 @@
                         $button.text(self.getLangString('browse_files') + '...');
                     }
                 });
-        });
+            });
 
-        $modal.on('hidden.bs.modal', function () {
-            $modal.remove();
-        });
+            $modal.on('hidden.bs.modal', function () {
+                $modal.remove();
+            });
 
-        $button.on('click', function (e) {
-            e.preventDefault();
-            if (!$urlInput.val() && !$fileInput.val()) {
-                self.alert(self.getLangString('please_enter_url'), self.getLangString('error'), 'danger');
-                return false;
-            }
+            $button.on('click', function (e) {
+                e.preventDefault();
+                if (!$urlInput.val() && !$fileInput.val()) {
+                    self.alert(self.getLangString('please_enter_url'), self.getLangString('error'), 'danger');
+                    return false;
+                }
 
-            $modal.modal('hide');
+                $modal.modal('hide');
 
-            var formData = new FormData();
-            formData.append('input_url', $urlInput.val());
-            formData.append('action', 'upload');
+                var formData = new FormData();
+                formData.append('input_url', $urlInput.val());
+                formData.append('action', 'upload');
 
-            var files = $fileInput.get(0).files;
-            for (var i = 0; i < files.length; i++) {
-                formData.append('input_file[]', files[i]);
-            }
+                var files = $fileInput.get(0).files;
+                for (var i = 0; i < files.length; i++) {
+                    formData.append('input_file[]', files[i]);
+                }
 
-            self.importMedia(formData);
-        });
+                self.importMedia(formData);
+            });
 
-        $modal.modal('show');
-    };
+            $modal.modal('show');
+        };
 
     /**
      * Import media
      * @param formData
      */
-    this.importMedia = function(formData) {
+        this.importMedia = function (formData) {
 
-        self.showPreloader();
+            self.showPreloader();
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false
+            })
             .done(function (response) {
                 self.hidePreloader(500);
                 if (typeof response === 'string') {
@@ -400,7 +399,7 @@
                 }
                 self.updateUserStat();
             });
-    };
+        };
 
     /**
      * Pagination
@@ -411,289 +410,289 @@
      * @param options
      * @param pageCallback
      */
-    this.createPagination = function ($itemsContainer, $paginationContainer, numberPerPage, numberTotal, options, pageCallback) {
+        this.createPagination = function ($itemsContainer, $paginationContainer, numberPerPage, numberTotal, options, pageCallback) {
 
-        $paginationContainer.empty();
-        var paginationTemplate = _.template($('#paginationTemplate').html()),
+            $paginationContainer.empty();
+            var paginationTemplate = _.template($('#paginationTemplate').html()),
             numberPages = Math.ceil(numberTotal / numberPerPage),
             currentPage = options.page;
 
-        if (numberPages <= 1) {
-            return;
-        }
+            if (numberPages <= 1) {
+                return;
+            }
 
-        var pagesToDisplay = [], skipped = false;
-        for (var i = 1; i <= numberPages; i++) {
-            if((i > 2 && i < numberPages - 2)
-                && (i < currentPage - 3 || i > currentPage + 3) ){
+            var pagesToDisplay = [], skipped = false;
+            for (var i = 1; i <= numberPages; i++) {
+                if ((i > 2 && i < numberPages - 2)
+                && (i < currentPage - 3 || i > currentPage + 3) ) {
                     if (!skipped) {
                         pagesToDisplay.push('...');
                     }
                     skipped = true;
                     continue;
+                }
+                skipped = false;
+                pagesToDisplay.push(i);
             }
-            skipped = false;
-            pagesToDisplay.push(i);
-        }
-        var data = {
-            numberTotal: numberTotal,
-            pages: pagesToDisplay,
-            currentPage: currentPage,
-            numberPages: numberPages
-        };
-        $paginationContainer.append(paginationTemplate(data));
+            var data = {
+                numberTotal: numberTotal,
+                pages: pagesToDisplay,
+                currentPage: currentPage,
+                numberPages: numberPages
+            };
+            $paginationContainer.append(paginationTemplate(data));
 
-        $paginationContainer.find('.js-page-next').on('click', function(e) {
-            e.preventDefault();
-            var pageNumber = currentPage + 1;
-            if (pageNumber < numberPages + 1) {
-                options.page = pageNumber;
-                pageCallback($itemsContainer, $paginationContainer, options);
-            }
-        });
-        $paginationContainer.find('.js-page-prev').on('click', function(e) {
-            e.preventDefault();
-            var pageNumber = currentPage - 1;
-            if (pageNumber > 0) {
-                options.page = pageNumber;
-                pageCallback($itemsContainer, $paginationContainer, options);
-            }
-        });
-        $paginationContainer.find('.js-page-number').on('click', function(e) {
-            e.preventDefault();
-            var pageNumber = parseInt($(this).text(), 10);
-            if (pageNumber !== currentPage) {
-                options.page = pageNumber;
-                pageCallback($itemsContainer, $paginationContainer, options);
-            }
-        });
-    };
+            $paginationContainer.find('.js-page-next').on('click', function (e) {
+                e.preventDefault();
+                var pageNumber = currentPage + 1;
+                if (pageNumber < numberPages + 1) {
+                    options.page = pageNumber;
+                    pageCallback($itemsContainer, $paginationContainer, options);
+                }
+            });
+            $paginationContainer.find('.js-page-prev').on('click', function (e) {
+                e.preventDefault();
+                var pageNumber = currentPage - 1;
+                if (pageNumber > 0) {
+                    options.page = pageNumber;
+                    pageCallback($itemsContainer, $paginationContainer, options);
+                }
+            });
+            $paginationContainer.find('.js-page-number').on('click', function (e) {
+                e.preventDefault();
+                var pageNumber = parseInt($(this).text(), 10);
+                if (pageNumber !== currentPage) {
+                    options.page = pageNumber;
+                    pageCallback($itemsContainer, $paginationContainer, options);
+                }
+            });
+        };
 
     /**
      * Buttons initialization
      */
-    this.buttonsInit = function () {
+        this.buttonsInit = function () {
 
-        $(document.body).on('click', '[data-toggle="action"]', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
+            $(document.body).on('click', '[data-toggle="action"]', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
 
-            var $button = $(this),
+                var $button = $(this),
                 action = $button.data('action').split('_'),
                 itemId = $button.data('id');
 
-            switch (action[0]) {
-                case 'delete':
+                switch (action[0]) {
+                    case 'delete':
 
-                    switch (action[1]) {
-                        case 'input':
-                        case 'output':
+                        switch (action[1]) {
+                            case 'input':
+                            case 'output':
 
-                            self.mediaRemove(itemId, action[1]);
+                                self.mediaRemove(itemId, action[1]);
 
-                            break;
-                        case 'episode':
+                                break;
+                            case 'episode':
 
-                            self.episodeRemove($button.data('index'));
+                                self.episodeRemove($button.data('index'));
 
-                            break;
-                    }
+                                break;
+                        }
 
-                    break;
-                case 'rename':
+                        break;
+                    case 'rename':
 
-                    self.mediaRename(itemId, action[1]);
+                        self.mediaRename(itemId, action[1]);
 
-                    break;
-                case 'export-url':
+                        break;
+                    case 'export-url':
 
-                    self.exportUrl(itemId, action[1]);
+                        self.exportUrl(itemId, action[1]);
 
-                    break;
-                case 'import':
+                        break;
+                    case 'import':
 
-                    self.importMediaInit();
+                        self.importMediaInit();
 
-                    break;
-                case 'select-media':
+                        break;
+                    case 'select-media':
 
-                    if ($(this).parent('li').hasClass('active')) {
-                        return;
-                    }
+                        if ($(this).parent('li').hasClass('active')) {
+                            return;
+                        }
 
-                    self.selectMedia(itemId, action[1]);
+                        self.selectMedia(itemId, action[1]);
 
-                    break;
-                case 'edit':
+                        break;
+                    case 'edit':
 
-                    switch (action[1]) {
-                        case 'episode':
+                        switch (action[1]) {
+                            case 'episode':
 
-                            var itemIndex = $button.data('index');
-                            if (!episodes[itemIndex]) {
-                                return;
-                            }
-                            var episode = episodes[itemIndex];
-                            self.showWindowAddImage(episode);
+                                var itemIndex = $button.data('index');
+                                if (!episodes[itemIndex]) {
+                                    return;
+                                }
+                                var episode = episodes[itemIndex];
+                                self.showWindowAddImage(episode);
 
-                            break;
-                    }
+                                break;
+                        }
 
-                    break;
-                case 'play':
+                        break;
+                    case 'play':
 
-                    switch (action[1]) {
-                        case 'main':
+                        switch (action[1]) {
+                            case 'main':
 
-                            if (!currentMedia || !currentMedia.url) {
-                                return;
-                            }
-                            if (!mainVideo.readyState) {
-                                self.alert(self.getLangString('video_format_not_supported'));
-                                return;
-                            }
-                            if (mainVideo.paused) {
-                                mainVideo.play();
-                            } else {
-                                mainVideo.pause();
-                            }
+                                if (!currentMedia || !currentMedia.url) {
+                                    return;
+                                }
+                                if (!mainVideo.readyState) {
+                                    self.alert(self.getLangString('video_format_not_supported'));
+                                    return;
+                                }
+                                if (mainVideo.paused) {
+                                    mainVideo.play();
+                                } else {
+                                    mainVideo.pause();
+                                }
 
-                            break;
-                        case 'selected':
+                                break;
+                            case 'selected':
 
-                            self.playVideoSelected();
+                                self.playVideoSelected();
 
-                            break;
-                        case 'episode':
+                                break;
+                            case 'episode':
 
-                            var itemIndex = $button.data('index');
+                                var itemIndex = $button.data('index');
 
-                            self.playMedia('episode', null, itemIndex);
+                                self.playMedia('episode', null, itemIndex);
 
-                            break;
-                        case 'output':
+                                break;
+                            case 'output':
 
-                            self.playMedia('output', itemId);
+                                self.playMedia('output', itemId);
 
-                            break;
-                    }
+                                break;
+                        }
 
-                    break;
+                        break;
 
-                case 'stepback':
-                case 'stepforward':
+                    case 'stepback':
+                    case 'stepforward':
 
-                    self.clearTimers();
+                        self.clearTimers();
 
-                    switch (action[1]) {
-                        case 'main':
+                        switch (action[1]) {
+                            case 'main':
 
-                            if (!currentMedia || !currentMedia.url) {
-                                return;
-                            }
+                                if (!currentMedia || !currentMedia.url) {
+                                    return;
+                                }
 
-                            var currentTimelineValue = parseFloat($sliderTimelineRange.get(0).noUiSlider.get()[0]),
+                                var currentTimelineValue = parseFloat($sliderTimelineRange.get(0).noUiSlider.get()[0]),
                                 minValue = 0,
                                 maxValue = parseFloat($sliderTimelineRange.get(0).noUiSlider.options.range.max);
 
-                            currentTimelineValue += action[0] === 'stepforward' ? 10 : -10;
-                            currentTimelineValue = Math.min(maxValue, Math.max(minValue, currentTimelineValue));
+                                currentTimelineValue += action[0] === 'stepforward' ? 10 : -10;
+                                currentTimelineValue = Math.min(maxValue, Math.max(minValue, currentTimelineValue));
 
-                            $sliderTimelineRange.get(0).noUiSlider.set([currentTimelineValue, null, null]);
-                            mainVideo.currentTime = currentTimelineValue / 1000;
+                                $sliderTimelineRange.get(0).noUiSlider.set([currentTimelineValue, null, null]);
+                                mainVideo.currentTime = currentTimelineValue / 1000;
 
-                            break;
-                    }
+                                break;
+                        }
 
-                    break;
-                case 'take-episode':
+                        break;
+                    case 'take-episode':
 
-                    self.takeEpisode();
+                        self.takeEpisode();
 
-                    break;
-                case 'cut-fast':
+                        break;
+                    case 'cut-fast':
 
-                    self.makeCutFast();
+                        self.makeCutFast();
 
-                    break;
-                case 'render':
+                        break;
+                    case 'render':
 
-                    self.checkProcessStatus(function () {
-                        self.renderProject();
-                    });
+                        self.checkProcessStatus(function () {
+                            self.renderProject();
+                        });
 
-                    break;
-                case 'convert':
+                        break;
+                    case 'convert':
 
-                    self.checkProcessStatus(function () {
-                        self.convertMedia(itemId, action[1]);
-                    });
+                        self.checkProcessStatus(function () {
+                            self.convertMedia(itemId, action[1]);
+                        });
 
-                    break;
-                case 'preview':
+                        break;
+                    case 'preview':
 
-                    var imageUrl = $button.data('url');
+                        var imageUrl = $button.data('url');
 
-                    switch (action[1]) {
-                        case 'image':
-                            if (imageUrl) {
-                                self.previewImage(imageUrl);
-                            }
-                            break;
-                        case 'audio':
-                            if (imageUrl) {
-                                self.previewAudio(imageUrl);
-                            }
-                            break;
-                    }
+                        switch (action[1]) {
+                            case 'image':
+                                if (imageUrl) {
+                                    self.previewImage(imageUrl);
+                                }
+                                break;
+                            case 'audio':
+                                if (imageUrl) {
+                                    self.previewAudio(imageUrl);
+                                }
+                                break;
+                        }
 
-                    break;
-                case 'add-image':
+                        break;
+                    case 'add-image':
 
-                    self.selectMedia(itemId, 'input');
-                    self.showWindowAddImage();
+                        self.selectMedia(itemId, 'input');
+                        self.showWindowAddImage();
 
-                    break;
-                case 'log':
+                        break;
+                    case 'log':
 
-                    self.showLog();
+                        self.showLog();
 
-                    break;
-                case 'profile':
+                        break;
+                    case 'profile':
 
-                    self.showUserProfile();
+                        self.showUserProfile();
 
-                    break;
-            }
+                        break;
+                }
 
-        });
+            });
 
-    };
+        };
 
     /**
      *
      * @param type
      */
-    this.updateMediaList = function (type) {
+        this.updateMediaList = function (type) {
 
-        type = type || 'input';
-        var $container = $('#wve-list_' + type);
-        if (!$container.length) {
-            return;
-        }
-        $container.empty();
-        var isIframeMode = window.parent && typeof window.parent.wveExportUrl !== 'undefined';
+            type = type || 'input';
+            var $container = $('#wve-list_' + type);
+            if (!$container.length) {
+                return;
+            }
+            $container.empty();
+            var isIframeMode = window.parent && typeof window.parent.wveExportUrl !== 'undefined';
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'content_list',
-                type: type
-            },
-            dataType: 'json',
-            cache: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'content_list',
+                    type: type
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
                 if (response.success) {
                     var template = _.template($('#listItemTemplate_' + type).html()),
@@ -715,38 +714,37 @@
                     }
                 }
             });
-    };
+        };
 
     /**
      * Get list input audio
      */
-    this.getListAudio = function() {
-        return _.where(inputList, {type: 'audio'});
-    };
+        this.getListAudio = function () {
+            return _.where(inputList, {type: 'audio'});
+        };
 
     /**
      * Delete media file
      * @param itemId
      * @param type
      */
-    this.mediaRemove = function (itemId, type) {
+        this.mediaRemove = function (itemId, type) {
 
-        self.confirm('Are you sure you want to remove this item?', function () {
+            self.confirm('Are you sure you want to remove this item?', function () {
 
-            $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'POST',
-                data: {
-                    action: 'delete',
-                    type: type,
-                    itemId: itemId
-                },
-                dataType: 'json',
-                cache: false
-            })
+                $.ajax({
+                    url: self.options.baseUrl + self.options.requestHandler,
+                    method: 'POST',
+                    data: {
+                        action: 'delete',
+                        type: type,
+                        itemId: itemId
+                    },
+                    dataType: 'json',
+                    cache: false
+                })
                 .done(function (response) {
                     if (response.success) {
-
                         if (type == 'input') {
                             currentMedia = null;
                             mainVideo.pause();
@@ -756,32 +754,31 @@
                         }
                         self.updateUserStat();
                         self.updateMediaList(type);
-
                     } else {
                         if (response.msg) {
                             self.alert(response.msg, self.getLangString('error'), 'danger');
                         }
                     }
                 });
-        });
-    };
+            });
+        };
 
     /**
      * Rename media
      * @param itemId
      * @param type
      */
-    this.mediaRename = function (itemId, type) {
+        this.mediaRename = function (itemId, type) {
 
-        this.getMediaData(itemId, type, function (response) {
+            this.getMediaData(itemId, type, function (response) {
 
-            var template = _.template($('#mediaRenameModalTemplate').html());
+                var template = _.template($('#mediaRenameModalTemplate').html());
 
-            $(document.body).append(template({content: response.data.title}));
-            var $modal = $('#mediaRenameModal'),
+                $(document.body).append(template({content: response.data.title}));
+                var $modal = $('#mediaRenameModal'),
                 $inputText = $('input[type="text"]', $modal);
 
-            $modal
+                $modal
                 .on('shown.bs.modal', function (e) {
                     $inputText.get(0).focus();
                     var value = $inputText.val();
@@ -821,20 +818,20 @@
                         });
                 });
 
-        });
+            });
 
-    };
+        };
 
-    this.exportUrl = function (itemId, type) {
-        if (typeof window.parent.wveExportUrl === 'undefined') {
-            return;
-        }
-        this.getMediaData(itemId, type, function (response) {
-            if (response.success) {
-                window.parent.wveExportUrl(response.data);
+        this.exportUrl = function (itemId, type) {
+            if (typeof window.parent.wveExportUrl === 'undefined') {
+                return;
             }
-        });
-    };
+            this.getMediaData(itemId, type, function (response) {
+                if (response.success) {
+                    window.parent.wveExportUrl(response.data);
+                }
+            });
+        };
 
     /**
      * Get media data
@@ -842,19 +839,19 @@
      * @param type
      * @param callback
      */
-    this.getMediaData = function (itemId, type, callback) {
+        this.getMediaData = function (itemId, type, callback) {
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'select_media',
-                type: type,
-                itemId: itemId
-            },
-            dataType: 'json',
-            cache: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'select_media',
+                    type: type,
+                    itemId: itemId
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
                 if (response.success) {
                     if (typeof callback == 'function') {
@@ -866,7 +863,7 @@
                     }
                 }
             });
-    };
+        };
 
     /**
      * Play episode
@@ -874,39 +871,37 @@
      * @param itemId
      * @param index
      */
-    this.playMedia = function (type, itemId, index) {
+        this.playMedia = function (type, itemId, index) {
 
-        if (type === 'episode' && !episodes[index]) {
-            return;
-        }
+            if (type === 'episode' && !episodes[index]) {
+                return;
+            }
 
-        var media, mediaUrl = '';
+            var media, mediaUrl = '';
 
-        if (type === 'episode') {
-            media = episodes[index];
-            mediaUrl = media.url;
-        }
+            if (type === 'episode') {
+                media = episodes[index];
+                mediaUrl = media.url;
+            }
 
-        var template = _.template($('#videoPreviewModalTemplate').html());
+            var template = _.template($('#videoPreviewModalTemplate').html());
 
-        $(document.body).append(template({src: mediaUrl}));
-        var $modal = $('#videoPreviewModal'),
+            $(document.body).append(template({src: mediaUrl}));
+            var $modal = $('#videoPreviewModal'),
             $buttonPlay = $('.js-button-play', $modal),
             videoEl = $('video', $modal).get(0),
             $inputRange = $('input[type="range"]', $modal),
             videoLoaded = false;
 
-        if (type !== 'episode') {
+            if (type !== 'episode') {
+                this.getMediaData(itemId, type, function (response) {
+                    media = response.data;
+                    media.time = [0, media.duration_ms];
+                    videoEl.src = media.url;
+                });
+            }
 
-            this.getMediaData(itemId, type, function (response) {
-                media = response.data;
-                media.time = [0, media.duration_ms];
-                videoEl.src = media.url;
-            });
-
-        }
-
-        $inputRange
+            $inputRange
             .on('change', function (event) {
                 var value = parseInt(this.value);
                 if (event.originalEvent) {
@@ -915,7 +910,7 @@
                 }
             });
 
-        $(videoEl)
+            $(videoEl)
             .css({visibility: 'hidden'})
             .on('loadedmetadata error', function () {
                 $(this).css({visibility: 'visible'});
@@ -955,7 +950,7 @@
                 $inputRange.val(percent * 100);
             });
 
-        $buttonPlay
+            $buttonPlay
             .on('click', function (e) {
                 e.preventDefault();
                 if (!videoEl.readyState) {
@@ -969,82 +964,81 @@
                 }
             });
 
-        $modal
+            $modal
             .modal('show')
             .on('hidden.bs.modal', function (e) {
                 videoEl.pause();
                 $modal.remove();
             });
-    };
+        };
 
     /**
      * Get time range values
      * @returns {*}
      */
-    this.getRangeValues = function() {
-        var values = $sliderTimelineRange.get(0).noUiSlider.get();
-        values.splice(0, 1);
-        values = values.map(function(val) {
-            return parseFloat(val);
-        });
-        values.sort(function(a, b){
-            return a - b;
-        });
-        return values;
-    };
+        this.getRangeValues = function () {
+            var values = $sliderTimelineRange.get(0).noUiSlider.get();
+            values.splice(0, 1);
+            values = values.map(function (val) {
+                return parseFloat(val);
+            });
+            values.sort(function (a, b) {
+                return a - b;
+            });
+            return values;
+        };
 
     /**
      * Play selected episode
      */
-    this.playVideoSelected = function () {
+        this.playVideoSelected = function () {
 
-        if (!currentMedia || !currentMedia.url || !$sliderTimelineRange.data('uiSlider')) {
-            return;
-        }
-        if (!mainVideo.readyState) {
-            self.alert(self.getLangString('video_format_not_supported'));
-            return;
-        }
-        var values = this.getRangeValues();
-
-        if (mainVideo.currentTime === values[0] / 1000) {
-            mainVideo.play();
-        } else {
-            self.autoPlayEnabled = true;
-            mainVideo.currentTime = values[0] / 1000;
-        }
-        this.clearTimers();
-        this.interval = setInterval(function () {
-            if (mainVideo.currentTime * 1000 >= values[1]) {
-                self.clearTimers();
-                self.playVideoSelected();
+            if (!currentMedia || !currentMedia.url || !$sliderTimelineRange.data('uiSlider')) {
+                return;
             }
-        }, 5);
-    };
+            if (!mainVideo.readyState) {
+                self.alert(self.getLangString('video_format_not_supported'));
+                return;
+            }
+            var values = this.getRangeValues();
+
+            if (mainVideo.currentTime === values[0] / 1000) {
+                mainVideo.play();
+            } else {
+                self.autoPlayEnabled = true;
+                mainVideo.currentTime = values[0] / 1000;
+            }
+            this.clearTimers();
+            this.interval = setInterval(function () {
+                if (mainVideo.currentTime * 1000 >= values[1]) {
+                    self.clearTimers();
+                    self.playVideoSelected();
+                }
+            }, 5);
+        };
 
     /**
      * Select media
      * @param itemId
      * @param type
      */
-    this.selectMedia = function (itemId, type) {
+        this.selectMedia = function (itemId, type) {
 
-        mainVideo.pause();
+            mainVideo.pause();
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'select_media',
-                type: type,
-                itemId: itemId
-            },
-            dataType: 'json',
-            cache: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'select_media',
+                    type: type,
+                    itemId: itemId
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
                 if (response.success) {
-
                     var $container = $('#wve-list_input');
                     $container.find('.list-group-item').removeClass('active');
 
@@ -1061,21 +1055,20 @@
                         .addClass('active');
 
                     self.updateSelectedMedia();
-
                 } else {
                     if (response.msg) {
                         self.alert(response.msg, self.getLangString('error'), 'danger');
                     }
                 }
             });
-    };
+        };
 
     /**
      * Show image options window
      * @param array content
      */
-    this.showWindowAddImage = function(content) {
-        var template = _.template($('#modalImageOptionsTemplate').html()),
+        this.showWindowAddImage = function (content) {
+            var template = _.template($('#modalImageOptionsTemplate').html()),
             data = {
                 title: this.getLangString('image_parameters'),
                 buttonText: typeof content !== 'undefined'
@@ -1084,27 +1077,27 @@
                 content: ''
             };
 
-        data.audioList = this.getListAudio();
+            data.audioList = this.getListAudio();
 
-        $(document.body).append(template(data));
-        var self = this,
+            $(document.body).append(template(data));
+            var self = this,
             $modal = $('#modalImageOptions'),
             $form = $modal.find('form');
 
-        if (content && content.options) {
-            Object.keys(content.options).forEach(function(key) {
-                var $field = $form.find('[name="' + key + '"]');
-                if ($field.is(':checkbox')) {
-                    if (content.options[key]) {
-                        $field.prop('checked', true);
+            if (content && content.options) {
+                Object.keys(content.options).forEach(function (key) {
+                    var $field = $form.find('[name="' + key + '"]');
+                    if ($field.is(':checkbox')) {
+                        if (content.options[key]) {
+                            $field.prop('checked', true);
+                        }
+                    } else {
+                        $form.find('[name="' + key + '"]').val(content.options[key]);
                     }
-                } else {
-                    $form.find('[name="' + key + '"]').val(content.options[key]);
-                }
-            });
-        }
+                });
+            }
 
-        $modal
+            $modal
             .modal('show')
             .on('hidden.bs.modal', function (e) {
                 $modal.remove();
@@ -1138,166 +1131,166 @@
 
                 $modal.modal('hide');
             });
-    };
+        };
 
     /**
      * Update view on select new video source
      */
-    this.updateSelectedMedia = function () {
-        if (currentMedia.type !== 'video') {
-            this.sliderRangeDestroy();
-            return;
-        }
+        this.updateSelectedMedia = function () {
+            if (currentMedia.type !== 'video') {
+                this.sliderRangeDestroy();
+                return;
+            }
 
-        if (!$sliderTimelineRange.data('uiSlider')) {
-            self.sliderRangeInit();
-        }
+            if (!$sliderTimelineRange.data('uiSlider')) {
+                self.sliderRangeInit();
+            }
 
-        mainVideo.pause();
-        this.clearTimers();
+            mainVideo.pause();
+            this.clearTimers();
 
-        mainVideo.currentTime = 0;
+            mainVideo.currentTime = 0;
 
-        $('#wve-editor-player-time-current').text('00:00:00');
+            $('#wve-editor-player-time-current').text('00:00:00');
 
-        this.showPreloader();
+            this.showPreloader();
 
-        mainVideo.setAttribute('src', currentMedia.url);
-    };
+            mainVideo.setAttribute('src', currentMedia.url);
+        };
 
     /**
      * Destroy range slider
      */
-    this.sliderRangeDestroy = function() {
-        if ($sliderTimelineRange.get(0).noUiSlider) {
-            $sliderTimelineRange.get(0).noUiSlider.destroy();
-        }
-        $sliderTimelineRange.removeData('uiSlider');
-        $('#wve-time-selected-inputs').fadeOut();
-        $sliderTimelineRangeEl = null;
-    };
+        this.sliderRangeDestroy = function () {
+            if ($sliderTimelineRange.get(0).noUiSlider) {
+                $sliderTimelineRange.get(0).noUiSlider.destroy();
+            }
+            $sliderTimelineRange.removeData('uiSlider');
+            $('#wve-time-selected-inputs').fadeOut();
+            $sliderTimelineRangeEl = null;
+        };
 
     /**
      * Create range slider
      */
-    this.sliderRangeInit = function() {
-        noUiSlider.create($sliderTimelineRange.get(0), {
-            connect: [false, false, true, false],
-            start: [0, 0, 500],
-            behaviour: 'unconstrained-tap-snap',
-            range: {
-                'min': 0,
-                'max': 500
-            },
-            step: 1
-        });
-        $sliderTimelineRange.get(0).noUiSlider.on('change', self.onTimelineRangeChange.bind(self));
-        $sliderTimelineRange.get(0).noUiSlider.on('start', self.onTimelineRangeStart.bind(self));
-        $sliderTimelineRange.get(0).noUiSlider.on('end', self.onTimelineRangeStop.bind(self));
-        $sliderTimelineRange.get(0).noUiSlider.on('slide', self.onTimelineRangeSlide.bind(self));
-        $sliderTimelineRange.data('uiSlider', 1);
+        this.sliderRangeInit = function () {
+            noUiSlider.create($sliderTimelineRange.get(0), {
+                connect: [false, false, true, false],
+                start: [0, 0, 500],
+                behaviour: 'unconstrained-tap-snap',
+                range: {
+                    'min': 0,
+                    'max': 500
+                },
+                step: 1
+            });
+            $sliderTimelineRange.get(0).noUiSlider.on('change', self.onTimelineRangeChange.bind(self));
+            $sliderTimelineRange.get(0).noUiSlider.on('start', self.onTimelineRangeStart.bind(self));
+            $sliderTimelineRange.get(0).noUiSlider.on('end', self.onTimelineRangeStop.bind(self));
+            $sliderTimelineRange.get(0).noUiSlider.on('slide', self.onTimelineRangeSlide.bind(self));
+            $sliderTimelineRange.data('uiSlider', 1);
 
-        // Block slider handlers on click
-        $sliderTimelineRange.find('.noUi-connects').on('mousedown touchstart', function () {
-            self.disableRangeHandlers(true);
-            setTimeout(function() {
-                self.disableRangeHandlers(false);
-            }, 1);
-        });
-    };
+            // Block slider handlers on click
+            $sliderTimelineRange.find('.noUi-connects').on('mousedown touchstart', function () {
+                self.disableRangeHandlers(true);
+                setTimeout(function () {
+                    self.disableRangeHandlers(false);
+                }, 1);
+            });
+        };
 
     /**
      * Disable range slider handlers
      * @param disable
      */
-    this.disableRangeHandlers = function(disable) {
-        var origins = $sliderTimelineRange.get(0).noUiSlider
+        this.disableRangeHandlers = function (disable) {
+            var origins = $sliderTimelineRange.get(0).noUiSlider
             ? $sliderTimelineRange.get(0).getElementsByClassName('noUi-origin')
             : [];
-        if (origins.length === 3) {
-            if (disable) {
-                origins[1].setAttribute('disabled', true);
-                origins[2].setAttribute('disabled', true);
-            } else {
-                origins[1].removeAttribute('disabled');
-                origins[2].removeAttribute('disabled');
+            if (origins.length === 3) {
+                if (disable) {
+                    origins[1].setAttribute('disabled', true);
+                    origins[2].setAttribute('disabled', true);
+                } else {
+                    origins[1].removeAttribute('disabled');
+                    origins[2].removeAttribute('disabled');
+                }
             }
-        }
-    };
+        };
 
     /**
      * Take episode
      */
-    this.takeEpisode = function () {
+        this.takeEpisode = function () {
 
-        if (!currentMedia || !currentMedia.url) {
-            return;
-        }
-        if (!episodes) {
-            episodes = [];
-        }
+            if (!currentMedia || !currentMedia.url) {
+                return;
+            }
+            if (!episodes) {
+                episodes = [];
+            }
 
-        var values = this.getRangeValues();
-        var data = _.clone(currentMedia);
-        data.time = values;
-        data.imageUrl = this.getCurrentFrameDataUri(mainVideo);
+            var values = this.getRangeValues();
+            var data = _.clone(currentMedia);
+            data.time = values;
+            data.imageUrl = this.getCurrentFrameDataUri(mainVideo);
 
-        episodes.push(data);
-        this.updateEpisodesContent();
-    };
+            episodes.push(data);
+            this.updateEpisodesContent();
+        };
 
     /**
      *
      * @returns {string}
      */
-    this.getCurrentFrameDataUri = function(mediaElement) {
-        var canvasEl = document.createElement('canvas');
-        var ctx = canvasEl.getContext('2d');
-        var width = mediaElement instanceof HTMLVideoElement
+        this.getCurrentFrameDataUri = function (mediaElement) {
+            var canvasEl = document.createElement('canvas');
+            var ctx = canvasEl.getContext('2d');
+            var width = mediaElement instanceof HTMLVideoElement
             ? mediaElement.videoWidth
             : mediaElement.naturalWidth;
-        var height = mediaElement instanceof HTMLVideoElement
+            var height = mediaElement instanceof HTMLVideoElement
             ? mediaElement.videoHeight
             : mediaElement.naturalHeight;
-        canvasEl.width = Math.floor(width * 0.3);
-        canvasEl.height = Math.floor(height * 0.3);
+            canvasEl.width = Math.floor(width * 0.3);
+            canvasEl.height = Math.floor(height * 0.3);
 
-        ctx.drawImage(mediaElement, 0, 0, canvasEl.width, canvasEl.height);
+            ctx.drawImage(mediaElement, 0, 0, canvasEl.width, canvasEl.height);
 
-        return canvasEl.toDataURL();
-    };
+            return canvasEl.toDataURL();
+        };
 
     /**
      * Make fast cut
      */
-    this.makeCutFast = function () {
-        if (!currentMedia || !currentMedia.url) {
-            return;
-        }
-        var values = this.getRangeValues(),
+        this.makeCutFast = function () {
+            if (!currentMedia || !currentMedia.url) {
+                return;
+            }
+            var values = this.getRangeValues(),
             min = 0,
             max = $sliderTimelineRange.get(0).noUiSlider.options.range.max;
 
-        if (values[0] === min && values[1] === max) {
-            return;
-        }
+            if (values[0] === min && values[1] === max) {
+                return;
+            }
 
-        self.confirm('Attention! Fast cut does not guarantee accuracy and synchronization. Do you want to continue?', function () {
+            self.confirm('Attention! Fast cut does not guarantee accuracy and synchronization. Do you want to continue?', function () {
 
-            self.showPreloader();
+                self.showPreloader();
 
-            $.ajax({
-                url: self.options.baseUrl + self.options.requestHandler,
-                method: 'POST',
-                data: {
-                    action: 'cut_fast',
-                    itemId: currentMedia.id,
-                    from: values[0],
-                    to: values[1]
-                },
-                dataType: 'json',
-                cache: false
-            })
+                $.ajax({
+                    url: self.options.baseUrl + self.options.requestHandler,
+                    method: 'POST',
+                    data: {
+                        action: 'cut_fast',
+                        itemId: currentMedia.id,
+                        from: values[0],
+                        to: values[1]
+                    },
+                    dataType: 'json',
+                    cache: false
+                })
                 .done(function (response) {
                     self.hidePreloader();
                     if (response.success) {
@@ -1309,114 +1302,112 @@
                         }
                     }
                 });
-        });
-    };
+            });
+        };
 
     /**
      * Update episodes list content
      */
-    this.updateEpisodesContent = function () {
+        this.updateEpisodesContent = function () {
 
-        var self = this,
+            var self = this,
             $container = $('#wve-episode-container'),
             $containerInner = $('#wve-episode-container-inner');
 
-        $containerInner.empty();
-        $container.toggle(episodes.length > 0);
+            $containerInner.empty();
+            $container.toggle(episodes.length > 0);
 
-        if (episodes.length === 0) {
-            return;
-        }
+            if (episodes.length === 0) {
+                return;
+            }
 
-        var template = _.template($('#episodeItemTemplate').html());
+            var template = _.template($('#episodeItemTemplate').html());
 
-        episodes.forEach(function (item, index) {
-            item.index = index;
-            $containerInner.append(template(item));
-        });
-    };
+            episodes.forEach(function (item, index) {
+                item.index = index;
+                $containerInner.append(template(item));
+            });
+        };
 
     /**
      * Image URL to Data URL
      * @param url
      * @param callback
      */
-    this.toDataURL = function (url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('get', url);
-        xhr.responseType = 'blob';
-        xhr.onload = function () {
-            var fr = new FileReader();
-            fr.onload = function () {
-                callback(this.result);
+        this.toDataURL = function (url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', url);
+            xhr.responseType = 'blob';
+            xhr.onload = function () {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    callback(this.result);
+                };
+                fr.readAsDataURL(xhr.response); // async call
             };
-            fr.readAsDataURL(xhr.response); // async call
+            xhr.send();
         };
-        xhr.send();
-    };
 
     /**
      * Remove episode
      * @param index
      */
-    this.episodeRemove = function (index) {
-        episodes.splice(index, 1);
-        self.updateEpisodesContent();
-    };
+        this.episodeRemove = function (index) {
+            episodes.splice(index, 1);
+            self.updateEpisodesContent();
+        };
 
     /**
      * Check process status
      */
-    this.checkProcessStatus = function (callback) {
+        this.checkProcessStatus = function (callback) {
 
-        this.showPreloader();
+            this.showPreloader();
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'queue_status'
-            },
-            dataType: 'json',
-            cache: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'queue_status'
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
                 self.hidePreloader();
                 if (response.status && response.status == 'not_logged_in') {
                     clearInterval(self.interval);
                     window.location.reload();
-                }
-                else if (response.status && ['pending', 'processing'].indexOf(response.status) > -1) {
+                } else if (response.status && ['pending', 'processing'].indexOf(response.status) > -1) {
                     setTimeout(self.showProgress.bind(self), 1);
-                }
-                else {
+                } else {
                     if (typeof callback == 'function') {
                         callback();
                     }
                 }
             });
-    };
+        };
 
     /**
      * Render project
      */
-    this.renderProject = function () {
-        var template = _.template($('#renderModalTemplate').html());
-        var data = {title: self.getLangString('create_video'), type: 'render'};
-        data.audioList = this.getListAudio();
+        this.renderProject = function () {
+            var template = _.template($('#renderModalTemplate').html());
+            var data = {title: self.getLangString('create_video'), type: 'render'};
+            data.audioList = this.getListAudio();
 
-        $(document.body).append(template(data));
-        var $modal = $('#renderModal'),
+            $(document.body).append(template(data));
+            var $modal = $('#renderModal'),
             projectData = this.getProjectData();
 
-        if (projectData.length === 0) {
-            this.alert(self.getLangString('project_is_empty'), self.getLangString('error'), 'danger');
-            return;
-        }
+            if (projectData.length === 0) {
+                this.alert(self.getLangString('project_is_empty'), self.getLangString('error'), 'danger');
+                return;
+            }
 
-        var movieTitle, options;
+            var movieTitle, options;
 
-        $modal
+            $modal
             .modal('show')
             .on('hidden.bs.modal', function (e) {
                 $modal.remove();
@@ -1424,7 +1415,7 @@
                     self.audioPlayer.pause();
                 }
             })
-            .on('shown.bs.modal', function() {
+            .on('shown.bs.modal', function () {
                 self.updateLibraryContent();
             })
             .find('.js-button-submit')
@@ -1456,10 +1447,8 @@
                     .done(function (response) {
                         $button.prop('disabled', false);
                         if (response.success) {
-
                             $modal.modal('hide');
                             self.showProgress();
-
                         } else {
                             if (response.msg) {
                                 self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1471,13 +1460,13 @@
                         $button.prop('disabled', false);
                     });
             });
-    };
+        };
 
     /**
      * Update library content
      */
-    this.updateLibraryContent = function() {
-        var $container = $('#audioLibrary'),
+        this.updateLibraryContent = function () {
+            var $container = $('#audioLibrary'),
             $itemsContainer = $('#wve-audio-library'),
             $libraryCategoriesSelect = $('select[name="audio_category"]', $container),
             $paginationContainer = $('.js-container-pagination', $container),
@@ -1488,18 +1477,18 @@
                 page: 1
             };
 
-        $libraryCategoriesSelect.on('change', function() {
-            options.page = 1;
-            $audioSelect.val('').prop('disabled', false);
-            $libraryField.val('');
-            if (!self.audioPlayer.paused) {
-                self.audioPlayer.pause();
-            }
-            self.updateLibraryContentRequest($itemsContainer, $paginationContainer, options);
-        });
+            $libraryCategoriesSelect.on('change', function () {
+                options.page = 1;
+                $audioSelect.val('').prop('disabled', false);
+                $libraryField.val('');
+                if (!self.audioPlayer.paused) {
+                    self.audioPlayer.pause();
+                }
+                self.updateLibraryContentRequest($itemsContainer, $paginationContainer, options);
+            });
 
-        this.updateLibraryContentRequest($itemsContainer, $paginationContainer, options);
-    };
+            this.updateLibraryContentRequest($itemsContainer, $paginationContainer, options);
+        };
 
     /**
      *
@@ -1507,32 +1496,32 @@
      * @param $paginationContainer
      * @param options
      */
-    this.updateLibraryContentRequest = function($itemsContainer, $paginationContainer, options) {
+        this.updateLibraryContentRequest = function ($itemsContainer, $paginationContainer, options) {
 
-        var $container = $('#audioLibrary'),
+            var $container = $('#audioLibrary'),
             $libraryCategoriesSelect = $('select[name="audio_category"]', $container),
             template = _.template($('#libraryListItemAudioTemplate').html()),
             $audioSelect = $container.closest('.modal.show').find('select[name="audio"]'),
             $libraryField = $container.closest('.modal.show').find('form input[name="audio_library"]'),
             numberPerPage = 10;
 
-        options.category = $libraryCategoriesSelect.val() || '';
+            options.category = $libraryCategoriesSelect.val() || '';
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'audio_library',
-                query: options
-            },
-            dataType: 'json',
-            cache: false
-        })
-            .done(function(response) {
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'audio_library',
+                    query: options
+                },
+                dataType: 'json',
+                cache: false
+            })
+            .done(function (response) {
 
                 if (response.categories && response.categories.length > 0) {
                     $libraryCategoriesSelect.empty();
-                    response.categories.forEach(function(categoryName) {
+                    response.categories.forEach(function (categoryName) {
                         $libraryCategoriesSelect.append('<option value="' + categoryName + '">' + categoryName + '</option>');
                     });
                     if (options.category) {
@@ -1542,13 +1531,13 @@
 
                 $itemsContainer.empty();
 
-                response.items.forEach(function(item) {
+                response.items.forEach(function (item) {
                     var content = template(item);
                     $itemsContainer.append(content);
                 });
 
                 $itemsContainer.find('.btn-link[data-file-name]')
-                    .on('click', function() {
+                    .on('click', function () {
                         var isActive = $(this).closest('li').is('.active');
                         $itemsContainer.find('li').removeClass('active');
                         if (isActive) {
@@ -1561,34 +1550,40 @@
                         $libraryField.val($(this).data('file-name'));
                     });
 
-                self.createPagination($itemsContainer, $paginationContainer, numberPerPage, response.total, options,
-                    function($iContainer, $pContainer, opts) {
+                self.createPagination(
+                    $itemsContainer,
+                    $paginationContainer,
+                    numberPerPage,
+                    response.total,
+                    options,
+                    function ($iContainer, $pContainer, opts) {
                         $audioSelect.val('').prop('disabled', false);
                         $libraryField.val('');
                         if (!self.audioPlayer.paused) {
                             self.audioPlayer.pause();
                         }
                         self.updateLibraryContentRequest($iContainer, $pContainer, opts);
-                    });
+                    }
+                );
 
             });
-    };
+        };
 
     /**
      * Convert media file
      * @param mediaId
      * @param type
      */
-    this.convertMedia = function (mediaId, type) {
+        this.convertMedia = function (mediaId, type) {
 
-        var template = _.template($('#renderModalTemplate').html());
-        var data = {title: 'Convert video', type: 'convert', audioList: []};
-        $(document.body).append(template(data));
-        var $modal = $('#renderModal');
+            var template = _.template($('#renderModalTemplate').html());
+            var data = {title: 'Convert video', type: 'convert', audioList: []};
+            $(document.body).append(template(data));
+            var $modal = $('#renderModal');
 
-        var options;
+            var options;
 
-        $modal
+            $modal
             .modal('show')
             .on('hidden.bs.modal', function (e) {
                 $modal.remove();
@@ -1617,10 +1612,8 @@
                     .done(function (response) {
                         $button.prop('disabled', false);
                         if (response.success) {
-
                             $modal.modal('hide');
                             self.showProgress();
-
                         } else {
                             if (response.msg) {
                                 self.alert(response.msg, self.getLangString('error'), 'danger');
@@ -1629,145 +1622,139 @@
                     });
 
             });
-    };
+        };
 
     /**
      * Get project data
      * @returns {[]}
      */
-    this.getProjectData = function () {
-        var data = [];
-        if (episodes && episodes.length > 0) {
-
-            episodes.forEach(function (episode) {
-                var item = {id: episode.id};
-                item.type = episode.type || null;
-                item.time = episode.time || null;
-                if (episode.options) {
-                    if (episode.options.duration) {
-                        item.duration = episode.options.duration;
+        this.getProjectData = function () {
+            var data = [];
+            if (episodes && episodes.length > 0) {
+                episodes.forEach(function (episode) {
+                    var item = {id: episode.id};
+                    item.type = episode.type || null;
+                    item.time = episode.time || null;
+                    if (episode.options) {
+                        if (episode.options.duration) {
+                            item.duration = episode.options.duration;
+                        }
+                        if (episode.options.text) {
+                            item.text = episode.options.text;
+                        }
+                        if (episode.options.auto_split) {
+                            item.text_auto_split = true;
+                        }
+                        if (episode.options.audio) {
+                            item.audio = episode.options.audio;
+                        }
                     }
-                    if (episode.options.text) {
-                        item.text = episode.options.text;
-                    }
-                    if (episode.options.auto_split) {
-                        item.text_auto_split = true;
-                    }
-                    if (episode.options.audio) {
-                        item.audio = episode.options.audio;
-                    }
-                }
-                data.push(item);
-            });
-
-        }
-        else if (currentMedia
+                    data.push(item);
+                });
+            } else if (currentMedia
             && currentMedia.url
             && $sliderTimelineRange.data('uiSlider')) {
                 var item = {id: currentMedia.id};
                 item.time = self.getRangeValues();
                 data.push(item);
-        }
-        return data;
-    };
+            }
+            return data;
+        };
 
     /**
      * Get form data
      * @param form
      * @returns {{}|*}
      */
-    this.serializeForm = function (form) {
-        var arrayData, objectData;
-        arrayData = $(form).serializeArray();
-        objectData = {};
-        $.each(arrayData, function () {
-            var value;
-            if (this.value != null) {
-                value = this.value;
-            } else {
-                value = '';
-            }
-            if (objectData[this.name] != null) {
-                if (typeof objectData[this.name] !== 'object') {
-                    objectData[this.name] = [objectData[this.name]];
+        this.serializeForm = function (form) {
+            var arrayData, objectData;
+            arrayData = $(form).serializeArray();
+            objectData = {};
+            $.each(arrayData, function () {
+                var value;
+                if (this.value != null) {
+                    value = this.value;
+                } else {
+                    value = '';
                 }
-                objectData[this.name].push(value);
-            } else {
-                objectData[this.name] = value;
-            }
-        });
-        return objectData;
-    };
+                if (objectData[this.name] != null) {
+                    if (typeof objectData[this.name] !== 'object') {
+                        objectData[this.name] = [objectData[this.name]];
+                    }
+                    objectData[this.name].push(value);
+                } else {
+                    objectData[this.name] = value;
+                }
+            });
+            return objectData;
+        };
 
     /**
      * Preview image
      * @param imageUrl
      */
-    this.previewImage = function(imageUrl) {
+        this.previewImage = function (imageUrl) {
 
-        var template = _.template($('#modalLargeTemplate').html()),
+            var template = _.template($('#modalLargeTemplate').html()),
             data = {
                 title: self.getLangString('image_preview'),
                 content: '<img src="' + imageUrl + '" alt="" style="width: 100%;">'
             };
 
-        $(document.body).append(template(data));
-        var $modal = $('#modalLarge');
+            $(document.body).append(template(data));
+            var $modal = $('#modalLarge');
 
-        $modal
+            $modal
             .modal('show')
             .on('hidden.bs.modal', function (e) {
                 $modal.remove();
             });
-    };
+        };
 
     /**
      * Play audio
      * @param audioUrl
      */
-    this.previewAudio = function(audioUrl) {
-        if ($('.modal.show').length === 0) {
-
-            var template = _.template($('#modalSmallTemplate').html()),
+        this.previewAudio = function (audioUrl) {
+            if ($('.modal.show').length === 0) {
+                var template = _.template($('#modalSmallTemplate').html()),
                 data = {
                     title: self.getLangString('play_audio'),
                     content: '<audio src="' + audioUrl + '" controls autoplay>'
                 };
 
-            $(document.body).append(template(data));
-            var $modal = $('#modalSmall');
+                $(document.body).append(template(data));
+                var $modal = $('#modalSmall');
 
-            $modal
+                $modal
                 .modal('show')
                 .on('hidden.bs.modal', function (e) {
                     $modal.find('audio').get(0).pause();
                     $modal.remove();
                 });
-
-        }
-        else {
-            if (!this.audioPlayer.paused && this.audioPlayer.src.indexOf(encodeURI(audioUrl)) > -1) {
-                this.audioPlayer.pause();
             } else {
-                this.audioPlayer.pause();
-                this.audioPlayer.src = audioUrl;
-                this.audioPlayer.play();
+                if (!this.audioPlayer.paused && this.audioPlayer.src.indexOf(encodeURI(audioUrl)) > -1) {
+                    this.audioPlayer.pause();
+                } else {
+                    this.audioPlayer.pause();
+                    this.audioPlayer.src = audioUrl;
+                    this.audioPlayer.play();
+                }
             }
-        }
-    };
+        };
 
     /**
      * Confirm action
      * @param text
      * @param callback
      */
-    this.confirm = function (text, callback) {
+        this.confirm = function (text, callback) {
 
-        var template = _.template($('#modalConfirmTemplate').html());
-        $(document.body).append(template({content: text}));
-        var $modal = $('#modalConfirm');
+            var template = _.template($('#modalConfirmTemplate').html());
+            $(document.body).append(template({content: text}));
+            var $modal = $('#modalConfirm');
 
-        $modal
+            $modal
             .modal('show')
             .on('hidden.bs.modal', function (e) {
                 $modal.remove();
@@ -1780,7 +1767,7 @@
                 }
                 $modal.modal('hide');
             });
-    };
+        };
 
     /**
      * Alert
@@ -1788,100 +1775,97 @@
      * @param title
      * @param type
      */
-    this.alert = function (text, title, type) {
+        this.alert = function (text, title, type) {
 
-        title = title || self.getLangString('warning');
-        type = type || 'warning';
+            title = title || self.getLangString('warning');
+            type = type || 'warning';
 
-        var icons = {
-            danger: 'icon-warning color-red big',
-            info: 'icon-info color-blue big'
-        };
-        var template, $modal,
+            var icons = {
+                danger: 'icon-warning color-red big',
+                info: 'icon-info color-blue big'
+            };
+            var template, $modal,
             icon_class = icons[type] || icons.info;
 
-        if ($('.modal.show').length > 0) {
+            if ($('.modal.show').length > 0) {
+                template = _.template($('#alertTemplate').html());
+                $modal = $('.modal.show');
+                var $modalBody = $('.modal.show:first').find('.modal-body');
 
-            template = _.template($('#alertTemplate').html());
-            $modal = $('.modal.show');
-            var $modalBody = $('.modal.show:first').find('.modal-body');
+                var alertHtml = template({
+                    type: type,
+                    title: title,
+                    content: text,
+                    icon_class: icon_class
+                });
 
-            var alertHtml = template({
-                type: type,
-                title: title,
-                content: text,
-                icon_class: icon_class
-            });
+                $modalBody.find('.alert').remove();
+                $modalBody.append(alertHtml);
+            } else {
+                template = _.template($('#modalAlertTemplate').html());
+                var html = template({
+                    type: type,
+                    title: title,
+                    content: text,
+                    icon_class: icon_class
+                });
+                $(document.body).append(html);
+                $modal = $('#modalAlert');
 
-            $modalBody.find('.alert').remove();
-            $modalBody.append(alertHtml);
-
-        } else {
-
-            template = _.template($('#modalAlertTemplate').html());
-            var html = template({
-                type: type,
-                title: title,
-                content: text,
-                icon_class: icon_class
-            });
-            $(document.body).append(html);
-            $modal = $('#modalAlert');
-
-            $modal
+                $modal
                 .modal('show')
                 .on('hidden.bs.modal', function (e) {
                     $modal.remove();
                 });
-        }
-    };
+            }
+        };
 
     /**
      * Remove alert message
      */
-    this.alertClear = function() {
-        if ($('.modal.show').length > 0) {
-            var $modalBody = $('.modal.show:first').find('.modal-body');
-            $modalBody.find('.alert').remove();
-        }
-    };
+        this.alertClear = function () {
+            if ($('.modal.show').length > 0) {
+                var $modalBody = $('.modal.show:first').find('.modal-body');
+                $modalBody.find('.alert').remove();
+            }
+        };
 
     /**
      * Show progress bar
      */
-    this.showProgress = function () {
+        this.showProgress = function () {
 
-        if ($('.wve-preloader').length > 0) {
-            $('.wve-preloader').remove();
-        }
+            if ($('.wve-preloader').length > 0) {
+                $('.wve-preloader').remove();
+            }
 
-        var html = '<div class="wve-preloader" id="wve-preloader">';
-        html += '<div class="wve-preloader-inner">';
-        html += '<div class="wve-preloader-caption">' + self.getLangString('processing') + '...</div>';
-        html += '<div class="wve-preloader-progress">';
-        html += '<div class="progress">';
-        html += '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>';
-        html += '</div>';
-        html += '<div class="mt-3 text-center">';
-        html += ' <button class="btn btn-danger js-button-stop">Stop</button>';
-        html += ' <button class="btn btn-secondary js-button-close">Close</button>';
-        html += '<div>';
-        html += '<div></div></div>';
+            var html = '<div class="wve-preloader" id="wve-preloader">';
+            html += '<div class="wve-preloader-inner">';
+            html += '<div class="wve-preloader-caption">' + self.getLangString('processing') + '...</div>';
+            html += '<div class="wve-preloader-progress">';
+            html += '<div class="progress">';
+            html += '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>';
+            html += '</div>';
+            html += '<div class="mt-3 text-center">';
+            html += ' <button class="btn btn-danger js-button-stop">Stop</button>';
+            html += ' <button class="btn btn-secondary js-button-close">Close</button>';
+            html += '<div>';
+            html += '<div></div></div>';
 
-        $(document.body).append(html);
-        var $progressBar = $('.wve-preloader:first'),
+            $(document.body).append(html);
+            var $progressBar = $('.wve-preloader:first'),
             $buttonStop = $progressBar.find('.js-button-stop');
 
-        //Button Close
-        $progressBar.find('.js-button-close')
+            //Button Close
+            $progressBar.find('.js-button-close')
             .on('click', function (e) {
                 e.preventDefault();
                 self.clearTimers();
                 $progressBar.remove();
             });
 
-        //Button Stop
-        $buttonStop
+            //Button Stop
+            $buttonStop
             .on('click', function (e) {
                 e.preventDefault();
 
@@ -1912,28 +1896,28 @@
                     });
             });
 
-        self.clearTimers();
-        this.timer = setTimeout(this.updateRenderingProgressData.bind(this), self.options.updateDataInterval);
-    };
+            self.clearTimers();
+            this.timer = setTimeout(this.updateRenderingProgressData.bind(this), self.options.updateDataInterval);
+        };
 
     /**
      * Update rendering progress data
      */
-    this.updateRenderingProgressData = function () {
+        this.updateRenderingProgressData = function () {
 
-        var $progressBar = $('.wve-preloader:first'),
+            var $progressBar = $('.wve-preloader:first'),
             $progressCaption = $progressBar.find('.wve-preloader-caption'),
             status;
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'queue_status'
-            },
-            dataType: 'json',
-            cache: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'queue_status'
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
 
                 if (response.status && response.status === 'not_logged_in') {
@@ -1941,7 +1925,6 @@
                     window.location.reload();
                 }
                 if (typeof response.percent !== 'undefined') {
-
                     $progressBar.find('.progress-bar')
                         .css('width', response.percent + '%')
                         .toggleClass('progress-bar-empty', response.percent < 7)
@@ -1971,55 +1954,54 @@
                 }
             });
 
-    };
+        };
 
     /**
      * Show preloader
      */
-    this.showPreloader = function () {
+        this.showPreloader = function () {
 
-        var html = '<div class="wve-preloader" id="wve-preloader">';
-        html += '<div class="wve-preloader-inner">';
-        html += '<div class="wve-preloader-caption">Please wait...</div>';
-        html += '<div class="wve-preloader-content"><div>';
-        html += '</div>';
-        html += '</div>';
+            var html = '<div class="wve-preloader" id="wve-preloader">';
+            html += '<div class="wve-preloader-inner">';
+            html += '<div class="wve-preloader-caption">Please wait...</div>';
+            html += '<div class="wve-preloader-content"><div>';
+            html += '</div>';
+            html += '</div>';
 
-        $(document.body).append(html);
-    };
+            $(document.body).append(html);
+        };
 
     /**
      * Hide preloader
      */
-    this.hidePreloader = function (delay) {
-        delay = delay || 0;
-        setTimeout(function () {
-            $('#wve-preloader').remove();
-        }, delay);
-    };
+        this.hidePreloader = function (delay) {
+            delay = delay || 0;
+            setTimeout(function () {
+                $('#wve-preloader').remove();
+            }, delay);
+        };
 
     /**
      * Show log
      */
-    this.showLog = function () {
+        this.showLog = function () {
 
-        this.showPreloader();
+            this.showPreloader();
 
-        var template, $modal;
+            var template, $modal;
 
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'user_log'
-            },
-            dataType: 'json',
-            cache: false
-        })
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'user_log'
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
                 self.hidePreloader();
                 if (response.success) {
-
                     template = _.template($('#modalLargeTemplate').html());
                     var content = '<pre class="code">' + response.content + '</pre>';
                     $(document.body).append(template({title: 'Log', content: content}));
@@ -2029,7 +2011,6 @@
                         .on('hidden.bs.modal', function (e) {
                             $modal.remove();
                         });
-
                 } else {
                     if (response.msg) {
                         self.alert(response.msg, 'Error', 'danger');
@@ -2037,67 +2018,66 @@
                 }
             });
 
-    };
+        };
 
     /**
      * Get user profile data
      * @param callback
      */
-    this.getUserData = function (callback) {
-        $.ajax({
-            url: self.options.baseUrl + self.options.requestHandler,
-            method: 'GET',
-            data: {
-                action: 'user_profile'
-            },
-            dataType: 'json',
-            cache: false
-        })
+        this.getUserData = function (callback) {
+            $.ajax({
+                url: self.options.baseUrl + self.options.requestHandler,
+                method: 'GET',
+                data: {
+                    action: 'user_profile'
+                },
+                dataType: 'json',
+                cache: false
+            })
             .done(function (response) {
                 if (response.status && response.status == 'not_logged_in') {
                     clearInterval(self.interval);
                     window.location.reload();
-                }
-                else if (typeof callback == 'function') {
+                } else if (typeof callback == 'function') {
                     callback(response);
                 }
             });
-    };
+        };
 
     /**
      * Update user statistics
      */
-    this.updateUserStat = function () {
-        var template = _.template($('#userStatTemplate').html()),
+        this.updateUserStat = function () {
+            var template = _.template($('#userStatTemplate').html()),
             $container = $('#wve-user-stat');
 
-        this.getUserData(function (response) {
-            if (response.success) {
-                $container.html(template(response.data));
-            }
-        });
-    };
+            this.getUserData(function (response) {
+                if (response.success) {
+                    $container.html(template(response.data));
+                }
+            });
+        };
 
     /**
      * Time to seconds
      * @param time {string}
      * @returns {number}
      */
-    this.timeToSeconds = function(time) {
-        var seconds = 0;
-        time = time.replace(/[^\d:.]/g, '');
-        var tmp = time.split(':');
-        if (tmp.length >= 3) {
-            seconds += parseInt(tmp.shift()) * 60 * 60;
-        }
-        if (tmp.length >= 2) {
-            seconds += parseInt(tmp.shift()) * 60;
-        }
-        if (tmp[0]) {
-            seconds += parseFloat(tmp[0].replace(',', '.'));
-        }
-        return seconds;
-    };
+        this.timeToSeconds = function (time) {
+            var seconds = 0;
+            time = time.replace(/[^\d:.]/g, '');
+            var tmp = time.split(':');
+            if (tmp.length >= 3) {
+                seconds += parseInt(tmp.shift()) * 60 * 60;
+            }
+            if (tmp.length >= 2) {
+                seconds += parseInt(tmp.shift()) * 60;
+            }
+            if (tmp[0]) {
+                seconds += parseFloat(tmp[0].replace(',', '.'));
+            }
+            return seconds;
+        };
 
     /**
      * Seconds to time
@@ -2105,78 +2085,83 @@
      * @param roundValue {number}
      * @returns {string}
      */
-    this.secondsToTime = function (in_seconds, roundValue) {
-        if (typeof roundValue === 'undefined') {
-            roundValue = 2;
-        }
-        var hours = Math.floor(in_seconds / 3600);
-        var minutes = Math.floor((in_seconds - (hours * 3600)) / 60);
-        var seconds = in_seconds - (hours * 3600) - (minutes * 60);
-        if (roundValue > 0) {
-            seconds = seconds.toFixed(roundValue);
-        }
-        if (hours < 10) hours = '0' + hours;
-        if (minutes < 10) minutes = '0' + minutes;
-        if (seconds < 10) seconds = '0' + seconds;
+        this.secondsToTime = function (in_seconds, roundValue) {
+            if (typeof roundValue === 'undefined') {
+                roundValue = 2;
+            }
+            var hours = Math.floor(in_seconds / 3600);
+            var minutes = Math.floor((in_seconds - (hours * 3600)) / 60);
+            var seconds = in_seconds - (hours * 3600) - (minutes * 60);
+            if (roundValue > 0) {
+                seconds = seconds.toFixed(roundValue);
+            }
+            if (hours < 10) {
+                hours = '0' + hours;
+            }
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+            if (seconds < 10) {
+                seconds = '0' + seconds;
+            }
 
-        return hours + ':' + minutes + ':' + seconds;
-    };
+            return hours + ':' + minutes + ':' + seconds;
+        };
 
     /**
      * Show user profile
      */
-    this.showUserProfile = function () {
+        this.showUserProfile = function () {
 
-        var template = _.template($('#userProfileTemplate').html()),
+            var template = _.template($('#userProfileTemplate').html()),
             modalTemplate = _.template($('#modalAlertTemplate').html()),
             $modal;
 
-        this.showPreloader();
+            this.showPreloader();
 
-        this.getUserData(function (response) {
-            self.hidePreloader();
-            if (response.success) {
-
-                var content = template(response.data);
-                var html = modalTemplate({
-                    title: 'User profile',
-                    content: '[content]',
-                    icon_class: ''
-                });
-                html = html.replace('[content]', content);
-                $(document.body).append(html);
-                $modal = $('#modalAlert');
-
-                $modal
-                    .modal('show')
-                    .on('hidden.bs.modal', function (e) {
-                        $modal.remove();
+            this.getUserData(function (response) {
+                self.hidePreloader();
+                if (response.success) {
+                    var content = template(response.data);
+                    var html = modalTemplate({
+                        title: 'User profile',
+                        content: '[content]',
+                        icon_class: ''
                     });
-            }
-        });
+                    html = html.replace('[content]', content);
+                    $(document.body).append(html);
+                    $modal = $('#modalAlert');
 
-    };
+                    $modal
+                        .modal('show')
+                        .on('hidden.bs.modal', function (e) {
+                            $modal.remove();
+                        });
+                }
+            });
+
+        };
 
     /**
      * First letter uppercase
      * @param string
      * @returns {string}
      */
-    this.capitalizeFirstLetter = function (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    };
+        this.capitalizeFirstLetter = function (string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        };
 
     /**
      * Get language string
      * @param {string} langKey
      * @returns {string}
      */
-    this.getLangString = function(langKey) {
-        if (typeof window.LANG === 'undefined') {
-            return langKey;
-        }
-        return window.LANG[langKey] || langKey;
-    };
+        this.getLangString = function (langKey) {
+            if (typeof window.LANG === 'undefined') {
+                return langKey;
+            }
+            return window.LANG[langKey] || langKey;
+        };
 
-    this.init();
-};
+        this.init();
+ };
