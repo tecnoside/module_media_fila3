@@ -12,17 +12,18 @@ use Spatie\EloquentSortable\SortableTrait;
 /**
  * Modules\Media\Models\MediaLibraryItem.
  *
- * @property int $id
- * @property int|null $parent_id
- * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $user_id
- * @property string|null $updated_by
- * @property string|null $created_by
- * @property int|null $order_column
- * @property-read \Illuminate\Database\Eloquent\Collection<int, MediaLibraryFolder> $children
- * @property-read int|null $children_count
+ * @property int                                                               $id
+ * @property int|null                                                          $parent_id
+ * @property string                                                            $name
+ * @property \Illuminate\Support\Carbon|null                                   $created_at
+ * @property \Illuminate\Support\Carbon|null                                   $updated_at
+ * @property string|null                                                       $user_id
+ * @property string|null                                                       $updated_by
+ * @property string|null                                                       $created_by
+ * @property int|null                                                          $order_column
+ * @property \Illuminate\Database\Eloquent\Collection<int, MediaLibraryFolder> $children
+ * @property int|null                                                          $children_count
+ *
  * @method static Builder|MediaLibraryFolder newModelQuery()
  * @method static Builder|MediaLibraryFolder newQuery()
  * @method static Builder|MediaLibraryFolder ordered(string $direction = 'asc')
@@ -36,6 +37,7 @@ use Spatie\EloquentSortable\SortableTrait;
  * @method static Builder|MediaLibraryFolder whereUpdatedAt($value)
  * @method static Builder|MediaLibraryFolder whereUpdatedBy($value)
  * @method static Builder|MediaLibraryFolder whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class MediaLibraryFolder extends BaseMediaLibraryFolder implements Sortable
