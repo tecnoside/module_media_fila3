@@ -105,7 +105,7 @@ class Media extends SpatieMedia
      * @var array<string, string>
      */
     protected $casts = [
-       // 'attachment_type' => AttachmentTypeEnum::class,
+        // 'attachment_type' => AttachmentTypeEnum::class,
     ];
 
     /**
