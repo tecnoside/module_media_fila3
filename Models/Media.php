@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\User\Models\User;
 use Illuminate\Support\Carbon;
+use Modules\Xot\Traits\Updater;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Media\Enums\AttachmentTypeEnum;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
  * Modules\Media\Models\Media.
@@ -98,6 +100,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  */
 class Media extends SpatieMedia
 {
+    use Updater;
     /**
      * @var array<string, string>
      */
@@ -132,5 +135,13 @@ class Media extends SpatieMedia
         // MediaLibraryPro::ensureInstalled();
 
         return $this->belongsTo(TemporaryUpload::class);
+    }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(
+            User::class,
+            'created_by',
+        );
     }
 }
