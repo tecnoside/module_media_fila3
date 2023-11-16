@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\Radio;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Actions\DeleteAction;
 use Modules\Media\Enums\AttachmentTypeEnum;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Resources\RelationManagers\RelationManager;
+use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 
 class AttachmentResource extends Resource
 {
@@ -48,9 +49,10 @@ class AttachmentResource extends Resource
                     ->translateLabel()
                     ->label('camping::tables.attachments.size'),
 
-                TextColumn::make('creator.name')
+                TextColumn::make('creator.full_name')
                     ->translateLabel()
                     ->label('camping::tables.attachments.creator')
+                    //->default(fn($record)=>dddx($record))
                     ->toggleable(),
 
                 TextColumn::make('created_at')
@@ -133,7 +135,7 @@ class AttachmentResource extends Resource
                 ->required()
                 ->columnSpanFull(),
             */
-            Radio::make('attachment_type')->columnSpanFull(),
+            //Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -149,6 +151,8 @@ class AttachmentResource extends Resource
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
         $ownerRecord = $livewire->getOwnerRecord();
+        $mediaCollection=$data['attachment_type'] ?? 'default';
+
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
             throw new \Exception('wip');
         }
@@ -161,6 +165,18 @@ class AttachmentResource extends Resource
                 $data['name'] ?? Str::beforeLast($data['original_file_name'], '.'),
             )
             ->preservingOriginal()
-            ->toMediaCollection($data['attachment_type']);
+            ->toMediaCollection($mediaCollection);
+
+        $user_id=Filament::auth()->id();
+        $attachment->update([
+            'created_by'=>$user_id,
+            'updated_by'=>$user_id,
+        ]);
+        /*
+        $attachment->created_by=$user_id;
+        $attachment->created_by=$user_id;
+        $attachment->save();
+        */
+
     }
 }
