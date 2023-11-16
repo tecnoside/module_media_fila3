@@ -20,25 +20,19 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Media\Models\TemporaryUpload.
  *
- * @property int                                                                                  $id
- * @property string                                                                               $session_id
- * @property \Illuminate\Support\Carbon|null                                                      $created_at
- * @property string|null                                                                          $created_by
- * @property \Illuminate\Support\Carbon|null                                                      $updated_at
- * @property string|null                                                                          $updated_by
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
- * @property int|null                                                                             $media_count
- *
+ * @property int $id
+ * @property string $session_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
+ * @property-read int|null $media_count
  * @method static Builder|TemporaryUpload newModelQuery()
  * @method static Builder|TemporaryUpload newQuery()
  * @method static Builder|TemporaryUpload query()
  * @method static Builder|TemporaryUpload whereCreatedAt($value)
- * @method static Builder|TemporaryUpload whereCreatedBy($value)
  * @method static Builder|TemporaryUpload whereId($value)
  * @method static Builder|TemporaryUpload whereSessionId($value)
  * @method static Builder|TemporaryUpload whereUpdatedAt($value)
- * @method static Builder|TemporaryUpload whereUpdatedBy($value)
- *
  * @mixin \Eloquent
  */
 class TemporaryUpload extends Model implements HasMedia
