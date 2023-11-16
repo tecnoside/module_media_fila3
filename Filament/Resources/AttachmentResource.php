@@ -153,7 +153,7 @@ class AttachmentResource extends Resource
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
         $ownerRecord = $livewire->getOwnerRecord();
-        //$mediaCollection = $data['attachment_type'] ?? 'default';
+        // $mediaCollection = $data['attachment_type'] ?? 'default';
         $mediaCollection = 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
