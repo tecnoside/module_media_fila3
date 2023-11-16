@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Eloquent;
-use Modules\User\Models\User;
-use Illuminate\Support\Carbon;
-use Modules\Xot\Traits\Updater;
-use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Media\Enums\AttachmentTypeEnum;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
+use Modules\Media\Enums\AttachmentTypeEnum;
+use Modules\User\Models\User;
+use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 /**
  * Modules\Media\Models\Media.

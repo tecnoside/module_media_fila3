@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Radio;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
-use Filament\Forms\Components\Radio;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
-use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\DeleteAction;
-use Modules\Media\Enums\AttachmentTypeEnum;
 use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Modules\Media\Enums\AttachmentTypeEnum;
 
 class AttachmentResource extends Resource
 {
@@ -52,7 +52,7 @@ class AttachmentResource extends Resource
                 TextColumn::make('creator.full_name')
                     ->translateLabel()
                     ->label('camping::tables.attachments.creator')
-                    //->default(fn($record)=>dddx($record))
+                    // ->default(fn($record)=>dddx($record))
                     ->toggleable(),
 
                 TextColumn::make('created_at')
@@ -135,7 +135,7 @@ class AttachmentResource extends Resource
                 ->required()
                 ->columnSpanFull(),
             */
-            //Radio::make('attachment_type')->columnSpanFull(),
+            // Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -151,7 +151,7 @@ class AttachmentResource extends Resource
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
         $ownerRecord = $livewire->getOwnerRecord();
-        $mediaCollection=$data['attachment_type'] ?? 'default';
+        $mediaCollection = $data['attachment_type'] ?? 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
             throw new \Exception('wip');
@@ -167,16 +167,15 @@ class AttachmentResource extends Resource
             ->preservingOriginal()
             ->toMediaCollection($mediaCollection);
 
-        $user_id=Filament::auth()->id();
+        $user_id = Filament::auth()->id();
         $attachment->update([
-            'created_by'=>$user_id,
-            'updated_by'=>$user_id,
+            'created_by' => $user_id,
+            'updated_by' => $user_id,
         ]);
         /*
         $attachment->created_by=$user_id;
         $attachment->created_by=$user_id;
         $attachment->save();
         */
-
     }
 }
