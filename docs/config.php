@@ -1,7 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
+=======
+>>>>>>> d67aa59 (up)
 use Illuminate\Support\Str;
 
 return [
