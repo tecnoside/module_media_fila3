@@ -107,7 +107,12 @@ class Media extends SpatieMedia
      */
     protected $casts = [
         // 'attachment_type' => AttachmentTypeEnum::class,
+        'manipulations' => 'array',
+        'custom_properties' => 'array',
+        'generated_conversions' => 'array',
+        'responsive_images' => 'array',
     ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Collection
