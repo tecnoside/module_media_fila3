@@ -135,7 +135,7 @@ class AttachmentResource extends Resource
                 ->required()
                 ->columnSpanFull(),
             */
-            //Radio::make('attachment_type')->columnSpanFull(),
+            // Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -152,13 +152,13 @@ class AttachmentResource extends Resource
     {
         $ownerRecord = $livewire->getOwnerRecord();
         $mediaCollection = $data['attachment_type'] ?? 'default';
-        //$mediaCollection = 'default';
+        // $mediaCollection = 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
             throw new \Exception('wip');
         }
 
-        //dddx($ownerRecord);
+        // dddx($ownerRecord);
 
         $attachment = $ownerRecord
             ->addMediaFromDisk(
