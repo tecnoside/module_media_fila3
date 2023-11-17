@@ -101,6 +101,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 class Media extends SpatieMedia
 {
     use Updater;
+
     /**
      * @var array<string, string>
      */
