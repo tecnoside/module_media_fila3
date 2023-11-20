@@ -1,13 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 0d82eb1 (.)
-=======
->>>>>>> e7628ec (up)
 declare(strict_types=1);
 
 use App\Listeners\GenerateSitemap;
@@ -17,37 +9,6 @@ use TightenCo\Jigsaw\Jigsaw;
 /* @var $events \TightenCo\Jigsaw\Events\EventBus */
 
 /*
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-declare(strict_types=1);
-
->>>>>>> 8cc6011 (Check & fix styling)
-use App\Listeners\GenerateSitemap;
-use TightenCo\Jigsaw\Jigsaw;
-
-/* @var $container \Illuminate\Container\Container */
-/* @var $events \TightenCo\Jigsaw\Events\EventBus */
-
-<<<<<<< HEAD
-/**
->>>>>>> 97919d9 (up)
-=======
-/*
->>>>>>> 8cc6011 (Check & fix styling)
-=======
-use App\Listeners\GenerateSitemap;
-use TightenCo\Jigsaw\Jigsaw;
-
-/** @var $container \Illuminate\Container\Container */
-/** @var $events \TightenCo\Jigsaw\Events\EventBus */
-
-/**
->>>>>>> d67aa59 (up)
->>>>>>> 0d82eb1 (.)
-=======
->>>>>>> e7628ec (up)
  * You can run custom code at different stages of the build process by
  * listening to the 'beforeBuild', 'afterCollections', and 'afterBuild' events.
  *
