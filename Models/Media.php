@@ -5,16 +5,22 @@ declare(strict_types=1);
 namespace Modules\Media\Models;
 
 use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\User\Models\User;
 use Illuminate\Support\Carbon;
+use Modules\Xot\Traits\Updater;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Media\Enums\AttachmentTypeEnum;
+<<<<<<< HEAD
 use Modules\User\Models\User;
 use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+=======
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+>>>>>>> 87803b1 (up)
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
 
 /**
  * Modules\Media\Models\Media.
@@ -101,7 +107,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 class Media extends SpatieMedia
 {
     use Updater;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 87803b1 (up)
     /**
      * @var array<string, string>
      */
