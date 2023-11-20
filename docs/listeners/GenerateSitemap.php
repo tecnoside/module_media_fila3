@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 declare(strict_types=1);
 
 =======
@@ -10,6 +11,12 @@ declare(strict_types=1);
 declare(strict_types=1);
 
 >>>>>>> 8cc6011 (Check & fix styling)
+=======
+declare(strict_types=1);
+
+=======
+>>>>>>> d67aa59 (up)
+>>>>>>> 0d82eb1 (.)
 namespace App\Listeners;
 
 use Illuminate\Support\Str;
