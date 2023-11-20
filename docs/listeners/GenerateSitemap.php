@@ -1,7 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
+=======
+>>>>>>> 97919d9 (up)
 namespace App\Listeners;
 
 use Illuminate\Support\Str;
