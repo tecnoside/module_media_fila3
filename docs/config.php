@@ -18,6 +18,7 @@ return [
     'navigation' => require_once('navigation.php'),
 
     // helpers
+<<<<<<< HEAD
     'isActive' => static function ($page, $path) {
         return Str::endsWith(trimPath($page->getPath()), trimPath($path));
     },
@@ -29,6 +30,19 @@ return [
         }
     },
     'url' => static function ($page, $path) {
+=======
+    'isActive' => function ($page, $path) {
+        return Str::endsWith(trimPath($page->getPath()), trimPath($path));
+    },
+    'isActiveParent' => function ($page, $menuItem) {
+        if (is_object($menuItem) && $menuItem->children) {
+            return $menuItem->children->contains(function ($child) use ($page) {
+                return trimPath($page->getPath()) == trimPath($child);
+            });
+        }
+    },
+    'url' => function ($page, $path) {
+>>>>>>> f67977ef77e73e042322e1befe1802612e193f15
         return Str::startsWith($path, 'http') ? $path : '/'.trimPath($path);
     },
 ];
