@@ -2,6 +2,9 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0d82eb1 (.)
 declare(strict_types=1);
 
 use App\Listeners\GenerateSitemap;
@@ -12,6 +15,7 @@ use TightenCo\Jigsaw\Jigsaw;
 
 /*
 =======
+<<<<<<< HEAD
 =======
 declare(strict_types=1);
 
@@ -28,6 +32,16 @@ use TightenCo\Jigsaw\Jigsaw;
 =======
 /*
 >>>>>>> 8cc6011 (Check & fix styling)
+=======
+use App\Listeners\GenerateSitemap;
+use TightenCo\Jigsaw\Jigsaw;
+
+/** @var $container \Illuminate\Container\Container */
+/** @var $events \TightenCo\Jigsaw\Events\EventBus */
+
+/**
+>>>>>>> d67aa59 (up)
+>>>>>>> 0d82eb1 (.)
  * You can run custom code at different stages of the build process by
  * listening to the 'beforeBuild', 'afterCollections', and 'afterBuild' events.
  *
