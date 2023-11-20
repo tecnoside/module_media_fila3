@@ -31,7 +31,11 @@ class GenerateSitemap
         collect($jigsaw->getOutputPaths())
             ->reject(function ($path) {
                 return $this->isExcluded($path);
+<<<<<<< HEAD
             })->each(static function ($path) use ($baseUrl, $sitemap) {
+=======
+            })->each(function ($path) use ($baseUrl, $sitemap) {
+>>>>>>> 12c61062c32f4c0649b4871e704696080a9861cd
                 $sitemap->addItem(rtrim($baseUrl, '/').$path, time(), Sitemap::DAILY);
             });
 
