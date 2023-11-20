@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 declare(strict_types=1);
 
 =======
@@ -17,6 +18,10 @@ declare(strict_types=1);
 =======
 >>>>>>> d67aa59 (up)
 >>>>>>> 0d82eb1 (.)
+=======
+declare(strict_types=1);
+
+>>>>>>> e7628ec (up)
 return [
     'Getting Started' => [
         'url' => 'docs/getting-started',
