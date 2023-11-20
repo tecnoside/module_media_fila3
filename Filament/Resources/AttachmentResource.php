@@ -4,23 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+use Filament\Facades\Filament;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
-=======
->>>>>>> 87803b1 (up)
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
-=======
->>>>>>> f54fd74 (Check & fix styling)
-use Filament\Facades\Filament;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
@@ -30,6 +22,8 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Illuminate\Support\Str;
 use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 use Modules\Media\Enums\AttachmentTypeEnum;
@@ -65,15 +59,7 @@ class AttachmentResource extends Resource
                 TextColumn::make('creator.full_name')
                     ->translateLabel()
                     ->label('camping::tables.attachments.creator')
-<<<<<<< HEAD
-<<<<<<< HEAD
                     // ->default(fn($record)=>dddx($record))
-=======
-                    //->default(fn($record)=>dddx($record))
->>>>>>> 87803b1 (up)
-=======
-                    // ->default(fn($record)=>dddx($record))
->>>>>>> f54fd74 (Check & fix styling)
                     ->toggleable(),
 
                 TextColumn::make('created_at')
@@ -92,7 +78,7 @@ class AttachmentResource extends Resource
                         ->icon('heroicon-s-eye')
                         ->color('gray')
                         ->url(
-                            fn ($record): string => $record->getUrl()
+                            static fn ($record): string => $record->getUrl()
                         )->openUrlInNewTab(true),
                     DeleteAction::make()->requiresConfirmation(),
                     Action::make('download_attachment')
@@ -102,7 +88,7 @@ class AttachmentResource extends Resource
                         ->color('primary')
                         ->action(
                             // File extension obtained by substringing
-                            fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr((string) $record->file_name, '.'), 0))
+                            static fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr((string) $record->file_name, '.'), 0))
                         ),
                 ]),
             ])
@@ -156,15 +142,7 @@ class AttachmentResource extends Resource
                 ->required()
                 ->columnSpanFull(),
             */
-<<<<<<< HEAD
-<<<<<<< HEAD
             // Radio::make('attachment_type')->columnSpanFull(),
-=======
-            //Radio::make('attachment_type')->columnSpanFull(),
->>>>>>> 87803b1 (up)
-=======
-            // Radio::make('attachment_type')->columnSpanFull(),
->>>>>>> f54fd74 (Check & fix styling)
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -180,16 +158,7 @@ class AttachmentResource extends Resource
     public static function formHandlerCallback(RelationManager $livewire, array $data): void
     {
         $ownerRecord = $livewire->getOwnerRecord();
-<<<<<<< HEAD
-<<<<<<< HEAD
         $mediaCollection = $data['attachment_type'] ?? 'default';
-        // $mediaCollection = 'default';
-=======
-        $mediaCollection=$data['attachment_type'] ?? 'default';
->>>>>>> 87803b1 (up)
-=======
-        $mediaCollection = $data['attachment_type'] ?? 'default';
->>>>>>> f54fd74 (Check & fix styling)
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
             throw new \Exception('wip');
@@ -208,36 +177,15 @@ class AttachmentResource extends Resource
             ->preservingOriginal()
             ->toMediaCollection($mediaCollection);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         $user_id = Filament::auth()->id();
         $attachment->update([
             'created_by' => $user_id,
             'updated_by' => $user_id,
-=======
-        $user_id=Filament::auth()->id();
-        $attachment->update([
-            'created_by'=>$user_id,
-            'updated_by'=>$user_id,
->>>>>>> 87803b1 (up)
-=======
-        $user_id = Filament::auth()->id();
-        $attachment->update([
-            'created_by' => $user_id,
-            'updated_by' => $user_id,
->>>>>>> f54fd74 (Check & fix styling)
         ]);
         /*
         $attachment->created_by=$user_id;
         $attachment->created_by=$user_id;
         $attachment->save();
         */
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 87803b1 (up)
-=======
->>>>>>> f54fd74 (Check & fix styling)
     }
 }

@@ -6,26 +6,20 @@ namespace Modules\Media\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
-<<<<<<< HEAD
-use Modules\Media\Enums\AttachmentTypeEnum;
-<<<<<<< HEAD
-use Modules\User\Models\User;
-use Modules\Xot\Traits\Updater;
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-=======
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
->>>>>>> 87803b1 (up)
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
-=======
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Modules\Media\Enums\AttachmentTypeEnum;
+use Modules\Media\Enums\AttachmentTypeEnum;
+use Modules\User\Models\User;
 use Modules\User\Models\User;
 use Modules\Xot\Traits\Updater;
->>>>>>> f54fd74 (Check & fix styling)
+use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 /**
@@ -113,10 +107,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 class Media extends SpatieMedia
 {
     use Updater;
-<<<<<<< HEAD
-
-=======
->>>>>>> 87803b1 (up)
     /**
      * @var array<string, string>
      */
@@ -142,7 +132,7 @@ class Media extends SpatieMedia
             ->whereHasMorph(
                 'model',
                 [TemporaryUpload::class],
-                fn (Builder $builder) => $builder->where('session_id', session()->getId())
+                static fn (Builder $builder) => $builder->where('session_id', session()->getId())
             )
             ->get();
     }
