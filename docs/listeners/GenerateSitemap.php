@@ -1,27 +1,7 @@
 <?php
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 declare(strict_types=1);
 
-=======
->>>>>>> 97919d9 (up)
-=======
-declare(strict_types=1);
-
->>>>>>> 8cc6011 (Check & fix styling)
-=======
-declare(strict_types=1);
-
-=======
->>>>>>> d67aa59 (up)
->>>>>>> 0d82eb1 (.)
-=======
-declare(strict_types=1);
-
->>>>>>> e7628ec (up)
 namespace App\Listeners;
 
 use Illuminate\Support\Str;
@@ -51,7 +31,7 @@ class GenerateSitemap
         collect($jigsaw->getOutputPaths())
             ->reject(function ($path) {
                 return $this->isExcluded($path);
-            })->each(static function ($path) use ($baseUrl, $sitemap) {
+            })->each(function ($path) use ($baseUrl, $sitemap) {
                 $sitemap->addItem(rtrim($baseUrl, '/').$path, time(), Sitemap::DAILY);
             });
 
