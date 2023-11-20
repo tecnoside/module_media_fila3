@@ -1,10 +1,15 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 declare(strict_types=1);
 
 =======
 >>>>>>> 97919d9 (up)
+=======
+declare(strict_types=1);
+
+>>>>>>> 8cc6011 (Check & fix styling)
 return [
     'baseUrl' => 'https://jigsaw-docs-template.tighten.co',
     'production' => true,
