@@ -113,6 +113,7 @@ class Media extends SpatieMedia
         'responsive_images' => 'array',
     ];
 
+
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      *
