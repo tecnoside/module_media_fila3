@@ -67,7 +67,7 @@ class Clip extends Component
      */
     public function updateDataFromModal(string $id, array $data): void
     {
-        if ($id !== 'editClip') {
+        if ('editClip' !== $id) {
             return;
         }
         if ($data['id'] !== $this->model->getKey()) {
