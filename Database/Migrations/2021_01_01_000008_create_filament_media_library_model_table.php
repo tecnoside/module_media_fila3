@@ -21,7 +21,7 @@ class CreateFilamentMediaLibraryModelTable extends XotBaseMigration
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(static function (Blueprint $table) : void {
+        $this->tableCreate(function (Blueprint $table) : void {
             $table->bigIncrements('id');
             $table->morphs('model');
             $table->string('media_library_item_id');
