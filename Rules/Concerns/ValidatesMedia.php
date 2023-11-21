@@ -69,7 +69,7 @@ trait ValidatesMedia
                     foreach ($attributeRule->groupRules as $groupRule) {
                         $remainingRules[$attribute][] = $groupRule;
                     }
-                    
+
                     foreach ($attributeRule->itemRules as $itemRule) {
                         if ($itemRule instanceof AttributeRule) {
                             $ruleAttribute = $itemRule->attribute;
@@ -83,7 +83,7 @@ trait ValidatesMedia
                     $remainingRules[$attribute][] = $attributeRule;
                 }
 
-                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(static function ($attributeRule) : bool {
+                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule) : bool {
                     if (\is_string($attributeRule)) {
                         return false;
                     }

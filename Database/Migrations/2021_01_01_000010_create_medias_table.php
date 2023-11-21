@@ -21,7 +21,7 @@ class CreateMediasTable extends XotBaseMigration
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(static function (Blueprint $table) : void {
+        $this->tableCreate(function (Blueprint $table) : void {
             $table->bigIncrements('id');
             // $table->morphs('model');
             $table->uuidMorphs('model');
@@ -48,7 +48,7 @@ class CreateMediasTable extends XotBaseMigration
             if (! $this->hasColumn('user_id')) {
                 $table->integer('user_id');
             }
-            
+
             if (! $this->hasColumn('order_column')) {
                 $table->unsignedInteger('order_column')->nullable()->index();
             }
@@ -56,63 +56,63 @@ class CreateMediasTable extends XotBaseMigration
             if (! $this->hasColumn('disk')) {
                 $table->string('disk')->default('public');
             }
-            
+
             if (! $this->hasColumn('directory')) {
                 $table->string('directory')->default('media');
             }
-            
+
             if (! $this->hasColumn('name')) {
                 $table->string('name')->nullable();
             }
-            
+
             if (! $this->hasColumn('path')) {
                 $table->string('path')->nullable();
             }
-            
+
             if (! $this->hasColumn('width')) {
                 $table->unsignedInteger('width')->nullable();
             }
-            
+
             if (! $this->hasColumn('height')) {
                 $table->unsignedInteger('height')->nullable();
             }
-            
+
             if (! $this->hasColumn('size')) {
                 $table->unsignedInteger('size')->nullable();
             }
-            
+
             if (! $this->hasColumn('type')) {
                 $table->string('type')->default('image')->nullable();
             }
-            
+
             if (! $this->hasColumn('ext')) {
                 $table->string('ext')->nullable();
             }
-            
+
             if (! $this->hasColumn('alt')) {
                 $table->string('alt')->nullable();
             }
-            
+
             if (! $this->hasColumn('title')) {
                 $table->string('title')->nullable();
             }
-            
+
             if (! $this->hasColumn('description')) {
                 $table->text('description')->nullable();
             }
-            
+
             if (! $this->hasColumn('caption')) {
                 $table->text('caption')->nullable();
             }
-            
+
             if (! $this->hasColumn('exif')) {
                 $table->text('exif')->nullable();
             }
-            
+
             if (! $this->hasColumn('curations')) {
                 $table->longText('curations')->nullable();
             }
-            
+
             $this->updateUser($table);
         });
     }
