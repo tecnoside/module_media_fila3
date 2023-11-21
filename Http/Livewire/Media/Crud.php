@@ -24,7 +24,7 @@ class Crud extends Component
     /**
      * @var array
      */
-    public $upload;
+    public $upload = [];
 
     public string $collection;
 }

@@ -11,7 +11,8 @@
                     &laquo;
                 </a>
             </li>
-        <?php } ?>
+        <?php }
+ ?>
 
         <?php
             $skipped = false;
@@ -22,14 +23,16 @@
             ) {
                 $skipped = true;
                 continue;
-            } ?>
+            }
+             ?>
             <?php if ($skipped) {
                 $skipped = false; ?>
                 <li class="page-item disabled">
                     <a class="page-link">...</a>
                 </li>
                 <?php
-            } ?>
+            }
+             ?>
             <li class="page-item<?php if ($page_content['pages']['current'] === $i + 1) {
                 ?> active<?php
                                 } ?>">
@@ -37,8 +40,9 @@
                     <?php echo $i + 1; ?>
                 </a>
             </li>
-            <?php
-        } ?>
+<?php
+        }
+         ?>
 
         <?php if ($page_content['pages']['current'] === $page_content['pages']['total']) { ?>
             <li class="page-item disabled">
@@ -50,7 +54,9 @@
                     &raquo;
                 </a>
             </li>
-        <?php } ?>
+        <?php }
+                 ?>
     </ul>
-    <?php } ?>
+<?php }
+ ?>
 </nav>

@@ -30,7 +30,7 @@ trait WithMedia
     public function hydrateWithMedia(): void
     {
         foreach ($this->getMediaComponentNames() as $mediaComponentName) {
-            $this->listeners["{$mediaComponentName}:mediaChanged"] = 'onMediaChanged';
+            $this->listeners[sprintf('%s:mediaChanged', $mediaComponentName)] = 'onMediaChanged';
         }
     }
 
@@ -46,7 +46,7 @@ trait WithMedia
         $errorBag = $this->getErrorBag();
 
         foreach ($this->getMediaComponentNames() as $mediaComponentName) {
-            $this->dispatch("{$mediaComponentName}:mediaComponentValidationErrors", $mediaComponentName, $errorBag->toArray());
+            $this->dispatch(sprintf('%s:mediaComponentValidationErrors', $mediaComponentName), $mediaComponentName, $errorBag->toArray());
         }
     }
 
@@ -60,7 +60,7 @@ trait WithMedia
         }
 
         foreach ($mediaComponentNames as $mediumComponentName) {
-            $this->dispatch("{$mediumComponentName}:clearMedia", $mediumComponentName);
+            $this->dispatch(sprintf('%s:clearMedia', $mediumComponentName), $mediumComponentName);
 
             $this->{$mediumComponentName} = [];
         }
@@ -69,12 +69,11 @@ trait WithMedia
     protected function makeSureCustomPropertiesUseRightCasing(array $media): array
     {
         return collect($media)
-            ->map(function (array $mediaItemAttributes): array {
+            ->map(static function (array $mediaItemAttributes) : array {
                 if (! isset($mediaItemAttributes['custom_properties']) && isset($mediaItemAttributes['customProperties'])) {
                     $mediaItemAttributes['custom_properties'] = $mediaItemAttributes['customProperties'];
                     unset($mediaItemAttributes['customProperties']);
                 }
-
                 return $mediaItemAttributes;
             })
             ->toArray();

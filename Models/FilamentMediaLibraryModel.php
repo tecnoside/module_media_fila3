@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -14,8 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int                             $model_id
  * @property string                          $media_library_item_id
  * @property string                          $note
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null                     $created_by
  * @property string|null                     $updated_by
  *

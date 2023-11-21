@@ -21,7 +21,8 @@ $messages = BaseControllerClass::getFlash('messages');
                 <?php echo implode('<br>', $errors); ?>
             </div>
             <?php
-        } ?>
+        }
+ ?>
 
         <?php if (! empty($messages) && is_array($messages)) {
             ?>
@@ -29,7 +30,8 @@ $messages = BaseControllerClass::getFlash('messages');
                 <?php echo implode('<br>', $messages); ?>
             </div>
             <?php
-        } ?>
+        }
+             ?>
 
         <p>
             <a href="<?php echo $config_component['base_url'].$config_component['home_url']; ?>?action=users">
@@ -127,12 +129,14 @@ $messages = BaseControllerClass::getFlash('messages');
                         </a>
                     </li>
                         <?php
-                    } ?>
+                    }
+             ?>
                 </ul>
             </div>
         </div>
-            <?php
-        } ?>
+<?php
+        }
+                             ?>
 
         <?php if (! empty($input['output_data']) && ! empty($input['output_data']['data'])) {
             ?>
@@ -156,7 +160,8 @@ $messages = BaseControllerClass::getFlash('messages');
                                         <i class="icon-checkmark"></i>
                                     </a>
                                     <?php
-                                } ?>
+                                }
+                         ?>
                             </div>
 
                             <a href="<?php echo $item['url']; ?>" title="<?php echo $item['title']; ?>">
@@ -166,13 +171,15 @@ $messages = BaseControllerClass::getFlash('messages');
                                 <?php echo $item['title']; ?>
                             </a>
                         </li>
-                        <?php
-                    } ?>
+<?php
+                    }
+             ?>
                 </ul>
             </div>
         </div>
-            <?php
-        } ?>
+<?php
+        }
+                         ?>
 
     </div>
 </div>

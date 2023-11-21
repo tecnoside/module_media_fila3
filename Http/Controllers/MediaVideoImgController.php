@@ -21,7 +21,7 @@ class MediaVideoImgController extends Controller
         $disk = 'cache';
         $file = 'test.mp4';
         $cache_key = Str::slug($disk.'-'.$file.'-'.$second);
-        $bin = Cache::rememberForever($cache_key, fn () => app(GetVideoFrameContentAction::class)->execute($disk, $file, $second));
+        $bin = Cache::rememberForever($cache_key, static fn() => app(GetVideoFrameContentAction::class)->execute($disk, $file, $second));
         /*
         $res = Response::make(Image::cache(function ($image) use ($binaryImageContent) {
             $image = $image->make($binaryImageContent);

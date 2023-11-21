@@ -69,28 +69,27 @@ trait ValidatesMedia
                     foreach ($attributeRule->groupRules as $groupRule) {
                         $remainingRules[$attribute][] = $groupRule;
                     }
+                    
                     foreach ($attributeRule->itemRules as $itemRule) {
                         if ($itemRule instanceof AttributeRule) {
                             $ruleAttribute = $itemRule->attribute;
 
-                            $itemRules["{$attribute}.*.{$ruleAttribute}"][] = $itemRule;
+                            $itemRules[sprintf('%s.*.%s', $attribute, $ruleAttribute)][] = $itemRule;
                         } else {
-                            $itemRules["{$attribute}.*"][] = $itemRule;
+                            $itemRules[sprintf('%s.*', $attribute)][] = $itemRule;
                         }
                     }
                 } else {
                     $remainingRules[$attribute][] = $attributeRule;
                 }
 
-                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
+                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(static function ($attributeRule) : bool {
                     if (\is_string($attributeRule)) {
                         return false;
                     }
-
                     if ($attributeRule instanceof MinItemsRule && $attributeRule->getMinItemCount()) {
                         return true;
                     }
-
                     return $attributeRule instanceof MinTotalSizeInKbRule && $attributeRule->getMinTotalSizeInKb();
                 });
 

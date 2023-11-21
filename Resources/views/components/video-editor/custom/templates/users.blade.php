@@ -69,7 +69,8 @@ if (empty($user) || 'admin' !== $user['role']) {
                             <?php echo $user['google_id']; ?>
                         </a>
                         <?php
-                    } ?>
+                    }
+                 ?>
                 </td>
                 <td>
                     <?php echo $user['email']; ?>
@@ -91,7 +92,8 @@ if (empty($user) || 'admin' !== $user['role']) {
                             <?php echo $lang_arr['user']; ?>
                         </div>
                         <?php
-                    } ?>
+                    }
+                         ?>
                 </td>
                 <td>
                     <?php
@@ -112,7 +114,8 @@ if (empty($user) || 'admin' !== $user['role']) {
                         ?>
                         <i class="icon-cross"></i>
                         <?php
-                    } ?>
+                    }
+                     ?>
                 </td>
                 <td class="text-right no-wrap">
                     <a class="btn btn-secondary btn-sm" href="<?php echo $config_component['base_url'].$config_component['home_url'].'?action=edit_user&user_id='.urlencode((string) $user['id']); ?>">
@@ -123,13 +126,14 @@ if (empty($user) || 'admin' !== $user['role']) {
                     </a>
                 </td>
             </tr>
-                <?php
-            } ?>
+<?php
+            }
+     ?>
         </tbody>
     </table>
     </div>
 
     <?php include __DIR__.'/pagination.html.php'; ?>
 
-    <?php
+<?php
 } ?>

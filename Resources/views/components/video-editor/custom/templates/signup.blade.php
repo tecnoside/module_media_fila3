@@ -26,7 +26,8 @@ $errors = AuthController::getFlash('errors');
         <?php echo implode('<br>', $errors); ?>
     </div>
     <?php
-} ?>
+}
+ ?>
 
 <div class="container">
     <div class="row justify-content-center">

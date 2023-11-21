@@ -21,7 +21,7 @@ class CreateFilamentMediaLibraryModelTable extends XotBaseMigration
     public function up(): void
     {
         // -- CREATE --
-        $this->tableCreate(function (Blueprint $table): void {
+        $this->tableCreate(static function (Blueprint $table) : void {
             $table->bigIncrements('id');
             $table->morphs('model');
             $table->string('media_library_item_id');
@@ -33,10 +33,14 @@ class CreateFilamentMediaLibraryModelTable extends XotBaseMigration
         });
         // -- UPDATE --
 
-        $this->tableUpdate(function (Blueprint $table): void {
-            if (! $this->hasColumn('media_library_item_id') && $this->hasColumn('media_library_id')) {
-                $table->renameColumn('media_library_id', 'media_library_item_id');
+        $this->tableUpdate(function (Blueprint $table) : void {
+            if ($this->hasColumn('media_library_item_id')) {
+                return;
             }
+            if (!$this->hasColumn('media_library_id')) {
+                return;
+            }
+            $table->renameColumn('media_library_id', 'media_library_item_id');
         });
     }
 }
