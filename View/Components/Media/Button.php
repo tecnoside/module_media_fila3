@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\View\Components\Media;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Modules\Xot\Actions\GetViewAction;
@@ -24,7 +25,7 @@ class Button extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function render(): Renderable
     {

@@ -46,7 +46,7 @@ class StreamController extends BaseController
 
         $videoStream = new VideoStream($press->disk, $press->file_mp4);
 
-        return response()->stream(function () use ($videoStream): never {
+        return response()->stream(static function () use ($videoStream) : never {
             $videoStream->start();
         });
     }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
+use Filament\Forms\Components\BaseFileUpload;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
@@ -40,9 +42,9 @@ class MediaResource extends Resource
     }
 
     /**
-     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload|FileUpload)[]
+     * @return (Radio | TextInput | BaseFileUpload | FileUpload)[]
      *
-     * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
+     * @psalm-return list{BaseFileUpload&FileUpload, Radio, TextInput}
      */
     public static function getFormSchema(bool $asset = true): array
     {
@@ -134,7 +136,7 @@ class MediaResource extends Resource
                     ->icon('heroicon-s-eye')
                     ->color('gray')
                     ->url(
-                        fn ($record): string => $record->getUrl()
+                        static fn($record): string => $record->getUrl()
                     )->openUrlInNewTab(true),
                 DeleteAction::make()->label('')->requiresConfirmation(),
                 Action::make('download_attachment')
@@ -144,7 +146,7 @@ class MediaResource extends Resource
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('primary')
                     ->action(
-                        fn ($record) => response()->download($record->getPath(), $record->file_name)
+                        static fn($record) => response()->download($record->getPath(), $record->file_name)
                     ),
                 // ]),
             ])
@@ -168,9 +170,9 @@ class MediaResource extends Resource
     }
 
     /**
-     * @return \Filament\Resources\Pages\PageRegistration[]
+     * @return PageRegistration[]
      *
-     * @psalm-return array{index: \Filament\Resources\Pages\PageRegistration, create: \Filament\Resources\Pages\PageRegistration, edit: \Filament\Resources\Pages\PageRegistration}
+     * @psalm-return array{index: PageRegistration, create: PageRegistration, edit: PageRegistration}
      */
     public static function getPages(): array
     {

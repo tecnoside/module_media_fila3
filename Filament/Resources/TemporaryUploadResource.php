@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -63,9 +64,9 @@ class TemporaryUploadResource extends Resource
     }
 
     /**
-     * @return \Filament\Resources\Pages\PageRegistration[]
+     * @return PageRegistration[]
      *
-     * @psalm-return array{index: \Filament\Resources\Pages\PageRegistration, create: \Filament\Resources\Pages\PageRegistration, edit: \Filament\Resources\Pages\PageRegistration}
+     * @psalm-return array{index: PageRegistration, create: PageRegistration, edit: PageRegistration}
      */
     public static function getPages(): array
     {

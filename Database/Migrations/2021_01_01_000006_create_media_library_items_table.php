@@ -40,6 +40,7 @@ class CreateMediaLibraryItemsTable extends XotBaseMigration
             if (! $this->hasColumn('order_column')) {
                 $table->integer('order_column')->nullable();
             }
+
             if (! $this->hasColumn('folder_id')) {
                 $table->foreignId('folder_id')->nullable()->after('alt_text');
                 // ->constrained('filament_media_library_folders');

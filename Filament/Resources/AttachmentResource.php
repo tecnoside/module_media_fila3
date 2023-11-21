@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
+use Filament\Forms\Components\BaseFileUpload;
+use Exception;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
@@ -96,9 +98,9 @@ class AttachmentResource extends Resource
     }
 
     /**
-     * @return (Radio|TextInput|\Filament\Forms\Components\BaseFileUpload|FileUpload)[]
+     * @return (Radio | TextInput | BaseFileUpload | FileUpload)[]
      *
-     * @psalm-return list{\Filament\Forms\Components\BaseFileUpload&FileUpload, Radio, TextInput}
+     * @psalm-return list{BaseFileUpload&FileUpload, Radio, TextInput}
      */
     public static function getFormSchema(bool $asset = true): array
     {
@@ -154,7 +156,7 @@ class AttachmentResource extends Resource
         $mediaCollection = $data['attachment_type'] ?? 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
-            throw new \Exception('wip');
+            throw new Exception('wip');
         }
 
         // dddx($ownerRecord);

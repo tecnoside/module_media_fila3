@@ -73,6 +73,7 @@ echo 'config app_title';
                 } else {
                     ?>bg-success<?php
                 }
+            
                 ?>"
                     role="progressbar" style="width: <?php
                     echo 'opzioni utente files_size_percent';

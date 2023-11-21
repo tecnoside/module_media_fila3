@@ -39,7 +39,8 @@ $messages = AuthController::getFlash('messages');
         </a>
     </div>
     <?php
-} ?>
+}
+ ?>
 
 <?php if (! empty($errors) && is_array($errors)) {
     ?>
@@ -47,7 +48,8 @@ $messages = AuthController::getFlash('messages');
         <?php echo implode('<br>', $errors); ?>
     </div>
     <?php
-} ?>
+}
+     ?>
 
 <?php if (! empty($messages) && is_array($messages)) {
     ?>
@@ -55,7 +57,8 @@ $messages = AuthController::getFlash('messages');
         <?php echo implode('<br>', $messages); ?>
     </div>
     <?php
-} ?>
+}
+     ?>
 
 <hr>
 

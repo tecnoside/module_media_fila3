@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use RalphJSmit\Filament\MediaLibrary\Media\Models\MediaLibraryFolder as BaseMediaLibraryFolder;
 use Spatie\EloquentSortable\Sortable;
@@ -15,13 +17,13 @@ use Spatie\EloquentSortable\SortableTrait;
  * @property int                                                               $id
  * @property int|null                                                          $parent_id
  * @property string                                                            $name
- * @property \Illuminate\Support\Carbon|null                                   $created_at
- * @property \Illuminate\Support\Carbon|null                                   $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null                                                       $user_id
  * @property string|null                                                       $updated_by
  * @property string|null                                                       $created_by
  * @property int|null                                                          $order_column
- * @property \Illuminate\Database\Eloquent\Collection<int, MediaLibraryFolder> $children
+ * @property Collection<int, MediaLibraryFolder> $children
  * @property int|null                                                          $children_count
  *
  * @method static Builder|MediaLibraryFolder newModelQuery()

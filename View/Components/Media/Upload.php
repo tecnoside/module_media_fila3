@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\View\Components\Media;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Webmozart\Assert\Assert;
 
@@ -31,7 +32,7 @@ class Upload extends Component
     }
 
     /**
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function render()
     {

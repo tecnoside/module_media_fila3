@@ -37,7 +37,8 @@ $userOptions = [
                     <?php echo $lang_arr['users']; ?>
                 </a>
                     <?php
-                } ?>
+                }
+ ?>
                 <?php if ($userOptions['show_log']) {
                     ?>
                 <div class="dropdown-divider"></div>
@@ -46,7 +47,8 @@ $userOptions = [
                     <?php echo $lang_arr['log']; ?>
                 </a>
                     <?php
-                } ?>
+                }
+                     ?>
                 <?php if ($config_component['authentication']) {
                     ?>
                 <div class="dropdown-divider"></div>
@@ -55,7 +57,8 @@ $userOptions = [
                     <?php echo $lang_arr['log_out']; ?>
                 </a>
                     <?php
-                } ?>
+                }
+                     ?>
             </div>
         </div>
 

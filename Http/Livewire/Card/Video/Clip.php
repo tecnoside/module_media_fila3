@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Card\Video;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 use Modules\Xot\Actions\GetViewAction;
@@ -40,7 +41,7 @@ class Clip extends Component
     /**
      * Undocumented function.
      */
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
         /**
          * @phpstan-var view-string
@@ -59,7 +60,7 @@ class Clip extends Component
     public function editClip(): void
     {
         $data = $this->model->toArray();
-        $this->dispatch('showModal', 'editClip', $data);
+        $this->dispatch('showModal', ['editClip', $data]);
     }
 
     /**
@@ -70,9 +71,11 @@ class Clip extends Component
         if ('editClip' !== $id) {
             return;
         }
+        
         if ($data['id'] !== $this->model->getKey()) {
             return;
         }
+        
         // dddx(['data'=>$data,'model'=>$this->model]);
 
         $up = collect($data)
