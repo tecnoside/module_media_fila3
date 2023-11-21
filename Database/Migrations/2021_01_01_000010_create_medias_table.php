@@ -23,7 +23,7 @@ class CreateMediasTable extends XotBaseMigration
         // -- CREATE --
         $this->tableCreate(function (Blueprint $table) : void {
             $table->bigIncrements('id');
-            // $table->morphs('model');
+            //$table->morphs('model');
             $table->uuidMorphs('model');
             $table->uuid('uuid')->nullable()->unique();
             $table->string('collection_name');
@@ -112,7 +112,6 @@ class CreateMediasTable extends XotBaseMigration
             if (! $this->hasColumn('curations')) {
                 $table->longText('curations')->nullable();
             }
-
             $this->updateUser($table);
         });
     }
