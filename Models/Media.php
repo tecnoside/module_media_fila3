@@ -37,6 +37,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property int|null $order_column
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property int $user_id
  * @property-read User|null $creator
  * @property-read Model|\Eloquent $model
  * @property-read \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
@@ -49,6 +52,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media whereCollectionName($value)
  * @method static Builder|Media whereConversionsDisk($value)
  * @method static Builder|Media whereCreatedAt($value)
+ * @method static Builder|Media whereCreatedBy($value)
  * @method static Builder|Media whereCustomProperties($value)
  * @method static Builder|Media whereDisk($value)
  * @method static Builder|Media whereFileName($value)
@@ -63,6 +67,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media whereResponsiveImages($value)
  * @method static Builder|Media whereSize($value)
  * @method static Builder|Media whereUpdatedAt($value)
+ * @method static Builder|Media whereUpdatedBy($value)
+ * @method static Builder|Media whereUserId($value)
  * @method static Builder|Media whereUuid($value)
  * @mixin Eloquent
  */
