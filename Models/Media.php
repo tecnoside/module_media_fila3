@@ -40,18 +40,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null $created_by
  * @property string|null $updated_by
  * @property int $user_id
- * @property string $directory
- * @property string|null $path
- * @property int|null $width
- * @property int|null $height
- * @property string|null $type
- * @property string|null $ext
- * @property string|null $alt
- * @property string|null $title
- * @property string|null $description
- * @property string|null $caption
- * @property string|null $exif
- * @property string|null $curations
  * @property-read User|null $creator
  * @property-read Model|\Eloquent $model
  * @property-read \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
@@ -61,22 +49,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media newQuery()
  * @method static Builder|Media ordered()
  * @method static Builder|Media query()
- * @method static Builder|Media whereAlt($value)
- * @method static Builder|Media whereCaption($value)
  * @method static Builder|Media whereCollectionName($value)
  * @method static Builder|Media whereConversionsDisk($value)
  * @method static Builder|Media whereCreatedAt($value)
  * @method static Builder|Media whereCreatedBy($value)
- * @method static Builder|Media whereCurations($value)
  * @method static Builder|Media whereCustomProperties($value)
- * @method static Builder|Media whereDescription($value)
- * @method static Builder|Media whereDirectory($value)
  * @method static Builder|Media whereDisk($value)
- * @method static Builder|Media whereExif($value)
- * @method static Builder|Media whereExt($value)
  * @method static Builder|Media whereFileName($value)
  * @method static Builder|Media whereGeneratedConversions($value)
- * @method static Builder|Media whereHeight($value)
  * @method static Builder|Media whereId($value)
  * @method static Builder|Media whereManipulations($value)
  * @method static Builder|Media whereMimeType($value)
@@ -84,16 +64,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media whereModelType($value)
  * @method static Builder|Media whereName($value)
  * @method static Builder|Media whereOrderColumn($value)
- * @method static Builder|Media wherePath($value)
  * @method static Builder|Media whereResponsiveImages($value)
  * @method static Builder|Media whereSize($value)
- * @method static Builder|Media whereTitle($value)
- * @method static Builder|Media whereType($value)
  * @method static Builder|Media whereUpdatedAt($value)
  * @method static Builder|Media whereUpdatedBy($value)
  * @method static Builder|Media whereUserId($value)
  * @method static Builder|Media whereUuid($value)
- * @method static Builder|Media whereWidth($value)
  * @mixin Eloquent
  */
 class Media extends SpatieMedia
