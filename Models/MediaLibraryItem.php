@@ -26,7 +26,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null $user_id
  * @property string|null $updated_by
  * @property string|null $created_by
- * @property-read MediaCollection<int, Media> $media
+ * @property-read MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read User|null $user
  * @method static \RalphJSmit\Filament\MediaLibrary\Database\Factories\Media\MediaLibraryFactory factory($count = null, $state = [])

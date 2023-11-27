@@ -30,16 +30,16 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string $disk
  * @property string|null $conversions_disk
  * @property int $size
- * @property array $manipulations
- * @property array $custom_properties
- * @property array $generated_conversions
- * @property array $responsive_images
+ * @property array|null $manipulations
+ * @property array|null $custom_properties
+ * @property array|null $generated_conversions
+ * @property array|null $responsive_images
  * @property int|null $order_column
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
- * @property int $user_id
+ * @property int|null $user_id
  * @property string $directory
  * @property string|null $path
  * @property int|null $width
