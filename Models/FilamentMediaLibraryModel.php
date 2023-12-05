@@ -17,4 +17,5 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class FilamentMediaLibraryModel extends BaseMorphPivot
 {
+
 }
