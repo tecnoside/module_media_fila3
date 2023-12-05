@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Media\Http\Livewire\Media;
 
-use Illuminate\Contracts\View\View;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 

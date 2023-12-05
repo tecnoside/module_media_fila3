@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\View\Components\Webcam;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Modules\Xot\Actions\GetViewAction;
 

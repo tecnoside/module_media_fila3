@@ -64,11 +64,12 @@ trait WithMedia
     protected function makeSureCustomPropertiesUseRightCasing(array $media): array
     {
         return collect($media)
-            ->map(function (array $mediaItemAttributes) : array {
+            ->map(function (array $mediaItemAttributes): array {
                 if (! isset($mediaItemAttributes['custom_properties']) && isset($mediaItemAttributes['customProperties'])) {
                     $mediaItemAttributes['custom_properties'] = $mediaItemAttributes['customProperties'];
                     unset($mediaItemAttributes['customProperties']);
                 }
+
                 return $mediaItemAttributes;
             })
             ->toArray();

@@ -83,13 +83,14 @@ trait ValidatesMedia
                     $remainingRules[$attribute][] = $attributeRule;
                 }
 
-                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule) : bool {
+                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
                     if (\is_string($attributeRule)) {
                         return false;
                     }
                     if ($attributeRule instanceof MinItemsRule && $attributeRule->getMinItemCount()) {
                         return true;
                     }
+
                     return $attributeRule instanceof MinTotalSizeInKbRule && $attributeRule->getMinTotalSizeInKb();
                 });
 
