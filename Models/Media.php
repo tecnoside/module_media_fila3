@@ -34,6 +34,11 @@ class Media extends SpatieMedia
 {
     use Updater;
 
+     /**
+     * @var string
+     */
+    protected $connection = 'media';
+
     /**
      * @var array<string, string>
      */

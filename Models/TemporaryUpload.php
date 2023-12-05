@@ -40,6 +40,11 @@ class TemporaryUpload extends Model implements HasMedia
     use InteractsWithMedia;
     use MassPrunable;
 
+     /**
+     * @var string
+     */
+    protected $connection = 'media';
+
     public static ?\Closure $manipulatePreview = null;
 
     public static ?string $disk = null;

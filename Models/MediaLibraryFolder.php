@@ -26,6 +26,11 @@ class MediaLibraryFolder extends BaseMediaLibraryFolder implements Sortable
 {
     use SortableTrait;
 
+     /**
+     * @var string
+     */
+    protected $connection = 'media';
+
     /**
      * @var string
      */
