@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Services;
 
-use SimpleXMLElement;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
@@ -153,10 +152,10 @@ class SubtitleService
             foreach ($sentence->item as $item) {
                 $attributes = $item->attributes();
 
-                if (! $attributes instanceof SimpleXMLElement) {
-                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+                if (! $attributes instanceof \SimpleXMLElement) {
+                    throw new \Exception('['.__LINE__.']['.__FILE__.']');
                 }
-                
+
                 // 00:06:35,360
                 $start = (int) $attributes->start->__toString() / 1000;
                 $end = (int) $attributes->end->__toString() / 1000;
@@ -195,11 +194,11 @@ class SubtitleService
             while (($line = fgets($fileHandle, 8192)) !== false) {
                 $lines[] = $line;
             }
-            
+
             if (! feof($fileHandle)) {
                 exit("Error: unexpected fgets() fail\n");
             }
-            
+
             // ($fileHandle);
         }
 
@@ -209,7 +208,7 @@ class SubtitleService
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }
-        
+
         $header = "WEBVTT\n\n";
 
         file_put_contents(public_path($webVttFile), $header.implode('', $lines));

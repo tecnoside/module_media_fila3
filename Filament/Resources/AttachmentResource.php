@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Forms\Components\BaseFileUpload;
-use Exception;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
@@ -98,7 +97,7 @@ class AttachmentResource extends Resource
     }
 
     /**
-     * @return (Radio | TextInput | BaseFileUpload | FileUpload)[]
+     * @return (Radio|TextInput|BaseFileUpload|FileUpload)[]
      *
      * @psalm-return list{BaseFileUpload&FileUpload, Radio, TextInput}
      */
@@ -137,7 +136,7 @@ class AttachmentResource extends Resource
                 ->required()
                 ->columnSpanFull(),
             */
-            //Radio::make('attachment_type')->columnSpanFull(),
+            // Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
                 ->label('camping::forms.attachments.fields.name.field_name')
@@ -154,13 +153,11 @@ class AttachmentResource extends Resource
     {
         $ownerRecord = $livewire->getOwnerRecord();
         $mediaCollection = $data['attachment_type'] ?? 'default';
-        //$mediaCollection = 'default';
+        // $mediaCollection = 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
-            throw new Exception('wip');
+            throw new \Exception('wip');
         }
-
-
 
         $attachment = $ownerRecord
             ->addMediaFromDisk(

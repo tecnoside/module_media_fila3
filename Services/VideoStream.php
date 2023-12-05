@@ -65,7 +65,7 @@ class VideoStream
         $mime = $filesystem->mimeType($path);
 
         if (! \is_string($mime)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $this->mime = $mime;
@@ -170,8 +170,6 @@ class VideoStream
 
     /**
      * close curretly opened stream.
-     *
-     * @return never
      */
     private function end(): never
     {

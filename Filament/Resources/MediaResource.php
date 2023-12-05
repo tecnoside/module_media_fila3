@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Media\Filament\Resources;
 
 use Filament\Forms\Components\BaseFileUpload;
-use Filament\Resources\Pages\PageRegistration;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\PageRegistration;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
@@ -42,7 +42,7 @@ class MediaResource extends Resource
     }
 
     /**
-     * @return (Radio | TextInput | BaseFileUpload | FileUpload)[]
+     * @return (Radio|TextInput|BaseFileUpload|FileUpload)[]
      *
      * @psalm-return list{BaseFileUpload&FileUpload, Radio, TextInput}
      */
@@ -136,7 +136,7 @@ class MediaResource extends Resource
                     ->icon('heroicon-s-eye')
                     ->color('gray')
                     ->url(
-                        static fn($record): string => $record->getUrl()
+                        static fn ($record): string => $record->getUrl()
                     )->openUrlInNewTab(true),
                 DeleteAction::make()->label('')->requiresConfirmation(),
                 Action::make('download_attachment')
@@ -146,7 +146,7 @@ class MediaResource extends Resource
                     ->icon('heroicon-o-arrow-down-tray')
                     ->color('primary')
                     ->action(
-                        static fn($record) => response()->download($record->getPath(), $record->file_name)
+                        static fn ($record) => response()->download($record->getPath(), $record->file_name)
                     ),
                 // ]),
             ])

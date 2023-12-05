@@ -8,7 +8,6 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Modules\User\Models\User;
@@ -19,22 +18,24 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 /**
  * Modules\Media\Models\Media.
  *
- * @property-read User|null $creator
- * @property-read Model|\Eloquent $model
- * @property-read \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
+ * @property User|null                                  $creator
+ * @property Model|\Eloquent                            $model
+ * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
+ *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static Builder|Media newModelQuery()
- * @method static Builder|Media newQuery()
- * @method static Builder|Media ordered()
- * @method static Builder|Media query()
+ * @method static Builder|Media                newModelQuery()
+ * @method static Builder|Media                newQuery()
+ * @method static Builder|Media                ordered()
+ * @method static Builder|Media                query()
+ *
  * @mixin Eloquent
  */
 class Media extends SpatieMedia
 {
     use Updater;
 
-     /**
+    /**
      * @var string
      */
     protected $connection = 'media';
@@ -49,7 +50,6 @@ class Media extends SpatieMedia
         'generated_conversions' => 'array',
         'responsive_images' => 'array',
     ];
-
 
     /**
      * @return \Illuminate\Database\Eloquent\Collection

@@ -21,7 +21,7 @@ class MediaLibraryRequestItem
     public static function fromArray(array $properties): static
     {
         $properties = collect($properties)
-            ->keyBy(static fn($value, $key) => Str::snake($key));
+            ->keyBy(static fn ($value, $key) => Str::snake($key));
 
         return new static(
             $properties['uuid'],

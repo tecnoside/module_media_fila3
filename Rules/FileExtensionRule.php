@@ -14,7 +14,7 @@ class FileExtensionRule implements Rule
     public function __construct(array $validExtensions = [])
     {
         $this->validExtensions = array_map(
-            static fn(string $extension): string => strtolower($extension),
+            static fn (string $extension): string => strtolower($extension),
             $validExtensions,
         );
     }
