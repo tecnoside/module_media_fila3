@@ -19,7 +19,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+//use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 use Modules\Media\Enums\AttachmentTypeEnum;
 
 class AttachmentResource extends Resource
@@ -88,7 +88,7 @@ class AttachmentResource extends Resource
             ])
             ->bulkActions([
                 DeleteBulkAction::make(),
-                AttachmentDownloadBulkAction::make(),
+                //AttachmentDownloadBulkAction::make(),
             ])
             ->defaultSort(
                 column: 'created_at',

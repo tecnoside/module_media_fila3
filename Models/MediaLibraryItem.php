@@ -18,13 +18,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property MediaCollection<int, Media> $media
  * @property int|null                    $media_count
  * @property User|null                   $user
- *
  * @method static \RalphJSmit\Filament\MediaLibrary\Database\Factories\Media\MediaLibraryFactory factory($count = null, $state = [])
  * @method static Builder|MediaLibraryItem                                                       newModelQuery()
  * @method static Builder|MediaLibraryItem                                                       newQuery()
  * @method static Builder|MediaLibraryItem                                                       ordered(string $direction = 'asc')
  * @method static Builder|MediaLibraryItem                                                       query()
- *
  * @property int                                           $id
  * @property string|null                                   $uploaded_by_user_id
  * @property string|null                                   $caption
@@ -37,7 +35,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null                                   $updated_by
  * @property string|null                                   $created_by
  * @property \Modules\Media\Models\MediaLibraryFolder|null $folder
- *
  * @method static Builder|MediaLibraryItem whereAltText($value)
  * @method static Builder|MediaLibraryItem whereCaption($value)
  * @method static Builder|MediaLibraryItem whereCreatedAt($value)
@@ -49,7 +46,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static Builder|MediaLibraryItem whereUpdatedBy($value)
  * @method static Builder|MediaLibraryItem whereUploadedByUserId($value)
  * @method static Builder|MediaLibraryItem whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class MediaLibraryItem extends BaseMediaLibraryItem implements Sortable
