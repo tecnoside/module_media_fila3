@@ -15,12 +15,10 @@ use Spatie\EloquentSortable\SortableTrait;
  *
  * @property Collection<int, MediaLibraryFolder> $children
  * @property int|null                            $children_count
- *
  * @method static Builder|MediaLibraryFolder newModelQuery()
  * @method static Builder|MediaLibraryFolder newQuery()
  * @method static Builder|MediaLibraryFolder ordered(string $direction = 'asc')
  * @method static Builder|MediaLibraryFolder query()
- *
  * @property int                                                     $id
  * @property int|null                                                $parent_id
  * @property string                                                  $name
@@ -32,7 +30,6 @@ use Spatie\EloquentSortable\SortableTrait;
  * @property int|null                                                $order_column
  * @property Collection<int, \Modules\Media\Models\MediaLibraryItem> $mediaLibraryItems
  * @property int|null                                                $media_library_items_count
- *
  * @method static Builder|MediaLibraryFolder whereCreatedAt($value)
  * @method static Builder|MediaLibraryFolder whereCreatedBy($value)
  * @method static Builder|MediaLibraryFolder whereId($value)
@@ -42,7 +39,6 @@ use Spatie\EloquentSortable\SortableTrait;
  * @method static Builder|MediaLibraryFolder whereUpdatedAt($value)
  * @method static Builder|MediaLibraryFolder whereUpdatedBy($value)
  * @method static Builder|MediaLibraryFolder whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class MediaLibraryFolder extends BaseMediaLibraryFolder implements Sortable
