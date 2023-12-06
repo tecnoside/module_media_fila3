@@ -20,12 +20,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property User|null                                  $creator
  * @property Model|\Eloquent                            $model
  * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
+ *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static Builder|Media                newModelQuery()
  * @method static Builder|Media                newQuery()
  * @method static Builder|Media                ordered()
  * @method static Builder|Media                query()
+ *
  * @property int                             $id
  * @property string                          $model_type
  * @property string                          $model_id
@@ -59,6 +61,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @property string|null                     $caption
  * @property string|null                     $exif
  * @property string|null                     $curations
+ *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static Builder|Media                whereAlt($value)
@@ -94,7 +97,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media                whereUserId($value)
  * @method static Builder|Media                whereUuid($value)
  * @method static Builder|Media                whereWidth($value)
+ *
  * @mixin Eloquent
+ *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static MediaCollection<int, static> all($columns = ['*'])
@@ -107,6 +112,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static MediaCollection<int, static> get($columns = ['*'])
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])
+ *
  * @mixin \Eloquent
  */
 class Media extends SpatieMedia
