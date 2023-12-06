@@ -39,3 +39,4 @@ build/
 *.cache
 docs/vendor
 /docs/vendor
+.php-cs-fixer.cache
