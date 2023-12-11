@@ -4,23 +4,24 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Facades\Filament;
-use Filament\Forms\Components\BaseFileUpload;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Radio;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Resource;
-use Filament\Tables\Actions\Action;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\DeleteBulkAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Webmozart\Assert\Assert;
+use Filament\Facades\Filament;
+use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Filament\Forms\Components\Radio;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Actions\DeleteAction;
 use Modules\Media\Enums\AttachmentTypeEnum;
+use Filament\Forms\Components\BaseFileUpload;
+// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Filament\Tables\Actions\DeleteBulkAction;
+use Filament\Resources\RelationManagers\RelationManager;
 
 class AttachmentResource extends Resource
 {
@@ -82,7 +83,7 @@ class AttachmentResource extends Resource
                         ->color('primary')
                         ->action(
                             // File extension obtained by substringing
-                            static fn ($record) => response()->download($record->getPath(), $record->name.substr(strrchr((string) $record->file_name, '.'), 0))
+                            static fn ($record) => response()->download($record->getPath(), $record->name.substr((string)strrchr((string) $record->file_name, '.'), 0))
                         ),
                 ]),
             ])
@@ -99,10 +100,14 @@ class AttachmentResource extends Resource
     /**
      * @return (Radio|TextInput|BaseFileUpload|FileUpload)[]
      *
-     * @psalm-return list{BaseFileUpload&FileUpload, Radio, TextInput}
      */
     public static function getFormSchema(bool $asset = true): array
     {
+
+        Assert::string($disk = $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver'));
+        Assert::isArray($file_types = $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types'));
+        Assert::integer($max_size = config('media-library.max_file_size'));
+
         return [
             FileUpload::make('file')
                 ->translateLabel()
@@ -111,16 +116,10 @@ class AttachmentResource extends Resource
                     trans('camping::forms.attachments.fields.file.hint'),
                 )
                 ->storeFileNamesIn('original_file_name')
-                ->disk(
-                    $asset ? config('camping.asset.attachments.disk.driver') : config('camping.operation.attachments.disk.driver'),
-                )
-                ->acceptedFileTypes(
-                    $asset ? config('camping.asset.attachments.allowed_file_types') : config('camping.operation.attachments.allowed_file_types'),
-                )
+                ->disk($disk)
+                ->acceptedFileTypes($file_types)
                 ->visibility('private')
-                ->maxSize(
-                    config('media-library.max_file_size'),
-                )
+                ->maxSize($max_size)
                 ->required()
                 ->columnSpanFull(),
             /*
