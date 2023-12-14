@@ -49,5 +49,9 @@ package-lock.json
 package-lock.json
 >>>>>>> debd2040 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
 .git-rewrite/
+<<<<<<< HEAD
 =======
 >>>>>>> 3515a6a3 (.php-cs-fixer.cache >> .gitignore)
+=======
+.php-cs-fixer.cache
+>>>>>>> 4ff3eb71 (.php-cs-fixer.cache >> .gitignore)
