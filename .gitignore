@@ -43,5 +43,8 @@ docs/vendor
 .git-blame-ignore-revs
 package-lock.json
 .php-cs-fixer.cache
+<<<<<<< HEAD
 package-lock.json
 .git-rewrite/
+=======
+>>>>>>> 3515a6a3 (.php-cs-fixer.cache >> .gitignore)
