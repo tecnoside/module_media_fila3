@@ -46,7 +46,11 @@ abstract class BasePivot extends Pivot {
     /**
      * @var string[]
      */
-    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+    protected $dates = [
+        'id'=>'string', //must be string else primary key of related model will be typed as int
+        'created_at',
+        'updated_at', 'deleted_at'
+    ];
     /**
      * Undocumented variable.
      *
