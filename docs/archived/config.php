@@ -42,12 +42,15 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
 >>>>>>> bcfb1133 (Fix code formatting issues in various PHP files)
 =======
 >>>>>>> ae7aa53b (Update code formatting and fix syntax errors)
+=======
+>>>>>>> 7f525759 (Fix comparison operator in multiple filesCo-authored-by: Assistant <assistant@example.com>)
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
@@ -60,6 +63,7 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 2e8c8bb7 (Dusting)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     'navigation' => require_once ('navigation.php'),
@@ -91,6 +95,11 @@ return [
 >>>>>>> bcfb1133 (Fix code formatting issues in various PHP files)
 =======
 >>>>>>> ae7aa53b (Update code formatting and fix syntax errors)
+=======
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> 78f714e6 (Check & fix styling)
+>>>>>>> 7f525759 (Fix comparison operator in multiple filesCo-authored-by: Assistant <assistant@example.com>)
 
     // helpers
     'isActive' => function ($page, $path) {
