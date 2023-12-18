@@ -52,12 +52,16 @@ package-lock.json
 .php-cs-fixer.cache
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> debd2040 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
 package-lock.json
 >>>>>>> debd2040 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
 =======
 package-lock.json
 >>>>>>> 8d2c7310 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
 .git-rewrite/
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -85,3 +89,7 @@ package-lock.json
 >>>>>>> 7aefee0c (.)
 =======
 >>>>>>> 5e5014fe (conflict)
+=======
+=======
+>>>>>>> 3515a6a3 (.php-cs-fixer.cache >> .gitignore)
+>>>>>>> debd2040 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
