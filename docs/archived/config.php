@@ -47,6 +47,7 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
@@ -63,6 +64,8 @@ return [
 >>>>>>> ba16ed64 (Update code formatting and styleUpdates the code formatting and style to improve readability and consistency.Co-authored-by: John Doe <johndoe@example.com>)
 =======
 >>>>>>> 8314a2bb (Update code formatting and fix typos)
+=======
+>>>>>>> 7f503e20 (Fix incorrect condition in Clip.phpcommit 1f0fe10f)
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
@@ -99,6 +102,7 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 156e7a19 (Dusting)
+<<<<<<< HEAD
 =======
     'navigation' => require_once ('navigation.php'),
 >>>>>>> 7ca2a0ea (Check & fix styling)
@@ -130,6 +134,8 @@ return [
     'navigation' => require_once ('navigation.php'),
 >>>>>>> c471a8c8 (Check & fix styling)
 >>>>>>> 8314a2bb (Update code formatting and fix typos)
+=======
+>>>>>>> 7f503e20 (Fix incorrect condition in Clip.phpcommit 1f0fe10f)
 
     // helpers
     'isActive' => function ($page, $path) {
