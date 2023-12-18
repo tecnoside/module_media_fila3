@@ -41,10 +41,13 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
 >>>>>>> bcfb1133 (Fix code formatting issues in various PHP files)
+=======
+>>>>>>> ae7aa53b (Update code formatting and fix syntax errors)
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
@@ -57,6 +60,7 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 2e8c8bb7 (Dusting)
+<<<<<<< HEAD
 =======
     'navigation' => require_once ('navigation.php'),
 >>>>>>> 78f714e6 (Check & fix styling)
@@ -85,6 +89,8 @@ return [
     'navigation' => require_once ('navigation.php'),
 >>>>>>> cf29173e (Check & fix styling)
 >>>>>>> bcfb1133 (Fix code formatting issues in various PHP files)
+=======
+>>>>>>> ae7aa53b (Update code formatting and fix syntax errors)
 
     // helpers
     'isActive' => function ($page, $path) {
