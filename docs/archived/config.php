@@ -52,6 +52,7 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
@@ -72,10 +73,13 @@ return [
 >>>>>>> 7f503e20 (Fix incorrect condition in Clip.phpcommit 1f0fe10f)
 =======
 >>>>>>> 5517d926 (Update code formatting and style in various files)
+=======
+>>>>>>> bcfb1133 (Fix code formatting issues in various PHP files)
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 24067278 (.)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -154,6 +158,8 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 24067278 (.)
+=======
+>>>>>>> bcfb1133 (Fix code formatting issues in various PHP files)
 =======
     'navigation' => require_once ('navigation.php'),
 >>>>>>> cf29173e (Check & fix styling)
