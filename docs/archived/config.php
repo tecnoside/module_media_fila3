@@ -43,6 +43,7 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
@@ -51,6 +52,8 @@ return [
 >>>>>>> ae7aa53b (Update code formatting and fix syntax errors)
 =======
 >>>>>>> 7f525759 (Fix comparison operator in multiple filesCo-authored-by: Assistant <assistant@example.com>)
+=======
+>>>>>>> 1683512d (Fix inconsistent comparisons in code diff)
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
@@ -71,6 +74,7 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 77145936 (Dusting)
+<<<<<<< HEAD
 =======
     'navigation' => require_once ('navigation.php'),
 >>>>>>> d50e2cc7 (Check & fix styling)
@@ -100,6 +104,8 @@ return [
     'navigation' => require_once ('navigation.php'),
 >>>>>>> 78f714e6 (Check & fix styling)
 >>>>>>> 7f525759 (Fix comparison operator in multiple filesCo-authored-by: Assistant <assistant@example.com>)
+=======
+>>>>>>> 1683512d (Fix inconsistent comparisons in code diff)
 
     // helpers
     'isActive' => function ($page, $path) {
