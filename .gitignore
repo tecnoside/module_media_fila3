@@ -36,14 +36,21 @@ docs/vendor
 /docs/vendor
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 8d2c7310 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
 .php-cs-fixer.cache
 .git-blame-ignore-revs
 package-lock.json
 .php-cs-fixer.cache
 <<<<<<< HEAD
+<<<<<<< HEAD
 package-lock.json
 >>>>>>> debd2040 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
+=======
+package-lock.json
+>>>>>>> 8d2c7310 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
 .git-rewrite/
 <<<<<<< HEAD
 =======
