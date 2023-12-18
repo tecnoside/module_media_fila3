@@ -23,22 +23,18 @@ Homestead.json
 .phpunit.result.cache
 .git-rewrite
 .git-blame-ignore-revs
-.git-rewrite
-.git-blame-ignore-revs
 /vendor
 *.lock
 composer.lock
 package-lock.json
 .php-cs-fixer.cache
 *.cache
-.git-blame-ignore-revs
-.git-rewrite
 build/
-
 /build
 *.cache
 docs/vendor
 /docs/vendor
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 .php-cs-fixer.cache
@@ -55,3 +51,6 @@ package-lock.json
 =======
 .php-cs-fixer.cache
 >>>>>>> 4ff3eb71 (.php-cs-fixer.cache >> .gitignore)
+=======
+.git-rewrite/
+>>>>>>> b19240cd (conflict)
