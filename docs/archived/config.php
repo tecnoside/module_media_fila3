@@ -51,6 +51,7 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
@@ -153,6 +154,9 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 24067278 (.)
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> cf29173e (Check & fix styling)
 
     // helpers
     'isActive' => function ($page, $path) {
