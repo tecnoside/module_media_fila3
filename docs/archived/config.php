@@ -44,6 +44,7 @@ return [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> c4bc7cb9 (Update config.php and navigation.php files, generate sitemap.xml)
 =======
@@ -54,6 +55,8 @@ return [
 >>>>>>> 7f525759 (Fix comparison operator in multiple filesCo-authored-by: Assistant <assistant@example.com>)
 =======
 >>>>>>> 1683512d (Fix inconsistent comparisons in code diff)
+=======
+>>>>>>> 2637b74b (Update code formatting and fix indentation)
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
@@ -74,6 +77,7 @@ return [
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 77145936 (Dusting)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     'navigation' => require_once ('navigation.php'),
@@ -106,6 +110,11 @@ return [
 >>>>>>> 7f525759 (Fix comparison operator in multiple filesCo-authored-by: Assistant <assistant@example.com>)
 =======
 >>>>>>> 1683512d (Fix inconsistent comparisons in code diff)
+=======
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> d50e2cc7 (Check & fix styling)
+>>>>>>> 2637b74b (Update code formatting and fix indentation)
 
     // helpers
     'isActive' => function ($page, $path) {
