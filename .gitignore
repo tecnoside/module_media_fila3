@@ -37,9 +37,12 @@ docs/vendor
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 8d2c7310 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
+=======
+>>>>>>> 7aefee0c (.)
 .php-cs-fixer.cache
 .git-blame-ignore-revs
 package-lock.json
@@ -54,10 +57,25 @@ package-lock.json
 .git-rewrite/
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 7aefee0c (.)
 >>>>>>> 3515a6a3 (.php-cs-fixer.cache >> .gitignore)
 =======
 .php-cs-fixer.cache
 >>>>>>> 4ff3eb71 (.php-cs-fixer.cache >> .gitignore)
+<<<<<<< HEAD
 =======
 .git-rewrite/
 >>>>>>> b19240cd (conflict)
+=======
+>>>>>>> a1012311 (Ignore .php-cs-fixer.cache file in .gitignore)
+=======
+.git-rewrite/
+>>>>>>> b19240cd (conflict)
+>>>>>>> 0eb0bc89 (Ignore .git-rewrite/ (conflict))
+>>>>>>> 7aefee0c (.)
