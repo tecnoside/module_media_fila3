@@ -29,6 +29,6 @@ return [
         }
     },
     'url' => static function ($page, $path) {
-        return Str::startsWith($path, 'http') ? $path : '/' . trimPath($path);
+        return Str::startsWith($path, 'http') ? $path : '/'.trimPath($path);
     },
 ];
