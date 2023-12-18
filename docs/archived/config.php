@@ -30,10 +30,14 @@ return [
 
     // navigation menu
 <<<<<<< HEAD
+<<<<<<< HEAD
     'navigation' => require_once ('navigation.php'),
 =======
     'navigation' => require_once('navigation.php'),
 >>>>>>> 24067278 (.)
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> cf29173e (Check & fix styling)
 
     // helpers
     'isActive' => function ($page, $path) {
