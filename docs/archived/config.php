@@ -30,6 +30,7 @@ return [
 
     // navigation menu
 <<<<<<< HEAD
+<<<<<<< HEAD
     'navigation' => require_once('navigation.php'),
 =======
 <<<<<<< HEAD
@@ -171,6 +172,9 @@ return [
     'navigation' => require_once('navigation.php'),
 >>>>>>> 5e5014fe (conflict)
 >>>>>>> dev
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> f13c18aca38dd4af65b840ab7566f81a7e52d513
 
     // helpers
     'isActive' => function ($page, $path) {
