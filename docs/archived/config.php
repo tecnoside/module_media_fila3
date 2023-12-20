@@ -29,10 +29,6 @@ return [
     'docsearchIndexName' => env('DOCSEARCH_INDEX'),
 
     // navigation menu
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     'navigation' => require_once('navigation.php'),
 
     // helpers
