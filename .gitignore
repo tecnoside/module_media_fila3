@@ -31,9 +31,9 @@ package-lock.json
 *.cache
 build/
 /build
-*.cache
 docs/vendor
 /docs/vendor
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,6 +57,8 @@ package-lock.json
 =======
 package-lock.json
 >>>>>>> 8d2c7310 (Add .php-cs-fixer.cache and .git-rewrite/ to .gitignore)
+=======
+>>>>>>> master
 .git-rewrite/
 <<<<<<< HEAD
 <<<<<<< HEAD
