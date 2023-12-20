@@ -31,6 +31,6 @@ package-lock.json
 *.cache
 build/
 /build
-*.cache
 docs/vendor
 /docs/vendor
+.git-rewrite/
