@@ -33,3 +33,4 @@ build/
 /build
 docs/vendor
 /docs/vendor
+.git-rewrite/
