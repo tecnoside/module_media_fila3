@@ -97,7 +97,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $uuid,
         string $name
     ): self {
-        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
+        /** @var TemporaryUpload $temporaryUpload */
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -124,7 +124,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $name,
         string $diskName
     ): self {
-        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
+        /** @var TemporaryUpload $temporaryUpload */
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);

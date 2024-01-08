@@ -38,7 +38,7 @@ class SubtitleService
      */
     public static function getInstance(): self
     {
-        if (! self::$instance instanceof \Modules\Media\Services\SubtitleService) {
+        if (! self::$instance instanceof SubtitleService) {
             self::$instance = new self();
         }
 
