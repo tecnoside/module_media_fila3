@@ -17,9 +17,15 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 /**
  * Modules\Media\Models\Media.
  *
+<<<<<<< HEAD
  * @property User|null            $creator
  * @property Model|\Eloquent      $model
  * @property TemporaryUpload|null $temporaryUpload
+=======
+ * @property User|null                                  $creator
+ * @property Model|\Eloquent                            $model
+ * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
+>>>>>>> dev
  *
  * @method static MediaCollection<int, static> all($columns = ['*'])
  * @method static MediaCollection<int, static> get($columns = ['*'])

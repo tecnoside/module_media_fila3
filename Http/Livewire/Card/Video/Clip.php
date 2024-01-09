@@ -68,7 +68,11 @@ class Clip extends Component
      */
     public function updateDataFromModal(string $id, array $data): void
     {
+<<<<<<< HEAD
         if ($id !== 'editClip') {
+=======
+        if ('editClip' !== $id) {
+>>>>>>> dev
             return;
         }
 
