@@ -97,11 +97,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $uuid,
         string $name
     ): self {
-<<<<<<< HEAD
         /** @var TemporaryUpload $temporaryUpload */
-=======
-        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
->>>>>>> dev
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -128,11 +124,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $name,
         string $diskName
     ): self {
-<<<<<<< HEAD
         /** @var TemporaryUpload $temporaryUpload */
-=======
-        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
->>>>>>> dev
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -162,11 +154,7 @@ class TemporaryUpload extends Model implements HasMedia
         throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
-<<<<<<< HEAD
     public function registerMediaConversions(?Media $media = null): void
-=======
-    public function registerMediaConversions(Media $media = null): void
->>>>>>> dev
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;

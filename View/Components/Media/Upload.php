@@ -23,11 +23,7 @@ class Upload extends Component
         public ?string $componentView = null,
         public ?string $listView = null,
         public ?string $itemView = null,
-<<<<<<< HEAD
         ?string $propertiesView = null,
-=======
-        string $propertiesView = null,
->>>>>>> dev
         public ?string $fieldsView = null
     ) {
         Assert::isArray($media = old($name) ?? []);
@@ -45,11 +41,7 @@ class Upload extends Component
 
     public function determineListViewName(): string
     {
-<<<<<<< HEAD
         if ($this->listView !== null) {
-=======
-        if (null !== $this->listView) {
->>>>>>> dev
             return $this->listView;
         }
 
@@ -58,11 +50,7 @@ class Upload extends Component
 
     public function determineItemViewName(): string
     {
-<<<<<<< HEAD
         if ($this->itemView !== null) {
-=======
-        if (null !== $this->itemView) {
->>>>>>> dev
             return $this->itemView;
         }
 
@@ -71,11 +59,7 @@ class Upload extends Component
 
     public function determineFieldsViewName(): string
     {
-<<<<<<< HEAD
         if ($this->fieldsView !== null) {
-=======
-        if (null !== $this->fieldsView) {
->>>>>>> dev
             return $this->fieldsView;
         }
 
