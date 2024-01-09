@@ -20,7 +20,6 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     *
      * @param string       $attribute
      * @param UploadedFile $value
      */
