@@ -154,7 +154,7 @@ class TemporaryUpload extends Model implements HasMedia
         throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
