@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Media\Enums;
 
-use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
+// use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 use Filament\Support\Contracts\HasLabel;
 use Illuminate\Support\Facades\Lang;
 
 enum AttachmentTypeEnum: string implements HasLabel
 {
-    use LaravelEnumHelper;
+    // use LaravelEnumHelper;
 
     case IMAGE = 'image';
     case VIDEO = 'video';
