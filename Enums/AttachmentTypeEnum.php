@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Lang;
 
 enum AttachmentTypeEnum: string implements HasLabel
 {
-    use LaravelEnumHelper;
+    // use LaravelEnumHelper;
 
     case IMAGE = 'image';
     case VIDEO = 'video';

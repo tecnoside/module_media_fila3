@@ -5,10 +5,7 @@
     "keywords": [],
     "priority": 0,
     "providers": [
-        "Modules\\Media\\Providers\\MediaServiceProvider",
-        "Modules\\Media\\Providers\\Filament\\AdminPanelProvider"
+        "Modules\\Media\\app\\Providers\\MediaServiceProvider"
     ],
-    "aliases": [],
-    "files": [],
-    "requires": []
+    "files": []
 }

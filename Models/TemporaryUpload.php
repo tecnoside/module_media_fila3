@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Modules\Media\Exceptions\CouldNotAddUpload;
 use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
+use Spatie\Image\Enums\Fit;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
@@ -202,7 +203,8 @@ class TemporaryUpload extends Model implements HasMedia
     protected function getPreviewManipulation(): \Closure
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
-            $conversion->fit(Manipulations::FIT_CROP, 300, 300);
+            // $conversion->fit(Manipulations::FIT_CROP, 300, 300);
+            $conversion->fit(Fit::Crop, 300, 300);
         };
     }
 }
