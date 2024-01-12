@@ -17,6 +17,28 @@ enum AttachmentTypeEnum: string implements HasLabel
     case DOCUMENT = 'document';
     case MANUAL = 'manual';
 
+    public static function getTypeNoteDescriptionsByValues(): array
+    {
+        return collect(self::cases())
+            ->mapWithKeys(
+                static fn (self $case): array => [$case->value => $case->getTypeNote()],
+            )
+            ->toArray();
+    }
+
+    public static function operationCases(): ?array
+    {
+        $originalCases = self::cases();
+        array_pop($originalCases);
+
+        return $originalCases;
+    }
+
+    protected static function translateBaseUniquePath(): string
+    {
+        return 'media::attachments.types';
+    }
+
     public function getTypeNote(): ?string
     {
         $translationKey = sprintf('media::attachments.type_notes.%s', $this->value);
@@ -27,30 +49,8 @@ enum AttachmentTypeEnum: string implements HasLabel
         return null;
     }
 
-    public static function getTypeNoteDescriptionsByValues(): array
-    {
-        return collect(self::cases())
-            ->mapWithKeys(
-                static fn (self $case): array => [$case->value => $case->getTypeNote()],
-            )
-            ->toArray();
-    }
-
-    protected static function translateBaseUniquePath(): string
-    {
-        return 'media::attachments.types';
-    }
-
     public function getLabel(): ?string
     {
-        return trans('media::attachments.types.'.$this->value);
-    }
-
-    public static function operationCases(): ?array
-    {
-        $originalCases = self::cases();
-        array_pop($originalCases);
-
-        return $originalCases;
+        return trans('media::attachments.types.' . $this->value);
     }
 }
