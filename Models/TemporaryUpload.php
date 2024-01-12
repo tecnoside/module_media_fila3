@@ -11,10 +11,6 @@ use Illuminate\Http\UploadedFile;
 use Modules\Media\Exceptions\CouldNotAddUpload;
 use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
 use Spatie\Image\Enums\Fit;
-<<<<<<< HEAD
-=======
-use Spatie\Image\Manipulations;
->>>>>>> master
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
