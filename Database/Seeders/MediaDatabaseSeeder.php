@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types=1);
+namespace Modules\Media\database\seeders;
 
-namespace Modules\Media\Database\Seeders;
-
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class MediaDatabaseSeeder extends Seeder
@@ -14,8 +11,6 @@ class MediaDatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        // $this->call([]);
     }
 }
