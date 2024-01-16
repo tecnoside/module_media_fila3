@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
+use Exception;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
@@ -18,8 +19,8 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Illuminate\Support\Str;
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Webmozart\Assert\Assert;
 
@@ -83,7 +84,7 @@ class AttachmentResource extends Resource
                         ->color('primary')
                         ->action(
                             // File extension obtained by substringing
-                            static fn ($record) => response()->download($record->getPath(), $record->name.substr((string) strrchr((string) $record->file_name, '.'), 0))
+                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
                         ),
                 ]),
             ])
@@ -153,7 +154,7 @@ class AttachmentResource extends Resource
         // $mediaCollection = 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
-            throw new \Exception('wip');
+            throw new Exception('wip');
         }
 
         $attachment = $ownerRecord
