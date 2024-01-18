@@ -9,6 +9,10 @@ use Modules\Xot\Providers\XotBaseServiceProvider;
 class MediaServiceProvider extends XotBaseServiceProvider
 {
     public string $module_name = 'media';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 771f698d (first)
     protected string $module_dir = __DIR__;
 
     protected string $module_ns = __NAMESPACE__;
