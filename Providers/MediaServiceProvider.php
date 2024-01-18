@@ -11,11 +11,14 @@ class MediaServiceProvider extends XotBaseServiceProvider
     public string $module_name = 'media';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 771f698d (first)
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
     protected string $module_dir = __DIR__;
 
     protected string $module_ns = __NAMESPACE__;
