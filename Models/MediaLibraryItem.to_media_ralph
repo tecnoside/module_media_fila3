@@ -25,6 +25,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static Builder|MediaLibraryItem                                                       ordered(string $direction = 'asc')
  * @method static Builder|MediaLibraryItem                                                       query()
  *
+<<<<<<< HEAD
  * @property int                             $id
  * @property string|null                     $uploaded_by_user_id
  * @property string|null                     $caption
@@ -37,6 +38,20 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property MediaLibraryFolder|null         $folder
+=======
+ * @property int                                           $id
+ * @property string|null                                   $uploaded_by_user_id
+ * @property string|null                                   $caption
+ * @property string|null                                   $alt_text
+ * @property int|null                                      $folder_id
+ * @property int|null                                      $order_column
+ * @property \Illuminate\Support\Carbon|null               $created_at
+ * @property \Illuminate\Support\Carbon|null               $updated_at
+ * @property string|null                                   $user_id
+ * @property string|null                                   $updated_by
+ * @property string|null                                   $created_by
+ * @property \Modules\Media\Models\MediaLibraryFolder|null $folder
+>>>>>>> 771f698d (first)
  *
  * @method static Builder|MediaLibraryItem whereAltText($value)
  * @method static Builder|MediaLibraryItem whereCaption($value)

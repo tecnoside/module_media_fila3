@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -27,3 +28,23 @@
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-media', 'resources/assets/js/app.js') }} --}}
 </body>
+=======
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Module Media</title>
+
+       {{-- Laravel Mix - CSS File --}}
+       {{-- <link rel="stylesheet" href="{{ mix('css/media.css') }}"> --}}
+
+    </head>
+    <body>
+        @yield('content')
+
+        {{-- Laravel Mix - JS File --}}
+        {{-- <script src="{{ mix('js/media.js') }}"></script> --}}
+    </body>
+</html>
+>>>>>>> 771f698d (first)

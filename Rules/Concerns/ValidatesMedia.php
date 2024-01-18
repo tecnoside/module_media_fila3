@@ -105,11 +105,19 @@ trait ValidatesMedia
 
     protected function validateSingleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
         return (new UploadedMediaRules)->maxItems(1);
+=======
+        return (new UploadedMediaRules())->maxItems(1);
+>>>>>>> 771f698d (first)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
         return new UploadedMediaRules;
+=======
+        return new UploadedMediaRules();
+>>>>>>> 771f698d (first)
     }
 }
