@@ -4,61 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Closure;
 use Exception;
-=======
->>>>>>> 771f698d (first)
-=======
-use Closure;
-use Exception;
->>>>>>> 7cc85766 (rebase 1)
-=======
-use Closure;
-use Exception;
->>>>>>> 76f3bf5f (first)
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Modules\Media\Exceptions\CouldNotAddUpload;
 use Modules\Media\Exceptions\TemporaryUploadDoesNotBelongToCurrentSession;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Spatie\Image\Enums\Fit;
-=======
-use Spatie\Image\Manipulations;
->>>>>>> 771f698d (first)
-=======
-use Spatie\Image\Enums\Fit;
->>>>>>> 7cc85766 (rebase 1)
-=======
-use Spatie\Image\Enums\Fit;
->>>>>>> 76f3bf5f (first)
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Webmozart\Assert\Assert;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 use function is_string;
 
-=======
->>>>>>> 771f698d (first)
-=======
-use function is_string;
-
->>>>>>> 7cc85766 (rebase 1)
-=======
-use function is_string;
-
->>>>>>> 76f3bf5f (first)
 /**
  * Modules\Media\Models\TemporaryUpload.
  *
@@ -84,43 +46,15 @@ class TemporaryUpload extends Model implements HasMedia
     use InteractsWithMedia;
     use MassPrunable;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 7cc85766 (rebase 1)
-=======
->>>>>>> 76f3bf5f (first)
     public static ?Closure $manipulatePreview = null;
 
     public static ?string $disk = null;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 771f698d (first)
-=======
->>>>>>> 7cc85766 (rebase 1)
-=======
->>>>>>> 76f3bf5f (first)
     /**
      * @var string
      */
     protected $connection = 'media';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    public static ?\Closure $manipulatePreview = null;
-
-    public static ?string $disk = null;
-
->>>>>>> 771f698d (first)
-=======
->>>>>>> 7cc85766 (rebase 1)
-=======
->>>>>>> 76f3bf5f (first)
     /**
      * @var array<string>|bool
      */
@@ -167,19 +101,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $uuid,
         string $name
     ): self {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         /** @var TemporaryUpload $temporaryUpload */
-=======
-        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
->>>>>>> 771f698d (first)
-=======
-        /** @var TemporaryUpload $temporaryUpload */
->>>>>>> 7cc85766 (rebase 1)
-=======
-        /** @var TemporaryUpload $temporaryUpload */
->>>>>>> 76f3bf5f (first)
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -206,19 +128,7 @@ class TemporaryUpload extends Model implements HasMedia
         string $name,
         string $diskName
     ): self {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         /** @var TemporaryUpload $temporaryUpload */
-=======
-        /** @var \Modules\Media\Models\TemporaryUpload $temporaryUpload */
->>>>>>> 771f698d (first)
-=======
-        /** @var TemporaryUpload $temporaryUpload */
->>>>>>> 7cc85766 (rebase 1)
-=======
-        /** @var TemporaryUpload $temporaryUpload */
->>>>>>> 76f3bf5f (first)
         $temporaryUpload = static::create([
             'session_id' => $sessionId,
         ]);
@@ -242,11 +152,6 @@ class TemporaryUpload extends Model implements HasMedia
     protected static function getDiskName(): string
     {
         $res = static::$disk ?? config('media-library.disk_name');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 76f3bf5f (first)
         if (is_string($res)) {
             return $res;
         }
@@ -254,25 +159,6 @@ class TemporaryUpload extends Model implements HasMedia
     }
 
     public function registerMediaConversions(?Media $media = null): void
-<<<<<<< HEAD
-=======
-        if (\is_string($res)) {
-=======
-        if (is_string($res)) {
->>>>>>> 7cc85766 (rebase 1)
-            return $res;
-        }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
-    }
-
-<<<<<<< HEAD
-    public function registerMediaConversions(Media $media = null): void
->>>>>>> 771f698d (first)
-=======
-    public function registerMediaConversions(?Media $media = null): void
->>>>>>> 7cc85766 (rebase 1)
-=======
->>>>>>> 76f3bf5f (first)
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
@@ -317,30 +203,10 @@ class TemporaryUpload extends Model implements HasMedia
     //    return self::query()->old();
     // }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 76f3bf5f (first)
     protected function getPreviewManipulation(): Closure
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
             $conversion->fit(Fit::Crop, 300, 300);
-<<<<<<< HEAD
-=======
-    protected function getPreviewManipulation(): \Closure
-    {
-        return static::$manipulatePreview ?? function (Conversion $conversion): void {
-            $conversion->fit(Manipulations::FIT_CROP, 300, 300);
->>>>>>> 771f698d (first)
-=======
-    protected function getPreviewManipulation(): Closure
-    {
-        return static::$manipulatePreview ?? function (Conversion $conversion): void {
-            $conversion->fit(Fit::Crop, 300, 300);
->>>>>>> 7cc85766 (rebase 1)
-=======
->>>>>>> 76f3bf5f (first)
         };
     }
 }
