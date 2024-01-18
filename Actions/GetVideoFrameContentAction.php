@@ -8,7 +8,10 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions;
 
+<<<<<<< HEAD
 use Exception;
+=======
+>>>>>>> 771f698d (first)
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -32,7 +35,11 @@ class GetVideoFrameContentAction
 
         $seconds = 3600;
 
+<<<<<<< HEAD
         $cache_key = Str::slug($disk_mp4 . ' ' . $file_mp4 . ' ' . $time . ' 1');
+=======
+        $cache_key = Str::slug($disk_mp4.' '.$file_mp4.' '.$time.' 1');
+>>>>>>> 771f698d (first)
 
         return Cache::store('file')->remember(
             $cache_key,
@@ -44,7 +51,11 @@ class GetVideoFrameContentAction
                         ->getFrameFromSeconds($time)
                         ->export()
                         ->getFrameContents();
+<<<<<<< HEAD
                 } catch (Exception) {
+=======
+                } catch (\Exception) {
+>>>>>>> 771f698d (first)
                     return Storage::disk('public_html')->get('img/video_not_exists.jpg');
                 }
             }

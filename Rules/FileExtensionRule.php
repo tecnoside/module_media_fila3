@@ -20,8 +20,13 @@ class FileExtensionRule implements Rule
     }
 
     /**
+<<<<<<< HEAD
      * @param  string  $attribute
      * @param  UploadedFile  $value
+=======
+     * @param string       $attribute
+     * @param UploadedFile $value
+>>>>>>> 771f698d (first)
      */
     public function passes($attribute, $value): bool
     {
