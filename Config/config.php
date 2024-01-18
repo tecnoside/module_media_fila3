@@ -3,6 +3,7 @@
 return [
     'name' => 'Media',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -18,4 +19,7 @@ return [
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+    'icon' => 'fas-photo-video',
+>>>>>>> 2f59e24c (.)
 ];

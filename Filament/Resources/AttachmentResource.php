@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Filament\Resources;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Exception;
 =======
 <<<<<<< HEAD
@@ -20,6 +21,9 @@ use Exception;
 use Exception;
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+use Exception;
+>>>>>>> 2f59e24c (.)
 use Filament\Facades\Filament;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
@@ -35,6 +39,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 <<<<<<< HEAD
+<<<<<<< HEAD
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 use Illuminate\Support\Str;
 =======
@@ -56,6 +61,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Str;
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Illuminate\Support\Str;
+>>>>>>> 2f59e24c (.)
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Webmozart\Assert\Assert;
 
@@ -126,6 +135,7 @@ class AttachmentResource extends Resource
                         ->action(
                             // File extension obtained by substringing
 <<<<<<< HEAD
+<<<<<<< HEAD
                             static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
 =======
 <<<<<<< HEAD
@@ -142,6 +152,9 @@ class AttachmentResource extends Resource
                             static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
+>>>>>>> 2f59e24c (.)
                         ),
                     ]
                 ),
@@ -216,6 +229,7 @@ class AttachmentResource extends Resource
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new Exception('wip');
 =======
 <<<<<<< HEAD
@@ -232,6 +246,9 @@ class AttachmentResource extends Resource
             throw new Exception('wip');
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+            throw new Exception('wip');
+>>>>>>> 2f59e24c (.)
         }
 
         $attachment = $ownerRecord

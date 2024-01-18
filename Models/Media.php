@@ -1,5 +1,6 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ---.
  */
@@ -23,12 +24,18 @@
  */
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+/**
+ * ---.
+ */
+>>>>>>> 2f59e24c (.)
 
 declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -42,11 +49,14 @@ use Illuminate\Database\Eloquent\Model;
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Modules\User\Models\User;
 use Modules\Xot\Traits\Updater;
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -151,6 +161,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+
+>>>>>>> 2f59e24c (.)
 class Media extends SpatieMedia
 {
     use Updater;
