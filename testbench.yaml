@@ -1,4 +1,0 @@
-providers:
-  - Modules\Media\Providers\MediaServiceProvider
-  - Nwidart\Modules\LaravelModulesServiceProvider
-
