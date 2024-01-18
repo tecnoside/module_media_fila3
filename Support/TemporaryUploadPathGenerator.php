@@ -11,12 +11,20 @@ use Modules\Media\Models\Media;
 // use Modules\Media\Contracts\PathGenerator;
 
 class TemporaryUploadPathGenerator // implements PathGenerator
+<<<<<<< HEAD
 {
     public function getPath(Media $media): string
     {
         /* @phpstan-ignore-line */
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
     }
+=======
+{public function getPath(Media $media): string
+{
+    /* @phpstan-ignore-line */
+    return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
+}
+>>>>>>> 771f698d (first)
 
     public function getPathForConversions(Media $media): string
     {
@@ -39,7 +47,11 @@ class TemporaryUploadPathGenerator // implements PathGenerator
 
         $key = md5($media->uuid.$media->getKey());
 
+<<<<<<< HEAD
         if ($prefix !== '') {
+=======
+        if ('' !== $prefix) {
+>>>>>>> 771f698d (first)
             return $prefix.'/'.$key;
         }
 
