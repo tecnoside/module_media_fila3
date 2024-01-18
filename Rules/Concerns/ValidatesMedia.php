@@ -111,11 +111,43 @@ trait ValidatesMedia
 
     protected function validateSingleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
         return (new UploadedMediaRules())->maxItems(1);
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        return (new UploadedMediaRules)->maxItems(1);
+=======
+        return (new UploadedMediaRules())->maxItems(1);
+>>>>>>> 771f698d (first)
+=======
+        return (new UploadedMediaRules)->maxItems(1);
+>>>>>>> 7cc85766 (rebase 1)
+=======
+        return (new UploadedMediaRules)->maxItems(1);
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
         return new UploadedMediaRules();
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        return new UploadedMediaRules;
+=======
+        return new UploadedMediaRules();
+>>>>>>> 771f698d (first)
+=======
+        return new UploadedMediaRules;
+>>>>>>> 7cc85766 (rebase 1)
+=======
+        return new UploadedMediaRules;
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
     }
 }

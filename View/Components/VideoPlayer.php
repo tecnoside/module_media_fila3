@@ -21,7 +21,23 @@ class VideoPlayer extends Component
      *
      * @return void
      */
+<<<<<<< HEAD
     public function __construct(public string $mp4Src, public int $currentTime, ?string $driver = null)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public function __construct(public string $mp4Src, public int $currentTime, ?string $driver = null)
+=======
+    public function __construct(public string $mp4Src, public int $currentTime, string $driver = null)
+>>>>>>> 771f698d (first)
+=======
+    public function __construct(public string $mp4Src, public int $currentTime, ?string $driver = null)
+>>>>>>> 7cc85766 (rebase 1)
+=======
+    public function __construct(public string $mp4Src, public int $currentTime, ?string $driver = null)
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
     {
         Assert::string($driver ??= config('xra.video.player'));
 
