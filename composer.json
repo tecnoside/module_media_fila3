@@ -1,4 +1,31 @@
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
+    "name": "nwidart/media",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 76f3bf5f (first)
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+<<<<<<< HEAD
+=======
+>>>>>>> 6444d42f (rebase 7)
     "name": "laraxot/module_media_fila3",
     "description": "media module dedicated to image and video management",
     "keywords": [
@@ -17,6 +44,15 @@
             "providers": [
                 "Modules\\Media\\Providers\\MediaServiceProvider"
             ],
+<<<<<<< HEAD
+=======
+>>>>>>> 771f698d (first)
+=======
+            "providers": [],
+>>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             "aliases": {
 
             }
@@ -24,15 +60,56 @@
     },
     "autoload": {
         "psr-4": {
+<<<<<<< HEAD
             "Modules\\Media\\": "",
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
+            "Modules\\Media\\": "",
+            "Modules\\Media\\App\\": "app/",
+            "Modules\\Media\\Database\\Factories\\": "database/factories/",
+            "Modules\\Media\\Database\\Seeders\\": "database/seeders/"
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Modules\\Media\\Tests\\": "tests/"
         }
+<<<<<<< HEAD
+=======
+    }
+<<<<<<< HEAD
+=======
+            "Modules\\Media\\": ""
+=======
+>>>>>>> 7cc85766 (rebase 1)
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Media\\Tests\\": "tests/"
+        }
+<<<<<<< HEAD
+>>>>>>> 6444d42f (rebase 7)
     },
     "minimum-stability": "dev",
     "prefer-stable": true
 
     }
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
+}
+>>>>>>> 6444d42f (rebase 7)
