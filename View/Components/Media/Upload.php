@@ -25,6 +25,7 @@ class Upload extends Component
         public ?string $itemView = null,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         ?string $propertiesView = null,
 =======
         string $propertiesView = null,
@@ -32,6 +33,9 @@ class Upload extends Component
 =======
         ?string $propertiesView = null,
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        ?string $propertiesView = null,
+>>>>>>> 76f3bf5f (first)
         public ?string $fieldsView = null
     ) {
         Assert::isArray($media = old($name) ?? []);
@@ -51,6 +55,7 @@ class Upload extends Component
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($this->listView !== null) {
 =======
         if (null !== $this->listView) {
@@ -58,6 +63,9 @@ class Upload extends Component
 =======
         if ($this->listView !== null) {
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        if ($this->listView !== null) {
+>>>>>>> 76f3bf5f (first)
             return $this->listView;
         }
 
@@ -68,6 +76,7 @@ class Upload extends Component
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($this->itemView !== null) {
 =======
         if (null !== $this->itemView) {
@@ -75,6 +84,9 @@ class Upload extends Component
 =======
         if ($this->itemView !== null) {
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        if ($this->itemView !== null) {
+>>>>>>> 76f3bf5f (first)
             return $this->itemView;
         }
 
@@ -85,6 +97,7 @@ class Upload extends Component
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($this->fieldsView !== null) {
 =======
         if (null !== $this->fieldsView) {
@@ -92,6 +105,9 @@ class Upload extends Component
 =======
         if ($this->fieldsView !== null) {
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        if ($this->fieldsView !== null) {
+>>>>>>> 76f3bf5f (first)
             return $this->fieldsView;
         }
 

@@ -70,6 +70,7 @@ class Clip extends Component
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($id !== 'editClip') {
 =======
         if ('editClip' !== $id) {
@@ -77,6 +78,9 @@ class Clip extends Component
 =======
         if ($id !== 'editClip') {
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        if ($id !== 'editClip') {
+>>>>>>> 76f3bf5f (first)
             return;
         }
 

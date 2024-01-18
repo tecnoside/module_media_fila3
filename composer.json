@@ -1,8 +1,11 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
     "name": "nwidart/media",
     "description": "",
     "authors": [
@@ -11,10 +14,14 @@
             "email": "n.widart@gmail.com"
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 76f3bf5f (first)
     ],
     "extra": {
         "laravel": {
             "providers": [],
+<<<<<<< HEAD
 =======
     "name": "laraxot/module_media_fila3",
     "description": "media module dedicated to image and video management",
@@ -41,6 +48,8 @@
 =======
             "providers": [],
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
             "aliases": {
 
             }
@@ -50,13 +59,19 @@
         "psr-4": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
             "Modules\\Media\\": "",
             "Modules\\Media\\App\\": "app/",
             "Modules\\Media\\Database\\Factories\\": "database/factories/",
             "Modules\\Media\\Database\\Seeders\\": "database/seeders/"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 76f3bf5f (first)
         }
     },
     "autoload-dev": {
@@ -64,6 +79,7 @@
             "Modules\\Media\\Tests\\": "tests/"
         }
     }
+<<<<<<< HEAD
 =======
             "Modules\\Media\\": ""
 =======
@@ -82,4 +98,6 @@
 =======
     }
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
 }
