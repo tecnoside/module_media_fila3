@@ -1,8 +1,11 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,6 +19,7 @@
     "postcss": "^8.3.7",
     "vite": "^4.0.0"
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     "private": true,
@@ -40,4 +44,6 @@
 >>>>>>> 771f698d (first)
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
 }

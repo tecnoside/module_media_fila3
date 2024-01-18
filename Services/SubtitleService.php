@@ -40,6 +40,7 @@ class SubtitleService
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! self::$instance instanceof SubtitleService) {
             self::$instance = new self;
 =======
@@ -50,6 +51,10 @@ class SubtitleService
         if (! self::$instance instanceof SubtitleService) {
             self::$instance = new self;
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        if (! self::$instance instanceof SubtitleService) {
+            self::$instance = new self;
+>>>>>>> 76f3bf5f (first)
         }
 
         return self::$instance;
@@ -134,6 +139,7 @@ class SubtitleService
         $path = realpath($this->file_path);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($path == false) {
 =======
         if (false == $path) {
@@ -141,6 +147,9 @@ class SubtitleService
 =======
         if ($path == false) {
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        if ($path == false) {
+>>>>>>> 76f3bf5f (first)
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
@@ -173,6 +182,7 @@ class SubtitleService
                 if (! $attributes instanceof \SimpleXMLElement) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
 =======
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
@@ -180,6 +190,9 @@ class SubtitleService
 =======
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
 >>>>>>> 7cc85766 (rebase 1)
+=======
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> 76f3bf5f (first)
                 }
 
                 // 00:06:35,360
@@ -198,10 +211,14 @@ class SubtitleService
                 $data[] = $tmp;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 76f3bf5f (first)
                 $item_i++;
             }
 
             $sentence_i++;
+<<<<<<< HEAD
 =======
                 ++$item_i;
             }
@@ -214,6 +231,8 @@ class SubtitleService
 
             $sentence_i++;
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
         }
 
         return $data;
@@ -222,6 +241,7 @@ class SubtitleService
     /**
      * Undocumented function.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * @param  string  $srtFile
@@ -234,6 +254,10 @@ class SubtitleService
      * @param  string  $srtFile
      * @param  string  $webVttFile
 >>>>>>> 7cc85766 (rebase 1)
+=======
+     * @param  string  $srtFile
+     * @param  string  $webVttFile
+>>>>>>> 76f3bf5f (first)
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {
@@ -255,6 +279,7 @@ class SubtitleService
         $length = \count($lines);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         for ($index = 1; $index < $length; $index++) {
             if ($index === 1 || trim($lines[$index - 2]) === '') {
 =======
@@ -265,6 +290,10 @@ class SubtitleService
         for ($index = 1; $index < $length; $index++) {
             if ($index === 1 || trim($lines[$index - 2]) === '') {
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        for ($index = 1; $index < $length; $index++) {
+            if ($index === 1 || trim($lines[$index - 2]) === '') {
+>>>>>>> 76f3bf5f (first)
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }

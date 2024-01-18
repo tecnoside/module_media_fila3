@@ -6,6 +6,7 @@ namespace Modules\Media\Enums;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 =======
 use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
@@ -13,11 +14,15 @@ use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 =======
 // use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 >>>>>>> 7cc85766 (rebase 1)
+=======
+// use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
+>>>>>>> 76f3bf5f (first)
 use Filament\Support\Contracts\HasLabel;
 use Illuminate\Support\Facades\Lang;
 
 enum AttachmentTypeEnum: string implements HasLabel
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     // use LaravelEnumHelper;
@@ -27,6 +32,9 @@ enum AttachmentTypeEnum: string implements HasLabel
 =======
     // use LaravelEnumHelper;
 >>>>>>> 7cc85766 (rebase 1)
+=======
+    // use LaravelEnumHelper;
+>>>>>>> 76f3bf5f (first)
 
     case IMAGE = 'image';
     case VIDEO = 'video';
@@ -35,8 +43,11 @@ enum AttachmentTypeEnum: string implements HasLabel
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
     public static function getTypeNoteDescriptionsByValues(): array
     {
         return collect(self::cases())
@@ -60,10 +71,13 @@ enum AttachmentTypeEnum: string implements HasLabel
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 771f698d (first)
 =======
 >>>>>>> 7cc85766 (rebase 1)
+=======
+>>>>>>> 76f3bf5f (first)
     public function getTypeNote(): ?string
     {
         $translationKey = sprintf('media::attachments.type_notes.%s', $this->value);
@@ -74,6 +88,7 @@ enum AttachmentTypeEnum: string implements HasLabel
         return null;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     public function getLabel(): ?string
@@ -111,5 +126,10 @@ enum AttachmentTypeEnum: string implements HasLabel
     {
         return trans('media::attachments.types.' . $this->value);
 >>>>>>> 7cc85766 (rebase 1)
+=======
+    public function getLabel(): ?string
+    {
+        return trans('media::attachments.types.' . $this->value);
+>>>>>>> 76f3bf5f (first)
     }
 }
