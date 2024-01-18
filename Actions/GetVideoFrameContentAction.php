@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Modules\Media\Actions;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Exception;
 =======
 <<<<<<< HEAD
@@ -24,6 +25,9 @@ use Exception;
 use Exception;
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+use Exception;
+>>>>>>> 2f59e24c (.)
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -48,6 +52,7 @@ class GetVideoFrameContentAction
         $seconds = 3600;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $cache_key = Str::slug($disk_mp4 . ' ' . $file_mp4 . ' ' . $time . ' 1');
 =======
 <<<<<<< HEAD
@@ -64,6 +69,9 @@ class GetVideoFrameContentAction
         $cache_key = Str::slug($disk_mp4 . ' ' . $file_mp4 . ' ' . $time . ' 1');
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+        $cache_key = Str::slug($disk_mp4 . ' ' . $file_mp4 . ' ' . $time . ' 1');
+>>>>>>> 2f59e24c (.)
 
         return Cache::store('file')->remember(
             $cache_key,
@@ -75,6 +83,7 @@ class GetVideoFrameContentAction
                         ->getFrameFromSeconds($time)
                         ->export()
                         ->getFrameContents();
+<<<<<<< HEAD
 <<<<<<< HEAD
                 } catch (Exception) {
 =======
@@ -92,6 +101,9 @@ class GetVideoFrameContentAction
                 } catch (Exception) {
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+                } catch (Exception) {
+>>>>>>> 2f59e24c (.)
                     return Storage::disk('public_html')->get('img/video_not_exists.jpg');
                 }
             }
