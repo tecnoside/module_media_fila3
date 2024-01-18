@@ -67,27 +67,7 @@ class VideoStream
         $mime = $filesystem->mimeType($path);
 
         if (! \is_string($mime)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
             throw new Exception('['.__LINE__.']['.__FILE__.']');
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
-=======
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 771f698d (first)
-=======
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 7cc85766 (rebase 1)
-=======
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
->>>>>>> 2f59e24c (.)
         }
 
         $this->mime = $mime;
@@ -161,27 +141,7 @@ class VideoStream
                 header(sprintf('Content-Range: bytes %d-%d/%d', $this->start, $this->end, $this->size));
                 exit;
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
             if ($range === '-') {
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            if ($range === '-') {
-=======
-            if ('-' === $range) {
->>>>>>> 771f698d (first)
-=======
-            if ($range === '-') {
->>>>>>> 7cc85766 (rebase 1)
-=======
-            if ($range === '-') {
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-            if ($range === '-') {
->>>>>>> 2f59e24c (.)
                 $c_start = $this->size - (int) substr($range, 1);
             } else {
                 $range = explode('-', $range);
@@ -228,9 +188,9 @@ class VideoStream
         set_time_limit(0);
         while (! feof($this->vars['stream']) && $i <= $this->end) {
             /**
-* 
+*
              *
- * @var int<0, max> $bytesToRead 
+ * @var int<0, max> $bytesToRead
 */
             $bytesToRead = $this->buffer;
             if ($i + $bytesToRead > $this->end) {
@@ -239,9 +199,9 @@ class VideoStream
 
             // 169    Parameter #2 $length of function fread expects int<0, max>, int given.
             /**
-* 
+*
              *
- * @var int<0, max> 
+ * @var int<0, max>
 */
             $length = $bytesToRead;
             $data = fread($this->vars['stream'], $length);

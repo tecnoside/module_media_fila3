@@ -4,26 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Exception;
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-use Exception;
-=======
->>>>>>> 771f698d (first)
-=======
-use Exception;
->>>>>>> 7cc85766 (rebase 1)
-=======
-use Exception;
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-use Exception;
->>>>>>> 2f59e24c (.)
 use Filament\Facades\Filament;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
@@ -38,33 +19,8 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-<<<<<<< HEAD
-<<<<<<< HEAD
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 use Illuminate\Support\Str;
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
-use Illuminate\Support\Str;
-=======
-use Illuminate\Support\Str;
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
->>>>>>> 771f698d (first)
-=======
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
-use Illuminate\Support\Str;
->>>>>>> 7cc85766 (rebase 1)
-=======
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
-use Illuminate\Support\Str;
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
-use Illuminate\Support\Str;
->>>>>>> 2f59e24c (.)
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Webmozart\Assert\Assert;
 
@@ -134,27 +90,7 @@ class AttachmentResource extends Resource
                         ->color('primary')
                         ->action(
                             // File extension obtained by substringing
-<<<<<<< HEAD
-<<<<<<< HEAD
                             static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
-=======
-                            static fn ($record) => response()->download($record->getPath(), $record->name.substr((string) strrchr((string) $record->file_name, '.'), 0))
->>>>>>> 771f698d (first)
-=======
-                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
->>>>>>> 7cc85766 (rebase 1)
-=======
-                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
->>>>>>> 2f59e24c (.)
                         ),
                     ]
                 ),
@@ -228,27 +164,7 @@ class AttachmentResource extends Resource
         // $mediaCollection = 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
-<<<<<<< HEAD
-<<<<<<< HEAD
             throw new Exception('wip');
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            throw new Exception('wip');
-=======
-            throw new \Exception('wip');
->>>>>>> 771f698d (first)
-=======
-            throw new Exception('wip');
->>>>>>> 7cc85766 (rebase 1)
-=======
-            throw new Exception('wip');
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-            throw new Exception('wip');
->>>>>>> 2f59e24c (.)
         }
 
         $attachment = $ownerRecord

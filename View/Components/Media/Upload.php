@@ -23,27 +23,7 @@ class Upload extends Component
         public ?string $componentView = null,
         public ?string $listView = null,
         public ?string $itemView = null,
-<<<<<<< HEAD
-<<<<<<< HEAD
         ?string $propertiesView = null,
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        ?string $propertiesView = null,
-=======
-        string $propertiesView = null,
->>>>>>> 771f698d (first)
-=======
-        ?string $propertiesView = null,
->>>>>>> 7cc85766 (rebase 1)
-=======
-        ?string $propertiesView = null,
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-        ?string $propertiesView = null,
->>>>>>> 2f59e24c (.)
         public ?string $fieldsView = null
     ) {
         Assert::isArray($media = old($name) ?? []);
@@ -61,27 +41,7 @@ class Upload extends Component
 
     public function determineListViewName(): string
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if ($this->listView !== null) {
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if ($this->listView !== null) {
-=======
-        if (null !== $this->listView) {
->>>>>>> 771f698d (first)
-=======
-        if ($this->listView !== null) {
->>>>>>> 7cc85766 (rebase 1)
-=======
-        if ($this->listView !== null) {
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-        if ($this->listView !== null) {
->>>>>>> 2f59e24c (.)
             return $this->listView;
         }
 
@@ -90,27 +50,7 @@ class Upload extends Component
 
     public function determineItemViewName(): string
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if ($this->itemView !== null) {
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if ($this->itemView !== null) {
-=======
-        if (null !== $this->itemView) {
->>>>>>> 771f698d (first)
-=======
-        if ($this->itemView !== null) {
->>>>>>> 7cc85766 (rebase 1)
-=======
-        if ($this->itemView !== null) {
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-        if ($this->itemView !== null) {
->>>>>>> 2f59e24c (.)
             return $this->itemView;
         }
 
@@ -119,27 +59,7 @@ class Upload extends Component
 
     public function determineFieldsViewName(): string
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if ($this->fieldsView !== null) {
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if ($this->fieldsView !== null) {
-=======
-        if (null !== $this->fieldsView) {
->>>>>>> 771f698d (first)
-=======
-        if ($this->fieldsView !== null) {
->>>>>>> 7cc85766 (rebase 1)
-=======
-        if ($this->fieldsView !== null) {
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-        if ($this->fieldsView !== null) {
->>>>>>> 2f59e24c (.)
             return $this->fieldsView;
         }
 
