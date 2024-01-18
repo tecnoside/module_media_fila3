@@ -1,5 +1,8 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,6 +16,7 @@
     "postcss": "^8.3.7",
     "vite": "^4.0.0"
   }
+<<<<<<< HEAD
 =======
     "private": true,
     "scripts": {
@@ -34,4 +38,6 @@
         "vue-template-compiler": "^2.7.14"
     }
 >>>>>>> 771f698d (first)
+=======
+>>>>>>> 7cc85766 (rebase 1)
 }
