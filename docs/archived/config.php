@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 declare(strict_types=1);
@@ -61,4 +59,3 @@ return [
         return [];
     },
 ];
->>>>>>> 6444d42f (rebase 7)

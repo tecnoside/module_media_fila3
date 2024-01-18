@@ -7,9 +7,9 @@ namespace Modules\Media\Traits;
 use Livewire\Component;
 
 /**
-* 
+*
  *
- * @mixin Component 
+ * @mixin Component
 */
 trait WithMedia
 {
@@ -55,38 +55,11 @@ trait WithMedia
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 76f3bf5f (first)
-=======
->>>>>>> 2f59e24c (.)
-     * @param  array|null  $mediaComponentNames
-     */
-    public function clearMedia($mediaComponentNames = null): void
-    {
-        if ($mediaComponentNames === null) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6444d42f (rebase 7)
      * @param array|null $mediaComponentNames
      */
     public function clearMedia($mediaComponentNames = null): void
     {
         if ($mediaComponentNames === null) {
-<<<<<<< HEAD
-=======
->>>>>>> 7cc85766 (rebase 1)
-=======
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
->>>>>>> 2f59e24c (.)
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 
