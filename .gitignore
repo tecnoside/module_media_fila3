@@ -31,5 +31,9 @@ package-lock.json
 *.cache
 build/
 /build
+<<<<<<< HEAD
+=======
+*.cache
+>>>>>>> 771f698d (first)
 docs/vendor
 /docs/vendor
