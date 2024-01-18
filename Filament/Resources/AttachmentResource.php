@@ -5,9 +5,13 @@ declare(strict_types=1);
 namespace Modules\Media\Filament\Resources;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Exception;
 =======
 >>>>>>> 771f698d (first)
+=======
+use Exception;
+>>>>>>> 7cc85766 (rebase 1)
 use Filament\Facades\Filament;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
@@ -23,12 +27,17 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 <<<<<<< HEAD
+<<<<<<< HEAD
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 use Illuminate\Support\Str;
 =======
 use Illuminate\Support\Str;
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 >>>>>>> 771f698d (first)
+=======
+// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
+use Illuminate\Support\Str;
+>>>>>>> 7cc85766 (rebase 1)
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Webmozart\Assert\Assert;
 
@@ -93,10 +102,14 @@ class AttachmentResource extends Resource
                         ->action(
                             // File extension obtained by substringing
 <<<<<<< HEAD
+<<<<<<< HEAD
                             static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
 =======
                             static fn ($record) => response()->download($record->getPath(), $record->name.substr((string) strrchr((string) $record->file_name, '.'), 0))
 >>>>>>> 771f698d (first)
+=======
+                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
+>>>>>>> 7cc85766 (rebase 1)
                         ),
                 ]),
             ])
@@ -167,10 +180,14 @@ class AttachmentResource extends Resource
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new Exception('wip');
 =======
             throw new \Exception('wip');
 >>>>>>> 771f698d (first)
+=======
+            throw new Exception('wip');
+>>>>>>> 7cc85766 (rebase 1)
         }
 
         $attachment = $ownerRecord

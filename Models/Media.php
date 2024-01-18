@@ -1,10 +1,16 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ---.
  */
 =======
 >>>>>>> 771f698d (first)
+=======
+/**
+ * ---.
+ */
+>>>>>>> 7cc85766 (rebase 1)
 
 declare(strict_types=1);
 
@@ -12,14 +18,18 @@ namespace Modules\Media\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Illuminate\Database\Eloquent\Model;
 >>>>>>> 771f698d (first)
+=======
+>>>>>>> 7cc85766 (rebase 1)
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Modules\User\Models\User;
 use Modules\Xot\Traits\Updater;
+<<<<<<< HEAD
 <<<<<<< HEAD
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
@@ -129,6 +139,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @mixin \Eloquent
  */
 >>>>>>> 771f698d (first)
+=======
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+
+>>>>>>> 7cc85766 (rebase 1)
 class Media extends SpatieMedia
 {
     use Updater;
