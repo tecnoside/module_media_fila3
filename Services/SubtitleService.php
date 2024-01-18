@@ -39,12 +39,17 @@ class SubtitleService
     public static function getInstance(): self
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! self::$instance instanceof SubtitleService) {
             self::$instance = new self;
 =======
         if (! self::$instance instanceof \Modules\Media\Services\SubtitleService) {
             self::$instance = new self();
 >>>>>>> 771f698d (first)
+=======
+        if (! self::$instance instanceof SubtitleService) {
+            self::$instance = new self;
+>>>>>>> 7cc85766 (rebase 1)
         }
 
         return self::$instance;
@@ -128,10 +133,14 @@ class SubtitleService
         // $path = realpath($path);
         $path = realpath($this->file_path);
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($path == false) {
 =======
         if (false == $path) {
 >>>>>>> 771f698d (first)
+=======
+        if ($path == false) {
+>>>>>>> 7cc85766 (rebase 1)
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
@@ -163,10 +172,14 @@ class SubtitleService
 
                 if (! $attributes instanceof \SimpleXMLElement) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
 =======
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
 >>>>>>> 771f698d (first)
+=======
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> 7cc85766 (rebase 1)
                 }
 
                 // 00:06:35,360
@@ -184,6 +197,7 @@ class SubtitleService
                 ];
                 $data[] = $tmp;
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $item_i++;
             }
 
@@ -194,6 +208,12 @@ class SubtitleService
 
             ++$sentence_i;
 >>>>>>> 771f698d (first)
+=======
+                $item_i++;
+            }
+
+            $sentence_i++;
+>>>>>>> 7cc85766 (rebase 1)
         }
 
         return $data;
@@ -203,12 +223,17 @@ class SubtitleService
      * Undocumented function.
      *
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param  string  $srtFile
      * @param  string  $webVttFile
 =======
      * @param string $srtFile
      * @param string $webVttFile
 >>>>>>> 771f698d (first)
+=======
+     * @param  string  $srtFile
+     * @param  string  $webVttFile
+>>>>>>> 7cc85766 (rebase 1)
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {
@@ -229,12 +254,17 @@ class SubtitleService
 
         $length = \count($lines);
 <<<<<<< HEAD
+<<<<<<< HEAD
         for ($index = 1; $index < $length; $index++) {
             if ($index === 1 || trim($lines[$index - 2]) === '') {
 =======
         for ($index = 1; $index < $length; ++$index) {
             if (1 === $index || '' === trim($lines[$index - 2])) {
 >>>>>>> 771f698d (first)
+=======
+        for ($index = 1; $index < $length; $index++) {
+            if ($index === 1 || trim($lines[$index - 2]) === '') {
+>>>>>>> 7cc85766 (rebase 1)
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }
