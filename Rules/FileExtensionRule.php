@@ -22,6 +22,7 @@ class FileExtensionRule implements Rule
     /**
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param  string  $attribute
      * @param  UploadedFile  $value
 =======
@@ -32,6 +33,10 @@ class FileExtensionRule implements Rule
      * @param  string  $attribute
      * @param  UploadedFile  $value
 >>>>>>> 7cc85766 (rebase 1)
+=======
+     * @param  string  $attribute
+     * @param  UploadedFile  $value
+>>>>>>> 76f3bf5f (first)
      */
     public function passes($attribute, $value): bool
     {

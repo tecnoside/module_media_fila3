@@ -34,7 +34,10 @@ return [
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 12737bcc (rebase 7)
+=======
+>>>>>>> 78a1e944 (rebase 7)
     'navigation' => require_once ('navigation.php'),
 =======
 
@@ -43,6 +46,9 @@ return [
 =======
     'navigation' => require_once ('navigation.php'),
 >>>>>>> 7cc85766 (rebase 1)
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> 76f3bf5f (first)
 
     // helpers
     'isActive' => function ($page, $path) {
