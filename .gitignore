@@ -31,5 +31,16 @@ package-lock.json
 *.cache
 build/
 /build
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+*.cache
+>>>>>>> 771f698d (first)
+=======
+*.cache
+>>>>>>> ce6e810a (conflict)
+>>>>>>> f1e0f6a6 (rebase 7)
 docs/vendor
 /docs/vendor
