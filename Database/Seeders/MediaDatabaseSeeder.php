@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 namespace Modules\Media\Database\Seeders;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,10 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 <<<<<<< HEAD
 =======
 >>>>>>> 76f3bf5f (first)
+=======
+>>>>>>> 2f59e24c (.)
 namespace Modules\Media\database\seeders;
 
 namespace Modules\Media\Database\Seeders;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 namespace Modules\Media\Database\Seeders;
@@ -34,6 +38,8 @@ namespace Modules\Media\Database\Seeders;
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
 use Illuminate\Database\Seeder;
 
 class MediaDatabaseSeeder extends Seeder
@@ -44,6 +50,7 @@ class MediaDatabaseSeeder extends Seeder
     public function run(): void
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
@@ -67,5 +74,8 @@ class MediaDatabaseSeeder extends Seeder
         // $this->call([]);
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+        // $this->call([]);
+>>>>>>> 2f59e24c (.)
     }
 }

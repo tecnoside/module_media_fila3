@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -23,3 +24,5 @@ Route::get('/media/videoimg/{sec}', 'MediaVideoImgController@getSecond')->name('
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)

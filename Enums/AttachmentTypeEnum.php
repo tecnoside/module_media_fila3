@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Media\Enums;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 =======
 <<<<<<< HEAD
@@ -24,11 +25,15 @@ use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 // use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+// use Datomatic\LaravelEnumHelper\LaravelEnumHelper;
+>>>>>>> 2f59e24c (.)
 use Filament\Support\Contracts\HasLabel;
 use Illuminate\Support\Facades\Lang;
 
 enum AttachmentTypeEnum: string implements HasLabel
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
     // use LaravelEnumHelper;
 =======
@@ -49,12 +54,16 @@ enum AttachmentTypeEnum: string implements HasLabel
     // use LaravelEnumHelper;
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+    // use LaravelEnumHelper;
+>>>>>>> 2f59e24c (.)
 
     case IMAGE = 'image';
     case VIDEO = 'video';
     case DOCUMENT = 'document';
     case MANUAL = 'manual';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -68,6 +77,8 @@ enum AttachmentTypeEnum: string implements HasLabel
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
     public static function getTypeNoteDescriptionsByValues(): array
     {
         return collect(self::cases())
@@ -92,6 +103,7 @@ enum AttachmentTypeEnum: string implements HasLabel
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -104,6 +116,8 @@ enum AttachmentTypeEnum: string implements HasLabel
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
     public function getTypeNote(): ?string
     {
         $translationKey = sprintf('media::attachments.type_notes.%s', $this->value);
@@ -114,6 +128,7 @@ enum AttachmentTypeEnum: string implements HasLabel
         return null;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function getLabel(): ?string
     {
@@ -166,5 +181,10 @@ enum AttachmentTypeEnum: string implements HasLabel
         return trans('media::attachments.types.' . $this->value);
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+    public function getLabel(): ?string
+    {
+        return trans('media::attachments.types.' . $this->value);
+>>>>>>> 2f59e24c (.)
     }
 }
