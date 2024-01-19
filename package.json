@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "private": true,
   "type": "module",
   "scripts": {
@@ -13,7 +12,6 @@
     "postcss": "^8.3.7",
     "vite": "^4.0.0"
   }
-=======
     "private": true,
     "scripts": {
         "dev": "npm run development",
@@ -33,5 +31,4 @@
         "sass-loader": "^8.0.2",
         "vue-template-compiler": "^2.7.14"
     }
->>>>>>> 771f698d (first)
 }

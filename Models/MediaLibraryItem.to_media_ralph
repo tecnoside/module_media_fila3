@@ -26,6 +26,9 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @method static Builder|MediaLibraryItem                                                       query()
  *
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
  * @property int                             $id
  * @property string|null                     $uploaded_by_user_id
  * @property string|null                     $caption
@@ -38,6 +41,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property MediaLibraryFolder|null         $folder
+<<<<<<< HEAD
 =======
  * @property int                                           $id
  * @property string|null                                   $uploaded_by_user_id
@@ -52,6 +56,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property string|null                                   $created_by
  * @property \Modules\Media\Models\MediaLibraryFolder|null $folder
 >>>>>>> 771f698d (first)
+=======
+>>>>>>> 7cc85766 (rebase 1)
  *
  * @method static Builder|MediaLibraryItem whereAltText($value)
  * @method static Builder|MediaLibraryItem whereCaption($value)
