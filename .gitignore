@@ -32,6 +32,7 @@ package-lock.json
 build/
 /build
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -54,5 +55,7 @@ build/
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 3c45533c (.)
 docs/vendor
 /docs/vendor
