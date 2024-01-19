@@ -13,13 +13,20 @@ use Exception;
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Exception;
 =======
 >>>>>>> 771f698d (first)
 =======
 use Exception;
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+use Exception;
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 use Intervention\Image\Facades\Image;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -55,6 +62,7 @@ class Merge
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
 =======
             throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
@@ -62,7 +70,13 @@ class Merge
 =======
             throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+            throw new Exception('[' . __LINE__ . '][' . class_basename(self::class) . ']');
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
         }
 
         $width = (int) $width;
@@ -79,6 +93,7 @@ class Merge
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $img_canvas->save(public_path() . '/' . $filenameOut, 100);
 =======
         $img_canvas->save(public_path().'/'.$filenameOut, 100);
@@ -86,6 +101,12 @@ class Merge
 =======
         $img_canvas->save(public_path() . '/' . $filenameOut, 100);
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        $img_canvas->save(public_path() . '/' . $filenameOut, 100);
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
     }
 }

@@ -28,6 +28,7 @@ class Upload extends Component
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         ?string $propertiesView = null,
 =======
         string $propertiesView = null,
@@ -35,7 +36,13 @@ class Upload extends Component
 =======
         ?string $propertiesView = null,
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        ?string $propertiesView = null,
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
         public ?string $fieldsView = null
     ) {
         Assert::isArray($media = old($name) ?? []);
@@ -58,6 +65,7 @@ class Upload extends Component
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($this->listView !== null) {
 =======
         if (null !== $this->listView) {
@@ -65,7 +73,13 @@ class Upload extends Component
 =======
         if ($this->listView !== null) {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        if ($this->listView !== null) {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             return $this->listView;
         }
 
@@ -79,6 +93,7 @@ class Upload extends Component
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($this->itemView !== null) {
 =======
         if (null !== $this->itemView) {
@@ -86,7 +101,13 @@ class Upload extends Component
 =======
         if ($this->itemView !== null) {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        if ($this->itemView !== null) {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             return $this->itemView;
         }
 
@@ -100,6 +121,7 @@ class Upload extends Component
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($this->fieldsView !== null) {
 =======
         if (null !== $this->fieldsView) {
@@ -107,7 +129,13 @@ class Upload extends Component
 =======
         if ($this->fieldsView !== null) {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        if ($this->fieldsView !== null) {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             return $this->fieldsView;
         }
 
