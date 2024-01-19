@@ -51,52 +51,11 @@ trait WithMedia
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
->>>>>>> 2f59e24c (.)
      * @param  array|null  $mediaComponentNames
      */
     public function clearMedia($mediaComponentNames = null): void
     {
         if ($mediaComponentNames === null) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6444d42f (rebase 7)
-=======
-     * @param array|null $mediaComponentNames
-     */
-    public function clearMedia($mediaComponentNames = null): void
-    {
-        if (null === $mediaComponentNames) {
->>>>>>> 771f698d (first)
-=======
-     * @param  array|null  $mediaComponentNames
-     */
-    public function clearMedia($mediaComponentNames = null): void
-    {
-        if ($mediaComponentNames === null) {
->>>>>>> 7cc85766 (rebase 1)
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
->>>>>>> 2f59e24c (.)
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 
