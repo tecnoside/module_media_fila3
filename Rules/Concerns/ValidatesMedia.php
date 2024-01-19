@@ -107,6 +107,7 @@ trait ValidatesMedia
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return (new UploadedMediaRules)->maxItems(1);
 =======
         return (new UploadedMediaRules())->maxItems(1);
@@ -114,10 +115,14 @@ trait ValidatesMedia
 =======
         return (new UploadedMediaRules)->maxItems(1);
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        return (new UploadedMediaRules)->maxItems(1);
+>>>>>>> 76f3bf5f (first)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         return new UploadedMediaRules;
@@ -127,5 +132,8 @@ trait ValidatesMedia
 =======
         return new UploadedMediaRules;
 >>>>>>> 7cc85766 (rebase 1)
+=======
+        return new UploadedMediaRules;
+>>>>>>> 76f3bf5f (first)
     }
 }
