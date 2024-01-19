@@ -52,6 +52,7 @@ trait WithMedia
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param  array|null  $mediaComponentNames
      */
     public function clearMedia($mediaComponentNames = null): void
@@ -64,6 +65,13 @@ trait WithMedia
     {
         if (null === $mediaComponentNames) {
 >>>>>>> 771f698d (first)
+=======
+     * @param  array|null  $mediaComponentNames
+     */
+    public function clearMedia($mediaComponentNames = null): void
+    {
+        if ($mediaComponentNames === null) {
+>>>>>>> 7cc85766 (rebase 1)
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 

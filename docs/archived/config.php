@@ -30,11 +30,19 @@ return [
 
     // navigation menu
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 12737bcc (rebase 7)
     'navigation' => require_once ('navigation.php'),
 =======
 
     'navigation' => require_once('navigation.php'),
 >>>>>>> 771f698d (first)
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> 7cc85766 (rebase 1)
 
     // helpers
     'isActive' => function ($page, $path) {
