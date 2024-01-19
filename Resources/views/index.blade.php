@@ -3,5 +3,7 @@
 @section('content')
     <h1>Hello World</h1>
 
-    <p>Module: {!! config('media.name') !!}</p>
+    <p>
+        This view is loaded from module: {!! config('media.name') !!}
+    </p>
 @endsection
