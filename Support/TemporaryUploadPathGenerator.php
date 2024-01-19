@@ -11,54 +11,12 @@ use Modules\Media\Models\Media;
 // use Modules\Media\Contracts\PathGenerator;
 
 class TemporaryUploadPathGenerator // implements PathGenerator
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
->>>>>>> 2f59e24c (.)
 {
     public function getPath(Media $media): string
     {
         /* @phpstan-ignore-line */
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6444d42f (rebase 7)
-=======
-{public function getPath(Media $media): string
-{
-    /* @phpstan-ignore-line */
-    return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
-}
->>>>>>> 771f698d (first)
-=======
-{
-    public function getPath(Media $media): string
-    {
-        /* @phpstan-ignore-line */
-        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
-    }
->>>>>>> 7cc85766 (rebase 1)
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
->>>>>>> 2f59e24c (.)
 
     public function getPathForConversions(Media $media): string
     {
@@ -81,30 +39,7 @@ class TemporaryUploadPathGenerator // implements PathGenerator
 
         $key = md5($media->uuid.$media->getKey());
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         if ($prefix !== '') {
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if ($prefix !== '') {
-=======
-        if ('' !== $prefix) {
->>>>>>> 771f698d (first)
-=======
-        if ($prefix !== '') {
->>>>>>> 7cc85766 (rebase 1)
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
-        if ($prefix !== '') {
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-        if ($prefix !== '') {
->>>>>>> 2f59e24c (.)
             return $prefix.'/'.$key;
         }
 

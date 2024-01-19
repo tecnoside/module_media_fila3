@@ -1,199 +1,20 @@
 <?php
-<<<<<<< HEAD
-<<<<<<< HEAD
 /**
  * ---.
  */
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-/**
- * ---.
- */
-=======
->>>>>>> 771f698d (first)
-=======
-/**
- * ---.
- */
->>>>>>> 7cc85766 (rebase 1)
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
-/**
- * ---.
- */
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-/**
- * ---.
- */
->>>>>>> 2f59e24c (.)
 
 declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-use Illuminate\Database\Eloquent\Model;
->>>>>>> 771f698d (first)
-=======
->>>>>>> 7cc85766 (rebase 1)
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
->>>>>>> 2f59e24c (.)
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Modules\User\Models\User;
 use Modules\Xot\Traits\Updater;
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
-
-=======
-use Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection;
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
-
-/**
- * Modules\Media\Models\Media.
- *
- * @property User|null                                  $creator
- * @property Model|\Eloquent                            $model
- * @property \Modules\Media\Models\TemporaryUpload|null $temporaryUpload
- *
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static Builder|Media                newModelQuery()
- * @method static Builder|Media                newQuery()
- * @method static Builder|Media                ordered()
- * @method static Builder|Media                query()
- *
- * @property int                             $id
- * @property string                          $model_type
- * @property string                          $model_id
- * @property string|null                     $uuid
- * @property string                          $collection_name
- * @property string                          $name
- * @property string                          $file_name
- * @property string|null                     $mime_type
- * @property string                          $disk
- * @property string|null                     $conversions_disk
- * @property int                             $size
- * @property array|null                      $manipulations
- * @property array|null                      $custom_properties
- * @property array|null                      $generated_conversions
- * @property array|null                      $responsive_images
- * @property int|null                        $order_column
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null                     $created_by
- * @property string|null                     $updated_by
- * @property int|null                        $user_id
- * @property string                          $directory
- * @property string|null                     $path
- * @property int|null                        $width
- * @property int|null                        $height
- * @property string|null                     $type
- * @property string|null                     $ext
- * @property string|null                     $alt
- * @property string|null                     $title
- * @property string|null                     $description
- * @property string|null                     $caption
- * @property string|null                     $exif
- * @property string|null                     $curations
- *
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static Builder|Media                whereAlt($value)
- * @method static Builder|Media                whereCaption($value)
- * @method static Builder|Media                whereCollectionName($value)
- * @method static Builder|Media                whereConversionsDisk($value)
- * @method static Builder|Media                whereCreatedAt($value)
- * @method static Builder|Media                whereCreatedBy($value)
- * @method static Builder|Media                whereCurations($value)
- * @method static Builder|Media                whereCustomProperties($value)
- * @method static Builder|Media                whereDescription($value)
- * @method static Builder|Media                whereDirectory($value)
- * @method static Builder|Media                whereDisk($value)
- * @method static Builder|Media                whereExif($value)
- * @method static Builder|Media                whereExt($value)
- * @method static Builder|Media                whereFileName($value)
- * @method static Builder|Media                whereGeneratedConversions($value)
- * @method static Builder|Media                whereHeight($value)
- * @method static Builder|Media                whereId($value)
- * @method static Builder|Media                whereManipulations($value)
- * @method static Builder|Media                whereMimeType($value)
- * @method static Builder|Media                whereModelId($value)
- * @method static Builder|Media                whereModelType($value)
- * @method static Builder|Media                whereName($value)
- * @method static Builder|Media                whereOrderColumn($value)
- * @method static Builder|Media                wherePath($value)
- * @method static Builder|Media                whereResponsiveImages($value)
- * @method static Builder|Media                whereSize($value)
- * @method static Builder|Media                whereTitle($value)
- * @method static Builder|Media                whereType($value)
- * @method static Builder|Media                whereUpdatedAt($value)
- * @method static Builder|Media                whereUpdatedBy($value)
- * @method static Builder|Media                whereUserId($value)
- * @method static Builder|Media                whereUuid($value)
- * @method static Builder|Media                whereWidth($value)
- *
- * @mixin Eloquent
- *
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- * @method static MediaCollection<int, static> all($columns = ['*'])
- * @method static MediaCollection<int, static> get($columns = ['*'])
- *
- * @mixin \Eloquent
- */
->>>>>>> 771f698d (first)
-=======
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
-
->>>>>>> 7cc85766 (rebase 1)
-<<<<<<< HEAD
->>>>>>> f1b3b202 (rebase 7)
-=======
-=======
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
-
->>>>>>> 76f3bf5f (first)
->>>>>>> 6444d42f (rebase 7)
-=======
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
-
->>>>>>> 2f59e24c (.)
 class Media extends SpatieMedia
 {
     use Updater;
