@@ -1,4 +1,24 @@
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
+    "name": "nwidart/media",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+<<<<<<< HEAD
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+=======
+>>>>>>> f1b3b202 (rebase 7)
     "name": "laraxot/module_media_fila3",
     "description": "media module dedicated to image and video management",
     "keywords": [
@@ -11,12 +31,22 @@
         "Media",
         "Images",
         "Videos"
+=======
+>>>>>>> 7cc85766 (rebase 1)
     ],
     "extra": {
         "laravel": {
+<<<<<<< HEAD
             "providers": [
                 "Modules\\Media\\Providers\\MediaServiceProvider"
             ],
+<<<<<<< HEAD
+=======
+>>>>>>> 771f698d (first)
+=======
+            "providers": [],
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
             "aliases": {
 
             }
@@ -24,15 +54,50 @@
     },
     "autoload": {
         "psr-4": {
+<<<<<<< HEAD
             "Modules\\Media\\": "",
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7cc85766 (rebase 1)
+            "Modules\\Media\\": "",
+            "Modules\\Media\\App\\": "app/",
+            "Modules\\Media\\Database\\Factories\\": "database/factories/",
+            "Modules\\Media\\Database\\Seeders\\": "database/seeders/"
+<<<<<<< HEAD
+>>>>>>> f1b3b202 (rebase 7)
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Modules\\Media\\Tests\\": "tests/"
         }
+<<<<<<< HEAD
     },
     "minimum-stability": "dev",
     "prefer-stable": true
 
     }
+=======
+    }
+=======
+            "Modules\\Media\\": ""
+=======
+>>>>>>> 7cc85766 (rebase 1)
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Media\\Tests\\": "tests/"
+        }
+<<<<<<< HEAD
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+>>>>>>> 771f698d (first)
+=======
+    }
+>>>>>>> 7cc85766 (rebase 1)
+}
+>>>>>>> f1b3b202 (rebase 7)
