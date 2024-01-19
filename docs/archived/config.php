@@ -31,6 +31,7 @@ return [
     // navigation menu
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -49,6 +50,9 @@ return [
 =======
     'navigation' => require_once ('navigation.php'),
 >>>>>>> 76f3bf5f (first)
+=======
+    'navigation' => require_once ('navigation.php'),
+>>>>>>> b9ba8917 (.)
 
     // helpers
     'isActive' => function ($page, $path) {

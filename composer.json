@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -8,6 +9,8 @@
 >>>>>>> 7cc85766 (rebase 1)
 =======
 >>>>>>> 76f3bf5f (first)
+=======
+>>>>>>> b9ba8917 (.)
     "name": "nwidart/media",
     "description": "",
     "authors": [
@@ -15,14 +18,11 @@
             "name": "Nicolas Widart",
             "email": "n.widart@gmail.com"
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 76f3bf5f (first)
     ],
     "extra": {
         "laravel": {
             "providers": [],
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 78a1e944 (rebase 7)
@@ -53,6 +53,8 @@
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 78a1e944 (rebase 7)
+=======
+>>>>>>> b9ba8917 (.)
             "aliases": {
 
             }
@@ -60,6 +62,7 @@
     },
     "autoload": {
         "psr-4": {
+<<<<<<< HEAD
 <<<<<<< HEAD
             "Modules\\Media\\": "",
 =======
@@ -70,15 +73,20 @@
 >>>>>>> 7cc85766 (rebase 1)
 =======
 >>>>>>> 76f3bf5f (first)
+=======
+>>>>>>> b9ba8917 (.)
             "Modules\\Media\\": "",
             "Modules\\Media\\App\\": "app/",
             "Modules\\Media\\Database\\Factories\\": "database/factories/",
             "Modules\\Media\\Database\\Seeders\\": "database/seeders/"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 78a1e944 (rebase 7)
+=======
+>>>>>>> b9ba8917 (.)
         }
     },
     "autoload-dev": {
@@ -92,6 +100,7 @@
 
 =======
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
             "Modules\\Media\\": ""
@@ -114,4 +123,6 @@
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 78a1e944 (rebase 7)
+=======
+>>>>>>> b9ba8917 (.)
 }
