@@ -65,7 +65,19 @@ class VideoStream
         $mime = $filesystem->mimeType($path);
 
         if (! \is_string($mime)) {
+<<<<<<< HEAD
             throw new Exception('['.__LINE__.']['.__FILE__.']');
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+=======
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> 771f698d (first)
+=======
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
         }
 
         $this->mime = $mime;
@@ -139,7 +151,19 @@ class VideoStream
                 header(sprintf('Content-Range: bytes %d-%d/%d', $this->start, $this->end, $this->size));
                 exit;
             }
+<<<<<<< HEAD
             if ($range === '-') {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            if ($range === '-') {
+=======
+            if ('-' === $range) {
+>>>>>>> 771f698d (first)
+=======
+            if ($range === '-') {
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
                 $c_start = $this->size - (int) substr($range, 1);
             } else {
                 $range = explode('-', $range);

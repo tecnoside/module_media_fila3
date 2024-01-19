@@ -23,7 +23,19 @@ class Upload extends Component
         public ?string $componentView = null,
         public ?string $listView = null,
         public ?string $itemView = null,
+<<<<<<< HEAD
         ?string $propertiesView = null,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        ?string $propertiesView = null,
+=======
+        string $propertiesView = null,
+>>>>>>> 771f698d (first)
+=======
+        ?string $propertiesView = null,
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
         public ?string $fieldsView = null
     ) {
         Assert::isArray($media = old($name) ?? []);
@@ -41,7 +53,19 @@ class Upload extends Component
 
     public function determineListViewName(): string
     {
+<<<<<<< HEAD
         if ($this->listView !== null) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        if ($this->listView !== null) {
+=======
+        if (null !== $this->listView) {
+>>>>>>> 771f698d (first)
+=======
+        if ($this->listView !== null) {
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
             return $this->listView;
         }
 
@@ -50,7 +74,19 @@ class Upload extends Component
 
     public function determineItemViewName(): string
     {
+<<<<<<< HEAD
         if ($this->itemView !== null) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        if ($this->itemView !== null) {
+=======
+        if (null !== $this->itemView) {
+>>>>>>> 771f698d (first)
+=======
+        if ($this->itemView !== null) {
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
             return $this->itemView;
         }
 
@@ -59,7 +95,19 @@ class Upload extends Component
 
     public function determineFieldsViewName(): string
     {
+<<<<<<< HEAD
         if ($this->fieldsView !== null) {
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        if ($this->fieldsView !== null) {
+=======
+        if (null !== $this->fieldsView) {
+>>>>>>> 771f698d (first)
+=======
+        if ($this->fieldsView !== null) {
+>>>>>>> 7cc85766 (rebase 1)
+>>>>>>> f1b3b202 (rebase 7)
             return $this->fieldsView;
         }
 
