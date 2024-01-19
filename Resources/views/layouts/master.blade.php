@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -9,6 +10,8 @@
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -37,6 +40,7 @@
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-media', 'resources/assets/js/app.js') }} --}}
 </body>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -93,3 +97,5 @@
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)

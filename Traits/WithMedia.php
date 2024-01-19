@@ -52,6 +52,7 @@ trait WithMedia
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -61,11 +62,14 @@ trait WithMedia
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
      * @param  array|null  $mediaComponentNames
      */
     public function clearMedia($mediaComponentNames = null): void
     {
         if ($mediaComponentNames === null) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -91,6 +95,8 @@ trait WithMedia
 =======
 >>>>>>> 76f3bf5f (first)
 >>>>>>> 6444d42f (rebase 7)
+=======
+>>>>>>> 2f59e24c (.)
             $mediaComponentNames = $this->getMediaComponentNames();
         }
 
