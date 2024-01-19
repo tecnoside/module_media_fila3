@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'name' => 'Media',
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     'icon' => 'fas-photo-video',
@@ -25,5 +28,11 @@ return [
 =======
 =======
 >>>>>>> 76f3bf5f (first)
+<<<<<<< HEAD
 >>>>>>> 6444d42f (rebase 7)
+=======
+=======
+    'icon' => 'fas-photo-video',
+>>>>>>> 42c7e2a6 (up)
+>>>>>>> a1a8bc4b (rebase 7)
 ];
