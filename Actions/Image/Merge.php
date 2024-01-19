@@ -8,26 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\Media\Actions\Image;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Exception;
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-use Exception;
-=======
->>>>>>> 771f698d (first)
-=======
-use Exception;
->>>>>>> 7cc85766 (rebase 1)
-=======
-use Exception;
->>>>>>> 76f3bf5f (first)
->>>>>>> 78a1e944 (rebase 7)
-=======
-use Exception;
->>>>>>> b9ba8917 (.)
 use Intervention\Image\Facades\Image;
 use Spatie\QueueableAction\QueueableAction;
 
