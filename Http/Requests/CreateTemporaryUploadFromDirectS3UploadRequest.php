@@ -50,6 +50,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass;
 
         if ($mediaModel->getConnectionName() === 'default') {
@@ -63,7 +64,15 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
 
         if ($mediaModel->getConnectionName() === 'default') {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        $mediaModel = new $mediaModelClass;
+
+        if ($mediaModel->getConnectionName() === 'default') {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             return '';
         }
 
@@ -80,6 +89,7 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $mediaModel = new $mediaModelClass;
 =======
         $mediaModel = new $mediaModelClass();
@@ -87,7 +97,13 @@ class CreateTemporaryUploadFromDirectS3UploadRequest extends FormRequest
 =======
         $mediaModel = new $mediaModelClass;
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        $mediaModel = new $mediaModelClass;
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 
         return $mediaModel->getTable();
     }

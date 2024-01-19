@@ -3,7 +3,12 @@
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -33,7 +38,10 @@
     {{-- {{ module_vite('build-media', 'resources/assets/js/app.js') }} --}}
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6444d42f (rebase 7)
 =======
 <html lang="en">
     <head>
@@ -79,4 +87,9 @@
     {{-- {{ module_vite('build-media', 'resources/assets/js/app.js') }} --}}
 </body>
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)

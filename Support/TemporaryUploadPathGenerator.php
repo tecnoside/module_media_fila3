@@ -15,7 +15,12 @@ class TemporaryUploadPathGenerator // implements PathGenerator
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 {
     public function getPath(Media $media): string
     {
@@ -23,7 +28,10 @@ class TemporaryUploadPathGenerator // implements PathGenerator
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6444d42f (rebase 7)
 =======
 {public function getPath(Media $media): string
 {
@@ -39,7 +47,12 @@ class TemporaryUploadPathGenerator // implements PathGenerator
         return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
     }
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 
     public function getPathForConversions(Media $media): string
     {
@@ -67,6 +80,7 @@ class TemporaryUploadPathGenerator // implements PathGenerator
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($prefix !== '') {
 =======
         if ('' !== $prefix) {
@@ -74,7 +88,13 @@ class TemporaryUploadPathGenerator // implements PathGenerator
 =======
         if ($prefix !== '') {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        if ($prefix !== '') {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             return $prefix.'/'.$key;
         }
 

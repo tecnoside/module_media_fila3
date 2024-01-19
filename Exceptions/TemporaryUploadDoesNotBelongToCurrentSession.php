@@ -11,6 +11,7 @@ class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Exception;
 
 class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
@@ -22,7 +23,15 @@ use Exception;
 
 class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+use Exception;
+
+class TemporaryUploadDoesNotBelongToCurrentSession extends Exception
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 {
     public static function create(): self
     {

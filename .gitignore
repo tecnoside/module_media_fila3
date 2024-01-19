@@ -36,6 +36,7 @@ build/
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 *.cache
 >>>>>>> 771f698d (first)
@@ -47,6 +48,11 @@ build/
 =======
 =======
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 docs/vendor
 /docs/vendor

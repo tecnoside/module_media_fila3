@@ -2,6 +2,7 @@
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php declare(strict_types=1);
 =======
 >>>>>>> f1b3b202 (rebase 7)
@@ -29,4 +30,10 @@ Route::middleware('auth:api')->get('/media', function (Request $request) {
 =======
 <?php declare(strict_types=1);
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+<?php declare(strict_types=1);
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)

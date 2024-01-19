@@ -10,6 +10,7 @@
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <p>Module: {!! config('media.name') !!}</p>
 =======
     <p>
@@ -19,5 +20,11 @@
 =======
     <p>Module: {!! config('media.name') !!}</p>
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+    <p>Module: {!! config('media.name') !!}</p>
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 @endsection

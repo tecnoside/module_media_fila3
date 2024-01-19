@@ -6,6 +6,7 @@
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * ---.
  */
@@ -16,7 +17,15 @@
  * ---.
  */
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+/**
+ * ---.
+ */
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 
 declare(strict_types=1);
 
@@ -27,12 +36,18 @@ use Illuminate\Database\Eloquent\Builder;
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Illuminate\Database\Eloquent\Model;
 >>>>>>> 771f698d (first)
 =======
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Modules\Media\Enums\AttachmentTypeEnum;
@@ -42,6 +57,7 @@ use Modules\Xot\Traits\Updater;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
@@ -156,7 +172,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
 
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
 class Media extends SpatieMedia
 {
     use Updater;

@@ -110,6 +110,7 @@ trait ValidatesMedia
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return (new UploadedMediaRules)->maxItems(1);
 =======
         return (new UploadedMediaRules())->maxItems(1);
@@ -117,7 +118,13 @@ trait ValidatesMedia
 =======
         return (new UploadedMediaRules)->maxItems(1);
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        return (new UploadedMediaRules)->maxItems(1);
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
     }
 
     protected function validateMultipleMedia(): UploadedMediaRules
@@ -127,6 +134,7 @@ trait ValidatesMedia
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return new UploadedMediaRules;
 =======
         return new UploadedMediaRules();
@@ -134,6 +142,12 @@ trait ValidatesMedia
 =======
         return new UploadedMediaRules;
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        return new UploadedMediaRules;
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
     }
 }

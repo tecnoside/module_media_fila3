@@ -44,6 +44,7 @@ class SubtitleService
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (! self::$instance instanceof SubtitleService) {
             self::$instance = new self;
 =======
@@ -54,7 +55,14 @@ class SubtitleService
         if (! self::$instance instanceof SubtitleService) {
             self::$instance = new self;
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        if (! self::$instance instanceof SubtitleService) {
+            self::$instance = new self;
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
         }
 
         return self::$instance;
@@ -142,6 +150,7 @@ class SubtitleService
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ($path == false) {
 =======
         if (false == $path) {
@@ -149,7 +158,13 @@ class SubtitleService
 =======
         if ($path == false) {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        if ($path == false) {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
             return '';
             /*
             throw new Exception('path:['.$path.']'.PHP_EOL.'
@@ -185,6 +200,7 @@ class SubtitleService
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
 =======
                     throw new \Exception('['.__LINE__.']['.__FILE__.']');
@@ -192,7 +208,13 @@ class SubtitleService
 =======
                     throw new Exception('['.__LINE__.']['.__FILE__.']');
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+                    throw new Exception('['.__LINE__.']['.__FILE__.']');
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
                 }
 
                 // 00:06:35,360
@@ -213,13 +235,21 @@ class SubtitleService
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
                 $item_i++;
             }
 
             $sentence_i++;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6444d42f (rebase 7)
 =======
                 ++$item_i;
             }
@@ -232,7 +262,12 @@ class SubtitleService
 
             $sentence_i++;
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
         }
 
         return $data;
@@ -247,6 +282,7 @@ class SubtitleService
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param  string  $srtFile
      * @param  string  $webVttFile
 =======
@@ -257,7 +293,14 @@ class SubtitleService
      * @param  string  $srtFile
      * @param  string  $webVttFile
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+     * @param  string  $srtFile
+     * @param  string  $webVttFile
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
      */
     public function srtToVtt($srtFile, $webVttFile): void
     {
@@ -283,6 +326,7 @@ class SubtitleService
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         for ($index = 1; $index < $length; $index++) {
             if ($index === 1 || trim($lines[$index - 2]) === '') {
 =======
@@ -293,7 +337,14 @@ class SubtitleService
         for ($index = 1; $index < $length; $index++) {
             if ($index === 1 || trim($lines[$index - 2]) === '') {
 >>>>>>> 7cc85766 (rebase 1)
+<<<<<<< HEAD
 >>>>>>> f1b3b202 (rebase 7)
+=======
+=======
+        for ($index = 1; $index < $length; $index++) {
+            if ($index === 1 || trim($lines[$index - 2]) === '') {
+>>>>>>> 76f3bf5f (first)
+>>>>>>> 6444d42f (rebase 7)
                 $lines[$index] = str_replace(',', '.', $lines[$index]);
             }
         }
