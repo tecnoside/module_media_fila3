@@ -1,6 +1,8 @@
 <?php
 
-namespace Modules\Media\View\Tests\Unit\Components\Media;
+declare(strict_types=1);
+
+namespace Modules\Media\Tests\Unit\View\Components\Media;
 
 use Modules\Media\View\Components\Media\Upload;
 use Tests\TestCase;
@@ -34,9 +36,6 @@ final class UploadTest extends TestCase
 
     private string $fieldsView;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -54,53 +53,40 @@ final class UploadTest extends TestCase
         $this->upload = new Upload($this->name, $this->rules, $this->multiple, $this->editableName, $this->maxItems, $this->componentView, $this->listView, $this->itemView, $this->propertiesView, $this->fieldsView);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        unset($this->upload);
-        unset($this->name);
-        unset($this->rules);
-        unset($this->multiple);
-        unset($this->editableName);
-        unset($this->maxItems);
-        unset($this->componentView);
-        unset($this->listView);
-        unset($this->itemView);
-        unset($this->propertiesView);
-        unset($this->fieldsView);
+        unset($this->upload, $this->name, $this->rules, $this->multiple, $this->editableName, $this->maxItems, $this->componentView, $this->listView, $this->itemView, $this->propertiesView, $this->fieldsView);
     }
 
     public function testRender(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testDetermineListViewName(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testDetermineItemViewName(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testDetermineFieldsViewName(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testDetermineMaxItems(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }
