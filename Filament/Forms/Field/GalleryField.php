@@ -39,7 +39,8 @@ class GalleryField extends Repeater
             */
             // FileUpload::make('img'),
             // SpatieMediaLibraryFileUpload::make('img')->image(),
-            FileUpload::make('file_name'),
+            // FileUpload::make('file_name'),
+            Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
             Forms\Components\TextInput::make('name'),
             Forms\Components\TextInput::make('collection_name'),
         ]);
