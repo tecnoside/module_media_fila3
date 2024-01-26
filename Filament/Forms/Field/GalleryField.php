@@ -80,6 +80,25 @@ class GalleryField extends Repeater
         ]);
     }
 
+    /*
+    Forms\Components\FileUpload::make('image')
+                            ->image()
+                            ->visibleOn('edit')
+                            ->getUploadedFileNameForStorageUsing(static function (TemporaryUploadedFile $file): string {
+                                return Str::random(32);
+                            })
+                            ->saveUploadedFileUsing(static function (FileUpload $component, TemporaryUploadedFile $file, Narrator $record) {
+                                $temporarilyFilename = $file->getFilename();
+                                $basePath = 'narrators';
+                                $tempUploadFolderName = config('livewire.temporary_file_upload.directory');
+                                $extension = substr($temporarilyFilename, strrpos($temporarilyFilename, '.'));
+                                $newFilename = $component->getUploadedFileNameForStorage($file).$extension;
+
+                                Storage::move("$tempUploadFolderName/$temporarilyFilename", $basePath);
+                                Storage::move("$basePath/$temporarilyFilename", $newFilename);
+                                $file = ImageKitFacade::searchFile("$basePath/$newFilename");
+                                */
+
     protected function setUp01(): void
     {
         parent::setUp();
