@@ -10,6 +10,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Get;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
@@ -110,7 +111,7 @@ class GalleryField extends Repeater
                 ->conversion('thumb')
                 ->loadStateFromRelationshipsUsing(function (SpatieMediaLibraryFileUpload $component, HasMedia $record) {
                     /** @var Model&HasMedia $record */
-                    $files = $record->load('media')->getMedia('game-image')
+                    $files = $record/* ->load('media') */ ->getMedia('game-image')
                         ->where('id', $component->getState())
                         ->take(1)
                         ->mapWithKeys(function (Media $file): array {
