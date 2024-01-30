@@ -17,14 +17,14 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Modules\Camping\Constants\AttachmentType;
+// use Modules\Camping\Constants\AttachmentType;
 use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
 use Modules\Media\Models\Media;
 use Webmozart\Assert\Assert;
 
-// use Modules\Camping\Constants\AttachmentType;
+// //use Modules\Camping\Constants\AttachmentType;
 // use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 
 class MediaResource extends Resource
