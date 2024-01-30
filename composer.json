@@ -1,15 +1,22 @@
 {
-    "name": "nwidart/media",
-    "description": "",
-    "authors": [
-        {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
-        }
+    "name": "laraxot/module_media_fila3",
+    "description": "media module dedicated to image and video management",
+    "keywords": [
+        "laraxot",
+        "laravel",
+        "filament",
+        "module_media",
+        "Laravel",
+        "Media module",
+        "Media",
+        "Images",
+        "Videos"
     ],
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": [
+                "Modules\\Media\\Providers\\MediaServiceProvider"
+            ],
             "aliases": {
 
             }
@@ -18,14 +25,14 @@
     "autoload": {
         "psr-4": {
             "Modules\\Media\\": "",
-            "Modules\\Media\\App\\": "app/",
-            "Modules\\Media\\Database\\Factories\\": "database/factories/",
-            "Modules\\Media\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Modules\\Media\\Tests\\": "tests/"
         }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+
     }
-}
