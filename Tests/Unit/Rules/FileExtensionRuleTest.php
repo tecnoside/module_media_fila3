@@ -40,19 +40,31 @@ final class FileExtensionRuleTest extends TestCase
 
     public function testPassesWhenOk(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::assertTrue($this->fileExtensionRule->passes('attribute', 'valid value'));
     }
 
     public function testPassesWhenFailed(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::assertFalse($this->fileExtensionRule->passes('attribute', 'invalid value'));
     }
 
     public function testMessage(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::markTestIncomplete();
     }
 }

@@ -10,7 +10,11 @@ use Modules\Media\Rules\GroupRules\MinTotalSizeInKbRule;
 use Modules\Media\Rules\ItemRules\AttributeRule;
 use Modules\Media\Rules\UploadedMediaRules;
 
-/** @var FormRequest $this */
+/**
+* 
+ *
+ * @var FormRequest $this 
+*/
 trait ValidatesMedia
 {
     public function validateResolved(): void
@@ -83,16 +87,18 @@ trait ValidatesMedia
                     $remainingRules[$attribute][] = $attributeRule;
                 }
 
-                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(function ($attributeRule): bool {
-                    if (\is_string($attributeRule)) {
-                        return false;
-                    }
-                    if ($attributeRule instanceof MinItemsRule && $attributeRule->getMinItemCount()) {
-                        return true;
-                    }
+                $minimumRuleUsed = collect($remainingRules[$attribute])->contains(
+                    function ($attributeRule): bool {
+                        if (\is_string($attributeRule)) {
+                            return false;
+                        }
+                        if ($attributeRule instanceof MinItemsRule && $attributeRule->getMinItemCount()) {
+                            return true;
+                        }
 
-                    return $attributeRule instanceof MinTotalSizeInKbRule && $attributeRule->getMinTotalSizeInKb();
-                });
+                        return $attributeRule instanceof MinTotalSizeInKbRule && $attributeRule->getMinTotalSizeInKb();
+                    }
+                );
 
                 if ($minimumRuleUsed) {
                     $remainingRules[$attribute][] = 'required';

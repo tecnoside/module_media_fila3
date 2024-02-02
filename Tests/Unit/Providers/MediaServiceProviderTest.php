@@ -21,7 +21,11 @@ final class MediaServiceProviderTest extends TestCase
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /**
+* 
+         *
+ * @todo Correctly instantiate tested object to use it. 
+*/
         $this->mediaServiceProvider = new MediaServiceProvider();
     }
 
@@ -37,7 +41,11 @@ final class MediaServiceProviderTest extends TestCase
 
     public function testBootCallback(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::markTestIncomplete();
     }
 }

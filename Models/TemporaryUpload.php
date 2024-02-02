@@ -30,7 +30,6 @@ use function is_string;
  * @property \Illuminate\Support\Carbon|null                                                      $updated_at
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property int|null                                                                             $media_count
- *
  * @method static Builder|TemporaryUpload newModelQuery()
  * @method static Builder|TemporaryUpload newQuery()
  * @method static Builder|TemporaryUpload query()
@@ -38,7 +37,6 @@ use function is_string;
  * @method static Builder|TemporaryUpload whereId($value)
  * @method static Builder|TemporaryUpload whereSessionId($value)
  * @method static Builder|TemporaryUpload whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class TemporaryUpload extends Model implements HasMedia
@@ -64,7 +62,11 @@ class TemporaryUpload extends Model implements HasMedia
     {
         Assert::string($mediaModelClass = config('media-library.media_model'));
 
-        /** @var Media $media */
+        /**
+* 
+         *
+ * @var Media $media 
+*/
         $media = $mediaModelClass::query()
             ->where('uuid', $mediaUuid)
             ->first();
@@ -101,10 +103,16 @@ class TemporaryUpload extends Model implements HasMedia
         string $uuid,
         string $name
     ): self {
-        /** @var TemporaryUpload $temporaryUpload */
-        $temporaryUpload = static::create([
+        /**
+* 
+         *
+ * @var TemporaryUpload $temporaryUpload 
+*/
+        $temporaryUpload = static::create(
+            [
             'session_id' => $sessionId,
-        ]);
+            ]
+        );
 
         if (static::findByMediaUuid($uuid) instanceof self) {
             throw CouldNotAddUpload::uuidAlreadyExists();
@@ -128,10 +136,16 @@ class TemporaryUpload extends Model implements HasMedia
         string $name,
         string $diskName
     ): self {
-        /** @var TemporaryUpload $temporaryUpload */
-        $temporaryUpload = static::create([
+        /**
+* 
+         *
+ * @var TemporaryUpload $temporaryUpload 
+*/
+        $temporaryUpload = static::create(
+            [
             'session_id' => $sessionId,
-        ]);
+            ]
+        );
 
         if (static::findByMediaUuid($uuid) instanceof self) {
             throw CouldNotAddUpload::uuidAlreadyExists();

@@ -39,7 +39,8 @@ class AttachmentResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
+            ->columns(
+                [
                 TextColumn::make('collection_name')
                     ->translateLabel()
                     ->label('camping::tables.attachments.collection_name'),
@@ -63,11 +64,16 @@ class AttachmentResource extends Resource
                     ->label('camping::tables.attachments.uploaded_at')
                     ->dateTime('d M, Y H:i:s')
                     ->toggleable(),
-            ])
-            ->filters([
-            ])
-            ->actions([
-                ActionGroup::make([
+                ]
+            )
+            ->filters(
+                [
+                ]
+            )
+            ->actions(
+                [
+                ActionGroup::make(
+                    [
                     Action::make('view_attachment')
                         ->translateLabel()
                         ->label('camping::actions.view.labels.main_label')
@@ -86,12 +92,16 @@ class AttachmentResource extends Resource
                             // File extension obtained by substringing
                             static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
                         ),
-                ]),
-            ])
-            ->bulkActions([
+                    ]
+                ),
+                ]
+            )
+            ->bulkActions(
+                [
                 DeleteBulkAction::make(),
                 // AttachmentDownloadBulkAction::make(),
-            ])
+                ]
+            )
             ->defaultSort(
                 column: 'created_at',
                 direction: 'DESC',
@@ -169,10 +179,12 @@ class AttachmentResource extends Resource
             ->toMediaCollection($mediaCollection);
 
         $user_id = Filament::auth()->id();
-        $attachment->update([
+        $attachment->update(
+            [
             'created_by' => $user_id,
             'updated_by' => $user_id,
-        ]);
+            ]
+        );
         /*
         $attachment->created_by=$user_id;
         $attachment->created_by=$user_id;

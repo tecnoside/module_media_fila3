@@ -30,28 +30,42 @@ class TemporaryUploadResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-            ]);
+            ->schema(
+                [
+                ]
+            );
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-            ])
-            ->filters([
-            ])
-            ->actions([
+            ->columns(
+                [
+                ]
+            )
+            ->filters(
+                [
+                ]
+            )
+            ->actions(
+                [
                 EditAction::make(),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
+                ]
+            )
+            ->bulkActions(
+                [
+                BulkActionGroup::make(
+                    [
                     DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
+                    ]
+                ),
+                ]
+            )
+            ->emptyStateActions(
+                [
                 // {{ tableEmptyStateActions }}
-            ]);
+                ]
+            );
     }
 
     /**

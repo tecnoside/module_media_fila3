@@ -20,8 +20,8 @@ class FileExtensionRule implements Rule
     }
 
     /**
-     * @param  string  $attribute
-     * @param  UploadedFile  $value
+     * @param string       $attribute
+     * @param UploadedFile $value
      */
     public function passes($attribute, $value): bool
     {
@@ -34,8 +34,10 @@ class FileExtensionRule implements Rule
 
     public function message(): array|string
     {
-        return trans('media::validation.mime', [
+        return trans(
+            'media::validation.mime', [
             'mimes' => implode(', ', $this->validExtensions),
-        ]);
+            ]
+        );
     }
 }

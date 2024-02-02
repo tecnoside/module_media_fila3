@@ -21,7 +21,11 @@ final class TemporaryUploadPathGeneratorTest extends TestCase
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /**
+* 
+         *
+ * @todo Correctly instantiate tested object to use it. 
+*/
         $this->temporaryUploadPathGenerator = new TemporaryUploadPathGenerator();
     }
 
@@ -37,19 +41,31 @@ final class TemporaryUploadPathGeneratorTest extends TestCase
 
     public function testGetPath(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::markTestIncomplete();
     }
 
     public function testGetPathForConversions(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::markTestIncomplete();
     }
 
     public function testGetPathForResponsiveImages(): void
     {
-        /** @todo This test is incomplete. */
+        /**
+* 
+         *
+ * @todo This test is incomplete. 
+*/
         self::markTestIncomplete();
     }
 }
