@@ -101,7 +101,8 @@ class MediaResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
+            ->columns(
+                [
                 TextColumn::make('collection_name')
                     ->translateLabel()
                     ->label('camping::tables.attachments.collection_name'),
@@ -124,10 +125,14 @@ class MediaResource extends Resource
                     ->label('camping::tables.attachments.uploaded_at')
                     ->dateTime()
                     ->toggleable(),
-            ])
-            ->filters([
-            ])
-            ->actions([
+                ]
+            )
+            ->filters(
+                [
+                ]
+            )
+            ->actions(
+                [
                 // ActionGroup::make([
                 Action::make('view_attachment')
                     // ->translateLabel()
@@ -149,11 +154,14 @@ class MediaResource extends Resource
                         static fn ($record) => response()->download($record->getPath(), $record->file_name)
                     ),
                 // ]),
-            ])
-            ->bulkActions([
+                ]
+            )
+            ->bulkActions(
+                [
                 DeleteBulkAction::make(),
                 // AttachmentDownloadBulkAction::make(),
-            ])
+                ]
+            )
             ->defaultSort(
                 column: 'created_at',
                 direction: 'DESC',

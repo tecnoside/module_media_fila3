@@ -6,7 +6,11 @@ namespace Modules\Media\Traits;
 
 use Livewire\Component;
 
-/** @mixin Component */
+/**
+* 
+ *
+ * @mixin Component 
+*/
 trait WithMedia
 {
     /**
@@ -51,7 +55,7 @@ trait WithMedia
     }
 
     /**
-     * @param  array|null  $mediaComponentNames
+     * @param array|null $mediaComponentNames
      */
     public function clearMedia($mediaComponentNames = null): void
     {
@@ -69,14 +73,16 @@ trait WithMedia
     protected function makeSureCustomPropertiesUseRightCasing(array $media): array
     {
         return collect($media)
-            ->map(function (array $mediaItemAttributes): array {
-                if (! isset($mediaItemAttributes['custom_properties']) && isset($mediaItemAttributes['customProperties'])) {
-                    $mediaItemAttributes['custom_properties'] = $mediaItemAttributes['customProperties'];
-                    unset($mediaItemAttributes['customProperties']);
-                }
+            ->map(
+                function (array $mediaItemAttributes): array {
+                    if (! isset($mediaItemAttributes['custom_properties']) && isset($mediaItemAttributes['customProperties'])) {
+                        $mediaItemAttributes['custom_properties'] = $mediaItemAttributes['customProperties'];
+                        unset($mediaItemAttributes['customProperties']);
+                    }
 
-                return $mediaItemAttributes;
-            })
+                    return $mediaItemAttributes;
+                }
+            )
             ->toArray();
     }
 }
