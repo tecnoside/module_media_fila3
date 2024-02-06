@@ -29,8 +29,8 @@ class GalleryField extends Repeater
         parent::setUp();
         $this->schema(
             [
-            // Forms\Components\TextInput::make('uuid'),
-            /*
+                // Forms\Components\TextInput::make('uuid'),
+                /*
             Forms\Components\TextInput::make('zibibbo')->default(function ($component, $record, $state) {
                 dddx([
                     'component' => $component,
@@ -39,12 +39,12 @@ class GalleryField extends Repeater
                 ]);
             }),
             */
-            // FileUpload::make('img'),
-            // SpatieMediaLibraryFileUpload::make('img')->image(),
-            // FileUpload::make('file_name'),
-            Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
-            Forms\Components\TextInput::make('name'),
-            Forms\Components\TextInput::make('collection_name'),
+                // FileUpload::make('img'),
+                // SpatieMediaLibraryFileUpload::make('img')->image(),
+                // FileUpload::make('file_name'),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
+                Forms\Components\TextInput::make('name'),
+                Forms\Components\TextInput::make('collection_name'),
             ]
         );
     }
@@ -54,37 +54,37 @@ class GalleryField extends Repeater
         parent::setUp();
         $this->schema(
             [
-            Forms\Components\Repeater::make('grupo_fotos')
-                ->label('')
-                ->reorderable(false)
-                ->defaultItems(1)
-                ->addActionLabel('Adicionar novo grupo de fotos')
-                ->grid(2)
-                ->schema(
-                    function () {
-                        return [
-                        SpatieMediaLibraryFileUpload::make('fotos')
-                            ->multiple()
-                            ->image()
-                            ->minFiles(1)
-                            ->maxFiles(4)
-                            ->helperText('Máximo de 4 imagens por grupo')
-                            ->panelLayout(null)
-                            ->previewable()
-                            ->columns(2)
-                            ->openable()
-                            ->collection(
-                                function (Get $get) {
-                                    return 'grupo_'.$get('id_for_media');
-                                }
-                            ),
-                        Forms\Components\Hidden::make('id_for_media')->default(Str::uuid()->toString()),
-                        Forms\Components\TextInput::make('descricao')
-                            ->label('Descrição')
-                            ->required(),
-                        ];
-                    }
-                ),
+                Forms\Components\Repeater::make('grupo_fotos')
+                    ->label('')
+                    ->reorderable(false)
+                    ->defaultItems(1)
+                    ->addActionLabel('Adicionar novo grupo de fotos')
+                    ->grid(2)
+                    ->schema(
+                        function () {
+                            return [
+                                SpatieMediaLibraryFileUpload::make('fotos')
+                                    ->multiple()
+                                    ->image()
+                                    ->minFiles(1)
+                                    ->maxFiles(4)
+                                    ->helperText('Máximo de 4 imagens por grupo')
+                                    ->panelLayout(null)
+                                    ->previewable()
+                                    ->columns(2)
+                                    ->openable()
+                                    ->collection(
+                                        function (Get $get) {
+                                            return 'grupo_'.$get('id_for_media');
+                                        }
+                                    ),
+                                Forms\Components\Hidden::make('id_for_media')->default(Str::uuid()->toString()),
+                                Forms\Components\TextInput::make('descricao')
+                                    ->label('Descrição')
+                                    ->required(),
+                            ];
+                        }
+                    ),
             ]
         );
     }
@@ -113,37 +113,35 @@ class GalleryField extends Repeater
         parent::setUp();
         $this->schema(
             [
-            SpatieMediaLibraryFileUpload::make('media_id')
-                ->disk('local')
-                ->collection('game-image')
-                ->visibility('private')
-                ->conversion('thumb')
-                ->loadStateFromRelationshipsUsing(
-                    function (SpatieMediaLibraryFileUpload $component, HasMedia $record) {
-                        /**
-                    * 
-                         *
-                    * @var Model&HasMedia $record 
-                    */
-                        $files = $record/* ->load('media') */ ->getMedia('game-image')
-                            ->where('id', $component->getState())
-                            ->take(1)
-                            ->mapWithKeys(
-                                function (Media $file): array {
-                                    $uuid = $file->getAttributeValue('uuid');
+                SpatieMediaLibraryFileUpload::make('media_id')
+                    ->disk('local')
+                    ->collection('game-image')
+                    ->visibility('private')
+                    ->conversion('thumb')
+                    ->loadStateFromRelationshipsUsing(
+                        function (SpatieMediaLibraryFileUpload $component, HasMedia $record) {
+                            /**
+                             * @var Model&HasMedia $record
+                             */
+                            $files = $record/* ->load('media') */ ->getMedia('game-image')
+                                ->where('id', $component->getState())
+                                ->take(1)
+                                ->mapWithKeys(
+                                    function (Media $file): array {
+                                        $uuid = $file->getAttributeValue('uuid');
 
-                                    return [$uuid => $uuid];
-                                }
-                            )
-                        ->toArray();
+                                        return [$uuid => $uuid];
+                                    }
+                                )
+                            ->toArray();
 
-                        $component->state($files);
-                    }
-                ),
+                            $component->state($files);
+                        }
+                    ),
 
-            Textarea::make('key')->rows(3),
+                Textarea::make('key')->rows(3),
 
-            Textarea::make('value')->rows(3),
+                Textarea::make('value')->rows(3),
             ]
         )->afterStateUpdated(
             function ($state, callable $set, callable $get, $component, ?HasMedia $record) {
