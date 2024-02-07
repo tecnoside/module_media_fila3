@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Modules\Media\Models\Media;
 use Spatie\MediaLibrary\HasMedia;
+use Webmozart\Assert\Assert;
 
 class GalleryField extends Repeater
 {
@@ -120,19 +121,19 @@ class GalleryField extends Repeater
                     ->conversion('thumb')
                     ->loadStateFromRelationshipsUsing(
                         function (SpatieMediaLibraryFileUpload $component, HasMedia $record) {
+                            $callable = function ($file): array {
+                                Assert::isInstanceOf($file, Media::class);
+                                $uuid = $file->getAttributeValue('uuid');
+
+                                return [$uuid => $uuid];
+                            };
                             /**
                              * @var Model&HasMedia $record
                              */
                             $files = $record/* ->load('media') */ ->getMedia('game-image')
                                 ->where('id', $component->getState())
                                 ->take(1)
-                                ->mapWithKeys(
-                                    function (Media $file): array {
-                                        $uuid = $file->getAttributeValue('uuid');
-
-                                        return [$uuid => $uuid];
-                                    }
-                                )
+                                ->mapWithKeys($callable)
                             ->toArray();
 
                             $component->state($files);
