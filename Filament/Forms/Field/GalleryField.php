@@ -114,7 +114,7 @@ class GalleryField extends Repeater
         parent::setUp();
         $this->schema(
             [
-                SpatieMediaLibraryFileUpload::make('media_id')
+                SpatieMediaLibraryFileUpload::make('image')
                     ->disk('local')
                     ->collection('game-image')
                     ->visibility('private')
