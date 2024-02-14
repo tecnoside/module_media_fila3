@@ -19,7 +19,6 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-// use Modules\Camping\Filament\Resources\AssetResource\Actions\AttachmentDownloadBulkAction;
 use Illuminate\Support\Str;
 use Modules\Media\Enums\AttachmentTypeEnum;
 use Webmozart\Assert\Assert;
