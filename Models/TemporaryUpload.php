@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Models;
 
-use Closure;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
@@ -19,8 +17,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Webmozart\Assert\Assert;
 
-use function is_string;
-
 /**
  * Modules\Media\Models\TemporaryUpload.
  *
@@ -30,6 +26,7 @@ use function is_string;
  * @property \Illuminate\Support\Carbon|null                                                      $updated_at
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, Media> $media
  * @property int|null                                                                             $media_count
+ *
  * @method static Builder|TemporaryUpload newModelQuery()
  * @method static Builder|TemporaryUpload newQuery()
  * @method static Builder|TemporaryUpload query()
@@ -37,6 +34,7 @@ use function is_string;
  * @method static Builder|TemporaryUpload whereId($value)
  * @method static Builder|TemporaryUpload whereSessionId($value)
  * @method static Builder|TemporaryUpload whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class TemporaryUpload extends Model implements HasMedia
@@ -44,7 +42,7 @@ class TemporaryUpload extends Model implements HasMedia
     use InteractsWithMedia;
     use MassPrunable;
 
-    public static ?Closure $manipulatePreview = null;
+    public static ?\Closure $manipulatePreview = null;
 
     public static ?string $disk = null;
 
@@ -63,10 +61,8 @@ class TemporaryUpload extends Model implements HasMedia
         Assert::string($mediaModelClass = config('media-library.media_model'));
 
         /**
-*
-         *
- * @var Media $media
-*/
+         * @var Media $media
+         */
         $media = $mediaModelClass::query()
             ->where('uuid', $mediaUuid)
             ->first();
@@ -105,10 +101,10 @@ class TemporaryUpload extends Model implements HasMedia
     ): self {
         /**
          * @var TemporaryUpload $temporaryUpload
-        */
+         */
         $temporaryUpload = static::create(
             [
-            'session_id' => $sessionId,
+                'session_id' => $sessionId,
             ]
         );
 
@@ -136,10 +132,10 @@ class TemporaryUpload extends Model implements HasMedia
     ): self {
         /**
          * @var TemporaryUpload $temporaryUpload
-        */
+         */
         $temporaryUpload = static::create(
             [
-            'session_id' => $sessionId,
+                'session_id' => $sessionId,
             ]
         );
 
@@ -162,13 +158,13 @@ class TemporaryUpload extends Model implements HasMedia
     protected static function getDiskName(): string
     {
         $res = static::$disk ?? config('media-library.disk_name');
-        if (is_string($res)) {
+        if (\is_string($res)) {
             return $res;
         }
-        throw new Exception('[' . __LINE__ . '][' . __FILE__ . ']');
+        throw new \Exception('['.__LINE__.']['.__FILE__.']');
     }
 
-    public function registerMediaConversions(?Media $media = null): void
+    public function registerMediaConversions(Media $media = null): void
     {
         if (! config('media-library.generate_thumbnails_for_temporary_uploads')) {
             return;
@@ -213,11 +209,11 @@ class TemporaryUpload extends Model implements HasMedia
     //    return self::query()->old();
     // }
 
-    protected function getPreviewManipulation(): Closure
+    protected function getPreviewManipulation(): \Closure
     {
         return static::$manipulatePreview ?? function (Conversion $conversion): void {
-            //$conversion->fit(Fit::Crop, 300, 300);
-            $conversion->fit('crop', 300, 300);
+            $conversion->fit(Fit::Crop, 300, 300);
+            // $conversion->fit('crop', 300, 300);
         };
     }
 }
