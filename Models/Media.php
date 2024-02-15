@@ -93,6 +93,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
  * @method static Builder|Media whereUserId($value)
  * @method static Builder|Media whereUuid($value)
  * @method static Builder|Media whereWidth($value)
+ * @property-read mixed $extension
+ * @property-read mixed $human_readable_size
+ * @property-read mixed $original_url
+ * @property-read mixed $preview_url
+ * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> all($columns = ['*'])
+ * @method static \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, static> get($columns = ['*'])
  * @mixin \Eloquent
  */
 class Media extends SpatieMedia
