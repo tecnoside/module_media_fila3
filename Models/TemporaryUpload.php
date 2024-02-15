@@ -213,10 +213,11 @@ class TemporaryUpload extends Model implements HasMedia
     //    return self::query()->old();
     // }
 
-    //protected function getPreviewManipulation(): Closure
-    //{
-    //    return static::$manipulatePreview ?? function (Conversion $conversion): void {
-    //        $conversion->fit(Fit::Crop, 300, 300);
-    //    };
-    //}
+    protected function getPreviewManipulation(): Closure
+    {
+        return static::$manipulatePreview ?? function (Conversion $conversion): void {
+            //$conversion->fit(Fit::Crop, 300, 300);
+            $conversion->fit('crop', 300, 300);
+        };
+    }
 }
