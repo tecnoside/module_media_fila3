@@ -104,10 +104,8 @@ class TemporaryUpload extends Model implements HasMedia
         string $name
     ): self {
         /**
-*
-         *
- * @var TemporaryUpload $temporaryUpload
-*/
+         * @var TemporaryUpload $temporaryUpload
+        */
         $temporaryUpload = static::create(
             [
             'session_id' => $sessionId,
@@ -137,10 +135,8 @@ class TemporaryUpload extends Model implements HasMedia
         string $diskName
     ): self {
         /**
-*
-         *
- * @var TemporaryUpload $temporaryUpload
-*/
+         * @var TemporaryUpload $temporaryUpload
+        */
         $temporaryUpload = static::create(
             [
             'session_id' => $sessionId,
@@ -217,10 +213,10 @@ class TemporaryUpload extends Model implements HasMedia
     //    return self::query()->old();
     // }
 
-    protected function getPreviewManipulation(): Closure
-    {
-        return static::$manipulatePreview ?? function (Conversion $conversion): void {
-            $conversion->fit(Fit::Crop, 300, 300);
-        };
-    }
+    //protected function getPreviewManipulation(): Closure
+    //{
+    //    return static::$manipulatePreview ?? function (Conversion $conversion): void {
+    //        $conversion->fit(Fit::Crop, 300, 300);
+    //    };
+    //}
 }
