@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Exception;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
@@ -40,29 +39,29 @@ class AttachmentResource extends Resource
         return $table
             ->columns(
                 [
-                TextColumn::make('collection_name')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.collection_name'),
+                    TextColumn::make('collection_name')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.collection_name'),
 
-                TextColumn::make('name')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.filename'),
+                    TextColumn::make('name')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.filename'),
 
-                TextColumn::make('human_readable_size')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.size'),
+                    TextColumn::make('human_readable_size')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.size'),
 
-                TextColumn::make('creator.full_name')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.creator')
-                    // ->default(fn($record)=>dddx($record))
-                    ->toggleable(),
+                    TextColumn::make('creator.full_name')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.creator')
+                        // ->default(fn($record)=>dddx($record))
+                        ->toggleable(),
 
-                TextColumn::make('created_at')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.uploaded_at')
-                    ->dateTime('d M, Y H:i:s')
-                    ->toggleable(),
+                    TextColumn::make('created_at')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.uploaded_at')
+                        ->dateTime(config('app.date_format'))
+                        ->toggleable(),
                 ]
             )
             ->filters(
@@ -71,34 +70,34 @@ class AttachmentResource extends Resource
             )
             ->actions(
                 [
-                ActionGroup::make(
-                    [
-                    Action::make('view_attachment')
-                        ->translateLabel()
-                        ->label('camping::actions.view.labels.main_label')
-                        ->icon('heroicon-s-eye')
-                        ->color('gray')
-                        ->url(
-                            static fn ($record): string => $record->getUrl()
-                        )->openUrlInNewTab(true),
-                    DeleteAction::make()->requiresConfirmation(),
-                    Action::make('download_attachment')
-                        ->translateLabel()
-                        ->label('camping::actions.download.labels.main_label')
-                        ->icon('heroicon-o-arrow-down-tray')
-                        ->color('primary')
-                        ->action(
-                            // File extension obtained by substringing
-                            static fn ($record) => response()->download($record->getPath(), $record->name . substr((string) strrchr((string) $record->file_name, '.'), 0))
-                        ),
-                    ]
-                ),
+                    ActionGroup::make(
+                        [
+                            Action::make('view_attachment')
+                                ->translateLabel()
+                                ->label('camping::actions.view.labels.main_label')
+                                ->icon('heroicon-s-eye')
+                                ->color('gray')
+                                ->url(
+                                    static fn ($record): string => $record->getUrl()
+                                )->openUrlInNewTab(true),
+                            DeleteAction::make()->requiresConfirmation(),
+                            Action::make('download_attachment')
+                                ->translateLabel()
+                                ->label('camping::actions.download.labels.main_label')
+                                ->icon('heroicon-o-arrow-down-tray')
+                                ->color('primary')
+                                ->action(
+                                    // File extension obtained by substringing
+                                    static fn ($record) => response()->download($record->getPath(), $record->name.substr((string) strrchr((string) $record->file_name, '.'), 0))
+                                ),
+                        ]
+                    ),
                 ]
             )
             ->bulkActions(
                 [
-                DeleteBulkAction::make(),
-                // AttachmentDownloadBulkAction::make(),
+                    DeleteBulkAction::make(),
+                    // AttachmentDownloadBulkAction::make(),
                 ]
             )
             ->defaultSort(
@@ -163,7 +162,7 @@ class AttachmentResource extends Resource
         // $mediaCollection = 'default';
 
         if (! method_exists($ownerRecord, 'addMediaFromDisk')) {
-            throw new Exception('wip');
+            throw new \Exception('wip');
         }
 
         $attachment = $ownerRecord
@@ -180,8 +179,8 @@ class AttachmentResource extends Resource
         $user_id = Filament::auth()->id();
         $attachment->update(
             [
-            'created_by' => $user_id,
-            'updated_by' => $user_id,
+                'created_by' => $user_id,
+                'updated_by' => $user_id,
             ]
         );
         /*
