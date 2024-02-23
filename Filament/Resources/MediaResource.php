@@ -23,7 +23,6 @@ use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
 use Modules\Media\Models\Media;
 use Webmozart\Assert\Assert;
 
-
 class MediaResource extends Resource
 {
     protected static ?string $model = Media::class;
@@ -100,28 +99,28 @@ class MediaResource extends Resource
         return $table
             ->columns(
                 [
-                TextColumn::make('collection_name')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.collection_name'),
+                    TextColumn::make('collection_name')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.collection_name'),
 
-                TextColumn::make('name')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.filename'),
+                    TextColumn::make('name')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.filename'),
 
-                TextColumn::make('human_readable_size')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.size'),
+                    TextColumn::make('human_readable_size')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.size'),
 
-                TextColumn::make('creator.name')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.creator')
-                    ->toggleable(),
+                    TextColumn::make('creator.name')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.creator')
+                        ->toggleable(),
 
-                TextColumn::make('created_at')
-                    ->translateLabel()
-                    ->label('camping::tables.attachments.uploaded_at')
-                    ->dateTime()
-                    ->toggleable(),
+                    TextColumn::make('created_at')
+                        ->translateLabel()
+                        ->label('camping::tables.attachments.uploaded_at')
+                        ->dateTime(config('app.date_format'))
+                        ->toggleable(),
                 ]
             )
             ->filters(
@@ -130,33 +129,33 @@ class MediaResource extends Resource
             )
             ->actions(
                 [
-                // ActionGroup::make([
-                Action::make('view_attachment')
-                    // ->translateLabel()
-                    // ->label('camping::actions.view.labels.main_label')
-                    ->label('')
-                    ->icon('heroicon-s-eye')
-                    ->color('gray')
-                    ->url(
-                        static fn ($record): string => $record->getUrl()
-                    )->openUrlInNewTab(true),
-                DeleteAction::make()->label('')->requiresConfirmation(),
-                Action::make('download_attachment')
-                    // ->translateLabel()
-                    // ->label('camping::actions.download.labels.main_label')
-                    ->label('')
-                    ->icon('heroicon-o-arrow-down-tray')
-                    ->color('primary')
-                    ->action(
-                        static fn ($record) => response()->download($record->getPath(), $record->file_name)
-                    ),
-                // ]),
+                    // ActionGroup::make([
+                    Action::make('view_attachment')
+                        // ->translateLabel()
+                        // ->label('camping::actions.view.labels.main_label')
+                        ->label('')
+                        ->icon('heroicon-s-eye')
+                        ->color('gray')
+                        ->url(
+                            static fn ($record): string => $record->getUrl()
+                        )->openUrlInNewTab(true),
+                    DeleteAction::make()->label('')->requiresConfirmation(),
+                    Action::make('download_attachment')
+                        // ->translateLabel()
+                        // ->label('camping::actions.download.labels.main_label')
+                        ->label('')
+                        ->icon('heroicon-o-arrow-down-tray')
+                        ->color('primary')
+                        ->action(
+                            static fn ($record) => response()->download($record->getPath(), $record->file_name)
+                        ),
+                    // ]),
                 ]
             )
             ->bulkActions(
                 [
-                DeleteBulkAction::make(),
-                // AttachmentDownloadBulkAction::make(),
+                    DeleteBulkAction::make(),
+                    // AttachmentDownloadBulkAction::make(),
                 ]
             )
             ->defaultSort(
