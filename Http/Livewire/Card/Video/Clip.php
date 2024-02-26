@@ -23,9 +23,7 @@ class Clip extends Component
      *
      * @var array
      */
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     protected $listeners = [
         'updateDataFromModal' => 'updateDataFromModal',
     ];
@@ -68,7 +66,7 @@ class Clip extends Component
      */
     public function updateDataFromModal(string $id, array $data): void
     {
-        if ($id !== 'editClip') {
+        if ('editClip' !== $id) {
             return;
         }
 
