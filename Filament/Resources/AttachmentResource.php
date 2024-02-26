@@ -36,6 +36,8 @@ class AttachmentResource extends Resource
 
     public static function table(Table $table): Table
     {
+        Assert::string($date_format = config('app.date_format'));
+
         return $table
             ->columns(
                 [
@@ -60,7 +62,7 @@ class AttachmentResource extends Resource
                     TextColumn::make('created_at')
                         ->translateLabel()
                         ->label('camping::tables.attachments.uploaded_at')
-                        ->dateTime(config('app.date_format'))
+                        ->dateTime($date_format)
                         ->toggleable(),
                 ]
             )
