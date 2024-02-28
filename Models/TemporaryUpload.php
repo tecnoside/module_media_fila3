@@ -46,9 +46,7 @@ class TemporaryUpload extends Model implements HasMedia
 
     public static ?string $disk = null;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $connection = 'media';
 
     /**

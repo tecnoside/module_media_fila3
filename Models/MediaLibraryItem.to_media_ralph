@@ -56,13 +56,9 @@ class MediaLibraryItem extends BaseMediaLibraryItem implements Sortable
 {
     use SortableTrait;
 
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $connection = 'media';
 
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $table = 'media_library_items';
 }
