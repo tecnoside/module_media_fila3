@@ -114,6 +114,10 @@ class Media extends SpatieMedia
 
     /** @var array<string, string> */
     protected $casts = [
+        'updated_by' => 'string',
+        'created_by' => 'string',
+        'deleted_by' => 'string',
+
         // 'attachment_type' => AttachmentTypeEnum::class,
         'manipulations' => 'array',
         'custom_properties' => 'array',
