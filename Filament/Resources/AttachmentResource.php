@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Media\Filament\Resources;
 
-use Filament\Facades\Filament;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Radio;
@@ -178,7 +177,7 @@ class AttachmentResource extends Resource
             ->preservingOriginal()
             ->toMediaCollection($mediaCollection);
 
-        $user_id = Filament::auth()->id();
+        $user_id = authId();
         $attachment->update(
             [
                 'created_by' => $user_id,
