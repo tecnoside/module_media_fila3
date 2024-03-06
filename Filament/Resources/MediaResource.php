@@ -10,7 +10,6 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\PageRegistration;
-use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
@@ -21,9 +20,10 @@ use Modules\Media\Filament\Resources\MediaResource\Pages\CreateMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\EditMedia;
 use Modules\Media\Filament\Resources\MediaResource\Pages\ListMedia;
 use Modules\Media\Models\Media;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Webmozart\Assert\Assert;
 
-class MediaResource extends Resource
+class MediaResource extends XotBaseResource
 {
     protected static ?string $model = Media::class;
 
@@ -50,11 +50,8 @@ class MediaResource extends Resource
 
         return [
             FileUpload::make('file')
-                ->translateLabel()
-                ->label('camping::forms.attachments.fields.file.field_name')
-                ->hint(
-                    trans('camping::forms.attachments.fields.file.hint'),
-                )
+                ->label(static::trans('fields.file'))
+                ->hint(static::trans('fields.file_hint'))
                 ->storeFileNamesIn('original_file_name')
                 ->disk(
                     $disk
@@ -84,10 +81,8 @@ class MediaResource extends Resource
             Radio::make('attachment_type'),
             TextInput::make('name')
                 ->translateLabel()
-                ->label('camping::forms.attachments.fields.name.field_name')
-                ->hint(
-                    trans('camping::forms.attachments.fields.name.hint'),
-                )
+                ->label(static::trans('fields.name.field_name'))
+                ->hint(static::trans('fields.name.hint'))
                 ->autocomplete(false)
                 ->maxLength(255)
                 ->columnSpanFull(),
@@ -102,25 +97,20 @@ class MediaResource extends Resource
             ->columns(
                 [
                     TextColumn::make('collection_name')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.collection_name'),
+                        ->label(static::trans('fields.collection_name')),
 
                     TextColumn::make('name')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.filename'),
+                        ->label(static::trans('fields.filename')),
 
                     TextColumn::make('human_readable_size')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.size'),
+                        ->label(static::trans('fields.human_readable_size')),
 
                     TextColumn::make('creator.name')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.creator')
+                        ->label(static::trans('fields.creator.name'))
                         ->toggleable(),
 
                     TextColumn::make('created_at')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.uploaded_at')
+                        ->label(static::trans('fields.uploaded_at'))
                         ->dateTime($date_format)
                         ->toggleable(),
                 ]
@@ -133,8 +123,6 @@ class MediaResource extends Resource
                 [
                     // ActionGroup::make([
                     Action::make('view_attachment')
-                        // ->translateLabel()
-                        // ->label('camping::actions.view.labels.main_label')
                         ->label('')
                         ->icon('heroicon-s-eye')
                         ->color('gray')
@@ -143,8 +131,6 @@ class MediaResource extends Resource
                         )->openUrlInNewTab(true),
                     DeleteAction::make()->label('')->requiresConfirmation(),
                     Action::make('download_attachment')
-                        // ->translateLabel()
-                        // ->label('camping::actions.download.labels.main_label')
                         ->label('')
                         ->icon('heroicon-o-arrow-down-tray')
                         ->color('primary')
