@@ -10,7 +10,6 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\DeleteAction;
@@ -19,9 +18,10 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Media\Enums\AttachmentTypeEnum;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Webmozart\Assert\Assert;
 
-class AttachmentResource extends Resource
+class AttachmentResource extends XotBaseResource
 {
     protected static bool $shouldRegisterNavigation = false;
 
@@ -41,26 +41,21 @@ class AttachmentResource extends Resource
             ->columns(
                 [
                     TextColumn::make('collection_name')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.collection_name'),
+                        ->label(static::trans('fields.collection_name')),
 
                     TextColumn::make('name')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.filename'),
+                        ->label(static::trans('fields.filename')),
 
                     TextColumn::make('human_readable_size')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.size'),
+                        ->label(static::trans('fields.size')),
 
                     TextColumn::make('creator.full_name')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.creator')
+                        ->label(static::trans('fields.creator.full_name'))
                         // ->default(fn($record)=>dddx($record))
                         ->toggleable(),
 
                     TextColumn::make('created_at')
-                        ->translateLabel()
-                        ->label('camping::tables.attachments.uploaded_at')
+                        ->label(static::trans('fields.created_at'))
                         ->dateTime($date_format)
                         ->toggleable(),
                 ]
@@ -74,8 +69,7 @@ class AttachmentResource extends Resource
                     ActionGroup::make(
                         [
                             Action::make('view_attachment')
-                                ->translateLabel()
-                                ->label('camping::actions.view.labels.main_label')
+                                ->label(static::trans('actions.view_attachment'))
                                 ->icon('heroicon-s-eye')
                                 ->color('gray')
                                 ->url(
@@ -83,8 +77,7 @@ class AttachmentResource extends Resource
                                 )->openUrlInNewTab(true),
                             DeleteAction::make()->requiresConfirmation(),
                             Action::make('download_attachment')
-                                ->translateLabel()
-                                ->label('camping::actions.download.labels.main_label')
+                                ->label(static::trans('actions.download_attachment'))
                                 ->icon('heroicon-o-arrow-down-tray')
                                 ->color('primary')
                                 ->action(
@@ -118,11 +111,9 @@ class AttachmentResource extends Resource
 
         return [
             FileUpload::make('file')
-                ->translateLabel()
-                ->label('camping::forms.attachments.fields.file.field_name')
-                ->hint(
-                    trans('camping::forms.attachments.fields.file.hint'),
-                )
+
+                ->label(static::trans('fields.file'))
+                ->hint(static::trans('fields.file_hint'))
                 ->storeFileNamesIn('original_file_name')
                 ->disk($disk)
                 ->acceptedFileTypes($file_types)
@@ -146,10 +137,8 @@ class AttachmentResource extends Resource
             // Radio::make('attachment_type')->columnSpanFull(),
             TextInput::make('name')
                 ->translateLabel()
-                ->label('camping::forms.attachments.fields.name.field_name')
-                ->hint(
-                    trans('camping::forms.attachments.fields.name.hint'),
-                )
+                ->label(static::trans('fields.name.field_name'))
+                ->hint(static::trans('fields.name.hint'))
                 ->autocomplete(false)
                 ->maxLength(255)
                 ->columnSpanFull(),
