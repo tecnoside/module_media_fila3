@@ -23,10 +23,11 @@ class CreateMediasTable extends XotBaseMigration
         // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table): void {
-                $table->bigIncrements('id');
+                $table->id();
+                //$table->bigIncrements('id');
                 // $table->morphs('model');
                 $table->uuidMorphs('model');
-                $table->uuid('uuid')->nullable()->unique();
+                $table->uuid('uuid')->nullable()->unique()->index();
                 $table->string('collection_name');
                 $table->string('name');
                 $table->string('file_name');
@@ -41,13 +42,14 @@ class CreateMediasTable extends XotBaseMigration
                 $table->unsignedInteger('order_column')->nullable()->index();
                 $table->nullableTimestamps();
                 // ----------------------------------------------------------
-                $table->string('created_by')->nullable();
-                $table->string('updated_by')->nullable();
+                //$table->string('created_by')->nullable();
+                //$table->string('updated_by')->nullable();
             }
         );
         // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table): void {
+                /*
                 if (! $this->hasColumn('user_id')) {
                     $table->integer('user_id');
                 }
@@ -115,7 +117,8 @@ class CreateMediasTable extends XotBaseMigration
                 if (! $this->hasColumn('curations')) {
                     $table->longText('curations')->nullable();
                 }
-                $this->updateUser($table);
+                */
+                $this->updateTimestamps($table,true);
             }
         );
     }
