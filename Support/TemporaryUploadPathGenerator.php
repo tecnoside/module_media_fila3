@@ -10,25 +10,22 @@ use Webmozart\Assert\Assert;
 // use Spatie\MediaLibrary\MediaCollections\Models\Media;
 // use Spatie\MediaLibrary\Support\PathGenerator\PathGenerator;
 // use Modules\Media\Contracts\PathGenerator;
-
-class TemporaryUploadPathGenerator // implements PathGenerator
+// implements PathGenerator
+class TemporaryUploadPathGenerator
 {
     public function getPath(Media $media): string
     {
-        /* @phpstan-ignore-line */
-        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'original').'/';
+        return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'original') . '/';
     }
 
     public function getPathForConversions(Media $media): string
     {
-        /* @phpstan-ignore-line */
-        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'conversion');
+        return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'conversion');
     }
 
     public function getPathForResponsiveImages(Media $media): string
     {
-        /* @phpstan-ignore-line */
-        return $this->getBasePath($media).'/'.md5($media->id.$media->uuid.'responsive');
+        return $this->getBasePath($media) . '/' . md5($media->id . $media->uuid . 'responsive');
     }
 
     /*
@@ -38,11 +35,10 @@ class TemporaryUploadPathGenerator // implements PathGenerator
     {
         Assert::string($prefix = config('media-library.prefix', ''));
         Assert::string($id = $media->getKey());
-        /* @phpstan-ignore-line */
-        $key = md5($media->uuid.$id);
+        $key = md5($media->uuid . $id);
 
-        if ($prefix !== '') {
-            return $prefix.'/'.$key;
+        if ('' !== $prefix) {
+            return $prefix . '/' . $key;
         }
 
         return $key;
